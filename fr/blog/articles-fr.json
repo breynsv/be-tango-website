@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "slug": "histoire-du-tango-argentin",
+    "title": "Histoire du tango argentin : des ruelles de Buenos Aires aux scènes internationales",
+    "author": "Sonja",
+    "date": "2025-02-01",
+    "dateModified": "2025-02-03",
+    "excerpt": "Le tango argentin est né à la fin du 19e siècle à Buenos Aires et Montevideo lorsque les danses et musiques des esclaves noirs, des travailleurs saisonniers et des immigrants européens se sont fondues avec celles des gauchos.",
+    "featuredImage": "../../images/blog/prague-tango-marathon.jpg",
+    "wordCount": 634,
+    "category": "Histoire"
+  },
+  {
+    "id": 2,
+    "slug": "les-differents-styles-du-tango-argentin",
+    "title": "Les différents styles du tango argentin",
+    "author": "Sonja",
+    "date": "2025-01-30",
+    "dateModified": "2025-01-31",
+    "excerpt": "Le tango argentin possède une histoire riche marquée par une évolution constante. Découvrez neuf styles distincts: Canyengue, Orillero, Salon, Milonguero, Candombé, Villa Urquiza, Fantasia, Nuevo et Escenario.",
+    "featuredImage": "../../images/blog/12_candombe.jpg",
+    "wordCount": 1250,
+    "category": "Styles de Danse"
+  },
+  {
+    "id": 3,
+    "slug": "dictionnaire-de-tango",
+    "title": "Dictionnaire de Tango, un guide de la terminologie du tango",
+    "author": "Sven",
+    "date": "2021-02-24",
+    "dateModified": "2025-02-10",
+    "excerpt": "Un guide complet contenant tous les noms des pas de danse et la terminologie du tango argentin. Ocho, sacada, salida cruzada et bien d'autres.",
+    "featuredImage": "../../images/blog/tango-dictionary.jpg",
+    "wordCount": 2746,
+    "category": "Terminologie"
+  },
+  {
+    "id": 4,
+    "slug": "tango-argentin-vs-tango-de-salon",
+    "title": "Tango argentin et le tango de salon, similarités et différences",
+    "author": "Sven",
+    "date": "2021-02-24",
+    "dateModified": "2024-12-08",
+    "excerpt": "Comparaison entre le tango argentin et le tango de salon à travers des perspectives historiques et techniques. Le tango argentin privilégie l'improvisation tandis que le tango de salon met l'accent sur la standardisation technique.",
+    "featuredImage": "../../images/blog/ballroom-tango.jpg",
+    "wordCount": 2126,
+    "category": "Comparaisons"
+  },
+  {
+    "id": 5,
+    "slug": "difference-entre-tango-valse-et-milonga",
+    "title": "La différence entre tango, valse et milonga",
+    "author": "Sonja",
+    "date": "2020-12-30",
+    "dateModified": "2024-12-08",
+    "excerpt": "Argentijnse tango ne signifie pas seulement que vous dansez le tango, mais aussi la valse et la milonga. Découvrez les trois styles de danse distincts avec leurs caractères uniques.",
+    "featuredImage": "../../images/blog/tango-milonga-vals.jpg",
+    "wordCount": 850,
+    "category": "Styles de Danse"
+  },
+  {
+    "id": 6,
+    "slug": "conseils-pour-chaussures-de-tango",
+    "title": "5 conseils pour les meilleures chaussures de tango",
+    "author": "Sonja",
+    "date": "2020-12-15",
+    "dateModified": "2025-02-03",
+    "excerpt": "De bonnes chaussures de tango améliorent la technique de danse, réduisent les blessures et augmentent le plaisir du tango argentin. Découvrez nos 5 conseils essentiels.",
+    "featuredImage": "../../images/blog/tango-schoenen-blogpost.jpg",
+    "wordCount": 2143,
+    "category": "Conseils Pratiques"
+  },
+  {
+    "id": 7,
+    "slug": "evenements-de-tango-a-bruxelles",
+    "title": "Événements tango à Bruxelles & environs",
+    "author": "Sonja",
+    "date": "2020-04-15",
+    "dateModified": "2026-02-05",
+    "excerpt": "Où puis-je aller pratiquer le tango? Quels sont les plus beaux événements de tango et milonga à Bruxelles et dans les environs? Découvrez nos milongas préférées!",
+    "featuredImage": "../../images/blog/milonga-la-milonguita-768x512.jpg",
+    "wordCount": 850,
+    "category": "Événements"
+  },
+  {
+    "id": 8,
+    "slug": "evenements-de-tango-internationaux",
+    "title": "Milongas et événements de tango internationaux",
+    "author": "Sonja",
+    "date": "2020-05-10",
+    "dateModified": "2026-02-05",
+    "excerpt": "Où pouvez-vous voyager pour le tango? Quels sont les meilleurs festivals de tango et quels marathons de tango nous conseillons. Découvrez nos coups de cœur à l'étranger.",
+    "featuredImage": "../../images/blog/prague-tango-marathon.jpg",
+    "wordCount": 980,
+    "category": "Événements"
+  },
+  {
+    "id": 9,
+    "slug": "pourquoi-apprendre-le-tango",
+    "title": "Pourquoi apprendre le tango?",
+    "author": "Sonja",
+    "date": "2020-03-20",
+    "dateModified": "2026-02-05",
+    "excerpt": "Pourquoi apprendre à danser? 10 raisons pourquoi suivre des cours de danse et d'apprendre le tango argentin. Le tango est une danse sociale qui s'adresse à tous.",
+    "featuredImage": "../../images/blog/dancers_tango-1.jpg",
+    "wordCount": 1100,
+    "category": "Guide"
+  }
+]

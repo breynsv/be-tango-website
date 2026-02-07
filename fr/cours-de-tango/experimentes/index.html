@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cours de tango pour danseurs expérimentés à Bruxelles et Woluwe. Niveaux fondamentaux, intermédiaires et avancés. Affinez votre technique, maîtrisez des figures complexes et trouvez votre fluidité.">
+  <meta name="keywords" content="cours tango expérimentés Bruxelles, tango avancé, cours intermédiaire tango, tango niveau 2, cours avancés Woluwe, technique tango, musicalité tango">
+  <title>Cours de tango pour danseurs avec de l'expérience – BE-TANGO</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../../images/cropped-favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../images/cropped-favicon-180x180.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../../../css/styles.css">
+
+  <!-- JSON-LD Structured Data - Experienced Courses -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "Course",
+        "name": "Cours de tango 1ère année",
+        "description": "Pour les danseurs ayant terminé le cours pour débutants. Consolidation des bases, système croisé, marche fluide et Ochos.",
+        "provider": {
+          "@type": "Organization",
+          "name": "BE-TANGO",
+          "url": "https://www.be-tango.be/fr/"
+        },
+        "courseCode": "FIRST_YEAR",
+        "numberOfCredits": 15,
+        "offers": {
+          "@type": "Offer",
+          "price": "185",
+          "priceCurrency": "EUR",
+          "description": "Cours semestriel - 15 leçons"
+        },
+        "hasCourseInstance": [
+          {
+            "@type": "CourseInstance",
+            "courseMode": "onsite",
+            "location": {
+              "@type": "Place",
+              "name": "BE-TANGO Brussels",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Rue du Marais 68",
+                "addressLocality": "Bruxelles",
+                "postalCode": "1000",
+                "addressCountry": "BE"
+              }
+            },
+            "courseSchedule": {
+              "@type": "Schedule",
+              "byDay": "Wednesday",
+              "startTime": "18:30",
+              "endTime": "19:30",
+              "repeatFrequency": "Weekly"
+            }
+          },
+          {
+            "@type": "CourseInstance",
+            "courseMode": "onsite",
+            "location": {
+              "@type": "Place",
+              "name": "BE-TANGO Woluwe",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Avenue Orban 54",
+                "addressLocality": "Woluwe-Saint-Pierre",
+                "postalCode": "1150",
+                "addressCountry": "BE"
+              }
+            },
+            "courseSchedule": {
+              "@type": "Schedule",
+              "byDay": "Thursday",
+              "startTime": "18:30",
+              "endTime": "19:30",
+              "repeatFrequency": "Weekly"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "Course",
+        "name": "Cours de tango 2ème année",
+        "description": "1,5-2,5 ans d'expérience. Introduction aux Giros, Sacadas et Barridas. Accent sur la dissociation.",
+        "provider": {
+          "@type": "Organization",
+          "name": "BE-TANGO",
+          "url": "https://www.be-tango.be/fr/"
+        },
+        "courseCode": "SECOND_YEAR",
+        "numberOfCredits": 15,
+        "offers": {
+          "@type": "Offer",
+          "price": "185",
+          "priceCurrency": "EUR",
+          "description": "Cours semestriel - 15 leçons"
+        }
+      },
+      {
+        "@type": "Course",
+        "name": "Cours de tango 2ème année PLUS",
+        "description": "Un pont entre les 2èmes années et le niveau Avancé. Rythme plus rapide, séquences plus complexes et variations de style.",
+        "provider": {
+          "@type": "Organization",
+          "name": "BE-TANGO",
+          "url": "https://www.be-tango.be/fr/"
+        },
+        "courseCode": "SECOND_YEAR_PLUS",
+        "numberOfCredits": 15,
+        "offers": {
+          "@type": "Offer",
+          "price": "185",
+          "priceCurrency": "EUR",
+          "description": "Cours semestriel - 15 leçons"
+        }
+      },
+      {
+        "@type": "Course",
+        "name": "Cours de tango Intermédiaire / Avancé",
+        "description": "4+ ans d'expérience. Boleos, Ganchos, Enrosques. Travail approfondi sur la musicalité (Vals/Milonga) et l'improvisation.",
+        "provider": {
+          "@type": "Organization",
+          "name": "BE-TANGO",
+          "url": "https://www.be-tango.be/fr/"
+        },
+        "courseCode": "INTERMEDIATE_ADVANCED",
+        "numberOfCredits": 15,
+        "offers": {
+          "@type": "Offer",
+          "price": "185",
+          "priceCurrency": "EUR",
+          "description": "Cours semestriel - 15 leçons"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../index.html" class="logo">
+          <img src="../../../images/logo-be-tango.png" alt="BE-TANGO - École de danse tango argentin" width="200" height="34" loading="lazy">
+        </a>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="main-nav" aria-label="Navigation principale">
+          <ul class="nav-list">
+            <li><a href="../../index.html">Accueil</a></li>
+            <li class="nav-item-dropdown">
+              <a href="../index.html">Cours de Tango</a>
+              <ul class="dropdown-menu">
+                <li><a href="../debutants/index.html">Débutants</a></li>
+                <li><a href="index.html" class="active" aria-current="page">Expérimentés</a></li>
+                <li><a href="../../cours-prives/index.html">Cours privés</a></li>
+                <li><a href="../../en-ligne/index.html">Cours en ligne</a></li>
+                <li><a href="../../lieux/bruxelles/index.html">Bruxelles</a></li>
+                <li><a href="../../lieux/woluwe/index.html">Woluwe</a></li>
+              </ul>
+            </li>
+            <li><a href="../../cours-d-essai-gratuit/index.html">Cours d'essai gratuit</a></li>
+            <li><a href="../../contact/index.html">Contact</a></li>
+                        <li class="language-switcher">
+              <button class="language-toggle" aria-label="Select language" aria-expanded="false">
+                <i class="fas fa-globe"></i>
+                <span class="current-lang">FR</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <ul class="language-dropdown">
+                <li>
+                  <a href="../../../nl/tangolessen/ervaring/index.html">
+                    <span class="flag-icon">🇳🇱</span>
+                    <span>Nederlands</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="../../../tango-classes/experienced/index.html">
+                    <span class="flag-icon">🇬🇧</span>
+                    <span>English</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="../../../fr/cours-de-tango/experimentes/index.html" class="active">
+                    <span class="flag-icon">🇫🇷</span>
+                    <span>Français</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero hero-small">
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-label">DANSEURS EXPÉRIMENTÉS</p>
+          <h1>Niveaux fondamentaux, intermédiaires<br><span class="highlight">& avancés</span></h1>
+          <p class="hero-tagline">Continuez votre voyage de tango avec des conseils d'experts</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Levels Overview -->
+    <section class="section-padding">
+      <div class="container">
+        <div class="section-intro">
+          <h2>Choisissez votre niveau</h2>
+          <p>Notre programme pour danseurs expérimentés offre quatre niveaux distincts, chacun conçu pour développer vos compétences existantes et élever votre danse à de nouveaux sommets.</p>
+        </div>
+
+        <div class="grid grid-2">
+          <!-- First Year -->
+          <article class="card level-card">
+            <div class="level-badge level-badge-blue">Première Année</div>
+            <div class="card-content">
+              <h3>Première Année</h3>
+              <p class="level-description">Pour les danseurs ayant terminé le cours pour débutants. Nous consolidons les bases et nous concentrons sur le système croisé, la marche fluide et les Ochos.</p>
+
+              <div class="level-details">
+                <div class="level-detail-item">
+                  <i class="fas fa-book"></i>
+                  <span><strong>15 leçons</strong></span>
+                </div>
+                <div class="level-detail-item">
+                  <i class="fas fa-clock"></i>
+                  <span>Horaire hebdomadaire</span>
+                </div>
+                <div class="level-detail-item">
+                  <i class="fas fa-users"></i>
+                  <span>Cours en groupe</span>
+                </div>
+              </div>
+
+              <a href="#first-year-schedule" class="btn btn-primary">Voir l'horaire</a>
+            </div>
+          </article>
+
+          <!-- Second Year -->
+          <article class="card level-card">
+            <div class="level-badge level-badge-indigo">Deuxième Année</div>
+            <div class="card-content">
+              <h3>Deuxième Année</h3>
+              <p class="level-description">S'appuyant sur les fondamentaux de la première année. Continuez à développer la technique, la musicalité et la connexion avec le partenaire avec des motifs plus complexes.</p>
+
+              <div class="level-details">
+                <div class="level-detail-item">
+                  <i class="fas fa-book"></i>
+                  <span><strong>15 leçons</strong></span>
+                </div>
+                <div class="level-detail-item">
+                  <i class="fas fa-clock"></i>
+                  <span>Horaire hebdomadaire</span>
+                </div>
+                <div class="level-detail-item">
+                  <i class="fas fa-users"></i>
+                  <span>Cours en groupe</span>
+                </div>
+              </div>
+
+              <a href="#second-year-schedule" class="btn btn-primary">Voir l'horaire</a>
+            </div>
+          </article>
+
+          <!-- Second Year PLUS -->
+          <article class="card level-card">
+            <div class="level-badge level-badge-purple">Deuxième Année PLUS</div>
+            <div class="card-content">
+              <h3>Deuxième Année <span class="highlight">PLUS</span></h3>
+              <p class="level-description">Fondamentaux avancés pour danseurs expérimentés. Affinez votre technique, explorez des séquences complexes et approfondissez votre interprétation musicale.</p>
+
+              <div class="level-details">
+                <div class="level-detail-item">
+                  <i class="fas fa-book"></i>
+                  <span><strong>15 leçons</strong></span>
+                </div>
+                <div class="level-detail-item">
+                  <i class="fas fa-clock"></i>
+                  <span>Horaire hebdomadaire</span>
+                </div>
+                <div class="level-detail-item">
+                  <i class="fas fa-users"></i>
+                  <span>Cours en groupe</span>
+                </div>
+              </div>
+
+              <a href="#second-year-plus-schedule" class="btn btn-primary">Voir l'horaire</a>
+            </div>
+          </article>
+
+          <!-- Intermediate/Advanced -->
+          <article class="card level-card">
+            <div class="level-badge level-badge-red">Intermédiaire/Avancé</div>
+            <div class="card-content">
+              <h3>Intermédiaire / Avancé</h3>
+              <p class="level-description">Pour les danseurs avec 4+ ans d'expérience. Maîtrisez les Boleos, Ganchos, Enrosques. Travail approfondi sur la musicalité (Vals/Milonga) et l'improvisation.</p>
+
+              <div class="level-details">
+                <div class="level-detail-item">
+                  <i class="fas fa-book"></i>
+                  <span><strong>15 leçons</strong></span>
+                </div>
+                <div class="level-detail-item">
+                  <i class="fas fa-clock"></i>
+                  <span>Horaire hebdomadaire</span>
+                </div>
+                <div class="level-detail-item">
+                  <i class="fas fa-graduation-cap"></i>
+                  <span>Technique avancée</span>
+                </div>
+              </div>
+
+              <a href="#intermediate-schedule" class="btn btn-primary">Voir l'horaire</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Class Schedules -->
+    <section class="section-padding bg-light">
+      <div class="container">
+        <div class="section-intro">
+          <h2>Horaires des cours</h2>
+          <p>Choisissez parmi nos emplacements pratiques à Bruxelles et Woluwe-Saint-Pierre</p>
+        </div>
+
+        <div class="schedule-grid">
+          <!-- Brussels (Gatti de Gamond) Schedule -->
+          <div class="schedule-location">
+            <div class="schedule-location-header">
+              <div>
+                <h3><i class="fas fa-map-marker-alt"></i> Bruxelles - Gatti de Gamond</h3>
+                <p class="location-address">Rue du Marais 68, 1000 Bruxelles</p>
+              </div>
+            </div>
+
+            <div class="schedule-items">
+              <!-- Monday - Second Year -->
+              <div class="schedule-item" id="first-year-schedule">
+                <div class="schedule-time">
+                  <span class="schedule-day">Lun</span>
+                  <span class="schedule-hour">19:00</span>
+                </div>
+                <div class="schedule-info">
+                  <h4>Lundi 19:00 - 20:00</h4>
+                  <p>Bruxelles - Gatti de Gamond</p>
+                </div>
+                <span class="schedule-badge level-badge-indigo">Deuxième Année</span>
+              </div>
+
+              <!-- Wednesday - First Year -->
+              <div class="schedule-item">
+                <div class="schedule-time">
+                  <span class="schedule-day">Mer</span>
+                  <span class="schedule-hour">18:30</span>
+                </div>
+                <div class="schedule-info">
+                  <h4>Mercredi 18:30 - 19:30</h4>
+                  <p>Bruxelles - Gatti de Gamond</p>
+                </div>
+                <span class="schedule-badge level-badge-blue">Première Année</span>
+              </div>
+
+              <!-- Wednesday - Second Year PLUS -->
+              <div class="schedule-item" id="second-year-schedule">
+                <div class="schedule-time">
+                  <span class="schedule-day">Mer</span>
+                  <span class="schedule-hour">19:30</span>
+                </div>
+                <div class="schedule-info">
+                  <h4>Mercredi 19:30 - 20:30</h4>
+                  <p>Bruxelles - Gatti de Gamond</p>
+                </div>
+                <span class="schedule-badge level-badge-purple">Deuxième Année PLUS</span>
+              </div>
+
+              <!-- Wednesday - Intermediate -->
+              <div class="schedule-item" id="second-year-plus-schedule">
+                <div class="schedule-time">
+                  <span class="schedule-day">Mer</span>
+                  <span class="schedule-hour">20:30</span>
+                </div>
+                <div class="schedule-info">
+                  <h4>Mercredi 20:30 - 21:30</h4>
+                  <p>Bruxelles - Gatti de Gamond</p>
+                </div>
+                <span class="schedule-badge level-badge-red">Intermédiaire</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Woluwe Schedule -->
+          <div class="schedule-location">
+            <div class="schedule-location-header">
+              <div>
+                <h3><i class="fas fa-map-marker-alt"></i> Woluwe-Saint-Pierre</h3>
+                <p class="location-address">Avenue Orban 54, 1150 Woluwe-Saint-Pierre</p>
+              </div>
+            </div>
+
+            <div class="schedule-items">
+              <!-- Tuesday - Second Year -->
+              <div class="schedule-item">
+                <div class="schedule-time">
+                  <span class="schedule-day">Mar</span>
+                  <span class="schedule-hour">19:00</span>
+                </div>
+                <div class="schedule-info">
+                  <h4>Mardi 19:00 - 20:00</h4>
+                  <p>Woluwe-Saint-Pierre</p>
+                </div>
+                <span class="schedule-badge level-badge-indigo">Deuxième Année</span>
+              </div>
+
+              <!-- Tuesday - Second Year PLUS -->
+              <div class="schedule-item">
+                <div class="schedule-time">
+                  <span class="schedule-day">Mar</span>
+                  <span class="schedule-hour">20:00</span>
+                </div>
+                <div class="schedule-info">
+                  <h4>Mardi 20:00 - 21:00</h4>
+                  <p>Woluwe-Saint-Pierre</p>
+                </div>
+                <span class="schedule-badge level-badge-purple">Deuxième Année PLUS</span>
+              </div>
+
+              <!-- Thursday - First Year -->
+              <div class="schedule-item" id="intermediate-schedule">
+                <div class="schedule-time">
+                  <span class="schedule-day">Jeu</span>
+                  <span class="schedule-hour">18:30</span>
+                </div>
+                <div class="schedule-info">
+                  <h4>Jeudi 18:30 - 19:30</h4>
+                  <p>Woluwe-Saint-Pierre</p>
+                </div>
+                <span class="schedule-badge level-badge-blue">Première Année</span>
+              </div>
+
+              <!-- Thursday - Intermediate -->
+              <div class="schedule-item">
+                <div class="schedule-time">
+                  <span class="schedule-day">Jeu</span>
+                  <span class="schedule-hour">20:30</span>
+                </div>
+                <div class="schedule-info">
+                  <h4>Jeudi 20:30 - 21:30</h4>
+                  <p>Woluwe-Saint-Pierre</p>
+                </div>
+                <span class="schedule-badge level-badge-red">Intermédiaire</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section-padding">
+      <div class="container">
+        <div class="section-intro">
+          <h2>Tarifs & Inscription</h2>
+          <p>Options flexibles pour tous les niveaux expérimentés</p>
+        </div>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3>Forfait 15 leçons</h3>
+              <div class="pricing-amount">
+                <span class="price-currency">€</span>
+                <span class="price-value">195</span>
+              </div>
+              <p class="pricing-period">Par trimestre</p>
+            </div>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> 15 leçons hebdomadaires</li>
+              <li><i class="fas fa-check"></i> Tous niveaux d'expérience</li>
+              <li><i class="fas fa-check"></i> Instruction experte</li>
+              <li><i class="fas fa-check"></i> Sessions de pratique incluses</li>
+              <li><i class="fas fa-check"></i> Horaire flexible</li>
+            </ul>
+            <a href="../../cours-d-essai-gratuit/index.html" class="btn btn-primary btn-large">Commencer</a>
+          </div>
+
+          <div class="pricing-card">
+            <div class="pricing-header">
+              <h3>Cours à l'unité</h3>
+              <div class="pricing-amount">
+                <span class="price-currency">€</span>
+                <span class="price-value">20</span>
+              </div>
+              <p class="pricing-period">Par cours</p>
+            </div>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> Participation à un seul cours</li>
+              <li><i class="fas fa-check"></i> Sans engagement</li>
+              <li><i class="fas fa-check"></i> Tous niveaux bienvenus</li>
+              <li><i class="fas fa-check"></i> Selon disponibilité</li>
+              <li><i class="fas fa-times"></i> Limité aux places disponibles</li>
+            </ul>
+            <a href="../../contact/index.html" class="btn btn-secondary btn-large">Nous contacter</a>
+          </div>
+        </div>
+
+        <div class="pricing-note">
+          <p><strong>Note:</strong> Tous les prix incluent l'accès aux sessions de pratique. Partenaire de danse non requis pour l'inscription.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section class="section-padding bg-dark">
+      <div class="container">
+        <div class="section-intro section-intro-light">
+          <h2>Ce que vous apprendrez</h2>
+          <p>Programme complet adapté à chaque niveau d'expérience</p>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="feature-item feature-item-light">
+            <div class="feature-icon">
+              <i class="fas fa-shoe-prints"></i>
+            </div>
+            <h3>Technique avancée</h3>
+            <p>Affinez votre posture, équilibre et qualité de mouvement. Maîtrisez les motifs de pas complexes et la mécanique corporelle.</p>
+          </div>
+
+          <div class="feature-item feature-item-light">
+            <div class="feature-icon">
+              <i class="fas fa-music"></i>
+            </div>
+            <h3>Interprétation musicale</h3>
+            <p>Approfondissez votre compréhension de la musique tango. Apprenez à danser le Vals, la Milonga et différents orchestres avec style.</p>
+          </div>
+
+          <div class="feature-item feature-item-light">
+            <div class="feature-icon">
+              <i class="fas fa-exchange-alt"></i>
+            </div>
+            <h3>Guidage & Suivi</h3>
+            <p>Développez une communication claire et une connexion avec votre partenaire. Créez une conversation musicale confortable.</p>
+          </div>
+
+          <div class="feature-item feature-item-light">
+            <div class="feature-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>Improvisation</h3>
+            <p>Apprenez à créer des séquences uniques sur la piste de danse. Développez votre style personnel et votre expression créative.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-padding">
+      <div class="container">
+        <div class="section-intro">
+          <h2>Questions fréquemment posées</h2>
+        </div>
+
+        <div class="accordion">
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <h3>Comment savoir quel niveau me convient?</h3>
+              <span class="accordion-icon">+</span>
+            </summary>
+            <div class="accordion-content">
+              <p><strong>Première Année:</strong> Vous avez terminé un cours pour débutants et êtes à l'aise avec les pas de base et l'abrazo.</p>
+              <p><strong>Deuxième Année:</strong> Vous dansez depuis 1-2 ans et pouvez naviguer sur la piste avec des motifs de base.</p>
+              <p><strong>Deuxième Année PLUS:</strong> Vous avez 2-3 ans d'expérience et souhaitez affiner votre technique et musicalité.</p>
+              <p><strong>Intermédiaire/Avancé:</strong> Vous avez 4+ ans d'expérience et êtes prêt pour des techniques avancées et un travail musical approfondi.</p>
+              <p>Toujours pas sûr? Contactez-nous ou réservez un cours d'essai gratuit - nous vous aiderons à trouver le bon niveau!</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <h3>Ai-je besoin d'un partenaire de danse pour m'inscrire?</h3>
+              <span class="accordion-icon">+</span>
+            </summary>
+            <div class="accordion-content">
+              <p>Aucun partenaire de danse n'est requis! Nous changeons de partenaires pendant le cours pour que tout le monde puisse pratiquer les deux rôles et danser avec différents partenaires. C'est l'un des meilleurs moyens d'améliorer vos compétences.</p>
+              <p>Si vous avez un partenaire, vous êtes les bienvenus ensemble, mais nous encourageons toujours la rotation pour un apprentissage optimal.</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <h3>Puis-je essayer un cours avant de m'engager pour le forfait complet?</h3>
+              <span class="accordion-icon">+</span>
+            </summary>
+            <div class="accordion-content">
+              <p>Absolument! Nous offrons des cours d'essai gratuits pour tous les niveaux. Cela vous donne l'occasion de découvrir notre style d'enseignement, de rencontrer les instructeurs et de voir si le niveau vous convient.</p>
+              <p><a href="../../cours-d-essai-gratuit/index.html" class="text-link">Réservez votre cours d'essai gratuit ici</a>.</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <h3>Que se passe-t-il si je manque un cours?</h3>
+              <span class="accordion-icon">+</span>
+            </summary>
+            <div class="accordion-content">
+              <p>La vie arrive! Si vous manquez un cours, vous pouvez le rattraper en assistant à un autre cours de votre niveau pendant le même trimestre, selon les places disponibles.</p>
+              <p>Nous fournissons également des notes de cours et des recommandations de pratique pour que vous puissiez rattraper ce que vous avez manqué.</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <h3>Puis-je assister à plusieurs niveaux?</h3>
+              <span class="accordion-icon">+</span>
+            </summary>
+            <div class="accordion-content">
+              <p>Oui! Beaucoup de nos danseurs expérimentés assistent à plusieurs niveaux pour obtenir plus de temps de pratique et d'exposition à différents concepts. Nous offrons des tarifs réduits pour assister à plusieurs cours par semaine.</p>
+              <p>Contactez-nous pour discuter d'un forfait personnalisé qui correspond à vos objectifs.</p>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-header">
+              <h3>Que dois-je porter en cours?</h3>
+              <span class="accordion-icon">+</span>
+            </summary>
+            <div class="accordion-content">
+              <p>Portez des vêtements confortables qui vous permettent de bouger librement. Pour les chaussures, nous recommandons:</p>
+              <ul>
+                <li>Chaussures de tango (si vous en avez)</li>
+                <li>Chaussures de danse à semelle cuir</li>
+                <li>Chaussures d'intérieur propres avec semelles lisses</li>
+              </ul>
+              <p>Évitez les baskets ou chaussures à semelle caoutchouc car elles peuvent adhérer au sol et limiter vos mouvements.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Prêt à faire passer votre tango au niveau supérieur?</h2>
+          <p>Rejoignez notre communauté de danseurs expérimentés et poursuivez votre voyage de tango avec des conseils d'experts</p>
+          <div class="cta-buttons">
+            <a href="../../cours-d-essai-gratuit/index.html" class="btn btn-primary btn-large">Réserver un cours d'essai</a>
+            <a href="../../contact/index.html" class="btn btn-secondary btn-large">Nous contacter</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>BE-TANGO</h3>
+          <p>Votre école de danse de tango argentin à Bruxelles et Woluwe.</p>
+          <p>Vivez la connexion, la musique et le plaisir.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Liens rapides</h4>
+          <ul>
+            <li><a href="../../index.html">Accueil</a></li>
+            <li><a href="../index.html">Cours de Tango</a></li>
+            <li><a href="../essai-gratuit/index.html" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
+            <li><a href="../../blog/index.html">Blog</a></li>
+            <li><a href="../../contactez-nous/index.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Cours</h4>
+          <ul>
+            <li><a href="../debutants/index.html">Débutants</a></li>
+            <li><a href="index.html">Expérimentés</a></li>
+            <li><a href="../../cours-prives/index.html">Cours privés</a></li>
+            <li><a href="../../en-ligne/index.html">En ligne</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Lieux</h4>
+          <ul>
+            <li><a href="../../lieux/bruxelles/index.html">Bruxelles</a></li>
+            <li><a href="../../lieux/woluwe/index.html">Woluwe</a></li>
+          </ul>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook" class="social-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 BE-TANGO. Tous droits réservés.</p>
+        <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
+        <p class="footer-legal">
+          <a href="../../../privacy-policy/index.html">Politique de confidentialité</a> |
+          <a href="../../../termes-et-conditions-generales/index.html">Termes et Conditions</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    // Language dropdown toggle
+    const languageToggle = document.querySelector('.language-toggle');
+    const languageDropdown = document.querySelector('.language-dropdown');
+
+    if (languageToggle && languageDropdown) {
+      languageToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isExpanded = languageToggle.getAttribute('aria-expanded') === 'true';
+        languageToggle.setAttribute('aria-expanded', !isExpanded);
+        languageDropdown.classList.toggle('active');
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.language-switcher')) {
+          languageToggle.setAttribute('aria-expanded', 'false');
+          languageDropdown.classList.remove('active');
+        }
+      });
+    }
+
+
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+
+      if (window.innerWidth < 768) {
+        mainNav.style.display = isExpanded ? 'none' : 'block';
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth < 768) {
+        if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
+          mainNav.style.display = 'none';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+
+    // Reset menu on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        mainNav.style.display = 'flex';
+        menuToggle.setAttribute('aria-expanded', 'false');
+      } else {
+        mainNav.style.display = 'none';
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const headerOffset = 80;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+  </script>
+  <!-- Floating Mobile Call Button -->
+  <a href="tel:+32498392939" class="mobile-call-button" aria-label="Call BE-TANGO">
+    <i class="fas fa-phone"></i>
+  </a>
+</body>
+</html>

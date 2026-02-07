@@ -1,0 +1,149 @@
+<!-- HEADER NAVIGATION - Reusable Partial -->
+<header class="site-header">
+  <div class="container">
+    <div class="header-content">
+      <a href="{{ROOT_PATH}}index.html" class="logo">
+        <img src="{{ROOT_PATH}}images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34" loading="lazy">
+      </a>
+
+      <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="{{ROOT_PATH}}index.html" data-page="home">Home</a></li>
+          <li class="nav-item-dropdown">
+            <a href="{{ROOT_PATH}}tango-classes/index.html" data-page="tango-classes">Tango Classes</a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ROOT_PATH}}tango-classes/beginners/index.html">Beginners</a></li>
+              <li><a href="{{ROOT_PATH}}tango-classes/experienced/index.html">Experienced</a></li>
+              <li><a href="{{ROOT_PATH}}tango-classes/private/index.html">Private Lessons</a></li>
+              <li><a href="{{ROOT_PATH}}tango-classes/online/index.html">Online Classes</a></li>
+              <li><a href="{{ROOT_PATH}}tango-classes/brussels/index.html">Brussels</a></li>
+              <li><a href="{{ROOT_PATH}}tango-classes/woluwe/index.html">Woluwe</a></li>
+            </ul>
+          </li>
+          <li><a href="{{ROOT_PATH}}tango-classes/free-trial/index.html" data-page="free-trial">Free Trial</a></li>
+          <li><a href="{{ROOT_PATH}}contact/index.html" data-page="contact">Contact</a></li>
+          <li><a href="{{ROOT_PATH}}blog/index.html" data-page="blog">Blog</a></li>
+          <li class="language-switcher">
+            <button class="language-toggle" aria-label="Select language" aria-expanded="false">
+              <i class="fas fa-globe"></i>
+              <span class="current-lang">{{CURRENT_LANG}}</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <ul class="language-dropdown">
+              <li>
+                <a href="{{NL_PATH}}">
+                  <span class="flag-icon">🇳🇱</span>
+                  <span>Nederlands</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{EN_PATH}}" class="{{EN_ACTIVE}}">
+                  <span class="flag-icon">🇬🇧</span>
+                  <span>English</span>
+                </a>
+              </li>
+              <li>
+                <a href="{{FR_PATH}}">
+                  <span class="flag-icon">🇫🇷</span>
+                  <span>Français</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- Header Scripts -->
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.querySelector('.mobile-menu-toggle');
+  const mainNav = document.querySelector('.main-nav');
+  const siteHeader = document.querySelector('.site-header');
+
+  // Language dropdown toggle
+  const languageToggle = document.querySelector('.language-toggle');
+  const languageDropdown = document.querySelector('.language-dropdown');
+
+  if (languageToggle && languageDropdown) {
+    languageToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isExpanded = languageToggle.getAttribute('aria-expanded') === 'true';
+      languageToggle.setAttribute('aria-expanded', !isExpanded);
+      languageDropdown.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.language-switcher')) {
+        languageToggle.setAttribute('aria-expanded', 'false');
+        languageDropdown.classList.remove('active');
+      }
+    });
+  }
+
+  if (menuToggle && mainNav) {
+    // Toggle menu
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+
+      if (window.innerWidth < 768) {
+        mainNav.style.display = isExpanded ? 'none' : 'block';
+        menuToggle.classList.toggle('active');
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth < 768 &&
+          mainNav.style.display === 'block' &&
+          !siteHeader.contains(e.target)) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        mainNav.style.display = 'none';
+        menuToggle.classList.remove('active');
+      }
+    });
+
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (window.innerWidth >= 768) {
+          mainNav.style.display = 'block';
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.classList.remove('active');
+        } else {
+          const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+          mainNav.style.display = isExpanded ? 'block' : 'none';
+        }
+      }, 100);
+    });
+
+    // Set initial state
+    if (window.innerWidth < 768) {
+      mainNav.style.display = 'none';
+    }
+  }
+
+  // Set active page
+  const currentPage = document.body.getAttribute('data-page');
+  if (currentPage) {
+    document.querySelectorAll('.main-nav a[data-page]').forEach(link => {
+      if (link.getAttribute('data-page') === currentPage) {
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      }
+    });
+  }
+</script>

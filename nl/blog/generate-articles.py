@@ -1,0 +1,587 @@
+#!/usr/bin/env python3
+"""
+Generate individual blog article pages from articles-nl.json
+"""
+
+import json
+import os
+from datetime import datetime
+
+# Read the articles data
+with open('articles-nl.json', 'r', encoding='utf-8') as f:
+    articles = json.load(f)
+
+# HTML template for article pages
+article_template = '''<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{excerpt}">
+  <meta name="keywords" content="tango, Argentijnse tango, {category}">
+  <meta name="author" content="{author}">
+  <title>{title} | BE-TANGO Blog</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../../../images/cropped-favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../images/cropped-favicon-180x180.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="../../../css/styles.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{title}",
+    "description": "{excerpt}",
+    "image": "https://www.be-tango.be/images/blog/{image_filename}",
+    "author": {{
+      "@type": "Person",
+      "name": "{author}"
+    }},
+    "publisher": {{
+      "@type": "Organization",
+      "name": "BE-TANGO",
+      "logo": {{
+        "@type": "ImageObject",
+        "url": "https://www.be-tango.be/images/logo-be-tango.png"
+      }}
+    }},
+    "datePublished": "{date}",
+    "dateModified": "{date}"
+  }}
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../index.html" class="logo">
+          <img src="../../../images/logo-be-tango.png" alt="BE-TANGO - Argentijnse Tango Dansschool" width="200" height="34">
+        </a>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="../../index.html">Home</a></li>
+            <li class="nav-item-dropdown">
+              <a href="../../tangolessen/index.html">Tangolessen</a>
+              <ul class="dropdown-menu">
+                <li><a href="../../tangolessen/beginners/index.html">Beginners</a></li>
+                <li><a href="../../tangolessen/ervaring/index.html">Gevorderden</a></li>
+                <li><a href="../../tangolessen/prive/index.html">Privélessen</a></li>
+                <li><a href="../../tangolessen/online/index.html">Online Lessen</a></li>
+                <li><a href="../../tangolessen/brussel/index.html">Brussel</a></li>
+                <li><a href="../../tangolessen/woluwe/index.html">Woluwe</a></li>
+              </ul>
+            </li>
+            <li><a href="../../tangolessen/gratis-proefles/index.html">Gratis Proefles</a></li>
+            <li><a href="../index.html" class="active">Blog</a></li>
+            <li><a href="../../contacteer-ons/index.html">Contact</a></li>
+            <li class="language-switcher">
+              <a href="../../../index.html">EN</a>
+              <span class="divider">|</span>
+              <a href="../../../fr/index.html">FR</a>
+              <span class="divider">|</span>
+              <a href="../../index.html" class="active" aria-current="page">NL</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- Article Hero -->
+    <section class="article-hero">
+      <div class="container">
+        <div class="article-breadcrumb">
+          <a href="../../index.html">Home</a> / <a href="../index.html">Blog</a> / <span>{title}</span>
+        </div>
+        <article class="article-header">
+          <div class="article-meta">
+            <span class="article-category"><i class="fas fa-folder"></i> {category}</span>
+            <span class="article-date"><i class="far fa-calendar"></i> {formatted_date}</span>
+            <span class="article-readtime"><i class="far fa-clock"></i> {readTime} leestijd</span>
+          </div>
+          <h1>{title}</h1>
+          <p class="article-excerpt">{excerpt}</p>
+          <div class="article-author">
+            <span>Door <strong>{author}</strong></span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Article Image -->
+    <section class="article-image-section">
+      <div class="container">
+        <img src="{image}" alt="{title}" class="article-featured-image">
+      </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content-section">
+      <div class="container">
+        <div class="article-content">
+          {content_html}
+
+          <div class="article-cta">
+            <h3>Klaar om te beginnen?</h3>
+            <p>Boek een gratis proefles en ervaar de magie van Argentijnse tango.</p>
+            <a href="../../tangolessen/gratis-proefles/index.html" class="btn btn-primary btn-large">Boek Gratis Proefles</a>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="article-sidebar">
+          <div class="sidebar-card">
+            <h3>Over BE-TANGO</h3>
+            <p>BE-TANGO is uw dansschool voor Argentijnse tango in Brussel en Woluwe. Met meer dan 15 jaar ervaring bieden we professionele begeleiding in een ontspannen sfeer.</p>
+            <a href="../../tangolessen/index.html" class="btn btn-secondary">Bekijk Lessen</a>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>Contact</h3>
+            <p><i class="fas fa-phone"></i> <a href="tel:+32498392939">+32 498 39 29 39</a></p>
+            <p><i class="fas fa-map-marker-alt"></i> Brussel & Woluwe</p>
+            <a href="../../contacteer-ons/index.html" class="btn btn-secondary">Contacteer Ons</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-dark">
+      <div class="container text-center">
+        <h2>Ontdek meer over Argentijnse tango</h2>
+        <p class="section-description mb-4">
+          Lees meer artikelen op ons blog of meld je aan voor een gratis proefles.
+        </p>
+        <a href="../index.html" class="btn btn-secondary btn-large">Bekijk Alle Artikelen</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>BE-TANGO</h3>
+          <p>Uw dansschool voor Argentijnse tango in Brussel en Woluwe.</p>
+          <p>Ervaar de connectie, de muziek en het plezier.</p>
+          <p style="margin-top: 1rem;"><strong>Telefoon:</strong> +32 498 39 29 39</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Snelle Links</h4>
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../tangolessen/index.html">Tangolessen</a></li>
+            <li><a href="../../tangolessen/gratis-proefles/index.html">Gratis Proefles</a></li>
+            <li><a href="../index.html">Blog</a></li>
+            <li><a href="../../contacteer-ons/index.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Lessen</h4>
+          <ul>
+            <li><a href="../../tangolessen/beginners/index.html">Beginners</a></li>
+            <li><a href="../../tangolessen/ervaring/index.html">Gevorderden</a></li>
+            <li><a href="../../tangolessen/prive/index.html">Privélessen</a></li>
+            <li><a href="../../tangolessen/online/index.html">Online</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Locaties</h4>
+          <ul>
+            <li><a href="../../tangolessen/brussel/index.html">Brussel - Rue du Marais 68</a></li>
+            <li><a href="../../tangolessen/woluwe/index.html">Woluwe - Avenue Orban 54</a></li>
+          </ul>
+          <div class="social-links">
+            <a href="https://www.facebook.com/p/Be-tango-ART-100057312323946/" aria-label="Facebook" class="social-icon" target="_blank" rel="noopener">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 BE-TANGO. Alle rechten voorbehouden.</p>
+        <div class="footer-links">
+          <a href="#">Privacybeleid</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* Article-specific styles */
+    .article-hero {{
+      background: linear-gradient(135deg, rgba(28, 36, 75, 0.95) 0%, rgba(0, 0, 0, 0.85) 100%);
+      padding: 8rem 0 3rem;
+      color: var(--color-white);
+    }}
+
+    .article-breadcrumb {{
+      font-size: 0.875rem;
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }}
+
+    .article-breadcrumb a {{
+      color: var(--color-white);
+      text-decoration: none;
+    }}
+
+    .article-breadcrumb a:hover {{
+      color: var(--color-secondary);
+    }}
+
+    .article-header {{
+      max-width: 800px;
+    }}
+
+    .article-meta {{
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }}
+
+    .article-meta span {{
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }}
+
+    .article-category {{
+      color: var(--color-secondary);
+      font-weight: 600;
+    }}
+
+    .article-header h1 {{
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }}
+
+    .article-excerpt {{
+      font-size: 1.25rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }}
+
+    .article-author {{
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }}
+
+    .article-image-section {{
+      padding: 0;
+      margin-bottom: 3rem;
+    }}
+
+    .article-featured-image {{
+      width: 100%;
+      height: auto;
+      max-height: 500px;
+      object-fit: cover;
+    }}
+
+    .article-content-section {{
+      padding: 3rem 0;
+    }}
+
+    .article-content-section .container {{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }}
+
+    @media (min-width: 1024px) {{
+      .article-content-section .container {{
+        grid-template-columns: 2fr 1fr;
+      }}
+    }}
+
+    .article-content {{
+      max-width: 800px;
+    }}
+
+    .article-content .lead {{
+      font-size: 1.25rem;
+      line-height: 1.8;
+      color: var(--color-text);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }}
+
+    .article-content h2 {{
+      color: var(--color-dark-navy);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.875rem;
+    }}
+
+    .article-content h3 {{
+      color: var(--color-dark-navy);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      font-size: 1.5rem;
+    }}
+
+    .article-content p {{
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }}
+
+    .article-content ul {{
+      margin: 1.5rem 0;
+      padding-left: 2rem;
+    }}
+
+    .article-content li {{
+      margin-bottom: 0.75rem;
+      line-height: 1.8;
+    }}
+
+    .article-cta {{
+      background: linear-gradient(135deg, rgba(28, 36, 75, 0.05) 0%, rgba(0, 0, 0, 0.03) 100%);
+      padding: 2rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--color-secondary);
+      margin: 3rem 0;
+      text-align: center;
+    }}
+
+    .article-cta h3 {{
+      margin-top: 0;
+      color: var(--color-dark-navy);
+    }}
+
+    .article-sidebar {{
+      position: sticky;
+      top: 2rem;
+      align-self: start;
+    }}
+
+    .sidebar-card {{
+      background: var(--color-white);
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1.5rem;
+    }}
+
+    .sidebar-card h3 {{
+      color: var(--color-dark-navy);
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+    }}
+
+    .sidebar-card p {{
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }}
+
+    .sidebar-card i {{
+      color: var(--color-secondary);
+    }}
+
+    .sidebar-card a {{
+      color: var(--color-text);
+      text-decoration: none;
+    }}
+
+    .sidebar-card a:hover {{
+      color: var(--color-secondary);
+    }}
+
+    @media (min-width: 768px) {{
+      .article-header h1 {{
+        font-size: 3.5rem;
+      }}
+    }}
+  </style>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    const siteHeader = document.querySelector('.site-header');
+
+    if (menuToggle && mainNav) {{
+      menuToggle.addEventListener('click', (e) => {{
+        e.stopPropagation();
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+
+        if (window.innerWidth < 768) {{
+          mainNav.style.display = isExpanded ? 'none' : 'block';
+          menuToggle.classList.toggle('active');
+        }}
+      }});
+
+      document.addEventListener('click', (e) => {{
+        if (window.innerWidth < 768 &&
+            mainNav.style.display === 'block' &&
+            !siteHeader.contains(e.target)) {{
+          menuToggle.setAttribute('aria-expanded', 'false');
+          mainNav.style.display = 'none';
+          menuToggle.classList.remove('active');
+        }}
+      }});
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {{
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {{
+          if (window.innerWidth >= 768) {{
+            mainNav.style.display = 'block';
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.classList.remove('active');
+          }} else {{
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            mainNav.style.display = isExpanded ? 'block' : 'none';
+          }}
+        }}, 100);
+      }});
+
+      if (window.innerWidth < 768) {{
+        mainNav.style.display = 'none';
+      }}
+    }}
+  </script>
+
+</body>
+</html>
+'''
+
+def markdown_to_html(content):
+    """Convert simple markdown to HTML"""
+    lines = content.split('\n')
+    html = []
+    in_list = False
+
+    for line in lines:
+        line = line.strip()
+
+        if not line:
+            if in_list:
+                html.append('</ul>')
+                in_list = False
+            html.append('')
+            continue
+
+        # Headers
+        if line.startswith('### '):
+            if in_list:
+                html.append('</ul>')
+                in_list = False
+            html.append(f'<h3>{line[4:]}</h3>')
+        elif line.startswith('## '):
+            if in_list:
+                html.append('</ul>')
+                in_list = False
+            html.append(f'<h2>{line[3:]}</h2>')
+        # List items
+        elif line.startswith('- '):
+            if not in_list:
+                html.append('<ul>')
+                in_list = True
+            html.append(f'<li>{line[2:]}</li>')
+        # Tables (simple handling)
+        elif line.startswith('|'):
+            continue  # Skip tables for now
+        # Regular paragraph
+        else:
+            if in_list:
+                html.append('</ul>')
+                in_list = False
+            # Convert bold and italic
+            line = line.replace('**', '<strong>').replace('**', '</strong>')
+            line = line.replace('*', '<em>').replace('*', '</em>')
+            html.append(f'<p>{line}</p>')
+
+    if in_list:
+        html.append('</ul>')
+
+    return '\n'.join(html)
+
+def format_date(date_str):
+    """Format date to Dutch format"""
+    date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+    months = ['januari', 'februari', 'maart', 'april', 'mei', 'juni',
+              'juli', 'augustus', 'september', 'oktober', 'november', 'december']
+    return f"{date_obj.day} {months[date_obj.month - 1]} {date_obj.year}"
+
+# Generate article pages
+for article in articles:
+    # Skip the first one as it's already created
+    if article['id'] == 1:
+        continue
+
+    slug = article['slug']
+    dir_path = slug
+
+    # Create directory if it doesn't exist
+    os.makedirs(dir_path, exist_ok=True)
+
+    # Prepare content
+    content_html = markdown_to_html(article['content'])
+    image_filename = os.path.basename(article['image'])
+
+    # Fill in the template
+    html_content = article_template.format(
+        title=article['title'],
+        excerpt=article['excerpt'],
+        author=article['author'],
+        category=article['category'],
+        date=article['date'],
+        formatted_date=format_date(article['date']),
+        readTime=article['readTime'],
+        image=article['image'],
+        image_filename=image_filename,
+        content_html=content_html
+    )
+
+    # Write the file
+    file_path = os.path.join(dir_path, 'index.html')
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+
+    print(f"Created: {file_path}")
+
+print(f"\nGenerated {len(articles) - 1} article pages successfully!")

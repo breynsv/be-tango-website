@@ -1,0 +1,158 @@
+/**
+ * BE-TANGO Form Validation Styles
+ * Visual feedback for form validation states
+ */
+
+/* Form error states */
+.form-group.error input,
+.form-group.error textarea,
+.form-group.error select {
+  border-color: #dc3545;
+  background-color: #fff5f5;
+}
+
+.form-group.error input:focus,
+.form-group.error textarea:focus,
+.form-group.error select:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.form-group.error label {
+  color: #dc3545;
+}
+
+/* Form valid states */
+.form-group.valid input,
+.form-group.valid textarea,
+.form-group.valid select {
+  border-color: #28a745;
+  background-color: #f0fff4;
+}
+
+.form-group.valid input:focus,
+.form-group.valid textarea:focus,
+.form-group.valid select:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+/* Error message styling */
+.error-message {
+  display: block;
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form-level error message */
+.form-error-message {
+  background-color: #fff5f5;
+  border: 1px solid #dc3545;
+  border-left: 4px solid #dc3545;
+  color: #dc3545;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  display: none;
+  animation: slideDown 0.3s ease-out;
+}
+
+.form-error-message::before {
+  content: '⚠ ';
+  font-weight: bold;
+}
+
+/* Loading state for submit button */
+button[type="submit"].loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+button[type="submit"] .spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Checkbox validation */
+.form-group.checkbox-group.error label {
+  color: #dc3545;
+}
+
+.form-group.checkbox-group.error input[type="checkbox"] {
+  outline: 2px solid #dc3545;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+input,
+textarea,
+select {
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus states (maintain accessibility) */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-secondary, #E2C033);
+  box-shadow: 0 0 0 3px rgba(226, 192, 51, 0.1);
+}
+
+/* Required field indicator */
+.required {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* Accessibility improvements */
+input[aria-invalid="true"],
+textarea[aria-invalid="true"],
+select[aria-invalid="true"] {
+  border-color: #dc3545;
+}
+
+input[aria-invalid="false"],
+textarea[aria-invalid="false"],
+select[aria-invalid="false"] {
+  border-color: #ced4da;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .error-message {
+    font-size: 0.8125rem;
+  }
+
+  .form-error-message {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+}

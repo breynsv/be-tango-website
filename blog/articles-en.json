@@ -1,0 +1,306 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "slug": "history-of-argentine-tango",
+      "title": "History of Argentine Tango",
+      "excerpt": "Argentine tango emerged in late 19th-century Buenos Aires and Montevideo through immigrants and workers, later gaining European popularity in the 1970s.",
+      "author": "Sonja",
+      "date": "2025-02-01",
+      "modified": "2025-02-04",
+      "image": "../images/blog/prague-tango-marathon.jpg",
+      "imageAlt": "Prague Tango Marathon",
+      "category": "Tango Information",
+      "readTime": "3 min read",
+      "content": {
+        "introduction": "At the end of the 19th century, the dances and music of black slaves, seasonal workers, and European immigrants merged with those of gauchos in the Río de la Plata region.",
+        "sections": [
+          {
+            "title": "Early Development (1890-1900)",
+            "text": "Men experimented with steps like canyengue when women were scarce, accompanied by minimal instrumentation—typically guitar, violin, or flute."
+          },
+          {
+            "title": "Argentine Boom (1930-1950)",
+            "text": "The \"época de oro\" (golden era) saw widespread adoption. Radio broadcasting significantly amplified tango's cultural dominance throughout Argentina."
+          },
+          {
+            "title": "European Adoption",
+            "text": "A sanitized \"ballroom tango\" initially gained European acceptance, though the authentic Argentine style didn't resurface there until the 1970s."
+          },
+          {
+            "title": "Modern Revival",
+            "text": "Contemporary tango culture features dance schools, milongas, festivals, marathons, and \"tango tourism\" across Europe, with Buenos Aires maestros performing internationally."
+          }
+        ],
+        "conclusion": "UNESCO inscribed Argentine Tango on the Representative List of Intangible Cultural Heritage in 2009, recognizing its cultural significance."
+      }
+    },
+    {
+      "id": 2,
+      "slug": "different-styles-of-argentine-tango",
+      "title": "The different styles of Argentine tango",
+      "excerpt": "Explores various Argentine tango styles including Canyengue, Milonguero, and Tango de Salon with details on poses and music.",
+      "author": "Sonja",
+      "date": "2025-01-28",
+      "modified": "2025-01-31",
+      "image": "../images/blog/12_candombe.jpg",
+      "imageAlt": "Different styles of Argentine tango",
+      "category": "Tango Information",
+      "readTime": "8 min read",
+      "content": {
+        "introduction": "Argentine tango thus refers to a broad spectrum of dance styles. Yet most dancers resist categorical labels, preferring to describe their approach as the tango of their neighbourhood or city.",
+        "sections": [
+          {
+            "title": "Canyengue (1920s-1930s)",
+            "text": "Short, staccato steps with close embrace and bent knees. Music in 2/4 rhythmic tempo. Notable orchestras: Francisco Canaro, Roberto Firpo."
+          },
+          {
+            "title": "Tango Orillero",
+            "text": "Upright posture with playful, expressive movements. Revived by Rodolfo Cieri circa 1990. Associated with working-class neighborhoods."
+          },
+          {
+            "title": "Tango de Salon",
+            "text": "Elegant, social style for ballroom settings with closed embrace (abrazo cerrado). Notable composers: Carlos Di Sarli, Miguel Calo, Osvaldo Pugliese."
+          },
+          {
+            "title": "Tango Milonguero",
+            "text": "Downtown Buenos Aires style (also called Estilo del Centro). Developed due to crowded dance floors requiring compact movements. Music preference: rhythmic pieces by Juan D'Arienzo, Tanturi, Biagi. Popularized globally by Pedro \"Tete\" Rusconi."
+          },
+          {
+            "title": "Tango Villa Urquiza",
+            "text": "1940s-1950s Buenos Aires neighborhood style. Features upright posture with subtle V-position, independent hip rotation. Often called \"salon-style tango\" internationally."
+          },
+          {
+            "title": "Tango Nuevo",
+            "text": "Modern, experimental with open embrace. Features volcadas and creative figures. Founders: Gustavo Naveira, Mariano \"Chicho\" Frumboli. Other pioneers: Norberto \"El Pulpo\" Esbrés, Fabián Salas, Sebastian Arce, Mariana Montes."
+          },
+          {
+            "title": "Tango Fantasia",
+            "text": "Developed in the 1950s and popularized by Juan Carlos Copes. Fully choreographed stage performance style that incorporates ballet elements and requires 9 cm heels."
+          },
+          {
+            "title": "Tango Escenario",
+            "text": "Designed specifically for performances and stage shows."
+          }
+        ],
+        "conclusion": "Christine Denniston's research from The Meaning of Tango reveals that although their dance styles varied widely, Golden Age dancers all simply called what they danced 'Tango de Salon.'"
+      }
+    },
+    {
+      "id": 3,
+      "slug": "argentine-tango-ballroom-tango-differences",
+      "title": "Argentine tango & ballroom tango, similarities and differences",
+      "excerpt": "Comparative analysis of Argentine and ballroom tango traditions, highlighting distinctions within each dancing approach.",
+      "author": "Sven",
+      "date": "2021-02-03",
+      "modified": "2025-02-10",
+      "image": "../images/blog/ballroom-tango.jpg",
+      "imageAlt": "Ballroom tango dancers",
+      "category": "Tango Information",
+      "readTime": "6 min read",
+      "content": {
+        "introduction": "The piece traces tango's emergence in late 19th-century Buenos Aires and Montevideo, where the dance and music of black slaves, seasonal workers and immigrants blended with gaucho traditions.",
+        "sections": [
+          {
+            "title": "Argentine Tango Characteristics",
+            "text": "Described as \"a dance that moves\"—one remaining unfinished and continuously evolving. Features closed embrace (abrazo cerrado) or open embrace (abrazo abierto). The distinguishing feature is improvisation: Argentine tango represents \"a non-verbal dialogue between leader and follower,\" contrasting sharply with choreographed dances."
+          },
+          {
+            "title": "Six Distinctive Styles",
+            "text": "Canyengue, Orillero, Milonguero, Tango Salon, Tango Fantasia, and Tango Nuevo each reflect different historical periods and evolutionary stages."
+          },
+          {
+            "title": "Ballroom Tango Characteristics",
+            "text": "Derived from Argentine tango but standardized as a polished, European-influenced competition dance. Maintains strict tempo of 31-33 bars per minute. Features open frame with space between partners and slightly bent knees. Ballroom splits into \"American style\" and \"International Style.\""
+          },
+          {
+            "title": "Key Distinctions",
+            "text": "Argentine tango emphasizes improvisation, intimate connection, and musical interpretation freedom, whereas ballroom tango prioritizes standardized technique, competitive structure, and stylized execution."
+          }
+        ],
+        "conclusion": "While both styles share ancestral connections, they diverge fundamentally in their approach to music, connection, and performance."
+      }
+    },
+    {
+      "id": 4,
+      "slug": "difference-between-tango-milonga-vals",
+      "title": "The difference between tango, milonga & vals",
+      "excerpt": "Overview of three distinct musical styles within Argentine tango practice, each possessing unique characteristics.",
+      "author": "Sven",
+      "date": "2020-12-22",
+      "modified": "2024-12-08",
+      "image": "../images/blog/tango-milonga-vals.jpg",
+      "imageAlt": "Tango, milonga and vals dancers",
+      "category": "Tango Information",
+      "readTime": "5 min read",
+      "content": {
+        "introduction": "Argentine tango includes three distinct dance variants: tango, vals, and milonga. Despite expectations, dancers use the same combinations across all three styles. The distinction lies in which movements suit each musical style.",
+        "sections": [
+          {
+            "title": "Tango",
+            "text": "Functions as a walking dance emphasizing controlled weight transfer and dramatic pauses. The rhythm allows dancers to perform extended movements, creating an emotional quality through deliberate stops and restarts."
+          },
+          {
+            "title": "Vals",
+            "text": "Features a continuous 1-2-3 rhythm that eliminates pauses typical of tango, resulting in circular movements and a cheerful character. The rhythmic consistency requires shorter, more dynamic pushes compared to tango."
+          },
+          {
+            "title": "Milonga",
+            "text": "Characterized by its distinctive rhythm and rapid tempo, making it \"one of the most difficult dances to master.\" With minimal pauses and quick changes, dancers make smaller steps with distributed weight between both legs."
+          }
+        ],
+        "conclusion": "Mastery requires listening to music while practicing physically, developing technique through repeated experimentation across all three dance forms."
+      }
+    },
+    {
+      "id": 5,
+      "slug": "5-tips-best-tango-shoes",
+      "title": "5 tips for the best tango shoes",
+      "excerpt": "Good tango shoes improve dance technique, reduce injuries and increase the fun in Argentine Tango.",
+      "author": "Sonja",
+      "date": "2020-12-15",
+      "modified": "2024-12-08",
+      "image": "../images/blog/tango-schoenen-blogpost.jpg",
+      "imageAlt": "Tango shoes",
+      "category": "Tango Information",
+      "readTime": "6 min read",
+      "content": {
+        "introduction": "The article explains why dedicated tango shoes matter compared to regular sneakers, emphasizing the improved feeling and performance when wearing proper dance footwear.",
+        "sections": [
+          {
+            "title": "1. Light Construction & Support",
+            "text": "Quality dance shoes are lighter than city shoes and provide superior ankle/knee support. They feature chamois leather soles that grip without sticking, reducing injury risk."
+          },
+          {
+            "title": "2. Balance & Heel Height",
+            "text": "Proper weight distribution improves stability. Recommended minimums: 5cm heels for women, 1.5-2cm for men. Heel height enables proper ball-of-foot dancing technique essential for Argentine tango's characteristic movements and pivots."
+          },
+          {
+            "title": "3. Women's vs. Men's Shoes",
+            "text": "Both require flexible forefeet and secure heel enclosure. Key difference: men's shoes have rounded (vs. pointed) toes to prevent injuring partners."
+          },
+          {
+            "title": "4. Sole Materials",
+            "text": "Options include chamois leather, suede, rubber, or combinations depending on dance floor surfaces (wood, marble, tile). Suede soles can be brushed clean after use."
+          },
+          {
+            "title": "5. Fit Considerations",
+            "text": "Shoes must enclose feet securely without sliding. Try multiple pairs across different stores before purchasing. Quality pairs typically cost €120–€180."
+          }
+        ],
+        "conclusion": "Good tango shoes improve dance technique, reduce injuries and increase the fun in Argentine Tango."
+      }
+    },
+    {
+      "id": 6,
+      "slug": "why-learn-tango",
+      "title": "Why You Should Learn Argentine Tango",
+      "excerpt": "Argentine tango represents one of the most sophisticated couple dances you can learn. Discover why tango is perfect for all ages and backgrounds.",
+      "author": "Sonja & Sven",
+      "date": "2020-04-01",
+      "modified": "2025-02-05",
+      "image": "../images/blog/why-learn-tango.webp",
+      "imageAlt": "Students having fun learning Argentine tango at BE-TANGO",
+      "category": "Tango Information",
+      "readTime": "5 min read",
+      "content": {
+        "introduction": "Argentine tango represents one of the most sophisticated couple dances you can learn. It welcomes participants of all ages and backgrounds, regardless of prior dance experience.",
+        "sections": [
+          {
+            "title": "A Social Dance for Everyone",
+            "text": "Tango functions as a social dance with regular gatherings called milongas where practitioners practice dancing, talk, and share drinks in welcoming environments. Brussels offers nightly opportunities for social tango dancing."
+          },
+          {
+            "title": "Improvisation: The Heart of Tango",
+            "text": "As a folkloric dance form, Argentine tango allows leaders to interpret the music and improvise the dance steps. Followers embellish movements with techniques like boleos and ganchos, enabling dancers to be creative and invent their own steps."
+          },
+          {
+            "title": "Beyond Tango: Milonga & Vals",
+            "text": "Learn three dances: Tango for emotional expression, Milonga for fast rhythmical dancing, and Vals for circular flowing movements to 1-2-3 rhythm."
+          },
+          {
+            "title": "An International Dance Community",
+            "text": "Tango functions as an international dance enabling connections with people from everywhere and of all ages. Major cities worldwide host tango parties and festivals."
+          }
+        ],
+        "conclusion": "Whether you're looking to improve your coordination, meet new people, discover a creative outlet, or simply try something new and exciting, Argentine tango has something special to offer."
+      }
+    },
+    {
+      "id": 7,
+      "slug": "tango-events-brussels",
+      "title": "Tango Events in Brussels & Around",
+      "excerpt": "Discover the best tango events, milongas, and festivals in Brussels and Belgium. From La Milonguita to Brussels Tango Festival.",
+      "author": "Sonja & Sven",
+      "date": "2020-04-01",
+      "modified": "2025-01-31",
+      "image": "../images/blog/brussels-tango-events.webp",
+      "imageAlt": "Tango dancing and classes in Brussels",
+      "category": "Tango Events",
+      "readTime": "6 min read",
+      "content": {
+        "introduction": "Belgium's vibrant tango scene offers dancers the opportunity to go out dancing every night of the week in most major cities.",
+        "sections": [
+          {
+            "title": "Featured Milongas",
+            "text": "La Milonguita (Rue Montoyer), Tango Bar (Rue de Dublin), El Dorado (Grimbergen), El Regalo (Sint-Gillis), Pianofabriek, and Maison du Peuple offer regular dancing opportunities."
+          },
+          {
+            "title": "Brussels Tango Festival",
+            "text": "With over 15 years of tradition, this international event utilizes prestigious venues including Concert Noble and the Grand Place, featuring workshops with world-renowned teachers."
+          },
+          {
+            "title": "Antwerp Tango Festival",
+            "text": "Celebrating more than 10 years, hosted at Zaal Athena, attracting dancers from throughout Belgium and neighboring countries."
+          },
+          {
+            "title": "Tango Marathons",
+            "text": "La Cita de los Amigos (winter at Brigittines, summer in Spa) and Palace Cita (historic cinema venue) offer intensive weekend dancing experiences."
+          }
+        ],
+        "conclusion": "The welcoming community, excellent venues, and frequent events make Belgium a wonderful place to pursue your passion for Argentine tango."
+      }
+    },
+    {
+      "id": 8,
+      "slug": "international-tango-events",
+      "title": "International Tango Events & Milongas Abroad",
+      "excerpt": "Where can you travel for tango? Discover the best international tango festivals and marathons across Europe and beyond.",
+      "author": "Sven",
+      "date": "2020-04-02",
+      "modified": "2020-06-06",
+      "image": "../images/blog/international-tango-events.webp",
+      "imageAlt": "Tango workshops and international events",
+      "category": "Tango Events",
+      "readTime": "7 min read",
+      "content": {
+        "introduction": "Major cities across Europe and the world host tango festivals, milongas, and marathons, enabling dancers to combine a city trip with their passion for tango.",
+        "sections": [
+          {
+            "title": "Top European Festivals",
+            "text": "Belgrade Tango Encuentro (cozy atmosphere), Ljubljana Tango Festival (renowned maestros), Mediterranean Summer Tango (Poreč, Croatia), Tango Amadeus (Vienna), and Tango Alchemie (Prague) offer unique experiences."
+          },
+          {
+            "title": "Must-Visit Marathons",
+            "text": "Prague Tango Marathon (February), Copenhagen Tango Marathon, Palace Cita Brussels, La Tosca (Tuscany), Pensalobien (Milan), and La Cita de los Amigos offer intensive dancing weekends."
+          },
+          {
+            "title": "Planning Your Tango Travel",
+            "text": "Consider city attractions, event size, music style, dancing level requirements, and timing when choosing international tango events."
+          },
+          {
+            "title": "Resources",
+            "text": "Tangopolix.com provides comprehensive festival information while TangoMarathons.com lists complete marathon calendars with registration details."
+          }
+        ],
+        "conclusion": "The international tango community welcomes dancers worldwide. Each city and event has its unique character, offering endless opportunities for discovery and connection through dance."
+      }
+    }
+  ],
+  "meta": {
+    "totalArticles": 8,
+    "language": "en",
+    "extractedDate": "2025-02-05",
+    "sourceUrl": "https://www.be-tango.com/latest-news/"
+  }
+}

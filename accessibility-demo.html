@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility Features Demo - BE-TANGO</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .demo-section {
+      margin: 2rem 0;
+      padding: 2rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    .demo-note {
+      background: #fff3cd;
+      border-left: 4px solid #E2C033;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <h1>BE-TANGO Accessibility Features Demo</h1>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="container">
+      <section class="demo-section">
+        <h2>1. Skip-to-Content Link</h2>
+        <div class="demo-note">
+          <strong>How to test:</strong> Press Tab when page loads. The skip link will appear at the top of the page. Press Enter to jump to main content.
+        </div>
+        <p>The skip-to-content link is hidden by default but appears when focused. This allows keyboard users to bypass repetitive navigation.</p>
+      </section>
+
+      <section class="demo-section">
+        <h2>2. Focus-Visible Indicators</h2>
+        <div class="demo-note">
+          <strong>How to test:</strong> Press Tab to navigate through these elements. You'll see a gold outline (3px) around the focused element.
+        </div>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+          <button class="btn btn-primary">Primary Button</button>
+          <button class="btn btn-secondary">Secondary Button</button>
+          <a href="#" class="btn btn-primary">Link Button</a>
+          <input type="text" placeholder="Text input" style="padding: 0.5rem;">
+        </div>
+      </section>
+
+      <section class="demo-section">
+        <h2>3. ARIA Labels on Icon Buttons</h2>
+        <div class="demo-note">
+          <strong>How to test:</strong> Use a screen reader (NVDA, VoiceOver) to navigate these buttons. They will announce their purpose.
+        </div>
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+          <button aria-label="Toggle menu" class="btn btn-secondary">☰</button>
+          <button aria-label="Previous review" class="btn btn-secondary">‹</button>
+          <button aria-label="Next review" class="btn btn-secondary">›</button>
+        </div>
+      </section>
+
+      <section class="demo-section">
+        <h2>4. Form with Labels</h2>
+        <div class="demo-note">
+          <strong>How to test:</strong> Click on a label - it will focus the associated input field. Screen readers will announce the label when the field is focused.
+        </div>
+        <form aria-label="Demo form" style="max-width: 400px; margin-top: 1rem;">
+          <div style="margin-bottom: 1rem;">
+            <label for="demo-name" style="display: block; margin-bottom: 0.25rem;">Name</label>
+            <input type="text" id="demo-name" name="name" style="width: 100%; padding: 0.5rem;">
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <label for="demo-email" style="display: block; margin-bottom: 0.25rem;">Email</label>
+            <input type="email" id="demo-email" name="email" style="width: 100%; padding: 0.5rem;">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </section>
+
+      <section class="demo-section">
+        <h2>5. Keyboard Navigation Tips</h2>
+        <ul style="line-height: 1.8;">
+          <li><strong>Tab:</strong> Move to next interactive element</li>
+          <li><strong>Shift + Tab:</strong> Move to previous interactive element</li>
+          <li><strong>Enter/Space:</strong> Activate buttons and links</li>
+          <li><strong>Arrow keys:</strong> Navigate within dropdown menus</li>
+          <li><strong>Esc:</strong> Close dropdown menus</li>
+        </ul>
+      </section>
+
+      <section class="demo-section">
+        <h2>6. Screen Reader Testing</h2>
+        <p><strong>Windows:</strong> Download NVDA (free) from nvaccess.org</p>
+        <p><strong>Mac:</strong> Use built-in VoiceOver (Cmd + F5)</p>
+        <p><strong>Mobile:</strong> iOS VoiceOver or Android TalkBack</p>
+      </section>
+
+      <section class="demo-section">
+        <h2>Accessibility Compliance Summary</h2>
+        <table style="width: 100%; border-collapse: collapse; background: white;">
+          <thead>
+            <tr style="background: #1C244B; color: white;">
+              <th style="padding: 0.75rem; text-align: left;">Feature</th>
+              <th style="padding: 0.75rem; text-align: left;">WCAG Criteria</th>
+              <th style="padding: 0.75rem; text-align: center;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #e0e0e0;">
+              <td style="padding: 0.75rem;">Skip-to-content links</td>
+              <td style="padding: 0.75rem;">2.4.1 Bypass Blocks (A)</td>
+              <td style="padding: 0.75rem; text-align: center;">✅</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e0e0e0;">
+              <td style="padding: 0.75rem;">Focus indicators</td>
+              <td style="padding: 0.75rem;">2.4.7 Focus Visible (AA)</td>
+              <td style="padding: 0.75rem; text-align: center;">✅</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e0e0e0;">
+              <td style="padding: 0.75rem;">ARIA labels</td>
+              <td style="padding: 0.75rem;">4.1.2 Name, Role, Value (A)</td>
+              <td style="padding: 0.75rem; text-align: center;">✅</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e0e0e0;">
+              <td style="padding: 0.75rem;">Color contrast</td>
+              <td style="padding: 0.75rem;">1.4.3 Contrast Minimum (AA)</td>
+              <td style="padding: 0.75rem; text-align: center;">✅</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem;">Image alt text</td>
+              <td style="padding: 0.75rem;">1.1.1 Non-text Content (A)</td>
+              <td style="padding: 0.75rem; text-align: center;">✅</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <footer style="background: #1C244B; color: white; padding: 2rem 0; margin-top: 2rem;">
+    <div class="container" style="text-align: center;">
+      <p>BE-TANGO Accessibility Demo Page</p>
+      <p style="margin-top: 0.5rem; opacity: 0.8;">For full site accessibility features, see <a href="ACCESSIBILITY-IMPROVEMENTS.md" style="color: #E2C033;">ACCESSIBILITY-IMPROVEMENTS.md</a></p>
+    </div>
+  </footer>
+</body>
+</html>

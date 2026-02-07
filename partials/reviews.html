@@ -1,0 +1,160 @@
+<!-- Google Reviews Widget -->
+<section class="reviews-section">
+  <div class="container">
+    <h2 class="reviews-title">What do our students say about our tango lessons</h2>
+
+    <div class="reviews-container">
+      <!-- Left: Rating Summary -->
+      <div class="reviews-summary">
+        <div class="summary-rating">EXCELLENT</div>
+        <div class="summary-stars">★★★★★</div>
+        <div class="summary-text">Based on <strong>150 reviews</strong></div>
+        <img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg" alt="Google" class="summary-google-logo" loading="lazy">
+      </div>
+
+      <!-- Right: Scrollable Reviews -->
+      <div class="reviews-carousel-wrapper">
+        <button class="carousel-nav carousel-prev" aria-label="Previous review">‹</button>
+
+        <div class="reviews-carousel">
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar" style="background-color: #4285f4;">H</div>
+              <div class="review-meta">
+                <div class="review-name">H W</div>
+                <div class="review-date">3 months ago</div>
+              </div>
+              <img src="../images/google-g-icon.svg" alt="Google" class="review-google-icon" loading="lazy">
+            </div>
+            <div class="review-stars">★★★★★ <span class="verified">✓</span></div>
+            <div class="review-text">
+              We love Tango. We love the challenge. We love Sonja and Sven.
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar" style="background-color: #ea4335;">L</div>
+              <div class="review-meta">
+                <div class="review-name">Lysiane Deparis</div>
+                <div class="review-date">3 months ago</div>
+              </div>
+              <img src="../images/google-g-icon.svg" alt="Google" class="review-google-icon" loading="lazy">
+            </div>
+            <div class="review-stars">★★★★★ <span class="verified">✓</span></div>
+            <div class="review-text">
+              Vous voulez apprendre le tango Argentin serieusement et dans une ambiance conviviale, rejoignez les cours de Sonya e...
+              <a href="#" class="read-more">Read more</a>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar" style="background-color: #8b6f47;">J</div>
+              <div class="review-meta">
+                <div class="review-name">Jovana Anja</div>
+                <div class="review-date">4 months ago</div>
+              </div>
+              <img src="../images/google-g-icon.svg" alt="Google" class="review-google-icon" loading="lazy">
+            </div>
+            <div class="review-stars">★★★★★ <span class="verified">✓</span></div>
+            <div class="review-text">
+              Wonderful experience! Sonja and Sven are great teachers and the class is super interesting, also tango is...
+              <a href="#" class="read-more">Read more</a>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar" style="background-color: #0f9d58;">N</div>
+              <div class="review-meta">
+                <div class="review-name">Nathalie Van mald...</div>
+                <div class="review-date">4 months ago</div>
+              </div>
+              <img src="../images/google-g-icon.svg" alt="Google" class="review-google-icon" loading="lazy">
+            </div>
+            <div class="review-stars">★★★★★ <span class="verified">✓</span></div>
+            <div class="review-text">
+              De proefles met Sven en Sonja was geweldig! Ze deden de uitleg in het Engels en Frans zodat iedereen hen verstond....
+              <a href="#" class="read-more">Read more</a>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-nav carousel-next" aria-label="Next review">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews Carousel JavaScript -->
+<script>
+  // Reviews Carousel Functionality
+  const carousel = document.querySelector('.reviews-carousel');
+  const prevBtn = document.querySelector('.carousel-prev');
+  const nextBtn = document.querySelector('.carousel-next');
+  let autoScrollInterval;
+
+  if (carousel && prevBtn && nextBtn) {
+    const cardWidth = 300 + 16; // card width + gap
+
+    // Previous button
+    prevBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+      resetAutoScroll();
+    });
+
+    // Next button
+    nextBtn.addEventListener('click', () => {
+      carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      resetAutoScroll();
+    });
+
+    // Auto-scroll function
+    function startAutoScroll() {
+      autoScrollInterval = setInterval(() => {
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+        if (carousel.scrollLeft >= maxScroll - 10) {
+          // Reset to beginning
+          carousel.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          // Scroll to next
+          carousel.scrollBy({ left: cardWidth, behavior: 'smooth' });
+        }
+      }, 5000); // Auto-scroll every 5 seconds
+    }
+
+    // Reset auto-scroll
+    function resetAutoScroll() {
+      clearInterval(autoScrollInterval);
+      startAutoScroll();
+    }
+
+    // Start auto-scroll
+    startAutoScroll();
+
+    // Pause on hover
+    carousel.addEventListener('mouseenter', () => {
+      clearInterval(autoScrollInterval);
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+      startAutoScroll();
+    });
+
+    // Pause on manual scroll
+    carousel.addEventListener('scroll', () => {
+      clearInterval(autoScrollInterval);
+    }, { passive: true });
+
+    // Resume after scroll ends
+    let scrollTimeout;
+    carousel.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        startAutoScroll();
+      }, 2000);
+    }, { passive: true });
+  }
+</script>
