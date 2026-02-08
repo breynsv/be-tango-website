@@ -1,115 +1,185 @@
-# BE-TANGO Website Rebuild
+# BE-TANGO Website
 
-Clean, modern static website for BE-TANGO Argentine Tango Dance School.
+Modern, responsive website for BE-TANGO Argentine Tango dance school in Brussels & Woluwe.
 
-## Project Structure
+## 🌐 Live Website
+
+- **Production:** https://www.be-tango.be
+- **Development:** http://localhost:3000
+
+## 🎯 Features
+
+- **Clean HTML5** - Semantic structure, no WordPress/Elementor bloat
+- **Mobile-First CSS** - Responsive design, no frameworks
+- **Vanilla JavaScript** - No jQuery or React
+- **Multi-Language** - English, French, Dutch (EN/FR/NL)
+- **CRM API Integration** - Dynamic class schedules from Laravel backend
+- **SEO Optimized** - Structured data, meta tags, performance optimized
+- **Accessibility** - WCAG 2.1 AA compliant
+
+## 🚀 Quick Start
+
+### Development Server
+
+```bash
+# Serve the website locally
+php -S localhost:3000
+
+# Open in browser
+open http://localhost:3000
+```
+
+### CRM API Backend
+
+The website integrates with the BE-TANGO CRM Laravel backend for:
+- Dynamic class schedules (filtered by active semester)
+- Free trial enrollment form submissions
+- Location information
+
+**Backend Repository:** https://github.com/breynsv/betangocrm-laravel
+
+## 📁 Project Structure
 
 ```
 be-tango-rebuild/
 ├── index.html              # Homepage
 ├── css/
-│   └── styles.css          # Main stylesheet (mobile-first)
-├── images/                 # All site images
-├── pages/                  # Additional pages (to be created)
-├── blog/                   # Blog posts (to be created)
-└── partials/               # Reusable HTML components
-    ├── header.html         # Site header with navigation
-    └── footer.html         # Site footer
-```
-
-## Design Features
-
-- **Mobile-First**: Responsive design optimized for all devices
-- **Semantic HTML5**: Clean, accessible markup
-- **Modern CSS**: CSS custom properties (variables) for easy theming
-- **No Framework**: Pure HTML/CSS for maximum performance
-- **Brand Colors**:
-  - Primary: Black (#000000)
-  - Secondary: Gold (#E2C033)
-  - Accent: Vivid Green (#00d084)
-  - Dark Navy: #1C244B
-
-## How to Use HTML Partials
-
-### Header
-Copy the content from `partials/header.html` and paste it after the opening `<body>` tag in each page.
-
-### Footer
-Copy the content from `partials/footer.html` and paste it before the closing `</body>` tag in each page.
-
-### Update Active Navigation
-When adding header to a new page, update the active class:
-```html
-<li><a href="/pages/your-page.html" class="active" aria-current="page">Your Page</a></li>
-```
-
-## Creating New Pages
-
-1. Copy `index.html` as a template
-2. Replace header and footer with partial content
-3. Update the `<title>` and meta tags
-4. Update the active navigation link
-5. Add your page-specific content in the `<main>` section
-
-## Page Hierarchy (from WordPress)
+│   └── styles.css         # Main stylesheet
+├── js/
+│   ├── crm-api.js         # CRM API client
+│   ├── schedule-loader.js # Dynamic schedule display
+│   ├── enrollment-form.js # Form submission handler
+│   └── ...
+├── images/                # Optimized images (WebP)
+├── tango-classes/         # Class pages
+│   ├── beginners/
+│   ├── experienced/
+│   └── free-trial/
+├── blog/                  # Blog articles
+├── fr/                    # French version
+├── nl/                    # Dutch version
+└── docs/                  # Documentation
 
 ```
-Home
-Tango Classes (parent)
-  ├── Free Trial
-  ├── Beginners
-  ├── Experienced
-  ├── Brussels
-  ├── Woluwe
-  ├── Online
-  └── Private
-Contact
-Privacy Policy
+
+## 🔧 Tech Stack
+
+- **HTML5** - Semantic elements
+- **CSS3** - Custom properties, Flexbox, Grid
+- **JavaScript (ES6+)** - Native fetch API, async/await
+- **Google Fonts** - Poppins font family
+- **Font Awesome 6.4.0** - Icons
+
+## 📚 Documentation
+
+Complete documentation available in the [`docs/`](./docs) folder:
+
+- **[CLAUDE.MD](./docs/CLAUDE.MD)** - Development guide and manual
+- **[QUICK-REFERENCE.md](./docs/QUICK-REFERENCE.md)** - Quick reference guide
+- **[SEO-IMPROVEMENTS.md](./docs/SEO-IMPROVEMENTS.md)** - SEO implementation
+- **[ACCESSIBILITY-IMPROVEMENTS.md](./docs/ACCESSIBILITY-IMPROVEMENTS.md)** - Accessibility guide
+- **[TESTING-GUIDE.md](./docs/TESTING-GUIDE.md)** - Testing checklist
+
+[See all documentation →](./docs/README.md)
+
+## 🎨 Brand Colors
+
+```css
+--color-primary: #00d084;      /* Green accent */
+--color-secondary: #E2C033;    /* Gold/Yellow */
+--color-dark-navy: #1c244b;    /* Dark navy blue */
 ```
 
-## Languages
+## 🔗 API Integration
 
-The site is multilingual:
-- English: `/` (root)
-- French: `/fr/`
-- Dutch: `/nl/`
+### Development Setup
 
-Each language follows the same structure.
+1. **Start Laravel backend:**
+   ```bash
+   cd /path/to/betangocrm-laravel
+   php artisan serve --host=127.0.0.1 --port=8000
+   ```
 
-## Browser Compatibility
+2. **Start website:**
+   ```bash
+   php -S localhost:3000
+   ```
 
-- Modern browsers (Chrome, Firefox, Safari, Edge)
-- IE11 not supported (uses CSS custom properties)
+3. **API Endpoints:**
+   - Classes: `http://127.0.0.1:8000/api/v1/classes`
+   - Locations: `http://127.0.0.1:8000/api/v1/locations`
+   - Enrollments: `POST http://127.0.0.1:8000/api/v1/free-trial/register`
 
-## Next Steps
+### Production
 
-1. Create additional pages in `/pages/`
-2. Add actual testimonial content
-3. Implement functional contact form
-4. Add real social media links
-5. Set up blog structure
-6. Add language versions in `/fr/` and `/nl/`
+Update API base URL in `js/crm-api.js`:
+```javascript
+baseURL: 'https://crm.be-tango.be/api/v1'
+```
 
-## Performance Tips
+## 📱 Pages
 
-- Images are already optimized from the WordPress site
-- Consider adding lazy loading for images
-- Minify CSS for production
-- Enable gzip compression on server
+### English (EN)
+- Homepage: `/index.html`
+- Classes: `/tango-classes/`
+- Free Trial: `/tango-classes/free-trial/`
+- Blog: `/blog/`
+- Contact: `/contact/`
 
-## Development
+### French (FR)
+- Homepage: `/fr/index.html`
+- Cours: `/fr/cours-de-tango/`
+- Blog: `/fr/blog/`
 
-To view locally, simply open `index.html` in a browser or use a local server:
+### Dutch (NL)
+- Homepage: `/nl/index.html`
+- Lessen: `/nl/tangolessen/`
+- Blog: `/nl/blog/`
+
+## 🧪 Testing
 
 ```bash
-# Python 3
-python3 -m http.server 8000
+# Test API endpoints
+curl http://127.0.0.1:8000/api/v1/classes/experienced
 
-# Node.js (npx)
-npx serve
-
-# PHP
-php -S localhost:8000
+# Check browser console for:
+# [CRM API] Client initialized
+# [Schedule Loader] Successfully loaded X classes
 ```
 
-Then visit: http://localhost:8000
+## 📦 Deployment
+
+### Production Checklist
+
+- [ ] Update API URL to production
+- [ ] Optimize images (already WebP)
+- [ ] Minify CSS/JS (optional)
+- [ ] Enable HTTPS
+- [ ] Test all forms
+- [ ] Verify multi-language pages
+- [ ] Check mobile responsiveness
+- [ ] Run Lighthouse audit (target >90)
+
+## 🤝 Contributing
+
+1. Create a feature branch
+2. Make changes
+3. Test thoroughly
+4. Commit with clear message
+5. Push to GitHub
+
+## 📄 License
+
+© 2026 BE-TANGO. All rights reserved.
+
+## 👥 Contact
+
+**BE-TANGO**
+- Website: https://www.be-tango.be
+- Email: info@be-tango.be
+- Phone: +32 498 39 29 39
+- Locations: Brussels & Woluwe-Saint-Pierre, Belgium
+
+---
+
+Built with ❤️ for Argentine Tango
