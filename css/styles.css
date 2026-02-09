@@ -221,9 +221,9 @@ p {
 }
 
 .btn-primary:hover {
-  background-color: transparent;
+  background-color: var(--color-dark-navy);
   color: var(--color-secondary);
-  border-color: var(--color-secondary);
+  border-color: var(--color-dark-navy);
   box-shadow: var(--box-shadow);
 }
 
