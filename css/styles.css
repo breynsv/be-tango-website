@@ -5791,19 +5791,19 @@ a:focus {
     animation: slideInFromTop 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
-  /* Menu items stagger animation */
-  .main-nav .nav-list li {
+  /* Menu items stagger animation - only when menu is open */
+  .main-nav.mobile-nav-open .nav-list li {
     opacity: 0;
     transform: translateX(-20px);
     animation: slideInItems 0.3s ease forwards;
   }
 
-  .main-nav .nav-list li:nth-child(1) { animation-delay: 0.05s; }
-  .main-nav .nav-list li:nth-child(2) { animation-delay: 0.1s; }
-  .main-nav .nav-list li:nth-child(3) { animation-delay: 0.15s; }
-  .main-nav .nav-list li:nth-child(4) { animation-delay: 0.2s; }
-  .main-nav .nav-list li:nth-child(5) { animation-delay: 0.25s; }
-  .main-nav .nav-list li:nth-child(6) { animation-delay: 0.3s; }
+  .main-nav.mobile-nav-open .nav-list li:nth-child(1) { animation-delay: 0.05s; }
+  .main-nav.mobile-nav-open .nav-list li:nth-child(2) { animation-delay: 0.1s; }
+  .main-nav.mobile-nav-open .nav-list li:nth-child(3) { animation-delay: 0.15s; }
+  .main-nav.mobile-nav-open .nav-list li:nth-child(4) { animation-delay: 0.2s; }
+  .main-nav.mobile-nav-open .nav-list li:nth-child(5) { animation-delay: 0.25s; }
+  .main-nav.mobile-nav-open .nav-list li:nth-child(6) { animation-delay: 0.3s; }
 
   /* Mobile menu toggle animation */
   .mobile-menu-toggle {
