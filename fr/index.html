@@ -13,9 +13,6 @@
   <link rel="icon" type="image/png" sizes="192x192" href="../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../images/cropped-favicon-180x180.png">
 
-  <!-- Preload LCP Hero Image -->
-  <link rel="preload" as="image" href="../images/Tango-2048x1365-1.webp" type="image/webp" fetchpriority="high">
-
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -163,6 +160,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
+      <img src="../images/Tango-2048x1365-1.webp" alt="Danseurs de tango argentin à Bruxelles" class="hero-bg-image" fetchpriority="high" width="2048" height="1365">
       <div class="container">
         <div class="hero-content">
           <p class="hero-label">BIENVENUE CHEZ BE-TANGO</p>
@@ -578,7 +576,7 @@
         menuToggle.setAttribute('aria-expanded', !isExpanded);
 
         if (window.innerWidth < 768) {
-          mainNav.style.display = isExpanded ? 'none' : 'block';
+          mainNav.classList.toggle('mobile-nav-open');
           menuToggle.classList.toggle('active');
         }
       });
@@ -586,10 +584,10 @@
       // Close menu when clicking outside
       document.addEventListener('click', (e) => {
         if (window.innerWidth < 768 &&
-            mainNav.style.display === 'block' &&
+            mainNav.classList.contains('mobile-nav-open') &&
             !siteHeader.contains(e.target)) {
           menuToggle.setAttribute('aria-expanded', 'false');
-          mainNav.style.display = 'none';
+          mainNav.classList.remove('mobile-nav-open');
           menuToggle.classList.remove('active');
         }
       });
@@ -600,12 +598,9 @@
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
           if (window.innerWidth >= 768) {
-            mainNav.style.display = 'block';
+            mainNav.classList.remove('mobile-nav-open');
             menuToggle.setAttribute('aria-expanded', 'false');
             menuToggle.classList.remove('active');
-          } else {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            mainNav.style.display = isExpanded ? 'block' : 'none';
           }
         }, 100);
       });
