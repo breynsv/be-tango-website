@@ -210,10 +210,16 @@
       if (banner) {
         banner.classList.remove('show');
 
-        // Remove from DOM after animation
-        setTimeout(() => {
+        // Use transitionend event instead of fixed timeout
+        const handleTransitionEnd = () => {
           banner.classList.add('hidden');
-        }, 300);
+          banner.removeEventListener('transitionend', handleTransitionEnd);
+        };
+
+        banner.addEventListener('transitionend', handleTransitionEnd, { once: true });
+
+        // Fallback timeout in case transition doesn't fire
+        setTimeout(handleTransitionEnd, 400);
       }
     },
 
