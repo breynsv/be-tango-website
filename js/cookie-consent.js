@@ -185,18 +185,20 @@
     showBanner: function() {
       const banner = document.getElementById('cookie-consent-banner');
       if (banner) {
-        // Small delay to ensure CSS transition works
-        setTimeout(() => {
-          banner.classList.add('show');
-        }, 100);
+        // Use requestAnimationFrame to ensure CSS transition works
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            banner.classList.add('show');
 
-        // Set focus to accept button for accessibility
-        setTimeout(() => {
-          const acceptBtn = banner.querySelector('#cookie-accept');
-          if (acceptBtn) {
-            acceptBtn.focus();
-          }
-        }, 400);
+            // Set focus after paint to avoid forced reflow
+            requestAnimationFrame(() => {
+              const acceptBtn = banner.querySelector('#cookie-accept');
+              if (acceptBtn) {
+                acceptBtn.focus();
+              }
+            });
+          });
+        });
       }
     },
 
