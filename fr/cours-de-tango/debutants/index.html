@@ -825,30 +825,6 @@
 
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !isExpanded);
-
-      if (window.innerWidth < 768) {
-        mainNav.style.display = isExpanded ? 'none' : 'block';
-      }
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth < 768 && !mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
-        mainNav.style.display = 'none';
-        menuToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 768) {
-        mainNav.style.display = '';
-        menuToggle.setAttribute('aria-expanded', 'false');
-      } else {
-        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        mainNav.style.display = isExpanded ? 'block' : 'none';
       }
     });
 
@@ -864,7 +840,7 @@
 
             // Close mobile menu after clicking anchor link
             if (window.innerWidth < 768) {
-              mainNav.style.display = 'none';
+              mainNav.classList.remove('mobile-nav-open');
               menuToggle.setAttribute('aria-expanded', 'false');
             }
           }

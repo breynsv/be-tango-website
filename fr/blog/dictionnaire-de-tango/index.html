@@ -342,11 +342,11 @@
         const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
         menuToggle.setAttribute('aria-expanded', !isExpanded);
         if (window.innerWidth < 768) {
-          mainNav.style.display = isExpanded ? 'none' : 'block';
+          mainNav.classList.toggle('mobile-nav-open');
           menuToggle.classList.toggle('active');
         }
       });
-      if (window.innerWidth < 768) mainNav.style.display = 'none';
+      if (window.innerWidth < 768) mainNav.classList.remove('mobile-nav-open');
     }
   </script>
   <!-- Floating Mobile Call Button -->

@@ -437,17 +437,17 @@
         menuToggle.setAttribute('aria-expanded', !isExpanded);
 
         if (window.innerWidth < 768) {
-          mainNav.style.display = isExpanded ? 'none' : 'block';
+          mainNav.classList.toggle('mobile-nav-open');
           menuToggle.classList.toggle('active');
         }
       });
 
       document.addEventListener('click', (e) => {
         if (window.innerWidth < 768 &&
-            mainNav.style.display === 'block' &&
+            mainNav.classList.contains('mobile-nav-open') &&
             !siteHeader.contains(e.target)) {
           menuToggle.setAttribute('aria-expanded', 'false');
-          mainNav.style.display = 'none';
+          mainNav.classList.remove('mobile-nav-open');
           menuToggle.classList.remove('active');
         }
       });
@@ -457,7 +457,7 @@
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
           if (window.innerWidth >= 768) {
-            mainNav.style.display = 'block';
+            mainNav.classList.remove('mobile-nav-open');
             menuToggle.setAttribute('aria-expanded', 'false');
             menuToggle.classList.remove('active');
           } else {
@@ -468,7 +468,7 @@
       });
 
       if (window.innerWidth < 768) {
-        mainNav.style.display = 'none';
+        mainNav.classList.remove('mobile-nav-open');
       }
     }
   </script>

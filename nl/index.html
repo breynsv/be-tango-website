@@ -18,13 +18,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../css/fontawesome.min.css?v=2.1"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../css/fontawesome.min.css?v=2.2"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../css/styles.min.css?v=2.1" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../css/styles.min.css?v=2.1"></noscript>
+  <link rel="stylesheet" href="../css/styles.min.css?v=2.2" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../css/styles.min.css?v=2.2"></noscript>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -607,7 +607,7 @@
 
       // Set initial state
       if (window.innerWidth < 768) {
-        mainNav.style.display = 'none';
+        mainNav.classList.remove('mobile-nav-open');
       }
     }
 
@@ -643,8 +643,8 @@
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
             // Close mobile menu after clicking
-            if (window.innerWidth < 768 && mainNav.style.display === 'block') {
-              mainNav.style.display = 'none';
+            if (window.innerWidth < 768 && mainNav.classList.contains('mobile-nav-open')) {
+              mainNav.classList.remove('mobile-nav-open');
               menuToggle.setAttribute('aria-expanded', 'false');
               menuToggle.classList.remove('active');
             }

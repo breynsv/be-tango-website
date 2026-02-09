@@ -298,9 +298,9 @@
       menuToggle.addEventListener('click', (e) => {
         const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
         menuToggle.setAttribute('aria-expanded', !isExpanded);
-        if (window.innerWidth < 768) mainNav.style.display = isExpanded ? 'none' : 'block';
+        if (window.innerWidth < 768) mainNav.classList.toggle('mobile-nav-open');
       });
-      if (window.innerWidth < 768) mainNav.style.display = 'none';
+      if (window.innerWidth < 768) mainNav.classList.remove('mobile-nav-open');
     }
   </script>
   <!-- Floating Mobile Call Button -->

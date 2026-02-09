@@ -700,7 +700,7 @@
       menuToggle.setAttribute('aria-expanded', !isExpanded);
 
       if (window.innerWidth < 768) {
-        mainNav.style.display = isExpanded ? 'none' : 'block';
+        mainNav.classList.toggle('mobile-nav-open');
       }
     });
 
@@ -708,7 +708,7 @@
     document.addEventListener('click', (e) => {
       if (window.innerWidth < 768) {
         if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
-          mainNav.style.display = 'none';
+          mainNav.classList.remove('mobile-nav-open');
           menuToggle.setAttribute('aria-expanded', 'false');
         }
       }
@@ -717,7 +717,7 @@
     // Handle window resize
     window.addEventListener('resize', () => {
       if (window.innerWidth >= 768) {
-        mainNav.style.display = 'block';
+        mainNav.classList.remove('mobile-nav-open');
       } else {
         const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
         mainNav.style.display = isExpanded ? 'block' : 'none';
