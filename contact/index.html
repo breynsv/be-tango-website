@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Contact BE-TANGO for Argentine tango dance classes in Brussels and Woluwe. Get in touch via phone, email, or visit our locations. Free trial class available.">
   <title>Contact - BE-TANGO</title>
+  <link rel="canonical" href="https://www.be-tango.be/contact/">
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Contact - BE-TANGO">
@@ -98,7 +99,7 @@
   <header class="site-header">
     <div class="container">
       <div class="header-content">
-        <a href="../index.html" class="logo">
+        <a href="../" class="logo">
           <img src="../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34" loading="lazy">
         </a>
 
@@ -110,20 +111,20 @@
 
         <nav class="main-nav" aria-label="Main navigation">
           <ul class="nav-list">
-            <li><a href="../index.html">Home</a></li>
+            <li><a href="../">Home</a></li>
             <li class="nav-item-dropdown">
-              <a href="../tango-classes/index.html">Tango Classes</a>
+              <a href="../tango-classes/">Tango Classes</a>
               <ul class="dropdown-menu">
-                <li><a href="../tango-classes/beginners/index.html">Beginners</a></li>
-                <li><a href="../tango-classes/experienced/index.html">Experienced</a></li>
-                <li><a href="../tango-classes/private/index.html">Private Lessons</a></li>
-                <li><a href="../tango-classes/online/index.html">Online Classes</a></li>
-                <li><a href="../tango-classes/brussels/index.html">Brussels</a></li>
-                <li><a href="../tango-classes/woluwe/index.html">Woluwe</a></li>
+                <li><a href="../tango-classes/beginners/">Beginners</a></li>
+                <li><a href="../tango-classes/experienced/">Experienced</a></li>
+                <li><a href="../tango-classes/private/">Private Lessons</a></li>
+                <li><a href="../tango-classes/online/">Online Classes</a></li>
+                <li><a href="../tango-classes/brussels/">Brussels</a></li>
+                <li><a href="../tango-classes/woluwe/">Woluwe</a></li>
               </ul>
             </li>
-            <li><a href="../tango-classes/free-trial/index.html">Free Trial</a></li>
-            <li><a href="index.html" class="active" aria-current="page">Contact</a></li>
+            <li><a href="../tango-classes/free-trial/">Free Trial</a></li>
+            <li><a href="./" class="active" aria-current="page">Contact</a></li>
             <li class="language-switcher">
               <button class="language-toggle" aria-label="Select language" aria-expanded="false">
                 <i class="fas fa-globe"></i>
@@ -132,19 +133,19 @@
               </button>
               <ul class="language-dropdown">
                 <li>
-                  <a href="../nl/contacteer-ons/index.html">
+                  <a href="../nl/contacteer-ons/">
                     <span class="flag-icon">🇳🇱</span>
                     <span>Nederlands</span>
                   </a>
                 </li>
                 <li>
-                  <a href="index.html" class="active">
+                  <a href="./" class="active">
                     <span class="flag-icon">🇬🇧</span>
                     <span>English</span>
                   </a>
                 </li>
                 <li>
-                  <a href="../fr/contactez-nous/index.html">
+                  <a href="../fr/contactez-nous/">
                     <span class="flag-icon">🇫🇷</span>
                     <span>Français</span>
                   </a>
@@ -184,11 +185,11 @@
             <h3>Email Us</h3>
             <p><a href="mailto:admin@be-tango.com" style="text-decoration: none; color: inherit;">admin@be-tango.com</a></p>
           </div>
-          <div class="info-card">
-            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-            <h3>Visit Us</h3>
-            <p>Brussels Centre & Woluwe</p>
-          </div>
+          <a href="https://wa.me/32498392939" target="_blank" rel="noopener noreferrer" class="info-card" style="text-decoration: none; color: inherit; display: block;">
+            <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
+            <h3>WhatsApp</h3>
+            <p>Start a conversation</p>
+          </a>
         </div>
       </div>
     </section>
@@ -231,7 +232,7 @@
                 </div>
                 <div class="contact-text">
                   <h3>BE-TANGO Centre</h3>
-                  <p>Rue du Marais 68<br>1000 Brussels</p>
+                  <p>Rue du Marais 68<br>1000 Brussels<br>Metro Botanique/Rogier</p>
                 </div>
               </div>
 
@@ -253,12 +254,12 @@
             <form class="contact-form" action="#" method="POST" id="contactForm" aria-label="Contact form">
               <div class="form-row">
                 <div class="form-group">
-                  <label for="name">Name *</label>
-                  <input type="text" id="name" name="name" required placeholder="Your Name">
+                  <label for="first-name">First Name *</label>
+                  <input type="text" id="first-name" name="first-name" required placeholder="Your first name">
                 </div>
                 <div class="form-group">
-                  <label for="phone">Phone Number *</label>
-                  <input type="tel" id="phone" name="phone" required placeholder="Phone Number" pattern="[0-9()#&+*\-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted.">
+                  <label for="last-name">Last Name *</label>
+                  <input type="text" id="last-name" name="last-name" required placeholder="Your last name">
                 </div>
               </div>
 
@@ -266,6 +267,10 @@
                 <div class="form-group">
                   <label for="email">Email *</label>
                   <input type="email" id="email" name="email" required placeholder="Your Email">
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" placeholder="Phone Number" pattern="[0-9()#&+*\-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted.">
                 </div>
               </div>
 
@@ -297,6 +302,10 @@
               <p class="location-address">
                 <i class="fas fa-map-marker-alt"></i>
                 Rue du Marais 68, 1000 Brussels
+              </p>
+              <p class="location-metro">
+                <i class="fas fa-subway"></i>
+                Metro Botanique/Rogier
               </p>
             </div>
             <div class="location-map">
@@ -356,8 +365,8 @@
           <h2>Ready to Start Your Tango Journey?</h2>
           <p>Book your free trial class today and experience the magic of Argentine tango</p>
           <div class="cta-buttons">
-            <a href="../tango-classes/free-trial/index.html" class="btn btn-primary btn-large">BOOK A FREE TRIAL</a>
-            <a href="../tango-classes/index.html" class="btn btn-secondary btn-large">VIEW COURSES</a>
+            <a href="../tango-classes/free-trial/" class="btn btn-primary btn-large">BOOK A FREE TRIAL</a>
+            <a href="../tango-classes/" class="btn btn-secondary btn-large">VIEW COURSES</a>
           </div>
         </div>
       </div>
@@ -379,11 +388,11 @@
         <div class="footer-col">
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../tango-classes/index.html">Tango Classes</a></li>
-            <li><a href="../tango-classes/free-trial/index.html" class="btn btn-primary btn-nav">Free Trial</a></li>
-            <li><a href="../blog/index.html">Blog</a></li>
-            <li><a href="index.html">Contact</a></li>
+            <li><a href="../">Home</a></li>
+            <li><a href="../tango-classes/">Tango Classes</a></li>
+            <li><a href="../tango-classes/free-trial/" class="btn btn-primary btn-nav">Free Trial</a></li>
+            <li><a href="../blog/">Blog</a></li>
+            <li><a href="./">Contact</a></li>
           </ul>
         </div>
 
@@ -399,12 +408,8 @@
 
         <div class="footer-col">
           <h4>Locations</h4>
-          <ul>
-            <li><a href="../tango-classes/index.html#brussels">Brussels Centre</a></li>
-            <li><a href="../tango-classes/index.html#woluwe">Woluwe</a></li>
-          </ul>
-          <p style="margin-top: 1rem;"><strong>BE-TANGO Centre</strong><br>Rue du Marais 68<br>1000 Brussels</p>
-          <p style="margin-top: 0.5rem;"><strong>BE-TANGO Woluwe</strong><br>Av. Orban 54<br>1150 Woluwe-Saint-Pierre</p>
+          <p style="margin-top: 1rem;"><strong>BE-TANGO Centre</strong><br>Rue du Marais 68<br>1000 Brussels<br><a href="../tango-classes/index.html#brussels" style="color: var(--color-secondary); text-decoration: underline;">View location →</a></p>
+          <p style="margin-top: 1rem;"><strong>BE-TANGO Woluwe</strong><br>Av. Orban 54<br>1150 Woluwe-Saint-Pierre<br><a href="../tango-classes/index.html#woluwe" style="color: var(--color-secondary); text-decoration: underline;">View location →</a></p>
         </div>
       </div>
 
@@ -412,8 +417,8 @@
         <p>&copy; 2026 BE-TANGO. All rights reserved.</p>
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
-          <a href="../privacy-policy/index.html">Privacy Policy</a> |
-          <a href="../terms-and-conditions/index.html">Terms & Conditions</a>
+          <a href="../privacy-policy/">Privacy Policy</a> |
+          <a href="../terms-and-conditions/">Terms & Conditions</a>
         </p>
       </div>
     </div>

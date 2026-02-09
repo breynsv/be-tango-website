@@ -237,11 +237,11 @@ p {
 }
 
 .btn-nav {
-  padding: 0.75rem 1.5rem !important;
+  padding: 0.5rem 1.5rem !important;
   font-size: 0.9375rem !important;
   font-weight: 700 !important;
   display: inline-block;
-  margin: 0;
+  margin: 0 0 4px 0 !important;
   text-transform: none !important;
 }
 
@@ -271,6 +271,7 @@ p {
   z-index: 1000;
   box-shadow: var(--box-shadow);
   transition: all 0.3s ease;
+  overflow: visible;
 }
 
 .site-header.scrolled {
@@ -283,7 +284,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-sm) 0;
+  padding: var(--spacing-sm) 0 20px 0;
 }
 
 .logo img {
@@ -411,6 +412,10 @@ p {
   .nav-list a {
     padding: var(--spacing-xs) 0;
     border-bottom: none;
+  }
+
+  .nav-list a.btn {
+    border: 2px solid var(--color-secondary) !important;
   }
 
   .nav-list a:hover,
@@ -1942,12 +1947,17 @@ section {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
+  min-width: 0;
+  overflow: hidden;
 }
 
 .form-group label {
   color: var(--color-dark-navy);
   font-weight: 500;
   font-size: 0.875rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .form-group input,
@@ -1958,6 +1968,9 @@ section {
   font-family: 'Poppins', sans-serif;
   font-size: 1rem;
   transition: border-color var(--transition);
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .form-group input:focus,
@@ -3344,16 +3357,16 @@ section {
 }
 
 .checklist li {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-md);
-  align-items: flex-start;
+  align-items: start;
 }
 
 .checklist i {
   color: var(--color-secondary);
   font-size: 1.25rem;
-  flex-shrink: 0;
   margin-top: 2px;
 }
 
@@ -3522,12 +3535,16 @@ section {
 }
 
 .contact-method-card {
+  display: block;
   background-color: var(--color-white);
   border-radius: var(--border-radius);
   padding: var(--spacing-xl);
   text-align: center;
   box-shadow: var(--box-shadow);
   transition: var(--transition);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
 
 .contact-method-card:hover {
@@ -3559,14 +3576,10 @@ section {
   color: var(--color-text);
 }
 
-.contact-method-card a {
+.contact-method-card .contact-link {
   color: var(--color-secondary);
   font-weight: 600;
-  text-decoration: none;
-}
-
-.contact-method-card a:hover {
-  text-decoration: underline;
+  margin-bottom: var(--spacing-sm);
 }
 
 /* Timeline */
@@ -6069,7 +6082,7 @@ section.hero-small {
   position: absolute;
   right: 15px;
   top: 15px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.6);
   border: none;
   color: white;
   font-size: 2rem;
@@ -6086,7 +6099,7 @@ section.hero-small {
 }
 
 .tango-close-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 /* Modal Body - Two Column Layout */

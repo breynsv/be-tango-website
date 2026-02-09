@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Disallow test/demo pages
+Disallow: /test-ux-features.html
+Disallow: /accessibility-demo.html
+
+# Disallow backup files
+Disallow: /*.backup$
+
+# Disallow partial HTML files
+Disallow: /partials/
+
+# Allow CSS and JS
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Sitemap location
+Sitemap: https://www.be-tango.be/sitemap.xml
