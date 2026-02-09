@@ -34,16 +34,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=2.4"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=2.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=2.4" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.4"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=2.5" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.5"></noscript>
 
   <!-- Enhancement Scripts -->
-  <script src="../../js/enhancements.min.js?v=2.4" defer></script>
+  <script src="../../js/enhancements.min.js?v=2.5" defer></script>
 
   <!-- Blog Article Styles -->
   <style>
@@ -430,11 +430,7 @@
             mainNav.classList.remove('mobile-nav-open');
             menuToggle.setAttribute('aria-expanded', 'false');
             menuToggle.classList.remove('active');
-          } else {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            mainNav.style.display = isExpanded ? 'block' : 'none';
-          }
-        }, 100);
+          }}, 100);
       });
 
       if (window.innerWidth < 768) {

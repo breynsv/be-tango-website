@@ -33,13 +33,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=2.4"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=2.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=2.4" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.4"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=2.5" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.5"></noscript>
 
   <!-- JSON-LD Structured Data - Experienced Courses -->
   <script type="application/ld+json">
@@ -945,39 +945,7 @@
         }
       });
     }
-
-
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !isExpanded);
-
-      if (window.innerWidth < 768) {
-        mainNav.classList.toggle('mobile-nav-open');
-      }
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth < 768) {
-        if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
-          mainNav.classList.remove('mobile-nav-open');
-          menuToggle.setAttribute('aria-expanded', 'false');
-        }
-      }
-    });
-
-    // Reset menu on window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 768) {
-        mainNav.style.display = 'flex';
-        menuToggle.setAttribute('aria-expanded', 'false');
-      } else {
-        mainNav.classList.remove('mobile-nav-open');
-      }
-    });
-
-    // Smooth scroll for anchor links
+// Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
