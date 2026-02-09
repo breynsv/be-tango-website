@@ -111,6 +111,7 @@
       banner.innerHTML = `
         <div class="cookie-consent-container">
           <div class="cookie-consent-text">
+            <h3 id="cookie-consent-title" class="visually-hidden">Cookie Consent</h3>
             <p id="cookie-consent-description">
               We use cookies to improve your experience on our website.
               By continuing to browse, you agree to our use of cookies.

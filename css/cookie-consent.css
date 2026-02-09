@@ -43,7 +43,7 @@
 }
 
 .cookie-consent-text a {
-  color: var(--color-secondary, #E2C033);
+  color: #1C244B;
   text-decoration: underline;
   font-weight: 500;
 }
