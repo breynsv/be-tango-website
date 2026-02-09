@@ -4801,7 +4801,7 @@ section {
   }
 
   .hero-bg-image {
-    object-position: center center;
+    object-position: 75% center;
   }
 
   .hero h1 {
@@ -5781,6 +5781,11 @@ a:focus {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
+    z-index: 100;
+  }
+
+  .language-dropdown {
+    z-index: 101;
   }
 
   /* When menu is visible */
@@ -5788,6 +5793,7 @@ a:focus {
     display: block !important;
     opacity: 1;
     max-height: 100vh;
+    overflow: visible;
     animation: slideInFromTop 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
