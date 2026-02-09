@@ -573,7 +573,7 @@ p {
 /* Hero Section */
 .hero {
   position: relative;
-  background-image: url('../images/Tango-2048x1365-1.jpg');
+  background-image: url('../images/Tango-2048x1365-1.webp');
   background-size: cover;
   background-position: center 35%;
   color: var(--color-white);
