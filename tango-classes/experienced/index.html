@@ -33,16 +33,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=2.8"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=2.8" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.8"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.5"></noscript>
 
   <!-- Enhancement Scripts -->
-  <script src="../../js/enhancements.min.js?v=2.8" defer></script>
+  <script src="../../js/enhancements.min.js?v=3.5" defer></script>
 
   <!-- JSON-LD Structured Data - Experienced Courses -->
   <script type="application/ld+json">
@@ -375,116 +375,12 @@
           <p class="section-description">Our experienced dancer program offers four distinct levels, each designed to build upon your existing skills and take your dancing to new heights.</p>
         </div>
 
-        <div class="grid grid-2">
-          <!-- First Year -->
-          <article class="card level-card">
-            <div class="level-badge level-badge-blue">First Year</div>
-            <div class="card-content">
-              <h3>First Year</h3>
-              <p class="level-description">For dancers who completed the beginners course. We consolidate the basics and focus on cross-system, smooth walking, and Ochos.</p>
-
-              <div class="level-details">
-                <div class="level-detail-item">
-                  <i class="fas fa-book"></i>
-                  <span><strong>15 lessons</strong></span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Weekly schedule</span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-users"></i>
-                  <span>Group classes</span>
-                </div>
-              </div>
-
-              <a href="#first-year-schedule" class="btn btn-primary">View Schedule</a>
-            </div>
-          </article>
-
-          <!-- Second Year -->
-          <article class="card level-card">
-            <div class="level-badge level-badge-indigo">Second Year</div>
-            <div class="card-content">
-              <h3>Second Year</h3>
-              <p class="level-description">Building on first year fundamentals. Continue developing technique, musicality, and partner connection with more complex patterns and combinations.</p>
-
-              <div class="level-details">
-                <div class="level-detail-item">
-                  <i class="fas fa-book"></i>
-                  <span><strong>15 lessons</strong></span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Weekly schedule</span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-users"></i>
-                  <span>Group classes</span>
-                </div>
-              </div>
-
-              <a href="#second-year-schedule" class="btn btn-primary">View Schedule</a>
-            </div>
-          </article>
-
-          <!-- Second Year PLUS -->
-          <article class="card level-card">
-            <div class="level-badge level-badge-purple">Second Year PLUS</div>
-            <div class="card-content">
-              <h3>Second Year <span class="highlight">PLUS</span></h3>
-              <p class="level-description">Advanced fundamentals for experienced dancers. Refine your technique, explore complex sequences, and deepen your musical interpretation.</p>
-
-              <div class="level-details">
-                <div class="level-detail-item">
-                  <i class="fas fa-book"></i>
-                  <span><strong>15 lessons</strong></span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Weekly schedule</span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-users"></i>
-                  <span>Group classes</span>
-                </div>
-              </div>
-
-              <a href="#second-year-plus-schedule" class="btn btn-primary">View Schedule</a>
-            </div>
-          </article>
-
-          <!-- Intermediate/Advanced -->
-          <article class="card level-card">
-            <div class="level-badge level-badge-red">Intermediate/Advanced</div>
-            <div class="card-content">
-              <h3>Intermediate / Advanced</h3>
-              <p class="level-description">For dancers with 4+ years experience. Master Boleos, Ganchos, Enrosques. Deep work on musicality (Vals/Milonga) and improvisation.</p>
-
-              <div class="level-details">
-                <div class="level-detail-item">
-                  <i class="fas fa-book"></i>
-                  <span><strong>15 lessons</strong></span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Weekly schedule</span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-graduation-cap"></i>
-                  <span>Advanced technique</span>
-                </div>
-              </div>
-
-              <a href="#intermediate-schedule" class="btn btn-primary">View Schedule</a>
-            </div>
-          </article>
-        </div>
+        <div class="grid grid-2" data-level-cards-container></div>
       </div>
     </section>
 
     <!-- Class Schedules -->
-    <section class="bg-light">
+    <section class="bg-light" id="class-schedules">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Class Schedules</h2>
@@ -866,7 +762,8 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../privacy-policy/">Privacy Policy</a> |
-          <a href="../../terms-and-conditions/">Terms & Conditions</a>
+          <a href="../../terms-and-conditions/">Terms & Conditions</a> |
+          <a href="../../links/">Links</a>
         </p>
       </div>
     </div>

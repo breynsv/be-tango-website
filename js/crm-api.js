@@ -9,7 +9,7 @@
 const API_CONFIG = {
     // Auto-detect environment and set base URL
     baseURL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'http://127.0.0.1:8000/api/v1'
+        ? 'http://127.0.0.1:8001/api/v1'
         : 'https://crm.be-tango.be/api/v1',
     timeout: 10000, // 10 seconds
     retryAttempts: 2,
@@ -225,6 +225,13 @@ class CRMApi {
      */
     async getLocation(id) {
         return await this.get(`/locations/${id}`);
+    }
+
+    /**
+     * Get active languages configured in the backend
+     */
+    async getLanguages() {
+        return await this.get('/languages');
     }
 
     /**

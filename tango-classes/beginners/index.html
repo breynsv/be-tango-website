@@ -33,16 +33,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=2.8"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=2.8" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.8"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../css/enrollment-modal.css?v=1.0">
 
   <!-- Enhancement Scripts -->
-  <script src="../../js/enhancements.min.js?v=2.8" defer></script>
+  <script src="../../js/enhancements.min.js?v=3.5" defer></script>
 
   <!-- JSON-LD Structured Data - Beginners Course -->
   <script type="application/ld+json">
@@ -337,11 +338,10 @@
               <i class="fas fa-calendar-week"></i>
             </div>
             <h3>Weekly Classes</h3>
-            <p><strong>Learn step-by-step</strong> in a series of 14 lessons. The ideal way to build a solid foundation.</p>
+            <p><strong>Learn step-by-step</strong> in a series of lessons. The ideal way to build a solid foundation.</p>
 
             <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> 14 weekly lessons (1 hour each)</li>
-              <li><i class="fas fa-check"></i> Small groups (max 20 people)</li>
+              <li><i class="fas fa-check"></i> <span><span data-weekly-lessons>14</span> weekly lessons (1 hour each)</span></li>
               <li><i class="fas fa-check"></i> Two locations to choose from</li>
               <li><i class="fas fa-check"></i> Progressive curriculum</li>
             </ul>
@@ -349,12 +349,12 @@
             <div class="pricing-header">
               <div class="pricing-amount">
                 <span class="price-currency">€</span>
-                <span class="price-value">195</span>
+                <span class="price-value" data-weekly-price></span>
               </div>
               <p class="pricing-period">for complete course</p>
             </div>
 
-            <a href="#weekly-courses" class="btn btn-primary">VIEW SCHEDULE</a>
+            <a href="#schedule" class="btn btn-primary">VIEW SCHEDULE</a>
           </article>
 
           <!-- Weekend Workshop Card -->
@@ -393,8 +393,8 @@
           <div class="info-box-content">
             <h3>Not sure yet? Try it for free!</h3>
             <p>Come to a free initiation lesson and discover if tango is for you.</p>
-            <a href="../free-trial/" class="btn btn-secondary">SIGN UP</a>
           </div>
+          <a href="../free-trial/" class="btn btn-primary">SIGN UP</a>
         </div>
       </div>
     </section>
@@ -404,11 +404,10 @@
       <div class="container">
         <div class="section-header text-center">
           <h2>Weekly <span class="highlight">Beginner Courses</span></h2>
-          <p class="section-description">Our beginner series consists of <strong>14 lessons</strong>. You learn not just the steps, but also posture, listening to the music, and connection with your partner.</p>
           <p class="section-description">We start twice a year (September and February). Mid-year entry is possible if you have some basic experience.</p>
         </div>
 
-        <div class="schedule-grid" data-schedule-container>
+        <div class="schedule-grid" data-schedule-container data-free-trial-url="../free-trial/">
 
           <!-- Brussels Schedule -->
           <div class="schedule-location">
@@ -891,7 +890,8 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../privacy-policy/">Privacy Policy</a> |
-          <a href="../../terms-and-conditions/">Terms & Conditions</a>
+          <a href="../../terms-and-conditions/">Terms & Conditions</a> |
+          <a href="../../links/">Links</a>
         </p>
       </div>
     </div>
@@ -994,7 +994,9 @@
 
   <!-- CRM API Integration -->
   <script src="../../js/crm-api.min.js"></script>
-  <script src="../../js/schedule-loader.min.js"></script>
+  <script src="../../js/schedule-loader.min.js?v=4.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous"></script>
+  <script src="../../js/enrollment-modal.js?v=1.0" defer></script>
 
   <!-- Floating Mobile Call Button -->
 </body>

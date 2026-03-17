@@ -33,13 +33,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=2.8"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=2.8" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.8"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../../css/free-trial.css">
 
   <!-- JSON-LD Structured Data - Free Trial Event -->
   <script type="application/ld+json">
@@ -252,18 +253,7 @@
           <div class="content-image">
             <img src="../../../images/beginner-tango-classes.webp" alt="Gratis proefles tango in Brussel" loading="lazy">
 
-            <div class="info-box mt-lg">
-              <div class="info-box-icon">
-                <i class="far fa-calendar-alt"></i>
-              </div>
-              <div class="info-box-content">
-                <h4>Aankomende Gratis Proeflessen</h4>
-                <p>Gratis proeflessen zijn beschikbaar aan het begin van elke nieuwe cursuscyclus.</p>
-                <p class="text-small"><strong>Brussel:</strong> Maandagavond<br>
-                <strong>Woluwe:</strong> Donderdagavond</p>
-                <a href="#book-now" class="btn btn-secondary mt-sm">Bekijk Beschikbaarheid</a>
-              </div>
-            </div>
+            <div id="free-trial-schedule" class="mt-lg"></div>
           </div>
         </div>
       </div>
@@ -278,9 +268,7 @@
         </div>
 
         <div class="form-container">
-          <form class="contact-form" id="free-trial-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <input type="hidden" name="_subject" value="Nieuwe Gratis Proefles Aanmelding - BE-TANGO">
-            <input type="hidden" name="_next" value="https://www.be-tango.be/bedankt/">
+          <form class="contact-form" id="free-trial-form" data-language="NL">
 
             <div class="form-row">
               <div class="form-group">
@@ -309,29 +297,8 @@
             <div class="form-group">
               <label for="class-date">Selecteer de datum van je gratis les <span class="required">*</span></label>
               <select id="class-date" name="class-date" required>
-                <option value="">-- Selecteer een datum --</option>
-                <optgroup label="Brussel - Ecole de Gatti de Gamond (Maandag 20:00-21:00)">
-                  <option value="Brussel - Maandag 10 februari 2026, 20:00-21:00">Maandag 10 februari 2026, 20:00-21:00</option>
-                  <option value="Brussel - Maandag 17 februari 2026, 20:00-21:00">Maandag 17 februari 2026, 20:00-21:00</option>
-                  <option value="Brussel - Maandag 24 februari 2026, 20:00-21:00">Maandag 24 februari 2026, 20:00-21:00</option>
-                  <option value="Brussel - Maandag 3 maart 2026, 20:00-21:00">Maandag 3 maart 2026, 20:00-21:00</option>
-                  <option value="Brussel - Maandag 10 maart 2026, 20:00-21:00">Maandag 10 maart 2026, 20:00-21:00</option>
-                  <option value="Brussel - Maandag 17 maart 2026, 20:00-21:00">Maandag 17 maart 2026, 20:00-21:00</option>
-                  <option value="Brussel - Maandag 24 maart 2026, 20:00-21:00">Maandag 24 maart 2026, 20:00-21:00</option>
-                  <option value="Brussel - Maandag 31 maart 2026, 20:00-21:00">Maandag 31 maart 2026, 20:00-21:00</option>
-                </optgroup>
-                <optgroup label="Woluwe - Le LAB (Donderdag 19:30-20:30)">
-                  <option value="Woluwe - Donderdag 12 februari 2026, 19:30-20:30">Donderdag 12 februari 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Donderdag 19 februari 2026, 19:30-20:30">Donderdag 19 februari 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Donderdag 26 februari 2026, 19:30-20:30">Donderdag 26 februari 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Donderdag 5 maart 2026, 19:30-20:30">Donderdag 5 maart 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Donderdag 12 maart 2026, 19:30-20:30">Donderdag 12 maart 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Donderdag 19 maart 2026, 19:30-20:30">Donderdag 19 maart 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Donderdag 26 maart 2026, 19:30-20:30">Donderdag 26 maart 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Donderdag 2 april 2026, 19:30-20:30">Donderdag 2 april 2026, 19:30-20:30</option>
-                </optgroup>
+                <option value="">Beschikbare data laden…</option>
               </select>
-              <small class="form-help">Kies uit de beschikbare data voor het voorjaarssemester 2026</small>
             </div>
 
             <div class="form-group">
@@ -620,11 +587,16 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../../privacy-policy/">Privacybeleid</a> |
-          <a href="../../../algemene-voorwaarden/">Algemene Voorwaarden</a>
+          <a href="../../../algemene-voorwaarden/">Algemene Voorwaarden</a> |
+          <a href="../../links/">Links</a>
         </p>
       </div>
     </div>
   </footer>
+
+  <!-- CRM Integration -->
+  <script src="../../../js/crm-api.js?v=1.0" defer></script>
+  <script src="../../../js/free-trial.js?v=1.0" defer></script>
 
   <!-- Scripts -->
   <script>
@@ -688,14 +660,6 @@
         if (!e.target.closest('.language-switcher')) {
           languageToggle.setAttribute('aria-expanded', 'false');
           languageDropdown.classList.remove('active');
-        }
-      });
-    }
-
-
-    if (menuToggle && mainNav) {
-      menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
         }
       });
     }

@@ -33,19 +33,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=2.8"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=2.8" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.8"></noscript>
-  <link rel="stylesheet" href="../../css/form-validation.min.css">
-  <link rel="preload" href="../../css/cookie-consent.min.css?v=2.8" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="../../css/cookie-consent.min.css?v=2.8"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../../css/form-validation.min.css">
+  <link rel="stylesheet" href="../../../css/free-trial.css">
+  <link rel="preload" href="../../../css/cookie-consent.min.css?v=3.5" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="../../css/cookie-consent.min.css?v=3.5"></noscript>
 
   <!-- Enhancement Scripts -->
-  <script src="../../js/enhancements.min.js?v=2.8" defer></script>
+  <script src="../../js/enhancements.min.js?v=3.5" defer></script>
 
   <!-- JSON-LD Structured Data - Free Trial Event -->
   <script type="application/ld+json">
@@ -259,18 +260,7 @@
           <div class="content-image">
             <img src="../../images/beginner-tango-classes.webp" alt="Free trial tango class in Brussels" loading="lazy">
 
-            <div class="info-box mt-lg">
-              <div class="info-box-icon">
-                <i class="fas fa-calendar-alt"></i>
-              </div>
-              <div class="info-box-content">
-                <h4>Upcoming Free Trials</h4>
-                <p>Free trial classes are available at the start of each new course cycle.</p>
-                <p class="text-small"><strong>Brussels:</strong> Monday evenings<br>
-                <strong>Woluwe:</strong> Thursday evenings</p>
-                <a href="#book-now" class="btn btn-secondary mt-sm">Check Availability</a>
-              </div>
-            </div>
+            <div id="free-trial-schedule" class="mt-lg"></div>
           </div>
         </div>
       </div>
@@ -285,9 +275,7 @@
         </div>
 
         <div class="form-container">
-          <form class="contact-form" id="free-trial-form">
-            <input type="hidden" name="_subject" value="New Free Trial Booking - BE-TANGO">
-            <input type="hidden" name="_next" value="https://www.be-tango.be/thank-you/">
+          <form class="contact-form" id="free-trial-form" data-language="EN">
 
             <div class="form-row">
               <div class="form-group">
@@ -316,29 +304,8 @@
             <div class="form-group">
               <label for="class-date">Select your free class date <span class="required">*</span></label>
               <select id="class-date" name="class-date" required>
-                <option value="">-- Select a date --</option>
-                <optgroup label="Brussels - Ecole de Gatti de Gamond (Monday 20:00-21:00)">
-                  <option value="Brussels - Monday 10 February 2026, 20:00-21:00">Monday 10 February 2026, 20:00-21:00</option>
-                  <option value="Brussels - Monday 17 February 2026, 20:00-21:00">Monday 17 February 2026, 20:00-21:00</option>
-                  <option value="Brussels - Monday 24 February 2026, 20:00-21:00">Monday 24 February 2026, 20:00-21:00</option>
-                  <option value="Brussels - Monday 3 March 2026, 20:00-21:00">Monday 3 March 2026, 20:00-21:00</option>
-                  <option value="Brussels - Monday 10 March 2026, 20:00-21:00">Monday 10 March 2026, 20:00-21:00</option>
-                  <option value="Brussels - Monday 17 March 2026, 20:00-21:00">Monday 17 March 2026, 20:00-21:00</option>
-                  <option value="Brussels - Monday 24 March 2026, 20:00-21:00">Monday 24 March 2026, 20:00-21:00</option>
-                  <option value="Brussels - Monday 31 March 2026, 20:00-21:00">Monday 31 March 2026, 20:00-21:00</option>
-                </optgroup>
-                <optgroup label="Woluwe - Le LAB (Thursday 19:30-20:30)">
-                  <option value="Woluwe - Thursday 12 February 2026, 19:30-20:30">Thursday 12 February 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Thursday 19 February 2026, 19:30-20:30">Thursday 19 February 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Thursday 26 February 2026, 19:30-20:30">Thursday 26 February 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Thursday 5 March 2026, 19:30-20:30">Thursday 5 March 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Thursday 12 March 2026, 19:30-20:30">Thursday 12 March 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Thursday 19 March 2026, 19:30-20:30">Thursday 19 March 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Thursday 26 March 2026, 19:30-20:30">Thursday 26 March 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Thursday 2 April 2026, 19:30-20:30">Thursday 2 April 2026, 19:30-20:30</option>
-                </optgroup>
+                <option value="">Loading available dates…</option>
               </select>
-              <small class="form-help">Choose from available dates for the Spring 2026 semester</small>
             </div>
 
             <div class="form-group">
@@ -619,11 +586,16 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../privacy-policy/">Privacy Policy</a> |
-          <a href="../../terms-and-conditions/">Terms & Conditions</a>
+          <a href="../../terms-and-conditions/">Terms & Conditions</a> |
+          <a href="../../links/">Links</a>
         </p>
       </div>
     </div>
   </footer>
+
+  <!-- CRM Integration -->
+  <script src="../../js/crm-api.js?v=1.0" defer></script>
+  <script src="../../js/free-trial.js?v=1.0" defer></script>
 
   <!-- Scripts -->
   <script>
@@ -690,7 +662,7 @@
         }
       });
     }
+  </script>
 
-
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
+</body>
+</html>

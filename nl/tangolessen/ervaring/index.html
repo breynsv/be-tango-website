@@ -33,13 +33,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=2.8"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=2.8" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.8"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.5"></noscript>
 
   <!-- JSON-LD Structured Data - Experienced Courses -->
   <script type="application/ld+json">
@@ -376,251 +376,19 @@
           <p class="section-description">Ons programma voor ervaren dansers biedt vier verschillende niveaus, elk ontworpen om voort te bouwen op uw bestaande vaardigheden en uw dansen naar nieuwe hoogten te brengen.</p>
         </div>
 
-        <div class="grid grid-2">
-          <!-- First Year -->
-          <article class="card level-card">
-            <div class="level-badge level-badge-blue">Eerste Jaar</div>
-            <div class="card-content">
-              <h3>Eerste Jaar</h3>
-              <p class="level-description">Voor dansers die de beginnerscursus hebben afgerond. We consolideren de basis en focussen op cross-systeem, soepel wandelen en Ochos.</p>
-
-              <div class="level-details">
-                <div class="level-detail-item">
-                  <i class="fas fa-book"></i>
-                  <span><strong>15 lessen</strong></span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Wekelijks rooster</span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-users"></i>
-                  <span>Groepslessen</span>
-                </div>
-              </div>
-
-              <a href="#eerste-jaar-rooster" class="btn btn-primary">Bekijk Rooster</a>
-            </div>
-          </article>
-
-          <!-- Second Year -->
-          <article class="card level-card">
-            <div class="level-badge level-badge-indigo">Tweede Jaar</div>
-            <div class="card-content">
-              <h3>Tweede Jaar</h3>
-              <p class="level-description">Voortbouwend op de fundamenten van het eerste jaar. Blijf techniek, muzikaliteit en partnerconnectie ontwikkelen met meer complexe patronen en combinaties.</p>
-
-              <div class="level-details">
-                <div class="level-detail-item">
-                  <i class="fas fa-book"></i>
-                  <span><strong>15 lessen</strong></span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Wekelijks rooster</span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-users"></i>
-                  <span>Groepslessen</span>
-                </div>
-              </div>
-
-              <a href="#tweede-jaar-rooster" class="btn btn-primary">Bekijk Rooster</a>
-            </div>
-          </article>
-
-          <!-- Second Year PLUS -->
-          <article class="card level-card">
-            <div class="level-badge level-badge-purple">Tweede Jaar PLUS</div>
-            <div class="card-content">
-              <h3>Tweede Jaar <span class="highlight">PLUS</span></h3>
-              <p class="level-description">Geavanceerde fundamentals voor ervaren dansers. Verfijn uw techniek, verken complexe sequenties en verdiep uw muzikale interpretatie.</p>
-
-              <div class="level-details">
-                <div class="level-detail-item">
-                  <i class="fas fa-book"></i>
-                  <span><strong>15 lessen</strong></span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Wekelijks rooster</span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-users"></i>
-                  <span>Groepslessen</span>
-                </div>
-              </div>
-
-              <a href="#tweede-jaar-plus-rooster" class="btn btn-primary">Bekijk Rooster</a>
-            </div>
-          </article>
-
-          <!-- Intermediate/Advanced -->
-          <article class="card level-card">
-            <div class="level-badge level-badge-red">Gemiddeld/Gevorderd</div>
-            <div class="card-content">
-              <h3>Gemiddeld / Gevorderd</h3>
-              <p class="level-description">Voor dansers met 4+ jaar ervaring. Meester Boleos, Ganchos, Enrosques. Diepgaand werk aan muzikaliteit (Vals/Milonga) en improvisatie.</p>
-
-              <div class="level-details">
-                <div class="level-detail-item">
-                  <i class="fas fa-book"></i>
-                  <span><strong>15 lessen</strong></span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Wekelijks rooster</span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-graduation-cap"></i>
-                  <span>Geavanceerde techniek</span>
-                </div>
-              </div>
-
-              <a href="#gemiddeld-rooster" class="btn btn-primary">Bekijk Rooster</a>
-            </div>
-          </article>
-        </div>
+        <div class="grid grid-2" data-level-cards-container></div>
       </div>
     </section>
 
     <!-- Class Schedules -->
-    <section class="section-padding bg-light">
+    <section class="section-padding bg-light" id="class-schedules">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Lesroosters</h2>
           <p class="section-description">Kies uit onze handige locaties in Brussel en Sint-Pieters-Woluwe</p>
         </div>
 
-        <div class="schedule-grid">
-          <!-- Brussels (Gatti de Gamond) Schedule -->
-          <div class="schedule-location">
-            <div class="schedule-location-header">
-              <div>
-                <h3><i class="fas fa-map-marker-alt"></i> Brussel - Gatti de Gamond</h3>
-                <p class="location-address">Rue du Marais 68, 1000 Brussel</p>
-              </div>
-            </div>
-
-            <div class="schedule-items">
-              <!-- Monday - Second Year -->
-              <div class="schedule-item" id="tweede-jaar-rooster">
-                <div class="schedule-time">
-                  <span class="schedule-day">Ma</span>
-                  <span class="schedule-hour">19:00</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Maandag 19:00 - 20:00</h4>
-                  <p>Brussel - Gatti de Gamond</p>
-                </div>
-                <span class="schedule-badge level-badge-indigo">Tweede Jaar</span>
-              </div>
-
-              <!-- Wednesday - First Year -->
-              <div class="schedule-item" id="eerste-jaar-rooster">
-                <div class="schedule-time">
-                  <span class="schedule-day">Wo</span>
-                  <span class="schedule-hour">18:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Woensdag 18:30 - 19:30</h4>
-                  <p>Brussel - Gatti de Gamond</p>
-                </div>
-                <span class="schedule-badge level-badge-blue">Eerste Jaar</span>
-              </div>
-
-              <!-- Wednesday - Second Year PLUS -->
-              <div class="schedule-item" id="tweede-jaar-plus-rooster">
-                <div class="schedule-time">
-                  <span class="schedule-day">Wo</span>
-                  <span class="schedule-hour">19:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Woensdag 19:30 - 20:30</h4>
-                  <p>Brussel - Gatti de Gamond</p>
-                </div>
-                <span class="schedule-badge level-badge-purple">Tweede Jaar PLUS</span>
-              </div>
-
-              <!-- Wednesday - Intermediate -->
-              <div class="schedule-item" id="gemiddeld-rooster">
-                <div class="schedule-time">
-                  <span class="schedule-day">Wo</span>
-                  <span class="schedule-hour">20:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Woensdag 20:30 - 21:30</h4>
-                  <p>Brussel - Gatti de Gamond</p>
-                </div>
-                <span class="schedule-badge level-badge-red">Gemiddeld</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Woluwe Schedule -->
-          <div class="schedule-location">
-            <div class="schedule-location-header">
-              <div>
-                <h3><i class="fas fa-map-marker-alt"></i> Sint-Pieters-Woluwe</h3>
-                <p class="location-address">Avenue Orban 54, 1150 Sint-Pieters-Woluwe</p>
-              </div>
-            </div>
-
-            <div class="schedule-items">
-              <!-- Tuesday - Second Year -->
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">Di</span>
-                  <span class="schedule-hour">19:00</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Dinsdag 19:00 - 20:00</h4>
-                  <p>Sint-Pieters-Woluwe</p>
-                </div>
-                <span class="schedule-badge level-badge-indigo">Tweede Jaar</span>
-              </div>
-
-              <!-- Tuesday - Second Year PLUS -->
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">Di</span>
-                  <span class="schedule-hour">20:00</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Dinsdag 20:00 - 21:00</h4>
-                  <p>Sint-Pieters-Woluwe</p>
-                </div>
-                <span class="schedule-badge level-badge-purple">Tweede Jaar PLUS</span>
-              </div>
-
-              <!-- Thursday - First Year -->
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">Do</span>
-                  <span class="schedule-hour">18:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Donderdag 18:30 - 19:30</h4>
-                  <p>Sint-Pieters-Woluwe</p>
-                </div>
-                <span class="schedule-badge level-badge-blue">Eerste Jaar</span>
-              </div>
-
-              <!-- Thursday - Intermediate -->
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">Do</span>
-                  <span class="schedule-hour">20:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Donderdag 20:30 - 21:30</h4>
-                  <p>Sint-Pieters-Woluwe</p>
-                </div>
-                <span class="schedule-badge level-badge-red">Gemiddeld</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="schedule-grid" data-schedule-container></div>
       </div>
     </section>
 
@@ -874,7 +642,8 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../../privacy-policy/">Privacybeleid</a> |
-          <a href="../../../algemene-voorwaarden/">Algemene Voorwaarden</a>
+          <a href="../../../algemene-voorwaarden/">Algemene Voorwaarden</a> |
+          <a href="../../links/">Links</a>
         </p>
       </div>
     </div>
@@ -966,6 +735,10 @@
       });
     });
   </script>
+  <!-- CRM API Integration -->
+  <script src="../../../js/crm-api.min.js"></script>
+  <script src="../../../js/schedule-loader.min.js"></script>
+
   <!-- Floating Mobile Call Button -->
 </body>
 </html>

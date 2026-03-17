@@ -601,7 +601,7 @@ p {
   position: relative;
   background-image: url('../images/Tango-2048x1365-1.webp');
   background-size: cover;
-  background-position: center 35%;
+  background-position: 30% center;
   color: var(--color-white);
   padding: calc(var(--spacing-2xl) * 1.5) 0;
   overflow: hidden;
@@ -617,7 +617,7 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: 80% center;
   z-index: -1;
 }
 
@@ -2288,92 +2288,92 @@ section {
   }
 }
 
-@media (min-width: 1024px) {
-  .schedule-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 .schedule-location {
   background-color: var(--color-white);
-  border-radius: 16px;
-  box-shadow: var(--box-shadow-lg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   overflow: hidden;
 }
 
 .schedule-location-header {
-  background: linear-gradient(135deg, #111827 0%, #1F2937 100%);
-  color: var(--color-white);
-  padding: var(--spacing-lg);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: transparent;
+  color: var(--color-text);
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-sm);
+  border-bottom: 2px solid var(--color-secondary);
 }
 
 .schedule-location-header h3 {
-  font-size: 1.5rem;
-  margin: 0 0 var(--spacing-xs);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 4px;
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  color: var(--color-white);
+  gap: var(--spacing-xs);
 }
 
 .schedule-location-header h3 i {
   color: var(--color-secondary);
+  font-size: 0.9375rem;
 }
 
 .location-address {
-  font-size: 0.875rem;
-  opacity: 0.7;
+  font-size: 0.8125rem;
+  color: var(--color-text-light);
   margin: 0;
 }
 
 .schedule-items {
-  padding: var(--spacing-lg);
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
 }
 
 .schedule-item {
-  background-color: var(--color-white);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: var(--spacing-md);
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+  padding: 10px var(--spacing-md);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: var(--spacing-md);
-  transition: var(--transition);
-  cursor: pointer;
+  gap: var(--spacing-sm);
+  min-height: 56px;
+  transition: background-color 0.15s ease;
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
 }
 
 .schedule-item:hover {
-  box-shadow: var(--box-shadow);
-  transform: translateY(-2px);
+  background-color: rgba(226, 192, 51, 0.06);
+  box-shadow: none;
+  transform: none;
 }
 
 .schedule-time {
   flex-shrink: 0;
-  width: 64px;
-  text-align: center;
+  width: 52px;
+  text-align: left;
 }
 
 .schedule-day {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
-  color: var(--color-text-light);
+  color: var(--color-secondary);
   text-transform: uppercase;
-  margin-bottom: var(--spacing-xs);
+  letter-spacing: 0.04em;
+  margin-bottom: 2px;
 }
 
 .schedule-hour {
   display: block;
-  font-size: 1.25rem;
+  font-size: 0.9375rem;
   font-weight: 700;
   color: var(--color-text);
+  line-height: 1.2;
 }
 
 .schedule-info {
@@ -2381,27 +2381,62 @@ section {
   min-width: 0;
 }
 
-.schedule-info h4 {
-  font-size: 1rem;
-  font-weight: 700;
+.schedule-level-name {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 500;
   color: var(--color-text);
-  margin: 0 0 var(--spacing-xs);
-}
-
-.schedule-info p {
-  font-size: 0.875rem;
-  color: var(--color-text-light);
-  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .schedule-badge {
   flex-shrink: 0;
-  padding: var(--spacing-xs) var(--spacing-sm);
-  border-radius: 6px;
-  font-size: 0.75rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.6875rem;
   font-weight: 700;
   text-transform: uppercase;
   white-space: nowrap;
+  letter-spacing: 0.03em;
+}
+
+.btn-sign-up-inline {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background-color: var(--color-secondary);
+  color: var(--color-dark-navy);
+  border: 2px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  line-height: 1.4;
+}
+
+.btn-sign-up-inline:hover {
+  background-color: var(--color-dark-navy);
+  color: var(--color-secondary);
+  border-color: var(--color-dark-navy);
+  transform: none;
+}
+
+@media (max-width: 480px) {
+  .schedule-badge {
+    display: none;
+  }
+  .schedule-time {
+    width: 46px;
+  }
+  .btn-sign-up-inline {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
 }
 
 /* Pricing Components */
@@ -3420,6 +3455,7 @@ section {
   padding: var(--spacing-lg);
   box-shadow: var(--box-shadow);
   display: flex;
+  align-items: center;
   gap: var(--spacing-md);
 }
 
@@ -3545,6 +3581,8 @@ section {
 }
 
 .checkbox-group input[type="checkbox"] {
+  width: auto;
+  flex-shrink: 0;
   margin-top: 4px;
   cursor: pointer;
 }
@@ -4797,11 +4835,28 @@ section {
   .hero {
     min-height: 500px;
     padding: var(--spacing-2xl) 0;
-    background-position: 20% center;
+    background-image: url('../images/Tango-mobile.jpg') !important;
+    background-position: center center !important;
+    -webkit-background-image: url('../images/Tango-mobile.jpg') !important;
+    background-position: center center !important;
   }
 
   .hero-bg-image {
-    object-position: 75% center;
+    display: none !important;
+  }
+}
+
+/* iPhone Safari specific fix */
+@media only screen and (max-device-width: 767px) {
+  .hero {
+    background-image: url('../images/Tango-mobile.jpg') !important;
+    background-position: center center !important;
+    -webkit-background-image: url('../images/Tango-mobile.jpg') !important;
+    background-position: center center !important;
+  }
+
+  .hero-bg-image {
+    display: none !important;
   }
 
   .hero h1 {
@@ -6337,4 +6392,339 @@ section.hero-small {
 
 /* ===================================
    END TANGO VIDEO MODAL
+   =================================== */
+
+/* ===================================
+   FREE TRIAL PAGE — LIVE SCHEDULE
+   =================================== */
+
+/* ---------- Skeleton loader ---------- */
+.ft-skeleton-wrap {
+  padding: 0.5rem 0;
+}
+
+.ft-skeleton {
+  background: linear-gradient(90deg, rgba(226,192,51,0.08) 25%, rgba(226,192,51,0.18) 50%, rgba(226,192,51,0.08) 75%);
+  background-size: 200% 100%;
+  animation: ft-shimmer 1.4s infinite;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.ft-skeleton--header { height: 1.25rem; width: 60%; }
+.ft-skeleton--card   { height: 3.5rem; width: 100%; }
+.ft-skeleton--short  { width: 75%; }
+
+@keyframes ft-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ---------- Empty / Error states ---------- */
+.ft-empty,
+.ft-empty--error {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.ft-empty-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto 0.75rem;
+  opacity: 0.45;
+}
+
+.ft-empty-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--color-secondary);
+}
+
+/* ---------- Schedule grid ---------- */
+.ft-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ft-location-block {
+  background: #0d0d0d;
+  border: 1px solid rgba(226,192,51,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+
+.ft-location-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(226,192,51,0.15);
+  background: rgba(226,192,51,0.05);
+}
+
+.ft-pin-icon {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 2px;
+  stroke: var(--color-secondary);
+}
+
+.ft-loc-name {
+  display: block;
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.ft-loc-building,
+.ft-loc-address {
+  display: block;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.4;
+  margin-top: 1px;
+}
+
+/* ---------- Trial cards inside location block ---------- */
+.ft-trials-grid {
+  padding: 0.5rem 0;
+}
+
+.ft-trial-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  opacity: 0;
+  animation: ft-fade-in 0.4s ease forwards;
+  transition: background 0.2s ease;
+}
+
+.ft-trial-card:last-child {
+  border-bottom: none;
+}
+
+.ft-trial-card:hover {
+  background: rgba(226,192,51,0.06);
+}
+
+@keyframes ft-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ft-trial-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ft-trial-date {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.ft-trial-time {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.ft-trial-time svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  flex-shrink: 0;
+  stroke: var(--color-secondary);
+  opacity: 0.7;
+}
+
+.ft-trial-right {
+  flex-shrink: 0;
+}
+
+/* ---------- Spots badge ---------- */
+.ft-spots-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.ft-spots-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ft-spots-badge.ft-spots--ok {
+  background: rgba(0, 208, 132, 0.12);
+  color: #00d084;
+  border: 1px solid rgba(0, 208, 132, 0.25);
+}
+.ft-spots-badge.ft-spots--ok .ft-spots-dot { background: #00d084; }
+
+.ft-spots-badge.ft-spots--low {
+  background: rgba(255, 177, 60, 0.12);
+  color: #ffb13c;
+  border: 1px solid rgba(255, 177, 60, 0.25);
+}
+.ft-spots-badge.ft-spots--low .ft-spots-dot { background: #ffb13c; }
+
+.ft-spots-badge.ft-spots--critical {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+.ft-spots-badge.ft-spots--critical .ft-spots-dot { background: #ef4444; }
+
+/* ---------- Success card ---------- */
+.ft-success {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(226,192,51,0.3);
+  border-radius: 12px;
+  animation: ft-fade-in 0.5s ease forwards;
+}
+
+.ft-success-check {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  background: rgba(226,192,51,0.12);
+  border: 2px solid var(--color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ft-success-check svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  stroke: var(--color-secondary);
+}
+
+.ft-success-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.ft-success-msg {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 0.5rem;
+}
+
+.ft-success-email {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1.5rem;
+}
+
+.ft-success-email strong {
+  color: rgba(255,255,255,0.85);
+}
+
+.ft-success-meta {
+  border-top: 1px solid rgba(226,192,51,0.15);
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ft-success-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  text-align: left;
+}
+
+.ft-success-lbl {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.ft-success-val {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.85);
+  text-align: right;
+}
+
+.ft-success-val em {
+  display: block;
+  font-style: normal;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8rem;
+}
+
+.ft-success-ref {
+  font-weight: 700;
+  color: var(--color-secondary);
+  font-size: 1rem;
+}
+
+/* ---------- Inline form error ---------- */
+.ft-form-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .ft-trial-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .ft-success {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .ft-success-row {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .ft-success-val {
+    text-align: left;
+  }
+}
+
+/* ===================================
+   END FREE TRIAL PAGE
    =================================== */

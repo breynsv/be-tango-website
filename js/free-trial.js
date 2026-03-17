@@ -1,0 +1,447 @@
+/**
+ * BE-TANGO Free Trial Page Integration
+ * Handles live schedule display and form submission via the CRM API.
+ */
+
+(function () {
+  'use strict';
+
+  // ========================
+  // TRANSLATIONS
+  // ========================
+  const T = {
+    EN: {
+      loading: 'Loading available dates…',
+      noSlots: 'No upcoming free trials available. Please contact us!',
+      apiError: 'Could not load available dates. Please contact us directly.',
+      spotsOk: (n) => `${n} spots available`,
+      spotsLow: (n) => n === 1 ? '1 spot left!' : `${n} spots left!`,
+      spotsCritical: 'Almost full!',
+      selectPlaceholder: '-- Select a date --',
+      selectLoading: 'Loading available dates…',
+      selectNoSlots: 'No available dates',
+      successTitle: 'You\'re Registered!',
+      successMessage: 'Your free trial has been booked. We\'ll see you on the dance floor!',
+      successTitleWaitlist: 'You\'re on the Waiting List!',
+      successMessageWaitlist: 'We\'ve added you to the waiting list. We\'ll contact you as soon as a spot opens up!',
+      successEmailNote: 'A confirmation has been sent to',
+      successRefLabel: 'Reference',
+      successDateLabel: 'Your class',
+      errorDefault: 'Something went wrong. Please try again or contact us directly.',
+      btnLoading: 'Submitting…',
+    },
+    FR: {
+      loading: 'Chargement des dates disponibles…',
+      noSlots: 'Aucun essai gratuit disponible prochainement. Contactez-nous !',
+      apiError: 'Impossible de charger les dates. Veuillez nous contacter directement.',
+      spotsOk: (n) => `${n} places disponibles`,
+      spotsLow: (n) => n === 1 ? '1 place restante !' : `${n} places restantes !`,
+      spotsCritical: 'Presque complet !',
+      selectPlaceholder: '-- Sélectionnez une date --',
+      selectLoading: 'Chargement des dates disponibles…',
+      selectNoSlots: 'Aucune date disponible',
+      successTitle: 'Inscription Confirmée !',
+      successMessage: 'Votre essai gratuit est réservé. À bientôt sur la piste de danse !',
+      successTitleWaitlist: 'Vous êtes sur la liste d\'attente !',
+      successMessageWaitlist: 'Nous vous avons ajouté à la liste d\'attente. Nous vous contacterons dès qu\'une place se libère !',
+      successEmailNote: 'Une confirmation a été envoyée à',
+      successRefLabel: 'Référence',
+      successDateLabel: 'Votre cours',
+      errorDefault: 'Une erreur est survenue. Veuillez réessayer ou nous contacter directement.',
+      btnLoading: 'Envoi en cours…',
+    },
+    NL: {
+      loading: 'Beschikbare data laden…',
+      noSlots: 'Geen aankomende gratis proeflessen beschikbaar. Contacteer ons!',
+      apiError: 'Kon geen beschikbare data laden. Neem rechtstreeks contact op.',
+      spotsOk: (n) => `${n} plaatsen beschikbaar`,
+      spotsLow: (n) => n === 1 ? '1 plek over!' : `${n} plekken over!`,
+      spotsCritical: 'Bijna vol!',
+      selectPlaceholder: '-- Selecteer een datum --',
+      selectLoading: 'Beschikbare data laden…',
+      selectNoSlots: 'Geen beschikbare data',
+      successTitle: 'Inschrijving Bevestigd!',
+      successMessage: 'Je gratis proefles is geboekt. Tot snel op de dansvloer!',
+      successTitleWaitlist: 'Je staat op de wachtlijst!',
+      successMessageWaitlist: 'We hebben je toegevoegd aan de wachtlijst. We nemen contact op zodra er een plek vrijkomt!',
+      successEmailNote: 'Een bevestiging is verzonden naar',
+      successRefLabel: 'Referentie',
+      successDateLabel: 'Je les',
+      errorDefault: 'Er is iets misgegaan. Probeer opnieuw of contacteer ons rechtstreeks.',
+      btnLoading: 'Verzenden…',
+    },
+  };
+
+  // ========================
+  // HELPERS
+  // ========================
+
+  function getLang() {
+    const form = document.getElementById('free-trial-form');
+    if (form) {
+      const lang = (form.getAttribute('data-language') || '').toUpperCase();
+      if (T[lang]) return lang;
+    }
+    const htmlLang = document.documentElement.lang || '';
+    if (htmlLang.startsWith('fr')) return 'FR';
+    if (htmlLang.startsWith('nl')) return 'NL';
+    return 'EN';
+  }
+
+  function formatDate(dateStr, lang) {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const date = new Date(y, m - 1, d);
+    const localeMap = { EN: 'en-GB', FR: 'fr-FR', NL: 'nl-NL' };
+    return date.toLocaleDateString(localeMap[lang] || 'en-GB', {
+      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+    });
+  }
+
+  function formatShortDate(dateStr, lang) {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const date = new Date(y, m - 1, d);
+    const localeMap = { EN: 'en-GB', FR: 'fr-FR', NL: 'nl-NL' };
+    return date.toLocaleDateString(localeMap[lang] || 'en-GB', {
+      day: 'numeric', month: 'short', year: 'numeric',
+    });
+  }
+
+  function groupByLocation(trials) {
+    const groups = {};
+    trials.forEach((trial) => {
+      const key = trial.location?.name || 'Unknown';
+      if (!groups[key]) groups[key] = { info: trial.location, items: [] };
+      groups[key].items.push(trial);
+    });
+    return groups;
+  }
+
+  function spotsClass(n) {
+    if (n <= 2) return 'ft-spots--critical';
+    if (n <= 5) return 'ft-spots--low';
+    return 'ft-spots--ok';
+  }
+
+  function spotsLabel(n, t) {
+    if (n <= 2) return t.spotsCritical;
+    if (n <= 5) return t.spotsLow(n);
+    return t.spotsOk(n);
+  }
+
+  // ========================
+  // SCHEDULE RENDERING
+  // ========================
+
+  function renderSkeleton(container) {
+    container.innerHTML = `
+      <div class="ft-skeleton-wrap">
+        <div class="ft-skeleton ft-skeleton--header"></div>
+        <div class="ft-skeleton ft-skeleton--card"></div>
+        <div class="ft-skeleton ft-skeleton--card"></div>
+        <div class="ft-skeleton ft-skeleton--card ft-skeleton--short"></div>
+      </div>`;
+  }
+
+  function renderSchedule(container, trials, lang) {
+    const t = T[lang];
+
+    if (!trials.length) {
+      container.innerHTML = `
+        <div class="ft-empty">
+          <div class="ft-empty-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <p>${t.noSlots}</p>
+        </div>`;
+      return;
+    }
+
+    const groups = groupByLocation(trials);
+    let html = '<div class="ft-schedule">';
+
+    Object.entries(groups).forEach(([locName, { info, items }]) => {
+      html += `
+        <div class="ft-location-block">
+          <div class="ft-location-head">
+            <svg class="ft-pin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <circle cx="12" cy="9" r="2.5"/>
+            </svg>
+            <div>
+              <strong class="ft-loc-name">${locName}</strong>
+              ${info?.building_name ? `<span class="ft-loc-building">${info.building_name}</span>` : ''}
+              ${info?.address ? `<span class="ft-loc-address">${info.address}${info.city ? ', ' + info.city : ''}</span>` : ''}
+            </div>
+          </div>
+          <div class="ft-trials-grid">`;
+
+      items.forEach((trial, i) => {
+        const cls = spotsClass(trial.spots_remaining);
+        const lbl = spotsLabel(trial.spots_remaining, t);
+        html += `
+          <div class="ft-trial-card ft-trial-card--selectable" data-trial-id="${trial.id}" style="animation-delay:${i * 0.08}s" role="button" tabindex="0" aria-label="${formatDate(trial.start_date, lang)} ${trial.start_time}–${trial.end_time}">
+            <div class="ft-trial-left">
+              <span class="ft-trial-date">${formatDate(trial.start_date, lang)}</span>
+              <span class="ft-trial-time">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                ${trial.start_time} – ${trial.end_time}
+              </span>
+            </div>
+            <div class="ft-trial-right">
+              <span class="ft-spots-badge ${cls}">
+                <span class="ft-spots-dot"></span>
+                ${lbl}
+              </span>
+            </div>
+          </div>`;
+      });
+
+      html += `</div></div>`;
+    });
+
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  function wireScheduleClicks(container, selectEl) {
+    if (!selectEl) return;
+    const formSection = document.getElementById('book-now') || document.getElementById('inscription');
+    container.querySelectorAll('.ft-trial-card--selectable[data-trial-id]').forEach((card) => {
+      const activate = () => {
+        const trialId = card.getAttribute('data-trial-id');
+        selectEl.value = trialId;
+        selectEl.dispatchEvent(new Event('change'));
+        if (formSection) {
+          formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+      card.addEventListener('click', activate);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+      });
+    });
+  }
+
+  function renderScheduleError(container, lang) {
+    container.innerHTML = `
+      <div class="ft-empty ft-empty--error">
+        <p>${T[lang].apiError}</p>
+      </div>`;
+  }
+
+  // ========================
+  // SELECT POPULATION
+  // ========================
+
+  function populateSelect(select, trials, lang) {
+    const t = T[lang];
+    select.innerHTML = '';
+
+    if (!trials.length) {
+      select.disabled = true;
+      select.innerHTML = `<option value="">${t.selectNoSlots}</option>`;
+      return;
+    }
+
+    select.disabled = false;
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = t.selectPlaceholder;
+    select.appendChild(placeholder);
+
+    const groups = groupByLocation(trials);
+
+    Object.entries(groups).forEach(([locName, { info, items }]) => {
+      const og = document.createElement('optgroup');
+      og.label = info?.building_name ? `${locName} – ${info.building_name}` : locName;
+
+      items.forEach((trial) => {
+        const opt = document.createElement('option');
+        opt.value = trial.id;
+        opt.textContent = `${formatShortDate(trial.start_date, lang)} · ${trial.start_time}–${trial.end_time}`;
+        og.appendChild(opt);
+      });
+
+      select.appendChild(og);
+    });
+  }
+
+  // ========================
+  // SUCCESS CARD
+  // ========================
+
+  function showSuccess(form, responseData, selectedTrial, lang) {
+    const t = T[lang];
+    const wrap = form.closest('.form-container') || form.parentElement;
+    const email = form.querySelector('#email')?.value || '';
+    const enrollmentId = responseData?.data?.enrollment_id;
+    const isWaitlisted = responseData?.data?.status === 'Waitlisted';
+
+    const dateStr = selectedTrial
+      ? `${formatDate(selectedTrial.start_date, lang)}&nbsp;·&nbsp;${selectedTrial.start_time}–${selectedTrial.end_time}`
+      : '';
+    const locationStr = selectedTrial?.location?.name || '';
+
+    const title = isWaitlisted ? t.successTitleWaitlist : t.successTitle;
+    const message = isWaitlisted ? t.successMessageWaitlist : t.successMessage;
+
+    wrap.innerHTML = `
+      <div class="ft-success">
+        <div class="ft-success-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <h3 class="ft-success-title">${title}</h3>
+        <p class="ft-success-msg">${message}</p>
+        ${email ? `<p class="ft-success-email">${t.successEmailNote} <strong>${email}</strong></p>` : ''}
+        <div class="ft-success-meta">
+          ${dateStr ? `
+          <div class="ft-success-row">
+            <span class="ft-success-lbl">${t.successDateLabel}</span>
+            <span class="ft-success-val">${dateStr}${locationStr ? '<br><em>' + locationStr + '</em>' : ''}</span>
+          </div>` : ''}
+          ${enrollmentId ? `
+          <div class="ft-success-row">
+            <span class="ft-success-lbl">${t.successRefLabel}</span>
+            <span class="ft-success-val ft-success-ref">#${enrollmentId}</span>
+          </div>` : ''}
+        </div>
+      </div>`;
+  }
+
+  // ========================
+  // ERROR DISPLAY
+  // ========================
+
+  function showFormError(form, msg) {
+    let el = form.querySelector('.ft-form-error');
+    if (!el) {
+      el = document.createElement('div');
+      el.className = 'ft-form-error';
+      const btn = form.querySelector('[type="submit"]');
+      btn ? btn.before(el) : form.appendChild(el);
+    }
+    el.textContent = msg;
+    el.hidden = false;
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // ========================
+  // INIT
+  // ========================
+
+  async function init() {
+    const lang = getLang();
+    const t = T[lang];
+
+    if (!window.BETangoCRM?.api) {
+      console.warn('[FreeTrial] CRM API client not ready');
+      return;
+    }
+
+    const api = window.BETangoCRM.api;
+    const scheduleEl = document.getElementById('free-trial-schedule');
+    const selectEl = document.getElementById('class-date');
+    const form = document.getElementById('free-trial-form');
+
+    // Loading states
+    if (scheduleEl) renderSkeleton(scheduleEl);
+    if (selectEl) {
+      selectEl.innerHTML = `<option value="">${t.selectLoading}</option>`;
+      selectEl.disabled = true;
+    }
+
+    // Fetch
+    let trials = [];
+    try {
+      const res = await api.getAvailableFreeTrials();
+      // API may return array directly or wrapped in .data
+      trials = Array.isArray(res) ? res : (Array.isArray(res?.data) ? res.data : []);
+
+      if (scheduleEl) {
+        renderSchedule(scheduleEl, trials, lang);
+        wireScheduleClicks(scheduleEl, selectEl);
+      }
+      if (selectEl) populateSelect(selectEl, trials, lang);
+    } catch (err) {
+      console.error('[FreeTrial] Failed to fetch free trials:', err);
+      if (scheduleEl) renderScheduleError(scheduleEl, lang);
+      if (selectEl) {
+        selectEl.innerHTML = `<option value="">${t.selectNoSlots}</option>`;
+        selectEl.disabled = true;
+      }
+    }
+
+    // Form submission
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = form.querySelector('[type="submit"]');
+      const originalText = submitBtn?.textContent || '';
+
+      // Hide previous error
+      const prevErr = form.querySelector('.ft-form-error');
+      if (prevErr) prevErr.hidden = true;
+
+      // Get product
+      const productId = parseInt(selectEl?.value);
+      const selectedTrial = trials.find((tr) => tr.id === productId) || null;
+
+      if (!productId) return;
+
+      // Loading state
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = t.btnLoading;
+      }
+
+      // Detect partner: second option = with partner
+      const partnerSel = form.querySelector('#partner');
+      const hasPartner = (partnerSel?.selectedIndex || 0) > 0;
+
+      const payload = {
+        contact: {
+          first_name: form.querySelector('#first-name')?.value?.trim() || '',
+          last_name: form.querySelector('#last-name')?.value?.trim() || '',
+          email: form.querySelector('#email')?.value?.trim() || '',
+          phone: form.querySelector('#phone')?.value?.trim() || null,
+          language: lang,
+        },
+        product_id: productId,
+        has_partner: hasPartner,
+        remarks: form.querySelector('#message')?.value?.trim() || null,
+      };
+
+      try {
+        const res = await api.registerFreeTrial(payload);
+        showSuccess(form, res, selectedTrial, lang);
+      } catch (err) {
+        console.error('[FreeTrial] Registration error:', err);
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+        }
+        showFormError(form, err.message || t.errorDefault);
+      }
+    });
+  }
+
+  // Boot
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

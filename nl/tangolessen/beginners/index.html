@@ -33,13 +33,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=2.8"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=2.8" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.8"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../../css/enrollment-modal.css?v=1.0">
 
   <!-- JSON-LD Structured Data - Beginner Course -->
   <script type="application/ld+json">
@@ -245,11 +246,10 @@
               <i class="fas fa-calendar-week"></i>
             </div>
             <h3>Wekelijkse Lessen</h3>
-            <p><strong>Leer stap voor stap</strong> in een reeks van 14 lessen. De ideale manier om een solide fundament op te bouwen.</p>
+            <p><strong>Leer stap voor stap</strong> in een reeks lessen. De ideale manier om een solide fundament op te bouwen.</p>
 
             <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> 14 wekelijkse lessen (1 uur elk)</li>
-              <li><i class="fas fa-check"></i> Kleine groepen (max 20 personen)</li>
+              <li><i class="fas fa-check"></i> <span><span data-weekly-lessons>14</span> wekelijkse lessen (1 uur elk)</span></li>
               <li><i class="fas fa-check"></i> Twee locaties om uit te kiezen</li>
               <li><i class="fas fa-check"></i> Progressief curriculum</li>
             </ul>
@@ -257,7 +257,7 @@
             <div class="pricing-header">
               <div class="pricing-amount">
                 <span class="price-currency">€</span>
-                <span class="price-value">195</span>
+                <span class="price-value" data-weekly-price></span>
               </div>
               <p class="pricing-period">voor volledige cursus</p>
             </div>
@@ -310,11 +310,10 @@
       <div class="container">
         <div class="section-header text-center">
           <h2>Wekelijkse <span class="highlight">Beginnerscursussen</span></h2>
-          <p class="section-description">Onze beginnersreeks bestaat uit <strong>14 lessen</strong>. U leert niet alleen de passen, maar ook houding, luisteren naar de muziek en verbinding met uw partner.</p>
           <p class="section-description">We starten tweemaal per jaar (september en februari). Instappen halverwege het jaar is mogelijk als u enige basiservaring heeft.</p>
         </div>
 
-        <div class="schedule-grid">
+        <div class="schedule-grid" data-schedule-container data-free-trial-url="../gratis-proefles/">
 
           <!-- Brussels Schedule -->
           <div class="schedule-location">
@@ -804,7 +803,8 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../../privacy-policy/">Privacybeleid</a> |
-          <a href="../../../algemene-voorwaarden/">Algemene Voorwaarden</a>
+          <a href="../../../algemene-voorwaarden/">Algemene Voorwaarden</a> |
+          <a href="../../links/">Links</a>
         </p>
       </div>
     </div>
@@ -876,11 +876,6 @@
       });
     }
 
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      }
-    });
-
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -909,6 +904,12 @@
       });
     });
   </script>
+
+  <!-- CRM API Integration -->
+  <script src="../../../js/crm-api.min.js"></script>
+  <script src="../../../js/schedule-loader.min.js?v=4.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous"></script>
+  <script src="../../../js/enrollment-modal.js?v=1.0" defer></script>
 
   <!-- Floating Mobile Call Button -->
 </body>

@@ -1,0 +1,283 @@
+/**
+ * BE-TANGO Enrollment Modal Styles
+ */
+
+/* ===== OVERLAY & DIALOG ===== */
+.em-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.8);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.em-overlay[aria-hidden="false"] {
+  display: flex;
+}
+
+.em-dialog {
+  background: var(--color-dark-navy, #0d1b2a);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+.em-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.em-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== HEADINGS ===== */
+.em-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.4rem;
+  color: #fff;
+  padding-right: 2rem;
+}
+
+.em-subtitle {
+  color: var(--color-secondary, #c9a84c);
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* ===== FORM FIELDS ===== */
+.em-field {
+  margin-bottom: 1rem;
+}
+
+.em-field label {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.35rem;
+}
+
+.em-field input,
+.em-field select,
+.em-field textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.em-field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.em-field input:focus,
+.em-field select:focus,
+.em-field textarea:focus {
+  outline: none;
+  border-color: var(--color-secondary, #c9a84c);
+}
+
+.em-field input::placeholder,
+.em-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.em-field select option {
+  background: #1a2d42;
+  color: #fff;
+}
+
+/* ===== LAYOUT ===== */
+.em-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .em-row-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== RADIO TOGGLE ===== */
+.em-toggle-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.em-toggle-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.em-toggle-label:has(input:checked) {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: var(--color-secondary, #c9a84c);
+  color: var(--color-secondary, #c9a84c);
+}
+
+.em-toggle-label input {
+  accent-color: var(--color-secondary, #c9a84c);
+}
+
+/* ===== SECTION HEADINGS ===== */
+.em-section-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 1.25rem 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== ERROR ===== */
+.em-error {
+  color: #f87171;
+  font-size: 0.875rem;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+}
+
+/* ===== SUCCESS VIEW ===== */
+.em-success-icon {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.em-success-icon svg {
+  width: 64px;
+  height: 64px;
+  color: #4ade80;
+}
+
+.em-success-title {
+  text-align: center;
+  margin: 0 0 0.5rem;
+  font-size: 1.4rem;
+}
+
+.em-success-msg {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* ===== PAYMENT CARD ===== */
+.em-payment-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.em-payment-card h3 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  color: var(--color-secondary, #c9a84c);
+}
+
+.em-payment-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.9rem;
+  gap: 1rem;
+}
+
+.em-payment-row:last-child {
+  border-bottom: none;
+}
+
+.em-payment-row span {
+  color: rgba(255, 255, 255, 0.6);
+  flex-shrink: 0;
+}
+
+.em-payment-row strong {
+  color: var(--color-secondary, #c9a84c);
+  font-family: monospace;
+  font-size: 0.85rem;
+  text-align: right;
+  word-break: break-all;
+}
+
+/* ===== QR CODE ===== */
+.em-qr-wrap {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.em-qr-wrap p {
+  color: #333;
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.em-qr-wrap canvas,
+.em-qr-wrap img {
+  display: inline-block;
+}
+
+/* ===== SCHEDULE ITEM WRAP ===== */
+.schedule-item-wrap {
+  margin-bottom: 0.75rem;
+}
+
+.btn-sign-up {
+  margin-top: 0.5rem;
+}
+
+/* ===== SUBMIT BUTTON STATE ===== */
+#em-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}

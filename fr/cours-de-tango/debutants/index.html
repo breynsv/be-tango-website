@@ -33,13 +33,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=2.8"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=2.8" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.8"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../../css/enrollment-modal.css?v=1.0">
 
   <!-- JSON-LD Structured Data for Course -->
   <script type="application/ld+json">
@@ -237,11 +238,10 @@
               <i class="fas fa-calendar-week"></i>
             </div>
             <h3>Cours hebdomadaires</h3>
-            <p><strong>Apprenez pas à pas</strong> dans une série de 14 leçons. Le moyen idéal de construire une base solide.</p>
+            <p><strong>Apprenez pas à pas</strong> dans une série de leçons. Le moyen idéal de construire une base solide.</p>
 
             <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> 14 leçons hebdomadaires (1h30 chacune)</li>
-              <li><i class="fas fa-check"></i> Petits groupes (max 20 personnes)</li>
+              <li><i class="fas fa-check"></i> <span><span data-weekly-lessons>14</span> leçons hebdomadaires (1h30 chacune)</span></li>
               <li><i class="fas fa-check"></i> Deux emplacements au choix</li>
               <li><i class="fas fa-check"></i> Programme progressif</li>
             </ul>
@@ -249,12 +249,12 @@
             <div class="pricing-header">
               <div class="pricing-amount">
                 <span class="price-currency">€</span>
-                <span class="price-value">195</span>
+                <span class="price-value" data-weekly-price></span>
               </div>
               <p class="pricing-period">pour le cours complet</p>
             </div>
 
-            <a href="#weekly-courses" class="btn btn-primary">VOIR LE CALENDRIER</a>
+            <a href="#schedule" class="btn btn-primary">VOIR LE CALENDRIER</a>
           </article>
 
           <!-- Weekend Workshop Card -->
@@ -304,11 +304,10 @@
       <div class="container">
         <div class="section-header text-center">
           <h2>Cours hebdomadaires <span class="highlight">pour débutants</span></h2>
-          <p class="section-description">Notre série pour débutants se compose de <strong>14 leçons</strong>. Vous apprenez non seulement les pas, mais aussi la posture, l'écoute de la musique et la connexion avec votre partenaire.</p>
           <p class="section-description">Nous commençons deux fois par an (septembre et février). L'entrée en milieu d'année est possible si vous avez une expérience de base.</p>
         </div>
 
-        <div class="schedule-grid">
+        <div class="schedule-grid" data-schedule-container data-free-trial-url="../essai-gratuit/">
 
           <!-- Brussels Schedule -->
           <div class="schedule-location">
@@ -790,7 +789,8 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../../privacy-policy/">Politique de confidentialité</a> |
-          <a href="../../../termes-et-conditions-generales/">Termes et Conditions</a>
+          <a href="../../../termes-et-conditions-generales/">Termes et Conditions</a> |
+          <a href="../../liens/">Liens</a>
         </p>
       </div>
     </div>
@@ -801,7 +801,7 @@
     // Mobile Menu Toggle
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mainNav = document.querySelector('.main-nav');
-    const siteHeader = document.querySelector(x27.site-headerx27);
+    const siteHeader = document.querySelector('.site-header');
 
     // Language dropdown toggle
     const languageToggle = document.querySelector('.language-toggle');
@@ -897,6 +897,12 @@ if (menuToggle && mainNav) {
       });
     });
   </script>
+
+  <!-- CRM API Integration -->
+  <script src="../../../js/crm-api.min.js"></script>
+  <script src="../../../js/schedule-loader.min.js?v=4.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous"></script>
+  <script src="../../../js/enrollment-modal.js?v=1.0" defer></script>
 
   <!-- Floating Mobile Call Button -->
 </body>

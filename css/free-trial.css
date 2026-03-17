@@ -1,0 +1,369 @@
+/* ===================================
+   BE-TANGO — Free Trial Page Styles
+   =================================== */
+
+/* ---------- Skeleton loader ---------- */
+.ft-skeleton-wrap {
+  padding: 0.5rem 0;
+}
+
+.ft-skeleton {
+  background: linear-gradient(90deg,
+    rgba(226,192,51,0.08) 25%,
+    rgba(226,192,51,0.18) 50%,
+    rgba(226,192,51,0.08) 75%);
+  background-size: 200% 100%;
+  animation: ft-shimmer 1.4s infinite;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.ft-skeleton--header { height: 1.25rem; width: 60%; }
+.ft-skeleton--card   { height: 3.5rem;  width: 100%; }
+.ft-skeleton--short  { width: 75%; }
+
+@keyframes ft-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ---------- Empty / Error states ---------- */
+.ft-empty {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  color: #4a4a4a;
+  font-size: 0.9rem;
+}
+
+.ft-empty-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto 0.75rem;
+  opacity: 0.45;
+}
+
+.ft-empty-icon svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: block;
+}
+
+/* ---------- Schedule container ---------- */
+.ft-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ---------- Location block ---------- */
+.ft-location-block {
+  background: #0d0d0d;
+  border: 1px solid rgba(226,192,51,0.25);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.3);
+}
+
+.ft-location-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid rgba(226,192,51,0.12);
+  background: rgba(226,192,51,0.06);
+}
+
+/* Force SVG pin icon to a small, fixed size */
+.ft-pin-icon {
+  flex-shrink: 0;
+  width: 14px !important;
+  height: 14px !important;
+  min-width: 14px;
+  min-height: 14px;
+  max-width: 14px;
+  max-height: 14px;
+  margin-top: 3px;
+  stroke: #E2C033;
+  fill: none;
+  display: block;
+}
+
+.ft-loc-name {
+  display: block;
+  color: #E2C033;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ft-loc-building,
+.ft-loc-address {
+  display: block;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.4;
+  margin-top: 1px;
+}
+
+/* ---------- Trial cards ---------- */
+.ft-trials-grid {
+  padding: 0.25rem 0;
+}
+
+.ft-trial-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 1.1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  opacity: 0;
+  animation: ft-fade-in 0.4s ease forwards;
+  transition: background 0.2s ease;
+}
+
+.ft-trial-card:last-child {
+  border-bottom: none;
+}
+
+.ft-trial-card--selectable {
+  cursor: pointer;
+}
+
+.ft-trial-card--selectable:hover {
+  background: rgba(226,192,51,0.1);
+  border-bottom-color: rgba(226,192,51,0.15);
+}
+
+.ft-trial-card--selectable:focus-visible {
+  outline: 2px solid #E2C033;
+  outline-offset: -2px;
+}
+
+.ft-trial-card:hover {
+  background: rgba(226,192,51,0.05);
+}
+
+@keyframes ft-fade-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ft-trial-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.ft-trial-date {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.ft-trial-time {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.5);
+}
+
+/* Force clock SVG to a small, fixed size */
+.ft-trial-time svg {
+  width: 12px !important;
+  height: 12px !important;
+  min-width: 12px;
+  min-height: 12px;
+  max-width: 12px;
+  max-height: 12px;
+  flex-shrink: 0;
+  stroke: #E2C033;
+  fill: none;
+  display: block;
+  opacity: 0.7;
+}
+
+.ft-trial-right {
+  flex-shrink: 0;
+}
+
+/* ---------- Spots badge ---------- */
+.ft-spots-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.ft-spots-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.ft-spots-badge.ft-spots--ok {
+  background: rgba(0, 208, 132, 0.12);
+  color: #00d084;
+  border: 1px solid rgba(0, 208, 132, 0.25);
+}
+.ft-spots-badge.ft-spots--ok .ft-spots-dot { background: #00d084; }
+
+.ft-spots-badge.ft-spots--low {
+  background: rgba(255, 177, 60, 0.12);
+  color: #ffb13c;
+  border: 1px solid rgba(255, 177, 60, 0.25);
+}
+.ft-spots-badge.ft-spots--low .ft-spots-dot { background: #ffb13c; }
+
+.ft-spots-badge.ft-spots--critical {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+.ft-spots-badge.ft-spots--critical .ft-spots-dot { background: #ef4444; }
+
+/* ---------- Success card ---------- */
+.ft-success {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(226,192,51,0.3);
+  border-radius: 12px;
+  animation: ft-fade-in 0.5s ease forwards;
+}
+
+.ft-success-check {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  background: rgba(226,192,51,0.12);
+  border: 2px solid #E2C033;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ft-success-check svg {
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+  display: block;
+  stroke: #E2C033;
+  fill: none;
+}
+
+.ft-success-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #E2C033;
+  margin-bottom: 0.5rem;
+}
+
+.ft-success-msg {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 0.5rem;
+}
+
+.ft-success-email {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1.5rem;
+}
+
+.ft-success-email strong {
+  color: rgba(255,255,255,0.85);
+}
+
+.ft-success-meta {
+  border-top: 1px solid rgba(226,192,51,0.15);
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.ft-success-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.ft-success-lbl {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.ft-success-val {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.85);
+  text-align: right;
+}
+
+.ft-success-val em {
+  display: block;
+  font-style: normal;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.78rem;
+}
+
+.ft-success-ref {
+  font-weight: 700;
+  color: #E2C033;
+  font-size: 1rem;
+}
+
+/* ---------- Inline form error ---------- */
+.ft-form-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .ft-trial-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .ft-trial-date {
+    white-space: normal;
+  }
+
+  .ft-success {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .ft-success-row {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .ft-success-val {
+    text-align: left;
+  }
+}

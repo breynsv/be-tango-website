@@ -33,13 +33,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=2.8"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=2.8" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.8"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.5"></noscript>
 
   <!-- JSON-LD Structured Data - Experienced Courses -->
   <script type="application/ld+json">
@@ -257,251 +257,19 @@
           <p>Notre programme pour danseurs expérimentés offre quatre niveaux distincts, chacun conçu pour développer vos compétences existantes et élever votre danse à de nouveaux sommets.</p>
         </div>
 
-        <div class="grid grid-2">
-          <!-- First Year -->
-          <article class="card level-card">
-            <div class="level-badge level-badge-blue">Première Année</div>
-            <div class="card-content">
-              <h3>Première Année</h3>
-              <p class="level-description">Pour les danseurs ayant terminé le cours pour débutants. Nous consolidons les bases et nous concentrons sur le système croisé, la marche fluide et les Ochos.</p>
-
-              <div class="level-details">
-                <div class="level-detail-item">
-                  <i class="fas fa-book"></i>
-                  <span><strong>15 leçons</strong></span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Horaire hebdomadaire</span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-users"></i>
-                  <span>Cours en groupe</span>
-                </div>
-              </div>
-
-              <a href="#first-year-schedule" class="btn btn-primary">Voir l'horaire</a>
-            </div>
-          </article>
-
-          <!-- Second Year -->
-          <article class="card level-card">
-            <div class="level-badge level-badge-indigo">Deuxième Année</div>
-            <div class="card-content">
-              <h3>Deuxième Année</h3>
-              <p class="level-description">S'appuyant sur les fondamentaux de la première année. Continuez à développer la technique, la musicalité et la connexion avec le partenaire avec des motifs plus complexes.</p>
-
-              <div class="level-details">
-                <div class="level-detail-item">
-                  <i class="fas fa-book"></i>
-                  <span><strong>15 leçons</strong></span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Horaire hebdomadaire</span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-users"></i>
-                  <span>Cours en groupe</span>
-                </div>
-              </div>
-
-              <a href="#second-year-schedule" class="btn btn-primary">Voir l'horaire</a>
-            </div>
-          </article>
-
-          <!-- Second Year PLUS -->
-          <article class="card level-card">
-            <div class="level-badge level-badge-purple">Deuxième Année PLUS</div>
-            <div class="card-content">
-              <h3>Deuxième Année <span class="highlight">PLUS</span></h3>
-              <p class="level-description">Fondamentaux avancés pour danseurs expérimentés. Affinez votre technique, explorez des séquences complexes et approfondissez votre interprétation musicale.</p>
-
-              <div class="level-details">
-                <div class="level-detail-item">
-                  <i class="fas fa-book"></i>
-                  <span><strong>15 leçons</strong></span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Horaire hebdomadaire</span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-users"></i>
-                  <span>Cours en groupe</span>
-                </div>
-              </div>
-
-              <a href="#second-year-plus-schedule" class="btn btn-primary">Voir l'horaire</a>
-            </div>
-          </article>
-
-          <!-- Intermediate/Advanced -->
-          <article class="card level-card">
-            <div class="level-badge level-badge-red">Intermédiaire/Avancé</div>
-            <div class="card-content">
-              <h3>Intermédiaire / Avancé</h3>
-              <p class="level-description">Pour les danseurs avec 4+ ans d'expérience. Maîtrisez les Boleos, Ganchos, Enrosques. Travail approfondi sur la musicalité (Vals/Milonga) et l'improvisation.</p>
-
-              <div class="level-details">
-                <div class="level-detail-item">
-                  <i class="fas fa-book"></i>
-                  <span><strong>15 leçons</strong></span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Horaire hebdomadaire</span>
-                </div>
-                <div class="level-detail-item">
-                  <i class="fas fa-graduation-cap"></i>
-                  <span>Technique avancée</span>
-                </div>
-              </div>
-
-              <a href="#intermediate-schedule" class="btn btn-primary">Voir l'horaire</a>
-            </div>
-          </article>
-        </div>
+        <div class="grid grid-2" data-level-cards-container></div>
       </div>
     </section>
 
     <!-- Class Schedules -->
-    <section class="section-padding bg-light">
+    <section class="section-padding bg-light" id="class-schedules">
       <div class="container">
         <div class="section-intro">
           <h2>Horaires des cours</h2>
           <p>Choisissez parmi nos emplacements pratiques à Bruxelles et Woluwe-Saint-Pierre</p>
         </div>
 
-        <div class="schedule-grid">
-          <!-- Brussels (Gatti de Gamond) Schedule -->
-          <div class="schedule-location">
-            <div class="schedule-location-header">
-              <div>
-                <h3><i class="fas fa-map-marker-alt"></i> Bruxelles - Gatti de Gamond</h3>
-                <p class="location-address">Rue du Marais 68, 1000 Bruxelles</p>
-              </div>
-            </div>
-
-            <div class="schedule-items">
-              <!-- Monday - Second Year -->
-              <div class="schedule-item" id="first-year-schedule">
-                <div class="schedule-time">
-                  <span class="schedule-day">Lun</span>
-                  <span class="schedule-hour">19:00</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Lundi 19:00 - 20:00</h4>
-                  <p>Bruxelles - Gatti de Gamond</p>
-                </div>
-                <span class="schedule-badge level-badge-indigo">Deuxième Année</span>
-              </div>
-
-              <!-- Wednesday - First Year -->
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">Mer</span>
-                  <span class="schedule-hour">18:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Mercredi 18:30 - 19:30</h4>
-                  <p>Bruxelles - Gatti de Gamond</p>
-                </div>
-                <span class="schedule-badge level-badge-blue">Première Année</span>
-              </div>
-
-              <!-- Wednesday - Second Year PLUS -->
-              <div class="schedule-item" id="second-year-schedule">
-                <div class="schedule-time">
-                  <span class="schedule-day">Mer</span>
-                  <span class="schedule-hour">19:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Mercredi 19:30 - 20:30</h4>
-                  <p>Bruxelles - Gatti de Gamond</p>
-                </div>
-                <span class="schedule-badge level-badge-purple">Deuxième Année PLUS</span>
-              </div>
-
-              <!-- Wednesday - Intermediate -->
-              <div class="schedule-item" id="second-year-plus-schedule">
-                <div class="schedule-time">
-                  <span class="schedule-day">Mer</span>
-                  <span class="schedule-hour">20:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Mercredi 20:30 - 21:30</h4>
-                  <p>Bruxelles - Gatti de Gamond</p>
-                </div>
-                <span class="schedule-badge level-badge-red">Intermédiaire</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Woluwe Schedule -->
-          <div class="schedule-location">
-            <div class="schedule-location-header">
-              <div>
-                <h3><i class="fas fa-map-marker-alt"></i> Woluwe-Saint-Pierre</h3>
-                <p class="location-address">Avenue Orban 54, 1150 Woluwe-Saint-Pierre</p>
-              </div>
-            </div>
-
-            <div class="schedule-items">
-              <!-- Tuesday - Second Year -->
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">Mar</span>
-                  <span class="schedule-hour">19:00</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Mardi 19:00 - 20:00</h4>
-                  <p>Woluwe-Saint-Pierre</p>
-                </div>
-                <span class="schedule-badge level-badge-indigo">Deuxième Année</span>
-              </div>
-
-              <!-- Tuesday - Second Year PLUS -->
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">Mar</span>
-                  <span class="schedule-hour">20:00</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Mardi 20:00 - 21:00</h4>
-                  <p>Woluwe-Saint-Pierre</p>
-                </div>
-                <span class="schedule-badge level-badge-purple">Deuxième Année PLUS</span>
-              </div>
-
-              <!-- Thursday - First Year -->
-              <div class="schedule-item" id="intermediate-schedule">
-                <div class="schedule-time">
-                  <span class="schedule-day">Jeu</span>
-                  <span class="schedule-hour">18:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Jeudi 18:30 - 19:30</h4>
-                  <p>Woluwe-Saint-Pierre</p>
-                </div>
-                <span class="schedule-badge level-badge-blue">Première Année</span>
-              </div>
-
-              <!-- Thursday - Intermediate -->
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">Jeu</span>
-                  <span class="schedule-hour">20:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Jeudi 20:30 - 21:30</h4>
-                  <p>Woluwe-Saint-Pierre</p>
-                </div>
-                <span class="schedule-badge level-badge-red">Intermédiaire</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="schedule-grid" data-schedule-container></div>
       </div>
     </section>
 
@@ -755,7 +523,8 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../../privacy-policy/">Politique de confidentialité</a> |
-          <a href="../../../termes-et-conditions-generales/">Termes et Conditions</a>
+          <a href="../../../termes-et-conditions-generales/">Termes et Conditions</a> |
+          <a href="../../liens/">Liens</a>
         </p>
       </div>
     </div>
@@ -847,6 +616,10 @@
       });
     });
   </script>
+  <!-- CRM API Integration -->
+  <script src="../../../js/crm-api.min.js"></script>
+  <script src="../../../js/schedule-loader.min.js"></script>
+
   <!-- Floating Mobile Call Button -->
 </body>
 </html>

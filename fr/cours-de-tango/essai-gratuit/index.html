@@ -33,13 +33,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=2.8"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=2.8" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=2.8"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../../css/free-trial.css">
 
   <!-- JSON-LD Structured Data - Free Trial Event -->
   <script type="application/ld+json">
@@ -251,18 +252,7 @@
           <div class="content-image">
             <img src="../../../images/beginner-tango-classes.webp" alt="Cours d'essai gratuit de tango à Bruxelles" loading="lazy">
 
-            <div class="info-box mt-lg">
-              <div class="info-box-icon">
-                <i class="far fa-calendar-alt"></i>
-              </div>
-              <div class="info-box-content">
-                <h4>Prochains Essais Gratuits</h4>
-                <p>Les cours d'essai gratuits sont disponibles au début de chaque nouveau cycle de cours.</p>
-                <p class="text-small"><strong>Bruxelles :</strong> Lundi soir<br>
-                <strong>Woluwe :</strong> Jeudi soir</p>
-                <a href="#inscription" class="btn btn-secondary mt-sm">Vérifier la Disponibilité</a>
-              </div>
-            </div>
+            <div id="free-trial-schedule" class="mt-lg"></div>
           </div>
         </div>
       </div>
@@ -277,9 +267,7 @@
         </div>
 
         <div class="form-container">
-          <form class="contact-form" id="free-trial-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <input type="hidden" name="_subject" value="Nouvelle Réservation Essai Gratuit - BE-TANGO">
-            <input type="hidden" name="_next" value="https://www.be-tango.be/merci/">
+          <form class="contact-form" id="free-trial-form" data-language="FR">
 
             <div class="form-row">
               <div class="form-group">
@@ -308,29 +296,8 @@
             <div class="form-group">
               <label for="class-date">Sélectionnez la date de votre cours gratuit <span class="required">*</span></label>
               <select id="class-date" name="class-date" required>
-                <option value="">-- Sélectionnez une date --</option>
-                <optgroup label="Bruxelles - École de Gatti de Gamond (Lundi 20:00-21:00)">
-                  <option value="Bruxelles - Lundi 10 février 2026, 20:00-21:00">Lundi 10 février 2026, 20:00-21:00</option>
-                  <option value="Bruxelles - Lundi 17 février 2026, 20:00-21:00">Lundi 17 février 2026, 20:00-21:00</option>
-                  <option value="Bruxelles - Lundi 24 février 2026, 20:00-21:00">Lundi 24 février 2026, 20:00-21:00</option>
-                  <option value="Bruxelles - Lundi 3 mars 2026, 20:00-21:00">Lundi 3 mars 2026, 20:00-21:00</option>
-                  <option value="Bruxelles - Lundi 10 mars 2026, 20:00-21:00">Lundi 10 mars 2026, 20:00-21:00</option>
-                  <option value="Bruxelles - Lundi 17 mars 2026, 20:00-21:00">Lundi 17 mars 2026, 20:00-21:00</option>
-                  <option value="Bruxelles - Lundi 24 mars 2026, 20:00-21:00">Lundi 24 mars 2026, 20:00-21:00</option>
-                  <option value="Bruxelles - Lundi 31 mars 2026, 20:00-21:00">Lundi 31 mars 2026, 20:00-21:00</option>
-                </optgroup>
-                <optgroup label="Woluwe - Le LAB (Jeudi 19:30-20:30)">
-                  <option value="Woluwe - Jeudi 12 février 2026, 19:30-20:30">Jeudi 12 février 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Jeudi 19 février 2026, 19:30-20:30">Jeudi 19 février 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Jeudi 26 février 2026, 19:30-20:30">Jeudi 26 février 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Jeudi 5 mars 2026, 19:30-20:30">Jeudi 5 mars 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Jeudi 12 mars 2026, 19:30-20:30">Jeudi 12 mars 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Jeudi 19 mars 2026, 19:30-20:30">Jeudi 19 mars 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Jeudi 26 mars 2026, 19:30-20:30">Jeudi 26 mars 2026, 19:30-20:30</option>
-                  <option value="Woluwe - Jeudi 2 avril 2026, 19:30-20:30">Jeudi 2 avril 2026, 19:30-20:30</option>
-                </optgroup>
+                <option value="">Chargement des dates disponibles…</option>
               </select>
-              <small class="form-help">Choisissez parmi les dates disponibles pour le semestre de printemps 2026</small>
             </div>
 
             <div class="form-group">
@@ -611,11 +578,16 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../../privacy-policy/">Politique de confidentialité</a> |
-          <a href="../../../termes-et-conditions-generales/">Termes et Conditions</a>
+          <a href="../../../termes-et-conditions-generales/">Termes et Conditions</a> |
+          <a href="../../liens/">Liens</a>
         </p>
       </div>
     </div>
   </footer>
+
+  <!-- CRM Integration -->
+  <script src="../../../js/crm-api.js?v=1.0" defer></script>
+  <script src="../../../js/free-trial.js?v=1.0" defer></script>
 
   <!-- Scripts -->
   <script>
@@ -682,7 +654,7 @@
         }
       });
     }
+  </script>
 
-
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
+</body>
+</html>
