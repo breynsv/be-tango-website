@@ -38,8 +38,8 @@
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.7"></noscript>
   <link rel="stylesheet" href="../../../css/enrollment-modal.css?v=1.0">
 
   <!-- JSON-LD Structured Data for Course -->
@@ -137,7 +137,7 @@
                 <li><a href="../../../fr/cours-de-tango/woluwe/">Woluwe</a></li>
               </ul>
             </li>
-            <li><a href="../../../fr/essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
+            <li><a href="../essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
             <li><a href="../../../fr/blog/">Blog</a></li>
             <li><a href="../../../fr/contactez-nous/">Contact</a></li>
             <li class="language-switcher">
@@ -190,7 +190,7 @@
           </div>
 
           <div class="hero-cta">
-            <a href="../../../fr/essai-gratuit/" class="btn btn-primary btn-large">RÉSERVEZ UN ESSAI GRATUIT</a>
+            <a href="../essai-gratuit/" class="btn btn-primary btn-large">RÉSERVEZ UN ESSAI GRATUIT</a>
             <a href="#schedule" class="btn btn-secondary btn-large">VOIR LE CALENDRIER</a>
           </div>
         </div>
@@ -241,18 +241,12 @@
             <p><strong>Apprenez pas à pas</strong> dans une série de leçons. Le moyen idéal de construire une base solide.</p>
 
             <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> <span><span data-weekly-lessons>14</span> leçons hebdomadaires (1h30 chacune)</span></li>
+              <li><i class="fas fa-check"></i> Démarre en septembre &amp; février</li>
+              <li><i class="fas fa-check"></i> Inclut une soirée de pratique</li>
+              <li><i class="fas fa-check"></i> Pour les débutants complets</li>
               <li><i class="fas fa-check"></i> Deux emplacements au choix</li>
               <li><i class="fas fa-check"></i> Programme progressif</li>
             </ul>
-
-            <div class="pricing-header">
-              <div class="pricing-amount">
-                <span class="price-currency">€</span>
-                <span class="price-value" data-weekly-price></span>
-              </div>
-              <p class="pricing-period">pour le cours complet</p>
-            </div>
 
             <a href="#schedule" class="btn btn-primary">VOIR LE CALENDRIER</a>
           </article>
@@ -272,14 +266,6 @@
               <li><i class="fas fa-check"></i> Idéal pour un démarrage rapide</li>
             </ul>
 
-            <div class="pricing-header">
-              <div class="pricing-amount">
-                <span class="price-currency">€</span>
-                <span class="price-value">95</span>
-              </div>
-              <p class="pricing-period">par personne</p>
-            </div>
-
             <a href="#intensive-bootcamp" class="btn btn-primary">VOIR LES DATES</a>
           </article>
 
@@ -293,7 +279,7 @@
               <h3>Pas encore sûr ? Essayez gratuitement !</h3>
               <p>Venez à un cours d'initiation gratuit et découvrez si le tango est fait pour vous.</p>
             </div>
-            <a href="../../../fr/essai-gratuit/" class="btn btn-secondary">INSCRIVEZ-VOUS</a>
+            <a href="../essai-gratuit/" class="btn btn-secondary">INSCRIVEZ-VOUS</a>
           </div>
         </div>
       </div>
@@ -329,7 +315,7 @@
                 </div>
                 <span class="schedule-badge level-badge-blue">COMMENCEZ ICI</span>
               </div>
-              <a href="../../../fr/essai-gratuit/" class="btn btn-primary" style="width: 100%;">RÉSERVER UN ESSAI GRATUIT</a>
+              <a href="../essai-gratuit/" class="btn btn-primary" style="width: 100%;">RÉSERVER UN ESSAI GRATUIT</a>
             </div>
           </div>
 
@@ -353,7 +339,7 @@
                 </div>
                 <span class="schedule-badge level-badge-blue">COMMENCEZ ICI</span>
               </div>
-              <a href="../../../fr/essai-gratuit/" class="btn btn-primary" style="width: 100%;">RÉSERVER UN ESSAI GRATUIT</a>
+              <a href="../essai-gratuit/" class="btn btn-primary" style="width: 100%;">RÉSERVER UN ESSAI GRATUIT</a>
             </div>
           </div>
 
@@ -400,10 +386,29 @@
         <div class="bootcamp-info">
           <div class="bootcamp-details">
             <h3>Prochaines dates</h3>
-            <p>Consultez notre calendrier pour les prochains stages de week-end. Places limitées !</p>
+            <p>Aucun week-end prévu pour le moment.</p>
             <p><strong>Prix :</strong> €95 par personne</p>
             <p><strong>Horaire :</strong> Samedi & Dimanche</p>
-            <a href="../../../fr/contactez-nous/" class="btn btn-primary">CONTACTEZ-NOUS POUR LES DATES</a>
+            <div class="newsletter-signup">
+              <p class="newsletter-label">Soyez le premier à savoir quand nous planifions un nouveau bootcamp.</p>
+              <form class="newsletter-form" id="bootcampNewsletterForm" action="#" method="POST" novalidate>
+                <div class="newsletter-input-group">
+                  <input
+                    type="email"
+                    name="email"
+                    id="bootcampEmail"
+                    placeholder="Votre adresse e-mail"
+                    required
+                    aria-label="Adresse e-mail pour la newsletter bootcamp"
+                    class="newsletter-email-input"
+                  />
+                  <button type="submit" class="btn btn-primary newsletter-submit">Me notifier</button>
+                </div>
+                <p class="newsletter-success" id="bootcampSuccess" hidden>
+                  ✓ Nous vous préviendrons dès que de nouvelles dates seront annoncées !
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -715,7 +720,7 @@
           <h2>Prêt à commencer votre voyage de tango ?</h2>
           <p>Réservez votre cours d'essai gratuit aujourd'hui et découvrez pourquoi tant de personnes aiment le tango argentin !</p>
           <div class="cta-buttons">
-            <a href="../../../fr/essai-gratuit/" class="btn btn-primary btn-large">RÉSERVEZ UN ESSAI GRATUIT</a>
+            <a href="../essai-gratuit/" class="btn btn-primary btn-large">RÉSERVEZ UN ESSAI GRATUIT</a>
             <a href="../../../fr/contactez-nous/" class="btn btn-secondary btn-large">CONTACTEZ-NOUS</a>
           </div>
           <p class="cta-note">Des questions ? Appelez-nous au <a href="tel:+32498392939">+32 498 39 29 39</a> ou envoyez-nous un message.</p>
@@ -750,7 +755,7 @@
           <ul>
             <li><a href="../../../fr/">Accueil</a></li>
             <li><a href="../../../fr/cours-de-tango/">Cours de Tango</a></li>
-            <li><a href="../../../fr/essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
+            <li><a href="../essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
             <li><a href="../../../fr/contactez-nous/">Contact</a></li>
           </ul>
         </div>
@@ -789,7 +794,7 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../../privacy-policy/">Politique de confidentialité</a> |
-          <a href="../../../termes-et-conditions-generales/">Termes et Conditions</a> |
+          <a href="../../../fr/termes-et-conditions-generales/">Termes et Conditions</a> |
           <a href="../../liens/">Liens</a>
         </p>
       </div>
@@ -905,5 +910,30 @@ if (menuToggle && mainNav) {
   <script src="../../../js/enrollment-modal.js?v=1.0" defer></script>
 
   <!-- Floating Mobile Call Button -->
+  <script>
+    (function() {
+      var nf = document.getElementById('bootcampNewsletterForm');
+      if (!nf) return;
+      nf.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = document.getElementById('bootcampEmail').value.trim();
+        var input = document.getElementById('bootcampEmail');
+        var btn = nf.querySelector('button[type="submit"]');
+        var success = document.getElementById('bootcampSuccess');
+        btn.disabled = true;
+        var baseURL = (typeof API_CONFIG !== 'undefined' && API_CONFIG.baseURL)
+          ? API_CONFIG.baseURL
+          : 'http://127.0.0.1:8001/api/v1';
+        fetch(baseURL + '/newsletter/bootcamp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email: email })
+        }).finally(function() {
+          success.hidden = false;
+          input.disabled = true;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -38,8 +38,8 @@
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.6"></noscript>
 
   <!-- JSON-LD Structured Data - Private Lessons -->
   <script type="application/ld+json">
@@ -140,19 +140,19 @@
               </button>
               <ul class="language-dropdown">
                 <li>
-                  <a href="../../nl/tangolessen/prive/" class="active">
+                  <a href="./" class="active">
                     <span class="flag-icon">🇳🇱</span>
                     <span>Nederlands</span>
                   </a>
                 </li>
                 <li>
-                  <a href="../../tango-classes/private/">
+                  <a href="../../../tango-classes/private/">
                     <span class="flag-icon">🇬🇧</span>
                     <span>English</span>
                   </a>
                 </li>
                 <li>
-                  <a href="../../fr/cours-de-tango/particuliers/">
+                  <a href="../../../fr/cours-de-tango/particuliers/">
                     <span class="flag-icon">🇫🇷</span>
                     <span>Français</span>
                   </a>
@@ -606,7 +606,7 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../../privacy-policy/">Privacybeleid</a> |
-          <a href="../../../algemene-voorwaarden/">Algemene Voorwaarden</a> |
+          <a href="../../algemene-voorwaarden/">Algemene Voorwaarden</a> |
           <a href="../../links/">Links</a>
         </p>
       </div>
@@ -680,5 +680,71 @@
     }
 
 
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
+    if (menuToggle && mainNav) {
+      // Toggle menu
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+
+        if (window.innerWidth < 768) {
+          mainNav.classList.toggle('mobile-nav-open');
+          menuToggle.classList.toggle('active');
+        }
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth < 768 &&
+            mainNav.classList.contains('mobile-nav-open') &&
+            !siteHeader.contains(e.target)) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+          mainNav.classList.remove('mobile-nav-open');
+          menuToggle.classList.remove('active');
+        }
+      });
+
+      // Handle window resize
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (window.innerWidth >= 768) {
+            mainNav.classList.remove('mobile-nav-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.classList.remove('active');
+          }
+        }, 100);
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Accordion animation for FAQ
+    document.querySelectorAll('.accordion-item').forEach(item => {
+      item.addEventListener('toggle', function() {
+        if (this.open) {
+          document.querySelectorAll('.accordion-item').forEach(otherItem => {
+            if (otherItem !== this && otherItem.open) {
+              otherItem.open = false;
+            }
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

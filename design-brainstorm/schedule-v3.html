@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BE-TANGO — Class Schedule</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Design Tokens ─────────────────────────────────────────── */
+    :root {
+      --terracotta:     #D4845A;
+      --terracotta-dk:  #B8663C;
+      --terracotta-lt:  #E8A882;
+      --cream:          #F5E6D3;
+      --cream-dk:       #EDD8BC;
+      --amber:          #C8973A;
+      --amber-lt:       #F0C56A;
+      --brown-dk:       #2C1810;
+      --brown-md:       #5C3320;
+      --brown-lt:       #8B4513;
+      --sage:           #7A9E7E;
+      --sage-lt:        #A8C5AB;
+      --dusty-rose:     #C08080;
+      --dusty-rose-lt:  #DCAAAA;
+
+      --font-serif:     'Lora', Georgia, serif;
+      --font-sans:      'Source Sans 3', system-ui, sans-serif;
+
+      --shadow-sm:      0 2px 8px rgba(44, 24, 16, 0.10);
+      --shadow-md:      0 6px 24px rgba(44, 24, 16, 0.14);
+      --shadow-lg:      0 16px 48px rgba(44, 24, 16, 0.18);
+      --radius-card:    16px;
+      --transition:     0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ─── Reset & Base ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--cream);
+      color: var(--brown-dk);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── Page Wrapper ──────────────────────────────────────────── */
+    .page {
+      background: linear-gradient(
+        160deg,
+        #F9EFE3 0%,
+        #F2E0C8 35%,
+        #EDD8BC 65%,
+        #F5E6D3 100%
+      );
+      min-height: 100vh;
+      padding: 60px 24px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before {
+      content: '';
+      position: fixed;
+      top: -120px;
+      right: -120px;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(212, 132, 90, 0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page::after {
+      content: '';
+      position: fixed;
+      bottom: -80px;
+      left: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(200, 151, 58, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ─── Section Header ────────────────────────────────────────── */
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 48px;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 700;
+      color: var(--brown-dk);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .section-subtitle {
+      font-size: 17px;
+      color: var(--brown-md);
+      line-height: 1.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* ─── Day Filter Strip ──────────────────────────────────────── */
+    .day-filter {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .day-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: white;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--brown-md);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+    }
+
+    .day-btn .day-abbr {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .day-btn .class-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--terracotta-lt);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .day-btn.has-class .class-dot {
+      opacity: 1;
+    }
+
+    .day-btn:hover {
+      border-color: var(--terracotta-lt);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .day-btn.active {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: white;
+      box-shadow: 0 8px 24px rgba(212, 132, 90, 0.38);
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .day-btn.active .class-dot {
+      background: rgba(255,255,255,0.6);
+    }
+
+    .day-btn.no-class {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    .day-btn.no-class:hover {
+      transform: none;
+      border-color: transparent;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ─── Show-all reset ────────────────────────────────────────── */
+    .filter-reset {
+      display: block;
+      margin: 0 auto 32px;
+      background: none;
+      border: 2px solid var(--terracotta);
+      border-radius: 24px;
+      padding: 8px 22px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--terracotta);
+      cursor: pointer;
+      transition: var(--transition);
+      letter-spacing: 0.04em;
+    }
+
+    .filter-reset:hover {
+      background: var(--terracotta);
+      color: white;
+    }
+
+    /* ─── Location Grid ─────────────────────────────────────────── */
+    .locations-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+
+    /* ─── Location Card ─────────────────────────────────────────── */
+    .location-card {
+      background: white;
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .location-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .location-header {
+      padding: 24px 28px 20px;
+      background: linear-gradient(135deg, var(--brown-dk) 0%, var(--brown-md) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .location-header::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(212, 132, 90, 0.20) 0%, transparent 70%);
+    }
+
+    .location-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(212, 132, 90, 0.25);
+      border: 1px solid rgba(212, 132, 90, 0.40);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--terracotta-lt);
+      margin-bottom: 10px;
+    }
+
+    .location-name {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .location-address {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    /* ─── Class List ────────────────────────────────────────────── */
+    .class-list {
+      padding: 8px 0;
+    }
+
+    .class-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 28px;
+      border-bottom: 1px solid rgba(212, 132, 90, 0.10);
+      transition: background var(--transition);
+    }
+
+    .class-item:last-of-type {
+      border-bottom: none;
+    }
+
+    .class-item:hover {
+      background: rgba(245, 230, 211, 0.50);
+    }
+
+    .class-item.hidden {
+      display: none;
+    }
+
+    /* Day badge */
+    .item-day-badge {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--font-sans);
+    }
+
+    .item-day-badge .badge-day {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .item-day-badge .badge-time {
+      font-size: 9px;
+      font-weight: 600;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    .badge-mon { background: rgba(200, 151, 58, 0.15); color: #8a5a00; }
+    .badge-tue { background: rgba(212, 132, 90, 0.15); color: var(--brown-lt); }
+    .badge-wed { background: rgba(122, 158, 126, 0.15); color: #3d6b42; }
+    .badge-thu { background: rgba(192, 128, 128, 0.15); color: #7a3a3a; }
+
+    /* Class info */
+    .class-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .class-level {
+      font-family: var(--font-serif);
+      font-size: 1.0rem;
+      font-weight: 600;
+      color: var(--brown-dk);
+      margin-bottom: 3px;
+    }
+
+    .class-meta {
+      font-size: 13px;
+      color: var(--brown-md);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .class-meta .sep {
+      opacity: 0.30;
+      font-size: 10px;
+    }
+
+    /* Level tags */
+    .level-tag {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 6px;
+      margin-bottom: 5px;
+    }
+
+    .tag-first-year   { background: rgba(200, 151, 58, 0.18); color: #7a5500; }
+    .tag-second-year  { background: rgba(212, 132, 90, 0.18); color: var(--brown-lt); }
+    .tag-second-plus  { background: rgba(192, 128, 128, 0.18); color: #7a3a3a; }
+    .tag-intermediate { background: rgba(122, 158, 126, 0.18); color: #2e5e33; }
+
+    /* Sign Up button */
+    .signup-btn {
+      flex-shrink: 0;
+      background: var(--terracotta);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(212, 132, 90, 0.28);
+    }
+
+    .signup-btn:hover {
+      background: var(--terracotta-dk);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(212, 132, 90, 0.40);
+    }
+
+    /* Empty state */
+    .no-classes-msg {
+      text-align: center;
+      padding: 32px 28px;
+      color: var(--brown-md);
+      font-style: italic;
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      display: none;
+    }
+
+    .no-classes-msg.visible {
+      display: block;
+    }
+
+    /* ─── Drop-in Banner ────────────────────────────────────────── */
+    .dropin-banner {
+      max-width: 1060px;
+      margin: 32px auto 0;
+      background: linear-gradient(135deg, rgba(200, 151, 58, 0.12) 0%, rgba(212, 132, 90, 0.12) 100%);
+      border: 1px solid rgba(212, 132, 90, 0.25);
+      border-radius: 14px;
+      padding: 22px 28px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .dropin-icon {
+      font-size: 30px;
+      flex-shrink: 0;
+    }
+
+    .dropin-text {
+      flex: 1;
+    }
+
+    .dropin-text strong {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--brown-dk);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .dropin-text span {
+      font-size: 14px;
+      color: var(--brown-md);
+    }
+
+    .dropin-price {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      flex-shrink: 0;
+    }
+
+    /* ─── Pricing note ──────────────────────────────────────────── */
+    .pricing-note {
+      text-align: center;
+      margin: 20px auto 0;
+      font-size: 14px;
+      color: var(--brown-md);
+      max-width: 1060px;
+    }
+
+    .pricing-note strong {
+      color: var(--brown-dk);
+    }
+
+    .pricing-note a {
+      color: var(--terracotta);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212,132,90,0.4);
+    }
+
+    /* ─── Animations ────────────────────────────────────────────── */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .location-card {
+      animation: fadeSlideUp 0.45s ease both;
+    }
+    .location-card:nth-child(2) {
+      animation-delay: 0.10s;
+    }
+
+    /* ─── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 720px) {
+      .locations-grid { grid-template-columns: 1fr; }
+      .class-item     { gap: 12px; padding: 14px 20px; }
+      .location-header { padding: 20px 20px 16px; }
+      .dropin-banner  { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <header class="section-header">
+    <p class="section-eyebrow">Weekly Timetable</p>
+    <h1 class="section-title">Find your <em>perfect class</em></h1>
+    <p class="section-subtitle">
+      <span>📍</span>
+      Two convenient locations across Brussels
+    </p>
+  </header>
+
+  <!-- Day filter strip -->
+  <nav class="day-filter" aria-label="Filter classes by day">
+    <button class="day-btn has-class" data-day="mon">
+      <span class="day-abbr">MON</span>
+      <span class="class-dot"></span>
+    </button>
+    <button class="day-btn has-class" data-day="tue">
+      <span class="day-abbr">TUE</span>
+      <span class="class-dot"></span>
+    </button>
+    <button class="day-btn has-class" data-day="wed">
+      <span class="day-abbr">WED</span>
+      <span class="class-dot"></span>
+    </button>
+    <button class="day-btn has-class" data-day="thu">
+      <span class="day-abbr">THU</span>
+      <span class="class-dot"></span>
+    </button>
+    <button class="day-btn no-class" data-day="fri" aria-disabled="true">
+      <span class="day-abbr">FRI</span>
+      <span class="class-dot"></span>
+    </button>
+    <button class="day-btn no-class" data-day="sat" aria-disabled="true">
+      <span class="day-abbr">SAT</span>
+      <span class="class-dot"></span>
+    </button>
+    <button class="day-btn no-class" data-day="sun" aria-disabled="true">
+      <span class="day-abbr">SUN</span>
+      <span class="class-dot"></span>
+    </button>
+  </nav>
+
+  <button class="filter-reset" id="resetBtn">Show all classes</button>
+
+  <!-- Two-location grid -->
+  <div class="locations-grid">
+
+    <!-- BRUSSELS -->
+    <div class="location-card">
+      <div class="location-header">
+        <div class="location-badge">📍 Location 1</div>
+        <h2 class="location-name">Brussels Centre</h2>
+        <p class="location-address">Rue du Marais 68, 1000 Brussels</p>
+      </div>
+      <div class="class-list" id="brussels-list">
+
+        <div class="class-item" data-day="mon">
+          <div class="item-day-badge badge-mon">
+            <span class="badge-day">MON</span>
+            <span class="badge-time">19:00–20:00</span>
+          </div>
+          <div class="class-info">
+            <span class="level-tag tag-second-year">Second Year</span>
+            <div class="class-level">Second Year</div>
+            <div class="class-meta">
+              <span>€195</span><span class="sep">•</span>
+              <span>15 sessions</span><span class="sep">•</span>
+              <span>Starts 26 Jan 2026</span>
+            </div>
+          </div>
+          <a href="#enroll" class="signup-btn">Sign Up</a>
+        </div>
+
+        <div class="class-item" data-day="wed">
+          <div class="item-day-badge badge-wed">
+            <span class="badge-day">WED</span>
+            <span class="badge-time">18:30–19:30</span>
+          </div>
+          <div class="class-info">
+            <span class="level-tag tag-first-year">First Year</span>
+            <div class="class-level">First Year</div>
+            <div class="class-meta">
+              <span>€195</span><span class="sep">•</span>
+              <span>15 sessions</span><span class="sep">•</span>
+              <span>Starts 28 Jan 2026</span>
+            </div>
+          </div>
+          <a href="#enroll" class="signup-btn">Sign Up</a>
+        </div>
+
+        <div class="class-item" data-day="wed">
+          <div class="item-day-badge badge-wed">
+            <span class="badge-day">WED</span>
+            <span class="badge-time">19:30–20:30</span>
+          </div>
+          <div class="class-info">
+            <span class="level-tag tag-second-plus">Second Year PLUS</span>
+            <div class="class-level">Second Year PLUS</div>
+            <div class="class-meta">
+              <span>€195</span><span class="sep">•</span>
+              <span>15 sessions</span><span class="sep">•</span>
+              <span>Starts 28 Jan 2026</span>
+            </div>
+          </div>
+          <a href="#enroll" class="signup-btn">Sign Up</a>
+        </div>
+
+        <div class="class-item" data-day="wed">
+          <div class="item-day-badge badge-wed">
+            <span class="badge-day">WED</span>
+            <span class="badge-time">20:30–21:30</span>
+          </div>
+          <div class="class-info">
+            <span class="level-tag tag-intermediate">Intermediate</span>
+            <div class="class-level">Intermediate</div>
+            <div class="class-meta">
+              <span>€195</span><span class="sep">•</span>
+              <span>15 sessions</span><span class="sep">•</span>
+              <span>Starts 28 Jan 2026</span>
+            </div>
+          </div>
+          <a href="#enroll" class="signup-btn">Sign Up</a>
+        </div>
+
+        <p class="no-classes-msg" id="brussels-empty">No classes at this location on the selected day.</p>
+      </div>
+    </div>
+
+    <!-- WOLUWE -->
+    <div class="location-card">
+      <div class="location-header">
+        <div class="location-badge">📍 Location 2</div>
+        <h2 class="location-name">Woluwe-Saint-Pierre</h2>
+        <p class="location-address">Avenue Orban 54, 1150 Woluwe-Saint-Pierre</p>
+      </div>
+      <div class="class-list" id="woluwe-list">
+
+        <div class="class-item" data-day="tue">
+          <div class="item-day-badge badge-tue">
+            <span class="badge-day">TUE</span>
+            <span class="badge-time">19:00–20:00</span>
+          </div>
+          <div class="class-info">
+            <span class="level-tag tag-second-year">Second Year</span>
+            <div class="class-level">Second Year</div>
+            <div class="class-meta">
+              <span>€195</span><span class="sep">•</span>
+              <span>15 sessions</span><span class="sep">•</span>
+              <span>Starts 27 Jan 2026</span>
+            </div>
+          </div>
+          <a href="#enroll" class="signup-btn">Sign Up</a>
+        </div>
+
+        <div class="class-item" data-day="tue">
+          <div class="item-day-badge badge-tue">
+            <span class="badge-day">TUE</span>
+            <span class="badge-time">20:00–21:00</span>
+          </div>
+          <div class="class-info">
+            <span class="level-tag tag-second-plus">Second Year PLUS</span>
+            <div class="class-level">Second Year PLUS</div>
+            <div class="class-meta">
+              <span>€195</span><span class="sep">•</span>
+              <span>15 sessions</span><span class="sep">•</span>
+              <span>Starts 27 Jan 2026</span>
+            </div>
+          </div>
+          <a href="#enroll" class="signup-btn">Sign Up</a>
+        </div>
+
+        <div class="class-item" data-day="thu">
+          <div class="item-day-badge badge-thu">
+            <span class="badge-day">THU</span>
+            <span class="badge-time">18:30–19:30</span>
+          </div>
+          <div class="class-info">
+            <span class="level-tag tag-first-year">First Year</span>
+            <div class="class-level">First Year</div>
+            <div class="class-meta">
+              <span>€195</span><span class="sep">•</span>
+              <span>15 sessions</span><span class="sep">•</span>
+              <span>Starts 29 Jan 2026</span>
+            </div>
+          </div>
+          <a href="#enroll" class="signup-btn">Sign Up</a>
+        </div>
+
+        <div class="class-item" data-day="thu">
+          <div class="item-day-badge badge-thu">
+            <span class="badge-day">THU</span>
+            <span class="badge-time">20:30–21:30</span>
+          </div>
+          <div class="class-info">
+            <span class="level-tag tag-intermediate">Intermediate</span>
+            <div class="class-level">Intermediate</div>
+            <div class="class-meta">
+              <span>€195</span><span class="sep">•</span>
+              <span>15 sessions</span><span class="sep">•</span>
+              <span>Starts 29 Jan 2026</span>
+            </div>
+          </div>
+          <a href="#enroll" class="signup-btn">Sign Up</a>
+        </div>
+
+        <p class="no-classes-msg" id="woluwe-empty">No classes at this location on the selected day.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Drop-in banner -->
+  <div class="dropin-banner">
+    <div class="dropin-icon">🎶</div>
+    <div class="dropin-text">
+      <strong>Just want to try first?</strong>
+      <span>You are warmly welcome to drop in for a single class, no commitment needed. Experience the warmth of tango before signing up for a full course.</span>
+    </div>
+    <div class="dropin-price">€20<sub style="font-size:0.52em; font-weight:400; color:var(--brown-md);">/session</sub></div>
+  </div>
+
+  <p class="pricing-note">
+    <strong>€195</strong> for a full 15-session semester &nbsp;&middot;&nbsp; All levels welcome &nbsp;&middot;&nbsp;
+    Questions? <a href="/contact">Get in touch</a>
+  </p>
+
+</div>
+
+<script>
+  const dayBtns       = document.querySelectorAll('.day-btn.has-class');
+  const allItems      = document.querySelectorAll('.class-item');
+  const brusselsEmpty = document.getElementById('brussels-empty');
+  const woluwéEmpty   = document.getElementById('woluwe-empty');
+  const resetBtn      = document.getElementById('resetBtn');
+  let activeDay       = null;
+
+  function applyFilter(day) {
+    allItems.forEach(item => {
+      const show = !day || item.dataset.day === day;
+      item.classList.toggle('hidden', !show);
+    });
+
+    if (day) {
+      const bVis = document.querySelectorAll('#brussels-list .class-item:not(.hidden)').length;
+      const wVis = document.querySelectorAll('#woluwe-list .class-item:not(.hidden)').length;
+      brusselsEmpty.classList.toggle('visible', bVis === 0);
+      woluwéEmpty.classList.toggle('visible', wVis === 0);
+    } else {
+      brusselsEmpty.classList.remove('visible');
+      woluwéEmpty.classList.remove('visible');
+    }
+  }
+
+  dayBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (activeDay === btn.dataset.day) {
+        activeDay = null;
+        dayBtns.forEach(b => b.classList.remove('active'));
+        applyFilter(null);
+        return;
+      }
+      activeDay = btn.dataset.day;
+      dayBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      applyFilter(activeDay);
+    });
+  });
+
+  resetBtn.addEventListener('click', () => {
+    activeDay = null;
+    dayBtns.forEach(b => b.classList.remove('active'));
+    applyFilter(null);
+  });
+</script>
+
+</body>
+</html>

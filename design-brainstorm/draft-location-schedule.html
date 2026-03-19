@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BE-TANGO — Weekly Schedule Draft (Brussels & Woluwe)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/fontawesome.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-navy:    #1C244B;
+      --color-accent:  #E2C033;
+      --color-text:    #111827;
+      --color-muted:   #6B7280;
+      --color-border:  #E5E7EB;
+      --color-bg:      #F3F5F8;
+      --font:          'Poppins', sans-serif;
+      --radius:        12px;
+      --shadow:        0 2px 12px rgba(0,0,0,0.07);
+    }
+
+    body {
+      font-family: var(--font);
+      background: #e8eaed;
+      color: var(--color-text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Draft label ── */
+    .draft-notice {
+      background: var(--color-navy);
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .draft-notice span { color: var(--color-accent); }
+
+    /* ── Page wrapper ── */
+    .page { background: #fff; max-width: 1200px; margin: 0 auto; }
+
+    /* ── Weekly Schedule Section ── */
+    .schedule-section {
+      padding: 72px 40px;
+    }
+    .schedule-section + .schedule-section {
+      border-top: 2px solid var(--color-bg);
+    }
+
+    .schedule-section-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .schedule-section-header h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .schedule-section-header h2 .highlight {
+      position: relative;
+      display: inline-block;
+    }
+    .schedule-section-header h2 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: var(--color-accent);
+      opacity: 0.35;
+      border-radius: 2px;
+      z-index: -1;
+    }
+    .schedule-section-header p {
+      margin-top: 12px;
+      color: var(--color-muted);
+      font-size: 0.975rem;
+      line-height: 1.7;
+    }
+
+    /* ── Day columns grid ── */
+    .day-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 680px) {
+      .day-columns { grid-template-columns: 1fr; }
+      .schedule-section { padding: 48px 20px; }
+    }
+
+    /* ── Day column card ── */
+    .day-col {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .day-col-header {
+      padding: 16px 20px 14px;
+      border-bottom: 2px solid var(--color-accent);
+    }
+    .day-col-header h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .day-col-header h3 i {
+      color: var(--color-accent);
+      font-size: 0.95rem;
+    }
+    .day-col-header .venue {
+      margin-top: 3px;
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      padding-left: 22px;
+    }
+
+    /* ── Class row ── */
+    .class-row {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--color-border);
+      position: relative;
+    }
+    .class-row:last-child { border-bottom: none; }
+    .class-row.highlight-beginner {
+      border-left: 3px solid var(--color-accent);
+    }
+
+    .class-row-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .class-name {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      line-height: 1.3;
+    }
+    .badge-start-here {
+      display: inline-block;
+      background: var(--color-accent);
+      color: #000;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 20px;
+      vertical-align: middle;
+      margin-left: 6px;
+      white-space: nowrap;
+    }
+
+    /* Level badge */
+    .level-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .lb-blue   { background: #DBEAFE; color: #1D4ED8; }
+    .lb-indigo { background: #E0E7FF; color: #4338CA; }
+    .lb-purple { background: #EDE9FE; color: #7C3AED; }
+    .lb-red    { background: #FEE2E2; color: #DC2626; }
+
+    /* Time + day */
+    .class-time-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .day-abbr {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .time-val {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      line-height: 1;
+    }
+
+    /* Description */
+    .class-desc {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    /* Meta row: price, sessions, start date */
+    .class-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-navy);
+    }
+    .meta-chip i { font-size: 0.7rem; color: var(--color-muted); }
+    .meta-chip .price-val { color: var(--color-navy); }
+
+    /* Action row */
+    .class-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-signup {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--color-navy);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-signup:hover { background: #2d3a72; transform: translateY(-1px); }
+
+    .btn-cal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      color: var(--color-navy);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-cal:hover { background: #e0e7ff; border-color: #6366F1; color: #4338CA; }
+
+    /* ── Loading / Error states ── */
+    .state-box {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--color-muted);
+    }
+    .state-box i { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+
+    /* ── Spinner ── */
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner {
+      display: inline-block;
+      width: 36px; height: 36px;
+      border: 3px solid #E5E7EB;
+      border-top-color: var(--color-navy);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Calendar modal ── */
+    .cal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .cal-modal {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+      max-width: 480px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .cal-modal-header {
+      background: var(--color-navy);
+      padding: 16px 20px;
+      border-radius: 16px 16px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .cal-modal-header h3 { color: #fff; font-size: 0.95rem; font-weight: 700; }
+    .cal-modal-header .close-btn {
+      background: none; border: none; color: rgba(255,255,255,0.7);
+      font-size: 1.1rem; cursor: pointer; line-height: 1;
+      padding: 4px;
+    }
+    .cal-modal-header .close-btn:hover { color: #fff; }
+    .cal-body { padding: 20px; }
+    .cal-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .cal-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 10px; border-radius: 20px;
+      background: var(--color-bg); border: 1px solid var(--color-border);
+      font-size: 0.75rem; font-weight: 600; color: var(--color-navy);
+    }
+    .cal-months { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 400px) { .cal-months { grid-template-columns: 1fr; } }
+    .cal-month { }
+    .cal-month-title {
+      font-size: 0.8rem; font-weight: 700; color: var(--color-navy);
+      margin-bottom: 4px; padding-left: 2px;
+    }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; }
+    .cal-wd {
+      text-align: center; font-size: 0.6rem; font-weight: 700;
+      color: #fff; background: var(--color-navy);
+      padding: 3px 1px; text-transform: uppercase;
+    }
+    .cal-d {
+      text-align: center; font-size: 0.7rem; padding: 2px 1px;
+      color: var(--color-text);
+    }
+    .cal-d span {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 20px; height: 20px; border-radius: 4px;
+    }
+    .cal-d.lesson span { background: var(--color-accent); color: #000; font-weight: 700; }
+    .cal-d.practica span { background: var(--color-navy); color: #fff; font-weight: 700; }
+    .cal-d.empty { }
+    .cal-legend { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+    .cal-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--color-muted); }
+    .cal-legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+    .cal-legend-dot.lesson { background: var(--color-accent); }
+    .cal-legend-dot.practica { background: var(--color-navy); }
+    .cal-footer {
+      padding: 12px 20px 16px;
+      border-top: 1px solid var(--color-border);
+      display: flex; gap: 8px; justify-content: flex-end;
+    }
+    .btn-outline {
+      padding: 8px 16px; border-radius: 6px; font-size: 0.78rem; font-weight: 600;
+      background: none; border: 1px solid var(--color-border); cursor: pointer;
+      color: var(--color-navy); transition: background 0.2s;
+    }
+    .btn-outline:hover { background: var(--color-bg); }
+  </style>
+</head>
+<body>
+
+  <div class="draft-notice">
+    Design Draft — <span>Weekly Schedule Section</span> — Brussels & Woluwe — Data live from API
+  </div>
+
+  <div class="page">
+
+    <!-- ══════════════════════════════════════
+         BRUSSELS WEEKLY SCHEDULE
+    ══════════════════════════════════════ -->
+    <section class="schedule-section" id="brussels-section">
+      <div class="schedule-section-header">
+        <h2>Weekly Schedule in <span class="highlight">Brussels</span></h2>
+        <p>Classes every Monday and Wednesday evening – all levels welcome</p>
+      </div>
+      <div id="brussels-grid" class="day-columns">
+        <div class="state-box"><div class="spinner"></div><p>Loading schedule…</p></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         WOLUWE WEEKLY SCHEDULE
+    ══════════════════════════════════════ -->
+    <section class="schedule-section" id="woluwe-section">
+      <div class="schedule-section-header">
+        <h2>Weekly Schedule in <span class="highlight">Woluwe</span></h2>
+        <p>Classes every Tuesday and Thursday evening – all levels welcome</p>
+      </div>
+      <div id="woluwe-grid" class="day-columns">
+        <div class="state-box"><div class="spinner"></div><p>Loading schedule…</p></div>
+      </div>
+    </section>
+
+  </div><!-- .page -->
+
+  <!-- ── Calendar overlay (shared) ── -->
+  <div id="cal-overlay" class="cal-overlay" style="display:none;" role="dialog" aria-modal="true">
+    <div class="cal-modal">
+      <div class="cal-modal-header">
+        <h3 id="cal-title">Class Schedule</h3>
+        <button class="close-btn" id="cal-close" aria-label="Close">&#x2715;</button>
+      </div>
+      <div class="cal-body">
+        <div id="cal-chips" class="cal-chips"></div>
+        <div id="cal-months" class="cal-months"></div>
+        <div class="cal-legend">
+          <div class="cal-legend-item"><span class="cal-legend-dot lesson"></span> Tango lesson</div>
+          <div class="cal-legend-item"><span class="cal-legend-dot practica"></span> Practice evening</div>
+        </div>
+      </div>
+      <div class="cal-footer">
+        <button class="btn-outline" id="cal-ics"><i class="fas fa-calendar-plus"></i> Add to Calendar (.ics)</button>
+        <button class="btn-outline" id="cal-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ─────────────────────────────────────────────────────────
+    // Config
+    // ─────────────────────────────────────────────────────────
+    const API_BASE = 'http://127.0.0.1:8001/api/v1';
+
+    // Level badge definitions
+    const LEVEL_DEF = {
+      '0':  { badgeClass: 'lb-blue',   label: 'Level 1',   isBeginnerHighlight: true },
+      '1':  { badgeClass: 'lb-blue',   label: 'Level 1+',  isBeginnerHighlight: false },
+      '2':  { badgeClass: 'lb-indigo', label: 'Level 2',   isBeginnerHighlight: false },
+      '21': { badgeClass: 'lb-purple', label: 'Level 2+',  isBeginnerHighlight: false },
+      '3':  { badgeClass: 'lb-red',    label: 'Level 3+',  isBeginnerHighlight: false },
+      '4':  { badgeClass: 'lb-red',    label: 'Level 4',   isBeginnerHighlight: false },
+    };
+
+    // Level descriptions (fallbacks for empty API descriptions)
+    const LEVEL_DESC_FALLBACK = {
+      '0':  'No experience needed. 14-lesson series for absolute beginners. Learn basic steps, posture, connection, and musical awareness.',
+      '1':  'Improvers: Next steps. For dancers who completed the beginners course. Focus on cross-system walks and smooth movement.',
+      '2':  'Refining technique & flow. For dancers with 1.5–2.5 years experience. Introducing Giros, Sacadas, and Barridas.',
+      '21': 'Advanced sequences. Bridge level offering faster pace and more complex sequences with styling variations.',
+      '3':  'Mastering complex figures and musicality. For experienced dancers looking to refine their technique.',
+      '4':  'High-level technique and performance. For advanced dancers exploring complex improvisations.',
+    };
+
+    const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const DAY_ABBR  = { Monday:'MON', Tuesday:'TUE', Wednesday:'WED', Thursday:'THU', Friday:'FRI', Saturday:'SAT', Sunday:'SUN' };
+    const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const WD_HEADERS  = ['Mo','Tu','We','Th','Fr','Sa','Su'];
+
+    // ─────────────────────────────────────────────────────────
+    // Helpers
+    // ─────────────────────────────────────────────────────────
+    function getDayOfWeek(classData) {
+      if (classData.day_of_week) return classData.day_of_week;
+      if (classData.start_date) {
+        const [y, m, d] = classData.start_date.split('-').map(Number);
+        return DAY_NAMES[new Date(y, m - 1, d).getDay()];
+      }
+      return null;
+    }
+
+    function formatDate(str) {
+      if (!str) return '';
+      const [y, m, d] = str.split('-').map(Number);
+      return `${d} ${MONTH_NAMES[m - 1]} ${y}`;
+    }
+
+    function totalSessions(cls) {
+      const lessons = cls.lesson_count || 0;
+      const practicas = (cls.practica_dates || []).length;
+      return lessons + practicas;
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // Build a single class row
+    // ─────────────────────────────────────────────────────────
+    function buildClassRow(cls) {
+      const code    = String(cls.level_code || '');
+      const def     = LEVEL_DEF[code] || { badgeClass: 'lb-blue', label: code };
+      const dayFull = getDayOfWeek(cls);
+      const dayAbbr = (dayFull && DAY_ABBR[dayFull]) || '';
+      const levelName = (cls.level_name && cls.level_name.en) || def.label;
+      const desc = (cls.level_description && cls.level_description.en) || LEVEL_DESC_FALLBACK[code] || '';
+      const isStartHere = code === '0';
+      const sessions = totalSessions(cls);
+      const price   = cls.price ? `€${Math.round(parseFloat(cls.price))}` : '';
+
+      const div = document.createElement('div');
+      div.className = 'class-row' + (isStartHere ? ' highlight-beginner' : '');
+
+      div.innerHTML = `
+        <div class="class-row-top">
+          <span class="class-name">
+            ${levelName}
+            ${isStartHere ? '<span class="badge-start-here">START HERE</span>' : ''}
+          </span>
+          <span class="level-badge ${def.badgeClass}">${levelName}</span>
+        </div>
+        <div class="class-time-row">
+          <span class="day-abbr">${dayAbbr}</span>
+          <span class="time-val">${cls.start_time || ''}</span>
+          ${cls.end_time ? `<span style="font-size:0.78rem;color:var(--color-muted);">– ${cls.end_time}</span>` : ''}
+        </div>
+        ${desc ? `<p class="class-desc">${desc}</p>` : ''}
+        <div class="class-meta">
+          ${price ? `<span class="meta-chip"><i class="fas fa-tag"></i><span class="price-val">${price} p.p.</span></span>` : ''}
+          ${sessions > 0 ? `<span class="meta-chip"><i class="fas fa-list-ol"></i>${sessions} sessions</span>` : ''}
+          ${cls.start_date ? `<span class="meta-chip"><i class="fas fa-calendar-day"></i>Starts ${formatDate(cls.start_date)}</span>` : ''}
+        </div>
+        <div class="class-actions"></div>
+      `;
+
+      // Sign up button
+      const btnSignUp = document.createElement('button');
+      btnSignUp.className = 'btn-signup';
+      btnSignUp.dataset.productId = cls.id;
+      btnSignUp.dataset.className = levelName + (dayFull ? ` · ${dayFull}` : '');
+      btnSignUp.dataset.price = cls.price || '';
+      btnSignUp.dataset.location = (cls.location && (cls.location.city || cls.location.name)) || '';
+      btnSignUp.innerHTML = 'SIGN UP <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>';
+      btnSignUp.addEventListener('click', () => {
+        alert(`[Draft] Sign up modal would open for:\n"${btnSignUp.dataset.className}"\nPrice: ${price}\nProduct ID: ${cls.id}`);
+      });
+
+      // Calendar button
+      const hasDates = (cls.lesson_dates && cls.lesson_dates.length > 0) || (cls.practica_dates && cls.practica_dates.length > 0);
+      if (hasDates) {
+        const btnCal = document.createElement('button');
+        btnCal.className = 'btn-cal';
+        btnCal.title = 'View Schedule';
+        btnCal.innerHTML = '<i class="fas fa-calendar-alt"></i>';
+        btnCal.addEventListener('click', () => openCalModal(cls));
+        div.querySelector('.class-actions').appendChild(btnSignUp);
+        div.querySelector('.class-actions').appendChild(btnCal);
+      } else {
+        div.querySelector('.class-actions').appendChild(btnSignUp);
+      }
+
+      return div;
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // Build a day column
+    // ─────────────────────────────────────────────────────────
+    function buildDayColumn(dayName, classes, venueText) {
+      const col = document.createElement('div');
+      col.className = 'day-col';
+
+      const header = document.createElement('div');
+      header.className = 'day-col-header';
+      header.innerHTML = `
+        <h3><i class="fas fa-calendar-alt"></i> ${dayName}s</h3>
+        <div class="venue">${venueText}</div>
+      `;
+      col.appendChild(header);
+
+      // Sort by start_time
+      classes.sort((a, b) => (a.start_time || '').localeCompare(b.start_time || ''));
+      classes.forEach(cls => col.appendChild(buildClassRow(cls)));
+
+      return col;
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // Render a location grid
+    // ─────────────────────────────────────────────────────────
+    function renderLocationGrid(container, classes) {
+      // Group by day
+      const byDay = {};
+      classes.forEach(cls => {
+        const day = getDayOfWeek(cls);
+        if (!day) return;
+        if (!byDay[day]) byDay[day] = { classes: [], venue: '' };
+        byDay[day].classes.push(cls);
+        if (!byDay[day].venue && cls.location) {
+          const loc = cls.location;
+          byDay[day].venue = [loc.building_name, loc.full_address].filter(Boolean).join(' – ');
+        }
+      });
+
+      const DAY_ORDER = { Monday:1, Tuesday:2, Wednesday:3, Thursday:4, Friday:5, Saturday:6, Sunday:7 };
+      const sortedDays = Object.keys(byDay).sort((a, b) => (DAY_ORDER[a]||9) - (DAY_ORDER[b]||9));
+
+      container.innerHTML = '';
+      if (sortedDays.length === 0) {
+        container.innerHTML = '<div class="state-box"><i class="fas fa-calendar-times"></i><p>No classes found.</p></div>';
+        return;
+      }
+
+      sortedDays.forEach(day => {
+        container.appendChild(buildDayColumn(day, byDay[day].classes, byDay[day].venue));
+      });
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // Calendar modal
+    // ─────────────────────────────────────────────────────────
+    let currentCalClass = null;
+
+    function openCalModal(cls) {
+      currentCalClass = cls;
+      const overlay = document.getElementById('cal-overlay');
+      const levelName = (cls.level_name && cls.level_name.en) || '';
+      const dayFull   = getDayOfWeek(cls);
+
+      document.getElementById('cal-title').textContent = levelName + (dayFull ? ` · ${dayFull}` : '');
+
+      // Chips
+      const chips = [];
+      if (cls.start_date) chips.push(`<span class="cal-chip"><i class="fas fa-calendar" style="font-size:0.65rem;"></i>${formatDate(cls.start_date)}</span>`);
+      if (cls.start_time) chips.push(`<span class="cal-chip"><i class="fas fa-clock" style="font-size:0.65rem;"></i>${cls.start_time}${cls.end_time ? '–'+cls.end_time : ''}</span>`);
+      if (cls.location) chips.push(`<span class="cal-chip"><i class="fas fa-map-marker-alt" style="font-size:0.65rem;"></i>${cls.location.building_name || cls.location.name}</span>`);
+      document.getElementById('cal-chips').innerHTML = chips.join('');
+
+      // Build calendars
+      document.getElementById('cal-months').innerHTML = buildCalHTML(cls);
+
+      overlay.style.display = 'flex';
+      overlay.focus();
+    }
+
+    function closeCalModal() {
+      document.getElementById('cal-overlay').style.display = 'none';
+      currentCalClass = null;
+    }
+
+    document.getElementById('cal-close').addEventListener('click', closeCalModal);
+    document.getElementById('cal-close-btn').addEventListener('click', closeCalModal);
+    document.getElementById('cal-overlay').addEventListener('click', e => {
+      if (e.target === document.getElementById('cal-overlay')) closeCalModal();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCalModal(); });
+
+    document.getElementById('cal-ics').addEventListener('click', () => {
+      if (currentCalClass) generateICS(currentCalClass);
+    });
+
+    function buildCalHTML(cls) {
+      const lessonSet   = new Set(cls.lesson_dates  || []);
+      const practicaSet = new Set(cls.practica_dates || []);
+      const allDates    = [...lessonSet, ...practicaSet].sort();
+      if (!allDates.length) return '<p style="color:var(--color-muted);font-size:0.85rem;">No dates available.</p>';
+
+      const [fy, fm] = allDates[0].split('-').map(Number);
+      const [ly, lm] = allDates[allDates.length-1].split('-').map(Number);
+
+      let html = '';
+      let cy = fy, cm = fm;
+      while (cy < ly || (cy === ly && cm <= lm)) {
+        const daysInMonth = new Date(cy, cm, 0).getDate();
+        const offset = (new Date(cy, cm-1, 1).getDay() + 6) % 7;
+
+        html += `<div class="cal-month"><div class="cal-month-title">${MONTH_NAMES[cm-1]} ${cy}</div>`;
+        html += `<div class="cal-grid">`;
+        WD_HEADERS.forEach(h => { html += `<div class="cal-wd">${h}</div>`; });
+        for (let i = 0; i < offset; i++) html += `<div class="cal-d empty"><span></span></div>`;
+        for (let d = 1; d <= daysInMonth; d++) {
+          const key = `${cy}-${String(cm).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+          const cls2 = lessonSet.has(key) ? 'lesson' : practicaSet.has(key) ? 'practica' : '';
+          html += `<div class="cal-d ${cls2}"><span>${d}</span></div>`;
+        }
+        html += `</div></div>`;
+        cm++; if (cm > 12) { cm = 1; cy++; }
+      }
+      return html;
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // ICS generation
+    // ─────────────────────────────────────────────────────────
+    function generateICS(cls) {
+      const lessons   = cls.lesson_dates  || [];
+      const practicas = cls.practica_dates || [];
+      const name      = (cls.level_name && cls.level_name.en) || 'Tango class';
+      const dayFull   = getDayOfWeek(cls);
+      const title     = name + (dayFull ? ` · ${dayFull}` : '');
+      const loc       = (cls.location && cls.location.full_address) || '';
+      const st        = (cls.start_time || '19:00').replace(':','');
+      const et        = (cls.end_time || '20:00').replace(':','');
+      const uid       = () => `${Date.now()}-${Math.random().toString(36).slice(2)}@be-tango.be`;
+
+      let events = '';
+      lessons.forEach(d => {
+        events += `BEGIN:VEVENT\r\nUID:${uid()}\r\nDTSTART;TZID=Europe/Brussels:${d.replace(/-/g,'')}T${st}00\r\nDTEND;TZID=Europe/Brussels:${d.replace(/-/g,'')}T${et}00\r\nSUMMARY:BE-TANGO - ${title}\r\nLOCATION:${loc}\r\nEND:VEVENT\r\n`;
+      });
+      practicas.forEach(d => {
+        events += `BEGIN:VEVENT\r\nUID:${uid()}\r\nDTSTART;TZID=Europe/Brussels:${d.replace(/-/g,'')}T${st}00\r\nDTEND;TZID=Europe/Brussels:${d.replace(/-/g,'')}T${et}00\r\nSUMMARY:BE-TANGO - ${title} - Practice evening\r\nLOCATION:${loc}\r\nEND:VEVENT\r\n`;
+      });
+
+      const ics = `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//BE-TANGO//Schedule//EN\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n${events}END:VCALENDAR`;
+      const blob = new Blob([ics], {type:'text/calendar;charset=utf-8'});
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url; a.download = `be-tango-${title.toLowerCase().replace(/[^a-z0-9]+/g,'-')}.ics`;
+      a.click(); URL.revokeObjectURL(url);
+    }
+
+    // ─────────────────────────────────────────────────────────
+    // Load & render
+    // ─────────────────────────────────────────────────────────
+    async function loadSchedules() {
+      const brusselsGrid = document.getElementById('brussels-grid');
+      const woluweGrid   = document.getElementById('woluwe-grid');
+
+      try {
+        const res  = await fetch(`${API_BASE}/classes`);
+        const json = await res.json();
+
+        if (!json.success) throw new Error(json.message || 'API error');
+
+        const allClasses = (json.data || []).filter(c => c.type === 'Weekly_Course');
+
+        // Split by postal code: Brussels = 1000, Woluwe = 1150
+        const brusselsClasses = allClasses.filter(c => c.location && c.location.postal_code === '1000');
+        const woluweClasses   = allClasses.filter(c => c.location && c.location.postal_code === '1150');
+
+        renderLocationGrid(brusselsGrid, brusselsClasses);
+        renderLocationGrid(woluweGrid,   woluweClasses);
+
+      } catch (err) {
+        const errHtml = `<div class="state-box" style="grid-column:1/-1;">
+          <i class="fas fa-exclamation-circle" style="color:#DC2626;"></i>
+          <p><strong>Failed to load:</strong> ${err.message}</p>
+          <p style="font-size:0.8rem;margin-top:6px;">Make sure the backend is running on port 8001.</p>
+        </div>`;
+        brusselsGrid.innerHTML = errHtml;
+        woluweGrid.innerHTML   = errHtml;
+      }
+    }
+
+    loadSchedules();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choose Your Level — V1 Refined Elegance (Light)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-page:       #F3F5F8;
+      --bg-card:       #FFFFFF;
+      --color-primary: #000000;
+      --color-accent:  #E2C033;
+      --color-navy:    #1C244B;
+      --color-text:    #111827;
+      --color-muted:   #4a4a4a;
+      --color-border:  #E5E7EB;
+      --font:          'Poppins', sans-serif;
+      --radius-card:   16px;
+      --shadow-rest:   0 2px 12px rgba(0,0,0,0.06);
+      --shadow-hover:  0 12px 36px rgba(0,0,0,0.12);
+      --transition:    0.24s ease;
+      --badge-first:   #3B82F6;
+      --badge-second:  #6366F1;
+      --badge-plus:    #8B5CF6;
+      --badge-inter:   #F43F5E;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg-page);
+      color: var(--color-text);
+      min-height: 100vh;
+      padding: 64px 24px 80px;
+    }
+
+    /* ── Section header ── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .section-header h2 {
+      font-size: clamp(1.9rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--color-navy);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .gold-rule {
+      display: block;
+      width: 72px;
+      height: 3px;
+      background: var(--color-accent);
+      border-radius: 2px;
+      margin: 14px auto 0;
+    }
+    .section-header p {
+      margin-top: 18px;
+      color: var(--color-muted);
+      font-size: 0.975rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── 2x2 grid ── */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    @media (max-width: 600px) {
+      .levels-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Level card ── */
+    .level-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-rest);
+      border: 1px solid var(--color-border);
+      border-top: 3px solid transparent;
+      padding: 28px 26px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      cursor: default;
+      transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        border-top-color var(--transition);
+    }
+    .level-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-top-color: var(--color-accent);
+    }
+
+    /* Roman numeral */
+    .roman {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      line-height: 1;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+      font-variant-numeric: oldstyle-nums;
+    }
+
+    /* Level name */
+    .level-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    /* Badge */
+    .level-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #fff;
+      margin-bottom: 12px;
+      align-self: flex-start;
+    }
+    .level-badge.first  { background: var(--badge-first); }
+    .level-badge.second { background: var(--badge-second); }
+    .level-badge.plus   { background: var(--badge-plus); }
+    .level-badge.inter  { background: var(--badge-inter); }
+
+    /* Description */
+    .level-desc {
+      font-size: 0.845rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    /* Experience dots */
+    .exp-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .exp-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .dots {
+      display: flex;
+      gap: 5px;
+    }
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: 1.5px solid var(--color-border);
+      background: transparent;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .dot.filled {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+
+    /* View schedule link */
+    .view-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      text-decoration: none;
+      margin-top: auto;
+      border-top: 1px solid var(--color-border);
+      padding-top: 16px;
+      transition: gap var(--transition), color var(--transition);
+    }
+    .view-link:hover {
+      gap: 10px;
+      color: #b89d28;
+    }
+    .view-link svg {
+      transition: transform var(--transition);
+    }
+    .view-link:hover svg {
+      transform: translateX(2px);
+    }
+
+    /* ── "Not sure" note ── */
+    .not-sure {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.875rem;
+      color: var(--color-muted);
+    }
+    .not-sure a {
+      color: var(--color-navy);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-color: var(--color-accent);
+      text-underline-offset: 3px;
+      transition: color var(--transition);
+    }
+    .not-sure a:hover { color: var(--color-accent); }
+  </style>
+</head>
+<body>
+
+  <div class="section-header">
+    <h2>Choose Your Level</h2>
+    <span class="gold-rule"></span>
+    <p>Not sure where you fit? Every dancer finds their place — and their rhythm.</p>
+  </div>
+
+  <div class="levels-grid">
+
+    <!-- I — First Year -->
+    <div class="level-card">
+      <div class="roman">I</div>
+      <div class="level-name">First Year</div>
+      <span class="level-badge first">First Year</span>
+      <p class="level-desc">
+        For completed beginners. Focus on cross-system walks, smooth walking technique, and your first Ochos. Build confidence on the dance floor from day one.
+      </p>
+      <div class="exp-row">
+        <span class="exp-label">Experience</span>
+        <div class="dots">
+          <span class="dot filled"></span>
+          <span class="dot filled"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <a href="#" class="view-link">
+        View Schedule
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <!-- II — Second Year -->
+    <div class="level-card">
+      <div class="roman">II</div>
+      <div class="level-name">Second Year</div>
+      <span class="level-badge second">Second Year</span>
+      <p class="level-desc">
+        For dancers with 1–2 years of experience. Explore basic patterns, deepen partner connection, and start developing your musical sensitivity.
+      </p>
+      <div class="exp-row">
+        <span class="exp-label">Experience</span>
+        <div class="dots">
+          <span class="dot filled"></span>
+          <span class="dot filled"></span>
+          <span class="dot filled"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <a href="#" class="view-link">
+        View Schedule
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <!-- III — Second Year PLUS -->
+    <div class="level-card">
+      <div class="roman">III</div>
+      <div class="level-name">Second Year PLUS</div>
+      <span class="level-badge plus">Second Year PLUS</span>
+      <p class="level-desc">
+        For dancers with 2–3 years of practice. Tackle complex sequences, refine technique, and begin a deeper musical interpretation of the tango.
+      </p>
+      <div class="exp-row">
+        <span class="exp-label">Experience</span>
+        <div class="dots">
+          <span class="dot filled"></span>
+          <span class="dot filled"></span>
+          <span class="dot filled"></span>
+          <span class="dot filled"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+      <a href="#" class="view-link">
+        View Schedule
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <!-- IV — Intermediate / Advanced -->
+    <div class="level-card">
+      <div class="roman">IV</div>
+      <div class="level-name">Intermediate / Advanced</div>
+      <span class="level-badge inter">Intermediate</span>
+      <p class="level-desc">
+        For dancers with 4+ years. Master Boleos, Ganchos, and Enrosques. Expand your repertoire into Vals and Milonga with expressive freedom.
+      </p>
+      <div class="exp-row">
+        <span class="exp-label">Experience</span>
+        <div class="dots">
+          <span class="dot filled"></span>
+          <span class="dot filled"></span>
+          <span class="dot filled"></span>
+          <span class="dot filled"></span>
+          <span class="dot filled"></span>
+        </div>
+      </div>
+      <a href="#" class="view-link">
+        View Schedule
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+  </div>
+
+  <p class="not-sure">
+    Not sure which level is right for you? <a href="#">Contact us</a> — we'll help you find the perfect fit.
+  </p>
+
+</body>
+</html>

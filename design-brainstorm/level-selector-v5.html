@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BE-TANGO — Level Selector V5</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #FFFFFF;
+      color: #111827;
+      min-height: 100vh;
+    }
+
+    /* ── PAGE HEADER ─────────────────────────────────────────── */
+    .page-header {
+      background: #FFFFFF;
+      padding: 56px 24px 44px;
+      text-align: center;
+      border-bottom: 1px solid #E5E7EB;
+    }
+    .page-header .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #E2C033;
+      margin-bottom: 12px;
+    }
+    .page-header h1 {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      color: #1C244B;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .page-header p {
+      font-size: 15px;
+      color: #4a4a4a;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ── SECTION ─────────────────────────────────────────────── */
+    .levels-section {
+      background: #F3F5F8;
+      padding: 52px 24px 64px;
+    }
+    .levels-inner {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    /* ── SECTION INTRO ───────────────────────────────────────── */
+    .section-intro {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .section-intro h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1C244B;
+      margin-bottom: 8px;
+    }
+    .section-intro p {
+      font-size: 14px;
+      color: #4a4a4a;
+    }
+
+    /* ── ACCORDION WRAPPER ───────────────────────────────────── */
+    .accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #E5E7EB;
+    }
+
+    /* ── ACCORDION ITEM ──────────────────────────────────────── */
+    .accordion-item {
+      background: #FFFFFF;
+      border-bottom: 1px solid #E5E7EB;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s ease;
+    }
+    .accordion-item:last-child {
+      border-bottom: none;
+    }
+
+    /* Gold left border for active item */
+    .accordion-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 0;
+      background: #E2C033;
+      transition: width 0.25s ease;
+      z-index: 1;
+    }
+    .accordion-item.open::before {
+      width: 4px;
+    }
+    .accordion-item.open {
+      background: #FFFFFF;
+    }
+
+    /* ── WATERMARK NUMBER ────────────────────────────────────── */
+    .accordion-number {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 72px;
+      font-weight: 800;
+      color: #F3F5F8;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      transition: color 0.2s ease;
+      z-index: 0;
+    }
+    .accordion-item.open .accordion-number {
+      color: #EEF0F5;
+    }
+
+    /* ── ACCORDION TRIGGER ───────────────────────────────────── */
+    .accordion-trigger {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 70px 22px 28px;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    @media (max-width: 500px) {
+      .accordion-trigger { padding: 18px 60px 18px 20px; gap: 12px; }
+    }
+
+    .trigger-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 20px;
+      padding: 5px 13px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #FFFFFF;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge-blue   { background: #3B82F6; }
+    .badge-indigo { background: #6366F1; }
+    .badge-violet { background: #8B5CF6; }
+    .badge-rose   { background: #F43F5E; }
+
+    .trigger-text {
+      flex: 1;
+      min-width: 0;
+    }
+    .trigger-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1C244B;
+      line-height: 1.2;
+      transition: color 0.2s ease;
+    }
+    .accordion-item.open .trigger-name {
+      color: #1C244B;
+    }
+    .trigger-teaser {
+      font-size: 13px;
+      color: #4a4a4a;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (max-width: 500px) {
+      .trigger-teaser { display: none; }
+    }
+
+    /* Expand toggle button */
+    .trigger-toggle {
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid #E5E7EB;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 300;
+      color: #4a4a4a;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.25s ease, color 0.2s ease;
+      z-index: 3;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .accordion-item.open .trigger-toggle {
+      background: #E2C033;
+      border-color: #E2C033;
+      color: #000000;
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    /* ── ACCORDION BODY ──────────────────────────────────────── */
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .accordion-body-inner {
+      padding: 0 28px 28px 28px;
+      position: relative;
+      z-index: 2;
+    }
+    @media (max-width: 500px) {
+      .accordion-body-inner { padding: 0 20px 24px 20px; }
+    }
+
+    .body-divider {
+      height: 1px;
+      background: #E5E7EB;
+      margin-bottom: 20px;
+    }
+
+    .body-description {
+      font-size: 14px;
+      color: #111827;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    /* Experience row */
+    .body-experience {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #F3F5F8;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+    }
+    .body-experience svg {
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: #E2C033;
+    }
+    .body-experience-text {
+      font-size: 13px;
+      color: #4a4a4a;
+      line-height: 1.55;
+    }
+    .body-experience-text strong {
+      color: #1C244B;
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 2px;
+    }
+
+    /* Techniques section */
+    .body-techniques-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #1C244B;
+      margin-bottom: 10px;
+    }
+    .techniques-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 22px;
+    }
+    .chip {
+      background: #FEF9E7;
+      border: 1px solid #E2C033;
+      color: #7a5e00;
+      border-radius: 20px;
+      padding: 5px 13px;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    /* CTA link */
+    .body-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1C244B;
+      text-decoration: none;
+      border-bottom: 2px solid #E2C033;
+      padding-bottom: 2px;
+      transition: color 0.15s ease;
+    }
+    .body-cta:hover {
+      color: #E2C033;
+    }
+    .body-cta svg {
+      transition: transform 0.15s ease;
+    }
+    .body-cta:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* ── STILL UNSURE SECTION ─────────────────────────────────── */
+    .unsure-section {
+      margin-top: 28px;
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .unsure-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #FEF9E7;
+      border: 1.5px solid #E2C033;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #E2C033;
+    }
+    .unsure-text {
+      flex: 1;
+    }
+    .unsure-text h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1C244B;
+      margin-bottom: 4px;
+    }
+    .unsure-text p {
+      font-size: 13px;
+      color: #4a4a4a;
+      line-height: 1.55;
+    }
+    .unsure-text p a {
+      color: #1C244B;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .unsure-text p a:hover {
+      color: #E2C033;
+    }
+    .btn-contact {
+      background: #E2C033;
+      color: #000000;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 22px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.18s ease;
+      display: inline-block;
+    }
+    .btn-contact:hover {
+      background: #d4b02a;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE HEADER -->
+  <header class="page-header">
+    <span class="eyebrow">Find your level</span>
+    <h1>Which tango class<br>is right for you?</h1>
+    <p>We teach in small groups, structured by experience. Explore each level below to find where you belong.</p>
+  </header>
+
+  <!-- LEVELS SECTION -->
+  <section class="levels-section">
+    <div class="levels-inner">
+
+      <div class="section-intro">
+        <h2>Our 4 levels</h2>
+        <p>Click any level to read about what's covered and who it's for.</p>
+      </div>
+
+      <!-- ACCORDION -->
+      <div class="accordion" id="accordion" role="list">
+
+        <!-- ── LEVEL 1: FIRST YEAR ─────────────────────────────── -->
+        <div class="accordion-item open" data-index="0" role="listitem">
+          <span class="accordion-number" aria-hidden="true">1</span>
+          <div class="accordion-trigger" role="button" tabindex="0" aria-expanded="true" aria-controls="body-0">
+            <span class="trigger-badge badge-blue">First Year</span>
+            <div class="trigger-text">
+              <div class="trigger-name">First Year</div>
+              <div class="trigger-teaser">Your first steps into Argentine tango — open to all beginners</div>
+            </div>
+            <div class="trigger-toggle" aria-hidden="true">+</div>
+          </div>
+          <div class="accordion-body" id="body-0" style="max-height: 600px;">
+            <div class="accordion-body-inner">
+              <div class="body-divider"></div>
+              <p class="body-description">
+                This class welcomes complete beginners and those who have taken a few classes but feel they need a solid foundation. You will learn the fundamental principles of the tango embrace, weight transfer, and the cross-system walk — the essential tools for real social dancing.
+              </p>
+              <div class="body-experience">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div class="body-experience-text">
+                  <strong>Experience required</strong>
+                  No prior experience necessary. Suitable for 0–1 year of tango.
+                </div>
+              </div>
+              <div class="body-techniques-label">Techniques covered</div>
+              <div class="techniques-chips">
+                <span class="chip">The embrace</span>
+                <span class="chip">Weight transfer</span>
+                <span class="chip">Walking in parallel system</span>
+                <span class="chip">Cross system</span>
+                <span class="chip">Forward & back ochos</span>
+                <span class="chip">Parada</span>
+                <span class="chip">The cross</span>
+                <span class="chip">Listening to the music</span>
+              </div>
+              <a href="/tango-classes/beginners" class="body-cta">
+                View schedule for First Year
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── LEVEL 2: SECOND YEAR ───────────────────────────── -->
+        <div class="accordion-item" data-index="1" role="listitem">
+          <span class="accordion-number" aria-hidden="true">2</span>
+          <div class="accordion-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="body-1">
+            <span class="trigger-badge badge-indigo">Second Year</span>
+            <div class="trigger-text">
+              <div class="trigger-name">Second Year</div>
+              <div class="trigger-teaser">Building vocabulary and refining partner connection</div>
+            </div>
+            <div class="trigger-toggle" aria-hidden="true">+</div>
+          </div>
+          <div class="accordion-body" id="body-1">
+            <div class="accordion-body-inner">
+              <div class="body-divider"></div>
+              <p class="body-description">
+                You can walk, do the cross, and navigate a milonga floor — now it's time to deepen your vocabulary and sharpen your musicality. This class introduces new basic patterns, works on axis and balance, and explores the connection between the music's phrasing and your movement.
+              </p>
+              <div class="body-experience">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div class="body-experience-text">
+                  <strong>Experience required</strong>
+                  Approximately 1–2 years of tango. Comfortable with the cross and basic ochos.
+                </div>
+              </div>
+              <div class="body-techniques-label">Techniques covered</div>
+              <div class="techniques-chips">
+                <span class="chip">Molinete (giro)</span>
+                <span class="chip">Sacada</span>
+                <span class="chip">Pivots</span>
+                <span class="chip">Musical phrasing</span>
+                <span class="chip">Partner connection</span>
+                <span class="chip">Axis & balance</span>
+                <span class="chip">Leading & following</span>
+                <span class="chip">Floor navigation</span>
+              </div>
+              <a href="/tango-classes/experienced" class="body-cta">
+                View schedule for Second Year
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── LEVEL 3: SECOND YEAR PLUS ─────────────────────── -->
+        <div class="accordion-item" data-index="2" role="listitem">
+          <span class="accordion-number" aria-hidden="true">3</span>
+          <div class="accordion-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="body-2">
+            <span class="trigger-badge badge-violet">Second Year PLUS</span>
+            <div class="trigger-text">
+              <div class="trigger-name">Second Year PLUS</div>
+              <div class="trigger-teaser">Complex sequences and deeper musical interpretation</div>
+            </div>
+            <div class="trigger-toggle" aria-hidden="true">+</div>
+          </div>
+          <div class="accordion-body" id="body-2">
+            <div class="accordion-body-inner">
+              <div class="body-divider"></div>
+              <p class="body-description">
+                This class bridges the gap between social dancer and versatile milonga partner. You have a solid base and want to expand your repertoire with more complex sequences, off-axis movements, and a richer musical dialogue. Expect challenging, rewarding material in every class.
+              </p>
+              <div class="body-experience">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div class="body-experience-text">
+                  <strong>Experience required</strong>
+                  Approximately 2–3 years. Confident with molinete, sacadas, and musicality basics.
+                </div>
+              </div>
+              <div class="body-techniques-label">Techniques covered</div>
+              <div class="techniques-chips">
+                <span class="chip">Colgadas</span>
+                <span class="chip">Complex giros</span>
+                <span class="chip">Decorations (adornos)</span>
+                <span class="chip">Off-axis movement</span>
+                <span class="chip">Musical interpretation</span>
+                <span class="chip">Layering sequences</span>
+                <span class="chip">Double-time phrasing</span>
+                <span class="chip">Improvisation tools</span>
+              </div>
+              <a href="/tango-classes/experienced" class="body-cta">
+                View schedule for Second Year PLUS
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── LEVEL 4: INTERMEDIATE ──────────────────────────── -->
+        <div class="accordion-item" data-index="3" role="listitem">
+          <span class="accordion-number" aria-hidden="true">4</span>
+          <div class="accordion-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="body-3">
+            <span class="trigger-badge badge-rose">Intermediate</span>
+            <div class="trigger-text">
+              <div class="trigger-name">Intermediate / Advanced</div>
+              <div class="trigger-teaser">Boleos, ganchos, enrosques — vals, milonga and free improvisation</div>
+            </div>
+            <div class="trigger-toggle" aria-hidden="true">+</div>
+          </div>
+          <div class="accordion-body" id="body-3">
+            <div class="accordion-body-inner">
+              <div class="body-divider"></div>
+              <p class="body-description">
+                For experienced dancers ready to take their tango to the milonga stage. This class goes deep into the technical and expressive dimensions of Argentine tango, covering high-energy techniques across three rhythms: tango, vals, and milonga. Full improvisational fluency is the goal.
+              </p>
+              <div class="body-experience">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <div class="body-experience-text">
+                  <strong>Experience required</strong>
+                  4+ years of regular tango practice. Comfortable with off-axis work and improvisation.
+                </div>
+              </div>
+              <div class="body-techniques-label">Techniques covered</div>
+              <div class="techniques-chips">
+                <span class="chip">Boleos (front & back)</span>
+                <span class="chip">Ganchos</span>
+                <span class="chip">Enrosques</span>
+                <span class="chip">Vals timing</span>
+                <span class="chip">Milonga traspié</span>
+                <span class="chip">Complex sacadas</span>
+                <span class="chip">Full improvisation</span>
+                <span class="chip">Stagecraft & style</span>
+              </div>
+              <a href="/tango-classes/experienced" class="body-cta">
+                View schedule for Intermediate
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /accordion -->
+
+      <!-- STILL UNSURE -->
+      <div class="unsure-section">
+        <div class="unsure-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="unsure-text">
+          <h3>Still unsure which level suits you?</h3>
+          <p>Not sure where to start? <a href="/contact">Send us a message</a> or book a free trial class — we'll help you find the perfect fit.</p>
+        </div>
+        <a href="/tango-classes/free-trial" class="btn-contact">Book a free trial</a>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    const items = document.querySelectorAll('.accordion-item');
+
+    function openItem(item) {
+      const body = item.querySelector('.accordion-body');
+      const inner = item.querySelector('.accordion-body-inner');
+      const trigger = item.querySelector('.accordion-trigger');
+
+      item.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+
+      // Measure natural height
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+
+    function closeItem(item) {
+      const body = item.querySelector('.accordion-body');
+      const trigger = item.querySelector('.accordion-trigger');
+
+      item.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+      body.style.maxHeight = '0';
+    }
+
+    items.forEach(item => {
+      const trigger = item.querySelector('.accordion-trigger');
+
+      function handleToggle() {
+        const isOpen = item.classList.contains('open');
+
+        // Close all items
+        items.forEach(i => {
+          if (i !== item) closeItem(i);
+        });
+
+        // Toggle clicked item
+        if (isOpen) {
+          closeItem(item);
+        } else {
+          openItem(item);
+        }
+      }
+
+      trigger.addEventListener('click', handleToggle);
+
+      // Keyboard support
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleToggle();
+        }
+      });
+    });
+
+    // Set correct initial height for first-open item
+    const firstOpen = document.querySelector('.accordion-item.open');
+    if (firstOpen) {
+      const body = firstOpen.querySelector('.accordion-body');
+      // Use requestAnimationFrame to ensure layout is complete
+      requestAnimationFrame(() => {
+        body.style.maxHeight = body.scrollHeight + 'px';
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -38,8 +38,82 @@
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../../css/enrollment-modal.css?v=1.0">
+  <style>
+    .btlc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+    @media(max-width:620px){.btlc-grid{grid-template-columns:1fr}}
+    .btlc-card{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid #E5E7EB;border-top:3px solid transparent;padding:28px 26px 22px;display:flex;flex-direction:column;transition:transform .24s,box-shadow .24s,border-top-color .24s}
+    .btlc-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.12);border-top-color:#E2C033}
+    .btlc-roman{font-size:2.4rem;font-weight:700;color:#E2C033;line-height:1;margin-bottom:10px;letter-spacing:-.03em}
+    .btlc-name{font-size:1.05rem;font-weight:700;color:#1C244B;margin-bottom:8px}
+    .btlc-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.04em;color:#fff;margin-bottom:12px;align-self:flex-start}
+    .btlc-badge.first{background:#3B82F6}.btlc-badge.second{background:#6366F1}.btlc-badge.plus{background:#8B5CF6}.btlc-badge.inter{background:#F43F5E}
+    .btlc-desc{font-size:.875rem;color:#4a4a4a;line-height:1.65;flex:1;margin-bottom:18px}
+    .btlc-exp-row{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+    .btlc-exp-label{font-size:.68rem;font-weight:500;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+    .btlc-dots{display:flex;gap:5px}
+    .btlc-dot{width:9px;height:9px;border-radius:50%;border:1.5px solid #E5E7EB;background:transparent}
+    .btlc-dot.on{background:#E2C033;border-color:#E2C033}
+    .btlc-link{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;color:#E2C033;text-decoration:none;margin-top:auto;border-top:1px solid #E5E7EB;padding-top:16px;transition:gap .24s,color .24s}
+    .btlc-link:hover{gap:10px;color:#b89d28}
+    .btlc-not-sure{text-align:center;margin-top:40px;font-size:.875rem;color:#4a4a4a}
+    .btlc-not-sure a{color:#1C244B;font-weight:600;text-decoration:underline;text-decoration-color:#E2C033;text-underline-offset:3px}
+    .btlc-not-sure a:hover{color:#E2C033}
+    .bts-dropin-badge{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1.5px solid #E2C033;border-radius:20px;padding:5px 16px;font-size:.8rem;font-weight:600;color:#1C244B;margin-top:14px}
+    .bts-dropin-dot{width:8px;height:8px;border-radius:50%;background:#E2C033;flex-shrink:0}
+    .bts-filters{background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:20px 24px;margin-bottom:20px}
+    .bts-filter-group{margin-bottom:16px}.bts-filter-group:last-child{margin-bottom:0}
+    .bts-filter-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#4a4a4a;margin-bottom:10px;display:block}
+    .bts-toggle-group{display:flex;flex-wrap:wrap;gap:8px}
+    .bts-btn{display:inline-flex;align-items:center;gap:7px;padding:7px 16px;border-radius:999px;border:1.5px solid #E5E7EB;background:#F3F5F8;color:#4a4a4a;font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .18s;user-select:none}
+    .bts-btn:hover{border-color:#E2C033;color:#111827}
+    .bts-btn.active{background:#E2C033;border-color:#E2C033;color:#000;font-weight:600}
+    .bts-loc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .bts-results{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding:0 4px}
+    .bts-count{font-size:.82rem;color:#4a4a4a;font-weight:500}.bts-count strong{color:#1C244B}
+    .bts-reset{background:none;border:none;font-family:'Poppins',sans-serif;font-size:.8rem;color:#4a4a4a;cursor:pointer;text-decoration:underline;padding:0;visibility:hidden}
+    .bts-reset.visible{visibility:visible}
+    .bts-list{background:#fff;border:1px solid #E5E7EB;border-radius:14px;overflow:hidden}
+    .bts-row{display:flex;align-items:center;padding:18px 24px;border-bottom:1px solid #E5E7EB}
+    .bts-row:last-of-type{border-bottom:none}
+    .bts-row.hidden{display:none}
+    .bts-row.fadein{animation:btsIn .28s ease both}
+    @keyframes btsIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+    .bts-stripe{width:4px;height:44px;border-radius:4px;flex-shrink:0;margin-right:20px}
+    .bts-sched{flex:0 0 200px;min-width:0}
+    .bts-day{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#4a4a4a;margin-bottom:2px}
+    .bts-time{font-size:1.05rem;font-weight:700;color:#1C244B;white-space:nowrap}
+    .bts-addr{font-size:.68rem;color:#4a4a4a;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .bts-lvl{flex:0 0 auto;margin-right:auto;padding-left:20px}
+    .bts-badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.72rem;font-weight:600;color:#fff;white-space:nowrap}
+    .bts-badge.fy{background:#3B82F6}.bts-badge.sy{background:#6366F1}.bts-badge.sp{background:#8B5CF6}.bts-badge.im{background:#F43F5E}
+    .bts-start{flex:0 0 auto;text-align:center;padding:0 24px}
+    .bts-start-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;color:#4a4a4a;font-weight:600;display:block}
+    .bts-start-val{font-size:.82rem;font-weight:600;color:#111827;white-space:nowrap}
+    .bts-price{flex:0 0 auto;text-align:right;padding-right:24px}
+    .bts-price-main{font-size:1.05rem;font-weight:700;color:#1C244B}
+    .bts-price-sub{font-size:.68rem;color:#4a4a4a;display:block}
+    .bts-cta{flex:0 0 auto}
+    .bts-signup{display:inline-flex;align-items:center;gap:7px;background:#E2C033;color:#000;font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:700;padding:10px 18px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;white-space:nowrap;transition:background .15s,transform .1s}
+    .bts-signup:hover{background:#d4b02a;transform:translateY(-1px)}
+    .bts-signup svg{width:14px;height:14px;flex-shrink:0}
+    .bts-empty{display:none;text-align:center;padding:52px 24px}
+    .bts-empty.visible{display:block}
+    .bts-empty h3{font-size:1rem;font-weight:600;color:#1C244B;margin-bottom:6px}
+    .bts-empty p{font-size:.85rem;color:#4a4a4a}
+    @media(max-width:700px){
+      .bts-row{flex-wrap:wrap;gap:10px;padding:16px 18px}
+      .bts-stripe{height:36px;margin-right:12px}
+      .bts-sched{flex:1 0 140px}
+      .bts-lvl{padding-left:0;margin-right:0}
+      .bts-start,.bts-price{padding:0}
+      .bts-cta{width:100%}
+      .bts-signup{width:100%;justify-content:center}
+    }
+    @media(max-width:480px){.bts-start{display:none}}
+  </style>
 
   <!-- JSON-LD Structured Data - Experienced Courses -->
   <script type="application/ld+json">
@@ -195,14 +269,14 @@
               <ul class="dropdown-menu">
                 <li><a href="../debutants/">Débutants</a></li>
                 <li><a href="./" class="active" aria-current="page">Expérimentés</a></li>
-                <li><a href="../../cours-prives/">Cours privés</a></li>
-                <li><a href="../../en-ligne/">Cours en ligne</a></li>
-                <li><a href="../../lieux/bruxelles/">Bruxelles</a></li>
-                <li><a href="../../lieux/woluwe/">Woluwe</a></li>
+                <li><a href="../particuliers/">Cours privés</a></li>
+                <li><a href="../en-ligne/">Cours en ligne</a></li>
+                <li><a href="../bruxelles/">Bruxelles</a></li>
+                <li><a href="../woluwe/">Woluwe</a></li>
               </ul>
             </li>
-            <li><a href="../../cours-d-essai-gratuit/">Cours d'essai gratuit</a></li>
-            <li><a href="../../contact/">Contact</a></li>
+            <li><a href="../essai-gratuit/">Cours d'essai gratuit</a></li>
+            <li><a href="../../contactez-nous/">Contact</a></li>
                         <li class="language-switcher">
               <button class="language-toggle" aria-label="Select language" aria-expanded="false">
                 <i class="fas fa-globe"></i>
@@ -239,7 +313,7 @@
   <!-- MAIN CONTENT -->
   <main id="main-content">
     <!-- Hero Section -->
-    <section class="hero hero-small">
+    <section class="hero">
       <div class="container">
         <div class="hero-content">
           <p class="hero-label">DANSEURS EXPÉRIMENTÉS</p>
@@ -257,7 +331,61 @@
           <p>Notre programme pour danseurs expérimentés offre quatre niveaux distincts, chacun conçu pour développer vos compétences existantes et élever votre danse à de nouveaux sommets.</p>
         </div>
 
-        <div class="grid grid-2" data-level-cards-container></div>
+        <div class="btlc-grid">
+          <div class="btlc-card">
+            <div class="btlc-roman">I</div>
+            <div class="btlc-name">Première Année</div>
+            <span class="btlc-badge first">Première Année</span>
+            <p class="btlc-desc">Pour les danseurs ayant terminé le cours pour débutants. Nous consolidons les bases et travaillons le système croisé, la marche fluide et les Ochos.</p>
+            <div class="btlc-exp-row">
+              <span class="btlc-exp-label">Expérience</span>
+              <div class="btlc-dots">
+                <span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot"></span><span class="btlc-dot"></span><span class="btlc-dot"></span>
+              </div>
+            </div>
+            <a href="#class-schedules" class="btlc-link">Voir les horaires <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="btlc-card">
+            <div class="btlc-roman">II</div>
+            <div class="btlc-name">Deuxième Année</div>
+            <span class="btlc-badge second">Deuxième Année</span>
+            <p class="btlc-desc">En s'appuyant sur les fondamentaux de la première année. Continuez à développer la technique, la musicalité et la connexion avec votre partenaire avec des figures et combinaisons plus complexes.</p>
+            <div class="btlc-exp-row">
+              <span class="btlc-exp-label">Expérience</span>
+              <div class="btlc-dots">
+                <span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot"></span><span class="btlc-dot"></span>
+              </div>
+            </div>
+            <a href="#class-schedules" class="btlc-link">Voir les horaires <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="btlc-card">
+            <div class="btlc-roman">III</div>
+            <div class="btlc-name">Deuxième Année PLUS</div>
+            <span class="btlc-badge plus">Deuxième Année PLUS</span>
+            <p class="btlc-desc">Fondamentaux avancés pour danseurs expérimentés. Affinez votre technique, explorez des séquences complexes et approfondissez votre interprétation musicale.</p>
+            <div class="btlc-exp-row">
+              <span class="btlc-exp-label">Expérience</span>
+              <div class="btlc-dots">
+                <span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot"></span>
+              </div>
+            </div>
+            <a href="#class-schedules" class="btlc-link">Voir les horaires <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="btlc-card">
+            <div class="btlc-roman">IV</div>
+            <div class="btlc-name">Intermédiaire / Avancé</div>
+            <span class="btlc-badge inter">Intermédiaire</span>
+            <p class="btlc-desc">Pour les danseurs avec 4+ ans d'expérience. Maîtrisez les Boleos, Ganchos, Enrosques. Travail approfondi sur la musicalité (Vals/Milonga) et l'improvisation.</p>
+            <div class="btlc-exp-row">
+              <span class="btlc-exp-label">Expérience</span>
+              <div class="btlc-dots">
+                <span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span>
+              </div>
+            </div>
+            <a href="#class-schedules" class="btlc-link">Voir les horaires <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+        <p class="btlc-not-sure">Toujours pas sûr(e) ? <a href="../../contactez-nous/">Contactez-nous</a> ou réservez un cours d'essai gratuit — nous vous aiderons à trouver le bon niveau !</p>
       </div>
     </section>
 
@@ -267,62 +395,25 @@
         <div class="section-intro">
           <h2>Horaires des cours</h2>
           <p>Choisissez parmi nos emplacements pratiques à Bruxelles et Woluwe-Saint-Pierre</p>
+          <div class="bts-dropin-badge"><span class="bts-dropin-dot"></span>Cours à l'unité disponible &mdash; &euro;20 par cours</div>
         </div>
 
-        <div class="schedule-grid" data-schedule-container></div>
-      </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="section-padding">
-      <div class="container">
-        <div class="section-intro">
-          <h2>Tarifs & Inscription</h2>
-          <p>Options flexibles pour tous les niveaux expérimentés</p>
-        </div>
-
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <div class="pricing-header">
-              <h3>Forfait 15 leçons</h3>
-              <div class="pricing-amount">
-                <span class="price-currency">€</span>
-                <span class="price-value">195</span>
-              </div>
-              <p class="pricing-period">Par trimestre</p>
-            </div>
-            <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> 15 leçons hebdomadaires</li>
-              <li><i class="fas fa-check"></i> Tous niveaux d'expérience</li>
-              <li><i class="fas fa-check"></i> Instruction experte</li>
-              <li><i class="fas fa-check"></i> Sessions de pratique incluses</li>
-              <li><i class="fas fa-check"></i> Horaire flexible</li>
-            </ul>
-            <a href="../../cours-d-essai-gratuit/" class="btn btn-primary btn-large">Commencer</a>
+        <div class="bts-filters">
+          <div class="bts-filter-group">
+            <span class="bts-filter-label">Lieu</span>
+            <div class="bts-toggle-group" id="btsLocFilters"></div>
           </div>
-
-          <div class="pricing-card">
-            <div class="pricing-header">
-              <h3>Cours à l'unité</h3>
-              <div class="pricing-amount">
-                <span class="price-currency">€</span>
-                <span class="price-value">20</span>
-              </div>
-              <p class="pricing-period">Par cours</p>
-            </div>
-            <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> Participation à un seul cours</li>
-              <li><i class="fas fa-check"></i> Sans engagement</li>
-              <li><i class="fas fa-check"></i> Tous niveaux bienvenus</li>
-              <li><i class="fas fa-check"></i> Selon disponibilité</li>
-              <li><i class="fas fa-times"></i> Limité aux places disponibles</li>
-            </ul>
-            <a href="../../contact/" class="btn btn-secondary btn-large">Nous contacter</a>
+          <div class="bts-filter-group">
+            <span class="bts-filter-label">Niveau</span>
+            <div class="bts-toggle-group" id="btsLvlFilters"></div>
           </div>
         </div>
-
-        <div class="pricing-note">
-          <p><strong>Note:</strong> Tous les prix incluent l'accès aux sessions de pratique. Partenaire de danse non requis pour l'inscription.</p>
+        <div class="bts-results">
+          <div class="bts-count" id="btsCount"></div>
+          <button class="bts-reset" id="btsResetBtn">Réinitialiser</button>
+        </div>
+        <div class="bts-list" id="btsList">
+          <div class="bts-empty" id="btsEmpty"><h3>Aucun cours ne correspond</h3><p>Essayez d'ajuster votre sélection de lieu ou de niveau.</p></div>
         </div>
       </div>
     </section>
@@ -411,7 +502,7 @@
             </summary>
             <div class="accordion-content">
               <p>Absolument! Nous offrons des cours d'essai gratuits pour tous les niveaux. Cela vous donne l'occasion de découvrir notre style d'enseignement, de rencontrer les instructeurs et de voir si le niveau vous convient.</p>
-              <p><a href="../../cours-d-essai-gratuit/" class="text-link">Réservez votre cours d'essai gratuit ici</a>.</p>
+              <p><a href="../essai-gratuit/" class="text-link">Réservez votre cours d'essai gratuit ici</a>.</p>
             </div>
           </details>
 
@@ -463,8 +554,8 @@
           <h2>Prêt à faire passer votre tango au niveau supérieur?</h2>
           <p>Rejoignez notre communauté de danseurs expérimentés et poursuivez votre voyage de tango avec des conseils d'experts</p>
           <div class="cta-buttons">
-            <a href="../../cours-d-essai-gratuit/" class="btn btn-primary btn-large">Réserver un cours d'essai</a>
-            <a href="../../contact/" class="btn btn-secondary btn-large">Nous contacter</a>
+            <a href="../essai-gratuit/" class="btn btn-primary btn-large">Réserver un cours d'essai</a>
+            <a href="../../contactez-nous/" class="btn btn-secondary btn-large">Nous contacter</a>
           </div>
         </div>
       </div>
@@ -497,16 +588,16 @@
           <ul>
             <li><a href="../debutants/">Débutants</a></li>
             <li><a href="./">Expérimentés</a></li>
-            <li><a href="../../cours-prives/">Cours privés</a></li>
-            <li><a href="../../en-ligne/">En ligne</a></li>
+            <li><a href="../particuliers/">Cours privés</a></li>
+            <li><a href="../en-ligne/">En ligne</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h4>Lieux</h4>
           <ul>
-            <li><a href="../../lieux/bruxelles/">Bruxelles</a></li>
-            <li><a href="../../lieux/woluwe/">Woluwe</a></li>
+            <li><a href="../bruxelles/">Bruxelles</a></li>
+            <li><a href="../woluwe/">Woluwe</a></li>
           </ul>
           <div class="social-links">
             <a href="#" aria-label="Facebook" class="social-icon">
@@ -523,7 +614,7 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../../privacy-policy/">Politique de confidentialité</a> |
-          <a href="../../../termes-et-conditions-generales/">Termes et Conditions</a> |
+          <a href="../../../fr/termes-et-conditions-generales/">Termes et Conditions</a> |
           <a href="../../liens/">Liens</a>
         </p>
       </div>
@@ -618,7 +709,9 @@
   </script>
   <!-- CRM API Integration -->
   <script src="../../../js/crm-api.min.js"></script>
-  <script src="../../../js/schedule-loader.min.js"></script>
+  <script src="../../../js/experienced-schedule.min.js?v=1.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous"></script>
+  <script src="../../../js/enrollment-modal.js?v=1.0" defer></script>
 
   <!-- Floating Mobile Call Button -->
 </body>

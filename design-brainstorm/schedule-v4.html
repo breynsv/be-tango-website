@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BE-TANGO — Schedule V4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #F3F5F8;
+      color: #111827;
+      min-height: 100vh;
+      padding: 40px 16px 80px;
+    }
+
+    .page-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1C244B;
+      letter-spacing: -0.02em;
+    }
+    .page-header p {
+      margin-top: 8px;
+      color: #4a4a4a;
+      font-size: 0.95rem;
+    }
+    .dropin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #fff;
+      border: 1.5px solid #E2C033;
+      border-radius: 20px;
+      padding: 5px 16px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1C244B;
+      margin-top: 14px;
+    }
+    .dropin-badge .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #E2C033;
+      flex-shrink: 0;
+    }
+
+    /* ── Filter card ── */
+    .filters {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+    .filter-group { margin-bottom: 16px; }
+    .filter-group:last-child { margin-bottom: 0; }
+    .filter-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #4a4a4a;
+      margin-bottom: 10px;
+    }
+    .toggle-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      border: 1.5px solid #E5E7EB;
+      background: #F3F5F8;
+      color: #4a4a4a;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      user-select: none;
+    }
+    .toggle-btn:hover { border-color: #E2C033; color: #111827; }
+    .toggle-btn.active {
+      background: #E2C033;
+      border-color: #E2C033;
+      color: #000;
+      font-weight: 600;
+    }
+    .toggle-btn .loc-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .level-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1.5px solid #E5E7EB;
+      background: #F3F5F8;
+      color: #4a4a4a;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      user-select: none;
+    }
+    .level-pill:hover { border-color: #E2C033; color: #111827; }
+    .level-pill.active {
+      background: #E2C033;
+      border-color: #E2C033;
+      color: #000;
+      font-weight: 600;
+    }
+
+    /* ── Results bar ── */
+    .results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+    .results-count {
+      font-size: 0.82rem;
+      color: #4a4a4a;
+      font-weight: 500;
+    }
+    .results-count strong { color: #1C244B; }
+    .reset-btn {
+      background: none;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      color: #4a4a4a;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+      visibility: hidden;
+    }
+    .reset-btn.visible { visibility: visible; }
+
+    /* ── Class list ── */
+    .class-list {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .class-row {
+      display: flex;
+      align-items: center;
+      padding: 18px 24px;
+      border-bottom: 1px solid #E5E7EB;
+    }
+    .class-row:last-of-type { border-bottom: none; }
+    .class-row.hidden { display: none; }
+    .class-row.fade-in {
+      animation: rowIn 0.28s ease both;
+    }
+    @keyframes rowIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Left color stripe */
+    .col-stripe {
+      width: 4px;
+      height: 44px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-right: 20px;
+    }
+
+    /* Day + time + address */
+    .col-schedule {
+      flex: 0 0 190px;
+      min-width: 0;
+    }
+    .row-day {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #4a4a4a;
+      margin-bottom: 2px;
+    }
+    .row-time {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1C244B;
+      white-space: nowrap;
+    }
+    .row-address {
+      font-size: 0.68rem;
+      color: #4a4a4a;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Level badge */
+    .col-level {
+      flex: 0 0 auto;
+      margin-right: auto;
+      padding-left: 20px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .badge-first-year   { background: #3B82F6; }
+    .badge-second-year  { background: #6366F1; }
+    .badge-second-plus  { background: #8B5CF6; }
+    .badge-intermediate { background: #F43F5E; }
+
+    /* Start date */
+    .col-start {
+      flex: 0 0 auto;
+      text-align: center;
+      padding: 0 24px;
+    }
+    .start-lbl {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #4a4a4a;
+      font-weight: 600;
+    }
+    .start-date {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #111827;
+      white-space: nowrap;
+    }
+
+    /* Price */
+    .col-price {
+      flex: 0 0 auto;
+      text-align: right;
+      padding-right: 24px;
+    }
+    .price-main {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1C244B;
+    }
+    .price-sub {
+      font-size: 0.68rem;
+      color: #4a4a4a;
+    }
+
+    /* CTA */
+    .col-cta { flex: 0 0 auto; }
+    .signup-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #E2C033;
+      color: #000;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .signup-btn:hover { background: #d4b02a; transform: translateY(-1px); }
+    .signup-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* ── Empty state ── */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 52px 24px;
+    }
+    .empty-state.visible { display: block; }
+    .empty-state h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1C244B;
+      margin-bottom: 6px;
+    }
+    .empty-state p { font-size: 0.85rem; color: #4a4a4a; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .class-row { flex-wrap: wrap; gap: 10px; padding: 16px 18px; }
+      .col-stripe { height: 36px; margin-right: 12px; }
+      .col-schedule { flex: 1 0 140px; }
+      .col-level { padding-left: 0; margin-right: 0; }
+      .col-start { padding: 0; }
+      .col-price { padding-right: 0; }
+      .col-cta { width: 100%; }
+      .signup-btn { width: 100%; justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .col-start { display: none; }
+      .page-header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- Page header -->
+  <div class="page-header">
+    <h1>Tango Class Schedule</h1>
+    <p>Spring 2026 &middot; 15-session courses &middot; Brussels &amp; Woluwe-Saint-Pierre</p>
+    <div class="dropin-badge">
+      <span class="dot"></span>
+      Drop-in available &mdash; &euro;20 per class
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters">
+    <div class="filter-group">
+      <div class="filter-label">Location</div>
+      <div class="toggle-group" id="locationFilters">
+        <button class="toggle-btn active" data-loc="all">All locations</button>
+        <button class="toggle-btn" data-loc="brussels">
+          <span class="loc-dot" style="background:#1C244B;"></span>Brussels
+        </button>
+        <button class="toggle-btn" data-loc="woluwe">
+          <span class="loc-dot" style="background:#E2C033; outline: 1px solid #ccc;"></span>Woluwe-Saint-Pierre
+        </button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <div class="filter-label">Level</div>
+      <div class="toggle-group" id="levelFilters">
+        <button class="level-pill active" data-level="all">All levels</button>
+        <button class="level-pill" data-level="first-year">First Year</button>
+        <button class="level-pill" data-level="second-year">Second Year</button>
+        <button class="level-pill" data-level="second-plus">Second Year PLUS</button>
+        <button class="level-pill" data-level="intermediate">Intermediate</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results bar -->
+  <div class="results-header">
+    <div class="results-count" id="resultsCount">Showing <strong>8</strong> of 8 classes</div>
+    <button class="reset-btn" id="resetBtn" onclick="resetFilters()">Reset filters</button>
+  </div>
+
+  <!-- Class list -->
+  <div class="class-list" id="classList">
+
+    <!-- MON · Brussels · Second Year -->
+    <div class="class-row fade-in" data-loc="brussels" data-level="second-year">
+      <div class="col-stripe" style="background:#1C244B;"></div>
+      <div class="col-schedule">
+        <div class="row-day">Monday</div>
+        <div class="row-time">19:00 &ndash; 20:00</div>
+        <div class="row-address">Rue du Marais 68, Brussels</div>
+      </div>
+      <div class="col-level"><span class="badge badge-second-year">Second Year</span></div>
+      <div class="col-start">
+        <div class="start-lbl">Starts</div>
+        <div class="start-date">26 Jan 2026</div>
+      </div>
+      <div class="col-price">
+        <div class="price-main">&euro;195</div>
+        <div class="price-sub">15 sessions</div>
+      </div>
+      <div class="col-cta">
+        <a href="#" class="signup-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Sign Up
+        </a>
+      </div>
+    </div>
+
+    <!-- TUE · Woluwe · Second Year -->
+    <div class="class-row fade-in" data-loc="woluwe" data-level="second-year">
+      <div class="col-stripe" style="background:#E2C033;"></div>
+      <div class="col-schedule">
+        <div class="row-day">Tuesday</div>
+        <div class="row-time">19:00 &ndash; 20:00</div>
+        <div class="row-address">Avenue Orban 54, Woluwe-Saint-Pierre</div>
+      </div>
+      <div class="col-level"><span class="badge badge-second-year">Second Year</span></div>
+      <div class="col-start">
+        <div class="start-lbl">Starts</div>
+        <div class="start-date">27 Jan 2026</div>
+      </div>
+      <div class="col-price">
+        <div class="price-main">&euro;195</div>
+        <div class="price-sub">15 sessions</div>
+      </div>
+      <div class="col-cta">
+        <a href="#" class="signup-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Sign Up
+        </a>
+      </div>
+    </div>
+
+    <!-- TUE · Woluwe · Second Year PLUS -->
+    <div class="class-row fade-in" data-loc="woluwe" data-level="second-plus">
+      <div class="col-stripe" style="background:#E2C033;"></div>
+      <div class="col-schedule">
+        <div class="row-day">Tuesday</div>
+        <div class="row-time">20:00 &ndash; 21:00</div>
+        <div class="row-address">Avenue Orban 54, Woluwe-Saint-Pierre</div>
+      </div>
+      <div class="col-level"><span class="badge badge-second-plus">Second Year PLUS</span></div>
+      <div class="col-start">
+        <div class="start-lbl">Starts</div>
+        <div class="start-date">27 Jan 2026</div>
+      </div>
+      <div class="col-price">
+        <div class="price-main">&euro;195</div>
+        <div class="price-sub">15 sessions</div>
+      </div>
+      <div class="col-cta">
+        <a href="#" class="signup-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Sign Up
+        </a>
+      </div>
+    </div>
+
+    <!-- WED · Brussels · First Year -->
+    <div class="class-row fade-in" data-loc="brussels" data-level="first-year">
+      <div class="col-stripe" style="background:#1C244B;"></div>
+      <div class="col-schedule">
+        <div class="row-day">Wednesday</div>
+        <div class="row-time">18:30 &ndash; 19:30</div>
+        <div class="row-address">Rue du Marais 68, Brussels</div>
+      </div>
+      <div class="col-level"><span class="badge badge-first-year">First Year</span></div>
+      <div class="col-start">
+        <div class="start-lbl">Starts</div>
+        <div class="start-date">28 Jan 2026</div>
+      </div>
+      <div class="col-price">
+        <div class="price-main">&euro;195</div>
+        <div class="price-sub">15 sessions</div>
+      </div>
+      <div class="col-cta">
+        <a href="#" class="signup-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Sign Up
+        </a>
+      </div>
+    </div>
+
+    <!-- WED · Brussels · Second Year PLUS -->
+    <div class="class-row fade-in" data-loc="brussels" data-level="second-plus">
+      <div class="col-stripe" style="background:#1C244B;"></div>
+      <div class="col-schedule">
+        <div class="row-day">Wednesday</div>
+        <div class="row-time">19:30 &ndash; 20:30</div>
+        <div class="row-address">Rue du Marais 68, Brussels</div>
+      </div>
+      <div class="col-level"><span class="badge badge-second-plus">Second Year PLUS</span></div>
+      <div class="col-start">
+        <div class="start-lbl">Starts</div>
+        <div class="start-date">28 Jan 2026</div>
+      </div>
+      <div class="col-price">
+        <div class="price-main">&euro;195</div>
+        <div class="price-sub">15 sessions</div>
+      </div>
+      <div class="col-cta">
+        <a href="#" class="signup-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Sign Up
+        </a>
+      </div>
+    </div>
+
+    <!-- WED · Brussels · Intermediate -->
+    <div class="class-row fade-in" data-loc="brussels" data-level="intermediate">
+      <div class="col-stripe" style="background:#1C244B;"></div>
+      <div class="col-schedule">
+        <div class="row-day">Wednesday</div>
+        <div class="row-time">20:30 &ndash; 21:30</div>
+        <div class="row-address">Rue du Marais 68, Brussels</div>
+      </div>
+      <div class="col-level"><span class="badge badge-intermediate">Intermediate</span></div>
+      <div class="col-start">
+        <div class="start-lbl">Starts</div>
+        <div class="start-date">28 Jan 2026</div>
+      </div>
+      <div class="col-price">
+        <div class="price-main">&euro;195</div>
+        <div class="price-sub">15 sessions</div>
+      </div>
+      <div class="col-cta">
+        <a href="#" class="signup-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Sign Up
+        </a>
+      </div>
+    </div>
+
+    <!-- THU · Woluwe · First Year -->
+    <div class="class-row fade-in" data-loc="woluwe" data-level="first-year">
+      <div class="col-stripe" style="background:#E2C033;"></div>
+      <div class="col-schedule">
+        <div class="row-day">Thursday</div>
+        <div class="row-time">18:30 &ndash; 19:30</div>
+        <div class="row-address">Avenue Orban 54, Woluwe-Saint-Pierre</div>
+      </div>
+      <div class="col-level"><span class="badge badge-first-year">First Year</span></div>
+      <div class="col-start">
+        <div class="start-lbl">Starts</div>
+        <div class="start-date">29 Jan 2026</div>
+      </div>
+      <div class="col-price">
+        <div class="price-main">&euro;195</div>
+        <div class="price-sub">15 sessions</div>
+      </div>
+      <div class="col-cta">
+        <a href="#" class="signup-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Sign Up
+        </a>
+      </div>
+    </div>
+
+    <!-- THU · Woluwe · Intermediate -->
+    <div class="class-row fade-in" data-loc="woluwe" data-level="intermediate">
+      <div class="col-stripe" style="background:#E2C033;"></div>
+      <div class="col-schedule">
+        <div class="row-day">Thursday</div>
+        <div class="row-time">20:30 &ndash; 21:30</div>
+        <div class="row-address">Avenue Orban 54, Woluwe-Saint-Pierre</div>
+      </div>
+      <div class="col-level"><span class="badge badge-intermediate">Intermediate</span></div>
+      <div class="col-start">
+        <div class="start-lbl">Starts</div>
+        <div class="start-date">29 Jan 2026</div>
+      </div>
+      <div class="col-price">
+        <div class="price-main">&euro;195</div>
+        <div class="price-sub">15 sessions</div>
+      </div>
+      <div class="col-cta">
+        <a href="#" class="signup-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Sign Up
+        </a>
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <div class="empty-state" id="emptyState">
+      <h3>No classes match your filters</h3>
+      <p>Try adjusting your location or level selection.</p>
+    </div>
+
+  </div><!-- /.class-list -->
+</div><!-- /.page-wrapper -->
+
+<script>
+  const TOTAL = 8;
+  let activeLoc = 'all';
+  let activeLevel = 'all';
+
+  function applyFilters() {
+    const rows = document.querySelectorAll('.class-row');
+    let visible = 0;
+
+    rows.forEach(row => {
+      row.classList.remove('fade-in');
+      const locMatch   = activeLoc   === 'all' || row.dataset.loc   === activeLoc;
+      const levelMatch = activeLevel === 'all' || row.dataset.level === activeLevel;
+      const show = locMatch && levelMatch;
+
+      if (show) {
+        row.classList.remove('hidden');
+        setTimeout(() => {
+          void row.offsetWidth;
+          row.classList.add('fade-in');
+        }, visible * 40);
+        visible++;
+      } else {
+        row.classList.add('hidden');
+      }
+    });
+
+    document.getElementById('resultsCount').innerHTML =
+      `Showing <strong>${visible}</strong> of ${TOTAL} classes`;
+
+    document.getElementById('emptyState').classList.toggle('visible', visible === 0);
+
+    const isFiltered = activeLoc !== 'all' || activeLevel !== 'all';
+    document.getElementById('resetBtn').classList.toggle('visible', isFiltered);
+  }
+
+  document.getElementById('locationFilters').addEventListener('click', e => {
+    const btn = e.target.closest('[data-loc]');
+    if (!btn) return;
+    document.querySelectorAll('[data-loc]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeLoc = btn.dataset.loc;
+    applyFilters();
+  });
+
+  document.getElementById('levelFilters').addEventListener('click', e => {
+    const btn = e.target.closest('[data-level]');
+    if (!btn) return;
+    document.querySelectorAll('[data-level]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeLevel = btn.dataset.level;
+    applyFilters();
+  });
+
+  function resetFilters() {
+    activeLoc = 'all';
+    activeLevel = 'all';
+    document.querySelectorAll('[data-loc]').forEach(b =>
+      b.classList.toggle('active', b.dataset.loc === 'all'));
+    document.querySelectorAll('[data-level]').forEach(b =>
+      b.classList.toggle('active', b.dataset.level === 'all'));
+    applyFilters();
+  }
+</script>
+</body>
+</html>

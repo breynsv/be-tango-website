@@ -665,7 +665,7 @@
       '002',              // 2  Version
       '1',                // 3  Character set (UTF-8)
       'SCT',              // 4  Identification
-      'GEBABEBB',         // 5  BIC (BNP Paribas Fortis Belgium)
+      data.bank_bic || 'GEBABEBB', // 5  BIC
       name,               // 6  Beneficiary name
       iban,               // 7  IBAN
       'EUR' + amount.toFixed(2), // 8  Amount

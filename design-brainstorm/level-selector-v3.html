@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BE-TANGO — Find Your Level V3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Design Tokens ─────────────────────────────────────────── */
+    :root {
+      --white:       #FFFFFF;
+      --bg-light:    #F3F5F8;
+      --black:       #000000;
+      --gold:        #E2C033;
+      --gold-hover:  #cba92a;
+      --gold-light:  #FBF4D0;
+      --navy:        #1C244B;
+      --text:        #111827;
+      --muted:       #4a4a4a;
+      --border:      #E5E7EB;
+      --radius:      8px;
+
+      /* Level colors */
+      --first-year-bg:   #3B82F6;
+      --second-year-bg:  #6366F1;
+      --second-plus-bg:  #8B5CF6;
+      --intermediate-bg: #F43F5E;
+
+      --first-year-light:   #EFF6FF;
+      --second-year-light:  #EEF2FF;
+      --second-plus-light:  #F5F3FF;
+      --intermediate-light: #FFF1F2;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-light);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ─── Page ───────────────────────────────────────────────────── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ─── Header ─────────────────────────────────────────────────── */
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .header .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .header h1 {
+      font-size: clamp(24px, 5vw, 36px);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .header p {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ─── Journey Section ────────────────────────────────────────── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    /* ─── Timeline Container ─────────────────────────────────────── */
+    .timeline-wrap {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 40px 32px 32px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    /* ─── Nodes Row ──────────────────────────────────────────────── */
+    .nodes-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: relative;
+      margin-bottom: 0;
+    }
+
+    /* Multi-color connecting line (faded) */
+    .nodes-row::before {
+      content: '';
+      position: absolute;
+      top: 22px;
+      left: calc(12.5% + 4px);
+      right: calc(12.5% + 4px);
+      height: 3px;
+      background: linear-gradient(to right, var(--first-year-bg), var(--second-year-bg), var(--second-plus-bg), var(--intermediate-bg));
+      opacity: 0.2;
+      border-radius: 2px;
+      z-index: 0;
+    }
+
+    /* Gold progress overlay */
+    .nodes-row .progress-line {
+      position: absolute;
+      top: 22px;
+      left: calc(12.5% + 4px);
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      z-index: 1;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    /* ─── Single Node ────────────────────────────────────────────── */
+    .level-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 25%;
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+      padding-bottom: 4px;
+    }
+
+    .node-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 3px solid var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 10px;
+      transition: all 0.25s ease;
+    }
+    .level-node:hover .node-circle {
+      border-color: var(--gold);
+      transform: scale(1.08);
+      box-shadow: 0 4px 14px rgba(226,192,51,0.25);
+    }
+    .level-node.active .node-circle {
+      border-color: transparent;
+      transform: scale(1.15);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    }
+    .level-node[data-level="first-year"].active .node-circle   { background: var(--first-year-bg); }
+    .level-node[data-level="second-year"].active .node-circle  { background: var(--second-year-bg); }
+    .level-node[data-level="second-plus"].active .node-circle  { background: var(--second-plus-bg); }
+    .level-node[data-level="intermediate"].active .node-circle { background: var(--intermediate-bg); }
+
+    .node-circle .check { display: none; color: white; font-size: 18px; font-weight: 700; }
+    .level-node.active .node-circle .check { display: block; }
+    .level-node.active .node-circle .icon  { display: none; }
+
+    .node-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.3;
+      transition: color 0.2s;
+      max-width: 80px;
+    }
+    .level-node.active .node-label { font-weight: 700; color: var(--navy); }
+    .level-node:hover .node-label  { color: var(--navy); }
+
+    .node-exp {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 3px;
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    /* ─── Detail Card ────────────────────────────────────────────── */
+    .detail-area { margin-top: 28px; overflow: hidden; }
+
+    .detail-card {
+      border-radius: var(--radius);
+      padding: 24px;
+      display: none;
+      animation: fadeSlideIn 0.25s ease;
+    }
+    .detail-card.visible { display: block; }
+
+    .detail-card[data-level="first-year"]   { background: var(--first-year-light);   border: 1.5px solid #BFDBFE; }
+    .detail-card[data-level="second-year"]  { background: var(--second-year-light);  border: 1.5px solid #C7D2FE; }
+    .detail-card[data-level="second-plus"]  { background: var(--second-plus-light);  border: 1.5px solid #DDD6FE; }
+    .detail-card[data-level="intermediate"] { background: var(--intermediate-light); border: 1.5px solid #FECDD3; }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .detail-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .detail-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .detail-card[data-level="first-year"]   .detail-badge { background: var(--first-year-bg); }
+    .detail-card[data-level="second-year"]  .detail-badge { background: var(--second-year-bg); }
+    .detail-card[data-level="second-plus"]  .detail-badge { background: var(--second-plus-bg); }
+    .detail-card[data-level="intermediate"] .detail-badge { background: var(--intermediate-bg); }
+
+    .detail-exp   { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .detail-title { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .detail-desc  { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; max-width: 560px; }
+
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
+    .skill-tag {
+      padding: 4px 11px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(0,0,0,0.1);
+      color: var(--text);
+    }
+
+    .detail-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .detail-schedule { font-size: 12px; color: var(--muted); }
+    .detail-schedule strong { color: var(--navy); font-weight: 600; }
+
+    .signup-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px 20px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .signup-btn:hover { background: var(--gold-hover); transform: translateY(-1px); }
+
+    /* ─── Divider ────────────────────────────────────────────────── */
+    .section-divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+    /* ─── Quiz Section ───────────────────────────────────────────── */
+    .quiz-card {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .quiz-header { text-align: center; margin-bottom: 32px; }
+    .quiz-header h2 { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .quiz-header p  { font-size: 13px; color: var(--muted); }
+
+    /* Progress bar */
+    .quiz-progress-bar { height: 4px; background: var(--border); border-radius: 4px; margin-bottom: 28px; overflow: hidden; }
+    .quiz-progress-fill { height: 100%; background: var(--gold); border-radius: 4px; transition: width 0.35s ease; }
+
+    /* Question */
+    .quiz-step { display: none; }
+    .quiz-step.visible { display: block; animation: fadeSlideIn 0.2s ease; }
+
+    .question-num  { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .question-text { font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 20px; line-height: 1.4; }
+
+    .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+      background: var(--bg-light);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-size: 14px;
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      text-align: left;
+    }
+    .quiz-option:hover    { border-color: var(--gold); background: var(--gold-light); }
+    .quiz-option.selected { border-color: var(--gold); background: var(--gold-light); font-weight: 600; }
+    .quiz-option .opt-icon { font-size: 18px; flex-shrink: 0; width: 28px; text-align: center; }
+
+    /* Navigation */
+    .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; gap: 10px; }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-ghost:hover { border-color: var(--navy); color: var(--navy); }
+
+    .btn-next {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 22px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-next:hover    { background: #0f152e; transform: translateY(-1px); }
+    .btn-next:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    /* Result */
+    .quiz-result { display: none; text-align: center; animation: fadeSlideIn 0.3s ease; }
+    .quiz-result.visible { display: block; }
+
+    .result-icon    { font-size: 40px; margin-bottom: 12px; }
+    .result-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .result-title   { font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .result-desc    { font-size: 14px; color: var(--muted); max-width: 420px; margin: 0 auto 20px; line-height: 1.6; }
+    .result-badge   { display: inline-block; padding: 5px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 24px; }
+    .result-actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+
+    .btn-restart {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 9px 18px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-restart:hover { border-color: var(--navy); color: var(--navy); }
+
+    /* ─── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 560px) {
+      .timeline-wrap { padding: 28px 20px 24px; }
+      .nodes-row::before { left: calc(12.5% + 2px); right: calc(12.5% + 2px); }
+      .node-circle { width: 38px; height: 38px; font-size: 14px; }
+      .node-label  { font-size: 10px; max-width: 64px; }
+      .quiz-card   { padding: 24px 18px; }
+      .detail-footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Header -->
+  <div class="header">
+    <span class="eyebrow">Class Levels</span>
+    <h1>Your Tango Journey</h1>
+    <p>From your first steps to advanced technique — explore the four levels and find where you belong.</p>
+  </div>
+
+  <!-- Journey Label -->
+  <div class="section-label">Select a level to explore</div>
+
+  <!-- Timeline Card -->
+  <div class="timeline-wrap">
+
+    <div class="nodes-row" id="nodesRow">
+      <div class="progress-line" id="progressLine"></div>
+
+      <div class="level-node" data-level="first-year" tabindex="0" role="button" aria-label="First Year">
+        <div class="node-circle"><span class="icon">&#127807;</span><span class="check">&#10003;</span></div>
+        <div class="node-label">First Year</div>
+        <div class="node-exp">New beginner</div>
+      </div>
+
+      <div class="level-node" data-level="second-year" tabindex="0" role="button" aria-label="Second Year">
+        <div class="node-circle"><span class="icon">&#127807;</span><span class="check">&#10003;</span></div>
+        <div class="node-label">Second Year</div>
+        <div class="node-exp">1&ndash;2 years</div>
+      </div>
+
+      <div class="level-node" data-level="second-plus" tabindex="0" role="button" aria-label="Second Year PLUS">
+        <div class="node-circle"><span class="icon">&#127795;</span><span class="check">&#10003;</span></div>
+        <div class="node-label">Second Year PLUS</div>
+        <div class="node-exp">2&ndash;3 years</div>
+      </div>
+
+      <div class="level-node" data-level="intermediate" tabindex="0" role="button" aria-label="Intermediate">
+        <div class="node-circle"><span class="icon">&#11088;</span><span class="check">&#10003;</span></div>
+        <div class="node-label">Intermediate</div>
+        <div class="node-exp">4+ years</div>
+      </div>
+    </div>
+
+    <!-- Detail Cards -->
+    <div class="detail-area">
+
+      <div class="detail-card" data-level="first-year">
+        <div class="detail-top">
+          <span class="detail-badge">First Year</span>
+          <span class="detail-exp">Completed beginners welcome</span>
+        </div>
+        <div class="detail-title">Foundation &amp; Core Technique</div>
+        <div class="detail-desc">You have taken your first steps in tango and are ready to build a solid foundation. This level focuses on posture, walking in the cross-system, and the fundamental connection with your partner.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Cross-system walks</span>
+          <span class="skill-tag">Ochos</span>
+          <span class="skill-tag">Posture &amp; embrace</span>
+          <span class="skill-tag">Partner connection</span>
+          <span class="skill-tag">Basic musicality</span>
+        </div>
+        <div class="detail-footer">
+          <div class="detail-schedule">
+            <strong>Brussels</strong> &mdash; Wed 18:30&ndash;19:30 &nbsp;|&nbsp;
+            <strong>Woluwe</strong> &mdash; Thu 18:30&ndash;19:30
+          </div>
+          <button class="signup-btn" onclick="handleSignup('First Year')">Sign Up &mdash; &euro;195</button>
+        </div>
+      </div>
+
+      <div class="detail-card" data-level="second-year">
+        <div class="detail-top">
+          <span class="detail-badge">Second Year</span>
+          <span class="detail-exp">1&ndash;2 years of experience</span>
+        </div>
+        <div class="detail-title">Building Your Vocabulary</div>
+        <div class="detail-desc">You can walk and do basic figures &mdash; now it is time to deepen your partner connection and build a real movement vocabulary with turns, pauses and dynamic changes.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Molinetes</span>
+          <span class="skill-tag">Turns &amp; pivots</span>
+          <span class="skill-tag">Basic patterns</span>
+          <span class="skill-tag">Lead &amp; follow</span>
+          <span class="skill-tag">Floor navigation</span>
+        </div>
+        <div class="detail-footer">
+          <div class="detail-schedule">
+            <strong>Brussels</strong> &mdash; Mon 19:00&ndash;20:00 &nbsp;|&nbsp;
+            <strong>Woluwe</strong> &mdash; Tue 19:00&ndash;20:00
+          </div>
+          <button class="signup-btn" onclick="handleSignup('Second Year')">Sign Up &mdash; &euro;195</button>
+        </div>
+      </div>
+
+      <div class="detail-card" data-level="second-plus">
+        <div class="detail-top">
+          <span class="detail-badge">Second Year PLUS</span>
+          <span class="detail-exp">2&ndash;3 years of experience</span>
+        </div>
+        <div class="detail-title">Complexity &amp; Musicality</div>
+        <div class="detail-desc">You are comfortable with the basics and eager for more. This level introduces complex sequences, refined musicality and improvisational thinking &mdash; making your dancing feel truly alive.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Complex sequences</span>
+          <span class="skill-tag">Musicality</span>
+          <span class="skill-tag">Improvisation</span>
+          <span class="skill-tag">Adornments</span>
+          <span class="skill-tag">Dynamic variation</span>
+        </div>
+        <div class="detail-footer">
+          <div class="detail-schedule">
+            <strong>Brussels</strong> &mdash; Wed 19:30&ndash;20:30 &nbsp;|&nbsp;
+            <strong>Woluwe</strong> &mdash; Tue 20:00&ndash;21:00
+          </div>
+          <button class="signup-btn" onclick="handleSignup('Second Year PLUS')">Sign Up &mdash; &euro;195</button>
+        </div>
+      </div>
+
+      <div class="detail-card" data-level="intermediate">
+        <div class="detail-top">
+          <span class="detail-badge">Intermediate</span>
+          <span class="detail-exp">4+ years of experience</span>
+        </div>
+        <div class="detail-title">Advanced Technique &amp; Expression</div>
+        <div class="detail-desc">For experienced dancers ready to tackle the full palette of Argentine tango &mdash; high boleos, ganchos, vals and milonga rhythms. Expression, flow and refined leading take centre stage.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Boleos</span>
+          <span class="skill-tag">Ganchos</span>
+          <span class="skill-tag">Vals</span>
+          <span class="skill-tag">Milonga rhythm</span>
+          <span class="skill-tag">Sacadas</span>
+          <span class="skill-tag">Stage presence</span>
+        </div>
+        <div class="detail-footer">
+          <div class="detail-schedule">
+            <strong>Brussels</strong> &mdash; Wed 20:30&ndash;21:30 &nbsp;|&nbsp;
+            <strong>Woluwe</strong> &mdash; Thu 20:30&ndash;21:30
+          </div>
+          <button class="signup-btn" onclick="handleSignup('Intermediate')">Sign Up &mdash; &euro;195</button>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /timeline-wrap -->
+
+  <!-- Section Divider -->
+  <hr class="section-divider">
+
+  <!-- Quiz Section -->
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <h2>Find Your Starting Point</h2>
+      <p>Answer 3 quick questions and we will recommend the right level for you.</p>
+    </div>
+
+    <div class="quiz-progress-bar">
+      <div class="quiz-progress-fill" id="quizProgressFill" style="width: 0%"></div>
+    </div>
+
+    <!-- Q1 -->
+    <div class="quiz-step visible" id="step-0">
+      <div class="question-num">Question 1 of 3</div>
+      <div class="question-text">Have you taken tango classes before?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-q="0" data-v="none">
+          <span class="opt-icon">&#128581;</span> No, I am completely new to tango
+        </button>
+        <button class="quiz-option" data-q="0" data-v="some">
+          <span class="opt-icon">&#128694;</span> Yes &mdash; less than 2 years
+        </button>
+        <button class="quiz-option" data-q="0" data-v="moderate">
+          <span class="opt-icon">&#128378;</span> Yes &mdash; 2 to 4 years
+        </button>
+        <button class="quiz-option" data-q="0" data-v="experienced">
+          <span class="opt-icon">&#11088;</span> Yes &mdash; more than 4 years
+        </button>
+      </div>
+      <div class="quiz-nav">
+        <span></span>
+        <button class="btn-next" id="next-0" disabled onclick="nextStep(0)">Next &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-step" id="step-1">
+      <div class="question-num">Question 2 of 3</div>
+      <div class="question-text">Which movements are you comfortable with?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-q="1" data-v="basic">
+          <span class="opt-icon">&#128062;</span> Walking and basic steps only
+        </button>
+        <button class="quiz-option" data-q="1" data-v="ochos">
+          <span class="opt-icon">&#128260;</span> Ochos, cross-system, basic turns
+        </button>
+        <button class="quiz-option" data-q="1" data-v="sequences">
+          <span class="opt-icon">&#127744;</span> Complex sequences and musicality
+        </button>
+        <button class="quiz-option" data-q="1" data-v="advanced">
+          <span class="opt-icon">&#128167;</span> Boleos, ganchos, sacadas
+        </button>
+      </div>
+      <div class="quiz-nav">
+        <button class="btn-ghost" onclick="prevStep(1)">&larr; Back</button>
+        <button class="btn-next" id="next-1" disabled onclick="nextStep(1)">Next &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-step" id="step-2">
+      <div class="question-num">Question 3 of 3</div>
+      <div class="question-text">How often do you dance at milongas?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" data-q="2" data-v="never">
+          <span class="opt-icon">&#127968;</span> I have not been to a milonga yet
+        </button>
+        <button class="quiz-option" data-q="2" data-v="rarely">
+          <span class="opt-icon">&#128197;</span> Occasionally &mdash; a few times a year
+        </button>
+        <button class="quiz-option" data-q="2" data-v="monthly">
+          <span class="opt-icon">&#127926;</span> Monthly or more
+        </button>
+        <button class="quiz-option" data-q="2" data-v="regularly">
+          <span class="opt-icon">&#128293;</span> Weekly &mdash; it is a regular practice
+        </button>
+      </div>
+      <div class="quiz-nav">
+        <button class="btn-ghost" onclick="prevStep(2)">&larr; Back</button>
+        <button class="btn-next" id="next-2" disabled onclick="showResult()">See my level &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div class="quiz-result" id="quizResult">
+      <div class="result-icon" id="resultIcon"></div>
+      <div class="result-eyebrow">Your recommended level</div>
+      <div class="result-title" id="resultTitle"></div>
+      <span class="result-badge" id="resultBadge"></span>
+      <div class="result-desc" id="resultDesc"></div>
+      <div class="result-actions">
+        <button class="btn-restart" onclick="restartQuiz()">Retake quiz</button>
+        <button class="signup-btn" id="resultSignupBtn">Sign Up &mdash; &euro;195</button>
+      </div>
+    </div>
+
+  </div><!-- /quiz-card -->
+
+</div><!-- /page -->
+
+<script>
+  /* ─── Level Data ─────────────────────────────────────────────────── */
+  var LEVELS = {
+    'first-year': {
+      name:      'First Year',
+      badgeBg:   '#3B82F6',
+      icon:      '&#127807;',
+      desc:      'You are ready to build a solid foundation. Our First Year class is designed for completed beginners who want to develop good posture, partner connection and core technique.',
+      nodeIndex: 0,
+    },
+    'second-year': {
+      name:      'Second Year',
+      badgeBg:   '#6366F1',
+      icon:      '&#127807;',
+      desc:      'You have the basics down and are ready to expand your movement vocabulary. The Second Year class will develop your turns, molinetes and partner awareness.',
+      nodeIndex: 1,
+    },
+    'second-plus': {
+      name:      'Second Year PLUS',
+      badgeBg:   '#8B5CF6',
+      icon:      '&#127795;',
+      desc:      'Your dance is flowing but you want more depth. Second Year PLUS introduces complex sequences, refined musicality and improvisational expression.',
+      nodeIndex: 2,
+    },
+    'intermediate': {
+      name:      'Intermediate',
+      badgeBg:   '#F43F5E',
+      icon:      '&#11088;',
+      desc:      'You are an experienced dancer ready for advanced technique. Boleos, ganchos, vals, milonga rhythm &mdash; the full palette of Argentine tango awaits.',
+      nodeIndex: 3,
+    },
+  };
+
+  var PROGRESS_WIDTHS = ['0%', '33%', '66%', '100%'];
+
+  /* ─── Timeline ───────────────────────────────────────────────────── */
+  var activeLevel = null;
+
+  document.querySelectorAll('.level-node').forEach(function(node) {
+    node.addEventListener('click', function() { selectLevel(node.dataset.level); });
+    node.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectLevel(node.dataset.level); }
+    });
+  });
+
+  function selectLevel(levelKey) {
+    if (activeLevel === levelKey) {
+      activeLevel = null;
+      document.querySelectorAll('.level-node').forEach(function(n) { n.classList.remove('active'); });
+      document.querySelectorAll('.detail-card').forEach(function(c) { c.classList.remove('visible'); });
+      document.getElementById('progressLine').style.width = '0%';
+      return;
+    }
+    activeLevel = levelKey;
+    var lvl = LEVELS[levelKey];
+
+    document.querySelectorAll('.level-node').forEach(function(n) {
+      n.classList.toggle('active', n.dataset.level === levelKey);
+    });
+    document.querySelectorAll('.detail-card').forEach(function(c) {
+      c.classList.toggle('visible', c.dataset.level === levelKey);
+    });
+    document.getElementById('progressLine').style.width = PROGRESS_WIDTHS[lvl.nodeIndex];
+
+    var card = document.querySelector('.detail-card[data-level="' + levelKey + '"]');
+    if (card) { setTimeout(function() { card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 50); }
+  }
+
+  /* ─── Quiz ───────────────────────────────────────────────────────── */
+  var currentStep = 0;
+  var answers = {};
+
+  function updateProgress() {
+    document.getElementById('quizProgressFill').style.width = Math.round((currentStep / 3) * 100) + '%';
+  }
+
+  document.querySelectorAll('.quiz-option').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var q = btn.dataset.q;
+      answers[q] = btn.dataset.v;
+      document.querySelectorAll('.quiz-option[data-q="' + q + '"]').forEach(function(b) { b.classList.remove('selected'); });
+      btn.classList.add('selected');
+      var nextBtn = document.getElementById('next-' + q);
+      if (nextBtn) nextBtn.disabled = false;
+    });
+  });
+
+  function nextStep(fromStep) {
+    if (!answers[fromStep]) return;
+    document.getElementById('step-' + fromStep).classList.remove('visible');
+    currentStep = fromStep + 1;
+    updateProgress();
+    var next = document.getElementById('step-' + currentStep);
+    if (next) next.classList.add('visible');
+  }
+
+  function prevStep(toStep) {
+    document.getElementById('step-' + toStep).classList.remove('visible');
+    currentStep = toStep - 1;
+    updateProgress();
+    var prev = document.getElementById('step-' + currentStep);
+    if (prev) prev.classList.add('visible');
+  }
+
+  function computeLevel() {
+    var expScore    = { none: 0, some: 1, moderate: 2, experienced: 3 };
+    var skillScore  = { basic: 0, ochos: 1, sequences: 2, advanced: 3 };
+    var milongaScore= { never: 0, rarely: 1, monthly: 2, regularly: 3 };
+    var score = (expScore[answers[0]] || 0) + (skillScore[answers[1]] || 0) + (milongaScore[answers[2]] || 0);
+    if (score <= 1) return 'first-year';
+    if (score <= 3) return 'second-year';
+    if (score <= 6) return 'second-plus';
+    return 'intermediate';
+  }
+
+  function showResult() {
+    if (!answers[2]) return;
+    document.getElementById('step-2').classList.remove('visible');
+    document.getElementById('quizProgressFill').style.width = '100%';
+
+    var levelKey = computeLevel();
+    var lvl = LEVELS[levelKey];
+
+    document.getElementById('resultIcon').innerHTML = lvl.icon;
+    document.getElementById('resultTitle').textContent = lvl.name;
+    document.getElementById('resultDesc').innerHTML = lvl.desc;
+
+    var badge = document.getElementById('resultBadge');
+    badge.textContent = lvl.name;
+    badge.style.background = lvl.badgeBg;
+
+    var signupBtn = document.getElementById('resultSignupBtn');
+    signupBtn.onclick = function() { handleSignup(lvl.name); };
+
+    document.getElementById('quizResult').classList.add('visible');
+    selectLevel(levelKey);
+  }
+
+  function restartQuiz() {
+    currentStep = 0;
+    answers = {};
+    document.getElementById('quizResult').classList.remove('visible');
+    document.querySelectorAll('.quiz-option').forEach(function(b) { b.classList.remove('selected'); });
+    document.querySelectorAll('.quiz-step').forEach(function(s) { s.classList.remove('visible'); });
+    document.querySelectorAll('.btn-next').forEach(function(b) { b.disabled = true; });
+    document.getElementById('step-0').classList.add('visible');
+    document.getElementById('quizProgressFill').style.width = '0%';
+  }
+
+  function handleSignup(levelName) {
+    alert('Enrollment: ' + levelName + '\n\n(This will open the enrollment form.)');
+  }
+</script>
+
+</body>
+</html>

@@ -38,8 +38,8 @@
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.6"></noscript>
 
   <!-- JSON-LD Structured Data for Private Lessons -->
   <script type="application/ld+json">
@@ -127,14 +127,14 @@
               <a href="../">Cours de Tango</a>
               <ul class="dropdown-menu">
                 <li><a href="../debutants/">Débutants</a></li>
-                <li><a href="../experienced/">Expérimentés</a></li>
+                <li><a href="../experimentes/">Expérimentés</a></li>
                 <li><a href="../particuliers/" class="active">Cours Particuliers</a></li>
                 <li><a href="../online/">Cours en Ligne</a></li>
-                <li><a href="../brussels/">Bruxelles</a></li>
+                <li><a href="../bruxelles/">Bruxelles</a></li>
                 <li><a href="../woluwe/">Woluwe</a></li>
               </ul>
             </li>
-            <li><a href="../../essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
+            <li><a href="../essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
             <li><a href="../../blog/">Blog</a></li>
             <li><a href="../../../fr/contactez-nous/">Contact</a></li>
                         <li class="language-switcher">
@@ -578,7 +578,7 @@
           <ul>
             <li><a href="../../../fr/">Accueil</a></li>
             <li><a href="../">Cours de Tango</a></li>
-            <li><a href="../../essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
+            <li><a href="../essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
             <li><a href="../../../fr/contactez-nous/">Contact</a></li>
           </ul>
         </div>
@@ -587,7 +587,7 @@
           <h4>Cours</h4>
           <ul>
             <li><a href="../debutants/">Débutants</a></li>
-            <li><a href="../experienced/">Expérimentés</a></li>
+            <li><a href="../experimentes/">Expérimentés</a></li>
             <li><a href="../particuliers/">Cours Particuliers</a></li>
             <li><a href="../online/">En Ligne</a></li>
           </ul>
@@ -596,7 +596,7 @@
         <div class="footer-col">
           <h4>Lieux</h4>
           <ul>
-            <li><a href="../brussels/">Bruxelles</a></li>
+            <li><a href="../bruxelles/">Bruxelles</a></li>
             <li><a href="../woluwe/">Woluwe</a></li>
           </ul>
           <h4 style="margin-top: var(--spacing-lg);">Contact</h4>
@@ -617,7 +617,7 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../../privacy-policy/">Politique de confidentialité</a> |
-          <a href="../../../termes-et-conditions-generales/">Termes et Conditions</a> |
+          <a href="../../../fr/termes-et-conditions-generales/">Termes et Conditions</a> |
           <a href="../../liens/">Liens</a>
         </p>
       </div>
@@ -629,6 +629,7 @@
     // Mobile Menu Toggle
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mainNav = document.querySelector('.main-nav');
+    const siteHeader = document.querySelector('.site-header');
     // Language dropdown toggle
     const languageToggle = document.querySelector('.language-toggle');
     const languageDropdown = document.querySelector('.language-dropdown');
@@ -652,5 +653,70 @@
 
 
     if (menuToggle && mainNav) {
+      // Toggle menu
       menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+
+        if (window.innerWidth < 768) {
+          mainNav.classList.toggle('mobile-nav-open');
+          menuToggle.classList.toggle('active');
+        }
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth < 768 &&
+            mainNav.classList.contains('mobile-nav-open') &&
+            !siteHeader.contains(e.target)) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+          mainNav.classList.remove('mobile-nav-open');
+          menuToggle.classList.remove('active');
+        }
+      });
+
+      // Handle window resize
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (window.innerWidth >= 768) {
+            mainNav.classList.remove('mobile-nav-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.classList.remove('active');
+          }
+        }, 100);
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Accordion animation for FAQ
+    document.querySelectorAll('.accordion-item').forEach(item => {
+      item.addEventListener('toggle', function() {
+        if (this.open) {
+          document.querySelectorAll('.accordion-item').forEach(otherItem => {
+            if (otherItem !== this && otherItem.open) {
+              otherItem.open = false;
+            }
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

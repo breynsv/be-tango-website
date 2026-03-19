@@ -38,8 +38,8 @@
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.7"></noscript>
   <link rel="stylesheet" href="../../css/enrollment-modal.css?v=1.0">
 
   <!-- Enhancement Scripts -->
@@ -341,18 +341,12 @@
             <p><strong>Learn step-by-step</strong> in a series of lessons. The ideal way to build a solid foundation.</p>
 
             <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> <span><span data-weekly-lessons>14</span> weekly lessons (1 hour each)</span></li>
+              <li><i class="fas fa-check"></i> Starts September &amp; February</li>
+              <li><i class="fas fa-check"></i> Includes a practice evening</li>
+              <li><i class="fas fa-check"></i> For complete beginners</li>
               <li><i class="fas fa-check"></i> Two locations to choose from</li>
               <li><i class="fas fa-check"></i> Progressive curriculum</li>
             </ul>
-
-            <div class="pricing-header">
-              <div class="pricing-amount">
-                <span class="price-currency">€</span>
-                <span class="price-value" data-weekly-price></span>
-              </div>
-              <p class="pricing-period">for complete course</p>
-            </div>
 
             <a href="#schedule" class="btn btn-primary">VIEW SCHEDULE</a>
           </article>
@@ -371,14 +365,6 @@
               <li><i class="fas fa-check"></i> Covers essential basics</li>
               <li><i class="fas fa-check"></i> Great for a quick start</li>
             </ul>
-
-            <div class="pricing-header">
-              <div class="pricing-amount">
-                <span class="price-currency">€</span>
-                <span class="price-value">95</span>
-              </div>
-              <p class="pricing-period">per person</p>
-            </div>
 
             <a href="#intensive-bootcamp" class="btn btn-primary">VIEW DATES</a>
           </article>
@@ -499,10 +485,29 @@
 
         <article class="card card-padded text-center mt-4">
           <h3>Next Dates</h3>
-          <p>Check our schedule for upcoming weekend workshops. Limited spots available!</p>
+          <p>No weekends scheduled at the moment.</p>
           <p><strong>Price:</strong> €95 per person</p>
           <p><strong>Schedule:</strong> Saturday & Sunday</p>
-          <a href="../../contact/" class="btn btn-primary">CONTACT US FOR DATES</a>
+          <div class="newsletter-signup">
+            <p class="newsletter-label">Be the first to know when we plan a new bootcamp.</p>
+            <form class="newsletter-form" id="bootcampNewsletterForm" action="#" method="POST" novalidate>
+              <div class="newsletter-input-group">
+                <input
+                  type="email"
+                  name="email"
+                  id="bootcampEmail"
+                  placeholder="Your email address"
+                  required
+                  aria-label="Email address for bootcamp newsletter"
+                  class="newsletter-email-input"
+                />
+                <button type="submit" class="btn btn-primary newsletter-submit">Notify me</button>
+              </div>
+              <p class="newsletter-success" id="bootcampSuccess" hidden>
+                ✓ We'll let you know when new dates are announced!
+              </p>
+            </form>
+          </div>
         </article>
       </div>
     </section>
@@ -999,5 +1004,30 @@
   <script src="../../js/enrollment-modal.js?v=1.0" defer></script>
 
   <!-- Floating Mobile Call Button -->
+  <script>
+    (function() {
+      var nf = document.getElementById('bootcampNewsletterForm');
+      if (!nf) return;
+      nf.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var email = document.getElementById('bootcampEmail').value.trim();
+        var input = document.getElementById('bootcampEmail');
+        var btn = nf.querySelector('button[type="submit"]');
+        var success = document.getElementById('bootcampSuccess');
+        btn.disabled = true;
+        var baseURL = (typeof API_CONFIG !== 'undefined' && API_CONFIG.baseURL)
+          ? API_CONFIG.baseURL
+          : 'http://127.0.0.1:8001/api/v1';
+        fetch(baseURL + '/newsletter/bootcamp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email: email })
+        }).finally(function() {
+          success.hidden = false;
+          input.disabled = true;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

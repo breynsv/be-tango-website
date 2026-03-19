@@ -38,8 +38,82 @@
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../css/enrollment-modal.css?v=1.0">
+  <style>
+    .btlc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+    @media(max-width:620px){.btlc-grid{grid-template-columns:1fr}}
+    .btlc-card{background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid #E5E7EB;border-top:3px solid transparent;padding:28px 26px 22px;display:flex;flex-direction:column;transition:transform .24s,box-shadow .24s,border-top-color .24s}
+    .btlc-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.12);border-top-color:#E2C033}
+    .btlc-roman{font-size:2.4rem;font-weight:700;color:#E2C033;line-height:1;margin-bottom:10px;letter-spacing:-.03em}
+    .btlc-name{font-size:1.05rem;font-weight:700;color:#1C244B;margin-bottom:8px}
+    .btlc-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.68rem;font-weight:600;letter-spacing:.04em;color:#fff;margin-bottom:12px;align-self:flex-start}
+    .btlc-badge.first{background:#3B82F6}.btlc-badge.second{background:#6366F1}.btlc-badge.plus{background:#8B5CF6}.btlc-badge.inter{background:#F43F5E}
+    .btlc-desc{font-size:.875rem;color:#4a4a4a;line-height:1.65;flex:1;margin-bottom:18px}
+    .btlc-exp-row{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+    .btlc-exp-label{font-size:.68rem;font-weight:500;color:#9ca3af;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+    .btlc-dots{display:flex;gap:5px}
+    .btlc-dot{width:9px;height:9px;border-radius:50%;border:1.5px solid #E5E7EB;background:transparent}
+    .btlc-dot.on{background:#E2C033;border-color:#E2C033}
+    .btlc-link{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;color:#E2C033;text-decoration:none;margin-top:auto;border-top:1px solid #E5E7EB;padding-top:16px;transition:gap .24s,color .24s}
+    .btlc-link:hover{gap:10px;color:#b89d28}
+    .btlc-not-sure{text-align:center;margin-top:40px;font-size:.875rem;color:#4a4a4a}
+    .btlc-not-sure a{color:#1C244B;font-weight:600;text-decoration:underline;text-decoration-color:#E2C033;text-underline-offset:3px}
+    .btlc-not-sure a:hover{color:#E2C033}
+    .bts-dropin-badge{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1.5px solid #E2C033;border-radius:20px;padding:5px 16px;font-size:.8rem;font-weight:600;color:#1C244B;margin-top:14px}
+    .bts-dropin-dot{width:8px;height:8px;border-radius:50%;background:#E2C033;flex-shrink:0}
+    .bts-filters{background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:20px 24px;margin-bottom:20px}
+    .bts-filter-group{margin-bottom:16px}.bts-filter-group:last-child{margin-bottom:0}
+    .bts-filter-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:#4a4a4a;margin-bottom:10px;display:block}
+    .bts-toggle-group{display:flex;flex-wrap:wrap;gap:8px}
+    .bts-btn{display:inline-flex;align-items:center;gap:7px;padding:7px 16px;border-radius:999px;border:1.5px solid #E5E7EB;background:#F3F5F8;color:#4a4a4a;font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .18s;user-select:none}
+    .bts-btn:hover{border-color:#E2C033;color:#111827}
+    .bts-btn.active{background:#E2C033;border-color:#E2C033;color:#000;font-weight:600}
+    .bts-loc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .bts-results{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding:0 4px}
+    .bts-count{font-size:.82rem;color:#4a4a4a;font-weight:500}.bts-count strong{color:#1C244B}
+    .bts-reset{background:none;border:none;font-family:'Poppins',sans-serif;font-size:.8rem;color:#4a4a4a;cursor:pointer;text-decoration:underline;padding:0;visibility:hidden}
+    .bts-reset.visible{visibility:visible}
+    .bts-list{background:#fff;border:1px solid #E5E7EB;border-radius:14px;overflow:hidden}
+    .bts-row{display:flex;align-items:center;padding:18px 24px;border-bottom:1px solid #E5E7EB}
+    .bts-row:last-of-type{border-bottom:none}
+    .bts-row.hidden{display:none}
+    .bts-row.fadein{animation:btsIn .28s ease both}
+    @keyframes btsIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+    .bts-stripe{width:4px;height:44px;border-radius:4px;flex-shrink:0;margin-right:20px}
+    .bts-sched{flex:0 0 200px;min-width:0}
+    .bts-day{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#4a4a4a;margin-bottom:2px}
+    .bts-time{font-size:1.05rem;font-weight:700;color:#1C244B;white-space:nowrap}
+    .bts-addr{font-size:.68rem;color:#4a4a4a;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .bts-lvl{flex:0 0 auto;margin-right:auto;padding-left:20px}
+    .bts-badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.72rem;font-weight:600;color:#fff;white-space:nowrap}
+    .bts-badge.fy{background:#3B82F6}.bts-badge.sy{background:#6366F1}.bts-badge.sp{background:#8B5CF6}.bts-badge.im{background:#F43F5E}
+    .bts-start{flex:0 0 auto;text-align:center;padding:0 24px}
+    .bts-start-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;color:#4a4a4a;font-weight:600;display:block}
+    .bts-start-val{font-size:.82rem;font-weight:600;color:#111827;white-space:nowrap}
+    .bts-price{flex:0 0 auto;text-align:right;padding-right:24px}
+    .bts-price-main{font-size:1.05rem;font-weight:700;color:#1C244B}
+    .bts-price-sub{font-size:.68rem;color:#4a4a4a;display:block}
+    .bts-cta{flex:0 0 auto}
+    .bts-signup{display:inline-flex;align-items:center;gap:7px;background:#E2C033;color:#000;font-family:'Poppins',sans-serif;font-size:.82rem;font-weight:700;padding:10px 18px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;white-space:nowrap;transition:background .15s,transform .1s}
+    .bts-signup:hover{background:#d4b02a;transform:translateY(-1px)}
+    .bts-signup svg{width:14px;height:14px;flex-shrink:0}
+    .bts-empty{display:none;text-align:center;padding:52px 24px}
+    .bts-empty.visible{display:block}
+    .bts-empty h3{font-size:1rem;font-weight:600;color:#1C244B;margin-bottom:6px}
+    .bts-empty p{font-size:.85rem;color:#4a4a4a}
+    @media(max-width:700px){
+      .bts-row{flex-wrap:wrap;gap:10px;padding:16px 18px}
+      .bts-stripe{height:36px;margin-right:12px}
+      .bts-sched{flex:1 0 140px}
+      .bts-lvl{padding-left:0;margin-right:0}
+      .bts-start,.bts-price{padding:0}
+      .bts-cta{width:100%}
+      .bts-signup{width:100%;justify-content:center}
+    }
+    @media(max-width:480px){.bts-start{display:none}}
+  </style>
 
   <!-- Enhancement Scripts -->
   <script src="../../js/enhancements.min.js?v=3.5" defer></script>
@@ -375,7 +449,61 @@
           <p class="section-description">Our experienced dancer program offers four distinct levels, each designed to build upon your existing skills and take your dancing to new heights.</p>
         </div>
 
-        <div class="grid grid-2" data-level-cards-container></div>
+        <div class="btlc-grid">
+          <div class="btlc-card">
+            <div class="btlc-roman">I</div>
+            <div class="btlc-name">First Year</div>
+            <span class="btlc-badge first">First Year</span>
+            <p class="btlc-desc">For dancers who completed the beginners course. We consolidate the basics and focus on cross-system, smooth walking, and Ochos.</p>
+            <div class="btlc-exp-row">
+              <span class="btlc-exp-label">Experience</span>
+              <div class="btlc-dots">
+                <span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot"></span><span class="btlc-dot"></span><span class="btlc-dot"></span>
+              </div>
+            </div>
+            <a href="#class-schedules" class="btlc-link">View Schedule <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="btlc-card">
+            <div class="btlc-roman">II</div>
+            <div class="btlc-name">Second Year</div>
+            <span class="btlc-badge second">Second Year</span>
+            <p class="btlc-desc">Building on first year fundamentals. Continue developing technique, musicality, and partner connection with more complex patterns and combinations.</p>
+            <div class="btlc-exp-row">
+              <span class="btlc-exp-label">Experience</span>
+              <div class="btlc-dots">
+                <span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot"></span><span class="btlc-dot"></span>
+              </div>
+            </div>
+            <a href="#class-schedules" class="btlc-link">View Schedule <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="btlc-card">
+            <div class="btlc-roman">III</div>
+            <div class="btlc-name">Second Year PLUS</div>
+            <span class="btlc-badge plus">Second Year PLUS</span>
+            <p class="btlc-desc">Advanced fundamentals for experienced dancers. Refine your technique, explore complex sequences, and deepen your musical interpretation.</p>
+            <div class="btlc-exp-row">
+              <span class="btlc-exp-label">Experience</span>
+              <div class="btlc-dots">
+                <span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot"></span>
+              </div>
+            </div>
+            <a href="#class-schedules" class="btlc-link">View Schedule <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+          <div class="btlc-card">
+            <div class="btlc-roman">IV</div>
+            <div class="btlc-name">Intermediate / Advanced</div>
+            <span class="btlc-badge inter">Intermediate</span>
+            <p class="btlc-desc">For dancers with 4+ years experience. Master Boleos, Ganchos, Enrosques. Deep work on musicality (Vals/Milonga) and improvisation.</p>
+            <div class="btlc-exp-row">
+              <span class="btlc-exp-label">Experience</span>
+              <div class="btlc-dots">
+                <span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span>
+              </div>
+            </div>
+            <a href="#class-schedules" class="btlc-link">View Schedule <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+        <p class="btlc-not-sure">Still not sure? <a href="../../contact/">Contact us</a> or book a free trial class — we'll help you find the right level!</p>
       </div>
     </section>
 
@@ -385,190 +513,25 @@
         <div class="section-header">
           <h2 class="section-title">Class Schedules</h2>
           <p class="section-description">Choose from our convenient locations in Brussels and Woluwe-Saint-Pierre</p>
+          <div class="bts-dropin-badge"><span class="bts-dropin-dot"></span>Drop-in available &mdash; &euro;20 per class</div>
         </div>
 
-        <div class="schedule-grid" data-schedule-container>
-          <!-- Brussels (Gatti de Gamond) Schedule -->
-          <div class="schedule-location">
-            <div class="schedule-location-header">
-              <div>
-                <h3><i class="fas fa-map-marker-alt"></i> Brussels - Gatti de Gamond</h3>
-                <p class="location-address">Rue du Marais 68, 1000 Brussels</p>
-              </div>
-            </div>
-
-            <div class="schedule-items">
-              <!-- Monday - Second Year -->
-              <div class="schedule-item" id="second-year-schedule">
-                <div class="schedule-time">
-                  <span class="schedule-day">Mon</span>
-                  <span class="schedule-hour">19:00</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Monday 19:00 - 20:00</h4>
-                  <p>Brussels - Gatti de Gamond</p>
-                </div>
-                <span class="schedule-badge level-badge-indigo">Second Year</span>
-              </div>
-
-              <!-- Wednesday - First Year -->
-              <div class="schedule-item" id="first-year-schedule">
-                <div class="schedule-time">
-                  <span class="schedule-day">Wed</span>
-                  <span class="schedule-hour">18:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Wednesday 18:30 - 19:30</h4>
-                  <p>Brussels - Gatti de Gamond</p>
-                </div>
-                <span class="schedule-badge level-badge-blue">First Year</span>
-              </div>
-
-              <!-- Wednesday - Second Year PLUS -->
-              <div class="schedule-item" id="second-year-plus-schedule">
-                <div class="schedule-time">
-                  <span class="schedule-day">Wed</span>
-                  <span class="schedule-hour">19:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Wednesday 19:30 - 20:30</h4>
-                  <p>Brussels - Gatti de Gamond</p>
-                </div>
-                <span class="schedule-badge level-badge-purple">Second Year PLUS</span>
-              </div>
-
-              <!-- Wednesday - Intermediate -->
-              <div class="schedule-item" id="intermediate-schedule">
-                <div class="schedule-time">
-                  <span class="schedule-day">Wed</span>
-                  <span class="schedule-hour">20:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Wednesday 20:30 - 21:30</h4>
-                  <p>Brussels - Gatti de Gamond</p>
-                </div>
-                <span class="schedule-badge level-badge-red">Intermediate</span>
-              </div>
-            </div>
+        <div class="bts-filters">
+          <div class="bts-filter-group">
+            <span class="bts-filter-label">Location</span>
+            <div class="bts-toggle-group" id="btsLocFilters"></div>
           </div>
-
-          <!-- Woluwe Schedule -->
-          <div class="schedule-location">
-            <div class="schedule-location-header">
-              <div>
-                <h3><i class="fas fa-map-marker-alt"></i> Woluwe-Saint-Pierre</h3>
-                <p class="location-address">Avenue Orban 54, 1150 Woluwe-Saint-Pierre</p>
-              </div>
-            </div>
-
-            <div class="schedule-items">
-              <!-- Tuesday - Second Year -->
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">Tue</span>
-                  <span class="schedule-hour">19:00</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Tuesday 19:00 - 20:00</h4>
-                  <p>Woluwe-Saint-Pierre</p>
-                </div>
-                <span class="schedule-badge level-badge-indigo">Second Year</span>
-              </div>
-
-              <!-- Tuesday - Second Year PLUS -->
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">Tue</span>
-                  <span class="schedule-hour">20:00</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Tuesday 20:00 - 21:00</h4>
-                  <p>Woluwe-Saint-Pierre</p>
-                </div>
-                <span class="schedule-badge level-badge-purple">Second Year PLUS</span>
-              </div>
-
-              <!-- Thursday - First Year -->
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">Thu</span>
-                  <span class="schedule-hour">18:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Thursday 18:30 - 19:30</h4>
-                  <p>Woluwe-Saint-Pierre</p>
-                </div>
-                <span class="schedule-badge level-badge-blue">First Year</span>
-              </div>
-
-              <!-- Thursday - Intermediate -->
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">Thu</span>
-                  <span class="schedule-hour">20:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Thursday 20:30 - 21:30</h4>
-                  <p>Woluwe-Saint-Pierre</p>
-                </div>
-                <span class="schedule-badge level-badge-red">Intermediate</span>
-              </div>
-            </div>
+          <div class="bts-filter-group">
+            <span class="bts-filter-label">Level</span>
+            <div class="bts-toggle-group" id="btsLvlFilters"></div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section>
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Pricing & Registration</h2>
-          <p class="section-description">Flexible options for all experienced levels</p>
+        <div class="bts-results">
+          <div class="bts-count" id="btsCount"></div>
+          <button class="bts-reset" id="btsResetBtn">Reset filters</button>
         </div>
-
-        <div class="pricing-grid">
-          <div class="pricing-card">
-            <div class="pricing-header">
-              <h3>15-Lesson Package</h3>
-              <div class="pricing-amount">
-                <span class="price-currency">€</span>
-                <span class="price-value">195</span>
-              </div>
-              <p class="pricing-period">Per trimester</p>
-            </div>
-            <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> 15 weekly lessons</li>
-              <li><i class="fas fa-check"></i> All experience levels</li>
-              <li><i class="fas fa-check"></i> Expert instruction</li>
-              <li><i class="fas fa-check"></i> Practice sessions included</li>
-              <li><i class="fas fa-check"></i> Flexible schedule</li>
-            </ul>
-            <a href="../free-trial/" class="btn btn-primary btn-large">Get started</a>
-          </div>
-
-          <div class="pricing-card">
-            <div class="pricing-header">
-              <h3>Drop-in Class</h3>
-              <div class="pricing-amount">
-                <span class="price-currency">€</span>
-                <span class="price-value">20</span>
-              </div>
-              <p class="pricing-period">Per class</p>
-            </div>
-            <ul class="pricing-features">
-              <li><i class="fas fa-check"></i> Single class attendance</li>
-              <li><i class="fas fa-check"></i> No commitment</li>
-              <li><i class="fas fa-check"></i> All levels welcome</li>
-              <li><i class="fas fa-check"></i> Subject to availability</li>
-              <li><i class="fas fa-times"></i> Limited to space available</li>
-            </ul>
-            <a href="../../contact/" class="btn btn-secondary btn-large">Contact Us</a>
-          </div>
-        </div>
-
-        <div class="pricing-note">
-          <p><strong>Note:</strong> All prices include access to practice sessions. Dance partner not required for registration.</p>
+        <div class="bts-list" id="btsList">
+          <div class="bts-empty" id="btsEmpty"><h3>No classes match your filters</h3><p>Try adjusting your location or level selection.</p></div>
         </div>
       </div>
     </section>
@@ -858,7 +821,9 @@
 
   <!-- CRM API Integration -->
   <script src="../../js/crm-api.min.js"></script>
-  <script src="../../js/schedule-loader.min.js"></script>
+  <script src="../../js/experienced-schedule.min.js?v=1.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous"></script>
+  <script src="../../js/enrollment-modal.js?v=1.0" defer></script>
 
   <!-- Floating Mobile Call Button -->
 </body>
