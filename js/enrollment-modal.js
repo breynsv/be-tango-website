@@ -53,6 +53,10 @@
       qrTitle: 'Scan to Pay (SEPA)',
       close: 'Close',
       required: 'required',
+      waitlistTitle: 'Registration Received',
+      waitlistMessage: 'As you indicated you are searching for a dance partner, we cannot confirm your participation immediately. If we find a partner that matches your criteria we will send you an email with a confirmation.',
+      waitlistAdvice: 'We strongly advise searching for a partner in your own network of friends, family and coworkers.',
+      waitlistClose: 'Close',
     },
     FR: {
       modalTitle: 'S\'inscrire au cours',
@@ -94,6 +98,10 @@
       qrTitle: 'Scanner pour payer (SEPA)',
       close: 'Fermer',
       required: 'obligatoire',
+      waitlistTitle: 'Demande Reçue',
+      waitlistMessage: 'Comme vous cherchez un partenaire de danse, nous ne pouvons pas confirmer votre participation immédiatement. Nous vous enverrons un email dès que nous aurons trouvé un partenaire correspondant à vos critères.',
+      waitlistAdvice: 'Nous vous conseillons vivement de chercher un partenaire dans votre réseau.',
+      waitlistClose: 'Fermer',
     },
     NL: {
       modalTitle: 'Inschrijven voor de les',
@@ -135,6 +143,10 @@
       qrTitle: 'Scan om te betalen (SEPA)',
       close: 'Sluiten',
       required: 'verplicht',
+      waitlistTitle: 'Aanvraag Ontvangen',
+      waitlistMessage: 'Omdat u op zoek bent naar een danspartner, kunnen wij uw deelname niet onmiddellijk bevestigen. We sturen u een e-mail zodra we een geschikte partner gevonden hebben.',
+      waitlistAdvice: 'We raden u sterk aan om in uw eigen netwerk van vrienden, familie en collega\'s naar een partner te zoeken.',
+      waitlistClose: 'Sluiten',
     },
   };
 
@@ -159,6 +171,23 @@
     return T[getLang()];
   }
 
+  function showError(msg, focusId) {
+    const errEl = document.getElementById('em-error');
+    errEl.textContent = msg;
+    errEl.hidden = false;
+    // Directly scroll the dialog (overflow-y:auto container) — scrollIntoView is
+    // unreliable inside position:fixed overlays (broken in Safari).
+    const dialog = document.querySelector('.em-dialog');
+    if (dialog) {
+      const top = errEl.offsetTop - 24;
+      dialog.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+    }
+    if (focusId) {
+      const el = document.getElementById(focusId);
+      if (el) el.focus();
+    }
+  }
+
   function formatIban(iban) {
     return iban.replace(/(.{4})/g, '$1 ').trim();
   }
@@ -180,169 +209,347 @@
   // ========================
 
   function buildModalHtml(t) {
+    var lang = getLang();
+    var progressLabel = lang === 'FR' ? 'Inscription' : lang === 'NL' ? 'Inschrijving' : 'Registration';
+    var footerNote = lang === 'FR'
+      ? 'En vous inscrivant, vous acceptez nos conditions. Nous confirmerons votre place par email sous 24&nbsp;h.'
+      : lang === 'NL'
+      ? 'Door in te schrijven gaat u akkoord met onze voorwaarden. We bevestigen uw plaats per email.'
+      : 'By registering you agree to our Terms &amp; Conditions. We\'ll confirm your spot by email within 24&nbsp;hours.';
+    var doneNote = lang === 'FR'
+      ? 'Un email de confirmation a été envoyé à votre boîte mail.'
+      : lang === 'NL'
+      ? 'Een bevestigingsmail is verzonden naar uw inbox.'
+      : 'A confirmation email has been sent to your inbox.';
+    var dueBannerSubtext = lang === 'FR'
+      ? 'Virement vers l\'IBAN ci-dessus avec la communication structurée.'
+      : lang === 'NL'
+      ? 'Overschrijf naar de bovenstaande IBAN met de gestructureerde mededeling.'
+      : 'Transfer the amount to the IBAN above using the structured reference.';
+    var aloneCardSub = lang === 'FR' ? 'Nous vous associerons<br/>en classe' : lang === 'NL' ? 'We koppelen je<br/>in de les' : 'We\'ll pair you up<br/>in class';
+    var partnerCardSub = lang === 'FR' ? 'Vous vous inscrivez<br/>ensemble' : lang === 'NL' ? 'Jullie schrijven je<br/>samen in' : 'You\'ll register<br/>together';
+    var qrCaption = lang === 'FR'
+      ? 'Pointez l\'appareil photo de votre application bancaire.<br/>Ouvre un paiement SEPA prérempli. Pris en charge par la plupart des banques belges.'
+      : lang === 'NL'
+      ? 'Richt uw bankapp-camera op deze code.<br/>Opent een vooraf ingevuld SEPA-betaling. Ondersteund door de meeste Belgische banken.'
+      : 'Point your banking app camera at this code.<br/>Opens a pre-filled SEPA payment. Supported by most Belgian banks.';
+
     return `
 <div class="em-overlay" id="em-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="em-title">
   <div class="em-dialog">
-    <button class="em-close" id="em-close" aria-label="Close">&times;</button>
+
+    <div class="em-accent-bar"></div>
+
+    <button class="em-close" id="em-close" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="em-progress" aria-hidden="true">
+      <div class="em-progress-dot"></div>
+      <div class="em-progress-dot em-progress-dot--inactive"></div>
+      <div class="em-progress-dot em-progress-dot--inactive"></div>
+      <span class="em-progress-label">${progressLabel}</span>
+    </div>
+
+    <div class="em-header">
+      <p class="em-eyebrow">BE-TANGO Brussels</p>
+      <h2 class="em-title" id="em-title">${t.modalTitle}</h2>
+    </div>
+
+    <div class="em-chips" id="em-chips" role="list" aria-label="Class details" aria-live="polite">
+      <span class="em-chip-skeleton" style="width:68px"></span>
+      <span class="em-chip-skeleton" style="width:80px"></span>
+      <span class="em-chip-skeleton" style="width:52px"></span>
+      <span class="em-chip-skeleton" style="width:140px"></span>
+    </div>
+
+    <div class="em-divider" aria-hidden="true"></div>
 
     <!-- FORM VIEW -->
     <div id="em-form-view">
-      <h2 class="em-title" id="em-title">${t.modalTitle}</h2>
-      <p class="em-subtitle" id="em-subtitle"></p>
-
       <div class="em-error" id="em-error" hidden></div>
 
       <form id="em-form" novalidate>
 
-        <div class="em-row-2">
+        <div class="em-row">
           <div class="em-field">
-            <label for="em-first-name">${t.firstName} *</label>
-            <input type="text" id="em-first-name" name="first_name" required autocomplete="given-name">
+            <label class="em-label" for="em-first-name">${t.firstName} <span class="em-required" aria-hidden="true">*</span></label>
+            <input class="em-input" type="text" id="em-first-name" name="first_name" autocomplete="given-name" required>
           </div>
           <div class="em-field">
-            <label for="em-last-name">${t.lastName} *</label>
-            <input type="text" id="em-last-name" name="last_name" required autocomplete="family-name">
-          </div>
-        </div>
-
-        <div class="em-row-2">
-          <div class="em-field">
-            <label for="em-email">${t.email} *</label>
-            <input type="email" id="em-email" name="email" required autocomplete="email">
-          </div>
-          <div class="em-field">
-            <label for="em-phone">${t.phone} *</label>
-            <input type="tel" id="em-phone" name="phone" required autocomplete="tel">
+            <label class="em-label" for="em-last-name">${t.lastName} <span class="em-required" aria-hidden="true">*</span></label>
+            <input class="em-input" type="text" id="em-last-name" name="last_name" autocomplete="family-name" required>
           </div>
         </div>
 
-        <div class="em-row-2">
+        <div class="em-row">
           <div class="em-field">
-            <label for="em-gender">${t.gender}</label>
-            <select id="em-gender" name="gender">
-              <option value="">${t.genderSelect}</option>
-              <option value="Male">${t.genderMale}</option>
-              <option value="Female">${t.genderFemale}</option>
-              <option value="Other">${t.genderOther}</option>
-            </select>
+            <label class="em-label" for="em-email">${t.email} <span class="em-required" aria-hidden="true">*</span></label>
+            <input class="em-input" type="email" id="em-email" name="email" autocomplete="email" required>
           </div>
           <div class="em-field">
-            <label for="em-language">${t.language} *</label>
-            <select id="em-language" name="language" required>
-              <option value="">${t.languageSelect}</option>
-            </select>
+            <label class="em-label" for="em-phone">${t.phone} <span class="em-required" aria-hidden="true">*</span></label>
+            <input class="em-input" type="tel" id="em-phone" name="phone" autocomplete="tel" placeholder="+32 475 00 00 00" required>
           </div>
         </div>
 
-        <p class="em-section-title">${t.partnerQuestion}</p>
-        <div class="em-toggle-group">
-          <label class="em-toggle-label">
-            <input type="radio" name="em-partner-toggle" value="alone">
-            ${t.alone}
-          </label>
-          <label class="em-toggle-label">
-            <input type="radio" name="em-partner-toggle" value="with-partner">
-            ${t.withPartner}
-          </label>
-        </div>
-
-        <!-- ALONE SECTION -->
-        <div id="em-alone-section" hidden>
-          <p class="em-section-title">${t.aloneSection}</p>
-          <div class="em-row-2">
-            <div class="em-field">
-              <label for="em-height">${t.height} *</label>
-              <input type="text" id="em-height" name="height" placeholder="170 cm" required>
+        <div class="em-row">
+          <div class="em-field">
+            <label class="em-label" for="em-gender">${t.gender} <span class="em-required" aria-hidden="true">*</span></label>
+            <div class="em-select-wrap">
+              <select class="em-select" id="em-gender" name="gender" required>
+                <option value="">${t.genderSelect}</option>
+                <option value="Male">${t.genderMale}</option>
+                <option value="Female">${t.genderFemale}</option>
+                <option value="Other">${t.genderOther}</option>
+              </select>
             </div>
-            <div class="em-field">
-              <label for="em-birth-year">${t.birthYear} *</label>
-              <input type="number" id="em-birth-year" name="birth_year" min="1920" max="2010" placeholder="1985" required>
+          </div>
+          <div class="em-field">
+            <label class="em-label" for="em-language">${t.language} <span class="em-required" aria-hidden="true">*</span></label>
+            <div class="em-select-wrap">
+              <select class="em-select" id="em-language" name="language" required>
+                <option value="">${t.languageSelect}</option>
+              </select>
             </div>
           </div>
         </div>
 
-        <!-- PARTNER SECTION -->
-        <div id="em-partner-section" hidden>
-          <p class="em-section-title">${t.partnerSection}</p>
-          <div class="em-row-2">
-            <div class="em-field">
-              <label for="em-partner-first-name">${t.partnerFirstName} *</label>
-              <input type="text" id="em-partner-first-name" name="partner_first_name">
+        <div class="em-section">
+          <p class="em-section-title" id="em-partner-label">${t.partnerQuestion}</p>
+
+          <div class="em-partner-cards" role="radiogroup" aria-labelledby="em-partner-label">
+
+            <label class="em-partner-card" for="em-solo">
+              <input type="radio" id="em-solo" name="em-partner-toggle" value="alone">
+              <div class="em-partner-check" aria-hidden="true">
+                <svg viewBox="0 0 11 9" fill="none">
+                  <path d="M1 4.5L4 7.5L10 1.5" stroke="#111827" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="em-partner-icon" aria-hidden="true">🧍</div>
+              <span class="em-partner-label">${t.alone}</span>
+              <span class="em-partner-sublabel">${aloneCardSub}</span>
+            </label>
+
+            <label class="em-partner-card" for="em-with-partner">
+              <input type="radio" id="em-with-partner" name="em-partner-toggle" value="with-partner">
+              <div class="em-partner-check" aria-hidden="true">
+                <svg viewBox="0 0 11 9" fill="none">
+                  <path d="M1 4.5L4 7.5L10 1.5" stroke="#111827" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="em-partner-icon" aria-hidden="true">🧑‍🤝‍🧑</div>
+              <span class="em-partner-label">${t.withPartner}</span>
+              <span class="em-partner-sublabel">${partnerCardSub}</span>
+            </label>
+
+          </div>
+
+          <!-- ALONE SECTION -->
+          <div id="em-alone-section" class="em-sub-section" hidden>
+            <p class="em-sub-section-title">${t.aloneSection}</p>
+            <div class="em-row">
+              <div class="em-field">
+                <label class="em-label" for="em-height">${t.height} <span class="em-required" aria-hidden="true">*</span></label>
+                <input class="em-input" type="text" id="em-height" name="height" placeholder="170 cm">
+              </div>
+              <div class="em-field">
+                <label class="em-label" for="em-birth-year">${t.birthYear} <span class="em-required" aria-hidden="true">*</span></label>
+                <input class="em-input" type="number" id="em-birth-year" name="birth_year" min="1920" max="2010" placeholder="1985">
+              </div>
+            </div>
+          </div>
+
+          <!-- PARTNER SECTION -->
+          <div id="em-partner-section" class="em-sub-section" hidden>
+            <p class="em-sub-section-title">${t.partnerSection}</p>
+            <div class="em-row">
+              <div class="em-field">
+                <label class="em-label" for="em-partner-first-name">${t.partnerFirstName} <span class="em-required" aria-hidden="true">*</span></label>
+                <input class="em-input" type="text" id="em-partner-first-name" name="partner_first_name">
+              </div>
+              <div class="em-field">
+                <label class="em-label" for="em-partner-last-name">${t.partnerLastName} <span class="em-required" aria-hidden="true">*</span></label>
+                <input class="em-input" type="text" id="em-partner-last-name" name="partner_last_name">
+              </div>
             </div>
             <div class="em-field">
-              <label for="em-partner-last-name">${t.partnerLastName} *</label>
-              <input type="text" id="em-partner-last-name" name="partner_last_name">
+              <label class="em-label" for="em-partner-email">${t.partnerEmail} <span class="em-required" aria-hidden="true">*</span></label>
+              <input class="em-input" type="email" id="em-partner-email" name="partner_email">
+            </div>
+            <div class="em-field">
+              <label class="em-label" for="em-partner-gender">${t.partnerGender}</label>
+              <div class="em-select-wrap">
+                <select class="em-select" id="em-partner-gender" name="partner_gender">
+                  <option value="">${t.genderSelect}</option>
+                  <option value="Male">${t.genderMale}</option>
+                  <option value="Female">${t.genderFemale}</option>
+                  <option value="Other">${t.genderOther}</option>
+                </select>
+              </div>
             </div>
           </div>
-          <div class="em-field">
-            <label for="em-partner-email">${t.partnerEmail} *</label>
-            <input type="email" id="em-partner-email" name="partner_email">
-          </div>
-          <div class="em-field">
-            <label for="em-partner-gender">${t.partnerGender} *</label>
-            <select id="em-partner-gender" name="partner_gender" required>
-              <option value="">${t.genderSelect}</option>
-              <option value="Male">${t.genderMale}</option>
-              <option value="Female">${t.genderFemale}</option>
-              <option value="Other">${t.genderOther}</option>
-            </select>
-          </div>
+
         </div>
 
-        <div class="em-field">
-          <label for="em-remarks">${t.remarks}</label>
-          <textarea id="em-remarks" name="remarks" rows="3" placeholder="${t.remarksPlaceholder}"></textarea>
+        <div class="em-field em-field--remarks">
+          <label class="em-label" for="em-remarks">${t.remarks}</label>
+          <textarea class="em-textarea" id="em-remarks" name="remarks" placeholder="${t.remarksPlaceholder}"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-full-width" id="em-submit">${t.submit}</button>
+        <div class="em-submit-wrap">
+          <button type="submit" class="em-submit" id="em-submit">
+            ${t.submit}
+            <svg class="em-submit-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <p class="em-footer-note">${footerNote}</p>
+        </div>
+
       </form>
     </div>
 
     <!-- SUCCESS VIEW -->
     <div id="em-success-view" hidden>
-      <div class="em-success-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-          <circle cx="12" cy="12" r="10"/>
-          <polyline points="9 12 11 14 15 10"/>
+
+      <div class="em-success-hero">
+        <svg class="em-check-ring" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="36" cy="36" r="35" class="em-check-ring-bg"/>
+          <circle cx="36" cy="36" r="35" class="em-check-ring-border"/>
+          <path d="M21 37.5L30.5 47L51 26" class="em-check-path"/>
         </svg>
-      </div>
-      <h2 class="em-success-title" id="em-success-title">${t.successTitle}</h2>
-      <p class="em-success-msg">${t.successMessage}</p>
-
-      <div class="em-payment-card">
-        <h3>${t.paymentTitle}</h3>
-        <div class="em-payment-row">
-          <span>${t.paymentAmount}</span>
-          <strong id="em-pay-amount"></strong>
-        </div>
-        <div class="em-payment-row">
-          <span>${t.paymentIban}</span>
-          <strong id="em-pay-iban"></strong>
-        </div>
-        <div class="em-payment-row">
-          <span>${t.paymentRef}</span>
-          <strong id="em-pay-ref"></strong>
-        </div>
-        <div class="em-payment-row">
-          <span>${t.paymentDue}</span>
-          <strong id="em-pay-due"></strong>
-        </div>
-        <div class="em-payment-row">
-          <span>${t.paymentBankName}</span>
-          <strong id="em-pay-bank"></strong>
-        </div>
+        <h2 class="em-success-title" id="em-success-title">${t.successTitle}</h2>
+        <p class="em-success-msg">${t.successMessage}</p>
       </div>
 
-      <div class="em-qr-wrap" id="em-qr-wrap">
-        <p>${t.qrTitle}</p>
-        <div id="em-qr-canvas"></div>
+      <div class="em-chips" id="em-success-chips" role="list" aria-label="Class details"></div>
+
+      <div id="em-success-payment">
+        <div class="em-divider"></div>
+
+        <div class="em-payment">
+          <p class="em-payment-heading">${t.paymentTitle}</p>
+          <div class="em-pay-rows">
+            <div class="em-pay-row">
+              <span class="em-pay-label">${t.paymentAmount}</span>
+              <span class="em-pay-value em-pay-value--amount" id="em-pay-amount"></span>
+            </div>
+            <div class="em-pay-row">
+              <span class="em-pay-label">${t.paymentBankName}</span>
+              <span class="em-pay-value" id="em-pay-bank"></span>
+            </div>
+            <div class="em-pay-row">
+              <span class="em-pay-label">${t.paymentIban}</span>
+              <span class="em-pay-value" id="em-pay-iban"></span>
+            </div>
+            <div class="em-pay-row">
+              <span class="em-pay-label">${t.paymentRef}</span>
+              <span class="em-pay-value em-pay-value--ref" id="em-pay-ref"></span>
+            </div>
+          </div>
+          <div class="em-due-banner" role="note">
+            <svg class="em-due-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <rect x="2" y="4" width="16" height="14" rx="2.5" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M2 8h16M6 2v4M14 2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="10" cy="13" r="1" fill="currentColor"/>
+            </svg>
+            <div class="em-due-text">
+              <strong id="em-pay-due"></strong>
+              ${dueBannerSubtext}
+            </div>
+          </div>
+        </div>
+
+        <div class="em-divider"></div>
+
+        <div class="em-qr-section" id="em-qr-section">
+          <div class="em-qr-body">
+            <p class="em-qr-label">${t.qrTitle}</p>
+            <div id="em-qr-canvas"></div>
+            <p class="em-qr-caption">${qrCaption}</p>
+          </div>
+        </div>
       </div>
 
-      <button class="btn btn-primary btn-full-width" id="em-success-close" style="margin-top:1.5rem">${t.close}</button>
+      <div id="em-success-waitlist" hidden>
+        <div class="em-divider"></div>
+        <p id="em-waitlist-message"></p>
+        <p id="em-waitlist-advice"></p>
+      </div>
+
+      <div class="em-done-wrap">
+        <button class="em-done-btn" id="em-success-close">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M2 8L6.5 12.5L14 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          ${t.close}
+        </button>
+        <p class="em-done-note">${doneNote}</p>
+      </div>
+
     </div>
 
   </div>
 </div>`;
+  }
+
+  // ========================
+  // CHIP RENDERING
+  // ========================
+
+  function renderChips(className, price, location, time) {
+    var chipItems = [];
+
+    // Split className on · to extract level/day parts
+    var parts = (className || '').split('·').map(function (s) { return s.trim(); }).filter(Boolean);
+    parts.forEach(function (part) {
+      chipItems.push({ label: part, type: 'default' });
+    });
+
+    // Time chip (e.g. "19:00–20:30")
+    if (time) {
+      chipItems.push({ label: time, type: 'time' });
+    }
+
+    // Price chip
+    if (price) {
+      var priceVal = parseFloat(price);
+      if (!isNaN(priceVal) && priceVal > 0) {
+        chipItems.push({ label: '\u20ac' + priceVal.toFixed(0), type: 'price' });
+      }
+    }
+
+    // Location chip
+    if (location) {
+      chipItems.push({ label: location, type: 'default' });
+    }
+
+    var html = chipItems.map(function (item) {
+      if (item.type === 'price') {
+        return '<span class="em-chip em-chip--price" role="listitem">'
+          + '<svg width="9" height="11" viewBox="0 0 9 11" fill="none" aria-hidden="true" style="opacity:.7">'
+          + '<path d="M4.5 1v9M2 3.5h4a1.5 1.5 0 010 3H2m0 0h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>'
+          + '</svg>' + item.label + '</span>';
+      }
+      if (item.type === 'time') {
+        return '<span class="em-chip" role="listitem">'
+          + '<svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true" style="opacity:.5;flex-shrink:0">'
+          + '<circle cx="5.5" cy="5.5" r="4.5" stroke="currentColor" stroke-width="1.2"/>'
+          + '<path d="M5.5 3v2.5l1.5 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>'
+          + '</svg>' + item.label + '</span>';
+      }
+      return '<span class="em-chip" role="listitem"><span class="em-chip-dot"></span>' + item.label + '</span>';
+    }).join('');
+
+    var chipsEl = document.getElementById('em-chips');
+    if (chipsEl) chipsEl.innerHTML = html || chipsEl.innerHTML;
+
+    var successChipsEl = document.getElementById('em-success-chips');
+    if (successChipsEl) successChipsEl.innerHTML = html;
   }
 
   // ========================
@@ -373,7 +580,17 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    // Partner toggle
+    // Partner card is-selected visual state
+    document.querySelectorAll('.em-partner-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        document.querySelectorAll('.em-partner-card').forEach(function (c) {
+          c.classList.remove('is-selected');
+        });
+        card.classList.add('is-selected');
+      });
+    });
+
+    // Partner toggle logic (section visibility + required fields)
     document.querySelectorAll('input[name="em-partner-toggle"]').forEach(function (radio) {
       radio.addEventListener('change', handlePartnerToggle);
     });
@@ -393,7 +610,8 @@
           btn.dataset.productId,
           btn.dataset.className || '',
           btn.dataset.price || '',
-          btn.dataset.location || ''
+          btn.dataset.location || '',
+          btn.dataset.time || ''
         );
       }
     });
@@ -403,15 +621,11 @@
   // OPEN / CLOSE
   // ========================
 
-  function openModal(productId, className, price, location) {
+  function openModal(productId, className, price, location, time) {
     currentProductId = productId;
 
-    // Update subtitle with class info
-    const parts = [];
-    if (className) parts.push(className);
-    if (price) parts.push('€' + parseFloat(price).toFixed(0));
-    if (location) parts.push(location);
-    document.getElementById('em-subtitle').textContent = parts.join(' · ');
+    // Render class info chips
+    renderChips(className, price, location, time);
 
     // Reset form
     document.getElementById('em-form').reset();
@@ -456,27 +670,52 @@
   }
 
   function showSuccessView(data) {
-    const t = getT();
+    var t = getT();
 
-    document.getElementById('em-success-title').textContent = t.successTitle;
+    if (data.partner_needed) {
+      // Waitlist state — no payment info
+      document.getElementById('em-success-title').textContent = t.waitlistTitle;
+      document.getElementById('em-success-payment').hidden = true;
+      document.getElementById('em-success-waitlist').hidden = false;
+      document.getElementById('em-waitlist-message').textContent = t.waitlistMessage;
+      document.getElementById('em-waitlist-advice').textContent = t.waitlistAdvice;
+    } else {
+      // Payment state
+      document.getElementById('em-success-title').textContent = t.successTitle;
+      document.getElementById('em-success-payment').hidden = false;
+      document.getElementById('em-success-waitlist').hidden = true;
 
-    // Fill payment card
-    const amount = parseFloat(data.amount || 0);
-    document.getElementById('em-pay-amount').textContent = '€' + amount.toFixed(2);
-    document.getElementById('em-pay-iban').textContent = formatIban(data.bank_account || 'BE97068896456849');
-    document.getElementById('em-pay-ref').textContent = data.payment_reference || '';
-    document.getElementById('em-pay-due').textContent = formatDueDate(data.due_date);
-    document.getElementById('em-pay-bank').textContent = data.bank_name || 'BE-TANGO ART';
+      // Fill payment details
+      var amount = parseFloat(data.amount || 0);
+      var perPerson = amount / 2;
+      document.getElementById('em-pay-amount').innerHTML =
+        '<span class="em-pay-amount-split">2 \u00d7 \u20ac' + perPerson.toFixed(0) + ' p.p.</span>\u20ac' + amount.toFixed(2);
+      document.getElementById('em-pay-iban').textContent = formatIban(data.bank_account || 'BE97068896456849');
+      document.getElementById('em-pay-ref').textContent = data.payment_reference || '';
+      document.getElementById('em-pay-due').textContent = formatDueDate(data.due_date);
+      document.getElementById('em-pay-bank').textContent = data.bank_name || 'BE-TANGO ART';
 
-    // Generate QR
-    generateEpcQrCode(data);
+      // Generate QR
+      generateEpcQrCode(data);
+    }
+
+    // Update progress dots to complete state
+    document.querySelectorAll('.em-progress-dot').forEach(function (dot) {
+      dot.classList.remove('em-progress-dot--inactive');
+    });
+    var progressLabel = document.querySelector('.em-progress-label');
+    if (progressLabel) {
+      var lang = getLang();
+      progressLabel.textContent = lang === 'FR' ? 'Confirm\u00e9' : lang === 'NL' ? 'Bevestigd' : 'Confirmed';
+      progressLabel.style.color = '#C9A820';
+    }
 
     // Swap views
     document.getElementById('em-form-view').hidden = true;
     document.getElementById('em-success-view').hidden = false;
 
     // Scroll dialog to top
-    const dialog = document.querySelector('.em-dialog');
+    var dialog = document.querySelector('.em-dialog');
     if (dialog) dialog.scrollTop = 0;
   }
 
@@ -567,12 +806,11 @@
     const partnerRadio = document.querySelector('input[name="em-partner-toggle"]:checked');
     if (!partnerRadio) {
       const lang = getLang();
-      const msg = lang === 'FR' ? 'Veuillez indiquer si vous venez seul(e) ou avec un(e) partenaire.'
-                : lang === 'NL' ? 'Geef aan of je alleen komt of een partner meebrengt.'
-                : 'Please indicate whether you\'re coming alone or with a partner.';
-      errEl.textContent = msg;
-      errEl.hidden = false;
-      errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      showError(
+        lang === 'FR' ? 'Veuillez indiquer si vous venez seul(e) ou avec un(e) partenaire.'
+        : lang === 'NL' ? 'Geef aan of je alleen komt of een partner meebrengt.'
+        : 'Please indicate whether you\'re coming alone or with a partner.'
+      );
       return;
     }
     const hasPartner = partnerRadio.value === 'with-partner';
@@ -581,7 +819,21 @@
     const firstName = document.getElementById('em-first-name').value.trim();
     const lastName  = document.getElementById('em-last-name').value.trim();
     const email     = document.getElementById('em-email').value.trim();
-    const phone     = document.getElementById('em-phone').value.trim() || null;
+    const phoneRaw  = document.getElementById('em-phone').value.trim();
+    const phone     = phoneRaw || null;
+
+    // Validate phone format — required; allow digits, spaces, +, -, (, ), ., / — min 7 digits
+    const phoneDigits = phoneRaw.replace(/\D/g, '');
+    if (!phoneRaw || phoneDigits.length < 7 || phoneDigits.length > 15 || !/^[+\d][\d\s\-()\/.]+$/.test(phoneRaw)) {
+      const lang = getLang();
+      showError(
+        lang === 'FR' ? 'Numéro de téléphone invalide. Exemple\u00a0: +32\u00a0475\u00a000\u00a000\u00a000'
+        : lang === 'NL' ? 'Ongeldig telefoonnummer. Voorbeeld\u00a0: +32\u00a0475\u00a000\u00a000\u00a000'
+        : 'Invalid phone number. Example: +32 475 00 00 00',
+        'em-phone'
+      );
+      return;
+    }
     const gender    = document.getElementById('em-gender').value || null;
     const language  = document.getElementById('em-language').value || null;
     const remarks   = document.getElementById('em-remarks').value.trim() || null;
@@ -609,10 +861,21 @@
     };
 
     if (hasPartner) {
+      const partnerEmail = document.getElementById('em-partner-email').value.trim();
+      if (partnerEmail.toLowerCase() === email.toLowerCase()) {
+        const lang = getLang();
+        showError(
+          lang === 'FR' ? 'L\'adresse e-mail du/de la partenaire doit être différente de la vôtre.'
+          : lang === 'NL' ? 'Het e-mailadres van de partner mag niet hetzelfde zijn als uw eigen e-mailadres.'
+          : 'The partner\'s email address must be different from your own.',
+          'em-partner-email'
+        );
+        return;
+      }
       payload.partner = {
         first_name: document.getElementById('em-partner-first-name').value.trim(),
         last_name:  document.getElementById('em-partner-last-name').value.trim(),
-        email:      document.getElementById('em-partner-email').value.trim(),
+        email:      partnerEmail,
         gender:     document.getElementById('em-partner-gender').value || null,
       };
     }
@@ -627,9 +890,7 @@
       showSuccessView(data);
     } catch (err) {
       console.error('[EnrollmentModal] Submit error:', err);
-      errEl.textContent = err.message || t.errorDefault;
-      errEl.hidden = false;
-      errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      showError(err.message || t.errorDefault);
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = t.submit;
@@ -649,7 +910,7 @@
 
     if (typeof QRCode === 'undefined') {
       console.warn('[EnrollmentModal] QRCode.js not loaded — skipping QR generation');
-      document.getElementById('em-qr-wrap').hidden = true;
+      document.getElementById('em-qr-section').hidden = true;
       return;
     }
 
@@ -686,7 +947,7 @@
       });
     } catch (err) {
       console.error('[EnrollmentModal] QR generation failed:', err);
-      document.getElementById('em-qr-wrap').hidden = true;
+      document.getElementById('em-qr-section').hidden = true;
     }
   }
 

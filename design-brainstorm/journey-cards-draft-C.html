@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journey Cards — Draft C — Full-Bleed Image Overlay</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ─── Draft label ─────────────────────────────────────────── */
+    .draft-label {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: #1C244B;
+      color: #E2C033;
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 8px 16px;
+    }
+
+    /* ─── Page chrome ─────────────────────────────────────────── */
+    body {
+      background: #F3F5F8;
+      font-family: 'Poppins', sans-serif;
+      color: #111827;
+      padding-top: 36px; /* clear fixed draft label */
+    }
+
+    /* ─── Section wrapper ─────────────────────────────────────── */
+    .journey-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px 100px;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #E2C033;
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      color: #111827;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-subheading {
+      font-size: 16px;
+      font-weight: 400;
+      color: #4a4a4a;
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    /* ─── Grid layout ─────────────────────────────────────────── */
+    /*
+      Top row: 3 cards
+      Bottom row: 2 cards — centred inside the same 3-column grid
+      using an offset column to visually centre them.
+    */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 20px;
+    }
+
+    /* Bottom row centering trick: place card 4 in col 1-2 and card 5 in col 2-3
+       so their centres align with the second and third top columns              */
+    .card:nth-child(4) {
+      grid-column: 1 / 2;
+      grid-row: 2;
+      /* shift right by half a column width + half a gap to visually centre
+         the pair under the middle space of the 3-col row                     */
+      margin-left: calc(50% + 10px);
+    }
+
+    .card:nth-child(5) {
+      grid-column: 2 / 3;
+      grid-row: 2;
+      margin-left: calc(50% + 10px);
+    }
+
+    /* ─── Card base ───────────────────────────────────────────── */
+    .card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.22), 0 4px 12px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+
+    /* ─── Simulated photo background ─────────────────────────── */
+    .card-image {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #2a1f0e 0%, #5c3d1e 40%, #8b6914 70%, #c8960c 100%);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .card:hover .card-image {
+      transform: scale(1.05);
+    }
+
+    /* Filename watermark to indicate which real photo would go here */
+    .card-image::after {
+      content: attr(data-filename);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(255,255,255,0.35);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-align: center;
+      width: 80%;
+      word-break: break-word;
+      pointer-events: none;
+    }
+
+    /* ─── Gradient overlay ────────────────────────────────────── */
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(28, 36, 75, 0.95) 0%,
+        rgba(28, 36, 75, 0.60) 50%,
+        transparent 100%
+      );
+      transition: background 0.3s ease;
+    }
+
+    .card:hover .card-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(28, 36, 75, 0.98) 0%,
+        rgba(28, 36, 75, 0.75) 55%,
+        rgba(28, 36, 75, 0.10) 100%
+      );
+    }
+
+    /* ─── Badge ───────────────────────────────────────────────── */
+    .card-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 2;
+      background: #E2C033;
+      color: #000;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 50px;
+      line-height: 1.4;
+    }
+
+    /* ─── Text content ────────────────────────────────────────── */
+    .card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      padding: 24px 22px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .card-description {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.5;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #E2C033;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: gap 0.2s ease;
+    }
+
+    .card:hover .card-cta {
+      gap: 10px;
+    }
+
+    .card-cta .arrow {
+      font-size: 15px;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover .card-cta .arrow {
+      transform: translateX(3px);
+    }
+
+    /* ─── Responsive ──────────────────────────────────────────── */
+
+    /* Tablet: 2 columns */
+    @media (max-width: 900px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      /* Reset the bottom-row centering on tablet — just fill naturally */
+      .card:nth-child(4),
+      .card:nth-child(5) {
+        grid-column: auto;
+        grid-row: auto;
+        margin-left: 0;
+      }
+    }
+
+    /* Mobile: 1 column */
+    @media (max-width: 540px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        aspect-ratio: 4 / 3;
+      }
+
+      .journey-section {
+        padding: 56px 16px 72px;
+      }
+    }
+
+    /* ─── Design note at bottom ───────────────────────────────── */
+    .design-notes {
+      margin-top: 56px;
+      padding: 24px 28px;
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #4a4a4a;
+      line-height: 1.7;
+    }
+
+    .design-notes h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #111827;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .design-notes ul {
+      padding-left: 18px;
+    }
+
+    .design-notes li + li {
+      margin-top: 4px;
+    }
+
+    .design-notes strong {
+      color: #111827;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="draft-label">DRAFT C — Full-Bleed Image Overlay</div>
+
+  <section class="journey-section">
+
+    <p class="section-eyebrow">Where to begin</p>
+    <h2 class="section-heading">Start your tango journey</h2>
+    <p class="section-subheading">Whether you've never danced a step or you're chasing deeper musicality — find the right path for you.</p>
+
+    <div class="cards-grid">
+
+      <!-- Card 1: Absolute Beginners -->
+      <div class="card">
+        <div class="card-image" data-filename="Tango-in-Brussels-e1740649554215.webp"></div>
+        <div class="card-overlay"></div>
+        <span class="card-badge">Start here</span>
+        <div class="card-content">
+          <h3 class="card-title">Absolute Beginners</h3>
+          <p class="card-description">No partner, no experience needed. Learn the embrace, the walk, and your first steps in a welcoming Brussels class.</p>
+          <a class="card-cta" href="#">
+            View beginner classes <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: Improvers & Advanced -->
+      <div class="card">
+        <div class="card-image" data-filename="tango-classes-in-Brussels-2-e1740646913571.webp"></div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h3 class="card-title">Improvers &amp; Advanced</h3>
+          <p class="card-description">Deepen your technique, explore musicality, and sharpen your improvisation with our ongoing weekly schedule.</p>
+          <a class="card-cta" href="#">
+            View schedule <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Private Lessons -->
+      <div class="card">
+        <div class="card-image" data-filename="Private-dance-classes.webp"></div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h3 class="card-title">Private Lessons</h3>
+          <p class="card-description">One-on-one attention from an experienced teacher. Accelerate your progress on your own schedule, at your own pace.</p>
+          <a class="card-cta" href="#">
+            Book a session <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 4: Workshops -->
+      <div class="card">
+        <div class="card-image" data-filename="Tango-workshops-e1740647379561.webp"></div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h3 class="card-title">Workshops</h3>
+          <p class="card-description">Intensive weekend workshops on specific themes — footwork, close embrace, milonga rhythm, and more.</p>
+          <a class="card-cta" href="#">
+            Workshops <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 5: Free Online Academy -->
+      <div class="card">
+        <div class="card-image" data-filename="tango-classes-fun.webp"></div>
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <h3 class="card-title">Free Online Academy</h3>
+          <p class="card-description">Access our growing library of free tango video lessons — learn at home, revisit class material, or start before your first class.</p>
+          <a class="card-cta" href="#">
+            Start videos <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /.cards-grid -->
+
+    <div class="design-notes">
+      <h3>Design notes — Draft C</h3>
+      <ul>
+        <li><strong>No whitespace mismatch:</strong> all cards are identical height via <code>aspect-ratio: 3/4</code>; text length no longer affects card height.</li>
+        <li><strong>Grid:</strong> 3 cards top row, 2 cards centred on bottom row — keeps Absolute Beginners prominent as the anchor card.</li>
+        <li><strong>Overlay gradient:</strong> <code>linear-gradient(to top, rgba(28,36,75,0.95) → rgba(28,36,75,0.60) → transparent)</code> — dark navy matches brand.</li>
+        <li><strong>Hover:</strong> image scales to 1.05×, overlay deepens slightly, CTA arrow nudges right.</li>
+        <li><strong>CTA style:</strong> gold text link with arrow — replaces heavy yellow button, feels lighter and more editorial.</li>
+        <li><strong>Badge:</strong> gold pill retained, positioned top-left, does not compete with text overlay.</li>
+        <li><strong>Responsive:</strong> 2-col on tablet (≤900px), 1-col on mobile (≤540px); mobile cards switch to 4:3 aspect ratio for better thumb scrollability.</li>
+        <li><strong>Image placeholders:</strong> warm tango gradient with filename watermark — swap for real <code>&lt;img&gt;</code> tags with <code>object-fit: cover</code> in production.</li>
+      </ul>
+    </div>
+
+  </section>
+
+</body>
+</html>

@@ -81,6 +81,7 @@
     .bts-row.hidden{display:none}
     .bts-row.fadein{animation:btsIn .28s ease both}
     @keyframes btsIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+    .bts-main{display:flex;align-items:center;flex:0 0 auto}
     .bts-stripe{width:4px;height:44px;border-radius:4px;flex-shrink:0;margin-right:20px}
     .bts-sched{flex:0 0 200px;min-width:0}
     .bts-day{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#4a4a4a;margin-bottom:2px}
@@ -105,8 +106,9 @@
     .bts-empty p{font-size:.85rem;color:#4a4a4a}
     @media(max-width:700px){
       .bts-row{flex-wrap:wrap;gap:10px;padding:16px 18px}
+      .bts-main{width:100%;justify-content:space-between}
       .bts-stripe{height:36px;margin-right:12px}
-      .bts-sched{flex:1 0 140px}
+      .bts-sched{flex:1 1 auto;min-width:0}
       .bts-lvl{padding-left:0;margin-right:0}
       .bts-start,.bts-price{padding:0}
       .bts-cta{width:100%}
@@ -443,7 +445,7 @@
     </section>
 
     <!-- Levels Overview -->
-    <section class="section-padding">
+    <section class="section-padding" id="choose-your-level">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Kies Uw Niveau</h2>
@@ -462,7 +464,7 @@
                 <span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot"></span><span class="btlc-dot"></span><span class="btlc-dot"></span>
               </div>
             </div>
-            <a href="#class-schedules" class="btlc-link">Bekijk Rooster <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a href="#class-schedules" class="btlc-link" data-filter-level="1">Bekijk Lessenrooster <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
           <div class="btlc-card">
             <div class="btlc-roman">II</div>
@@ -475,7 +477,7 @@
                 <span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot"></span><span class="btlc-dot"></span>
               </div>
             </div>
-            <a href="#class-schedules" class="btlc-link">Bekijk Rooster <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a href="#class-schedules" class="btlc-link" data-filter-level="2">Bekijk Lessenrooster <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
           <div class="btlc-card">
             <div class="btlc-roman">III</div>
@@ -488,7 +490,7 @@
                 <span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot"></span>
               </div>
             </div>
-            <a href="#class-schedules" class="btlc-link">Bekijk Rooster <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a href="#class-schedules" class="btlc-link" data-filter-level="21">Bekijk Lessenrooster <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
           <div class="btlc-card">
             <div class="btlc-roman">IV</div>
@@ -501,7 +503,7 @@
                 <span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span><span class="btlc-dot on"></span>
               </div>
             </div>
-            <a href="#class-schedules" class="btlc-link">Bekijk Rooster <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a href="#class-schedules" class="btlc-link" data-filter-level="3">Bekijk Lessenrooster <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           </div>
         </div>
         <p class="btlc-not-sure">Nog niet zeker? <a href="../../../nl/contacteer-ons/">Neem contact op</a> of boek een gratis proefles — we helpen u het juiste niveau te vinden!</p>
@@ -821,6 +823,15 @@
               top: offsetPosition,
               behavior: 'smooth'
             });
+
+            // Auto-activate level filter if link specifies one
+            const filterLevel = this.dataset.filterLevel;
+            if (filterLevel) {
+              const levelBtn = document.querySelector(`#btsLvlFilters [data-level="${filterLevel}"]`);
+              if (levelBtn && !levelBtn.classList.contains('active')) {
+                levelBtn.click();
+              }
+            }
           }
         }
       });

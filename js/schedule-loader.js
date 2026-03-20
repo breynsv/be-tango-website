@@ -279,9 +279,11 @@
         const item = document.createElement('div');
         item.className = 'schedule-item';
         item.innerHTML = `
-            <div class="schedule-time">
-                <span class="schedule-day">${dayAbbr}</span>
-                <span class="schedule-hour">${classData.start_time || ''}</span>
+            <div class="schedule-time-wrap">
+                <div class="schedule-time">
+                    <span class="schedule-day">${dayAbbr}</span>
+                    <span class="schedule-hour">${classData.start_time || ''}</span>
+                </div>
             </div>
             <div class="schedule-info">
                 ${priceHtml}
@@ -297,6 +299,7 @@
         btn.dataset.className = friendlyName;
         btn.dataset.price = classData.price || '';
         btn.dataset.location = (classData.location && locStr(classData.location.city, lang)) || classData.location && classData.location.name || '';
+        btn.dataset.time = classData.start_time ? (classData.end_time ? classData.start_time + '\u2013' + classData.end_time : classData.start_time) : '';
         btn.textContent = t.signUp + ' →';
         item.appendChild(btn);
 
@@ -311,7 +314,7 @@
                 e.stopPropagation();
                 openCalendarModal(classData, t, lang);
             });
-            item.appendChild(calBtn);
+            item.querySelector('.schedule-time-wrap').appendChild(calBtn);
         }
 
         return item;

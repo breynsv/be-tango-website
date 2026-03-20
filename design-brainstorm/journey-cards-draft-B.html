@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DRAFT B — Horizontal Card List | BE-TANGO Journey Cards</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #F3F5F8;
+      color: #111827;
+      padding: 48px 16px 80px;
+    }
+
+    /* ── Draft label ─────────────────────────────────────── */
+    .draft-label {
+      display: inline-block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      background: #1C244B;
+      border-radius: 4px;
+      padding: 4px 10px;
+      margin-bottom: 40px;
+    }
+
+    /* ── Section wrapper ─────────────────────────────────── */
+    .journey-section {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      font-weight: 800;
+      color: #1C244B;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .section-subheading {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #4a4a4a;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    /* ── Card list ───────────────────────────────────────── */
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ── Individual card ─────────────────────────────────── */
+    .card {
+      display: flex;
+      align-items: stretch;
+      background: #FFFFFF;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid #E5E7EB;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    /* First card: gold left accent + very subtle gold tint */
+    .card--featured {
+      border-left: 4px solid #E2C033;
+      background: #FFFDF2;
+    }
+
+    /* ── Image thumbnail ─────────────────────────────────── */
+    .card__image-wrap {
+      flex-shrink: 0;
+      width: 160px;
+      min-height: 160px;
+      position: relative;
+    }
+
+    .card__image-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 160px;
+      background: linear-gradient(135deg, #d4c5a0, #b8a870);
+      border-radius: 0; /* flush inside card, outer card has radius */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    .card__image-filename {
+      font-size: 9px;
+      font-weight: 500;
+      color: rgba(0,0,0,0.45);
+      text-align: center;
+      word-break: break-all;
+      line-height: 1.4;
+    }
+
+    /* Badge on first card's image */
+    .card__badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #E2C033;
+      color: #000000;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+
+    /* ── Content area ────────────────────────────────────── */
+    .card__content {
+      flex: 1;
+      padding: 24px 24px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .card__title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1C244B;
+      line-height: 1.3;
+    }
+
+    .card__description {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: #4a4a4a;
+      line-height: 1.6;
+    }
+
+    .card__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #b8920c; /* slightly darker gold for readability on white */
+      text-decoration: none;
+      margin-top: 4px;
+      border-bottom: 1.5px solid transparent;
+      padding-bottom: 1px;
+      transition: border-color 0.15s ease, color 0.15s ease;
+      width: fit-content;
+    }
+
+    .card__cta:hover {
+      color: #8f7009;
+      border-bottom-color: #b8920c;
+    }
+
+    /* ── Mobile: stack image on top ──────────────────────── */
+    @media (max-width: 540px) {
+      .card {
+        flex-direction: column;
+        border-left: none; /* remove side accent on mobile */
+      }
+
+      .card--featured {
+        border-top: 4px solid #E2C033;
+      }
+
+      .card__image-wrap {
+        width: 100%;
+        min-height: 180px;
+      }
+
+      .card__image-placeholder {
+        min-height: 180px;
+      }
+
+      .card__content {
+        padding: 20px 20px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="journey-section">
+
+    <div class="draft-label">DRAFT B — Horizontal Card List</div>
+
+    <h2 class="section-heading">Start your tango journey</h2>
+    <p class="section-subheading">Whether you've never danced before or you're already on the floor — find the right path for you.</p>
+
+    <div class="card-list">
+
+      <!-- Card 1: Absolute Beginners (featured) -->
+      <div class="card card--featured">
+        <div class="card__image-wrap">
+          <div class="card__image-placeholder">
+            <span class="card__image-filename">Tango-in-Brussels-e1740649554215.webp</span>
+          </div>
+          <span class="card__badge">START HERE</span>
+        </div>
+        <div class="card__content">
+          <div class="card__title">Absolute Beginners</div>
+          <div class="card__description">Never danced tango before? Start here. Our beginner courses welcome complete newcomers — no partner, no experience, no worries. We guide you step by step from your very first embrace.</div>
+          <a href="#" class="card__cta">View beginner classes →</a>
+        </div>
+      </div>
+
+      <!-- Card 2: Improvers & Advanced -->
+      <div class="card">
+        <div class="card__image-wrap">
+          <div class="card__image-placeholder">
+            <span class="card__image-filename">tango-classes-in-Brussels-2-e1740646913571.webp</span>
+          </div>
+        </div>
+        <div class="card__content">
+          <div class="card__title">Improvers &amp; Advanced</div>
+          <div class="card__description">Already dancing? Keep growing. Our intermediate and advanced group classes focus on musicality, technique refinement, and the subtleties that make tango unforgettable.</div>
+          <a href="#" class="card__cta">View Schedule →</a>
+        </div>
+      </div>
+
+      <!-- Card 3: Private Lessons -->
+      <div class="card">
+        <div class="card__image-wrap">
+          <div class="card__image-placeholder">
+            <span class="card__image-filename">Private-dance-classes.webp</span>
+          </div>
+        </div>
+        <div class="card__content">
+          <div class="card__title">Private Lessons</div>
+          <div class="card__description">Work on exactly what you need, at your own pace. Private sessions with our teachers give you undivided attention and the fastest path to the goals that matter most to you.</div>
+          <a href="#" class="card__cta">Book a session →</a>
+        </div>
+      </div>
+
+      <!-- Card 4: Workshops -->
+      <div class="card">
+        <div class="card__image-wrap">
+          <div class="card__image-placeholder">
+            <span class="card__image-filename">Tango-workshops-e1740647379561.webp</span>
+          </div>
+        </div>
+        <div class="card__content">
+          <div class="card__title">Workshops</div>
+          <div class="card__description">Deep dives into specific topics — boleos, volcadas, tango vals, milonga rhythm and more. Workshops are open to dancers who want to explore a theme in depth over one or two focused sessions.</div>
+          <a href="#" class="card__cta">Workshops →</a>
+        </div>
+      </div>
+
+      <!-- Card 5: Free Online Academy -->
+      <div class="card">
+        <div class="card__image-wrap">
+          <div class="card__image-placeholder">
+            <span class="card__image-filename">tango-classes-fun.webp</span>
+          </div>
+        </div>
+        <div class="card__content">
+          <div class="card__title">Free Online Academy</div>
+          <div class="card__description">Learn from home, at your own pace. Our free video library covers the tango fundamentals so you can build a solid foundation before your first class — or revisit concepts anytime.</div>
+          <a href="#" class="card__cta">Start Videos →</a>
+        </div>
+      </div>
+
+    </div><!-- /.card-list -->
+
+  </div><!-- /.journey-section -->
+
+</body>
+</html>

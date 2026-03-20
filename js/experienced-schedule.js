@@ -276,11 +276,13 @@
       row.dataset.level = code;
 
       row.innerHTML =
-        '<div class="bts-stripe" style="background:' + stripeColor + ';"></div>' +
-        '<div class="bts-sched">' +
-          '<div class="bts-day">' + day + '</div>' +
-          '<div class="bts-time">' + time + '</div>' +
-          '<div class="bts-addr">' + address + '</div>' +
+        '<div class="bts-main">' +
+          '<div class="bts-stripe" style="background:' + stripeColor + ';"></div>' +
+          '<div class="bts-sched">' +
+            '<div class="bts-day">' + day + '</div>' +
+            '<div class="bts-time">' + time + '</div>' +
+            '<div class="bts-addr">' + address + '</div>' +
+          '</div>' +
         '</div>' +
         '<div class="bts-lvl"><span class="bts-badge ' + badgeCls + '">' + levelName + '</span></div>' +
         '<div class="bts-start">' +
@@ -300,6 +302,7 @@
       btn.dataset.className  = friendlyName;
       btn.dataset.price      = price;
       btn.dataset.location   = city;
+      btn.dataset.time       = cls.start_time ? (cls.end_time ? cls.start_time + '\u2013' + cls.end_time : cls.start_time) : '';
       btn.innerHTML =
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
           '<rect x="3" y="4" width="18" height="18" rx="2"/>' +
@@ -323,7 +326,7 @@
             ev.stopPropagation();
             openCalendarModal(clsData, t, lang);
           });
-          row.querySelector('.bts-cta').appendChild(calBtn);
+          row.querySelector('.bts-main').appendChild(calBtn);
         }(cls));
       }
 
