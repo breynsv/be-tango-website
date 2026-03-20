@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BE-TANGO · Enrollment Modal v1 — Refined Minimalism</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f0ede8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Demo label — not part of the component */
+    .demo-note {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      background: rgba(28,36,75,0.55);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      white-space: nowrap;
+      z-index: 10;
+    }
+
+    /* ─────────────────────────────────────────────
+       OVERLAY
+    ───────────────────────────────────────────── */
+    .em-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(28, 36, 75, 0.75);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      z-index: 1000;
+      animation: overlayIn 0.3s ease both;
+    }
+
+    @keyframes overlayIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ─────────────────────────────────────────────
+       DIALOG
+    ───────────────────────────────────────────── */
+    .em-dialog {
+      position: relative;
+      background: #ffffff;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 560px;
+      max-height: 92vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 2.75rem 2.5rem 2.25rem;
+
+      /* Thin gold top accent */
+      border-top: 3px solid #E2C033;
+
+      /* Barely-there shadow */
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.04),
+        0 8px 24px rgba(0,0,0,0.10),
+        0 32px 64px rgba(0,0,0,0.10);
+
+      animation: dialogIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-delay: 0.05s;
+
+      scrollbar-width: thin;
+      scrollbar-color: #E5E7EB transparent;
+    }
+
+    .em-dialog::-webkit-scrollbar {
+      width: 4px;
+    }
+    .em-dialog::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .em-dialog::-webkit-scrollbar-thumb {
+      background: #E5E7EB;
+      border-radius: 4px;
+    }
+
+    @keyframes dialogIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* ─────────────────────────────────────────────
+       CLOSE BUTTON
+    ───────────────────────────────────────────── */
+    .em-close {
+      position: absolute;
+      top: 1.125rem;
+      right: 1.25rem;
+      width: 2rem;
+      height: 2rem;
+      border: none;
+      background: transparent;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9CA3AF;
+      font-size: 1.25rem;
+      line-height: 1;
+      transition: color 0.2s ease, background 0.2s ease;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+    }
+
+    .em-close:hover {
+      color: #111827;
+      background: #F3F4F6;
+    }
+
+    .em-close:focus-visible {
+      outline: 2px solid #E2C033;
+      outline-offset: 2px;
+    }
+
+    /* ─────────────────────────────────────────────
+       HEADER
+    ───────────────────────────────────────────── */
+    .em-header {
+      margin-bottom: 1.75rem;
+    }
+
+    .em-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 500;
+      font-size: 1.75rem;
+      color: #111827;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    /* Subtitle pill / badge */
+    .em-subtitle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.725rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: #4A3800;
+      background: #FDF4CC;
+      border: 1px solid rgba(226, 192, 51, 0.45);
+      border-radius: 100px;
+      padding: 0.3rem 0.85rem;
+      line-height: 1.4;
+    }
+
+    /* ─────────────────────────────────────────────
+       FORM LAYOUT
+    ───────────────────────────────────────────── */
+    .em-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* Two-column grid row */
+    .em-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.875rem;
+      margin-bottom: 0.875rem;
+    }
+
+    /* Full-width section spacing */
+    .em-section {
+      margin-bottom: 0.875rem;
+    }
+
+    /* ─────────────────────────────────────────────
+       FLOATING LABEL FIELD
+    ───────────────────────────────────────────── */
+    .em-field {
+      position: relative;
+    }
+
+    /* The input / select / textarea */
+    .em-field input,
+    .em-field select,
+    .em-field textarea {
+      width: 100%;
+      background: #ffffff;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 10px;
+      padding: 1.375rem 0.875rem 0.5rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #111827;
+      outline: none;
+      transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    /* Selects need extra right padding for arrow */
+    .em-field select {
+      padding-right: 2.25rem;
+      cursor: pointer;
+    }
+
+    /* Textarea */
+    .em-field textarea {
+      resize: vertical;
+      min-height: 5.5rem;
+      line-height: 1.5;
+    }
+
+    /* Focus state */
+    .em-field input:focus,
+    .em-field select:focus,
+    .em-field textarea:focus {
+      border-color: #E2C033;
+      box-shadow:
+        0 0 0 3px rgba(226, 192, 51, 0.12),
+        0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    /* Error state */
+    .em-field.has-error input,
+    .em-field.has-error select,
+    .em-field.has-error textarea {
+      border-color: #EF4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.10);
+    }
+
+    /* Floating label */
+    .em-label {
+      position: absolute;
+      top: 50%;
+      left: 0.875rem;
+      transform: translateY(-50%);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: #9CA3AF;
+      pointer-events: none;
+      transform-origin: left center;
+      transition:
+        top 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        font-size 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        color 0.2s ease,
+        transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+    }
+
+    /* Textarea label starts at top, not vertically centered */
+    .em-field--textarea .em-label {
+      top: 1.1rem;
+      transform: none;
+    }
+
+    /* Label floated up — triggered by focus or .has-value class */
+    .em-field input:focus ~ .em-label,
+    .em-field input.has-value ~ .em-label,
+    .em-field select:focus ~ .em-label,
+    .em-field select.has-value ~ .em-label,
+    .em-field textarea:focus ~ .em-label,
+    .em-field textarea.has-value ~ .em-label {
+      top: 0.475rem;
+      font-size: 0.675rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transform: none;
+    }
+
+    .em-field input:focus ~ .em-label,
+    .em-field select:focus ~ .em-label,
+    .em-field textarea:focus ~ .em-label {
+      color: #B89A1A;
+    }
+
+    /* Select arrow */
+    .em-select-wrap {
+      position: relative;
+    }
+
+    .em-select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 0.875rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid #9CA3AF;
+      pointer-events: none;
+      transition: border-top-color 0.2s ease;
+    }
+
+    .em-select-wrap:focus-within::after {
+      border-top-color: #E2C033;
+    }
+
+    /* Error message */
+    .em-error {
+      display: none;
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: #EF4444;
+      margin-top: 0.3rem;
+      padding-left: 0.25rem;
+    }
+
+    .em-field.has-error .em-error {
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────────
+       PARTNER TOGGLE SECTION
+    ───────────────────────────────────────────── */
+    .em-partner-label {
+      font-size: 0.775rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: #6B7280;
+      text-transform: uppercase;
+      margin-bottom: 0.625rem;
+    }
+
+    .em-toggle-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.625rem;
+    }
+
+    .em-toggle-option {
+      position: relative;
+    }
+
+    .em-toggle-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .em-toggle-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 10px;
+      background: #ffffff;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.825rem;
+      font-weight: 400;
+      color: #6B7280;
+      text-align: center;
+      line-height: 1.3;
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+      user-select: none;
+    }
+
+    .em-toggle-btn .em-toggle-icon {
+      font-size: 1rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .em-toggle-btn .em-toggle-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.05rem;
+    }
+
+    .em-toggle-btn .em-toggle-main {
+      font-weight: 500;
+      font-size: 0.825rem;
+      color: inherit;
+    }
+
+    .em-toggle-btn .em-toggle-sub {
+      font-size: 0.675rem;
+      font-weight: 400;
+      color: #9CA3AF;
+      transition: color 0.2s ease;
+    }
+
+    /* Active pill */
+    .em-toggle-option input[type="radio"]:checked + .em-toggle-btn {
+      border-color: #E2C033;
+      background: #FFFBEB;
+      color: #4A3800;
+      box-shadow:
+        0 0 0 3px rgba(226, 192, 51, 0.12),
+        0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .em-toggle-option input[type="radio"]:checked + .em-toggle-btn .em-toggle-sub {
+      color: #92740A;
+    }
+
+    /* Focus-visible ring on toggle */
+    .em-toggle-option input[type="radio"]:focus-visible + .em-toggle-btn {
+      outline: 2px solid #E2C033;
+      outline-offset: 2px;
+    }
+
+    .em-toggle-btn:hover {
+      border-color: #D1D5DB;
+      background: #F9FAFB;
+    }
+
+    .em-toggle-option input[type="radio"]:checked + .em-toggle-btn:hover {
+      border-color: #C9A820;
+      background: #FFF8DC;
+    }
+
+    /* ─────────────────────────────────────────────
+       DIVIDER
+    ───────────────────────────────────────────── */
+    .em-divider {
+      height: 1px;
+      background: #F3F4F6;
+      margin: 0.5rem 0 1rem;
+    }
+
+    /* ─────────────────────────────────────────────
+       SUBMIT BUTTON
+    ───────────────────────────────────────────── */
+    .em-submit {
+      width: 100%;
+      padding: 0.95rem 1.5rem;
+      background: #E2C033;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #111827;
+      cursor: pointer;
+      transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.15s ease;
+      margin-top: 0.25rem;
+    }
+
+    .em-submit:hover {
+      background: #C9A820;
+      box-shadow:
+        0 4px 12px rgba(226, 192, 51, 0.35),
+        0 1px 3px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+
+    .em-submit:active {
+      background: #B89A1A;
+      transform: translateY(0);
+      box-shadow: 0 1px 4px rgba(226, 192, 51, 0.25);
+    }
+
+    .em-submit:focus-visible {
+      outline: 2px solid #E2C033;
+      outline-offset: 3px;
+    }
+
+    .em-submit:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ─────────────────────────────────────────────
+       PRIVACY NOTE
+    ───────────────────────────────────────────── */
+    .em-privacy {
+      text-align: center;
+      font-size: 0.675rem;
+      color: #9CA3AF;
+      margin-top: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .em-privacy a {
+      color: #6B7280;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color 0.15s ease;
+    }
+
+    .em-privacy a:hover {
+      color: #111827;
+    }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE — MOBILE
+    ───────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .em-dialog {
+        padding: 2.25rem 1.25rem 1.75rem;
+        border-radius: 14px 14px 0 0;
+        max-height: 95vh;
+      }
+
+      /* Sheet-style: anchor to bottom on mobile */
+      .em-overlay {
+        align-items: flex-end;
+        padding: 0;
+      }
+
+      .em-dialog {
+        animation-name: dialogInMobile;
+      }
+
+      @keyframes dialogInMobile {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Drag handle hint */
+      .em-dialog::before {
+        content: '';
+        display: block;
+        width: 2.5rem;
+        height: 3px;
+        background: #E5E7EB;
+        border-radius: 100px;
+        margin: -0.75rem auto 1.25rem;
+      }
+
+      .em-title {
+        font-size: 1.5rem;
+      }
+
+      /* Stack 2-col grids to 1-col */
+      .em-row,
+      .em-toggle-group {
+        grid-template-columns: 1fr;
+      }
+
+      .em-close {
+        top: 0.875rem;
+        right: 0.875rem;
+      }
+    }
+
+    /* Medium screens: tighten dialog slightly */
+    @media (max-width: 600px) and (min-width: 481px) {
+      .em-dialog {
+        padding: 2.5rem 1.75rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── OVERLAY ───────────────────────────────── -->
+  <div class="em-overlay" aria-hidden="false">
+
+    <!-- ── DIALOG ─────────────────────────────── -->
+    <div class="em-dialog" role="dialog" aria-modal="true" aria-labelledby="em-title">
+
+      <button class="em-close" aria-label="Close">&times;</button>
+
+      <!-- Header -->
+      <div class="em-header">
+        <h2 class="em-title" id="em-title">Sign Up for Class</h2>
+        <p class="em-subtitle">Beginner&nbsp;·&nbsp;Thursday&nbsp;·&nbsp;€195&nbsp;·&nbsp;Woluwe-Saint-Pierre</p>
+      </div>
+
+      <form id="em-form" class="em-form" novalidate>
+
+        <!-- Row 1: First Name + Last Name -->
+        <div class="em-row">
+          <div class="em-field" id="field-firstname">
+            <input
+              type="text"
+              id="em-firstname"
+              name="firstname"
+              autocomplete="given-name"
+              aria-required="true"
+            />
+            <label class="em-label" for="em-firstname">First Name</label>
+            <span class="em-error" role="alert">First name is required.</span>
+          </div>
+          <div class="em-field" id="field-lastname">
+            <input
+              type="text"
+              id="em-lastname"
+              name="lastname"
+              autocomplete="family-name"
+              aria-required="true"
+            />
+            <label class="em-label" for="em-lastname">Last Name</label>
+            <span class="em-error" role="alert">Last name is required.</span>
+          </div>
+        </div>
+
+        <!-- Row 2: Email + Phone -->
+        <div class="em-row">
+          <div class="em-field" id="field-email">
+            <input
+              type="email"
+              id="em-email"
+              name="email"
+              autocomplete="email"
+              aria-required="true"
+            />
+            <label class="em-label" for="em-email">Email Address</label>
+            <span class="em-error" role="alert">A valid email is required.</span>
+          </div>
+          <div class="em-field" id="field-phone">
+            <input
+              type="tel"
+              id="em-phone"
+              name="phone"
+              autocomplete="tel"
+            />
+            <label class="em-label" for="em-phone">Phone (optional)</label>
+          </div>
+        </div>
+
+        <!-- Row 3: Gender + Language -->
+        <div class="em-row em-section">
+          <div class="em-field em-select-wrap" id="field-gender">
+            <select id="em-gender" name="gender" aria-required="true">
+              <option value="" disabled selected hidden></option>
+              <option value="woman">Woman</option>
+              <option value="man">Man</option>
+              <option value="nonbinary">Non-binary</option>
+              <option value="prefer-not">Prefer not to say</option>
+            </select>
+            <label class="em-label" for="em-gender">I identify as</label>
+            <span class="em-error" role="alert">Please select an option.</span>
+          </div>
+          <div class="em-field em-select-wrap" id="field-language">
+            <select id="em-language" name="language" aria-required="true">
+              <option value="" disabled selected hidden></option>
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="nl">Nederlands</option>
+            </select>
+            <label class="em-label" for="em-language">Preferred Language</label>
+            <span class="em-error" role="alert">Please select a language.</span>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="em-divider"></div>
+
+        <!-- Partner toggle -->
+        <div class="em-section">
+          <p class="em-partner-label">Are you coming with a partner?</p>
+          <div class="em-toggle-group" role="radiogroup" aria-label="Attendance type">
+
+            <label class="em-toggle-option">
+              <input type="radio" name="partner" value="alone" checked />
+              <span class="em-toggle-btn">
+                <span class="em-toggle-icon">🕴</span>
+                <span class="em-toggle-text">
+                  <span class="em-toggle-main">Coming alone</span>
+                  <span class="em-toggle-sub">We'll find you a partner</span>
+                </span>
+              </span>
+            </label>
+
+            <label class="em-toggle-option">
+              <input type="radio" name="partner" value="with-partner" />
+              <span class="em-toggle-btn">
+                <span class="em-toggle-icon">💃🕺</span>
+                <span class="em-toggle-text">
+                  <span class="em-toggle-main">Bringing a partner</span>
+                  <span class="em-toggle-sub">You register together</span>
+                </span>
+              </span>
+            </label>
+
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="em-divider"></div>
+
+        <!-- Remarks -->
+        <div class="em-field em-field--textarea em-section" id="field-remarks">
+          <textarea
+            id="em-remarks"
+            name="remarks"
+            rows="3"
+            aria-label="Remarks"
+          ></textarea>
+          <label class="em-label" for="em-remarks">Remarks or questions (optional)</label>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="em-submit">
+          Confirm Registration
+        </button>
+
+      </form>
+
+      <!-- Privacy note -->
+      <p class="em-privacy">
+        Your data is used solely to process your enrollment.
+        <br>Read our <a href="#">privacy policy</a>.
+      </p>
+
+    </div>
+    <!-- /.em-dialog -->
+
+  </div>
+  <!-- /.em-overlay -->
+
+  <p class="demo-note">Design brainstorm · Enrollment Modal v1 — Refined Minimalism</p>
+
+  <script>
+    // ─────────────────────────────────────────────
+    //  FLOATING LABEL — has-value class
+    // ─────────────────────────────────────────────
+    function syncHasValue(el) {
+      if (el.value && el.value !== '') {
+        el.classList.add('has-value');
+      } else {
+        el.classList.remove('has-value');
+      }
+    }
+
+    document.querySelectorAll('.em-field input, .em-field select, .em-field textarea').forEach(el => {
+      // Initial state (in case of autofill)
+      syncHasValue(el);
+
+      el.addEventListener('input', () => syncHasValue(el));
+      el.addEventListener('change', () => syncHasValue(el));
+      el.addEventListener('blur', () => syncHasValue(el));
+    });
+
+    // ─────────────────────────────────────────────
+    //  BASIC FORM VALIDATION ON SUBMIT
+    // ─────────────────────────────────────────────
+    document.getElementById('em-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let firstError = null;
+
+      const required = [
+        { id: 'em-firstname', fieldId: 'field-firstname', validate: v => v.trim().length > 0 },
+        { id: 'em-lastname',  fieldId: 'field-lastname',  validate: v => v.trim().length > 0 },
+        { id: 'em-email',     fieldId: 'field-email',     validate: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+        { id: 'em-gender',    fieldId: 'field-gender',    validate: v => v !== '' },
+        { id: 'em-language',  fieldId: 'field-language',  validate: v => v !== '' },
+      ];
+
+      required.forEach(({ id, fieldId, validate }) => {
+        const input = document.getElementById(id);
+        const field = document.getElementById(fieldId);
+        if (!validate(input.value)) {
+          field.classList.add('has-error');
+          if (!firstError) firstError = input;
+        } else {
+          field.classList.remove('has-error');
+        }
+      });
+
+      if (firstError) {
+        firstError.focus();
+      } else {
+        // All valid — show a simple confirmation state
+        const btn = document.querySelector('.em-submit');
+        btn.textContent = 'Registration Sent ✓';
+        btn.style.background = '#16a34a';
+        btn.style.color = '#fff';
+        btn.disabled = true;
+      }
+    });
+
+    // Clear error on interaction
+    document.querySelectorAll('.em-field input, .em-field select, .em-field textarea').forEach(el => {
+      el.addEventListener('input', function() {
+        const field = this.closest('.em-field');
+        if (field) field.classList.remove('has-error');
+      });
+      el.addEventListener('change', function() {
+        const field = this.closest('.em-field');
+        if (field) field.classList.remove('has-error');
+      });
+    });
+
+    // ─────────────────────────────────────────────
+    //  CLOSE BUTTON
+    // ─────────────────────────────────────────────
+    document.querySelector('.em-close').addEventListener('click', function() {
+      const overlay = document.querySelector('.em-overlay');
+      overlay.style.transition = 'opacity 0.25s ease';
+      overlay.style.opacity = '0';
+      overlay.style.pointerEvents = 'none';
+    });
+
+    // ─────────────────────────────────────────────
+    //  TRAP FOCUS INSIDE DIALOG
+    // ─────────────────────────────────────────────
+    const dialog = document.querySelector('.em-dialog');
+    const focusable = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key !== 'Tab') return;
+      const els = [...dialog.querySelectorAll(focusable)].filter(el => !el.disabled);
+      if (!els.length) return;
+      const first = els[0], last = els[els.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  </script>
+
+</body>
+</html>

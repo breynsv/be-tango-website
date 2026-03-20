@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BE-TANGO — Enrollment Modal v2 (Warm Editorial Split)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #e8e4dc;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ─────────────────────────────────────────────
+       DESIGN TOKENS
+    ───────────────────────────────────────────── */
+    :root {
+      --navy:       #1C244B;
+      --navy-deep:  #141930;
+      --gold:       #E2C033;
+      --gold-light: #f0d56a;
+      --cream:      #FAFAF7;
+      --cream-warm: #F5F3EE;
+      --ink:        #2a2a2a;
+      --muted:      #888;
+      --border:     #ddd;
+      --radius:     16px;
+      --shadow:     0 24px 80px rgba(0,0,0,0.22), 0 6px 20px rgba(0,0,0,0.10);
+    }
+
+    /* ─────────────────────────────────────────────
+       OVERLAY
+    ───────────────────────────────────────────── */
+    .em-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.62);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 9999;
+      animation: overlayFadeIn 0.35s ease both;
+    }
+
+    @keyframes overlayFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ─────────────────────────────────────────────
+       DIALOG SHELL
+    ───────────────────────────────────────────── */
+    .em-dialog {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      max-height: 92vh;
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+      animation: dialogSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-delay: 0.05s;
+    }
+
+    @keyframes dialogSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* ─────────────────────────────────────────────
+       HEADER BAND — NAVY WITH DIAGONAL CUT
+    ───────────────────────────────────────────── */
+    .em-header {
+      position: relative;
+      background: var(--navy);
+      padding: 36px 36px 64px;
+      overflow: hidden;
+      flex-shrink: 0;
+
+      /* The diagonal cut at the bottom */
+      clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%);
+    }
+
+    /* Decorative abstract swirl — tango-inspired arc */
+    .em-header::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -50px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(226, 192, 51, 0.18);
+      pointer-events: none;
+    }
+
+    .em-header::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 1px solid rgba(226, 192, 51, 0.10);
+      pointer-events: none;
+    }
+
+    /* SVG tango swirl — inline decorative element */
+    .em-header-swirl {
+      position: absolute;
+      bottom: 20px;
+      right: 28px;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    /* Gold accent line on left edge of header */
+    .em-header-accent {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    .em-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+      border-radius: 50%;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+    }
+
+    .em-close:hover {
+      background: rgba(255,255,255,0.18);
+      color: #fff;
+    }
+
+    .em-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      opacity: 0.9;
+    }
+
+    .em-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .em-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .em-subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.68);
+      letter-spacing: 0.03em;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0;
+    }
+
+    .em-subtitle .em-meta-item {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .em-subtitle .em-dot {
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin: 0 8px;
+      opacity: 0.8;
+      flex-shrink: 0;
+    }
+
+    .em-subtitle .em-meta-highlight {
+      color: rgba(255,255,255,0.92);
+    }
+
+    /* ─────────────────────────────────────────────
+       BODY — CREAM/IVORY FORM AREA
+    ───────────────────────────────────────────── */
+    .em-body {
+      background: var(--cream);
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0 0;
+      /* Offset to overlap the clipped header */
+      margin-top: -28px;
+      border-radius: 0 0 var(--radius) var(--radius);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Custom scrollbar */
+    .em-body::-webkit-scrollbar {
+      width: 4px;
+    }
+    .em-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .em-body::-webkit-scrollbar-thumb {
+      background: #ddd;
+      border-radius: 4px;
+    }
+
+    #em-form {
+      padding: 28px 36px 36px;
+    }
+
+    /* ─────────────────────────────────────────────
+       SECTION GROUPS
+    ───────────────────────────────────────────── */
+    .em-section {
+      margin-bottom: 28px;
+    }
+
+    .em-section + .em-section {
+      padding-top: 24px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .em-section-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    /* ─────────────────────────────────────────────
+       FIELD ROW
+    ───────────────────────────────────────────── */
+    .em-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 24px;
+      margin-bottom: 20px;
+    }
+
+    .em-row.em-row-full {
+      grid-template-columns: 1fr;
+    }
+
+    .em-field {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* ─────────────────────────────────────────────
+       LABELS
+    ───────────────────────────────────────────── */
+    .em-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      transition: color 0.25s;
+    }
+
+    .em-field:focus-within .em-label {
+      color: var(--navy);
+    }
+
+    /* ─────────────────────────────────────────────
+       UNDERLINE INPUTS
+    ───────────────────────────────────────────── */
+    .em-input,
+    .em-select,
+    .em-textarea {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--ink);
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid var(--border);
+      padding: 6px 0 8px;
+      width: 100%;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: border-color 0.3s;
+      position: relative;
+    }
+
+    .em-input::placeholder,
+    .em-textarea::placeholder {
+      color: #bbb;
+      font-weight: 300;
+    }
+
+    /* Animated underline via pseudo-element */
+    .em-input-wrap {
+      position: relative;
+    }
+
+    .em-input-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .em-input-wrap:focus-within::after {
+      transform: scaleX(1);
+    }
+
+    .em-input-wrap .em-input,
+    .em-input-wrap .em-select,
+    .em-input-wrap .em-textarea {
+      border-bottom-color: transparent;
+      border-bottom: 2px solid #e0ddd8;
+    }
+
+    /* SELECT custom arrow */
+    .em-select-wrap {
+      position: relative;
+    }
+
+    .em-select-wrap::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-25%);
+      width: 8px;
+      height: 8px;
+      border-right: 1.5px solid var(--muted);
+      border-bottom: 1.5px solid var(--muted);
+      transform: translateY(-60%) rotate(45deg);
+      pointer-events: none;
+      transition: border-color 0.25s;
+    }
+
+    .em-select-wrap:focus-within::before {
+      border-color: var(--gold);
+    }
+
+    .em-select {
+      cursor: pointer;
+      padding-right: 16px;
+    }
+
+    .em-select option {
+      color: var(--ink);
+      background: #fff;
+    }
+
+    /* TEXTAREA */
+    .em-textarea {
+      resize: none;
+      min-height: 72px;
+      line-height: 1.6;
+    }
+
+    /* ─────────────────────────────────────────────
+       PARTNER TOGGLE CARDS
+    ───────────────────────────────────────────── */
+    .em-partner-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .em-partner-card {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .em-partner-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .em-partner-card-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 12px 14px;
+      border: 1.5px solid #e0ddd8;
+      border-radius: 10px;
+      background: var(--cream-warm);
+      transition:
+        border-color 0.25s,
+        background 0.25s,
+        transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.22s;
+      user-select: none;
+    }
+
+    .em-partner-card-inner:hover {
+      border-color: #c8c4bb;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.07);
+    }
+
+    .em-partner-card input:checked + .em-partner-card-inner {
+      background: var(--navy);
+      border-color: var(--navy);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(28, 36, 75, 0.28);
+    }
+
+    .em-partner-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s;
+    }
+
+    .em-partner-card input:checked + .em-partner-card-inner .em-partner-icon {
+      background: var(--gold);
+    }
+
+    .em-partner-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--muted);
+      transition: fill 0.25s;
+    }
+
+    .em-partner-card input:checked + .em-partner-card-inner .em-partner-icon svg {
+      fill: var(--navy);
+    }
+
+    .em-partner-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-align: center;
+      line-height: 1.3;
+      transition: color 0.25s;
+    }
+
+    .em-partner-subtext {
+      font-size: 0.68rem;
+      font-weight: 400;
+      color: var(--muted);
+      transition: color 0.25s;
+    }
+
+    .em-partner-card input:checked + .em-partner-card-inner .em-partner-text,
+    .em-partner-card input:checked + .em-partner-card-inner .em-partner-subtext {
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* ─────────────────────────────────────────────
+       CONSENT CHECKBOX
+    ───────────────────────────────────────────── */
+    .em-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .em-consent input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      border: 1.5px solid #c8c4bb;
+      border-radius: 3px;
+      margin-top: 2px;
+      cursor: pointer;
+      background: transparent;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+    }
+
+    .em-consent input[type="checkbox"]:checked {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .em-consent input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 5px;
+      height: 9px;
+      border-right: 1.5px solid #fff;
+      border-bottom: 1.5px solid #fff;
+      transform: rotate(45deg);
+    }
+
+    .em-consent-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .em-consent-text a {
+      color: var(--navy);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ─────────────────────────────────────────────
+       SUBMIT BUTTON
+    ───────────────────────────────────────────── */
+    .em-submit-wrap {
+      margin-top: 28px;
+    }
+
+    .em-submit {
+      width: 100%;
+      position: relative;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: var(--navy);
+      border: none;
+      border-radius: 8px;
+      padding: 17px 24px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* Gold left-border accent stripe */
+    .em-submit::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--gold);
+      border-radius: 8px 0 0 8px;
+    }
+
+    /* Subtle shimmer on hover */
+    .em-submit::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255,255,255,0.07) 50%,
+        transparent 70%
+      );
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+
+    .em-submit:hover::after {
+      transform: translateX(100%);
+    }
+
+    .em-submit:hover {
+      background: var(--navy-deep);
+      box-shadow: 0 8px 24px rgba(28, 36, 75, 0.36);
+      transform: translateY(-1px);
+    }
+
+    .em-submit:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .em-submit-arrow {
+      width: 16px;
+      height: 16px;
+      opacity: 0.7;
+      transition: transform 0.2s, opacity 0.2s;
+      flex-shrink: 0;
+    }
+
+    .em-submit:hover .em-submit-arrow {
+      transform: translateX(4px);
+      opacity: 1;
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER NOTE
+    ───────────────────────────────────────────── */
+    .em-footer-note {
+      margin-top: 14px;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem;
+      color: #b0ad9a;
+      line-height: 1.5;
+    }
+
+    /* ─────────────────────────────────────────────
+       REQUIRED ASTERISK
+    ───────────────────────────────────────────── */
+    .req {
+      color: var(--gold);
+      margin-left: 2px;
+    }
+
+    /* ─────────────────────────────────────────────
+       MOBILE
+    ───────────────────────────────────────────── */
+    @media (max-width: 540px) {
+      .em-header {
+        padding: 28px 24px 56px;
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+      }
+
+      .em-title {
+        font-size: 1.45rem;
+      }
+
+      #em-form {
+        padding: 20px 24px 28px;
+      }
+
+      .em-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .em-partner-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .em-partner-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─────────────────────────────────────────────
+       DEMO CONTEXT PAGE BACKGROUND
+    ───────────────────────────────────────────── */
+    .demo-bg-text {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <span class="demo-bg-text">BE-TANGO · Enrollment Modal v2 · Warm Editorial Split</span>
+
+  <!-- ══════════════════════════════════════════
+       MODAL OVERLAY
+  ══════════════════════════════════════════ -->
+  <div class="em-overlay" aria-hidden="false">
+    <div class="em-dialog" role="dialog" aria-modal="true" aria-labelledby="em-title">
+
+      <!-- ── HEADER BAND ──────────────────────── -->
+      <div class="em-header">
+
+        <!-- Decorative left accent -->
+        <div class="em-header-accent" aria-hidden="true"></div>
+
+        <!-- Tango swirl SVG — abstract couple silhouette / spiral -->
+        <svg class="em-header-swirl" aria-hidden="true"
+             width="120" height="120" viewBox="0 0 120 120"
+             fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60 10 C80 10, 110 30, 110 60 C110 90, 80 110, 60 110 C40 110, 20 98, 15 80"
+                stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M60 25 C74 25, 95 40, 95 60 C95 80, 74 95, 60 95"
+                stroke="white" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.7"/>
+          <path d="M60 40 C68 40, 80 48, 80 60 C80 72, 68 80, 60 80"
+                stroke="white" stroke-width="0.6" fill="none" stroke-linecap="round" opacity="0.5"/>
+          <circle cx="15" cy="80" r="2.5" fill="white" opacity="0.6"/>
+          <circle cx="60" cy="10" r="2" fill="#E2C033" opacity="0.8"/>
+        </svg>
+
+        <button class="em-close" aria-label="Close enrollment form">×</button>
+
+        <p class="em-eyebrow">Argentine Tango · Brussels</p>
+
+        <h2 class="em-title" id="em-title">Sign Up for <em>Class</em></h2>
+
+        <p class="em-subtitle">
+          <span class="em-meta-item em-meta-highlight">Beginner</span>
+          <span class="em-dot" aria-hidden="true"></span>
+          <span class="em-meta-item">Thursday evenings</span>
+          <span class="em-dot" aria-hidden="true"></span>
+          <span class="em-meta-item em-meta-highlight">€195</span>
+          <span class="em-dot" aria-hidden="true"></span>
+          <span class="em-meta-item">Woluwe-Saint-Pierre</span>
+        </p>
+      </div>
+
+      <!-- ── FORM BODY ─────────────────────────── -->
+      <div class="em-body">
+        <form id="em-form" novalidate>
+
+          <!-- Personal info ──────────────────── -->
+          <div class="em-section">
+            <p class="em-section-label">Your details</p>
+
+            <div class="em-row">
+              <div class="em-field">
+                <label class="em-label" for="em-first-name">First name<span class="req">*</span></label>
+                <div class="em-input-wrap">
+                  <input class="em-input" type="text" id="em-first-name"
+                         name="first_name" placeholder="Marie" autocomplete="given-name" required>
+                </div>
+              </div>
+              <div class="em-field">
+                <label class="em-label" for="em-last-name">Last name<span class="req">*</span></label>
+                <div class="em-input-wrap">
+                  <input class="em-input" type="text" id="em-last-name"
+                         name="last_name" placeholder="Dupont" autocomplete="family-name" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="em-row">
+              <div class="em-field">
+                <label class="em-label" for="em-email">Email<span class="req">*</span></label>
+                <div class="em-input-wrap">
+                  <input class="em-input" type="email" id="em-email"
+                         name="email" placeholder="marie@example.com" autocomplete="email" required>
+                </div>
+              </div>
+              <div class="em-field">
+                <label class="em-label" for="em-phone">Phone</label>
+                <div class="em-input-wrap">
+                  <input class="em-input" type="tel" id="em-phone"
+                         name="phone" placeholder="+32 4…" autocomplete="tel">
+                </div>
+              </div>
+            </div>
+
+            <div class="em-row">
+              <div class="em-field">
+                <label class="em-label" for="em-gender">Gender</label>
+                <div class="em-input-wrap em-select-wrap">
+                  <select class="em-select" id="em-gender" name="gender">
+                    <option value="">Prefer not to say</option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="non-binary">Non-binary</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="em-field">
+                <label class="em-label" for="em-language">Language</label>
+                <div class="em-input-wrap em-select-wrap">
+                  <select class="em-select" id="em-language" name="language">
+                    <option value="">Select language</option>
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="nl">Nederlands</option>
+                    <option value="es">Español</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Partner ───────────────────────── -->
+          <div class="em-section">
+            <p class="em-section-label">Attending with a partner?</p>
+
+            <div class="em-partner-cards" role="radiogroup" aria-label="Partner attendance">
+
+              <label class="em-partner-card">
+                <input type="radio" name="partner" value="solo" checked>
+                <div class="em-partner-card-inner">
+                  <div class="em-partner-icon" aria-hidden="true">
+                    <!-- Single person icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="12" cy="7" r="4"/>
+                      <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+                    </svg>
+                  </div>
+                  <span class="em-partner-text">Solo</span>
+                  <span class="em-partner-subtext">I'm signing up alone</span>
+                </div>
+              </label>
+
+              <label class="em-partner-card">
+                <input type="radio" name="partner" value="with_partner">
+                <div class="em-partner-card-inner">
+                  <div class="em-partner-icon" aria-hidden="true">
+                    <!-- Couple / two people icon -->
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="8" cy="7" r="3"/>
+                      <path d="M2 20c0-3.3 2.7-6 6-6"/>
+                      <circle cx="16" cy="7" r="3"/>
+                      <path d="M22 20c0-3.3-2.7-6-6-6"/>
+                      <path d="M8 20c0-3.3 3.6-6 8-6"/>
+                    </svg>
+                  </div>
+                  <span class="em-partner-text">With partner</span>
+                  <span class="em-partner-subtext">We're signing up together</span>
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- Remarks ──────────────────────── -->
+          <div class="em-section">
+            <p class="em-section-label">Anything to add?</p>
+
+            <div class="em-field">
+              <label class="em-label" for="em-remarks">Remarks / questions</label>
+              <div class="em-input-wrap">
+                <textarea class="em-input em-textarea" id="em-remarks"
+                          name="remarks" placeholder="Any previous dance experience, questions about the class…"
+                          rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Consent ──────────────────────── -->
+          <div class="em-section">
+            <label class="em-consent">
+              <input type="checkbox" name="consent" required>
+              <span class="em-consent-text">
+                I agree to BE-TANGO storing my information to process this enrollment.
+                See our <a href="#">privacy policy</a>.
+              </span>
+            </label>
+          </div>
+
+          <!-- Submit ────────────────────────── -->
+          <div class="em-submit-wrap">
+            <button class="em-submit" type="submit">
+              Reserve my spot
+              <svg class="em-submit-arrow" viewBox="0 0 20 20" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+            <p class="em-footer-note">
+              No payment now — we'll confirm your spot by email within 24 hours.
+            </p>
+          </div>
+
+        </form>
+      </div><!-- /.em-body -->
+
+    </div><!-- /.em-dialog -->
+  </div><!-- /.em-overlay -->
+
+  <script>
+    // Close button
+    document.querySelector('.em-close').addEventListener('click', function () {
+      const overlay = document.querySelector('.em-overlay');
+      overlay.style.transition = 'opacity 0.25s ease';
+      overlay.style.opacity = '0';
+      setTimeout(() => { overlay.style.display = 'none'; }, 280);
+    });
+
+    // Close on overlay click (outside dialog)
+    document.querySelector('.em-overlay').addEventListener('click', function (e) {
+      if (e.target === this) {
+        const overlay = this;
+        overlay.style.transition = 'opacity 0.25s ease';
+        overlay.style.opacity = '0';
+        setTimeout(() => { overlay.style.display = 'none'; }, 280);
+      }
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        const overlay = document.querySelector('.em-overlay');
+        if (overlay && overlay.style.display !== 'none') {
+          overlay.style.transition = 'opacity 0.25s ease';
+          overlay.style.opacity = '0';
+          setTimeout(() => { overlay.style.display = 'none'; }, 280);
+        }
+      }
+    });
+
+    // Basic form submit demo
+    document.getElementById('em-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const btn = this.querySelector('.em-submit');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Spot reserved!';
+        btn.style.background = '#2e7d52';
+      }, 1200);
+    });
+  </script>
+
+</body>
+</html>

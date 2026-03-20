@@ -91,6 +91,70 @@
     }
   }
   </script>
+  <!-- Live Schedule Component Styles -->
+  <style>
+    .lsched-day-columns{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    @media(max-width:680px){.lsched-day-columns{grid-template-columns:1fr}}
+    .lsched-day-col{border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.07)}
+    .lsched-day-col-header{padding:16px 20px 14px;border-bottom:2px solid #E2C033}
+    .lsched-day-col-header h3{font-size:1rem;font-weight:700;color:#1C244B;display:flex;align-items:center;gap:8px;margin:0}
+    .lsched-day-col-header h3 i{color:#E2C033;font-size:0.95rem}
+    .lsched-venue{margin-top:3px;font-size:0.78rem;color:#6B7280;padding-left:22px}
+    .lsched-class-row{padding:18px 20px;border-bottom:1px solid #E5E7EB;position:relative}
+    .lsched-class-row:last-child{border-bottom:none}
+    .lsched-class-row.lsched-highlight-beginner{border-left:3px solid #E2C033}
+    .lsched-row-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px}
+    .lsched-class-name{font-size:0.97rem;font-weight:700;color:#1C244B;line-height:1.3}
+    .lsched-start-badge{display:inline-block;background:#E2C033;color:#000;font-size:0.65rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:3px 8px;border-radius:20px;vertical-align:middle;margin-left:6px;white-space:nowrap}
+    .lsched-level-badge{display:inline-flex;align-items:center;padding:4px 10px;border-radius:20px;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap;flex-shrink:0}
+    .lsched-lb-blue{background:#DBEAFE;color:#1D4ED8}
+    .lsched-lb-indigo{background:#E0E7FF;color:#4338CA}
+    .lsched-lb-purple{background:#EDE9FE;color:#7C3AED}
+    .lsched-lb-red{background:#FEE2E2;color:#DC2626}
+    .lsched-time-row{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+    .lsched-day-abbr{font-size:0.7rem;font-weight:700;color:#E2C033;text-transform:uppercase;letter-spacing:0.08em}
+    .lsched-time-val{font-size:1.05rem;font-weight:700;color:#E2C033;line-height:1}
+    .lsched-time-end{font-size:0.78rem;color:#6B7280}
+    .lsched-desc{font-size:0.82rem;color:#6B7280;line-height:1.6;margin-bottom:12px}
+    .lsched-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+    .lsched-chip{display:inline-flex;align-items:center;gap:5px;background:#F3F5F8;border:1px solid #E5E7EB;border-radius:20px;padding:3px 10px;font-size:0.75rem;font-weight:600;color:#1C244B}
+    .lsched-chip i{font-size:0.7rem;color:#6B7280}
+    .lsched-actions{display:flex;align-items:center;gap:8px}
+    .lsched-btn-signup{display:inline-flex;align-items:center;gap:5px;background:#1C244B;color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:0.78rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;cursor:pointer;transition:background 0.2s,transform 0.1s;font-family:inherit}
+    .lsched-btn-signup:hover{background:#2d3a72;transform:translateY(-1px)}
+    .lsched-btn-cal{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:#F3F5F8;border:1px solid #E5E7EB;border-radius:6px;color:#1C244B;font-size:0.85rem;cursor:pointer;transition:background 0.2s,border-color 0.2s}
+    .lsched-btn-cal:hover{background:#e0e7ff;border-color:#6366F1;color:#4338CA}
+    .lsched-state{text-align:center;padding:3rem 2rem;color:#6B7280;grid-column:1/-1}
+    .lsched-state i{font-size:2.5rem;margin-bottom:1rem;display:block}
+    @keyframes lsched-spin{to{transform:rotate(360deg)}}
+    .lsched-spinner{display:inline-block;width:36px;height:36px;border:3px solid #E5E7EB;border-top-color:#1C244B;border-radius:50%;animation:lsched-spin 0.9s linear infinite;margin-bottom:1rem}
+    .lsched-cal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px}
+    .lsched-cal-modal{background:#fff;border-radius:16px;box-shadow:0 24px 64px rgba(0,0,0,0.2);max-width:480px;width:100%;max-height:90vh;overflow-y:auto}
+    .lsched-cal-header{background:#1C244B;padding:16px 20px;border-radius:16px 16px 0 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .lsched-cal-header h3{color:#fff;font-size:0.95rem;font-weight:700;margin:0}
+    .lsched-cal-close-btn{background:none;border:none;color:rgba(255,255,255,0.7);font-size:1.1rem;cursor:pointer;line-height:1;padding:4px}
+    .lsched-cal-close-btn:hover{color:#fff}
+    .lsched-cal-body{padding:20px}
+    .lsched-cal-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+    .lsched-cal-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;background:#F3F5F8;border:1px solid #E5E7EB;font-size:0.75rem;font-weight:600;color:#1C244B}
+    .lsched-cal-months{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:400px){.lsched-cal-months{grid-template-columns:1fr}}
+    .lsched-cal-month-title{font-size:0.8rem;font-weight:700;color:#1C244B;margin-bottom:4px;padding-left:2px}
+    .lsched-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px}
+    .lsched-cal-wd{text-align:center;font-size:0.6rem;font-weight:700;color:#fff;background:#1C244B;padding:3px 1px;text-transform:uppercase}
+    .lsched-cal-d{text-align:center;font-size:0.7rem;padding:2px 1px;color:#111827}
+    .lsched-cal-d span{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:4px}
+    .lsched-cal-d.lsched-lesson span{background:#E2C033;color:#000;font-weight:700}
+    .lsched-cal-d.lsched-practica span{background:#1C244B;color:#fff;font-weight:700}
+    .lsched-cal-legend{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
+    .lsched-cal-legend-item{display:flex;align-items:center;gap:6px;font-size:0.75rem;color:#6B7280}
+    .lsched-cal-legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+    .lsched-cal-legend-dot.lsched-lesson{background:#E2C033}
+    .lsched-cal-legend-dot.lsched-practica{background:#1C244B}
+    .lsched-cal-footer{padding:12px 20px 16px;border-top:1px solid #E5E7EB;display:flex;gap:8px;justify-content:flex-end}
+    .lsched-btn-outline{padding:8px 16px;border-radius:6px;font-size:0.78rem;font-weight:600;background:none;border:1px solid #E5E7EB;cursor:pointer;color:#1C244B;transition:background 0.2s;font-family:inherit}
+    .lsched-btn-outline:hover{background:#F3F5F8}
+  </style>
 </head>
 <body>
 
@@ -223,115 +287,31 @@
               <li><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 8px;"></i>Welcoming community atmosphere</li>
             </ul>
 
-            <div class="cta-buttons" style="margin-top: var(--spacing-xl);">
-              <a href="../free-trial/" class="btn btn-primary btn-large">BOOK A FREE TRIAL</a>
-              <a href="../../contact/" class="btn btn-secondary btn-large">CONTACT US</a>
-            </div>
           </div>
 
           <div>
             <img src="../../images/tango-classes-in-Brussels-2-e1740646913571.webp" alt="Tango classes at GC Kontakt Woluwe" loading="lazy" style="border-radius: var(--border-radius); width: 100%;">
           </div>
         </div>
+        <div class="cta-buttons" style="margin-top: var(--spacing-xl);">
+          <a href="../free-trial/" class="btn btn-primary btn-large">BOOK A FREE TRIAL</a>
+          <a href="../../contact/" class="btn btn-secondary btn-large">CONTACT US</a>
+        </div>
       </div>
     </section>
 
-    <!-- CLASS SCHEDULE -->
+    <!-- WEEKLY SCHEDULE — Live from API (Woluwe) -->
     <section class="section">
       <div class="container">
         <div class="section-header text-center">
-          <h2>Weekly Schedule in Woluwe</h2>
-          <p class="lead">Classes every Tuesday and Thursday evening - all levels welcome</p>
+          <h2>Weekly Schedule in <span class="highlight">Woluwe</span></h2>
+          <p class="lead">Classes every Tuesday and Thursday evening – all levels welcome</p>
         </div>
-
-        <div class="schedule-grid">
-          <!-- TUESDAYS -->
-          <div class="schedule-location">
-            <div class="schedule-location-header">
-              <div>
-                <h3><i class="fas fa-calendar-day"></i> Tuesdays</h3>
-                <p class="location-address">GC Kontakt - Avenue Orban 54</p>
-              </div>
-            </div>
-
-            <div class="schedule-items">
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">TUE</span>
-                  <span class="schedule-hour">19:00</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Second Year's</h4>
-                  <p>Refining technique & flow. For dancers with 1.5-2.5 years experience. Introducing Giros, Sacadas, and Barridas.</p>
-                </div>
-                <span class="schedule-badge level-badge-indigo">Level 2</span>
-              </div>
-
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">TUE</span>
-                  <span class="schedule-hour">20:00</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Second Years PLUS</h4>
-                  <p>Advanced sequences. Bridge level offering faster pace and more complex sequences with styling variations.</p>
-                </div>
-                <span class="schedule-badge level-badge-purple">Level 2+</span>
-              </div>
-            </div>
+        <div id="location-schedule-grid" class="lsched-day-columns">
+          <div class="lsched-state">
+            <div class="lsched-spinner"></div>
+            <p>Loading schedule…</p>
           </div>
-
-          <!-- THURSDAYS -->
-          <div class="schedule-location">
-            <div class="schedule-location-header">
-              <div>
-                <h3><i class="fas fa-calendar-day"></i> Thursdays</h3>
-                <p class="location-address">GC Kontakt - Avenue Orban 54</p>
-              </div>
-            </div>
-
-            <div class="schedule-items">
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">THU</span>
-                  <span class="schedule-hour">18:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>First Years</h4>
-                  <p>Improvers: Next steps. For dancers who completed the beginners course. Focus on cross-system walks and smooth movement.</p>
-                </div>
-                <span class="schedule-badge level-badge-blue">Level 1+</span>
-              </div>
-
-              <div class="schedule-item" style="border: 2px solid var(--color-secondary);">
-                <div class="schedule-time">
-                  <span class="schedule-day">THU</span>
-                  <span class="schedule-hour">19:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Beginners <span style="background-color: var(--color-secondary); color: var(--color-primary); padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; margin-left: 8px;">START HERE</span></h4>
-                  <p>No experience needed. 14-lesson series for absolute beginners. Learn basic steps, posture, connection, and musical awareness.</p>
-                </div>
-                <span class="schedule-badge level-badge-blue">Level 1</span>
-              </div>
-
-              <div class="schedule-item">
-                <div class="schedule-time">
-                  <span class="schedule-day">THU</span>
-                  <span class="schedule-hour">20:30</span>
-                </div>
-                <div class="schedule-info">
-                  <h4>Intermediate/Advanced</h4>
-                  <p>Mastering complex figures and musicality. For experienced dancers looking to refine their technique.</p>
-                </div>
-                <span class="schedule-badge level-badge-red">Level 3+</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center" style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--color-background); border-radius: var(--border-radius);">
-          <p style="margin: 0;"><strong>Price:</strong> €195 for 15 lessons per semester</p>
         </div>
       </div>
     </section>
@@ -514,6 +494,28 @@
 
   </main>
 
+  <!-- Schedule Calendar Modal -->
+  <div id="lsched-cal-overlay" class="lsched-cal-overlay" style="display:none;" role="dialog" aria-modal="true">
+    <div class="lsched-cal-modal">
+      <div class="lsched-cal-header">
+        <h3 id="lsched-cal-title">Class Schedule</h3>
+        <button class="lsched-cal-close-btn" id="lsched-cal-close" aria-label="Close">&#x2715;</button>
+      </div>
+      <div class="lsched-cal-body">
+        <div id="lsched-cal-chips" class="lsched-cal-chips"></div>
+        <div id="lsched-cal-months" class="lsched-cal-months"></div>
+        <div class="lsched-cal-legend">
+          <div class="lsched-cal-legend-item"><span class="lsched-cal-legend-dot lsched-lesson"></span> Tango lesson</div>
+          <div class="lsched-cal-legend-item"><span class="lsched-cal-legend-dot lsched-practica"></span> Practice evening</div>
+        </div>
+      </div>
+      <div class="lsched-cal-footer">
+        <button class="lsched-btn-outline" id="lsched-cal-ics"><i class="fas fa-calendar-plus"></i> Add to Calendar (.ics)</button>
+        <button class="lsched-btn-outline" id="lsched-cal-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
@@ -675,5 +677,139 @@
   </script>
 
   <!-- Floating Mobile Call Button -->
+
+  <!-- Live Schedule Script (Woluwe EN) -->
+  <script>
+  (function() {
+    var API_BASE = (window.location.hostname==='localhost'||window.location.hostname==='127.0.0.1')
+      ? 'http://127.0.0.1:8001/api/v1' : 'https://crm.be-tango.be/api/v1';
+    var POSTAL = '1150';
+    var LANG = 'en';
+    var GRID_ID = 'location-schedule-grid';
+    var S = {
+      noClasses:'No classes found.',failLoad:'Failed to load:',
+      backendOff:'Make sure the backend is running on port 8001.',
+      signUp:'SIGN UP',viewSched:'View Schedule',starts:'Starts',
+      sessions:'sessions',pp:'p.p.',startHere:'START HERE',
+      practica:'Practice evening'
+    };
+    var DAY_LABELS = {Monday:'Monday',Tuesday:'Tuesday',Wednesday:'Wednesday',Thursday:'Thursday',Friday:'Friday',Saturday:'Saturday',Sunday:'Sunday'};
+    var DAY_ABBR = {Monday:'MON',Tuesday:'TUE',Wednesday:'WED',Thursday:'THU',Friday:'FRI',Saturday:'SAT',Sunday:'SUN'};
+    var DAY_PLURAL = {Monday:'Mondays',Tuesday:'Tuesdays',Wednesday:'Wednesdays',Thursday:'Thursdays',Friday:'Fridays',Saturday:'Saturdays',Sunday:'Sundays'};
+    var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var WD = ['Mo','Tu','We','Th','Fr','Sa','Su'];
+    var DAY_NAMES_EN = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var DAY_ORDER = {Monday:1,Tuesday:2,Wednesday:3,Thursday:4,Friday:5,Saturday:6,Sunday:7};
+    var LEVEL_DEF = {
+      '0':{bc:'lsched-lb-blue',label:'Level 1',isStart:true},
+      '1':{bc:'lsched-lb-blue',label:'Level 1+',isStart:false},
+      '2':{bc:'lsched-lb-indigo',label:'Level 2',isStart:false},
+      '21':{bc:'lsched-lb-purple',label:'Level 2+',isStart:false},
+      '3':{bc:'lsched-lb-red',label:'Level 3+',isStart:false},
+      '4':{bc:'lsched-lb-red',label:'Level 4',isStart:false}
+    };
+    function getDayEN(cls){if(cls.day_of_week)return cls.day_of_week;if(cls.start_date){var p=cls.start_date.split('-').map(Number);return DAY_NAMES_EN[new Date(p[0],p[1]-1,p[2]).getDay()];}return null;}
+    function getLevelName(cls,code){if(cls.level_name)return cls.level_name[LANG]||cls.level_name.en||(LEVEL_DEF[code]&&LEVEL_DEF[code].label)||code;return(LEVEL_DEF[code]&&LEVEL_DEF[code].label)||code;}
+    function getLevelDesc(cls){if(cls.level_description)return cls.level_description[LANG]||cls.level_description.en||'';return'';}
+    function fmtDate(s){if(!s)return'';var p=s.split('-').map(Number);return p[2]+' '+MONTHS[p[1]-1]+' '+p[0];}
+    function totalSess(cls){return(cls.lesson_count||0)+((cls.practica_dates||[]).length);}
+    function buildRow(cls){
+      var code=String(cls.level_code||''),def=LEVEL_DEF[code]||{bc:'lsched-lb-blue',label:code,isStart:false};
+      var dayEN=getDayEN(cls),abbr=dayEN?DAY_ABBR[dayEN]:'';
+      var name=getLevelName(cls,code),desc=getLevelDesc(cls);
+      var isStart=code==='0',sess=totalSess(cls),price=cls.price?'€'+Math.round(parseFloat(cls.price)):'';
+      var div=document.createElement('div');
+      div.className='lsched-class-row'+(isStart?' lsched-highlight-beginner':'');
+      div.innerHTML='<div class="lsched-row-top"><span class="lsched-class-name">'+name+(isStart?'<span class="lsched-start-badge">'+S.startHere+'</span>':'')+'</span><span class="lsched-level-badge '+def.bc+'">'+name+'</span></div>'
+        +'<div class="lsched-time-row"><span class="lsched-day-abbr">'+abbr+'</span><span class="lsched-time-val">'+(cls.start_time||'')+'</span>'+(cls.end_time?'<span class="lsched-time-end">– '+cls.end_time+'</span>':'')+'</div>'
+        +(desc?'<p class="lsched-desc">'+desc+'</p>':'')
+        +'<div class="lsched-meta">'+(price?'<span class="lsched-chip"><i class="fas fa-tag"></i>'+price+' '+S.pp+'</span>':'')+(sess>0?'<span class="lsched-chip"><i class="fas fa-list-ol"></i>'+sess+' '+S.sessions+'</span>':'')+(cls.start_date?'<span class="lsched-chip"><i class="fas fa-calendar-day"></i>'+S.starts+' '+fmtDate(cls.start_date)+'</span>':'')+'</div>'
+        +'<div class="lsched-actions"></div>';
+      var btn=document.createElement('button');btn.className='lsched-btn-signup btn-sign-up';
+      btn.dataset.productId=cls.id;btn.dataset.className=name+(dayEN?' · '+dayEN:'');
+      btn.dataset.price=cls.price||'';btn.dataset.location=(cls.location&&(cls.location.city||cls.location.name))||'';
+      btn.innerHTML=S.signUp+' <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>';
+      div.querySelector('.lsched-actions').appendChild(btn);
+      var hasDates=(cls.lesson_dates&&cls.lesson_dates.length)||(cls.practica_dates&&cls.practica_dates.length);
+      if(hasDates){var bc=document.createElement('button');bc.className='lsched-btn-cal';bc.title=S.viewSched;bc.innerHTML='<i class="fas fa-calendar-alt"></i>';bc.addEventListener('click',function(){openCal(cls);});div.querySelector('.lsched-actions').appendChild(bc);}
+      return div;
+    }
+    function buildCol(dayEN,classes,venue){
+      var col=document.createElement('div');col.className='lsched-day-col';
+      var hdr=document.createElement('div');hdr.className='lsched-day-col-header';
+      hdr.innerHTML='<h3><i class="fas fa-calendar-alt"></i> '+DAY_PLURAL[dayEN]+'</h3><div class="lsched-venue">'+venue+'</div>';
+      col.appendChild(hdr);
+      classes.sort(function(a,b){return(a.start_time||'').localeCompare(b.start_time||'');});
+      classes.forEach(function(cls){col.appendChild(buildRow(cls));});
+      return col;
+    }
+    function renderGrid(container,classes){
+      var byDay={};
+      classes.forEach(function(cls){var day=getDayEN(cls);if(!day)return;if(!byDay[day])byDay[day]={classes:[],venue:''};byDay[day].classes.push(cls);if(!byDay[day].venue&&cls.location)byDay[day].venue=[cls.location.building_name,(typeof cls.location.full_address==='object'?cls.location.full_address[LANG]||cls.location.full_address.en||'':cls.location.full_address||'')].filter(Boolean).join(' – ');});
+      var days=Object.keys(byDay).sort(function(a,b){return(DAY_ORDER[a]||9)-(DAY_ORDER[b]||9);});
+      container.innerHTML='';
+      if(!days.length){container.innerHTML='<div class="lsched-state"><i class="fas fa-calendar-times"></i><p>'+S.noClasses+'</p></div>';return;}
+      days.forEach(function(d){container.appendChild(buildCol(d,byDay[d].classes,byDay[d].venue));});
+    }
+    var currentCal=null;
+    function openCal(cls){
+      currentCal=cls;var ov=document.getElementById('lsched-cal-overlay');
+      var dayEN=getDayEN(cls),name=getLevelName(cls,String(cls.level_code||''));
+      document.getElementById('lsched-cal-title').textContent=name+(dayEN?' · '+DAY_LABELS[dayEN]:'');
+      var chips=[];
+      if(cls.start_date)chips.push('<span class="lsched-cal-chip"><i class="fas fa-calendar" style="font-size:0.65rem;"></i>'+fmtDate(cls.start_date)+'</span>');
+      if(cls.start_time)chips.push('<span class="lsched-cal-chip"><i class="fas fa-clock" style="font-size:0.65rem;"></i>'+cls.start_time+(cls.end_time?'–'+cls.end_time:'')+'</span>');
+      if(cls.location)chips.push('<span class="lsched-cal-chip"><i class="fas fa-map-marker-alt" style="font-size:0.65rem;"></i>'+(cls.location.building_name||cls.location.name||'')+'</span>');
+      document.getElementById('lsched-cal-chips').innerHTML=chips.join('');
+      document.getElementById('lsched-cal-months').innerHTML=buildCalHTML(cls);
+      ov.style.display='flex';
+    }
+    function closeCal(){document.getElementById('lsched-cal-overlay').style.display='none';currentCal=null;}
+    document.getElementById('lsched-cal-close').addEventListener('click',closeCal);
+    document.getElementById('lsched-cal-close-btn').addEventListener('click',closeCal);
+    document.getElementById('lsched-cal-overlay').addEventListener('click',function(e){if(e.target===document.getElementById('lsched-cal-overlay'))closeCal();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeCal();});
+    document.getElementById('lsched-cal-ics').addEventListener('click',function(){if(currentCal)genICS(currentCal);});
+    function buildCalHTML(cls){
+      var ls=new Set(cls.lesson_dates||[]),ps=new Set(cls.practica_dates||[]);
+      var all=[...ls,...ps].sort();if(!all.length)return'<p style="color:#6B7280;font-size:0.85rem;">'+S.noClasses+'</p>';
+      var fp=all[0].split('-').map(Number),lp=all[all.length-1].split('-').map(Number);
+      var html='',cy=fp[0],cm=fp[1],ly=lp[0],lm=lp[1];
+      while(cy<ly||(cy===ly&&cm<=lm)){
+        var dim=new Date(cy,cm,0).getDate(),off=(new Date(cy,cm-1,1).getDay()+6)%7;
+        html+='<div class="lsched-cal-month"><div class="lsched-cal-month-title">'+MONTHS[cm-1]+' '+cy+'</div><div class="lsched-cal-grid">';
+        WD.forEach(function(h){html+='<div class="lsched-cal-wd">'+h+'</div>';});
+        for(var i=0;i<off;i++)html+='<div class="lsched-cal-d"></div>';
+        for(var d=1;d<=dim;d++){var k=cy+'-'+String(cm).padStart(2,'0')+'-'+String(d).padStart(2,'0');var c2=ls.has(k)?'lsched-lesson':ps.has(k)?'lsched-practica':'';html+='<div class="lsched-cal-d '+c2+'"><span>'+d+'</span></div>';}
+        html+='</div></div>';cm++;if(cm>12){cm=1;cy++;}
+      }
+      return html;
+    }
+    function genICS(cls){
+      var dayEN=getDayEN(cls),name=getLevelName(cls,String(cls.level_code||''));
+      var title=name+(dayEN?' · '+dayEN:''),loc=(cls.location&&(typeof cls.location.full_address==='object'?cls.location.full_address[LANG]||cls.location.full_address.en||'':cls.location.full_address||''))||'';
+      var st=(cls.start_time||'19:00').replace(':',''),et=(cls.end_time||'20:00').replace(':','');
+      var uid=function(){return Date.now()+'-'+Math.random().toString(36).slice(2)+'@be-tango.be';};
+      var ev='';
+      (cls.lesson_dates||[]).forEach(function(d){ev+='BEGIN:VEVENT\r\nUID:'+uid()+'\r\nDTSTART;TZID=Europe/Brussels:'+d.replace(/-/g,'')+'T'+st+'00\r\nDTEND;TZID=Europe/Brussels:'+d.replace(/-/g,'')+'T'+et+'00\r\nSUMMARY:BE-TANGO - '+title+'\r\nLOCATION:'+loc+'\r\nEND:VEVENT\r\n';});
+      (cls.practica_dates||[]).forEach(function(d){ev+='BEGIN:VEVENT\r\nUID:'+uid()+'\r\nDTSTART;TZID=Europe/Brussels:'+d.replace(/-/g,'')+'T'+st+'00\r\nDTEND;TZID=Europe/Brussels:'+d.replace(/-/g,'')+'T'+et+'00\r\nSUMMARY:BE-TANGO - '+title+' - '+S.practica+'\r\nLOCATION:'+loc+'\r\nEND:VEVENT\r\n';});
+      var ics='BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//BE-TANGO//Schedule//EN\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n'+ev+'END:VCALENDAR';
+      var blob=new Blob([ics],{type:'text/calendar;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+      a.href=url;a.download='be-tango-'+title.toLowerCase().replace(/[^a-z0-9]+/g,'-')+'.ics';a.click();URL.revokeObjectURL(url);
+    }
+    async function load(){
+      var grid=document.getElementById(GRID_ID);
+      try{
+        var res=await fetch(API_BASE+'/classes'),json=await res.json();
+        if(!json.success)throw new Error(json.message||'API error');
+        var cls=(json.data||[]).filter(function(c){return c.type==='Weekly_Course'&&c.location&&c.location.postal_code===POSTAL;});
+        renderGrid(grid,cls);
+      }catch(err){
+        grid.innerHTML='<div class="lsched-state"><i class="fas fa-exclamation-circle" style="color:#DC2626;"></i><p><strong>'+S.failLoad+'</strong> '+err.message+'</p><p style="font-size:0.8rem;margin-top:6px;">'+S.backendOff+'</p></div>';
+      }
+    }
+    load();
+  })();
+  </script>
 </body>
 </html>

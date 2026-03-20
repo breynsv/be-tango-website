@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BE-TANGO — Enrollment Confirmation v3</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #F0EDE8;
+      min-height: 100vh;
+    }
+
+    /* ─── Overlay ───────────────────────────────────────────────── */
+    .em-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 1000;
+      backdrop-filter: blur(2px);
+    }
+
+    /* ─── Dialog ────────────────────────────────────────────────── */
+    @keyframes em-enter {
+      from { opacity: 0; transform: scale(0.95) translateY(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @keyframes em-check-draw {
+      from { stroke-dashoffset: 60; opacity: 0; }
+      to   { stroke-dashoffset: 0; opacity: 1; }
+    }
+
+    @keyframes em-circle-scale {
+      0%   { transform: scale(0.6); opacity: 0; }
+      70%  { transform: scale(1.08); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes em-fade-up {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .em-dialog {
+      position: relative;
+      background: #FFFFFF;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 560px;
+      max-height: calc(100vh - 32px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 20px 50px -8px rgba(0, 0, 0, 0.18),
+        0 0 0 1px rgba(0, 0, 0, 0.04);
+      animation: em-enter 0.28s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+      scrollbar-width: thin;
+      scrollbar-color: #E2C033 #F9F9F9;
+    }
+
+    .em-dialog::-webkit-scrollbar { width: 4px; }
+    .em-dialog::-webkit-scrollbar-track { background: transparent; }
+    .em-dialog::-webkit-scrollbar-thumb { background: #E2C033; border-radius: 4px; }
+
+    /* ─── Gold accent bar ───────────────────────────────────────── */
+    .em-accent-bar {
+      position: sticky;
+      top: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #C9A820 0%, #E2C033 45%, #F0D060 100%);
+      border-radius: 16px 16px 0 0;
+      z-index: 10;
+    }
+
+    /* ─── Progress (all filled = complete) ─────────────────────── */
+    .em-progress {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 16px 28px 0;
+    }
+
+    .em-progress-dot {
+      width: 28px;
+      height: 3px;
+      border-radius: 99px;
+      background: #E2C033;
+    }
+
+    .em-progress-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      color: #C9A820;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-left: 4px;
+    }
+
+    /* ─── Close button ──────────────────────────────────────────── */
+    .em-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 20;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6B7280;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .em-close:hover { background: #F3F4F6; color: #111827; }
+
+    /* ─── Hero success area ─────────────────────────────────────── */
+    .em-success-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 28px 24px;
+      text-align: center;
+    }
+
+    /* Animated checkmark circle */
+    .em-check-ring {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 20px;
+      animation: em-circle-scale 0.5s cubic-bezier(0.34, 1.4, 0.64, 1) 0.1s both;
+    }
+
+    .em-check-ring-bg {
+      fill: #FDF6DC;
+    }
+
+    .em-check-ring-border {
+      fill: none;
+      stroke: #E2C033;
+      stroke-width: 2;
+    }
+
+    .em-check-path {
+      fill: none;
+      stroke: #C9A820;
+      stroke-width: 2.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: em-check-draw 0.4s ease 0.55s forwards;
+    }
+
+    .em-success-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #111827;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      animation: em-fade-up 0.4s ease 0.3s both;
+    }
+
+    .em-success-msg {
+      font-size: 14px;
+      color: #6B7280;
+      line-height: 1.6;
+      max-width: 340px;
+      animation: em-fade-up 0.4s ease 0.4s both;
+    }
+
+    /* ─── Class chips (recap) ───────────────────────────────────── */
+    .em-chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 7px;
+      padding: 0 28px 24px;
+      animation: em-fade-up 0.4s ease 0.45s both;
+    }
+
+    .em-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 11px;
+      border-radius: 99px;
+      background: #F3F4F6;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #374151;
+      white-space: nowrap;
+    }
+
+    .em-chip--price {
+      background: #FDF6DC;
+      color: #92720A;
+      font-weight: 600;
+    }
+
+    .em-chip-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.5;
+    }
+
+    /* ─── Divider ───────────────────────────────────────────────── */
+    .em-divider {
+      height: 1px;
+      background: #F3F4F6;
+      margin: 0 28px;
+    }
+
+    /* ─── Payment section ───────────────────────────────────────── */
+    .em-payment {
+      padding: 24px 28px;
+      animation: em-fade-up 0.4s ease 0.5s both;
+    }
+
+    .em-payment-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1C244B;
+      margin-bottom: 16px;
+    }
+
+    .em-payment-heading::before {
+      content: '';
+      display: block;
+      width: 3px;
+      height: 18px;
+      background: #E2C033;
+      border-radius: 99px;
+      flex-shrink: 0;
+    }
+
+    /* Payment rows */
+    .em-pay-rows {
+      border: 1.5px solid #F3F4F6;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .em-pay-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 16px;
+      border-bottom: 1px solid #F3F4F6;
+    }
+
+    .em-pay-row:last-child { border-bottom: none; }
+
+    .em-pay-row:nth-child(odd) { background: #FAFAFA; }
+    .em-pay-row:nth-child(even) { background: #FFFFFF; }
+
+    .em-pay-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #9CA3AF;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .em-pay-value {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #111827;
+      text-align: right;
+      word-break: break-all;
+    }
+
+    .em-pay-value--amount {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1C244B;
+    }
+
+    .em-pay-value--ref {
+      font-family: 'DM Mono', 'Courier New', monospace;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: #1C244B;
+    }
+
+    /* ─── Due date banner ───────────────────────────────────────── */
+    .em-due-banner {
+      margin-top: 12px;
+      padding: 11px 16px;
+      background: #FFFBEB;
+      border: 1.5px solid #FDE68A;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .em-due-icon {
+      flex-shrink: 0;
+      color: #D97706;
+    }
+
+    .em-due-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: #92400E;
+      line-height: 1.5;
+    }
+
+    .em-due-text strong {
+      font-weight: 700;
+      display: block;
+    }
+
+    /* ─── QR section ────────────────────────────────────────────── */
+    .em-qr-section {
+      padding: 0 28px 28px;
+      animation: em-fade-up 0.4s ease 0.55s both;
+    }
+
+    .em-qr-body {
+      padding: 20px;
+      background: #FFFFFF;
+      border: 1.5px solid #E5E7EB;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .em-qr-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #9CA3AF;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    #em-qr-canvas {
+      display: inline-block;
+      margin-bottom: 12px;
+      /* QRCode.js renders a canvas or img — give it a white bg and padding */
+      background: #fff;
+      padding: 8px;
+      border-radius: 6px;
+      line-height: 0;
+    }
+
+    #em-qr-canvas canvas,
+    #em-qr-canvas img {
+      display: block;
+    }
+
+    .em-qr-caption {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: #9CA3AF;
+      line-height: 1.5;
+    }
+
+    /* ─── Close / done button ───────────────────────────────────── */
+    .em-done-wrap {
+      padding: 0 28px 28px;
+      animation: em-fade-up 0.4s ease 0.6s both;
+    }
+
+    .em-done-btn {
+      width: 100%;
+      padding: 14px 24px;
+      background: #1C244B;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .em-done-btn:hover {
+      background: #151c3a;
+      transform: scale(1.015);
+    }
+
+    .em-done-btn:active { transform: scale(0.99); }
+
+    .em-done-note {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 12px;
+      color: #9CA3AF;
+      line-height: 1.5;
+    }
+
+    /* ─── Mobile ────────────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .em-dialog { border-radius: 14px; }
+
+      .em-success-hero { padding: 28px 20px 20px; }
+      .em-chips { padding-left: 20px; padding-right: 20px; }
+      .em-divider { margin-left: 20px; margin-right: 20px; }
+      .em-payment { padding: 20px 20px; }
+      .em-qr-section { padding: 0 20px 24px; }
+      .em-done-wrap { padding: 0 20px 24px; }
+      .em-progress { padding-left: 20px; padding-right: 20px; }
+
+      .em-success-title { font-size: 20px; }
+      .em-check-ring { width: 60px; height: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<div style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-family:'DM Sans',sans-serif;font-size:12px;color:rgba(255,255,255,0.35);text-align:center;pointer-events:none;z-index:1;letter-spacing:0.04em;">
+  BE-TANGO · Enrollment Confirmation v3
+</div>
+
+<div class="em-overlay">
+  <div class="em-dialog">
+
+    <!-- Gold accent bar -->
+    <div class="em-accent-bar"></div>
+
+    <!-- Close -->
+    <button class="em-close" aria-label="Close" onclick="this.closest('.em-overlay').style.display='none'">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Progress — all filled (complete) -->
+    <div class="em-progress" aria-hidden="true">
+      <div class="em-progress-dot"></div>
+      <div class="em-progress-dot"></div>
+      <div class="em-progress-dot"></div>
+      <span class="em-progress-label">Confirmed</span>
+    </div>
+
+    <!-- Hero checkmark + title -->
+    <div class="em-success-hero">
+      <svg class="em-check-ring" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="36" cy="36" r="35" class="em-check-ring-bg"/>
+        <circle cx="36" cy="36" r="35" class="em-check-ring-border"/>
+        <path d="M21 37.5L30.5 47L51 26" class="em-check-path"/>
+      </svg>
+
+      <h2 class="em-success-title">You're Registered!</h2>
+      <p class="em-success-msg">
+        Your spot is confirmed. We'll send the payment details to your inbox.
+        Complete your payment before the due date to secure your place.
+      </p>
+    </div>
+
+    <!-- Class chips recap -->
+    <div class="em-chips" role="list" aria-label="Class details" id="em-chips">
+      <span class="em-chip" role="listitem"><span class="em-chip-dot"></span>Beginner</span>
+      <span class="em-chip" role="listitem"><span class="em-chip-dot"></span>Thursday</span>
+      <span class="em-chip em-chip--price" role="listitem">
+        <svg width="9" height="11" viewBox="0 0 9 11" fill="none" aria-hidden="true" style="opacity:.7">
+          <path d="M4.5 1v9M2 3.5h4a1.5 1.5 0 010 3H2m0 0h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>€195
+      </span>
+      <span class="em-chip" role="listitem"><span class="em-chip-dot"></span>Woluwe-Saint-Pierre</span>
+    </div>
+
+    <div class="em-divider"></div>
+
+    <!-- Payment details -->
+    <div class="em-payment">
+      <p class="em-payment-heading">Payment Details</p>
+
+      <div class="em-pay-rows">
+        <div class="em-pay-row">
+          <span class="em-pay-label">Amount</span>
+          <span class="em-pay-value em-pay-value--amount">€195.00</span>
+        </div>
+        <div class="em-pay-row">
+          <span class="em-pay-label">Bank Name</span>
+          <span class="em-pay-value">BE-TANGO ART</span>
+        </div>
+        <div class="em-pay-row">
+          <span class="em-pay-label">IBAN</span>
+          <span class="em-pay-value">BE97 0688 9645 6849</span>
+        </div>
+        <div class="em-pay-row">
+          <span class="em-pay-label">Reference</span>
+          <span class="em-pay-value em-pay-value--ref">+++123/4567/89012+++</span>
+        </div>
+      </div>
+
+      <!-- Due date banner -->
+      <div class="em-due-banner" role="note">
+        <svg class="em-due-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <rect x="2" y="4" width="16" height="14" rx="2.5" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M2 8h16M6 2v4M14 2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="10" cy="13" r="1" fill="currentColor"/>
+        </svg>
+        <div class="em-due-text">
+          <strong>Pay before 30 April 2026</strong>
+          Transfer the amount to the IBAN above using the structured reference.
+        </div>
+      </div>
+    </div>
+
+    <div class="em-divider"></div>
+
+    <!-- SEPA QR — always visible -->
+    <div class="em-qr-section">
+      <div class="em-qr-body" id="em-qr-body">
+        <p class="em-qr-label">Scan to Pay — SEPA QR</p>
+        <div id="em-qr-canvas"></div>
+        <p class="em-qr-caption">
+          Point your banking app camera at this code.<br/>
+          Opens a pre-filled SEPA payment. Supported by most Belgian banks.
+        </p>
+      </div>
+    </div>
+
+    <!-- Done button -->
+    <div class="em-done-wrap">
+      <button class="em-done-btn" onclick="this.closest('.em-overlay').style.display='none'">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M2 8L6.5 12.5L14 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Done
+      </button>
+      <p class="em-done-note">
+        A confirmation email has been sent to your inbox.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ─── SEPA EPC QR code generation ────────────────────────────────
+  // These values match the production defaults from enrollment-modal.js.
+  // In the real modal they come from the API response (data.bank_account,
+  // data.payment_reference, data.amount, data.bank_name, data.bank_bic).
+  const PAYMENT = {
+    bic:       'GEBABEBB',
+    name:      'BE-TANGO ART',
+    iban:      'BE97068896456849',
+    amount:    195.00,
+    reference: '+++123/4567/89012+++',  // structured creditor reference
+  };
+
+  // EPC QR (GiroCode) — version 002, UTF-8, SCT
+  const epc = [
+    'BCD',
+    '002',
+    '1',
+    'SCT',
+    PAYMENT.bic,
+    PAYMENT.name,
+    PAYMENT.iban,
+    'EUR' + PAYMENT.amount.toFixed(2),
+    '',               // purpose (optional)
+    PAYMENT.reference,
+    '',               // unstructured remittance (empty when structured is used)
+    '',               // beneficiary-to-originator info
+  ].join('\n');
+
+  new QRCode(document.getElementById('em-qr-canvas'), {
+    text:         epc,
+    width:        180,
+    height:       180,
+    correctLevel: QRCode.CorrectLevel.M,
+    colorDark:    '#111827',
+    colorLight:   '#FFFFFF',
+  });
+</script>
+</body>
+</html>
