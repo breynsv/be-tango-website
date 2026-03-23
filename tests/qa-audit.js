@@ -50,7 +50,86 @@ function slugFromPath(urlPath) {
   return `${lang}-${slug}`;
 }
 
-// Test: check that discoverPages finds all index.html files
-const pages = discoverPages();
-console.log(`Discovered ${pages.length} pages`);
-pages.slice(0, 5).forEach(p => console.log(' ', p));
+async function checkPage(page, urlPath, results) {
+  const url = BASE_URL + urlPath;
+  const issues = { critical: [], warnings: [], mobile: [], tablet: [] };
+  const imageFailures = new Set();
+  const consoleErrors = [];
+
+  // IMPORTANT: Register listeners BEFORE goto() — events fire during page load
+  // and will be missed if registered after goto() returns.
+  page.on('response', response => {
+    const type = response.request().resourceType();
+    if (type === 'image' && response.status() !== 200) {
+      imageFailures.add(response.url());
+    }
+  });
+  page.on('console', msg => {
+    if (msg.type() === 'error') consoleErrors.push(msg.text());
+  });
+
+  // Navigate and check page load
+  let response;
+  try {
+    response = await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+  } catch (err) {
+    issues.critical.push({ type: 'page-load-error', detail: err.message });
+    results.push({ urlPath, url, issues });
+    return;
+  }
+
+  if (!response || response.status() !== 200) {
+    issues.critical.push({ type: 'page-load-error', detail: `HTTP ${response?.status()}` });
+    results.push({ urlPath, url, issues });
+    return;
+  }
+
+  consoleErrors.forEach(err => {
+    issues.critical.push({ type: 'js-error', detail: err });
+  });
+
+  // Broken internal links — resolve to absolute, filter same-origin, fetch
+  const hrefs = await page.$$eval('a[href]', els =>
+    els.map(el => el.getAttribute('href')).filter(Boolean)
+  );
+
+  const checked = new Set();
+  for (const href of hrefs) {
+    try {
+      const resolved = new URL(href, url);
+      if (resolved.origin !== new URL(BASE_URL).origin) continue;
+      if (checked.has(resolved.href)) continue;
+      checked.add(resolved.href);
+
+      // Skip anchors-only
+      if (resolved.pathname === new URL(url).pathname && resolved.hash) continue;
+
+      const res = await page.request.fetch(resolved.href, { timeout: 10000 }).catch(() => null);
+      if (!res || res.status() === 404) {
+        issues.critical.push({ type: 'broken-link', detail: resolved.href, status: res?.status() ?? 'timeout' });
+      }
+    } catch (_) {
+      // Malformed href, skip
+    }
+  }
+
+  // Missing/broken images (from response listener above)
+  imageFailures.forEach(src => {
+    issues.critical.push({ type: 'missing-image', detail: src });
+  });
+
+  results.push({ urlPath, url, issues, checked });
+}
+
+(async () => {
+  const browser = await chromium.launch();
+  const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const page = await context.newPage();
+
+  const results = [];
+  await checkPage(page, '/', results);
+
+  console.log('Issues on /:', JSON.stringify(results[0].issues, null, 2));
+
+  await browser.close();
+})();
