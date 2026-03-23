@@ -45,7 +45,7 @@ function slugFromPath(urlPath) {
   const lang = langFromPath(urlPath);
   const stripped = urlPath.replace(/^\//, '').replace(/\/$/, '') || 'index';
   // Remove leading lang prefix (fr/, nl/) since we add it explicitly
-  const withoutLang = stripped.replace(/^(fr|nl)\//, '') || 'index';
+  const withoutLang = stripped.replace(/^(fr|nl)(\/|$)/, '') || 'index';
   const slug = withoutLang.replace(/\//g, '-') || 'index';
   return `${lang}-${slug}`;
 }
