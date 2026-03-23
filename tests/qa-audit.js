@@ -245,10 +245,12 @@ function generateReports(results) {
   const allBrokenLinks = [];
   const allMissingImages = [];
   const allJsErrors = [];
+  const allPageErrors = [];
   const allLangIssues = [];
   const allAltIssues = [];
   const allTitleIssues = [];
   const allLangAttrIssues = [];
+  const allEmptyLinks = [];
   const allMobileIssues = [];
   const allTabletIssues = [];
   const allExternalLinks = [];
@@ -263,12 +265,14 @@ function generateReports(results) {
       if (i.type === 'broken-link') allBrokenLinks.push({ urlPath, url, ...i });
       else if (i.type === 'missing-image') allMissingImages.push({ urlPath, url, ...i });
       else if (i.type === 'js-error') allJsErrors.push({ urlPath, url, ...i });
+      else allPageErrors.push({ urlPath, url, ...i }); // page-load-error, check-error
     }
     for (const i of issues.warnings) {
       if (i.type === 'lang-switcher-broken') { pageHasIssues = true; allLangIssues.push({ urlPath, url, ...i }); }
       else if (i.type === 'missing-alt') { pageHasIssues = true; allAltIssues.push({ urlPath, url, ...i }); }
       else if (i.type === 'missing-title' || i.type === 'missing-meta-description') { pageHasIssues = true; allTitleIssues.push({ urlPath, url, ...i }); }
       else if (i.type === 'wrong-html-lang') { pageHasIssues = true; allLangAttrIssues.push({ urlPath, url, ...i }); }
+      else if (i.type === 'empty-link') { pageHasIssues = true; allEmptyLinks.push({ urlPath, url, ...i }); }
       else if (i.type === 'external-links') {
         // external-links detail is an array; expand to individual rows
         for (const extUrl of (i.detail || [])) {
@@ -285,8 +289,8 @@ function generateReports(results) {
   // Deduplicated global broken links summary (unique broken href values)
   const uniqueBrokenLinks = [...new Map(allBrokenLinks.map(r => [r.detail, r])).values()];
 
-  const totalCritical = allBrokenLinks.length + allMissingImages.length + allJsErrors.length;
-  const totalWarnings = allLangIssues.length + allAltIssues.length + allTitleIssues.length + allLangAttrIssues.length;
+  const totalCritical = allBrokenLinks.length + allMissingImages.length + allJsErrors.length + allPageErrors.length;
+  const totalWarnings = allLangIssues.length + allAltIssues.length + allTitleIssues.length + allLangAttrIssues.length + allEmptyLinks.length;
   const totalMobile = allMobileIssues.length;
   const totalTablet = allTabletIssues.length;
 
@@ -393,6 +397,15 @@ ${table(allJsErrors, [
 </section>
 
 <section>
+<h2>🔴 Page Load Errors</h2>
+${table(allPageErrors, [
+  { label: 'Page', key: 'urlPath' },
+  { label: 'Error type', key: 'type' },
+  { label: 'Detail', key: 'detail' }
+])}
+</section>
+
+<section>
 <h2>Language Switcher Issues</h2>
 ${table(allLangIssues, [
   { label: 'Page', key: 'urlPath' },
@@ -422,6 +435,14 @@ ${table(allTitleIssues, [
 ${table(allLangAttrIssues, [
   { label: 'Page', key: 'urlPath' },
   { label: 'Detail', key: 'detail' }
+])}
+</section>
+
+<section>
+<h2>🟠 Empty / Anchor-Only Links</h2>
+${table(allEmptyLinks, [
+  { label: 'Page', key: 'urlPath' },
+  { label: 'Link text', key: 'detail' }
 ])}
 </section>
 
@@ -501,6 +522,10 @@ ${mdTable(allMissingImages, [{ label: 'Page', key: 'urlPath' }, { label: 'Image 
 
 ${mdTable(allJsErrors, [{ label: 'Page', key: 'urlPath' }, { label: 'Error', key: 'detail' }])}
 
+## 🔴 Page Load Errors
+
+${mdTable(allPageErrors, [{ label: 'Page', key: 'urlPath' }, { label: 'Error type', key: 'type' }, { label: 'Detail', key: 'detail' }])}
+
 ## Language Switcher Issues
 
 ${mdTable(allLangIssues, [{ label: 'Page', key: 'urlPath' }, { label: 'Link', key: 'detail' }, { label: 'Status', key: 'status' }])}
@@ -516,6 +541,10 @@ ${mdTable(allTitleIssues, [{ label: 'Page', key: 'urlPath' }, { label: 'Issue', 
 ## Incorrect html lang Attribute
 
 ${mdTable(allLangAttrIssues, [{ label: 'Page', key: 'urlPath' }, { label: 'Detail', key: 'detail' }])}
+
+## 🟠 Empty / Anchor-Only Links
+
+${mdTable(allEmptyLinks, [{ label: 'Page', key: 'urlPath' }, { label: 'Link text', key: 'detail' }])}
 
 ## External Links (informational)
 
