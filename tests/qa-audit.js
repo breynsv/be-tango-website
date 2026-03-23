@@ -240,6 +240,308 @@ async function checkResponsive(page, urlPath, issuesBucket) {
   await page.screenshot({ path: path.join(SCREENSHOTS_DIR, `${slug}-tablet.png`), fullPage: true });
 }
 
+function generateReports(results) {
+  // Aggregate global summaries
+  const allBrokenLinks = [];
+  const allMissingImages = [];
+  const allJsErrors = [];
+  const allLangIssues = [];
+  const allAltIssues = [];
+  const allTitleIssues = [];
+  const allLangAttrIssues = [];
+  const allMobileIssues = [];
+  const allTabletIssues = [];
+  const allExternalLinks = [];
+  const cleanPages = [];
+
+  for (const r of results) {
+    const { urlPath, url, issues } = r;
+    let pageHasIssues = false;
+
+    for (const i of issues.critical) {
+      pageHasIssues = true;
+      if (i.type === 'broken-link') allBrokenLinks.push({ urlPath, url, ...i });
+      else if (i.type === 'missing-image') allMissingImages.push({ urlPath, url, ...i });
+      else if (i.type === 'js-error') allJsErrors.push({ urlPath, url, ...i });
+    }
+    for (const i of issues.warnings) {
+      if (i.type === 'lang-switcher-broken') { pageHasIssues = true; allLangIssues.push({ urlPath, url, ...i }); }
+      else if (i.type === 'missing-alt') { pageHasIssues = true; allAltIssues.push({ urlPath, url, ...i }); }
+      else if (i.type === 'missing-title' || i.type === 'missing-meta-description') { pageHasIssues = true; allTitleIssues.push({ urlPath, url, ...i }); }
+      else if (i.type === 'wrong-html-lang') { pageHasIssues = true; allLangAttrIssues.push({ urlPath, url, ...i }); }
+      else if (i.type === 'external-links') {
+        // external-links detail is an array; expand to individual rows
+        for (const extUrl of (i.detail || [])) {
+          allExternalLinks.push({ urlPath, detail: extUrl });
+        }
+      }
+    }
+    for (const i of issues.mobile) { pageHasIssues = true; allMobileIssues.push({ urlPath, url, ...i }); }
+    for (const i of issues.tablet) { pageHasIssues = true; allTabletIssues.push({ urlPath, url, ...i }); }
+
+    if (!pageHasIssues) cleanPages.push(urlPath);
+  }
+
+  // Deduplicated global broken links summary (unique broken href values)
+  const uniqueBrokenLinks = [...new Map(allBrokenLinks.map(r => [r.detail, r])).values()];
+
+  const totalCritical = allBrokenLinks.length + allMissingImages.length + allJsErrors.length;
+  const totalWarnings = allLangIssues.length + allAltIssues.length + allTitleIssues.length + allLangAttrIssues.length;
+  const totalMobile = allMobileIssues.length;
+  const totalTablet = allTabletIssues.length;
+
+  // HTML table helper
+  function table(rows, cols) {
+    if (rows.length === 0) return '<p style="color:#388e3c">None found.</p>';
+    const header = `<tr>${cols.map(c => `<th>${c.label}</th>`).join('')}</tr>`;
+    const body = rows.map(r =>
+      `<tr>${cols.map(c => `<td>${String(r[c.key] ?? '').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</td>`).join('')}</tr>`
+    ).join('');
+    return `<table><thead>${header}</thead><tbody>${body}</tbody></table>`;
+  }
+
+  // Screenshots gallery
+  const screenshotGrid = results.map(r => {
+    const slug = slugFromPath(r.urlPath);
+    const m = `qa-screenshots/${slug}-mobile.png`;
+    const t = `qa-screenshots/${slug}-tablet.png`;
+    const mExists = fs.existsSync(path.join(PROJECT_ROOT, m));
+    const tExists = fs.existsSync(path.join(PROJECT_ROOT, t));
+    return `
+      <div class="screenshot-row">
+        <div class="screenshot-label">${r.urlPath}</div>
+        <div class="screenshot-pair">
+          ${mExists ? `<div><div class="vp-label">Mobile 375px</div><img src="${m}" loading="lazy"></div>` : '<div><em>no mobile screenshot</em></div>'}
+          ${tExists ? `<div><div class="vp-label">Tablet 768px</div><img src="${t}" loading="lazy"></div>` : '<div><em>no tablet screenshot</em></div>'}
+        </div>
+      </div>`;
+  }).join('');
+
+  // HTML report
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BE-TANGO QA Audit Report</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; padding: 24px; background: #fafafa; color: #222; }
+  h1 { color: #b71c1c; }
+  h2 { border-bottom: 2px solid #eee; padding-bottom: 8px; margin-top: 40px; }
+  h3 { font-size: 0.95em; color: #666; margin-bottom: 8px; }
+  .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 24px 0; }
+  .card { background: #fff; border-radius: 8px; padding: 16px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .card .count { font-size: 2.5em; font-weight: 700; }
+  .card.critical .count { color: #c62828; }
+  .card.warning .count { color: #e65100; }
+  .card.mobile .count { color: #1565c0; }
+  .card.tablet .count { color: #6a1b9a; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 24px; }
+  th { background: #f5f5f5; text-align: left; padding: 10px 12px; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 8px 12px; border-top: 1px solid #eee; font-size: 0.9em; word-break: break-all; }
+  tr:hover td { background: #fafafa; }
+  .screenshot-row { margin-bottom: 32px; }
+  .screenshot-label { font-family: monospace; font-size: 0.9em; color: #555; margin-bottom: 8px; }
+  .screenshot-pair { display: grid; grid-template-columns: 375px 768px; gap: 24px; }
+  .screenshot-pair img { width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  .vp-label { font-size: 0.75em; color: #888; margin-bottom: 4px; }
+  .clean-list { columns: 3; list-style: none; padding: 0; }
+  .clean-list li::before { content: "\\2705 "; }
+  section { margin-bottom: 48px; }
+</style>
+</head>
+<body>
+<h1>BE-TANGO QA Audit Report</h1>
+<p>Generated: ${new Date().toISOString()} &nbsp;|&nbsp; Pages crawled: ${results.length}</p>
+
+<div class="summary">
+  <div class="card critical"><div class="count">${totalCritical}</div><div>Critical</div></div>
+  <div class="card warning"><div class="count">${totalWarnings}</div><div>Warnings</div></div>
+  <div class="card mobile"><div class="count">${totalMobile}</div><div>Mobile Issues</div></div>
+  <div class="card tablet"><div class="count">${totalTablet}</div><div>Tablet Issues</div></div>
+</div>
+
+<section>
+<h2>Broken Links</h2>
+<h3>Unique broken URLs (deduplicated)</h3>
+${table(uniqueBrokenLinks, [
+  { label: 'Broken href', key: 'detail' },
+  { label: 'Status', key: 'status' },
+  { label: 'First seen on', key: 'urlPath' }
+])}
+<h3>All occurrences (per page)</h3>
+${table(allBrokenLinks, [
+  { label: 'Page', key: 'urlPath' },
+  { label: 'Broken href', key: 'detail' },
+  { label: 'Status', key: 'status' }
+])}
+</section>
+
+<section>
+<h2>Missing Images</h2>
+${table(allMissingImages, [
+  { label: 'Page', key: 'urlPath' },
+  { label: 'Image URL', key: 'detail' }
+])}
+</section>
+
+<section>
+<h2>JS Console Errors</h2>
+${table(allJsErrors, [
+  { label: 'Page', key: 'urlPath' },
+  { label: 'Error', key: 'detail' }
+])}
+</section>
+
+<section>
+<h2>Language Switcher Issues</h2>
+${table(allLangIssues, [
+  { label: 'Page', key: 'urlPath' },
+  { label: 'Link', key: 'detail' },
+  { label: 'Status', key: 'status' }
+])}
+</section>
+
+<section>
+<h2>Missing Alt Text</h2>
+${table(allAltIssues, [
+  { label: 'Page', key: 'urlPath' },
+  { label: 'Image src', key: 'detail' }
+])}
+</section>
+
+<section>
+<h2>Missing Title / Meta Description</h2>
+${table(allTitleIssues, [
+  { label: 'Page', key: 'urlPath' },
+  { label: 'Issue', key: 'detail' }
+])}
+</section>
+
+<section>
+<h2>Incorrect html lang Attribute</h2>
+${table(allLangAttrIssues, [
+  { label: 'Page', key: 'urlPath' },
+  { label: 'Detail', key: 'detail' }
+])}
+</section>
+
+<section>
+<h2>External Links (informational)</h2>
+${table(allExternalLinks, [
+  { label: 'Page', key: 'urlPath' },
+  { label: 'External URL', key: 'detail' }
+])}
+</section>
+
+<section>
+<h2>Mobile Issues (375px)</h2>
+${table(allMobileIssues, [
+  { label: 'Page', key: 'urlPath' },
+  { label: 'Issue', key: 'type' },
+  { label: 'Detail', key: 'detail' }
+])}
+</section>
+
+<section>
+<h2>Tablet Issues (768px)</h2>
+${table(allTabletIssues, [
+  { label: 'Page', key: 'urlPath' },
+  { label: 'Issue', key: 'type' },
+  { label: 'Detail', key: 'detail' }
+])}
+</section>
+
+<section>
+<h2>Screenshots</h2>
+${screenshotGrid}
+</section>
+
+<section>
+<h2>Clean Pages (${cleanPages.length})</h2>
+<ul class="clean-list">${cleanPages.map(p => `<li>${p}</li>`).join('')}</ul>
+</section>
+
+</body></html>`;
+
+  fs.writeFileSync(REPORT_HTML, html);
+
+  // Markdown report helper
+  function mdTable(rows, cols) {
+    if (rows.length === 0) return '_None found._\n';
+    const header = '| ' + cols.map(c => c.label).join(' | ') + ' |';
+    const sep = '| ' + cols.map(() => '---').join(' | ') + ' |';
+    const body = rows.map(r => '| ' + cols.map(c => String(r[c.key] ?? '').replace(/\|/g, '\\|')).join(' | ') + ' |').join('\n');
+    return `${header}\n${sep}\n${body}\n`;
+  }
+
+  const md = `# BE-TANGO QA Audit Report
+
+Generated: ${new Date().toISOString()}
+Pages crawled: ${results.length}
+
+## Summary
+
+| Category | Count |
+| --- | --- |
+| Critical | ${totalCritical} |
+| Warnings | ${totalWarnings} |
+| Mobile Issues | ${totalMobile} |
+| Tablet Issues | ${totalTablet} |
+| Clean Pages | ${cleanPages.length} |
+
+## Broken Links
+
+${mdTable(allBrokenLinks, [{ label: 'Page', key: 'urlPath' }, { label: 'Broken href', key: 'detail' }, { label: 'Status', key: 'status' }])}
+
+## Missing Images
+
+${mdTable(allMissingImages, [{ label: 'Page', key: 'urlPath' }, { label: 'Image URL', key: 'detail' }])}
+
+## JS Console Errors
+
+${mdTable(allJsErrors, [{ label: 'Page', key: 'urlPath' }, { label: 'Error', key: 'detail' }])}
+
+## Language Switcher Issues
+
+${mdTable(allLangIssues, [{ label: 'Page', key: 'urlPath' }, { label: 'Link', key: 'detail' }, { label: 'Status', key: 'status' }])}
+
+## Missing Alt Text
+
+${mdTable(allAltIssues, [{ label: 'Page', key: 'urlPath' }, { label: 'Image src', key: 'detail' }])}
+
+## Missing Title / Meta Description
+
+${mdTable(allTitleIssues, [{ label: 'Page', key: 'urlPath' }, { label: 'Issue', key: 'detail' }])}
+
+## Incorrect html lang Attribute
+
+${mdTable(allLangAttrIssues, [{ label: 'Page', key: 'urlPath' }, { label: 'Detail', key: 'detail' }])}
+
+## External Links (informational)
+
+${mdTable(allExternalLinks, [{ label: 'Page', key: 'urlPath' }, { label: 'External URL', key: 'detail' }])}
+
+## Mobile Issues (375px)
+
+${mdTable(allMobileIssues, [{ label: 'Page', key: 'urlPath' }, { label: 'Issue', key: 'type' }, { label: 'Detail', key: 'detail' }])}
+
+## Tablet Issues (768px)
+
+${mdTable(allTabletIssues, [{ label: 'Page', key: 'urlPath' }, { label: 'Issue', key: 'type' }, { label: 'Detail', key: 'detail' }])}
+
+## Clean Pages
+
+${cleanPages.map(p => `- ${p}`).join('\n')}
+`;
+
+  fs.writeFileSync(REPORT_MD, md);
+
+  console.log(`\nReports written:`);
+  console.log(`  HTML: ${REPORT_HTML}`);
+  console.log(`  MD:   ${REPORT_MD}`);
+  console.log(`  Screenshots: ${SCREENSHOTS_DIR}`);
+}
+
 (async () => {
   console.log('Starting BE-TANGO QA Audit...');
   console.log(`Target: ${BASE_URL}`);
@@ -302,9 +604,8 @@ async function checkResponsive(page, urlPath, issuesBucket) {
 
   await browser.close();
 
-  // Phase 3: Generate reports (added in Task 6)
-  // generateReports(results);
+  // Phase 3: Generate reports
+  generateReports(results);
 
   console.log(`\nDone! ${results.length} pages crawled.`);
-  console.log(`Results in memory — Task 6 will generate the report.`);
 })();
