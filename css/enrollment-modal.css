@@ -222,6 +222,7 @@
   column-gap: 14px;
   row-gap: 6px;
   margin-top: 14px;
+  align-items: start;
 }
 
 .em-row:first-child { margin-top: 0; }
@@ -235,6 +236,9 @@
 }
 
 .em-field:first-child { margin-top: 0; }
+
+/* Inside a two-column row, both fields must start at the same vertical position */
+.em-row .em-field { margin-top: 0; }
 
 .em-label {
   font-family: 'Poppins', sans-serif;

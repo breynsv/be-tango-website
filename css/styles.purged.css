@@ -4489,6 +4489,10 @@ section {
   margin-right: auto;
 }
 
+.bg-dark .lead {
+  color: rgba(255, 255, 255, 0.9);
+}
+
 /* Info card improvements for location pages */
 .info-card {
   text-align: center;

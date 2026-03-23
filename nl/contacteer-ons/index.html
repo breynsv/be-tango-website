@@ -38,6 +38,7 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../css/private-lessons.css">
 
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
@@ -259,36 +260,56 @@
           <!-- Contact Form -->
           <div class="contact-form-wrapper">
             <h2>Stuur ons een bericht</h2>
-            <form class="contact-form" aria-label="Contactformulier" action="#" method="POST" id="contactForm">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="first-name">Voornaam *</label>
-                  <input type="text" id="first-name" name="first-name" required placeholder="Je voornaam">
+            <form id="contactForm" data-language="NL" novalidate aria-label="Contactformulier">
+              <div class="ft-form-row">
+                <div class="ft-form-field">
+                  <label class="ft-label" for="first_name">Voornaam *</label>
+                  <input class="ft-input" type="text" id="first_name" name="first_name" placeholder="Je voornaam">
                 </div>
-                <div class="form-group">
-                  <label for="last-name">Achternaam *</label>
-                  <input type="text" id="last-name" name="last-name" required placeholder="Je achternaam">
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="email">E-mail *</label>
-                  <input type="email" id="email" name="email" required placeholder="Je e-mail">
-                </div>
-                <div class="form-group">
-                  <label for="phone">Telefoonnummer</label>
-                  <input type="tel" id="phone" name="phone" placeholder="Telefoonnummer" pattern="[0-9()#&+*\-=.]+" title="Alleen cijfers en telefoonkarakters (#, -, *, etc) zijn toegestaan.">
+                <div class="ft-form-field">
+                  <label class="ft-label" for="last_name">Achternaam *</label>
+                  <input class="ft-input" type="text" id="last_name" name="last_name" placeholder="Je achternaam">
                 </div>
               </div>
 
-              <div class="form-group">
-                <label for="message">Bericht *</label>
-                <textarea id="message" name="message" rows="6" required placeholder="Je bericht"></textarea>
+              <div class="ft-form-row">
+                <div class="ft-form-field">
+                  <label class="ft-label" for="email">E-mail *</label>
+                  <input class="ft-input" type="email" id="email" name="email" placeholder="Je e-mail">
+                </div>
+                <div class="ft-form-field">
+                  <label class="ft-label" for="phone">Telefoonnummer</label>
+                  <input class="ft-input" type="tel" id="phone" name="phone" placeholder="bijv. +32 498 39 29 39">
+                </div>
               </div>
 
-              <button type="submit" class="btn btn-primary btn-large">Verstuur bericht</button>
+              <div class="ft-form-field">
+                <label class="ft-label" for="topic">Waar gaat je vraag over?</label>
+                <div class="ft-select-wrap">
+                  <select class="ft-select" id="topic" name="topic">
+                    <option value="">-- Selecteer een onderwerp --</option>
+                    <option value="weekly_classes">Wekelijkse tangolessen</option>
+                    <option value="workshops_weekends">Workshops &amp; weekends</option>
+                    <option value="private_lessons">Privélessen</option>
+                    <option value="free_trial">Gratis proefles</option>
+                    <option value="events_milongas">Events &amp; milonga's</option>
+                    <option value="gift_voucher">Cadeaubon</option>
+                    <option value="general_question">Algemene vraag</option>
+                    <option value="other">Andere</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="ft-form-field">
+                <label class="ft-label" for="message">Bericht</label>
+                <textarea class="ft-textarea" id="message" name="message" rows="6" placeholder="Je bericht"></textarea>
+              </div>
+
+              <div class="ft-form-error" style="display:none"></div>
+
+              <button type="submit" class="ft-submit">Verstuur bericht</button>
             </form>
+            <div id="contact-success" class="ft-success" style="display:none"></div>
           </div>
         </div>
       </div>
@@ -529,23 +550,6 @@
       });
     }
 
-    // Form submission handler
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Get form data
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
-
-        // Here you would normally send the data to a server
-        // For now, just show a success message
-        alert('Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.');
-        contactForm.reset();
-      });
-    }
-
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -562,5 +566,7 @@
   </script>
 
   <!-- Floating Mobile Call Button -->
+  <script src="../../js/crm-api.min.js" defer></script>
+  <script src="../../js/contact-form.min.js" defer></script>
 </body>
 </html>

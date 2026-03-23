@@ -37,6 +37,7 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../css/private-lessons.css">
 
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
@@ -248,36 +249,56 @@
           <!-- Contact Form -->
           <div class="contact-form-wrapper">
             <h2>Envoyez-nous un Message</h2>
-            <form class="contact-form" aria-label="Formulaire de contact" action="#" method="POST" id="contactForm">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="first-name">Prénom *</label>
-                  <input type="text" id="first-name" name="first-name" required placeholder="Votre prénom">
+            <form id="contactForm" data-language="FR" novalidate aria-label="Formulaire de contact">
+              <div class="ft-form-row">
+                <div class="ft-form-field">
+                  <label class="ft-label" for="first_name">Prénom *</label>
+                  <input class="ft-input" type="text" id="first_name" name="first_name" placeholder="Votre prénom">
                 </div>
-                <div class="form-group">
-                  <label for="last-name">Nom *</label>
-                  <input type="text" id="last-name" name="last-name" required placeholder="Votre nom">
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="email">Email *</label>
-                  <input type="email" id="email" name="email" required placeholder="Votre email">
-                </div>
-                <div class="form-group">
-                  <label for="phone">Numéro de téléphone</label>
-                  <input type="tel" id="phone" name="phone" placeholder="Numéro de téléphone" pattern="[0-9()#&+*\-=.]+" title="Seuls les chiffres et les caractères téléphoniques (#, -, *, etc.) sont acceptés.">
+                <div class="ft-form-field">
+                  <label class="ft-label" for="last_name">Nom *</label>
+                  <input class="ft-input" type="text" id="last_name" name="last_name" placeholder="Votre nom">
                 </div>
               </div>
 
-              <div class="form-group">
-                <label for="message">Message *</label>
-                <textarea id="message" name="message" rows="6" required placeholder="Votre message"></textarea>
+              <div class="ft-form-row">
+                <div class="ft-form-field">
+                  <label class="ft-label" for="email">Email *</label>
+                  <input class="ft-input" type="email" id="email" name="email" placeholder="Votre email">
+                </div>
+                <div class="ft-form-field">
+                  <label class="ft-label" for="phone">Numéro de téléphone</label>
+                  <input class="ft-input" type="tel" id="phone" name="phone" placeholder="ex. +32 498 39 29 39">
+                </div>
               </div>
 
-              <button type="submit" class="btn btn-primary btn-large">Envoyer le Message</button>
+              <div class="ft-form-field">
+                <label class="ft-label" for="topic">Quel est votre sujet ?</label>
+                <div class="ft-select-wrap">
+                  <select class="ft-select" id="topic" name="topic">
+                    <option value="">-- Veuillez sélectionner --</option>
+                    <option value="weekly_classes">Cours de tango hebdomadaires</option>
+                    <option value="workshops_weekends">Ateliers &amp; week-ends</option>
+                    <option value="private_lessons">Cours particuliers</option>
+                    <option value="free_trial">Cours d'essai gratuit</option>
+                    <option value="events_milongas">Événements &amp; milongas</option>
+                    <option value="gift_voucher">Bon cadeau</option>
+                    <option value="general_question">Question générale</option>
+                    <option value="other">Autre</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="ft-form-field">
+                <label class="ft-label" for="message">Message</label>
+                <textarea class="ft-textarea" id="message" name="message" rows="6" placeholder="Votre message"></textarea>
+              </div>
+
+              <div class="ft-form-error" style="display:none"></div>
+
+              <button type="submit" class="ft-submit">Envoyer le Message</button>
             </form>
+            <div id="contact-success" class="ft-success" style="display:none"></div>
           </div>
         </div>
       </div>
@@ -517,23 +538,6 @@
       });
     }
 
-    // Form submission handler
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Get form data
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
-
-        // Here you would normally send the data to a server
-        // For now, just show a success message
-        alert('Merci pour votre message ! Nous vous répondrons bientôt.');
-        contactForm.reset();
-      });
-    }
-
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -549,5 +553,7 @@
     });
   </script>
   <!-- Floating Mobile Call Button -->
+  <script src="../../js/crm-api.min.js" defer></script>
+  <script src="../../js/contact-form.min.js" defer></script>
 </body>
 </html>

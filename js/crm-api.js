@@ -249,6 +249,22 @@ class CRMApi {
     }
 
     /**
+     * Submit the general contact form.
+     * @param {Object} data - { first_name, last_name, email, phone, topic, message, lang }
+     */
+    async submitContactForm(data) {
+        return await this.post('/contact', data);
+    }
+
+    /**
+     * Submit a private lessons inquiry.
+     * @param {Object} data - { name, email, phone, lesson_type, message, lang }
+     */
+    async submitPrivateLessonsForm(data) {
+        return await this.post('/private-lessons', data);
+    }
+
+    /**
      * Clear cache manually
      */
     clearCache() {

@@ -1497,6 +1497,48 @@ section {
   margin-top: var(--spacing-xs);
 }
 
+/* Circular check icon used in contact/newsletter success states */
+.ft-success__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #FDF6DC;
+  border: 2px solid #E2C033;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 22px;
+  color: #C9A820;
+}
+
+/* Success state inside the light newsletter-signup card */
+.newsletter-signup .ft-success {
+  background: transparent;
+  border: none;
+  padding: 1.5rem 0 0;
+}
+.newsletter-signup .ft-success h3 {
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.newsletter-signup .ft-success p {
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+/* Validation error on newsletter email input */
+.newsletter-email-input.input-error {
+  border-color: #DC2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+.newsletter-error {
+  font-size: 0.8rem;
+  color: #DC2626;
+  margin-top: 0.35rem;
+}
+
 /* Footer */
 .site-footer {
   background: linear-gradient(135deg, rgba(28, 36, 75, 1) 0%, rgba(0, 0, 0, 0.95) 100%);
@@ -5181,6 +5223,10 @@ section {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.bg-dark .lead {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* Info card improvements for location pages */

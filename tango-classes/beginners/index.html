@@ -503,10 +503,8 @@
                 />
                 <button type="submit" class="btn btn-primary newsletter-submit">Notify me</button>
               </div>
-              <p class="newsletter-success" id="bootcampSuccess" hidden>
-                ✓ We'll let you know when new dates are announced!
-              </p>
             </form>
+          <div class="ft-success" id="bootcampSuccess" style="display:none"></div>
           </div>
         </article>
       </div>
@@ -1010,11 +1008,17 @@
       if (!nf) return;
       nf.addEventListener('submit', function(e) {
         e.preventDefault();
-        var email = document.getElementById('bootcampEmail').value.trim();
-        var input = document.getElementById('bootcampEmail');
+        var emailInput = document.getElementById('bootcampEmail');
+        var email = emailInput.value.trim();
+        // Validate email format
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          emailInput.classList.add('input-error');
+          return;
+        }
+        emailInput.classList.remove('input-error');
         var btn = nf.querySelector('button[type="submit"]');
-        var success = document.getElementById('bootcampSuccess');
         btn.disabled = true;
+        var successEl = document.getElementById('bootcampSuccess');
         var baseURL = (typeof API_CONFIG !== 'undefined' && API_CONFIG.baseURL)
           ? API_CONFIG.baseURL
           : 'http://127.0.0.1:8001/api/v1';
@@ -1022,10 +1026,21 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ email: email })
-        }).finally(function() {
-          success.hidden = false;
-          input.disabled = true;
-        });
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.success) {
+            nf.style.display = 'none';
+            successEl.innerHTML =
+              '<div class="ft-success__icon"><i class="fas fa-check"></i></div>' +
+              '<h3>You\'re on the list!</h3>' +
+              '<p>We\'ll notify you when new bootcamp dates are announced.</p>';
+            successEl.style.display = 'block';
+          } else {
+            btn.disabled = false;
+          }
+        })
+        .catch(function() { btn.disabled = false; });
       });
     })();
   </script>

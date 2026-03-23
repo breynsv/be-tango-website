@@ -40,6 +40,7 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../css/private-lessons.css">
 
   <!-- Enhancement Scripts -->
   <script src="../../js/enhancements.min.js?v=3.5" defer></script>
@@ -248,16 +249,28 @@
           <p class="section-description">Sometimes a group class moves too fast, or too slow. Or maybe you want to prepare for the new dance season. With a private lesson, you get 100% attention from our experienced teachers.</p>
         </div>
 
-        <div class="grid grid-2">
+        <div class="grid grid-2 pl-why-grid">
 
           <!-- What to Expect -->
           <div class="content-block">
             <h3>What to expect:</h3>
-            <ul class="feature-list">
-              <li><i class="fas fa-check"></i> We work specifically on what <strong>you</strong> need: from basic balance to complex figures.</li>
-              <li><i class="fas fa-check"></i> <strong>Refining technique:</strong> Work on your posture, connection, and musicality.</li>
-              <li><i class="fas fa-check"></i> <strong>Catching up:</strong> Missed classes? Catch up quickly at your own pace.</li>
-              <li><i class="fas fa-check"></i> <strong>Wedding Dance:</strong> An original choreography for your big day.</li>
+            <ul class="pl-checklist">
+              <li>
+                <span class="pl-checklist__icon"><i class="fas fa-check"></i></span>
+                <span>We work specifically on what <strong>you</strong> need: from basic balance to complex figures.</span>
+              </li>
+              <li>
+                <span class="pl-checklist__icon"><i class="fas fa-check"></i></span>
+                <span><strong>Refining technique:</strong> Work on your posture, connection, and musicality.</span>
+              </li>
+              <li>
+                <span class="pl-checklist__icon"><i class="fas fa-check"></i></span>
+                <span><strong>Catching up:</strong> Missed classes? Catch up quickly at your own pace.</span>
+              </li>
+              <li>
+                <span class="pl-checklist__icon"><i class="fas fa-check"></i></span>
+                <span><strong>Wedding Dance:</strong> An original choreography for your big day.</span>
+              </li>
             </ul>
           </div>
 
@@ -288,11 +301,11 @@
             <h3>Individual / Couple</h3>
             <p>Perfect for working intensively on your own dance style. Book per session.</p>
 
-            <ul class="feature-list">
-              <li><i class="fas fa-check"></i> 100% personalized attention</li>
-              <li><i class="fas fa-check"></i> Solo or with your partner</li>
-              <li><i class="fas fa-check"></i> Focus on your specific needs</li>
-              <li><i class="fas fa-check"></i> Flexible scheduling</li>
+            <ul class="pl-checklist">
+              <li><span class="pl-checklist__icon"><i class="fas fa-check"></i></span><span>100% personalized attention</span></li>
+              <li><span class="pl-checklist__icon"><i class="fas fa-check"></i></span><span>Solo or with your partner</span></li>
+              <li><span class="pl-checklist__icon"><i class="fas fa-check"></i></span><span>Focus on your specific needs</span></li>
+              <li><span class="pl-checklist__icon"><i class="fas fa-check"></i></span><span>Flexible scheduling</span></li>
             </ul>
 
             <div class="price-tag">
@@ -311,11 +324,11 @@
             <h3>Wedding Dance</h3>
             <p>Surprise your guests! We create a choreography to your favorite song.</p>
 
-            <ul class="feature-list">
-              <li><i class="fas fa-check"></i> Custom choreography</li>
-              <li><i class="fas fa-check"></i> Your favorite song</li>
-              <li><i class="fas fa-check"></i> 5-10 lessons recommended</li>
-              <li><i class="fas fa-check"></i> Create a magical moment</li>
+            <ul class="pl-checklist">
+              <li><span class="pl-checklist__icon"><i class="fas fa-check"></i></span><span>Custom choreography</span></li>
+              <li><span class="pl-checklist__icon"><i class="fas fa-check"></i></span><span>Your favorite song</span></li>
+              <li><span class="pl-checklist__icon"><i class="fas fa-check"></i></span><span>5-10 lessons recommended</span></li>
+              <li><span class="pl-checklist__icon"><i class="fas fa-check"></i></span><span>Create a magical moment</span></li>
             </ul>
 
             <div class="price-tag">
@@ -334,11 +347,11 @@
             <h3>Small Group</h3>
             <p>Want to take lessons with a few friends? That's possible too!</p>
 
-            <ul class="feature-list">
-              <li><i class="fas fa-check"></i> 3-8 people</li>
-              <li><i class="fas fa-check"></i> Share the experience</li>
-              <li><i class="fas fa-check"></i> More affordable per person</li>
-              <li><i class="fas fa-check"></i> Fun group atmosphere</li>
+            <ul class="pl-checklist">
+              <li><span class="pl-checklist__icon"><i class="fas fa-check"></i></span><span>3-8 people</span></li>
+              <li><span class="pl-checklist__icon"><i class="fas fa-check"></i></span><span>Share the experience</span></li>
+              <li><span class="pl-checklist__icon"><i class="fas fa-check"></i></span><span>More affordable per person</span></li>
+              <li><span class="pl-checklist__icon"><i class="fas fa-check"></i></span><span>Fun group atmosphere</span></li>
             </ul>
 
             <div class="price-tag">
@@ -361,49 +374,52 @@
           <p class="section-description">Fill out the form and we will contact you to schedule a time.</p>
         </div>
 
-        <div class="contact-form-wrapper">
-          <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Name *</label>
-                <input type="text" id="name" name="name" required placeholder="Your full name">
+        <div class="ft-form-card">
+          <form id="private-lesson-form" data-language="EN" novalidate>
+            <div class="ft-form-row">
+              <div class="ft-form-field">
+                <label class="ft-label" for="pl-first-name">First Name *</label>
+                <input class="ft-input" type="text" id="pl-first-name" name="first_name" required placeholder="First name">
               </div>
-
-              <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" name="email" required placeholder="your@email.com">
+              <div class="ft-form-field">
+                <label class="ft-label" for="pl-last-name">Last Name *</label>
+                <input class="ft-input" type="text" id="pl-last-name" name="last_name" required placeholder="Last name">
               </div>
             </div>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="tel" id="phone" name="phone" placeholder="+32 XXX XX XX XX">
+            <div class="ft-form-row">
+              <div class="ft-form-field">
+                <label class="ft-label" for="pl-email">Email *</label>
+                <input class="ft-input" type="email" id="pl-email" name="email" required placeholder="your@email.com">
               </div>
+              <div class="ft-form-field">
+                <label class="ft-label" for="pl-phone">Phone</label>
+                <input class="ft-input" type="tel" id="pl-phone" name="phone" placeholder="+32 XXX XX XX XX">
+              </div>
+            </div>
 
-              <div class="form-group">
-                <label for="lesson-type">Type of Lesson *</label>
-                <select id="lesson-type" name="lesson-type" required>
+            <div class="ft-form-field">
+              <label class="ft-label" for="pl-lesson-type">Type of Lesson *</label>
+              <div class="ft-select-wrap">
+                <select class="ft-select" id="pl-lesson-type" name="lesson_type" required>
                   <option value="">-- Please choose --</option>
-                  <option value="private-solo-couple">Private lesson (solo/couple)</option>
-                  <option value="wedding-dance">Wedding dance</option>
-                  <option value="small-group">Private lesson for a small group</option>
+                  <option value="private_solo_couple">Private lesson (solo / couple)</option>
+                  <option value="wedding_dance">Wedding dance</option>
+                  <option value="small_group">Private lesson for a small group</option>
                   <option value="other">Other question</option>
                 </select>
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="message">Preferred times/location or specific requests</label>
-              <textarea id="message" name="message" rows="5" placeholder="Tell us about your availability, preferred location (Brussels/Woluwe), and any specific goals you have..."></textarea>
+            <div class="ft-form-field">
+              <label class="ft-label" for="pl-message">Availability &amp; Specific Goals</label>
+              <textarea class="ft-textarea" id="pl-message" name="message" rows="4" placeholder="Tell us about your availability, preferred location (Brussels/Woluwe), and any specific goals you have..."></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-large">SEND REQUEST</button>
-
+            <button type="submit" class="ft-submit">SEND REQUEST &#8594;</button>
+            <div class="ft-form-error" style="display:none"></div>
           </form>
-
-          <p class="form-note">We will contact you as soon as possible to arrange a meeting.</p>
+          <div id="pl-success" class="ft-success" style="display:none"></div>
         </div>
       </div>
     </section>
@@ -622,6 +638,10 @@
       </div>
     </div>
   </footer>
+
+  <!-- Private Lessons Scripts -->
+  <script src="../../js/crm-api.js" defer></script>
+  <script src="../../js/private-lessons.min.js" defer></script>
 
   <!-- JavaScript -->
   <script>
