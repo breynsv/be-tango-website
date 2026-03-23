@@ -240,11 +240,15 @@ async function checkResponsive(page, urlPath, issues) {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
 
-  const testIssues = { critical: [], warnings: [], mobile: [], tablet: [] };
-  await checkResponsive(page, '/', testIssues);
+  const results = [];
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await checkPage(page, '/', results);
+  await checkResponsive(page, '/', results[0].issues);
 
-  console.log('Mobile issues:', testIssues.mobile);
-  console.log('Tablet issues:', testIssues.tablet);
+  console.log('Critical:', results[0].issues.critical.length);
+  console.log('Warnings:', results[0].issues.warnings.length);
+  console.log('Mobile:', results[0].issues.mobile.length);
+  console.log('Tablet:', results[0].issues.tablet.length);
   console.log('Screenshots saved to qa-screenshots/');
 
   await browser.close();
