@@ -50,42 +50,49 @@ function slugFromPath(urlPath) {
   return `${lang}-${slug}`;
 }
 
-async function checkPage(page, urlPath, results) {
+async function checkPage(page, urlPath, issuesBucket) {
   const url = BASE_URL + urlPath;
-  const issues = { critical: [], warnings: [], mobile: [], tablet: [] };
   const imageFailures = new Set();
   const consoleErrors = [];
 
   // IMPORTANT: Register listeners BEFORE goto() — events fire during page load
   // and will be missed if registered after goto() returns.
-  page.on('response', response => {
+  const onResponse = response => {
     const type = response.request().resourceType();
     if (type === 'image' && response.status() !== 200) {
       imageFailures.add(response.url());
     }
-  });
-  page.on('console', msg => {
+  };
+  const onConsole = msg => {
     if (msg.type() === 'error') consoleErrors.push(msg.text());
-  });
+  };
+  page.on('response', onResponse);
+  page.on('console', onConsole);
 
-  // Navigate and check page load
   let response;
   try {
     response = await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
   } catch (err) {
-    issues.critical.push({ type: 'page-load-error', detail: err.message });
-    results.push({ urlPath, url, issues });
+    page.off('response', onResponse);
+    page.off('console', onConsole);
+    issuesBucket.critical.push({ type: 'page-load-error', detail: err.message });
     return;
   }
 
+  // Wait briefly for deferred JS errors
+  await page.waitForTimeout(500);
+
+  // Remove listeners — all events have fired by networkidle + 500ms
+  page.off('response', onResponse);
+  page.off('console', onConsole);
+
   if (!response || response.status() !== 200) {
-    issues.critical.push({ type: 'page-load-error', detail: `HTTP ${response?.status()}` });
-    results.push({ urlPath, url, issues });
+    issuesBucket.critical.push({ type: 'page-load-error', detail: `HTTP ${response?.status()}` });
     return;
   }
 
   consoleErrors.forEach(err => {
-    issues.critical.push({ type: 'js-error', detail: err });
+    issuesBucket.critical.push({ type: 'js-error', detail: err });
   });
 
   // Broken internal links — resolve to absolute, filter same-origin, fetch
@@ -107,7 +114,7 @@ async function checkPage(page, urlPath, results) {
 
       const res = await page.request.fetch(resolved.href, { timeout: 10000 }).catch(() => null);
       if (!res || res.status() !== 200) {
-        issues.critical.push({ type: 'broken-link', detail: resolved.href, status: res?.status() ?? 'timeout' });
+        issuesBucket.critical.push({ type: 'broken-link', detail: resolved.href, status: res?.status() ?? 'timeout' });
       }
     } catch (_) {
       // Malformed href, skip
@@ -116,7 +123,7 @@ async function checkPage(page, urlPath, results) {
 
   // Missing/broken images (from response listener above)
   imageFailures.forEach(src => {
-    issues.critical.push({ type: 'missing-image', detail: src });
+    issuesBucket.critical.push({ type: 'missing-image', detail: src });
   });
 
   // --- WARNING CHECKS ---
@@ -131,7 +138,7 @@ async function checkPage(page, urlPath, results) {
       const resolved = new URL(href, url);
       const res = await page.request.fetch(resolved.href, { timeout: 10000 }).catch(() => null);
       if (!res || res.status() !== 200) {
-        issues.warnings.push({ type: 'lang-switcher-broken', detail: `${text} → ${resolved.href}`, status: res?.status() ?? 'timeout' });
+        issuesBucket.warnings.push({ type: 'lang-switcher-broken', detail: `${text} → ${resolved.href}`, status: res?.status() ?? 'timeout' });
       }
     } catch (_) {}
   }
@@ -147,7 +154,7 @@ async function checkPage(page, urlPath, results) {
     } catch (_) {}
   }
   if (externalLinks.length > 0) {
-    issues.warnings.push({ type: 'external-links', detail: externalLinks });
+    issuesBucket.warnings.push({ type: 'external-links', detail: externalLinks });
   }
 
   // Images missing alt text
@@ -155,7 +162,7 @@ async function checkPage(page, urlPath, results) {
     els.map(el => el.getAttribute('src') || '(no src)')
   );
   missingAlt.forEach(src => {
-    issues.warnings.push({ type: 'missing-alt', detail: src });
+    issuesBucket.warnings.push({ type: 'missing-alt', detail: src });
   });
 
   // Empty / anchor-only links
@@ -163,29 +170,27 @@ async function checkPage(page, urlPath, results) {
     els.map(el => el.textContent.trim() || '(no text)')
   );
   emptyLinks.forEach(text => {
-    issues.warnings.push({ type: 'empty-link', detail: text });
+    issuesBucket.warnings.push({ type: 'empty-link', detail: text });
   });
 
   // Missing <title>
   const title = await page.title();
   if (!title || title.trim() === '') {
-    issues.warnings.push({ type: 'missing-title', detail: 'Page has no <title>' });
+    issuesBucket.warnings.push({ type: 'missing-title', detail: 'Page has no <title>' });
   }
 
   // Missing <meta description>
   const metaDesc = await page.$eval('meta[name="description"]', el => el.getAttribute('content')).catch(() => null);
   if (!metaDesc || metaDesc.trim() === '') {
-    issues.warnings.push({ type: 'missing-meta-description', detail: 'Missing or empty <meta name="description">' });
+    issuesBucket.warnings.push({ type: 'missing-meta-description', detail: 'Missing or empty <meta name="description">' });
   }
 
   // Incorrect <html lang>
   const htmlLang = await page.$eval('html', el => el.getAttribute('lang')).catch(() => null);
   const expectedLang = langFromPath(urlPath);
   if (htmlLang !== expectedLang) {
-    issues.warnings.push({ type: 'wrong-html-lang', detail: `Found lang="${htmlLang}", expected "${expectedLang}"` });
+    issuesBucket.warnings.push({ type: 'wrong-html-lang', detail: `Found lang="${htmlLang}", expected "${expectedLang}"` });
   }
-
-  results.push({ urlPath, url, issues, checked: [...checked] });
 }
 
 async function checkResponsive(page, urlPath, issues) {
@@ -236,20 +241,70 @@ async function checkResponsive(page, urlPath, issues) {
 }
 
 (async () => {
+  console.log('Starting BE-TANGO QA Audit...');
+  console.log(`Target: ${BASE_URL}`);
+
   const browser = await chromium.launch();
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
 
-  const results = [];
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await checkPage(page, '/', results);
-  await checkResponsive(page, '/', results[0].issues);
+  // Quick server check
+  try {
+    const res = await page.request.fetch(BASE_URL);
+    if (res.status() !== 200) throw new Error(`Server returned ${res.status()}`);
+  } catch (err) {
+    console.error(`ERROR: Cannot reach ${BASE_URL} — is the local server running?`);
+    console.error(err.message);
+    await browser.close();
+    process.exit(1);
+  }
 
-  console.log('Critical:', results[0].issues.critical.length);
-  console.log('Warnings:', results[0].issues.warnings.length);
-  console.log('Mobile:', results[0].issues.mobile.length);
-  console.log('Tablet:', results[0].issues.tablet.length);
-  console.log('Screenshots saved to qa-screenshots/');
+  const pages = discoverPages();
+  console.log(`\nDiscovered ${pages.length} pages\n`);
+
+  const results = [];
+  fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
+
+  for (let i = 0; i < pages.length; i++) {
+    const urlPath = pages[i];
+    process.stdout.write(`[${i + 1}/${pages.length}] ${urlPath} ... `);
+
+    const issuesBucket = { critical: [], warnings: [], mobile: [], tablet: [] };
+
+    // Reset page state between pages
+    await context.clearCookies();
+
+    // Critical + Warning checks at desktop viewport
+    await page.setViewportSize({ width: 1440, height: 900 });
+
+    try {
+      await checkPage(page, urlPath, issuesBucket);
+    } catch (err) {
+      issuesBucket.critical.push({ type: 'check-error', detail: err.message });
+    }
+
+    // Mobile + Tablet checks
+    try {
+      await checkResponsive(page, urlPath, issuesBucket);
+    } catch (err) {
+      issuesBucket.mobile.push({ type: 'check-error', detail: err.message });
+    }
+
+    const totalIssues =
+      issuesBucket.critical.length +
+      issuesBucket.warnings.length +
+      issuesBucket.mobile.length +
+      issuesBucket.tablet.length;
+
+    console.log(totalIssues === 0 ? 'OK' : `${totalIssues} issue(s)`);
+    results.push({ urlPath, url: BASE_URL + urlPath, issues: issuesBucket });
+  }
 
   await browser.close();
+
+  // Phase 3: Generate reports (added in Task 6)
+  // generateReports(results);
+
+  console.log(`\nDone! ${results.length} pages crawled.`);
+  console.log(`Results in memory — Task 6 will generate the report.`);
 })();
