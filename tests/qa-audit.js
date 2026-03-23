@@ -193,7 +193,7 @@ async function checkPage(page, urlPath, issuesBucket) {
   }
 }
 
-async function checkResponsive(page, urlPath, issues) {
+async function checkResponsive(page, urlPath, issuesBucket) {
   const url = BASE_URL + urlPath;
   const slug = slugFromPath(urlPath);
 
@@ -208,7 +208,7 @@ async function checkResponsive(page, urlPath, issues) {
     document.documentElement.scrollWidth > window.innerWidth
   );
   if (mobileOverflow) {
-    issues.mobile.push({ type: 'horizontal-overflow', detail: 'Page overflows horizontally at 375px' });
+    issuesBucket.mobile.push({ type: 'horizontal-overflow', detail: 'Page overflows horizontally at 375px' });
   }
 
   // Small tap targets at mobile
@@ -220,7 +220,7 @@ async function checkResponsive(page, urlPath, issues) {
     }).map(el => el.tagName + (el.textContent?.trim().slice(0, 30) || ''))
   );
   if (smallTargets.length > 0) {
-    issues.mobile.push({ type: 'small-tap-targets', detail: `${smallTargets.length} elements below 44×44px`, elements: smallTargets.slice(0, 10) });
+    issuesBucket.mobile.push({ type: 'small-tap-targets', detail: `${smallTargets.length} elements below 44×44px`, elements: smallTargets.slice(0, 10) });
   }
 
   await page.screenshot({ path: path.join(SCREENSHOTS_DIR, `${slug}-mobile.png`), fullPage: true });
@@ -234,7 +234,7 @@ async function checkResponsive(page, urlPath, issues) {
     document.documentElement.scrollWidth > window.innerWidth
   );
   if (tabletOverflow) {
-    issues.tablet.push({ type: 'horizontal-overflow', detail: 'Page overflows horizontally at 768px' });
+    issuesBucket.tablet.push({ type: 'horizontal-overflow', detail: 'Page overflows horizontally at 768px' });
   }
 
   await page.screenshot({ path: path.join(SCREENSHOTS_DIR, `${slug}-tablet.png`), fullPage: true });
