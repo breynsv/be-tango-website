@@ -93,11 +93,12 @@ async function checkPage(page, urlPath, results) {
     els.map(el => el.getAttribute('href')).filter(Boolean)
   );
 
+  const baseOrigin = new URL(BASE_URL).origin;
   const checked = new Set();
   for (const href of hrefs) {
     try {
       const resolved = new URL(href, url);
-      if (resolved.origin !== new URL(BASE_URL).origin) continue;
+      if (resolved.origin !== baseOrigin) continue;
       if (checked.has(resolved.href)) continue;
       checked.add(resolved.href);
 
@@ -105,7 +106,7 @@ async function checkPage(page, urlPath, results) {
       if (resolved.pathname === new URL(url).pathname && resolved.hash) continue;
 
       const res = await page.request.fetch(resolved.href, { timeout: 10000 }).catch(() => null);
-      if (!res || res.status() === 404) {
+      if (!res || res.status() !== 200) {
         issues.critical.push({ type: 'broken-link', detail: resolved.href, status: res?.status() ?? 'timeout' });
       }
     } catch (_) {
@@ -118,7 +119,7 @@ async function checkPage(page, urlPath, results) {
     issues.critical.push({ type: 'missing-image', detail: src });
   });
 
-  results.push({ urlPath, url, issues, checked });
+  results.push({ urlPath, url, issues, checked: [...checked] });
 }
 
 (async () => {
