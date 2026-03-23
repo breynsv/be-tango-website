@@ -119,6 +119,72 @@ async function checkPage(page, urlPath, results) {
     issues.critical.push({ type: 'missing-image', detail: src });
   });
 
+  // --- WARNING CHECKS ---
+
+  // Language switcher links (.language-dropdown a is the selector used on all pages)
+  const langLinks = await page.$$eval('.language-dropdown a', els =>
+    els.map(el => ({ href: el.getAttribute('href'), text: el.textContent.trim() }))
+  );
+  for (const { href, text } of langLinks) {
+    if (!href) continue;
+    try {
+      const resolved = new URL(href, url);
+      const res = await page.request.fetch(resolved.href, { timeout: 10000 }).catch(() => null);
+      if (!res || res.status() !== 200) {
+        issues.warnings.push({ type: 'lang-switcher-broken', detail: `${text} → ${resolved.href}`, status: res?.status() ?? 'timeout' });
+      }
+    } catch (_) {}
+  }
+
+  // External links (informational — collected but not failed)
+  const externalLinks = [];
+  for (const href of hrefs) {
+    try {
+      const resolved = new URL(href, url);
+      if (resolved.origin !== baseOrigin && !resolved.href.startsWith('mailto:') && !resolved.href.startsWith('tel:')) {
+        externalLinks.push(resolved.href);
+      }
+    } catch (_) {}
+  }
+  if (externalLinks.length > 0) {
+    issues.warnings.push({ type: 'external-links', detail: externalLinks });
+  }
+
+  // Images missing alt text
+  const missingAlt = await page.$$eval('img:not([alt]), img[alt=""]', els =>
+    els.map(el => el.getAttribute('src') || '(no src)')
+  );
+  missingAlt.forEach(src => {
+    issues.warnings.push({ type: 'missing-alt', detail: src });
+  });
+
+  // Empty / anchor-only links
+  const emptyLinks = await page.$$eval('a[href="#"], a:not([href])', els =>
+    els.map(el => el.textContent.trim() || '(no text)')
+  );
+  emptyLinks.forEach(text => {
+    issues.warnings.push({ type: 'empty-link', detail: text });
+  });
+
+  // Missing <title>
+  const title = await page.title();
+  if (!title || title.trim() === '') {
+    issues.warnings.push({ type: 'missing-title', detail: 'Page has no <title>' });
+  }
+
+  // Missing <meta description>
+  const metaDesc = await page.$eval('meta[name="description"]', el => el.getAttribute('content')).catch(() => null);
+  if (!metaDesc || metaDesc.trim() === '') {
+    issues.warnings.push({ type: 'missing-meta-description', detail: 'Missing or empty <meta name="description">' });
+  }
+
+  // Incorrect <html lang>
+  const htmlLang = await page.$eval('html', el => el.getAttribute('lang')).catch(() => null);
+  const expectedLang = langFromPath(urlPath);
+  if (htmlLang !== expectedLang) {
+    issues.warnings.push({ type: 'wrong-html-lang', detail: `Found lang="${htmlLang}", expected "${expectedLang}"` });
+  }
+
   results.push({ urlPath, url, issues, checked: [...checked] });
 }
 
@@ -130,7 +196,9 @@ async function checkPage(page, urlPath, results) {
   const results = [];
   await checkPage(page, '/', results);
 
-  console.log('Issues on /:', JSON.stringify(results[0].issues, null, 2));
+  console.log('Critical:', results[0].issues.critical.length);
+  console.log('Warnings:', results[0].issues.warnings.length);
+  console.log(JSON.stringify(results[0].issues.warnings, null, 2));
 
   await browser.close();
 })();
