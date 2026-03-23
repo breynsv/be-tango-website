@@ -81,6 +81,22 @@ Quick modifications to be done on the rebuild website.
   - **File to fix:** `js/enrollment-modal.js` (and `.min.js`) — the grid/field CSS or HTML structure in the modal form.
   - **Applies to:** "Come alone" section (LENGTE + GEBOORTEJAAR row) and "Come with partner" section (VOORNAAM + ACHTERNAAM PARTNER row).
 
+- [ ] **Workshops page — create in three languages, load from backend**
+  - **Where:** New page in all three languages:
+    - `workshops/` (EN)
+    - `nl/workshops/` (NL)
+    - `fr/ateliers/` (FR) *(or equivalent FR slug)*
+  - **Issue:** No workshops page exists yet. A new page must be created in all three languages that fetches and displays workshops from the BETANGOCRM API backend.
+  - **Applies to:** EN / NL / FR.
+
+- [ ] **Beginner page — load "beginner weekend" from backend**
+  - **Where:** Beginner class pages:
+    - `tango-classes/beginners/` (EN)
+    - `nl/tangolessen/beginners/` (NL)
+    - `fr/cours-de-tango/debutants/` (FR)
+  - **Issue:** The beginner weekend (intensive weekend workshop for beginners) should be fetched from the BETANGOCRM API and displayed on the beginner page, rather than being hardcoded or absent.
+  - **Applies to:** All three language versions.
+
 ---
 
 ## In Progress

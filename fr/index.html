@@ -224,6 +224,20 @@
       </div>
     </section>
 
+    <!-- Upcoming Activities Section -->
+    <section class="announcements-section" id="announcements" aria-label="Prochains événements">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-label">À venir</p>
+          <h2>Nos prochains événements</h2>
+          <p class="section-description">Restez informé de nos prochains ateliers, cours et soirées de pratique.</p>
+        </div>
+        <div class="announcements-grid" id="announcements-grid">
+          <!-- Populated by announcements.js -->
+        </div>
+      </div>
+    </section>
+
     <!-- Classes Section -->
     <section class="bg-light">
       <div class="container">
@@ -797,6 +811,7 @@
     });
   </script>
   <script src="../js/newsletter.min.js"></script>
+  <script src="../js/announcements.min.js?v=3.7" defer></script>
   <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
   </script>
