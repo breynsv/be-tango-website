@@ -188,17 +188,64 @@ async function checkPage(page, urlPath, results) {
   results.push({ urlPath, url, issues, checked: [...checked] });
 }
 
+async function checkResponsive(page, urlPath, issues) {
+  const url = BASE_URL + urlPath;
+  const slug = slugFromPath(urlPath);
+
+  fs.mkdirSync(SCREENSHOTS_DIR, { recursive: true });
+
+  // Mobile (375px)
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+  await page.waitForTimeout(300);
+
+  const mobileOverflow = await page.evaluate(() =>
+    document.documentElement.scrollWidth > window.innerWidth
+  );
+  if (mobileOverflow) {
+    issues.mobile.push({ type: 'horizontal-overflow', detail: 'Page overflows horizontally at 375px' });
+  }
+
+  // Small tap targets at mobile
+  const smallTargets = await page.$$eval(
+    'a, button, input, select, textarea',
+    els => els.filter(el => {
+      const r = el.getBoundingClientRect();
+      return (r.width > 0 && r.height > 0) && (r.width < 44 || r.height < 44);
+    }).map(el => el.tagName + (el.textContent?.trim().slice(0, 30) || ''))
+  );
+  if (smallTargets.length > 0) {
+    issues.mobile.push({ type: 'small-tap-targets', detail: `${smallTargets.length} elements below 44×44px`, elements: smallTargets.slice(0, 10) });
+  }
+
+  await page.screenshot({ path: path.join(SCREENSHOTS_DIR, `${slug}-mobile.png`), fullPage: true });
+
+  // Tablet (768px)
+  await page.setViewportSize({ width: 768, height: 1024 });
+  await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
+  await page.waitForTimeout(300);
+
+  const tabletOverflow = await page.evaluate(() =>
+    document.documentElement.scrollWidth > window.innerWidth
+  );
+  if (tabletOverflow) {
+    issues.tablet.push({ type: 'horizontal-overflow', detail: 'Page overflows horizontally at 768px' });
+  }
+
+  await page.screenshot({ path: path.join(SCREENSHOTS_DIR, `${slug}-tablet.png`), fullPage: true });
+}
+
 (async () => {
   const browser = await chromium.launch();
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
 
-  const results = [];
-  await checkPage(page, '/', results);
+  const testIssues = { critical: [], warnings: [], mobile: [], tablet: [] };
+  await checkResponsive(page, '/', testIssues);
 
-  console.log('Critical:', results[0].issues.critical.length);
-  console.log('Warnings:', results[0].issues.warnings.length);
-  console.log(JSON.stringify(results[0].issues.warnings, null, 2));
+  console.log('Mobile issues:', testIssues.mobile);
+  console.log('Tablet issues:', testIssues.tablet);
+  console.log('Screenshots saved to qa-screenshots/');
 
   await browser.close();
 })();
