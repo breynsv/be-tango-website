@@ -83,6 +83,10 @@
     var successEl = document.getElementById('contact-success');
     var originalBtnText = submitBtn ? submitBtn.textContent : '';
 
+    // Set form-load timestamp for honeypot protection
+    var tsInput = form.querySelector('[name="_ts"]');
+    if (tsInput) tsInput.value = Math.floor(Date.now() / 1000);
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
       hideError(errorEl);
@@ -121,6 +125,8 @@
         topic:      topic || null,
         message:    message || null,
         lang:       lang,
+        _honey: (form.querySelector('[name="_honey"]') || { value: '' }).value,
+        _ts:    parseInt((form.querySelector('[name="_ts"]') || { value: '0' }).value, 10),
       };
 
       try {

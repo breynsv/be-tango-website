@@ -83,6 +83,10 @@
     var successEl = document.getElementById('pl-success');
     var originalBtnText = submitBtn ? submitBtn.textContent : '';
 
+    // Set form-load timestamp for honeypot protection
+    var tsInput = form.querySelector('[name="_ts"]');
+    if (tsInput) tsInput.value = Math.floor(Date.now() / 1000);
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
       hideError(errorEl);
@@ -119,6 +123,8 @@
         lang: lang,
         lesson_type: lessonType,
         message: message || null,
+        _honey: (form.querySelector('[name="_honey"]') || { value: '' }).value,
+        _ts:    parseInt((form.querySelector('[name="_ts"]') || { value: '0' }).value, 10),
       };
 
       try {

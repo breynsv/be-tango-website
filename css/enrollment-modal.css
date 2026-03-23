@@ -473,6 +473,7 @@
 .em-sub-section .em-row { margin-top: 0; }
 .em-sub-section .em-field { margin-top: 12px; }
 .em-sub-section .em-field:first-child { margin-top: 0; }
+.em-sub-section .em-row .em-field { margin-top: 0; }
 
 /* ─── Submit button ─────────────────────────────────────────── */
 .em-submit-wrap { margin-top: 28px; }
@@ -603,6 +604,15 @@
   justify-content: center;
   padding-bottom: 24px;
   animation: em-fade-up 0.4s ease 0.45s both;
+}
+
+/* ─── Waitlist section ──────────────────────────────────────── */
+#em-success-waitlist p {
+  padding: 0 28px;
+  font-size: 14px;
+  color: #374151;
+  line-height: 1.6;
+  margin-top: 12px;
 }
 
 /* ─── Payment section ───────────────────────────────────────── */

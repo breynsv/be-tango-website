@@ -266,6 +266,8 @@
       var startDate   = formatDate(cls.start_date, lang);
       var sessions    = (cls.lesson_count || 0) + ((cls.practica_dates && cls.practica_dates.length) || 0) || '';
       var address     = cls.location ? locStr(cls.location.full_address, lang) || locStr(cls.location.address, lang) || city : '';
+      var street      = address ? address.split(',')[0].trim() : '';
+      var streetCity  = street ? street + ', ' + city : city;
       var day         = cls.day_of_week || '';
       var time        = (cls.start_time || '') + ' \u2013 ' + (cls.end_time || '');
       var friendlyName = levelName + ' \u00b7 ' + day;
@@ -281,7 +283,7 @@
           '<div class="bts-sched">' +
             '<div class="bts-day">' + day + '</div>' +
             '<div class="bts-time">' + time + '</div>' +
-            '<div class="bts-addr">' + address + '</div>' +
+            '<div class="bts-addr">' + streetCity + '</div>' +
           '</div>' +
         '</div>' +
         '<div class="bts-lvl"><span class="bts-badge ' + badgeCls + '">' + levelName + '</span></div>' +
@@ -293,6 +295,7 @@
           '<div class="bts-price-main">&euro;' + price + '</div>' +
           '<span class="bts-price-sub">' + sessions + ' ' + t.sessions + '</span>' +
         '</div>' +
+        '<div class="bts-cal"></div>' +
         '<div class="bts-cta"></div>';
 
       // Sign-up button — has btn-sign-up for enrollment-modal.js delegation
@@ -326,7 +329,7 @@
             ev.stopPropagation();
             openCalendarModal(clsData, t, lang);
           });
-          row.querySelector('.bts-main').appendChild(calBtn);
+          row.querySelector('.bts-cal').appendChild(calBtn);
         }(cls));
       }
 

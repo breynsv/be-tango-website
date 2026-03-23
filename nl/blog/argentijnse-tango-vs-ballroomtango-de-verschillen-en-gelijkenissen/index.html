@@ -141,7 +141,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="../../fr/blog/tango-argentin-vs-tango-de-salon-differences/">
+                  <a href="../../../fr/blog/tango-argentin-vs-tango-de-salon/">
                     <span class="flag-icon">🇫🇷</span>
                     <span>Français</span>
                   </a>
@@ -246,6 +246,33 @@
             <a href="../../contacteer-ons/" class="btn btn-secondary">Contacteer Ons</a>
           </div>
         </aside>
+
+    <section class="nl-blog-section">
+      <div class="container">
+        <div class="nl-blog-card">
+            <p class="nl-blog-overline">Nieuwsbrief</p>
+            <h2 class="nl-blog-headline">Blijf in het <em>ritme</em> van tango.</h2>
+            <p class="nl-blog-sub">Nieuwe artikelen, evenementen en lessen — direct in uw inbox.</p>
+            <form class="newsletter-form" id="blogNewsletterForm" action="#" method="POST" novalidate
+                  data-endpoint="subscribe"
+                  data-success-title="Genoteerd!"
+                  data-success-msg="Nieuwe artikelen en updates komen rechtstreeks in uw inbox.">
+              <div class="nl-blog-form-row">
+                <input type="email" name="email" id="blogEmail"
+                       placeholder="u@voorbeeld.com" required
+                       aria-label="E-mailadres voor BE-TANGO nieuwsbrief"
+                       class="newsletter-email-input">
+                <button type="submit" class="newsletter-submit">Aanmelden</button>
+              </div>
+              <input type="text" name="_honey" tabindex="-1" autocomplete="off"
+                     style="position:absolute;left:-9999px;opacity:0;height:0;width:0" aria-hidden="true">
+              <input type="hidden" name="_ts">
+            </form>
+            <div class="ft-success" id="blogNewsletterFormSuccess" style="display:none"></div>
+            <p class="nl-blog-fine">Geen spam · Op elk moment afmelden</p>
+          </div>
+      </div>
+    </section>
       </div>
     </section>
 
@@ -272,6 +299,18 @@
           <p>Ervaar de verbinding, de muziek en het plezier.</p>
           <p style="margin-top: 1rem;"><strong>Telefoon:</strong> <a href="tel:+32498392939" style="color: inherit;">+32 498 39 29 39</a></p>
           <p><strong>E-mail:</strong> <a href="mailto:admin@be-tango.com" style="color: inherit;">admin@be-tango.com</a></p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/p/Be-tango-ART-100057312323946/" aria-label="Facebook" class="social-icon" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/be_tango_brussels/" aria-label="Instagram" class="social-icon" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+          </div>
         </div>
 
         <div class="footer-col">
@@ -279,7 +318,7 @@
           <ul>
             <li><a href="../../nl/">Home</a></li>
             <li><a href="../../nl/tangolessen/">Tangolessen</a></li>
-            <li><a href="../../nl/tangolessen/gratis-proefles/" class="btn btn-primary btn-nav">Gratis Proefles</a></li>
+            <li><a href="../../nl/tangolessen/gratis-proefles/" class="footer-free-trial">Gratis Proefles</a></li>
             <li><a href="../">Blog</a></li>
             <li><a href="../../nl/contacteer-ons/">Contact</a></li>
           </ul>
@@ -297,8 +336,18 @@
 
         <div class="footer-col">
           <h4>Locaties</h4>
-          <p style="margin-top: 1rem;"><strong>BE-TANGO Centrum</strong><br>Rue du Marais 68<br>1000 Brussel<br><a href="../../nl/tangolessen/index.html#brussel" style="color: var(--color-secondary); text-decoration: underline;">Bekijk locatie →</a></p>
-          <p style="margin-top: 1rem;"><strong>BE-TANGO Woluwe</strong><br>Av. Orban 54<br>1150 Woluwe-Saint-Pierre<br><a href="../../nl/tangolessen/index.html#woluwe" style="color: var(--color-secondary); text-decoration: underline;">Bekijk locatie →</a></p>
+          <div class="footer-location-cards">
+            <div class="location-card">
+              <strong>BE-TANGO Centre</strong>
+              <span class="loc-address">Rue du Marais 68, 1000 Brussel</span>
+              <a href="../../nl/tangolessen/index.html#brussel" class="loc-link">Bekijk locatie →</a>
+            </div>
+            <div class="location-card">
+              <strong>BE-TANGO Woluwe</strong>
+              <span class="loc-address">Av. Orban 54, 1150 Woluwe-Sint-Pieters</span>
+              <a href="../../nl/tangolessen/index.html#woluwe" class="loc-link">Bekijk locatie →</a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -575,5 +624,6 @@
   </script>
 
   <!-- Floating Mobile Call Button -->
+  <script src="../../../js/newsletter.min.js"></script>
 </body>
 </html>

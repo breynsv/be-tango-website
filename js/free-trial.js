@@ -387,6 +387,12 @@
       }
     }
 
+    // Set form-load timestamp for honeypot protection
+    if (form) {
+      var tsInput = form.querySelector('[name="_ts"]');
+      if (tsInput) tsInput.value = Math.floor(Date.now() / 1000);
+    }
+
     // Form submission
     if (!form) return;
 
@@ -427,6 +433,8 @@
         product_id: productId,
         has_partner: hasPartner,
         remarks: form.querySelector('#message')?.value?.trim() || null,
+        _honey: (form.querySelector('[name="_honey"]') || { value: '' }).value,
+        _ts:    parseInt((form.querySelector('[name="_ts"]') || { value: '0' }).value, 10),
       };
 
       try {
