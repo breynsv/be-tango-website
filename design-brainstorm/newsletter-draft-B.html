@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter Draft B — "El Abrazo" — BE-TANGO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #E2C033;
+      --navy: #1C244B;
+      --black: #000000;
+      --white: #FFFFFF;
+      --cream: #FAF8F3;
+      --bg: #F3F5F8;
+      --text: #111827;
+      --text-light: #4a4a4a;
+      --border: #E5E7EB;
+      --font: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    body { font-family: var(--font); background: var(--bg); color: var(--text); }
+
+    .fake-section {
+      padding: 5rem 2rem; text-align: center;
+      background: var(--white); border-bottom: 1px solid var(--border);
+    }
+    .fake-section h2 { font-size: 1.75rem; margin-bottom: 0.5rem; color: var(--navy); }
+    .fake-section p  { color: #6b7280; }
+
+    .annotation {
+      background: #fff9c4; border-left: 4px solid var(--gold);
+      padding: 1rem 1.5rem; font-size: 0.85rem; color: #555; text-align: center;
+    }
+    .annotation strong { color: var(--navy); }
+
+    /* ══════════════════════════════════════════
+       NEWSLETTER SPLIT CARD (Poppins edition)
+       ══════════════════════════════════════════ */
+    .nl-split-section {
+      padding: 5rem 1.5rem;
+      background: var(--cream);
+    }
+
+    .nl-split-card {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--white);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .nl-split-card.visible { opacity: 1; transform: none; }
+
+    /* LEFT — navy brand panel */
+    .nl-split-left {
+      background: var(--navy);
+      position: relative;
+      padding: 3.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 420px;
+      overflow: hidden;
+    }
+
+    /* Ghost watermark — Poppins 800 italic */
+    .nl-split-bg-text {
+      position: absolute;
+      bottom: -24px;
+      left: -12px;
+      font-size: 8.5rem;
+      font-weight: 800;
+      font-style: italic;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+      letter-spacing: -0.03em;
+    }
+
+    /* Corner brackets */
+    .nl-split-bracket {
+      width: 32px; height: 32px;
+      border-top: 2px solid var(--gold);
+      border-left: 2px solid var(--gold);
+    }
+    .nl-split-bracket-br {
+      width: 32px; height: 32px;
+      border-bottom: 2px solid rgba(226,192,51,0.3);
+      border-right: 2px solid rgba(226,192,51,0.3);
+      align-self: flex-end;
+    }
+
+    .nl-split-body { position: relative; z-index: 1; }
+
+    .nl-split-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Headline — Poppins 700 italic, sizeable */
+    .nl-split-headline {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+    .nl-split-headline em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .nl-split-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* Decorative rhythm dots */
+    .nl-split-dots {
+      display: flex; gap: 6px; margin-top: 2rem; align-items: center;
+    }
+    .nl-split-dots span {
+      display: block; border-radius: 50%; background: rgba(226,192,51,0.3);
+    }
+    .nl-split-dots span:nth-child(1) { width:7px; height:7px; }
+    .nl-split-dots span:nth-child(2) { width:7px; height:7px; background: rgba(226,192,51,0.55); }
+    .nl-split-dots span:nth-child(3) { width:11px; height:11px; background: var(--gold); }
+    .nl-split-dots span:nth-child(4) { width:7px; height:7px; background: rgba(226,192,51,0.55); }
+    .nl-split-dots span:nth-child(5) { width:7px; height:7px; }
+
+    /* RIGHT — form panel */
+    .nl-split-right {
+      padding: 3.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .nl-split-right-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nl-split-right-tag::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1.5px;
+      background: var(--gold);
+    }
+
+    .nl-split-right-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .nl-split-right-sub {
+      font-size: 0.875rem;
+      color: var(--text-light);
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+      font-weight: 300;
+    }
+
+    .nl-split-perks {
+      list-style: none;
+      margin-bottom: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .nl-split-perks li {
+      font-size: 0.82rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .nl-split-perks li::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Form elements */
+    .nl-split-right .form-label {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.4rem;
+    }
+
+    .nl-split-right .nl-input {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      padding: 0.85rem 1rem;
+      font-family: var(--font);
+      font-size: 0.9rem;
+      color: var(--text);
+      background: #fafafa;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 0.6rem;
+    }
+    .nl-split-right .nl-input:focus { border-color: var(--gold); }
+    .nl-split-right .nl-input::placeholder { color: #bbb; }
+
+    .nl-split-right .nl-btn {
+      width: 100%;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 0.9rem;
+      font-family: var(--font);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nl-split-right .nl-btn:hover { background: #f0d040; transform: translateY(-1px); }
+
+    .nl-split-fine {
+      margin-top: 0.65rem;
+      font-size: 0.68rem;
+      color: #bbb;
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .nl-split-card { grid-template-columns: 1fr; }
+      .nl-split-left { min-height: 260px; padding: 2.5rem 2rem; }
+      .nl-split-bg-text { font-size: 5rem; }
+      .nl-split-right { padding: 2.5rem 2rem; }
+    }
+
+    .fake-cta {
+      padding: 5rem 2rem; text-align: center;
+      background: var(--black); color: var(--white);
+    }
+    .fake-cta h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+    .fake-cta a {
+      display: inline-block; background: var(--gold); color: var(--black);
+      padding: 0.9rem 2rem; font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="fake-section">
+  <h2>What our students say</h2>
+  <p>★★★★★ — 141 reviews on Google</p>
+</div>
+
+<div class="annotation">
+  <strong>Draft B — "El Abrazo" (Poppins edition)</strong> &nbsp;·&nbsp;
+  Placement: <strong>between testimonials and CTA</strong> — split card, scroll-reveal on entry.
+</div>
+
+<section class="nl-split-section">
+  <div class="nl-split-card" id="nlCard">
+
+    <!-- LEFT — Brand panel -->
+    <div class="nl-split-left">
+      <div class="nl-split-bg-text">TANGO</div>
+      <div class="nl-split-bracket"></div>
+      <div class="nl-split-body">
+        <p class="nl-split-tag">BE-TANGO Brussels</p>
+        <h2 class="nl-split-headline">
+          Stay in<br>the <em>rhythm</em><br>of tango.
+        </h2>
+        <p class="nl-split-desc">
+          Class openings. Events.<br>
+          Workshop announcements.<br>
+          All in one email.
+        </p>
+        <div class="nl-split-dots">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="nl-split-bracket-br"></div>
+    </div>
+
+    <!-- RIGHT — Form panel -->
+    <div class="nl-split-right">
+      <span class="nl-split-right-tag">Newsletter</span>
+      <h3 class="nl-split-right-title">Your tango inbox,<br>curated.</h3>
+      <p class="nl-split-right-sub">
+        Join tango lovers in Brussels and Woluwe who stay ahead of the beat.
+      </p>
+      <ul class="nl-split-perks">
+        <li>Early access to new workshops</li>
+        <li>Special milonga &amp; event announcements</li>
+        <li>Seasonal class availability updates</li>
+      </ul>
+
+      <label class="form-label" for="draftEmail">Email address</label>
+      <input class="nl-input" id="draftEmail" type="email" placeholder="you@example.com" />
+      <button class="nl-btn">Subscribe — it's free</button>
+      <p class="nl-split-fine">No spam · Unsubscribe any time</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="fake-cta">
+  <h2>Ready to start your tango journey?</h2>
+  <a href="#">Book Your Free Trial Class</a>
+</div>
+
+<script>
+  const card = document.getElementById('nlCard');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 }).observe(card);
+  } else {
+    card.classList.add('visible');
+  }
+</script>
+</body>
+</html>

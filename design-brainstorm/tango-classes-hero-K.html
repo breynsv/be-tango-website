@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Redesign K — Asymmetric / Large Photo Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #000000;
+      --gold:  #E2C033;
+      --navy:  #1C244B;
+      --white: #FFFFFF;
+      --bg:    #F3F5F8;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--black);
+    }
+
+    /* ── SITE CHROME (mockup nav so we can see context) ── */
+    .mock-nav {
+      height: 64px;
+      background: var(--white);
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+      justify-content: space-between;
+    }
+    .mock-nav .logo {
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+    }
+    .mock-nav .logo span { color: var(--gold); }
+    .mock-nav .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .mock-nav .nav-links li a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--black);
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    .hero {
+      background: var(--bg);
+      min-height: 620px;
+      display: grid;
+      /* Left text panel: flexible but bounded; right photo panel: 58% */
+      grid-template-columns: 1fr 58%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── LEFT PANEL ── */
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 52px 60px 64px;
+      background: var(--white);
+      position: relative;
+      z-index: 2;
+      /* white card bleeds all the way to the left edge */
+    }
+
+    /* thin gold rule along the left edge of the white panel */
+    .hero-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--gold);
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::after {
+      content: '';
+      flex: 1;
+      max-width: 48px;
+      height: 2px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+
+    .hero-heading {
+      font-size: clamp(2.2rem, 3.2vw, 3.1rem);
+      font-weight: 900;
+      line-height: 1.08;
+      color: var(--black);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .hero-heading .sub-line {
+      display: block;
+      font-weight: 300;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      color: var(--navy);
+      letter-spacing: -0.01em;
+      margin-top: 4px;
+    }
+
+    .hero-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
+      margin: 22px 0;
+      border-radius: 2px;
+    }
+
+    .hero-tagline {
+      font-size: 0.92rem;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #444;
+      max-width: 380px;
+      margin-bottom: 36px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover {
+      background: #cead22;
+      transform: translateY(-1px);
+    }
+    .btn-primary svg {
+      transition: transform 0.2s;
+    }
+    .btn-primary:hover svg {
+      transform: translateX(3px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--navy);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border: 2px solid var(--navy);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-secondary:hover {
+      background: var(--navy);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .hero-locations {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: #666;
+    }
+    .hero-locations svg {
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .hero-locations .loc-sep {
+      color: #bbb;
+      margin: 0 4px;
+    }
+
+    /* ── RIGHT PANEL — photo ── */
+    .hero-photo-wrap {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      /* slight inset from top/bottom creates the "floating card" feel */
+      padding: 28px 0 28px 0;
+    }
+
+    /* the actual image card */
+    .hero-photo-card {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+      box-shadow:
+        -8px 0 32px rgba(0,0,0,0.10),
+        0 8px 40px rgba(0,0,0,0.12);
+    }
+
+    /* gold vertical accent bar on the left edge of the photo */
+    .hero-photo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: var(--gold);
+      z-index: 10;
+    }
+
+    .hero-photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      /* No dark overlay — photo at full brightness */
+      filter: none;
+    }
+
+    /* Level selector — vertical strip on far right edge of the photo */
+    .level-selector {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      background: rgba(28, 36, 75, 0.92);
+      backdrop-filter: blur(6px);
+    }
+
+    .level-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 13px 18px 13px 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer;
+      transition: background 0.18s;
+      text-decoration: none;
+    }
+    .level-item:last-child {
+      border-bottom: none;
+    }
+    .level-item:hover,
+    .level-item.active {
+      background: rgba(226, 192, 51, 0.18);
+    }
+    .level-item.active .level-dot {
+      background: var(--gold);
+    }
+    .level-item.active .level-label {
+      color: var(--gold);
+    }
+
+    .level-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      white-space: nowrap;
+      transition: color 0.18s;
+    }
+
+    .level-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      flex-shrink: 0;
+      transition: background 0.18s;
+    }
+
+    /* small "explore" label above the level selector */
+    .level-header {
+      padding: 10px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      text-align: right;
+    }
+    .level-header span {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Photo caption / location badge overlaid bottom-left of photo */
+    .photo-badge {
+      position: absolute;
+      bottom: 48px;
+      left: 24px;
+      z-index: 15;
+      background: var(--white);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .photo-badge-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .photo-badge-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .photo-badge-text .badge-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: 0.04em;
+    }
+    .photo-badge-text .badge-sub {
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: #666;
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-text {
+        padding: 52px 32px 48px 40px;
+      }
+
+      .hero-photo-wrap {
+        padding: 0;
+        height: 380px;
+      }
+
+      .level-selector {
+        flex-direction: row;
+        right: auto;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: none;
+      }
+
+      .level-header {
+        display: none;
+      }
+
+      .level-item {
+        flex: 1;
+        flex-direction: column;
+        gap: 4px;
+        padding: 10px 8px;
+        border-bottom: none;
+        border-right: 1px solid rgba(255,255,255,0.08);
+        justify-content: center;
+        align-items: center;
+      }
+      .level-item:last-child {
+        border-right: none;
+      }
+
+      .level-dot {
+        display: none;
+      }
+
+      .photo-badge {
+        bottom: 60px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .mock-nav .nav-links { display: none; }
+
+      .hero-text {
+        padding: 44px 24px 40px 28px;
+      }
+
+      .hero-cta-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .photo-badge {
+        left: 12px;
+        bottom: 68px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mockup nav for context -->
+  <nav class="mock-nav">
+    <div class="logo">BE<span>·</span>TANGO</div>
+    <ul class="nav-links">
+      <li><a href="#">Classes</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Schedule</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero">
+
+    <!-- LEFT: Text content -->
+    <div class="hero-text">
+
+      <p class="eyebrow">Discover Your Tango Journey</p>
+
+      <h1 class="hero-heading">
+        Our Class Offer
+        <span class="sub-line">From Beginner to Advanced</span>
+      </h1>
+
+      <div class="hero-divider"></div>
+
+      <p class="hero-tagline">
+        Welcome to our tango dance school! We offer a wide range of lessons
+        for all levels, from absolute beginners to advanced.
+      </p>
+
+      <div class="hero-cta-row">
+        <a href="#" class="btn-primary">
+          Info for Beginners
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 7H13M8 2L13 7L8 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#" class="btn-secondary">
+          View Levels
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 7H13M8 2L13 7L8 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="hero-locations">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.5 1C4.567 1 3 2.567 3 4.5C3 7.25 6.5 12 6.5 12C6.5 12 10 7.25 10 4.5C10 2.567 8.433 1 6.5 1ZM6.5 6C5.672 6 5 5.328 5 4.5C5 3.672 5.672 3 6.5 3C7.328 3 8 3.672 8 4.5C8 5.328 7.328 6 6.5 6Z" fill="currentColor"/>
+        </svg>
+        Brussels
+        <span class="loc-sep">·</span>
+        Woluwe
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Photo panel -->
+    <div class="hero-photo-wrap">
+
+      <div class="hero-photo-card">
+        <img
+          src="../images/Tango-classes-in-Brussels.png"
+          alt="Tango classes in Brussels"
+        >
+
+        <!-- Photo badge bottom-left -->
+        <div class="photo-badge">
+          <div class="photo-badge-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 1L11.39 6.26L17 7.27L13 11.14L13.96 17L9 14.27L4.04 17L5 11.14L1 7.27L6.61 6.26L9 1Z" fill="#000" stroke="#000" stroke-width="1" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="photo-badge-text">
+            <span class="badge-title">All Levels Welcome</span>
+            <span class="badge-sub">Brussels &amp; Woluwe</span>
+          </div>
+        </div>
+
+        <!-- Level selector -->
+        <nav class="level-selector">
+          <div class="level-header">
+            <span>Levels</span>
+          </div>
+          <a href="#" class="level-item active">
+            <span class="level-label">Beginners</span>
+            <span class="level-dot"></span>
+          </a>
+          <a href="#" class="level-item">
+            <span class="level-label">Improvers</span>
+            <span class="level-dot"></span>
+          </a>
+          <a href="#" class="level-item">
+            <span class="level-label">Intermediate</span>
+            <span class="level-dot"></span>
+          </a>
+          <a href="#" class="level-item">
+            <span class="level-label">Advanced</span>
+            <span class="level-dot"></span>
+          </a>
+          <a href="#" class="level-item">
+            <span class="level-label">Workshops</span>
+            <span class="level-dot"></span>
+          </a>
+          <a href="#" class="level-item">
+            <span class="level-label">Private</span>
+            <span class="level-dot"></span>
+          </a>
+        </nav>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</body>
+</html>

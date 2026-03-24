@@ -31,7 +31,7 @@
     const title = t(item.title);
     const content = t(item.content);
     const link = t(item.link);
-    const date = formatDate(item.published_at);
+    const date = formatDate(item.event_date);
     if (!title) return '';
 
     const linkLabel = lang === 'fr' ? 'En savoir plus →' : lang === 'nl' ? 'Meer info →' : 'Learn more →';
@@ -76,17 +76,169 @@
 
     let current = 0;
 
-    function update() {
-      const vis = visibleCount();
-      const maxIndex = count - vis;
-      current = Math.max(0, Math.min(current, maxIndex));
-      const cardWidth = track.children[0]
-        ? track.children[0].offsetWidth + 24
-        : 0;
-      track.style.transform = `translateX(-${current * cardWidth}px)`;
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current >= maxIndex;
+    // ── Drag / swipe state ──────────────────────────────────────────────────
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let dragCurrentX = 0;
+    let dragBaseOffset = 0;   // translateX value at the moment drag started
+    let dragMoved = false;    // true once pointer has moved > threshold
+    let isHorizontalDrag = null; // null = undecided, true/false = decided
+
+    const DRAG_THRESHOLD = 30; // px — below this treat release as a click
+
+    function cardWidth() {
+      const first = track.children[0];
+      if (!first) return 0;
+      // offsetWidth + gap (24px from CSS)
+      return first.offsetWidth + 24;
     }
+
+    function currentOffset() {
+      return current * cardWidth();
+    }
+
+    function maxIndex() {
+      return Math.max(0, count - visibleCount());
+    }
+
+    // Apply a pixel offset directly (no transition) — used during live drag
+    function applyRawOffset(px) {
+      track.style.transition = 'none';
+      track.style.transform = `translateX(${-px}px)`;
+    }
+
+    // Snap to a card index with transition
+    function snapTo(index) {
+      const vis = visibleCount();
+      const max = count - vis;
+      current = Math.max(0, Math.min(index, max));
+      track.style.transition = 'transform 0.4s ease';
+      track.style.transform = `translateX(-${current * cardWidth()}px)`;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current >= max;
+    }
+
+    function update() {
+      snapTo(current);
+    }
+
+    // ── Pointer helpers ─────────────────────────────────────────────────────
+
+    function onDragStart(clientX, clientY) {
+      isDragging = true;
+      dragMoved = false;
+      isHorizontalDrag = null;
+      dragStartX = clientX;
+      dragStartY = clientY;
+      dragCurrentX = clientX;
+      dragBaseOffset = current * cardWidth();
+      // Disable transition while dragging so motion is instant
+      track.style.transition = 'none';
+    }
+
+    function onDragMove(clientX, clientY) {
+      if (!isDragging) return;
+
+      const deltaX = clientX - dragStartX;
+      const deltaY = clientY - dragStartY;
+
+      // Decide drag direction once we have enough movement
+      if (isHorizontalDrag === null) {
+        if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+          isHorizontalDrag = Math.abs(deltaX) >= Math.abs(deltaY);
+        }
+        return; // wait for direction decision before moving anything
+      }
+
+      if (!isHorizontalDrag) {
+        // Vertical intent — abort drag entirely so page can scroll
+        isDragging = false;
+        return;
+      }
+
+      // Prevent scroll while doing a horizontal drag
+      dragCurrentX = clientX;
+      if (Math.abs(deltaX) > DRAG_THRESHOLD) dragMoved = true;
+
+      // Clamp so the user cannot drag far past the first/last card
+      const raw = dragBaseOffset - deltaX;
+      const maxPx = maxIndex() * cardWidth();
+      const clamped = Math.max(-cardWidth() * 0.4, Math.min(raw, maxPx + cardWidth() * 0.4));
+      applyRawOffset(clamped);
+    }
+
+    function onDragEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+
+      if (!dragMoved) {
+        // Short tap/click — snap back to current without changing index
+        snapTo(current);
+        return;
+      }
+
+      // Determine how far we dragged in card units and snap to nearest card
+      const delta = dragCurrentX - dragStartX;
+      const cw = cardWidth();
+      if (cw === 0) { snapTo(current); return; }
+
+      // Snap to nearest: shift by >0.3 of a card width triggers advance
+      const indexOffset = -delta / cw;
+      const target = Math.round(current + indexOffset);
+      snapTo(target);
+    }
+
+    // ── Touch events ────────────────────────────────────────────────────────
+
+    track.addEventListener('touchstart', function (e) {
+      const t0 = e.touches[0];
+      onDragStart(t0.clientX, t0.clientY);
+    }, { passive: true });
+
+    track.addEventListener('touchmove', function (e) {
+      const t0 = e.touches[0];
+      // onDragMove decides direction; prevent default only for horizontal drag
+      if (isHorizontalDrag === true) e.preventDefault();
+      onDragMove(t0.clientX, t0.clientY);
+    }, { passive: false });
+
+    track.addEventListener('touchend', function () {
+      onDragEnd();
+    });
+
+    track.addEventListener('touchcancel', function () {
+      isDragging = false;
+      snapTo(current);
+    });
+
+    // ── Mouse events (click-drag on desktop) ────────────────────────────────
+
+    track.addEventListener('mousedown', function (e) {
+      // Only primary button
+      if (e.button !== 0) return;
+      onDragStart(e.clientX, e.clientY);
+      track.classList.add('is-dragging');
+      e.preventDefault(); // prevent text selection during drag
+    });
+
+    window.addEventListener('mousemove', function (e) {
+      if (!isDragging) return;
+      onDragMove(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mouseup', function (e) {
+      if (!isDragging) return;
+      track.classList.remove('is-dragging');
+      onDragEnd();
+    });
+
+    // Prevent ghost drag image appearing on link children
+    track.addEventListener('dragstart', function (e) {
+      e.preventDefault();
+    });
+
+    // ── Button clicks ────────────────────────────────────────────────────────
 
     prevBtn.addEventListener('click', function () { current--; update(); });
     nextBtn.addEventListener('click', function () { current++; update(); });

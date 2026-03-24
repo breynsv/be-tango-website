@@ -981,6 +981,24 @@ p {
   cursor: default;
 }
 
+/* Drag cursor feedback on the carousel track */
+.ann-carousel-track {
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ann-carousel-track.is-dragging {
+  cursor: grabbing;
+}
+
+/* Prevent text/link drag ghosts while swiping */
+.ann-carousel-track a,
+.ann-carousel-track img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .announcements-grid,
@@ -1740,6 +1758,14 @@ section {
 .newsletter-signup .ft-success p {
   color: var(--color-text);
   font-size: 0.9rem;
+}
+
+/* Success state inside the dark d4-newsletter-section (blog posts & overview) */
+.d4-newsletter-section .ft-success h3 {
+  color: #fff;
+}
+.d4-newsletter-section .ft-success p {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 /* Validation error on newsletter email input */
@@ -5916,6 +5942,34 @@ a:focus {
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* Inline article images — constrained within content column */
+.article-content .article-featured-image {
+  max-width: 100%;
+  margin: var(--spacing-lg) auto;
+  box-shadow: var(--box-shadow);
+}
+
+/* Portrait/small images — don't stretch them full width */
+.article-content .article-featured-image.img-portrait {
+  max-width: 320px;
+}
+
+/* Wide banner images — full width, reduced shadow */
+.article-content .article-featured-image.img-banner {
+  max-width: 100%;
+  border-radius: var(--border-radius);
+}
+
+/* Video grid responsive — stack on mobile */
+@media (max-width: 640px) {
+  div[style*="grid-template-columns:1fr 1fr"] {
+    display: block !important;
+  }
+  div[style*="grid-template-columns:1fr 1fr"] > div {
+    margin-bottom: var(--spacing-md);
+  }
 }
 
 /* Article Content */

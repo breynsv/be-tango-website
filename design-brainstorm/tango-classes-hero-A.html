@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Redesign A — Editorial Split</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:  #000000;
+      --gold:   #E2C033;
+      --navy:   #1C244B;
+      --accent: #00d084;
+      --white:  #FFFFFF;
+      --off:    #F3F5F8;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--off);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 680px;
+      overflow: hidden;
+    }
+
+    /* LEFT – dark panel */
+    .hero-left {
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 72px 64px 72px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* decorative vertical rule */
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 4px;
+      height: calc(100% - 120px);
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    }
+
+    /* animated underline bar at top */
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gold);
+      transform-origin: left;
+      animation: slideIn 0.9s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes slideIn {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    .hero-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .hero-h1 {
+      font-size: clamp(2.4rem, 3.5vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+
+    .hero-h1 .accent-line {
+      display: block;
+      color: var(--gold);
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.75);
+      max-width: 400px;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.7s ease both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.9s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.4);
+    }
+    .btn-secondary:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* number counter strip */
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      margin-top: 52px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      opacity: 0;
+      animation: fadeUp 0.7s 1.1s ease both;
+    }
+
+    .stat-value {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 4px;
+    }
+
+    /* RIGHT – photo */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transform: scale(1.04);
+      animation: zoomOut 1.4s 0.2s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes zoomOut {
+      from { transform: scale(1.12); }
+      to   { transform: scale(1.04); }
+    }
+
+    /* gold corner bracket overlay */
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      bottom: 32px;
+      left: 32px;
+      width: 56px;
+      height: 56px;
+      border-left: 4px solid var(--gold);
+      border-bottom: 4px solid var(--gold);
+      z-index: 2;
+      opacity: 0;
+      animation: fadeUp 0.6s 1.2s ease both;
+    }
+
+    /* dark gradient wash so image doesn't compete */
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(28,36,75,0.18), transparent 50%);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .hero-right {
+        height: 320px;
+      }
+      .hero-left {
+        padding: 56px 40px;
+      }
+      .hero-left::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO REDESIGN A — EDITORIAL SPLIT -->
+  <section class="hero" aria-label="Hero: Tango Classes">
+    <div class="hero-left">
+      <p class="hero-label">Discover Your Tango Journey</p>
+      <h1 class="hero-h1">
+        Our Class Offer
+        <span class="accent-line">From Beginner<br>to Advanced.</span>
+      </h1>
+      <p class="hero-tagline">
+        Welcome to our Brussels tango school. We offer a wide range of lessons for all levels — no partner needed to begin.
+      </p>
+      <div class="hero-cta">
+        <a href="../tango-classes/beginners/" class="btn btn-primary">Info for Beginners</a>
+        <a href="../tango-classes/experienced/#choose-your-level" class="btn btn-secondary">View Levels</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <span class="stat-value">5</span>
+          <span class="stat-label">Levels</span>
+        </div>
+        <div>
+          <span class="stat-value">2</span>
+          <span class="stat-label">Locations</span>
+        </div>
+        <div>
+          <span class="stat-value">14+</span>
+          <span class="stat-label">Lessons / Cycle</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <img
+        src="../images/Tango-classes-in-Brussels.png"
+        alt="Tango class in Brussels"
+        width="900" height="680"
+      >
+    </div>
+  </section>
+
+</body>
+</html>

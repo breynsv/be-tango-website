@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Redesign B — Diagonal Cinematic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:  #000000;
+      --gold:   #E2C033;
+      --navy:   #1C244B;
+      --accent: #00d084;
+      --white:  #FFFFFF;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--black);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 700px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    /* BACKGROUND PHOTO fills the right ~65% */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 65% center;
+      display: block;
+      animation: kenBurns 14s ease-in-out infinite alternate;
+    }
+
+    @keyframes kenBurns {
+      from { transform: scale(1);    object-position: 60% center; }
+      to   { transform: scale(1.06); object-position: 70% center; }
+    }
+
+    /* DIAGONAL MASK — dark left wedge */
+    .hero-mask {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      /* a hard diagonal: covers ~55% of width */
+      background: linear-gradient(
+        105deg,
+        var(--black) 0%,
+        var(--black) 48%,
+        rgba(0,0,0,0.82) 56%,
+        rgba(0,0,0,0.3) 68%,
+        transparent 80%
+      );
+    }
+
+    /* CONTENT */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 80px;
+      max-width: 640px;
+    }
+
+    /* Eyebrow */
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeLeft 0.7s 0.2s ease both;
+    }
+
+    .eyebrow-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 14px var(--gold);
+      animation: pulse 2s 1s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 8px var(--gold); }
+      50%      { box-shadow: 0 0 22px var(--gold), 0 0 40px rgba(226,192,51,0.4); }
+    }
+
+    .eyebrow-text {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* Giant H1 */
+    .hero-h1 {
+      font-size: clamp(3rem, 5.5vw, 5.5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      color: var(--white);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeLeft 0.8s 0.4s ease both;
+    }
+
+    /* OUTLINE text effect for "From Beginner" */
+    .hero-h1 .outline {
+      -webkit-text-stroke: 2px var(--gold);
+      color: transparent;
+      display: block;
+    }
+
+    .hero-h1 .solid {
+      display: block;
+    }
+
+    /* italic tagline */
+    .hero-h1 .italic-sub {
+      display: block;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      text-transform: none;
+      letter-spacing: 0;
+      line-height: 1.5;
+      margin-top: 16px;
+    }
+
+    /* Gold horizontal rule */
+    .hero-rule {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeLeft 0.7s 0.65s ease both;
+    }
+
+    .hero-rule span {
+      display: block;
+      height: 2px;
+      width: 60px;
+      background: var(--gold);
+    }
+
+    .hero-rule em {
+      font-size: 0.72rem;
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+    }
+
+    /* CTA row */
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeLeft 0.7s 0.85s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: '→';
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      opacity: 0;
+      transform: translateX(-6px);
+    }
+
+    .btn:hover::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .btn-primary:hover {
+      background: #f0d040;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(226,192,51,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.35);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* FLOATING LEVEL CHIPS at bottom right */
+    .hero-levels {
+      position: absolute;
+      bottom: 40px;
+      right: 48px;
+      z-index: 3;
+      display: flex;
+      gap: 8px;
+      flex-direction: column;
+      align-items: flex-end;
+      opacity: 0;
+      animation: fadeUp 0.8s 1.2s ease both;
+    }
+
+    .level-chip {
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(226,192,51,0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 6px 16px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.8);
+      text-transform: uppercase;
+    }
+
+    .level-chip.active {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    @keyframes fadeLeft {
+      from { opacity: 0; transform: translateX(-28px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { min-height: 600px; }
+      .hero-content { padding: 60px 32px; max-width: 100%; }
+      .hero-levels { display: none; }
+      .hero-mask {
+        background: linear-gradient(
+          180deg,
+          rgba(0,0,0,0.75) 0%,
+          rgba(0,0,0,0.55) 60%,
+          rgba(0,0,0,0.75) 100%
+        );
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO REDESIGN B — DIAGONAL CINEMATIC -->
+  <section class="hero" aria-label="Hero: Tango Classes">
+
+    <!-- full bleed photo -->
+    <div class="hero-bg">
+      <img
+        src="../images/Tango-classes-in-Brussels.png"
+        alt="Tango class in Brussels"
+        width="1600" height="700"
+      >
+    </div>
+
+    <!-- diagonal dark overlay -->
+    <div class="hero-mask"></div>
+
+    <!-- text content left-aligned -->
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        <span class="eyebrow-text">Discover Your Tango Journey</span>
+      </div>
+
+      <h1 class="hero-h1">
+        <span class="solid">Our</span>
+        <span class="outline">Class Offer</span>
+        <span class="italic-sub">From Beginner to Advanced —<br>every level, every step.</span>
+      </h1>
+
+      <div class="hero-rule">
+        <span></span>
+        <em>Brussels · Woluwe</em>
+      </div>
+
+      <div class="hero-cta">
+        <a href="../tango-classes/beginners/" class="btn btn-primary">Info for Beginners</a>
+        <a href="../tango-classes/experienced/#choose-your-level" class="btn btn-secondary">View Levels</a>
+      </div>
+    </div>
+
+    <!-- floating level chips -->
+    <div class="hero-levels">
+      <span class="level-chip active">Beginner</span>
+      <span class="level-chip">First Year</span>
+      <span class="level-chip">Second Year</span>
+      <span class="level-chip">Intermediate</span>
+      <span class="level-chip">Advanced</span>
+    </div>
+
+  </section>
+
+</body>
+</html>

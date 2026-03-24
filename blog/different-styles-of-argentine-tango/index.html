@@ -9,101 +9,678 @@
   <title>The Different Styles of Argentine Tango | BE-TANGO Blog</title>
   <link rel="canonical" href="https://www.be-tango.be/blog/different-styles-of-argentine-tango/">
 
-  <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="The Different Styles of Argentine Tango | BE-TANGO Blog">
-  <meta property="og:description" content="Explore the diverse styles of Argentine tango including Canyengue, Milonguero, Tango de Salon, Tango Nuevo, and more. Learn about their unique characteristics and history.">
+  <meta property="og:description" content="Explore the diverse styles of Argentine tango including Canyengue, Milonguero, Tango de Salon, Tango Nuevo, and more.">
   <meta property="og:url" content="https://www.be-tango.be/blog/different-styles-of-argentine-tango/">
-  <meta property="og:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
+  <meta property="og:image" content="https://www.be-tango.be/images/blog/12_candombe.webp">
   <meta property="og:site_name" content="BE-TANGO">
   <meta property="og:locale" content="en_US">
 
-  <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The Different Styles of Argentine Tango | BE-TANGO Blog">
-  <meta name="twitter:description" content="Explore the diverse styles of Argentine tango including Canyengue, Milonguero, Tango de Salon, Tango Nuevo, and more. Learn about their unique characteristics and history.">
-  <meta name="twitter:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
+  <meta name="twitter:description" content="Explore the diverse styles of Argentine tango including Canyengue, Milonguero, Tango de Salon, Tango Nuevo, and more.">
+  <meta name="twitter:image" content="https://www.be-tango.be/images/blog/12_candombe.webp">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/cropped-favicon-180x180.png">
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
-  <!-- Font Awesome -->
-
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.6"></noscript>
 
-  <!-- Enhancement Scripts -->
-  <script src="../../js/enhancements.min.js?v=3.5" defer></script>
-
-  <!-- Blog Article Styles -->
   <style>
-    .article-header {
+    :root {
+      --gold: #E2C033;
+      --navy: #1C244B;
+      --text: #111827;
+      --text-light: #4a4a4a;
+      --border: #E5E7EB;
+      --white: #FFFFFF;
+      --bg: #F3F5F8;
+      --gold-bg: rgba(226,192,51,0.08);
+    }
+    .blog-hero {
+      background: var(--navy);
+      position: relative;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      padding-bottom: 80px;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(226,192,51,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 48px;
+      align-items: center;
+      min-height: 480px;
+      padding: 72px 0 56px;
+    }
+    .hero-left { position: relative; z-index: 2; }
+    .category-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .hero-title em { font-style: normal; color: var(--gold); }
+    .hero-excerpt {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.78);
+      max-width: 520px;
+      margin-bottom: 32px;
+      line-height: 1.75;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 13px 28px;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .hero-cta:hover { background: #cba820; transform: translateY(-1px); color: var(--navy); }
+    .hero-image-panel {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 380px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+      flex-shrink: 0;
+    }
+    .hero-image-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-image-label {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(28,36,75,0.75);
+      border: 1px solid rgba(226,192,51,0.3);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      backdrop-filter: blur(10px);
+    }
+    .meta-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .meta-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .d4-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+    .d4-breadcrumb a { color: var(--navy); font-weight: 500; text-decoration: none; }
+    .d4-breadcrumb a:hover { color: var(--gold); }
+    .d4-breadcrumb .sep { color: var(--border); }
+    .meta-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      font-weight: 500;
+    }
+    .meta-item i { color: var(--gold); font-size: 0.85rem; }
+    .share-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 1px solid var(--border);
+      padding-left: 20px;
+    }
+    .share-label { font-size: 0.75rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em; }
+    .share-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      color: var(--text-light);
+      font-size: 0.8rem;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      text-decoration: none;
+    }
+    .share-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .d4-article-section { padding: 64px 0 80px; }
+    .article-grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 40px;
+      align-items: start;
+    }
+    .article-body { display: flex; flex-direction: column; gap: 32px; }
+    .section-card {
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 16px rgba(28,36,75,0.06), 0 1px 4px rgba(0,0,0,0.04);
+      padding: 48px 44px 44px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    .section-card:hover {
+      box-shadow: 0 8px 32px rgba(28,36,75,0.10), 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .section-card .bg-number {
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      font-size: 9rem;
+      font-weight: 800;
+      color: var(--gold);
+      opacity: 0.07;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+    .section-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold) 0%, rgba(226,192,51,0.2) 100%);
+      border-radius: 8px 8px 0 0;
+    }
+    .section-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .section-number-pill {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin-top: 2px;
+    }
+    .section-card h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex: 1;
+      margin: 0;
+    }
+    .section-card h2::before {
+      content: '●';
+      color: var(--gold);
+      font-size: 0.55em;
+      flex-shrink: 0;
+    }
+    .section-card p {
+      color: var(--text-light);
+      font-size: 0.97rem;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .section-card p:last-child { margin-bottom: 0; }
+    .section-card strong { color: var(--text); font-weight: 600; }
+    .section-card ul { color: var(--text-light); font-size: 0.97rem; line-height: 1.85; padding-left: 20px; margin-bottom: 16px; }
+    .section-card ul li { margin-bottom: 6px; }
+    .pullquote {
+      margin: 28px 0;
+      padding: 28px 36px;
+      background: var(--gold-bg);
+      border-radius: 6px;
+      position: relative;
       text-align: center;
-      margin: 0 auto;
     }
-
-    .article-cta .btn {
-      color: var(--color-dark-navy);
-      font-weight: 600;
+    .pullquote::before, .pullquote::after {
+      font-family: Georgia, serif;
+      font-size: 4rem;
+      color: var(--gold);
+      line-height: 0;
+      position: absolute;
     }
-
-    .bg-dark .btn {
-      color: var(--color-dark-navy);
+    .pullquote::before { content: '\201C'; top: 28px; left: 16px; }
+    .pullquote::after  { content: '\201D'; bottom: 8px; right: 16px; }
+    .pullquote p {
+      font-size: 1.2rem !important;
+      font-style: italic;
+      color: var(--navy) !important;
+      font-weight: 500;
+      margin: 0 !important;
+      line-height: 1.6 !important;
+    }
+    .section-card.achievement { background: var(--navy); border-color: transparent; }
+    .section-card.achievement::before {
+      background: linear-gradient(90deg, var(--gold) 0%, rgba(226,192,51,0.4) 100%);
+    }
+    .section-card.achievement .bg-number { opacity: 0.06; }
+    .section-card.achievement h2 { color: var(--white); }
+    .section-card.achievement h2::before { color: var(--gold); }
+    .section-card.achievement p { color: rgba(255,255,255,0.78); }
+    .section-card.achievement strong { color: var(--white); }
+    .section-card.achievement ul { color: rgba(255,255,255,0.78); }
+    .achievement-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      background: rgba(226,192,51,0.15);
+      border: 1px solid rgba(226,192,51,0.4);
+      border-radius: 12px;
+      color: var(--gold);
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .achievement-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(226,192,51,0.12);
+      border: 1px solid rgba(226,192,51,0.3);
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 6px;
+      margin-top: 20px;
+      letter-spacing: 0.05em;
+    }
+    .d4-sidebar {
+      position: sticky;
+      top: 88px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .d4-sidebar-card {
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(28,36,75,0.05);
+      overflow: hidden;
+    }
+    .d4-sidebar-card-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .d4-sidebar-card-header h3 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+    }
+    .d4-sidebar-card-header h3 i { color: var(--gold); }
+    .d4-sidebar-card-body { padding: 18px 20px; }
+    .toc-list { display: flex; flex-direction: column; gap: 4px; list-style: none; margin: 0; padding: 0; }
+    .toc-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .toc-item:hover { background: var(--gold-bg); }
+    .toc-item.active { background: var(--gold-bg); }
+    .toc-dot {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-top: 1px;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .toc-item.active .toc-dot, .toc-item:hover .toc-dot {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .toc-item a {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.45;
+      font-weight: 500;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .toc-item:hover a, .toc-item.active a { color: var(--navy); }
+    .about-author {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+    .author-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), #2a3460);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.6rem;
+    }
+    .author-name { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
+    .author-bio { font-size: 0.8rem; color: var(--text-light); line-height: 1.6; }
+    .cta-card-inner { padding: 20px; text-align: center; }
+    .cta-card-inner > i { font-size: 2rem; color: var(--gold); display: block; margin-bottom: 10px; }
+    .cta-card-inner h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+    .cta-card-inner p { font-size: 0.8rem; color: var(--text-light); line-height: 1.6; margin: 0 0 16px; }
+    .btn-d4-cta {
+      display: block;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 11px 20px;
+      border-radius: 6px;
+      transition: background 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .btn-d4-cta:hover { background: #cba820; transform: translateY(-1px); color: var(--navy); }
+    .d4-newsletter-section {
+      background: var(--navy);
+      padding: 72px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .d4-newsletter-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 50%, rgba(226,192,51,0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 50%, rgba(226,192,51,0.05) 0%, transparent 50%);
+    }
+    .d4-newsletter-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .d4-newsletter-pretitle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .d4-newsletter-pretitle::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .d4-newsletter-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .d4-newsletter-title em { font-style: normal; color: var(--gold); }
+    .d4-newsletter-desc { font-size: 0.95rem; color: rgba(255,255,255,0.68); line-height: 1.7; }
+    .d4-nl-form-wrap { display: flex; flex-direction: column; gap: 14px; }
+    .d4-nl-row { display: flex; gap: 0; }
+    .d4-nl-row .newsletter-email-input {
+      flex: 1;
+      padding: 14px 18px;
+      border-radius: 8px 0 0 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-right: none;
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .d4-nl-row .newsletter-email-input::placeholder { color: rgba(255,255,255,0.35); }
+    .d4-nl-row .newsletter-email-input:focus {
+      border-color: rgba(226,192,51,0.5);
+      background: rgba(255,255,255,0.12);
+    }
+    .d4-nl-row .newsletter-submit {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 14px 24px;
+      border-radius: 0 8px 8px 0;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .d4-nl-row .newsletter-submit:hover { background: #cba820; }
+    .d4-newsletter-note { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
+    .d4-related-section { padding: 72px 0; background: var(--bg); }
+    .d4-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+    }
+    .d4-section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .d4-section-title { font-size: 1.75rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin: 0; }
+    .d4-see-all {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
       font-weight: 600;
+      color: var(--navy);
+      border: 1px solid var(--border);
+      padding: 8px 18px;
+      border-radius: 6px;
+      transition: background 0.2s, border-color 0.2s;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .d4-see-all:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .related-card {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+      text-decoration: none;
+    }
+    .related-card:hover { box-shadow: 0 12px 32px rgba(28,36,75,0.12); transform: translateY(-3px); }
+    .related-img {
+      height: 180px;
+      overflow: hidden;
+      position: relative;
+    }
+    .related-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .related-card-body { padding: 22px 20px 24px; }
+    .related-category {
+      display: inline-block;
+      background: var(--gold-bg);
+      color: var(--navy);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(226,192,51,0.2);
+    }
+    .related-title { font-size: 1rem; font-weight: 700; color: var(--navy); line-height: 1.4; margin-bottom: 16px; }
+    .related-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gold);
+      transition: gap 0.2s;
+    }
+    .related-card:hover .related-link { gap: 10px; }
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-image-panel { display: none; }
+      .hero-title { font-size: 2.8rem; }
+      .article-grid { grid-template-columns: 1fr; }
+      .d4-sidebar { position: static; }
+      .d4-newsletter-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.2rem; }
+      .blog-hero { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
+      .related-grid { grid-template-columns: 1fr; }
+      .meta-strip-inner { flex-direction: column; align-items: flex-start; }
+      .share-group { border-left: none; padding-left: 0; }
+      .section-card { padding: 36px 24px 32px; }
+      .section-card h2 { font-size: 1.2rem; }
+      .d4-newsletter-title { font-size: 1.9rem; }
+      .d4-nl-row { flex-direction: column; }
+      .d4-nl-row .newsletter-email-input { border-radius: 8px; border-right: 1px solid rgba(255,255,255,0.15); }
+      .d4-nl-row .newsletter-submit { border-radius: 8px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 1.9rem; }
     }
   </style>
 
-  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": "The different styles of Argentine tango",
+    "headline": "The Different Styles of Argentine Tango",
     "description": "Explore the diverse styles of Argentine tango including Canyengue, Milonguero, Tango de Salon, Tango Nuevo, and more.",
-    "author": {
-      "@type": "Person",
-      "name": "Sonja"
-    },
+    "image": "https://www.be-tango.be/images/blog/12_candombe.webp",
+    "author": { "@type": "Person", "name": "Sonja" },
     "datePublished": "2025-01-28",
     "dateModified": "2025-01-31",
     "publisher": {
       "@type": "DanceSchool",
       "name": "BE-TANGO",
       "url": "https://www.be-tango.be"
-    },
-    "image": "https://www.be-tango.be/images/blog/12_candombe.jpg"
+    }
   }
   </script>
 </head>
 <body>
 
-  <!-- Skip to main content link for accessibility -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- HEADER -->
   <header class="site-header">
     <div class="container">
       <div class="header-content">
         <a href="../../" class="logo">
           <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34" loading="lazy">
         </a>
-
         <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
-
         <nav class="main-nav" aria-label="Main navigation">
           <ul class="nav-list">
             <li><a href="../../">Home</a></li>
@@ -118,9 +695,9 @@
                 <li><a href="../../tango-classes/woluwe/">Woluwe</a></li>
               </ul>
             </li>
-            <li><a href="../../tango-classes/free-trial/">Free Trial</a></li>
+            <li><a href="../../tango-classes/free-trial/" class="btn btn-primary btn-nav">Free Trial</a></li>
+            <li><a href="../" class="active">Blog</a></li>
             <li><a href="../../contact/">Contact</a></li>
-            <li><a href="../">Blog</a></li>
             <li class="language-switcher">
               <button class="language-toggle" aria-label="Select language" aria-expanded="false">
                 <i class="fas fa-globe"></i>
@@ -130,20 +707,17 @@
               <ul class="language-dropdown">
                 <li>
                   <a href="../../nl/blog/de-verschillende-dansstijlen-van-de-argentijnse-tango/">
-                    <span class="flag-icon">🇳🇱</span>
-                    <span>Nederlands</span>
+                    <span class="flag-icon">🇳🇱</span><span>Nederlands</span>
                   </a>
                 </li>
                 <li>
                   <a href="./" class="active">
-                    <span class="flag-icon">🇬🇧</span>
-                    <span>English</span>
+                    <span class="flag-icon">🇬🇧</span><span>English</span>
                   </a>
                 </li>
                 <li>
                   <a href="../../fr/blog/les-differents-styles-du-tango-argentin/">
-                    <span class="flag-icon">🇫🇷</span>
-                    <span>Français</span>
+                    <span class="flag-icon">🇫🇷</span><span>Français</span>
                   </a>
                 </li>
               </ul>
@@ -154,233 +728,335 @@
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
   <main id="main-content">
-    <article>
+
+    <section class="blog-hero">
       <div class="container">
-        <a href="../" class="back-to-blog">
-          <i class="fas fa-arrow-left"></i> Back to Blog
-        </a>
-
-        <!-- Article Header -->
-        <header class="article-header">
-          <h1>The Different Styles of Argentine Tango</h1>
-          <div class="article-meta">
-            <span class="article-author"><i class="fas fa-user"></i> Sonja</span>
-            <span class="article-date"><i class="fas fa-calendar"></i> January 28, 2025</span>
-            <span class="article-readtime"><i class="fas fa-clock"></i> 8 min read</span>
-          </div>
-        </header>
-
-        <!-- Featured Image -->
-        <div class="article-featured-image">
-          <picture>
-            <source srcset="../../images/blog/12_candombe.webp" type="image/webp">
-            <img src="../../images/blog/12_candombe.jpg" alt="Different styles of Argentine tango - Candombe influence" loading="lazy">
-          </picture>
-        </div>
-
-        <!-- Article Content -->
-        <div class="article-content">
-          <p class="lead">
-            Argentine tango refers to a broad spectrum of dance styles. Yet most dancers resist categorical labels, preferring to describe their approach as "the tango of their neighbourhood or city." This diversity reflects the organic evolution of tango across different communities and eras.
-          </p>
-
-          <div class="article-divider"></div>
-
-          <h2>1. Canyengue (1920s-1930s)</h2>
-          <p>
-            <strong>Canyengue</strong> represents one of the earliest recognizable tango styles, characterized by its distinctive rhythmic energy and intimate connection. The name derives from Lunfardo, the colorful slang of Buenos Aires working-class neighborhoods.
-          </p>
-          <p>
-            <strong>Key Characteristics:</strong>
-          </p>
-          <ul>
-            <li>Short, staccato steps with bent knees</li>
-            <li>Very close embrace with partners often dancing chest-to-chest</li>
-            <li>Music in 2/4 rhythmic tempo</li>
-            <li>Playful, bouncy quality in the movement</li>
-          </ul>
-          <p>
-            Notable orchestras from this era include Francisco Canaro (famous for "El Chamuyo") and Roberto Firpo. The style reflects the raw, spontaneous energy of early tango culture.
-          </p>
-
-          <h2>2. Tango Orillero</h2>
-          <p>
-            <strong>Tango Orillero</strong>—literally "tango from the outskirts"—emerged from the working-class neighborhoods on the edges of Buenos Aires. This style was revived and popularized by Rodolfo Cieri around 1990.
-          </p>
-          <p>
-            Unlike the hunched posture of canyengue, orillero features an upright posture combined with playful, expressive movements. Dancers maintain a more open frame while incorporating theatrical elements that reflect the street culture where tango was born.
-          </p>
-
-          <h2>3. Tango de Salon</h2>
-          <p>
-            <strong>Tango de Salon</strong> emerged as tango moved from the streets into the elegant ballrooms of Buenos Aires. This became the social style par excellence—elegant, refined, and suitable for crowded dance floors.
-          </p>
-          <p>
-            <strong>Key Features:</strong>
-          </p>
-          <ul>
-            <li>Elegant, smooth movements suitable for social dancing</li>
-            <li>Closed embrace (abrazo cerrado)</li>
-            <li>Circular navigation around the dance floor</li>
-            <li>Emphasis on musicality and connection</li>
-          </ul>
-          <p>
-            The golden age orchestras of Carlos Di Sarli, Miguel Calo, and Osvaldo Pugliese created the sophisticated sound that defined this style. Interestingly, Christine Denniston's research in <em>The Meaning of Tango</em> reveals that although dance styles varied widely during the golden age, dancers simply called what they danced "Tango de Salon."
-          </p>
-
-          <h2>4. Tango Milonguero (Estilo del Centro)</h2>
-          <p>
-            <strong>Tango Milonguero</strong>, also known as Estilo del Centro (downtown style), developed in the crowded milongas of central Buenos Aires. When dance floors became packed, dancers adapted by minimizing their movements and maintaining constant chest contact.
-          </p>
-          <p>
-            <strong>Characteristics:</strong>
-          </p>
-          <ul>
-            <li>Very close embrace with constant chest connection</li>
-            <li>Compact, efficient movements for crowded floors</li>
-            <li>Walking-based with minimal large movements</li>
-            <li>Strong emphasis on rhythmic precision</li>
-          </ul>
-          <p>
-            Music preference leans toward rhythmic pieces by Juan D'Arienzo, Tanturi, and Biagi. The legendary Pedro "Tete" Rusconi popularized this style globally and famously influenced choreographer Pina Bausch.
-          </p>
-
-          <h2>5. Tango Villa Urquiza</h2>
-          <p>
-            Named after a neighborhood in Buenos Aires, <strong>Tango Villa Urquiza</strong> flourished in the 1940s-1950s. This style is often called "salon-style tango" internationally.
-          </p>
-          <p>
-            <strong>Distinctive Elements:</strong>
-          </p>
-          <ul>
-            <li>Upright posture with a subtle V-position</li>
-            <li>Independent hip rotation allowing for elegant leg movements</li>
-            <li>More space in the embrace compared to milonguero</li>
-            <li>Smooth, flowing movements with sophisticated footwork</li>
-          </ul>
-          <p>
-            This style represents the refinement of social tango, balancing elegance with the intimacy of close connection.
-          </p>
-
-          <h2>6. Tango Nuevo</h2>
-          <p>
-            <strong>Tango Nuevo</strong> represents the modern, experimental approach to tango that emerged in the 1990s. Pioneers like Gustavo Naveira and Mariano "Chicho" Frumboli revolutionized the dance by questioning traditional structures and exploring new possibilities.
-          </p>
-          <p>
-            <strong>Key Innovations:</strong>
-          </p>
-          <ul>
-            <li>Open embrace allowing greater freedom of movement</li>
-            <li>Volcadas (off-axis movements) and creative figures</li>
-            <li>Emphasis on individual expression and creativity</li>
-            <li>Integration of elements from other dance forms</li>
-          </ul>
-          <p>
-            Other pioneers include Norberto "El Pulpo" Esbrés, Fabián Salas, Sebastian Arce, and Mariana Montes. This style appeals to dancers seeking to push boundaries while maintaining tango's essential improvisational nature.
-          </p>
-
-          <h2>7. Tango Fantasia</h2>
-          <p>
-            Developed in the 1950s and popularized by the legendary Juan Carlos Copes (who passed away in 2021), <strong>Tango Fantasia</strong> is fully choreographed stage performance tango.
-          </p>
-          <p>
-            <strong>Performance Characteristics:</strong>
-          </p>
-          <ul>
-            <li>Fully choreographed sequences designed for audience viewing</li>
-            <li>Incorporates ballet elements and acrobatic moves</li>
-            <li>Often performed in theatrical settings</li>
-            <li>Requires specialized footwear (typically 9 cm heels for women)</li>
-          </ul>
-          <p>
-            This style is designed for the stage rather than social dancing, prioritizing visual impact and dramatic effect.
-          </p>
-
-          <h2>8. Tango Escenario</h2>
-          <p>
-            <strong>Tango Escenario</strong> is another performance-oriented style specifically designed for stage shows and theatrical productions. Like Tango Fantasia, it emphasizes visual spectacle and choreographed sequences, but may incorporate elements from various tango styles depending on the artistic vision.
-          </p>
-
-          <h2>9. Candombé Influence</h2>
-          <p>
-            While not a tango style per se, <strong>Candombé</strong> deserves mention as a crucial influence on tango's development. This African musical tradition arrived in South America through the slave trade in the 17th-18th centuries, particularly affecting the Rio de la Plata region.
-          </p>
-          <p>
-            Black communities played a crucial role in tango's formation. Buenos Aires contained approximately 20,000 African residents by the end of the 18th century, and their rhythmic traditions became woven into the fabric of what would become tango.
-          </p>
-
-          <div class="article-conclusion">
-            <h2>The Reality of Tango Styles</h2>
-            <p>
-              Despite these categorical labels, historical research by Christine Denniston reveals an important truth: during the golden age (Época de Oro), dancers with widely varying styles all simply called what they danced "Tango de Salon."
-            </p>
-            <p>
-              Today's style names often represent modern attempts to categorize what was historically a more fluid practice. Most experienced dancers don't strictly adhere to one style but draw from multiple influences depending on the music, their partner, and the social context of the dance floor.
-            </p>
-            <p>
-              The beauty of Argentine tango lies in this diversity and adaptability—it's a living art form that continues to evolve while honoring its rich, multifaceted history.
-            </p>
-          </div>
-        </div>
-
-    <!-- Newsletter Signup -->
-    <section class="nl-blog-section">
-      <div class="container">
-        <div class="nl-blog-card">
-          <p class="nl-blog-overline">Newsletter</p>
-          <h2 class="nl-blog-headline">Stay in the <em>rhythm</em> of tango.</h2>
-          <p class="nl-blog-sub">New articles, events and class updates — straight to your inbox.</p>
-          <form class="newsletter-form" id="blogNewsletterForm" action="#" method="POST" novalidate
-                data-endpoint="subscribe"
-                data-success-title="You're in!"
-                data-success-msg="New articles and updates will land straight in your inbox.">
-            <div class="nl-blog-form-row">
-              <input type="email" name="email" id="blogEmail"
-                     placeholder="your@email.com" required
-                     aria-label="Email address for BE-TANGO newsletter"
-                     class="newsletter-email-input">
-              <button type="submit" class="newsletter-submit">Subscribe</button>
+        <div class="hero-inner">
+          <div class="hero-left">
+            <div class="category-badge">
+              <i class="fas fa-walking"></i>
+              Dance Styles
             </div>
-            <input type="text" name="_honey" tabindex="-1" autocomplete="off"
-                   style="position:absolute;left:-9999px;opacity:0;height:0;width:0" aria-hidden="true">
-            <input type="hidden" name="_ts">
-          </form>
-          <div class="ft-success" id="blogNewsletterFormSuccess" style="display:none"></div>
-          <p class="nl-blog-fine">No spam · Unsubscribe anytime</p>
+            <h1 class="hero-title">
+              The different<br>
+              <em>styles of tango</em>
+            </h1>
+            <p class="hero-excerpt">
+              Argentine tango is not one dance but a family of styles. From the earliest Canyengue of the 1920s to today's Tango Nuevo, each style carries its own character, embrace, and musical identity. Discover the rich diversity that makes Argentine tango a living art form.
+            </p>
+            <a href="#article" class="hero-cta">
+              <i class="fas fa-arrow-down"></i>
+              Read the article
+            </a>
+          </div>
+          <div class="hero-image-panel">
+            <img src="../../images/blog/12_candombe.webp" alt="The different styles of Argentine tango" loading="eager">
+            <div class="hero-image-label"><i class="fas fa-map-marker-alt"></i> BE-TANGO, Brussels</div>
+          </div>
         </div>
       </div>
     </section>
 
-        <!-- Article Navigation -->
-        <nav class="article-navigation">
-          <a href="../history-of-argentine-tango/" class="nav-prev">
-            <i class="fas fa-arrow-left"></i>
-            <span>Previous: History of Argentine Tango</span>
-          </a>
-          <a href="../argentine-tango-ballroom-tango-differences/" class="nav-next">
-            <span>Next: Argentine Tango & Ballroom Tango: Similarities and Differences</span>
-            <i class="fas fa-arrow-right"></i>
-          </a>
-        </nav>
+    <div class="meta-strip">
+      <div class="container">
+        <div class="meta-strip-inner">
+          <nav class="d4-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../">Home</a>
+            <span class="sep"><i class="fas fa-chevron-right" style="font-size:0.65rem"></i></span>
+            <a href="../">Blog</a>
+            <span class="sep"><i class="fas fa-chevron-right" style="font-size:0.65rem"></i></span>
+            <span>Different Styles of Argentine Tango</span>
+          </nav>
+          <div class="meta-right">
+            <span class="meta-item"><i class="fas fa-clock"></i> 8 min read</span>
+            <span class="meta-item"><i class="fas fa-calendar"></i> 28 January 2025</span>
+            <div class="share-group">
+              <span class="share-label">Share:</span>
+              <a href="#" class="share-btn" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="share-btn" aria-label="Share on X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" class="share-btn" aria-label="Copy link"><i class="fas fa-link"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
-    </article>
+    </div>
 
-    <!-- CTA Section -->
-    <section class="bg-dark">
-      <div class="container text-center">
-        <h2>Discover your tango style</h2>
-        <p class="section-description mb-4">
-          Join our classes and explore the rich diversity of Argentine tango styles.
-        </p>
-        <a href="../../tango-classes/free-trial/" class="btn btn-primary btn-large">Book Your Free Trial Class</a>
+    <section class="d4-article-section" id="article">
+      <div class="container">
+        <div class="article-grid">
+
+          <div class="article-body">
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--spacing-md);margin:var(--spacing-lg) 0;">
+              <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--border-radius);">
+                <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/xEaKjKM5Rik" title="Edgardo Donato &amp; Horacio Lagos - Mis Pesares (1940)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              </div>
+              <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--border-radius);">
+                <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/E5zeYZ5tcCo" title="Ricardo Tanturi - Recién" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              </div>
+            </div>
+
+            <article class="section-card" id="section-1">
+              <span class="bg-number">01</span>
+              <div class="section-card-header">
+                <div class="section-number-pill">1</div>
+                <h2>Early roots: Canyengue &amp; Tango Orillero</h2>
+              </div>
+              <p>
+                <strong>Canyengue</strong> represents one of the earliest recognizable tango styles, emerging in the 1920s–1930s in the working-class neighbourhoods of Buenos Aires. The name derives from Lunfardo, the colourful slang of the Río de la Plata region. It is characterised by short, staccato steps with bent knees, a very close chest-to-chest embrace, and a playful, bouncy quality in the movement. The music runs in 2/4 rhythmic tempo, and notable orchestras of the era include Francisco Canaro and Roberto Firpo.
+              </p>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--spacing-md);margin:var(--spacing-lg) 0;">
+                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--border-radius);">
+                  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/BsvBwPcvruk" title="Anna Osvaldo - El Chamuyo (Canyengue)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--border-radius);">
+                  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/ueyxSVnSeLw" title="Francisco Canaro - Canyengue (1930)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+              </div>
+              <div class="pullquote">
+                <p>Most dancers resist categorical labels — they simply dance "the tango of their neighbourhood."</p>
+              </div>
+              <p>
+                <strong>Tango Orillero</strong> — literally "tango from the outskirts" — also emerged from the working-class periphery of Buenos Aires. Unlike the hunched posture of Canyengue, Orillero features an upright posture combined with playful, expressive movements. It was revived and popularised by Rodolfo Cieri around 1990, and retains the theatrical energy of street culture where tango was first born.
+              </p>
+              <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:var(--spacing-lg) 0;border-radius:var(--border-radius);">
+                <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/T1aP7nb39zs" title="Rodolfo and Maria Cieri - El Chamuyo (Tango Orillero)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              </div>
+            </article>
+
+            <article class="section-card" id="section-2">
+              <span class="bg-number">02</span>
+              <div class="section-card-header">
+                <div class="section-number-pill">2</div>
+                <h2>Social tango: Tango de Salon &amp; Tango Milonguero</h2>
+              </div>
+              <p>
+                As tango moved from the streets into the elegant ballrooms of Buenos Aires, <strong>Tango de Salon</strong> emerged as the social style par excellence — elegant, refined, and suited to crowded dance floors. It features smooth movements with a closed embrace (abrazo cerrado), circular navigation around the floor, and a strong emphasis on musicality and connection. The golden age orchestras of Carlos Di Sarli, Miguel Calo, and Osvaldo Pugliese created the sophisticated sound that defined this style.
+              </p>
+              <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:var(--spacing-lg) 0;border-radius:var(--border-radius);">
+                <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/p6BlOvgf14M" title="Tango de Salon at Confitería Ideal, Buenos Aires" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+              </div>
+              <p>
+                <strong>Tango Milonguero</strong> (also known as Estilo del Centro) developed when dance floors became exceptionally crowded, forcing dancers to minimise their movements and maintain constant chest contact. Compact and walking-based, it has a strong emphasis on rhythmic precision and is danced to the more rhythmic orchestras such as Juan D'Arienzo, Tanturi, and Biagi. The legendary Pedro "Tete" Rusconi popularised this style globally and famously influenced choreographer Pina Bausch.
+              </p>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--spacing-md);margin:var(--spacing-lg) 0;">
+                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--border-radius);">
+                  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/VTINTAmjeh4" title="Juan D'Arienzo - El Rey del Compás - Paciencia" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--border-radius);">
+                  <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" src="https://www.youtube.com/embed/HnoMs1a1stE" title="Pedro 'Tete' Rusconi Milonguero - The music is the first thing in tango" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                </div>
+              </div>
+            </article>
+
+            <article class="section-card" id="section-3">
+              <span class="bg-number">03</span>
+              <div class="section-card-header">
+                <div class="section-number-pill">3</div>
+                <h2>Refinement: Tango Villa Urquiza</h2>
+              </div>
+              <p>
+                Named after a neighbourhood in Buenos Aires, <strong>Tango Villa Urquiza</strong> flourished in the 1940s–1950s and is often called "salon-style tango" internationally. It represents the refinement of social tango — balancing elegance with intimacy.
+              </p>
+              <p>
+                Its distinctive elements include an upright posture with a subtle V-position, independent hip rotation allowing for elegant leg movements, more space in the embrace compared to Milonguero, and smooth, flowing movements with sophisticated footwork. This style strikes a balance that many dancers consider the ideal social tango: intimate enough to feel the connection, open enough to allow expressive movement.
+              </p>
+            </article>
+
+            <article class="section-card" id="section-4">
+              <span class="bg-number">04</span>
+              <div class="section-card-header">
+                <div class="section-number-pill">4</div>
+                <h2>Modern &amp; stage tango: Nuevo, Fantasia &amp; Escenario</h2>
+              </div>
+              <p>
+                <strong>Tango Nuevo</strong> represents the modern experimental approach that emerged in the 1990s. Pioneers like Gustavo Naveira and Mariano "Chicho" Frumboli revolutionised the dance by questioning traditional structures and exploring an open embrace that allows greater freedom of movement, volcadas (off-axis movements), and creative figures. Other key figures include Norberto "El Pulpo" Esbrés, Fabián Salas, Sebastian Arce, and Mariana Montes.
+              </p>
+              <figure class="article-featured-image img-portrait" style="max-width: 40%;">
+                <img src="../../images/blog/juan-carlos-copes.jpg" alt="Juan Carlos Copes, pioneer of Tango Fantasia (1929–2021)" loading="lazy">
+                <figcaption>Juan Carlos Copes (1929–2021) — Argentine dancer who pioneered Tango Fantasia and brought stage tango to international audiences</figcaption>
+              </figure>
+              <p>
+                <strong>Tango Fantasia</strong>, developed in the 1950s and popularised by Juan Carlos Copes, is fully choreographed stage performance tango. It incorporates ballet elements and acrobatic moves, requires specialised footwear, and is designed for the stage rather than social dancing. <strong>Tango Escenario</strong> is similarly oriented toward theatrical productions and stage shows, emphasising visual spectacle and artistic choreography.
+              </p>
+            </article>
+
+            <article class="section-card achievement" id="section-5">
+              <span class="bg-number">05</span>
+              <div class="section-card-header">
+                <div class="achievement-icon">
+                  <i class="fas fa-star"></i>
+                </div>
+                <h2>African roots: Candombé &amp; the living tradition</h2>
+              </div>
+              <p>
+                While not a tango style in itself, <strong>Candombé</strong> deserves recognition as a crucial influence on tango's development. This African musical tradition arrived in South America through the slave trade in the 17th–18th centuries, particularly shaping the Río de la Plata region. Black communities played a crucial role in tango's formation — Buenos Aires contained approximately 20,000 African residents by the end of the 18th century, and their rhythmic traditions became woven into what would become tango.
+              </p>
+              <p>
+                Despite all the categorical labels, historical research by Christine Denniston reveals an important truth: during the golden age, dancers with widely varying styles all simply called what they danced "Tango de Salon." Today's style names represent modern attempts to categorise what was historically a more fluid practice. The beauty of Argentine tango lies in this diversity and adaptability — it is a <strong>living art form</strong> that continues to evolve while honouring its rich, multifaceted history.
+              </p>
+              <figure class="article-featured-image img-portrait">
+                <img src="../../images/blog/candombe-figari-1921.jpg" alt="Candombé painting by Pedro Figari, 1921" loading="lazy">
+                <figcaption>Candombé by Pedro Figari (1921) — the African-influenced dance tradition that shaped the rhythmic roots of Argentine tango</figcaption>
+              </figure>
+              <div>
+                <span class="achievement-badge">
+                  <i class="fas fa-award"></i>
+                  UNESCO Intangible Heritage — 2009
+                </span>
+              </div>
+            </article>
+
+          </div>
+
+          <aside class="d4-sidebar">
+
+            <div class="d4-sidebar-card">
+              <div class="d4-sidebar-card-header">
+                <h3><i class="fas fa-list-ul"></i> Contents</h3>
+              </div>
+              <div class="d4-sidebar-card-body">
+                <ol class="toc-list">
+                  <li class="toc-item active">
+                    <span class="toc-dot">1</span>
+                    <a href="#section-1">Canyengue &amp; Tango Orillero</a>
+                  </li>
+                  <li class="toc-item">
+                    <span class="toc-dot">2</span>
+                    <a href="#section-2">Tango de Salon &amp; Milonguero</a>
+                  </li>
+                  <li class="toc-item">
+                    <span class="toc-dot">3</span>
+                    <a href="#section-3">Tango Villa Urquiza</a>
+                  </li>
+                  <li class="toc-item">
+                    <span class="toc-dot">4</span>
+                    <a href="#section-4">Nuevo, Fantasia &amp; Escenario</a>
+                  </li>
+                  <li class="toc-item">
+                    <span class="toc-dot">5</span>
+                    <a href="#section-5">African roots &amp; living tradition</a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="d4-sidebar-card">
+              <div class="d4-sidebar-card-header">
+                <h3><i class="fas fa-info-circle"></i> About BE-TANGO</h3>
+              </div>
+              <div class="d4-sidebar-card-body">
+                <div class="about-author">
+                  <div class="author-avatar">
+                    <i class="fas fa-music"></i>
+                  </div>
+                  <div class="author-name">BE-TANGO</div>
+                  <p class="author-bio">
+                    BE-TANGO is Brussels' Argentine tango dance school. We bring the authentic culture of tango to the heart of Belgium — for beginners and advanced dancers alike.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="d4-sidebar-card">
+              <div class="cta-card-inner">
+                <i class="fas fa-shoe-prints"></i>
+                <h4>Experience tango yourself</h4>
+                <p>Want to explore these styles? Join a free trial class at BE-TANGO in Brussels. No experience needed.</p>
+                <a href="../../tango-classes/free-trial/" class="btn-d4-cta">
+                  Request a free trial class
+                </a>
+              </div>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="d4-newsletter-section">
+      <div class="container">
+        <div class="d4-newsletter-inner">
+          <div>
+            <div class="d4-newsletter-pretitle">Newsletter</div>
+            <h2 class="d4-newsletter-title">
+              Feel the <em>rhythm</em><br>of tango
+            </h2>
+            <p class="d4-newsletter-desc">
+              Be the first to receive new articles, schedules, milonga announcements and special workshops — straight to your inbox. No spam, just tango.
+            </p>
+          </div>
+          <div class="d4-nl-form-wrap">
+            <form class="newsletter-form" id="enNewsletterForm" action="#" method="POST" novalidate
+                  data-endpoint="subscribe"
+                  data-success-title="You're in!"
+                  data-success-msg="New articles and updates will land straight in your inbox.">
+              <div class="d4-nl-row">
+                <input type="email" name="email"
+                       placeholder="your@email.com" required
+                       aria-label="Email address for BE-TANGO newsletter"
+                       class="newsletter-email-input">
+                <button type="submit" class="newsletter-submit">
+                  <i class="fas fa-paper-plane"></i> Subscribe
+                </button>
+              </div>
+              <input type="text" name="_honey" tabindex="-1" autocomplete="off"
+                     style="position:absolute;left:-9999px;opacity:0;height:0;width:0" aria-hidden="true">
+              <input type="hidden" name="_ts">
+            </form>
+            <div class="ft-success" id="enNewsletterFormSuccess" style="display:none"></div>
+            <p class="d4-newsletter-note">Unsubscribe at any time with one click. We respect your privacy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="d4-related-section">
+      <div class="container">
+        <div class="d4-section-header">
+          <div>
+            <div class="d4-section-eyebrow">Read more</div>
+            <h2 class="d4-section-title">Related articles</h2>
+          </div>
+          <a href="../" class="d4-see-all">All articles <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="related-grid">
+
+          <a href="../history-of-argentine-tango/" class="related-card">
+            <div class="related-img"><img src="../../images/blog/prague-tango-marathon.jpg" alt="The history of Argentine tango" width="600" height="360" loading="lazy"></div>
+            <div class="related-card-body">
+              <span class="related-category">History</span>
+              <h3 class="related-title">The history of Argentine tango</h3>
+              <span class="related-link">Read more <i class="fas fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <a href="../argentine-tango-ballroom-tango-differences/" class="related-card">
+            <div class="related-img"><img src="../../images/blog/ballroom-tango.webp" alt="Argentine tango vs. ballroom tango: similarities and differences" width="600" height="360" loading="lazy"></div>
+            <div class="related-card-body">
+              <span class="related-category">Dance Styles</span>
+              <h3 class="related-title">Argentine tango vs. ballroom tango: similarities and differences</h3>
+              <span class="related-link">Read more <i class="fas fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <a href="../why-learn-tango/" class="related-card">
+            <div class="related-img"><img src="../../images/blog/why-learn-tango.webp" alt="Why learn tango? 10 great reasons to start dancing" width="600" height="360" loading="lazy"></div>
+            <div class="related-card-body">
+              <span class="related-category">Learning Tango</span>
+              <h3 class="related-title">Why learn tango? 10 great reasons to start dancing</h3>
+              <span class="related-link">Read more <i class="fas fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+        </div>
       </div>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -392,18 +1068,13 @@
           <p><strong>Email:</strong> <a href="mailto:admin@be-tango.com" style="color: inherit;">admin@be-tango.com</a></p>
           <div class="social-links">
             <a href="https://www.facebook.com/p/Be-tango-ART-100057312323946/" aria-label="Facebook" class="social-icon" target="_blank" rel="noopener">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-              </svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
             <a href="https://www.instagram.com/be_tango_brussels/" aria-label="Instagram" class="social-icon" target="_blank" rel="noopener">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
           </div>
         </div>
-
         <div class="footer-col">
           <h4>Quick Links</h4>
           <ul>
@@ -414,7 +1085,6 @@
             <li><a href="../../contact/">Contact</a></li>
           </ul>
         </div>
-
         <div class="footer-col">
           <h4>Classes</h4>
           <ul>
@@ -424,7 +1094,6 @@
             <li><a href="../../tango-classes/index.html#online">Online</a></li>
           </ul>
         </div>
-
         <div class="footer-col">
           <h4>Locations</h4>
           <div class="footer-location-cards">
@@ -441,36 +1110,32 @@
           </div>
         </div>
       </div>
-
       <div class="footer-bottom">
         <p>&copy; 2026 BE-TANGO. All rights reserved.</p>
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../privacy-policy/">Privacy Policy</a> |
-          <a href="../../terms-and-conditions/">Terms & Conditions</a> |
+          <a href="../../terms-and-conditions/">Terms &amp; Conditions</a> |
           <a href="../../links/">Links</a>
         </p>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mainNav = document.querySelector('.main-nav');
     const siteHeader = document.querySelector('.site-header');
-
     const languageToggle = document.querySelector('.language-toggle');
     const languageDropdown = document.querySelector('.language-dropdown');
 
     if (languageToggle && languageDropdown) {
       languageToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isExpanded = languageToggle.getAttribute('aria-expanded') === 'true';
-        languageToggle.setAttribute('aria-expanded', !isExpanded);
+        const x = languageToggle.getAttribute('aria-expanded') === 'true';
+        languageToggle.setAttribute('aria-expanded', !x);
         languageDropdown.classList.toggle('active');
       });
-
       document.addEventListener('click', (e) => {
         if (!e.target.closest('.language-switcher')) {
           languageToggle.setAttribute('aria-expanded', 'false');
@@ -482,25 +1147,20 @@
     if (menuToggle && mainNav) {
       menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        menuToggle.setAttribute('aria-expanded', !isExpanded);
-
+        const x = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !x);
         if (window.innerWidth < 768) {
           mainNav.classList.toggle('mobile-nav-open');
           menuToggle.classList.toggle('active');
         }
       });
-
       document.addEventListener('click', (e) => {
-        if (window.innerWidth < 768 &&
-            mainNav.classList.contains('mobile-nav-open') &&
-            !siteHeader.contains(e.target)) {
+        if (window.innerWidth < 768 && mainNav.classList.contains('mobile-nav-open') && !siteHeader.contains(e.target)) {
           menuToggle.setAttribute('aria-expanded', 'false');
           mainNav.classList.remove('mobile-nav-open');
           menuToggle.classList.remove('active');
         }
       });
-
       let resizeTimer;
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
@@ -509,16 +1169,37 @@
             mainNav.classList.remove('mobile-nav-open');
             menuToggle.setAttribute('aria-expanded', 'false');
             menuToggle.classList.remove('active');
-          }}, 100);
+          }
+        }, 100);
       });
-
-      if (window.innerWidth < 768) {
-        mainNav.classList.remove('mobile-nav-open');
-      }
     }
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) siteHeader.classList.add('scrolled');
+      else siteHeader.classList.remove('scrolled');
+    });
+
+    const tocItems = document.querySelectorAll('.toc-item');
+    const sections = document.querySelectorAll('.section-card[id]');
+
+    function updateTOC() {
+      let current = '';
+      sections.forEach(section => {
+        if (section.getBoundingClientRect().top <= 120) current = section.id;
+      });
+      tocItems.forEach(item => {
+        item.classList.remove('active');
+        const link = item.querySelector('a');
+        if (link && link.getAttribute('href') === '#' + current) {
+          item.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateTOC, { passive: true });
+    updateTOC();
   </script>
 
-  <!-- Floating Mobile Call Button -->
   <script src="../../js/newsletter.min.js"></script>
 </body>
 </html>

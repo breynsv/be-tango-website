@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Redesign C — Layered Cards</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black:  #000000;
+      --gold:   #E2C033;
+      --navy:   #1C244B;
+      --accent: #00d084;
+      --white:  #FFFFFF;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0e1020;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 720px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 72px;
+    }
+
+    /* FULL BLEED background */
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      filter: brightness(0.55) saturate(0.7);
+      animation: subtleDrift 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes subtleDrift {
+      from { transform: scale(1.0) translateX(0); }
+      to   { transform: scale(1.05) translateX(-1%); }
+    }
+
+    /* Noise grain texture overlay */
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 160px 160px;
+      opacity: 0.04;
+      pointer-events: none;
+    }
+
+    /* Bottom gradient for legibility */
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(
+        to top,
+        rgba(14,16,32,0.96) 0%,
+        rgba(14,16,32,0.65) 35%,
+        rgba(14,16,32,0.15) 65%,
+        transparent 100%
+      );
+    }
+
+    /* ── CONTENT WRAPPER ── */
+    .hero-inner {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: end;
+    }
+
+    /* LEFT: main text block */
+    .hero-text {}
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.15s ease both;
+    }
+
+    .hero-label i {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-h1 {
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      color: var(--white);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s ease both;
+    }
+
+    .hero-h1 .line2 {
+      display: block;
+      /* brushstroke-style: gold with paint-drip gradient text */
+      background: linear-gradient(95deg, var(--gold) 0%, #f5e06e 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.55s ease both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.75s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 14px 30px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+    }
+    .btn-primary:hover {
+      background: #f0d040;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(226,192,51,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.3);
+    }
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* RIGHT: glass level picker card */
+    .hero-levels-card {
+      background: rgba(28, 36, 75, 0.55);
+      border: 1px solid rgba(226,192,51,0.2);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      padding: 28px 28px 24px;
+      min-width: 210px;
+      opacity: 0;
+      animation: slideFromRight 0.8s 1.0s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes slideFromRight {
+      from { opacity: 0; transform: translateX(32px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .card-heading {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(226,192,51,0.25);
+    }
+
+    .level-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .level-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      cursor: default;
+      transition: all 0.2s ease;
+    }
+
+    .level-item:hover {
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+    }
+
+    .level-item.featured {
+      color: var(--white);
+      background: rgba(226,192,51,0.1);
+      border-left: 2px solid var(--gold);
+      font-weight: 600;
+    }
+
+    .level-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+
+    .level-item.featured .level-dot {
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+    }
+
+    /* Scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      animation: fadeUp 0.6s 1.5s ease both;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+      animation: scrollPulse 1.8s 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%,100% { opacity: 0.5; transform: scaleY(1); }
+      50%      { opacity: 1; transform: scaleY(0.7); }
+    }
+
+    .scroll-label {
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 0 28px;
+      }
+      .hero-levels-card { display: none; }
+      .hero { min-height: 620px; padding-bottom: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO REDESIGN C — LAYERED CARDS + GLASSMORPHISM -->
+  <section class="hero" aria-label="Hero: Tango Classes">
+
+    <div class="hero-photo">
+      <img
+        src="../images/Tango-classes-in-Brussels.png"
+        alt="Tango class in Brussels"
+        width="1600" height="720"
+      >
+    </div>
+    <div class="hero-grain"></div>
+    <div class="hero-gradient"></div>
+
+    <div class="hero-inner">
+      <!-- LEFT: headline -->
+      <div class="hero-text">
+        <p class="hero-label">
+          <i></i>
+          Discover Your Tango Journey
+        </p>
+        <h1 class="hero-h1">
+          Our Class Offer —<br>
+          <span class="line2">From Beginner<br>to Advanced.</span>
+        </h1>
+        <p class="hero-tagline">
+          Welcome to our Brussels tango school. We offer a wide range of lessons for all levels — no partner needed to begin.
+        </p>
+        <div class="hero-cta">
+          <a href="../tango-classes/beginners/" class="btn btn-primary">Info for Beginners</a>
+          <a href="../tango-classes/experienced/#choose-your-level" class="btn btn-outline">View Levels</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: glass level picker -->
+      <aside class="hero-levels-card" aria-label="Class levels">
+        <p class="card-heading">Choose Your Level</p>
+        <ul class="level-list">
+          <li class="level-item featured">
+            <span class="level-dot"></span>
+            Beginner
+          </li>
+          <li class="level-item">
+            <span class="level-dot"></span>
+            First Year
+          </li>
+          <li class="level-item">
+            <span class="level-dot"></span>
+            Second Year
+          </li>
+          <li class="level-item">
+            <span class="level-dot"></span>
+            Intermediate
+          </li>
+          <li class="level-item">
+            <span class="level-dot"></span>
+            Advanced
+          </li>
+        </ul>
+      </aside>
+    </div>
+
+    <!-- scroll hint -->
+    <div class="hero-scroll" aria-hidden="true">
+      <span class="scroll-label">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+
+  </section>
+
+</body>
+</html>

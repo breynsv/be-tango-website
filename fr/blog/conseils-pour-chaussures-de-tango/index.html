@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="5 conseils essentiels pour choisir les meilleures chaussures de tango. Améliorez votre technique et réduisez les blessures.">
+  <meta name="keywords" content="chaussures tango, conseils chaussures tango, semelle tango, hauteur talon tango, acheter chaussures tango">
   <meta name="author" content="Sonja">
   <title>5 conseils pour les meilleures chaussures de tango | BE-TANGO</title>
   <link rel="canonical" href="https://www.be-tango.be/fr/blog/conseils-pour-chaussures-de-tango/">
@@ -13,7 +14,7 @@
   <meta property="og:title" content="5 conseils pour les meilleures chaussures de tango | BE-TANGO">
   <meta property="og:description" content="5 conseils essentiels pour choisir les meilleures chaussures de tango. Améliorez votre technique et réduisez les blessures.">
   <meta property="og:url" content="https://www.be-tango.be/fr/blog/conseils-pour-chaussures-de-tango/">
-  <meta property="og:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
+  <meta property="og:image" content="https://www.be-tango.be/images/blog/tango-schoenen-blogpost.jpg">
   <meta property="og:site_name" content="BE-TANGO">
   <meta property="og:locale" content="fr_FR">
 
@@ -21,321 +22,858 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="5 conseils pour les meilleures chaussures de tango | BE-TANGO">
   <meta name="twitter:description" content="5 conseils essentiels pour choisir les meilleures chaussures de tango. Améliorez votre technique et réduisez les blessures.">
-  <meta name="twitter:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
+  <meta name="twitter:image" content="https://www.be-tango.be/images/blog/tango-schoenen-blogpost.jpg">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../../../images/cropped-favicon-32x32.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/png" sizes="192x192" href="../../../images/cropped-favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../images/cropped-favicon-180x180.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="../../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.6"></noscript>
 
-  <!-- Blog Article Styles -->
+  <!-- D4 Blog Design Styles -->
   <style>
-    .article-header {
-      text-align: center;
-      margin: 0 auto;
+    :root {
+      --gold: #E2C033;
+      --navy: #1C244B;
+      --text: #111827;
+      --text-light: #4a4a4a;
+      --border: #E5E7EB;
+      --white: #FFFFFF;
+      --bg: #F3F5F8;
+      --gold-bg: rgba(226,192,51,0.08);
     }
 
-    .article-cta .btn {
-      color: var(--color-dark-navy);
+    /* HERO */
+    .blog-hero {
+      background: var(--navy);
+      position: relative;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      padding-bottom: 80px;
+      overflow: hidden;
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(226,192,51,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 48px;
+      align-items: center;
+      min-height: 480px;
+      padding: 72px 0 56px;
+    }
+    .hero-left { position: relative; z-index: 2; }
+    .category-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+    .hero-title em { font-style: normal; color: var(--gold); }
+    .hero-excerpt {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.78);
+      max-width: 520px;
+      margin-bottom: 32px;
+      line-height: 1.75;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 13px 28px;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .hero-cta:hover { background: #cba820; transform: translateY(-1px); color: var(--navy); }
+    .hero-image-panel {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 380px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+      flex-shrink: 0;
+    }
+    .hero-image-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-image-label {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(28,36,75,0.75);
+      border: 1px solid rgba(226,192,51,0.3);
+      color: var(--gold);
+      font-size: 0.75rem;
       font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+      backdrop-filter: blur(10px);
     }
 
-    .bg-dark .btn {
-      color: var(--color-dark-navy);
-      font-weight: 600;
+    /* META STRIP */
+    .meta-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .meta-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .d4-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+    .d4-breadcrumb a { color: var(--navy); font-weight: 500; text-decoration: none; }
+    .d4-breadcrumb a:hover { color: var(--gold); }
+    .d4-breadcrumb .sep { color: var(--border); }
+    .meta-right { display: flex; align-items: center; gap: 20px; }
+    .meta-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-light); font-weight: 500; }
+    .meta-item i { color: var(--gold); font-size: 0.85rem; }
+    .share-group { display: flex; align-items: center; gap: 10px; border-left: 1px solid var(--border); padding-left: 20px; }
+    .share-label { font-size: 0.75rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em; }
+    .share-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; border-radius: 50%;
+      border: 1px solid var(--border); color: var(--text-light); font-size: 0.8rem;
+      transition: background 0.2s, color 0.2s, border-color 0.2s; text-decoration: none;
+    }
+    .share-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+    /* ARTICLE LAYOUT */
+    .d4-article-section { padding: 64px 0 80px; }
+    .article-grid { display: grid; grid-template-columns: 1fr 320px; gap: 40px; align-items: start; }
+    .article-body { display: flex; flex-direction: column; gap: 32px; }
+
+    /* SECTION CARDS */
+    .section-card {
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 2px 16px rgba(28,36,75,0.06), 0 1px 4px rgba(0,0,0,0.04);
+      padding: 48px 44px 44px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    .section-card:hover { box-shadow: 0 8px 32px rgba(28,36,75,0.10), 0 2px 8px rgba(0,0,0,0.06); }
+    .section-card .bg-number {
+      position: absolute; top: -10px; right: 20px;
+      font-size: 9rem; font-weight: 800; color: var(--gold); opacity: 0.07;
+      line-height: 1; pointer-events: none; user-select: none; letter-spacing: -0.04em;
+    }
+    .section-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold) 0%, rgba(226,192,51,0.2) 100%);
+      border-radius: 8px 8px 0 0;
+    }
+    .section-card-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .section-number-pill {
+      flex-shrink: 0; width: 36px; height: 36px; background: var(--gold); color: var(--navy);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 800; margin-top: 2px;
+    }
+    .section-card h2 {
+      font-size: 1.45rem; font-weight: 700; color: var(--navy); line-height: 1.3;
+      display: flex; align-items: baseline; gap: 10px; flex: 1; margin: 0;
+    }
+    .section-card h2::before { content: '●'; color: var(--gold); font-size: 0.55em; flex-shrink: 0; }
+    .section-card p { color: var(--text-light); font-size: 0.97rem; line-height: 1.85; margin-bottom: 16px; }
+    .section-card p:last-child { margin-bottom: 0; }
+    .section-card strong { color: var(--text); font-weight: 600; }
+
+    /* Pullquote */
+    .pullquote { margin: 28px 0; padding: 28px 36px; background: var(--gold-bg); border-radius: 6px; position: relative; text-align: center; }
+    .pullquote::before, .pullquote::after { font-family: Georgia, serif; font-size: 4rem; color: var(--gold); line-height: 0; position: absolute; }
+    .pullquote::before { content: '\201C'; top: 28px; left: 16px; }
+    .pullquote::after  { content: '\201D'; bottom: 8px; right: 16px; }
+    .pullquote p { font-size: 1.2rem !important; font-style: italic; color: var(--navy) !important; font-weight: 500; margin: 0 !important; line-height: 1.6 !important; }
+
+    /* Achievement card */
+    .section-card.achievement { background: var(--navy); border-color: transparent; }
+    .section-card.achievement::before { background: linear-gradient(90deg, var(--gold) 0%, rgba(226,192,51,0.4) 100%); }
+    .section-card.achievement .bg-number { opacity: 0.06; }
+    .section-card.achievement h2 { color: var(--white); }
+    .section-card.achievement h2::before { color: var(--gold); }
+    .section-card.achievement p { color: rgba(255,255,255,0.78); }
+    .section-card.achievement strong { color: var(--white); }
+    .achievement-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 52px; height: 52px; background: rgba(226,192,51,0.15);
+      border: 1px solid rgba(226,192,51,0.4); border-radius: 12px;
+      color: var(--gold); font-size: 1.5rem; flex-shrink: 0;
+    }
+    .achievement-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(226,192,51,0.12); border: 1px solid rgba(226,192,51,0.3);
+      color: var(--gold); font-size: 0.8rem; font-weight: 700;
+      padding: 8px 18px; border-radius: 6px; margin-top: 20px; letter-spacing: 0.05em;
+    }
+
+    /* SIDEBAR */
+    .d4-sidebar { position: sticky; top: 88px; display: flex; flex-direction: column; gap: 24px; }
+    .d4-sidebar-card { background: var(--white); border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(28,36,75,0.05); overflow: hidden; }
+    .d4-sidebar-card-header { padding: 16px 20px; border-bottom: 1px solid var(--border); background: var(--bg); }
+    .d4-sidebar-card-header h3 { font-size: 0.8rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 8px; margin: 0; }
+    .d4-sidebar-card-header h3 i { color: var(--gold); }
+    .d4-sidebar-card-body { padding: 18px 20px; }
+    .toc-list { display: flex; flex-direction: column; gap: 4px; list-style: none; margin: 0; padding: 0; }
+    .toc-item { display: flex; align-items: flex-start; gap: 12px; padding: 8px 10px; border-radius: 6px; transition: background 0.2s; cursor: pointer; }
+    .toc-item:hover { background: var(--gold-bg); }
+    .toc-item.active { background: var(--gold-bg); }
+    .toc-dot { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border); background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; color: var(--text-light); margin-top: 1px; transition: border-color 0.2s, background 0.2s, color 0.2s; }
+    .toc-item.active .toc-dot, .toc-item:hover .toc-dot { border-color: var(--gold); background: var(--gold); color: var(--navy); }
+    .toc-item a { font-size: 0.82rem; color: var(--text-light); line-height: 1.45; font-weight: 500; transition: color 0.2s; text-decoration: none; }
+    .toc-item:hover a, .toc-item.active a { color: var(--navy); }
+    .about-author { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+    .author-avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--navy), #2a3460); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.6rem; }
+    .author-name { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
+    .author-bio { font-size: 0.8rem; color: var(--text-light); line-height: 1.6; }
+    .cta-card-inner { padding: 20px; text-align: center; }
+    .cta-card-inner > i { font-size: 2rem; color: var(--gold); display: block; margin-bottom: 10px; }
+    .cta-card-inner h4 { font-size: 1rem; font-weight: 700; color: var(--navy); margin: 0 0 8px; }
+    .cta-card-inner p { font-size: 0.8rem; color: var(--text-light); line-height: 1.6; margin: 0 0 16px; }
+    .btn-d4-cta { display: block; background: var(--gold); color: var(--navy); font-weight: 700; font-size: 0.85rem; text-align: center; padding: 11px 20px; border-radius: 6px; transition: background 0.2s, transform 0.2s; text-decoration: none; }
+    .btn-d4-cta:hover { background: #cba820; transform: translateY(-1px); color: var(--navy); }
+
+    /* NEWSLETTER SECTION */
+    .d4-newsletter-section { background: var(--navy); padding: 72px 0; position: relative; overflow: hidden; }
+    .d4-newsletter-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 10% 50%, rgba(226,192,51,0.07) 0%, transparent 50%), radial-gradient(ellipse at 90% 50%, rgba(226,192,51,0.05) 0%, transparent 50%); }
+    .d4-newsletter-inner { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .d4-newsletter-pretitle { display: inline-flex; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .d4-newsletter-pretitle::before { content: ''; display: block; width: 24px; height: 2px; background: var(--gold); }
+    .d4-newsletter-title { font-size: 2.4rem; font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .d4-newsletter-title em { font-style: normal; color: var(--gold); }
+    .d4-newsletter-desc { font-size: 0.95rem; color: rgba(255,255,255,0.68); line-height: 1.7; }
+    .d4-nl-form-wrap { display: flex; flex-direction: column; gap: 14px; }
+    .d4-nl-row { display: flex; gap: 0; }
+    .d4-nl-row .newsletter-email-input { flex: 1; padding: 14px 18px; border-radius: 8px 0 0 8px; border: 1px solid rgba(255,255,255,0.15); border-right: none; background: rgba(255,255,255,0.08); color: var(--white); font-family: inherit; font-size: 0.9rem; outline: none; transition: border-color 0.2s, background 0.2s; }
+    .d4-nl-row .newsletter-email-input::placeholder { color: rgba(255,255,255,0.35); }
+    .d4-nl-row .newsletter-email-input:focus { border-color: rgba(226,192,51,0.5); background: rgba(255,255,255,0.12); }
+    .d4-nl-row .newsletter-submit { background: var(--gold); color: var(--navy); border: none; padding: 14px 24px; border-radius: 0 8px 8px 0; font-family: inherit; font-size: 0.9rem; font-weight: 700; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .d4-nl-row .newsletter-submit:hover { background: #cba820; }
+    .d4-newsletter-note { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+    /* RELATED ARTICLES */
+    .d4-related-section { padding: 72px 0; background: var(--bg); }
+    .d4-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; }
+    .d4-section-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .d4-section-title { font-size: 1.75rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin: 0; }
+    .d4-see-all { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: var(--navy); border: 1px solid var(--border); padding: 8px 18px; border-radius: 6px; transition: background 0.2s, border-color 0.2s; white-space: nowrap; text-decoration: none; }
+    .d4-see-all:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .related-card { background: var(--white); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; text-decoration: none; }
+    .related-card:hover { box-shadow: 0 12px 32px rgba(28,36,75,0.12); transform: translateY(-3px); }
+    .related-img { height: 180px; overflow: hidden; position: relative; }
+    .related-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .related-card-body { padding: 22px 20px 24px; }
+    .related-category { display: inline-block; background: var(--gold-bg); color: var(--navy); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; border: 1px solid rgba(226,192,51,0.2); }
+    .related-title { font-size: 1rem; font-weight: 700; color: var(--navy); line-height: 1.4; margin-bottom: 16px; }
+    .related-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem; font-weight: 600; color: var(--gold); transition: gap 0.2s; }
+    .related-card:hover .related-link { gap: 10px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-image-panel { display: none; }
+      .hero-title { font-size: 2.8rem; }
+      .article-grid { grid-template-columns: 1fr; }
+      .d4-sidebar { position: static; }
+      .d4-newsletter-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.2rem; }
+      .blog-hero { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); }
+      .related-grid { grid-template-columns: 1fr; }
+      .meta-strip-inner { flex-direction: column; align-items: flex-start; }
+      .share-group { border-left: none; padding-left: 0; }
+      .section-card { padding: 36px 24px 32px; }
+      .section-card h2 { font-size: 1.2rem; }
+      .d4-newsletter-title { font-size: 1.9rem; }
+      .d4-nl-row { flex-direction: column; }
+      .d4-nl-row .newsletter-email-input { border-radius: 8px; border-right: 1px solid rgba(255,255,255,0.15); }
+      .d4-nl-row .newsletter-submit { border-radius: 8px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 1.9rem; }
     }
   </style>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "5 conseils pour les meilleures chaussures de tango | BE-TANGO",
-  "description": "5 conseils essentiels pour choisir les meilleures chaussures de tango. Améliorez votre technique et réduisez les blessures.",
-  "author": {
-    "@type": "Person",
-    "name": "BE-TANGO"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "BE-TANGO",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://www.be-tango.be/images/logo-be-tango.png"
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "5 conseils pour les meilleures chaussures de tango",
+    "description": "5 conseils essentiels pour choisir les meilleures chaussures de tango. Améliorez votre technique et réduisez les blessures.",
+    "image": "https://www.be-tango.be/images/blog/tango-schoenen-blogpost.jpg",
+    "datePublished": "2020-12-15",
+    "dateModified": "2020-12-15",
+    "author": { "@type": "Person", "name": "Sonja" },
+    "publisher": {
+      "@type": "DanceSchool",
+      "name": "BE-TANGO",
+      "logo": { "@type": "ImageObject", "url": "https://www.be-tango.be/images/logo-be-tango.png" }
     }
-  },
-  "datePublished": "2026-02-09",
-  "image": "https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp"
-}
+  }
   </script>
 </head>
 <body>
 
-  <!-- Skip to main content link for accessibility -->
   <a href="#main-content" class="skip-link">Aller au contenu principal</a>
-  <header class="site-header"><div class="container"><div class="header-content">
-    <a href="../../../fr/" class="logo"><img src="../../../images/logo-be-tango.png" alt="BE-TANGO" width="200" height="34" loading="lazy"></a>
-    <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="main-nav"><ul class="nav-list">
-      <li><a href="../../">Accueil</a></li>
-      <li class="nav-item-dropdown"><a href="../../cours-de-tango/">Cours de Tango</a></li>
-      <li><a href="../../cours-de-tango/essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
-      <li><a href="../" class="active">Blog</a></li>
-      <li><a href="../../contactez-nous/">Contact</a></li>
-      <li class="language-switcher">
-        <button class="language-toggle" aria-label="Select language" aria-expanded="false">
-          <i class="fas fa-globe"></i>
-          <span class="current-lang">FR</span>
-          <i class="fas fa-chevron-down"></i>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../../fr/" class="logo">
+          <img src="../../../images/logo-be-tango.png" alt="BE-TANGO - École de Danse de Tango Argentin" width="200" height="34" loading="lazy">
+        </a>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
-        <ul class="language-dropdown">
-          <li>
-            <a href="../../../nl/blog/5-tips-voor-de-beste-tangoschoenen/">
-              <span class="flag-icon">🇳🇱</span>
-              <span>Nederlands</span>
-            </a>
-          </li>
-          <li>
-            <a href="../../../blog/5-tips-best-tango-shoes/">
-              <span class="flag-icon">🇬🇧</span>
-              <span>English</span>
-            </a>
-          </li>
-          <li>
-            <a href="./" class="active">
-              <span class="flag-icon">🇫🇷</span>
-              <span>Français</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-    </ul></nav>
-  </div></div></header>
 
-  <main id="main-content">
-    <section class="article-hero"><div class="container">
-      <div class="article-breadcrumb"><a href="../../">Accueil</a> / <a href="../">Blog</a> / <span>Conseils pour chaussures de tango</span></div>
-      <div class="article-header">
-        <span class="article-category">Conseils Pratiques</span>
-        <h1>5 conseils pour les meilleures chaussures de tango</h1>
-        <div class="article-meta">
-          <span class="article-author"><i class="fas fa-user"></i> Par Sonja</span>
-          <span class="article-date"><i class="fas fa-calendar"></i> 15 décembre 2020</span>
-          <span class="article-reading-time"><i class="fas fa-clock"></i> 9 min</span>
-        </div>
-      </div>
-    </div></section>
-
-    <section class="article-featured-image"><div class="container">
-      <img src="../../../images/blog/tango-schoenen-blogpost.jpg" alt="Chaussures de tango" loading="eager">
-    </div></section>
-
-    <article class="article-content"><div class="container"><div class="article-body">
-      <p class="lead">De bonnes chaussures de tango améliorent la technique de danse, réduisent les blessures et augmentent le plaisir du tango argentin. Découvrez nos 5 conseils essentiels pour choisir les chaussures parfaites.</p>
-
-      <h2>Pourquoi les Chaussures de Tango Sont Importantes</h2>
-      <p>Les chaussures de tango de qualité améliorent la technique, réduisent le risque de blessures et élèvent l'expérience de danse par rapport aux baskets ou chaussures de ville ordinaires. Une fois que vous en avez fait l'expérience, vous ne voulez plus du tout revenir à vos chaussures de ville.</p>
-
-      <h2>Conseil 1 : Légèreté et Soutien Approprié</h2>
-      <p>Les chaussures de danse sont conçues pour être plus légères que les chaussures de ville tout en offrant un meilleur soutien de la cheville et des articulations. Leur semelle spécialisée en cuir (peau de chamois) offre une adhérence adéquate sur les parquets sans friction excessive.</p>
-      <picture>
-            <source srcset="../../../images/blog/tango-shoes-show.webp" type="image/webp">
-            <img src="../../../images/blog/tango-shoes-show.png" alt="Chaussures de tango exposées" loading="lazy" style="max-width: 100%; height: auto; margin: 2rem 0;">
-          </picture>
-      <p>Cette composition réduit les blessures aux chevilles, hanches et genoux en facilitant les mouvements du pied.</p>
-
-      <h2>Conseil 2 : Équilibre et Hauteur du Talon</h2>
-      <p>Les chaussures appropriées distribuent mieux le poids, améliorant la stabilité. Les talons devraient mesurer au moins 5 cm pour les femmes et 1,5 à 2 cm pour les hommes.</p>
-      <img src="../../../images/blog/tango-shoes-heel-height.jpg" alt="Hauteur des talons" loading="lazy" style="max-width: 100%; height: auto; margin: 2rem 0;">
-      <p><strong>Conseil important :</strong> "Augmentez la hauteur de votre talon et ne la diminuez pas" lors du passage à une nouvelle paire. Des talons plus hauts forcent automatiquement à danser sur la pointe du pied, ce qui développe une meilleure technique.</p>
-      <p>La danse sur la pointe du pied est essentielle en tango argentin car "la première poussée doit venir de l'avant du pied pour pouvoir déplacer le poids corporel".</p>
-
-      <h2>Conseil 3 : Différences Femmes/Hommes</h2>
-      <picture>
-            <source srcset="../../../images/blog/tango-shoes-close-up.webp" type="image/webp">
-            <img src="../../../images/blog/tango-shoes-close-up.png" alt="Gros plan chaussures de tango" loading="lazy" style="max-width: 100%; height: auto; margin: 2rem 0;">
-          </picture>
-      <p>Les deux types nécessitent un ajustement serré sans glissement et des transitions stables du talon à l'avant-pied.</p>
-
-      <h3>Chaussures Féminines</h3>
-      <p>Nécessitent un avant-pied plus flexible pour "améliorer l'extension des pieds" et faciliter "les mouvements de rotation".</p>
-
-      <h3>Chaussures Masculines</h3>
-      <p>Ont généralement "une pointe plus nette" comparée aux devants arrondis féminins pour éviter le contact avec les pieds du partenaire.</p>
-
-      <h2>Conseil 4 : Matériaux de Semelle</h2>
-      <img src="../../../images/blog/tango-shoe-sole-types.png" alt="Types de semelles" loading="lazy" style="max-width: 100%; height: auto; margin: 2rem 0;">
-      <p>Au-delà de la peau de chamois, les options incluent "daim, caoutchouc ou une combinaison". Le choix dépend de la surface de danse : parquet, marbre, carrelage.</p>
-      <p>La semelle en daim "peut facilement gratter les dégâts avec une brosse en fer". Évitez les conditions glissantes qui stressent les articulations pendant les pivots.</p>
-
-      <h2>Conseil 5 : Achat et Vérifications</h2>
-      <img src="../../../images/blog/tango-dance-shoes.jpg" alt="Chaussures de danse tango" loading="lazy" style="max-width: 100%; height: auto; margin: 2rem 0;">
-      <p>Lors de l'achat, assurez-vous que "toutes les parties de la chaussure entourent bien votre pied" pour éviter de glisser. Le matériau supérieur ne doit pas couper les pieds et doit rester lisse.</p>
-
-      <h3>Points Importants</h3>
-      <ul>
-        <li>Les chaussures de danse "bougent toujours un peu vers votre pied" mais "ne s'élargiront ni ne se répandront jamais"</li>
-        <li>Le prix se situe entre <strong>120 et 180 euros</strong> pour une bonne paire</li>
-        <li>"Visitez différents vendeurs, essayez beaucoup de paires" avant d'acheter</li>
-        <li>L'ajustement initial est crucial car les chaussures ne s'étireront pas</li>
-      </ul>
-
-      <h2>Conclusion</h2>
-      <p>Investir dans des chaussures de tango offre "les conditions idéales pour apprendre à danser le tango argentin", permettant "une meilleure technique de danse, moins de blessures, de stabilité et de croissance".</p>
-
-      <div class="article-cta">
-        <h3>Prêt à danser avec les bonnes chaussures ?</h3>
-        <p>Rejoignez nos cours pour apprendre la technique appropriée et profiter pleinement de vos chaussures de tango.</p>
-        <a href="../../cours-de-tango/essai-gratuit/" class="btn btn-primary">RÉSERVEZ VOTRE ESSAI GRATUIT</a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="../../">Accueil</a></li>
+            <li class="nav-item-dropdown">
+              <a href="../../cours-de-tango/">Cours de Tango</a>
+              <ul class="dropdown-menu">
+                <li><a href="../../cours-de-tango/debutants/">Débutants</a></li>
+                <li><a href="../../cours-de-tango/experimentes/">Expérimentés</a></li>
+                <li><a href="../../cours-de-tango/particuliers/">Cours Privés</a></li>
+                <li><a href="../../cours-de-tango/en-ligne/">Cours en Ligne</a></li>
+                <li><a href="../../cours-de-tango/bruxelles/">Bruxelles</a></li>
+                <li><a href="../../cours-de-tango/woluwe/">Woluwe</a></li>
+              </ul>
+            </li>
+            <li><a href="../../cours-de-tango/essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
+            <li><a href="../" class="active">Blog</a></li>
+            <li><a href="../../contactez-nous/">Contact</a></li>
+            <li class="language-switcher">
+              <button class="language-toggle" aria-label="Select language" aria-expanded="false">
+                <i class="fas fa-globe"></i>
+                <span class="current-lang">FR</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <ul class="language-dropdown">
+                <li>
+                  <a href="../../../nl/blog/5-tips-voor-de-beste-tangoschoenen/">
+                    <span class="flag-icon">🇳🇱</span>
+                    <span>Nederlands</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="../../../blog/5-tips-best-tango-shoes/">
+                    <span class="flag-icon">🇬🇧</span>
+                    <span>English</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="./" class="active">
+                    <span class="flag-icon">🇫🇷</span>
+                    <span>Français</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
-    <aside class="article-sidebar">
-      <div class="sidebar-widget">
-        <h3>Articles Connexes</h3>
-        <div class="related-articles">
-          <a href="../les-differents-styles-du-tango-argentin/" class="related-article">
-            <picture>
-            <source srcset="../../../images/blog/12_candombe.webp" type="image/webp">
-            <img src="../../../images/blog/12_candombe.jpg" alt="Les différents styles" loading="lazy">
-          </picture><span>Les différents styles du tango</span>
-          </a>
-          <a href="../difference-entre-tango-valse-et-milonga/" class="related-article">
-            <picture>
-            <source srcset="../../../images/blog/tango-milonga-vals.webp" type="image/webp">
-            <img src="../../../images/blog/tango-milonga-vals.jpg" alt="Tango, valse, milonga" loading="lazy">
-          </picture><span>Tango, valse et milonga</span>
-          </a>
+  </header>
+
+  <main id="main-content">
+
+    <!-- HERO -->
+    <section class="blog-hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-left">
+            <div class="category-badge">
+              <i class="fas fa-shoe-prints"></i>
+              Pratique
+            </div>
+            <h1 class="hero-title">
+              5 conseils pour les meilleures<br>
+              <em>chaussures de tango</em>
+            </h1>
+            <p class="hero-excerpt">
+              De bonnes chaussures de tango améliorent votre technique, réduisent les blessures et augmentent le plaisir de la danse. Découvrez nos 5 conseils essentiels pour choisir la paire parfaite — du bon talon à la semelle idéale.
+            </p>
+            <a href="#article" class="hero-cta">
+              <i class="fas fa-arrow-down"></i>
+              Lire l'article
+            </a>
+          </div>
+          <div class="hero-image-panel">
+            <img src="../../../images/blog/tango-schoenen-blogpost.jpg" alt="Chaussures de tango" loading="eager">
+            <div class="hero-image-label"><i class="fas fa-shoe-prints"></i> Chaussures de tango</div>
+          </div>
         </div>
       </div>
-    </aside>
+    </section>
 
-    <section class="nl-blog-section">
+    <!-- META STRIP -->
+    <div class="meta-strip">
       <div class="container">
-        <div class="nl-blog-card">
-            <p class="nl-blog-overline">Newsletter</p>
-            <h2 class="nl-blog-headline">Restez dans le <em>rythme</em> du tango.</h2>
-            <p class="nl-blog-sub">Nouveaux articles, événements et cours — directement dans votre boîte mail.</p>
-            <form class="newsletter-form" id="blogNewsletterForm" action="#" method="POST" novalidate
+        <div class="meta-strip-inner">
+          <nav class="d4-breadcrumb" aria-label="Breadcrumb">
+            <a href="../../">Accueil</a>
+            <span class="sep"><i class="fas fa-chevron-right" style="font-size:0.65rem"></i></span>
+            <a href="../">Blog</a>
+            <span class="sep"><i class="fas fa-chevron-right" style="font-size:0.65rem"></i></span>
+            <span>Conseils pour chaussures de tango</span>
+          </nav>
+          <div class="meta-right">
+            <span class="meta-item"><i class="fas fa-clock"></i> 9 min de lecture</span>
+            <span class="meta-item"><i class="fas fa-calendar"></i> 15 décembre 2020</span>
+            <div class="share-group">
+              <span class="share-label">Partager :</span>
+              <a href="#" class="share-btn" aria-label="Partager sur Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="share-btn" aria-label="Partager sur X"><i class="fab fa-x-twitter"></i></a>
+              <a href="#" class="share-btn" aria-label="Copier le lien"><i class="fas fa-link"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTICLE + SIDEBAR -->
+    <section class="d4-article-section" id="article">
+      <div class="container">
+        <div class="article-grid">
+
+          <!-- ARTICLE BODY -->
+          <div class="article-body">
+
+            <article class="section-card" id="section-1">
+              <span class="bg-number">01</span>
+              <div class="section-card-header">
+                <div class="section-number-pill">1</div>
+                <h2>Pourquoi les chaussures de tango sont importantes</h2>
+              </div>
+              <p>
+                De bonnes chaussures de tango améliorent la technique, réduisent le risque de blessures et transforment l'expérience de la danse. Les chaussures ordinaires — à semelle de caoutchouc — collent au parquet et obligent les articulations à forcer. Les chaussures de tango, elles, sont conçues pour glisser et pivoter avec précision.
+              </p>
+              <p>
+                Une fois que vous avez dansé avec des chaussures adaptées, impossible de revenir en arrière. La différence se ressent dès les premières mesures : votre équilibre s'améliore, vos mouvements deviennent plus fluides, et vos pieds vous remercient.
+              </p>
+              <div class="pullquote">
+                <p>De bonnes chaussures ne sont pas un luxe — elles sont la fondation d'une technique solide.</p>
+              </div>
+            </article>
+
+            <article class="section-card" id="section-2">
+              <span class="bg-number">02</span>
+              <div class="section-card-header">
+                <div class="section-number-pill">2</div>
+                <h2>Conseil 1 : légèreté et soutien approprié</h2>
+              </div>
+              <p>
+                Les chaussures de danse sont <strong>plus légères que les chaussures de ville</strong> et offrent un meilleur soutien de la cheville, du genou et de la hanche. Leur semelle spécialisée en daim offre l'adhérence idéale sur les parquets sans friction excessive — ce qui réduit le risque de blessure et facilite les transferts de poids.
+              </p>
+              <p>
+                La légèreté des chaussures vous permet de sentir le sol sous vos pieds et d'affiner votre équilibre progressivement. C'est une qualité que les chaussures de ville ne peuvent tout simplement pas offrir, quelle que soit leur qualité.
+              </p>
+              <figure class="article-featured-image">
+                <img src="../../../images/blog/tango-shoes-show.png" alt="Chaussures de tango exposées" loading="lazy">
+                <figcaption>Aperçu typique de chaussures de tango — talons ouverts pour les femmes, chaussures plates fermées pour les hommes</figcaption>
+              </figure>
+            </article>
+
+            <article class="section-card" id="section-3">
+              <span class="bg-number">03</span>
+              <div class="section-card-header">
+                <div class="section-number-pill">3</div>
+                <h2>Conseil 2 : équilibre et hauteur du talon</h2>
+              </div>
+              <p>
+                Des chaussures adaptées répartissent mieux le poids et améliorent la stabilité. Les hauteurs de talon recommandées sont d'<strong>au moins 5 cm pour les femmes</strong> et de <strong>1,5 à 2 cm pour les hommes</strong>.
+              </p>
+              <p>
+                <strong>Conseil important :</strong> augmentez la hauteur de votre talon au fil du temps — ne la réduisez jamais. Des talons plus hauts placent naturellement la danseuse sur l'avant du pied, ce qui favorise une meilleure technique. De nombreuses danseuses progressent de 6 cm à 9 cm, avant de trouver leur confort idéal autour de 8 cm.
+              </p>
+              <p>
+                Danser sur l'avant du pied est fondamental en tango argentin : la première impulsion doit venir de l'avant-pied pour transférer correctement le poids corporel. Les pivots s'exécutent également sur la pointe, d'où l'importance de maintenir son centre de gravité à tout moment.
+              </p>
+              <figure class="article-featured-image img-banner">
+                <img src="../../../images/blog/tango-shoes-heel-height.jpg" alt="Hauteur de talon recommandée pour les chaussures de tango" loading="lazy">
+                <figcaption>Hauteurs de talon recommandées : au moins 5 cm pour les femmes, 1,5–2 cm pour les hommes</figcaption>
+              </figure>
+              <figure class="article-featured-image">
+                <img src="../../../images/blog/tango-shoes-close-up.png" alt="Gros plan sur les chaussures de tango" loading="lazy">
+                <figcaption>Gros plan sur le talon typique d'une chaussure de tango, conçu pour l'équilibre et le contrôle des pivots</figcaption>
+              </figure>
+            </article>
+
+            <article class="section-card" id="section-4">
+              <span class="bg-number">04</span>
+              <div class="section-card-header">
+                <div class="section-number-pill">4</div>
+                <h2>Conseil 3 : différences femmes / hommes</h2>
+              </div>
+              <p>
+                Les deux types partagent des exigences communes : un ajustement snug sans glissement, une protection de l'humidité et des transitions stables du talon à l'avant-pied. Mais les différences restent importantes.
+              </p>
+              <p>
+                <strong>Chaussures féminines :</strong> l'avant-pied doit être flexible pour permettre les extensions et les pivots. Une bride de cheville solide est indispensable pour maintenir le pied en place pendant les ochos et les giros. La stabilité du talon est primordiale.
+              </p>
+              <p>
+                <strong>Chaussures masculines :</strong> le bout est généralement arrondi — contrairement aux chaussures de ville à pointe — pour ne pas blesser les pieds de la partenaire. La semelle est souvent plus rigide pour soutenir le guidage et ancrer les appuis.
+              </p>
+            </article>
+
+            <article class="section-card" id="section-5">
+              <span class="bg-number">05</span>
+              <div class="section-card-header">
+                <div class="section-number-pill">5</div>
+                <h2>Conseil 4 : matériaux de semelle</h2>
+              </div>
+              <p>
+                Au-delà de la peau de chamois, les options de semelle incluent le daim, le caoutchouc ou une combinaison de matériaux. Le choix dépend de la surface de danse : parquet, marbre, carrelage.
+              </p>
+              <p>
+                La semelle en daim peut facilement être entretenue avec une brosse en fer pour raviver l'adhérence. Évitez les conditions glissantes qui stressent les articulations pendant les pivots et les boleos.
+              </p>
+              <p>
+                Pour les débutants, une semelle en daim standard est généralement la meilleure option : elle offre un bon équilibre entre glisse et tenue, quelle que soit la surface.
+              </p>
+              <figure class="article-featured-image">
+                <img src="../../../images/blog/tango-shoe-sole-types.png" alt="Types de semelles pour chaussures de tango" loading="lazy">
+                <figcaption>Les trois principaux types de semelles : cuir (glisse lisse), daim (adhérence polyvalente) et caoutchouc (usage extérieur)</figcaption>
+              </figure>
+            </article>
+
+            <article class="section-card achievement" id="section-6">
+              <span class="bg-number">06</span>
+              <div class="section-card-header">
+                <div class="achievement-icon">
+                  <i class="fas fa-shopping-bag"></i>
+                </div>
+                <h2>Conseil 5 : achat et vérifications essentielles</h2>
+              </div>
+              <p>
+                Lors de l'achat, assurez-vous que toutes les parties de la chaussure entourent bien votre pied pour éviter de glisser pendant la danse. Le matériau supérieur ne doit pas couper les pieds et doit rester lisse.
+              </p>
+              <p>
+                Points importants à retenir : les chaussures de danse s'adaptent légèrement à votre pied avec l'usage, mais elles <strong>ne s'élargiront jamais</strong>. L'ajustement initial est donc crucial. Visitez différents vendeurs et essayez beaucoup de paires avant de décider.
+              </p>
+              <p>
+                Comptez entre <strong>120 et 180 euros</strong> pour une bonne paire de qualité. C'est un investissement qui améliorera considérablement votre technique, réduira les blessures et vous apportera stabilité et plaisir sur la piste.
+              </p>
+              <figure class="article-featured-image">
+                <img src="../../../images/blog/tango-dance-shoes.jpg" alt="Chaussures de danse de tango" loading="lazy">
+                <figcaption>Chaussures de tango de qualité — prévoyez 120–180 € pour une paire qui soutient vraiment votre technique</figcaption>
+              </figure>
+              <div>
+                <span class="achievement-badge">
+                  <i class="fas fa-check"></i>
+                  120–180 € · L'investissement qui change tout
+                </span>
+              </div>
+            </article>
+
+          </div><!-- end article-body -->
+
+          <!-- SIDEBAR -->
+          <aside class="d4-sidebar">
+
+            <div class="d4-sidebar-card">
+              <div class="d4-sidebar-card-header">
+                <h3><i class="fas fa-list-ul"></i> Sommaire</h3>
+              </div>
+              <div class="d4-sidebar-card-body">
+                <ol class="toc-list">
+                  <li class="toc-item active">
+                    <span class="toc-dot">1</span>
+                    <a href="#section-1">Pourquoi les chaussures comptent</a>
+                  </li>
+                  <li class="toc-item">
+                    <span class="toc-dot">2</span>
+                    <a href="#section-2">Légèreté et soutien</a>
+                  </li>
+                  <li class="toc-item">
+                    <span class="toc-dot">3</span>
+                    <a href="#section-3">Équilibre et hauteur du talon</a>
+                  </li>
+                  <li class="toc-item">
+                    <span class="toc-dot">4</span>
+                    <a href="#section-4">Différences femmes / hommes</a>
+                  </li>
+                  <li class="toc-item">
+                    <span class="toc-dot">5</span>
+                    <a href="#section-5">Matériaux de semelle</a>
+                  </li>
+                  <li class="toc-item">
+                    <span class="toc-dot">6</span>
+                    <a href="#section-6">Achat et vérifications</a>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="d4-sidebar-card">
+              <div class="d4-sidebar-card-header">
+                <h3><i class="fas fa-info-circle"></i> À propos de BE-TANGO</h3>
+              </div>
+              <div class="d4-sidebar-card-body">
+                <div class="about-author">
+                  <div class="author-avatar">
+                    <i class="fas fa-music"></i>
+                  </div>
+                  <div class="author-name">BE-TANGO</div>
+                  <p class="author-bio">
+                    BE-TANGO est l'école de danse de tango argentin de Bruxelles. Nous apportons la culture authentique du tango au cœur de la Belgique — pour débutants et danseurs confirmés.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="d4-sidebar-card">
+              <div class="cta-card-inner">
+                <i class="fas fa-shoe-prints"></i>
+                <h4>Découvrez le tango vous-même</h4>
+                <p>Vous voulez apprendre le tango ? Venez à un cours d'essai gratuit chez BE-TANGO à Bruxelles. Aucune expérience requise.</p>
+                <a href="../../cours-de-tango/essai-gratuit/" class="btn-d4-cta">
+                  Réserver un essai gratuit
+                </a>
+              </div>
+            </div>
+
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="d4-newsletter-section">
+      <div class="container">
+        <div class="d4-newsletter-inner">
+          <div>
+            <div class="d4-newsletter-pretitle">Newsletter</div>
+            <h2 class="d4-newsletter-title">
+              Restez dans le <em>rythme</em><br>du tango
+            </h2>
+            <p class="d4-newsletter-desc">
+              Recevez en avant-première les nouveaux articles, les horaires, les annonces de milongas et les ateliers spéciaux — directement dans votre boîte mail. Pas de spam, rien que du tango.
+            </p>
+          </div>
+          <div class="d4-nl-form-wrap">
+            <form class="newsletter-form" id="frNewsletterForm" action="#" method="POST" novalidate
                   data-endpoint="subscribe"
                   data-success-title="C'est noté !"
                   data-success-msg="Les nouveaux articles et mises à jour arriveront directement dans votre boîte mail.">
-              <div class="nl-blog-form-row">
-                <input type="email" name="email" id="blogEmail"
+              <div class="d4-nl-row">
+                <input type="email" name="email"
                        placeholder="vous@exemple.com" required
                        aria-label="Adresse e-mail pour la newsletter BE-TANGO"
                        class="newsletter-email-input">
-                <button type="submit" class="newsletter-submit">S'abonner</button>
+                <button type="submit" class="newsletter-submit">
+                  <i class="fas fa-paper-plane"></i> S'abonner
+                </button>
               </div>
               <input type="text" name="_honey" tabindex="-1" autocomplete="off"
                      style="position:absolute;left:-9999px;opacity:0;height:0;width:0" aria-hidden="true">
               <input type="hidden" name="_ts">
             </form>
-            <div class="ft-success" id="blogNewsletterFormSuccess" style="display:none"></div>
-            <p class="nl-blog-fine">Pas de spam · Se désabonner à tout moment</p>
-                  </div>
+            <div class="ft-success" id="frNewsletterFormSuccess" style="display:none"></div>
+            <p class="d4-newsletter-note">Se désabonner à tout moment en un clic. Nous respectons votre vie privée.</p>
+          </div>
+        </div>
       </div>
     </section>
-    </div></article>
 
-    <section class="cta-section bg-dark"><div class="container"><div class="cta-content">
-      <h2>Prêt à découvrir le tango argentin ?</h2>
-      <p>Rejoignez nos cours de tango à Bruxelles et Woluwe. Essai gratuit disponible !</p>
-      <div class="cta-buttons">
-        <a href="../../cours-de-tango/essai-gratuit/" class="btn btn-primary btn-large">RÉSERVEZ VOTRE ESSAI GRATUIT</a>
-        <a href="../../cours-de-tango/" class="btn btn-secondary btn-large">VOIR LES COURS</a>
+    <!-- RELATED ARTICLES -->
+    <section class="d4-related-section">
+      <div class="container">
+        <div class="d4-section-header">
+          <div>
+            <div class="d4-section-eyebrow">Lire aussi</div>
+            <h2 class="d4-section-title">Articles connexes</h2>
+          </div>
+          <a href="../" class="d4-see-all">Tous les articles <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="related-grid">
+
+          <a href="../les-differents-styles-du-tango-argentin/" class="related-card">
+            <div class="related-img">
+              <img src="../../../images/blog/12_candombe.webp" alt="Les différents styles du tango argentin" width="600" height="360" loading="lazy">
+            </div>
+            <div class="related-card-body">
+              <span class="related-category">Styles de danse</span>
+              <h3 class="related-title">Les différents styles du tango argentin</h3>
+              <span class="related-link">Lire la suite <i class="fas fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <a href="../difference-entre-tango-valse-et-milonga/" class="related-card">
+            <div class="related-img">
+              <img src="../../../images/blog/tango-milonga-vals.webp" alt="La différence entre tango, valse et milonga" width="600" height="360" loading="lazy">
+            </div>
+            <div class="related-card-body">
+              <span class="related-category">Musique</span>
+              <h3 class="related-title">La différence entre tango, valse et milonga</h3>
+              <span class="related-link">Lire la suite <i class="fas fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+          <a href="../pourquoi-apprendre-le-tango/" class="related-card">
+            <div class="related-img">
+              <img src="../../../images/blog/why-learn-tango.webp" alt="Pourquoi apprendre le tango ? 10 bonnes raisons" width="600" height="360" loading="lazy">
+            </div>
+            <div class="related-card-body">
+              <span class="related-category">Apprendre le tango</span>
+              <h3 class="related-title">Pourquoi apprendre le tango ? 10 bonnes raisons</h3>
+              <span class="related-link">Lire la suite <i class="fas fa-arrow-right"></i></span>
+            </div>
+          </a>
+
+        </div>
       </div>
-    </div></div></section>
+    </section>
+
   </main>
 
-  <footer class="site-footer"><div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h3>BE-TANGO</h3>
-        <p>Votre école de danse de tango argentin à Bruxelles et Woluwe.</p>
-        <p>Vivez la connexion, la musique et le plaisir.</p>
-        <p style="margin-top: 1rem;"><strong>Téléphone :</strong> <a href="tel:+32498392939" style="color: inherit;">+32 498 39 29 39</a></p>
-        <p><strong>Courriel :</strong> <a href="mailto:admin@be-tango.com" style="color: inherit;">admin@be-tango.com</a></p>
-        <div class="social-links">
-          <a href="https://www.facebook.com/p/Be-tango-ART-100057312323946/" aria-label="Facebook" class="social-icon" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-          </a>
-          <a href="https://www.instagram.com/be_tango_brussels/" aria-label="Instagram" class="social-icon" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-          </a>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>BE-TANGO</h3>
+          <p>Votre école de danse de tango argentin à Bruxelles et Woluwe.</p>
+          <p>Vivez la connexion, la musique et le plaisir.</p>
+          <p style="margin-top: 1rem;"><strong>Téléphone :</strong> <a href="tel:+32498392939" style="color: inherit;">+32 498 39 29 39</a></p>
+          <p><strong>Courriel :</strong> <a href="mailto:admin@be-tango.com" style="color: inherit;">admin@be-tango.com</a></p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/p/Be-tango-ART-100057312323946/" aria-label="Facebook" class="social-icon" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/be_tango_brussels/" aria-label="Instagram" class="social-icon" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Liens Rapides</h4>
+          <ul>
+            <li><a href="../../">Accueil</a></li>
+            <li><a href="../../cours-de-tango/">Cours de Tango</a></li>
+            <li><a href="../../cours-de-tango/essai-gratuit/">Essai Gratuit</a></li>
+            <li><a href="../">Blog</a></li>
+            <li><a href="../../contactez-nous/">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Classes</h4>
+          <ul>
+            <li><a href="../../cours-de-tango/index.html#beginners">Débutants</a></li>
+            <li><a href="../../cours-de-tango/index.html#experienced">Expérimentés</a></li>
+            <li><a href="../../cours-de-tango/index.html#private">Cours Privés</a></li>
+            <li><a href="../../cours-de-tango/index.html#online">En ligne</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Emplacements</h4>
+          <div class="footer-location-cards">
+            <div class="location-card">
+              <strong>BE-TANGO Centre</strong>
+              <span class="loc-address">Rue du Marais 68, 1000 Bruxelles</span>
+              <a href="../../cours-de-tango/index.html#brussels" class="loc-link">Voir l'emplacement →</a>
+            </div>
+            <div class="location-card">
+              <strong>BE-TANGO Woluwe</strong>
+              <span class="loc-address">Av. Orban 54, 1150 Woluwe-Saint-Pierre</span>
+              <a href="../../cours-de-tango/index.html#woluwe" class="loc-link">Voir l'emplacement →</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="footer-col">
-        <h4>Liens Rapides</h4>
-        <ul>
-          <li><a href="../../">Accueil</a></li>
-          <li><a href="../../cours-de-tango/">Cours de Tango</a></li>
-          <li><a href="../../cours-de-tango/essai-gratuit/">Essai Gratuit</a></li>
-          <li><a href="../">Blog</a></li>
-          <li><a href="../../contactez-nous/">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Classes</h4>
-        <ul>
-          <li><a href="../../cours-de-tango/index.html#beginners">Débutants</a></li>
-          <li><a href="../../cours-de-tango/index.html#experienced">Expérimentés</a></li>
-          <li><a href="../../cours-de-tango/index.html#private">Cours Privés</a></li>
-          <li><a href="../../cours-de-tango/index.html#online">En ligne</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Emplacements</h4>
-        <div class="footer-location-cards">
-          <div class="location-card">
-            <strong>BE-TANGO Centre</strong>
-            <span class="loc-address">Rue du Marais 68, 1000 Bruxelles</span>
-            <a href="../../cours-de-tango/index.html#brussels" class="loc-link">Voir l'emplacement →</a>
-          </div>
-          <div class="location-card">
-            <strong>BE-TANGO Woluwe</strong>
-            <span class="loc-address">Av. Orban 54, 1150 Woluwe-Saint-Pierre</span>
-            <a href="../../cours-de-tango/index.html#woluwe" class="loc-link">Voir l'emplacement →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 BE-TANGO. Tous droits réservés.</p>
+      <div class="footer-bottom">
+        <p>&copy; 2026 BE-TANGO. Tous droits réservés.</p>
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
-      <p class="footer-legal">
-        <a href="../../politique-de-confidentialite/">Politique de confidentialité</a> |
-        <a href="../../termes-et-conditions-generales/">Termes et Conditions</a> |
+        <p class="footer-legal">
+          <a href="../../politique-de-confidentialite/">Politique de confidentialité</a> |
+          <a href="../../termes-et-conditions-generales/">Termes et Conditions</a> |
           <a href="../../liens/">Liens</a>
-      </p>
+        </p>
+      </div>
     </div>
-  </div></footer>
+  </footer>
 
   <script>
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mainNav = document.querySelector('.main-nav');
-
-    // Language dropdown toggle
+    const siteHeader = document.querySelector('.site-header');
     const languageToggle = document.querySelector('.language-toggle');
     const languageDropdown = document.querySelector('.language-dropdown');
 
     if (languageToggle && languageDropdown) {
       languageToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        const isExpanded = languageToggle.getAttribute('aria-expanded') === 'true';
-        languageToggle.setAttribute('aria-expanded', !isExpanded);
+        const x = languageToggle.getAttribute('aria-expanded') === 'true';
+        languageToggle.setAttribute('aria-expanded', !x);
         languageDropdown.classList.toggle('active');
       });
-
       document.addEventListener('click', (e) => {
         if (!e.target.closest('.language-switcher')) {
           languageToggle.setAttribute('aria-expanded', 'false');
@@ -346,14 +884,60 @@
 
     if (menuToggle && mainNav) {
       menuToggle.addEventListener('click', (e) => {
-        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        menuToggle.setAttribute('aria-expanded', !isExpanded);
-        if (window.innerWidth < 768) mainNav.classList.toggle('mobile-nav-open');
+        e.stopPropagation();
+        const x = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !x);
+        if (window.innerWidth < 768) {
+          mainNav.classList.toggle('mobile-nav-open');
+          menuToggle.classList.toggle('active');
+        }
       });
-      if (window.innerWidth < 768) mainNav.classList.remove('mobile-nav-open');
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth < 768 && mainNav.classList.contains('mobile-nav-open') && !siteHeader.contains(e.target)) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+          mainNav.classList.remove('mobile-nav-open');
+          menuToggle.classList.remove('active');
+        }
+      });
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (window.innerWidth >= 768) {
+            mainNav.classList.remove('mobile-nav-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.classList.remove('active');
+          }
+        }, 100);
+      });
     }
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) siteHeader.classList.add('scrolled');
+      else siteHeader.classList.remove('scrolled');
+    });
+
+    const tocItems = document.querySelectorAll('.toc-item');
+    const sections = document.querySelectorAll('.section-card[id]');
+
+    function updateTOC() {
+      let current = '';
+      sections.forEach(section => {
+        if (section.getBoundingClientRect().top <= 120) current = section.id;
+      });
+      tocItems.forEach(item => {
+        item.classList.remove('active');
+        const link = item.querySelector('a');
+        if (link && link.getAttribute('href') === '#' + current) {
+          item.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateTOC, { passive: true });
+    updateTOC();
   </script>
-  <!-- Floating Mobile Call Button -->
+
   <script src="../../../js/newsletter.min.js"></script>
 </body>
 </html>

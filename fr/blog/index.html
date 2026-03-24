@@ -4,9 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Blog BE-TANGO - Découvrez l'histoire, les styles et les conseils sur le tango argentin. Articles sur la danse, la musique et la culture du tango.">
-  <meta name="keywords" content="blog tango, histoire tango argentin, styles tango, conseils tango, chaussures tango, milonga, vals">
-  <title>Blog - Dernières Nouvelles | BE-TANGO</title>
+  <title>Blog Tango — Actualités, Conseils &amp; Culture | BE-TANGO</title>
   <link rel="canonical" href="https://www.be-tango.be/fr/blog/">
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/blog/">
+  <link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/blog/">
+  <link rel="alternate" hreflang="en" href="https://www.be-tango.be/blog/">
+  <link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/blog/">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Blog Tango — Actualités, Conseils &amp; Culture | BE-TANGO">
+  <meta property="og:description" content="Blog BE-TANGO - Découvrez l'histoire, les styles et les conseils sur le tango argentin. Articles sur la danse, la musique et la culture du tango.">
+  <meta property="og:image" content="https://www.be-tango.be/images/blog/prague-tango-marathon.jpg">
+  <meta property="og:url" content="https://www.be-tango.be/fr/blog/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_BE">
+  <meta property="og:site_name" content="BE-TANGO">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog Tango — Actualités, Conseils &amp; Culture | BE-TANGO">
+  <meta name="twitter:description" content="Blog BE-TANGO - Découvrez l'histoire, les styles et les conseils sur le tango argentin. Articles sur la danse, la musique et la culture du tango.">
+  <meta name="twitter:image" content="https://www.be-tango.be/images/blog/prague-tango-marathon.jpg">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
@@ -16,17 +36,20 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.5">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.6"></noscript>
 
-  <!-- JSON-LD Structured Data for Blog -->
+  <!-- Enhancement Scripts -->
+  <script src="../../js/enhancements.min.js?v=3.5" defer></script>
+
+  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,14 +60,717 @@
     "publisher": {
       "@type": "DanceSchool",
       "name": "BE-TANGO",
-      "url": "https://www.be-tango.be/fr/"
-    }
+      "url": "https://www.be-tango.be/fr/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.be-tango.be/images/logo-be-tango.png"
+      }
+    },
+    "blogPost": [
+      {
+        "@type": "BlogPosting",
+        "headline": "Histoire du tango argentin",
+        "datePublished": "2025-02-01",
+        "author": { "@type": "Person", "name": "Sonja" },
+        "image": "https://www.be-tango.be/images/blog/prague-tango-marathon.jpg",
+        "url": "https://www.be-tango.be/fr/blog/histoire-du-tango-argentin/",
+        "description": "Le tango argentin est né à la fin du 19e siècle à Buenos Aires et Montevideo, avant de gagner l'Europe dans les années 1970."
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Les différents styles du tango argentin",
+        "datePublished": "2025-01-30",
+        "author": { "@type": "Person", "name": "Sonja" },
+        "image": "https://www.be-tango.be/images/blog/12_candombe.webp",
+        "url": "https://www.be-tango.be/fr/blog/les-differents-styles-du-tango-argentin/",
+        "description": "Découvrez neuf styles distincts du tango argentin : Canyengue, Orillero, Salon, Milonguero, Candombé, Villa Urquiza, Fantasia, Nuevo et Escenario."
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Dictionnaire de Tango, un guide de la terminologie du tango",
+        "datePublished": "2021-02-24",
+        "author": { "@type": "Person", "name": "Sven" },
+        "image": "https://www.be-tango.be/images/blog/tango-dictionary.jpg",
+        "url": "https://www.be-tango.be/fr/blog/dictionnaire-de-tango/",
+        "description": "Un guide complet contenant tous les noms des pas de danse et la terminologie du tango argentin."
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Tango argentin et le tango de salon, similarités et différences",
+        "datePublished": "2021-02-24",
+        "author": { "@type": "Person", "name": "Sven" },
+        "image": "https://www.be-tango.be/images/blog/ballroom-tango.webp",
+        "url": "https://www.be-tango.be/fr/blog/tango-argentin-vs-tango-de-salon/",
+        "description": "Comparaison entre le tango argentin et le tango de salon à travers des perspectives historiques et techniques."
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "La différence entre tango, valse et milonga",
+        "datePublished": "2020-12-30",
+        "author": { "@type": "Person", "name": "Sonja" },
+        "image": "https://www.be-tango.be/images/blog/tango-milonga-vals.webp",
+        "url": "https://www.be-tango.be/fr/blog/difference-entre-tango-valse-et-milonga/",
+        "description": "Découvrez les trois styles de danse distincts du tango argentin avec leurs caractères uniques."
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "5 conseils pour les meilleures chaussures de tango",
+        "datePublished": "2020-12-15",
+        "author": { "@type": "Person", "name": "Sonja" },
+        "image": "https://www.be-tango.be/images/blog/tango-schoenen-blogpost.jpg",
+        "url": "https://www.be-tango.be/fr/blog/conseils-pour-chaussures-de-tango/",
+        "description": "De bonnes chaussures de tango améliorent la technique de danse, réduisent les blessures et augmentent le plaisir du tango argentin."
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Événements tango à Bruxelles &amp; environs",
+        "datePublished": "2020-04-15",
+        "author": { "@type": "Person", "name": "Sonja" },
+        "image": "https://www.be-tango.be/images/blog/milonga-la-milonguita-768x512.jpg",
+        "url": "https://www.be-tango.be/fr/blog/evenements-de-tango-a-bruxelles/",
+        "description": "Découvrez les meilleurs événements de tango et milongas à Bruxelles et dans les environs."
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Milongas et événements de tango internationaux",
+        "datePublished": "2020-05-10",
+        "author": { "@type": "Person", "name": "Sonja" },
+        "image": "https://www.be-tango.be/images/blog/belgrade-768x512.jpg",
+        "url": "https://www.be-tango.be/fr/blog/evenements-de-tango-internationaux/",
+        "description": "Où pouvez-vous voyager pour le tango ? Découvrez les meilleurs festivals de tango et marathons à l'étranger."
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Pourquoi apprendre le tango ?",
+        "datePublished": "2020-03-20",
+        "author": { "@type": "Person", "name": "Sonja" },
+        "image": "https://www.be-tango.be/images/blog/why-learn-tango.webp",
+        "url": "https://www.be-tango.be/fr/blog/pourquoi-apprendre-le-tango/",
+        "description": "10 raisons pourquoi suivre des cours de danse et d'apprendre le tango argentin. Le tango est une danse sociale qui s'adresse à tous."
+      }
+    ]
   }
   </script>
+
+  <style>
+    /* ============================================================
+       BLOG OVERVIEW — DRAFT D (implemented)
+       Two-Column Layout with Category Sidebar
+       Prefix: .bd-
+       Does NOT touch: .journey-*, .article-meta, .grid, .grid-3,
+                       .card, .card-image
+    ============================================================ */
+
+    /* ---- Page hero ---- */
+    .bd-hero {
+      background: linear-gradient(135deg, #1C244B 0%, #2c3a6e 60%, #1C244B 100%);
+      padding: 40px 0;
+      color: #fff;
+    }
+
+    .bd-hero-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .bd-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .bd-breadcrumb a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .bd-breadcrumb a:hover {
+      color: #E2C033;
+    }
+
+    .bd-breadcrumb-sep {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .bd-breadcrumb-current {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .bd-hero-label {
+      display: inline-block;
+      background: rgba(226, 192, 51, 0.18);
+      color: #E2C033;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(226, 192, 51, 0.35);
+      width: fit-content;
+      margin-bottom: 0.5rem;
+    }
+
+    .bd-hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin: 0 0 0.4rem;
+    }
+
+    .bd-hero-sub {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.75);
+      margin: 0;
+      max-width: 540px;
+      line-height: 1.5;
+    }
+
+    /* ---- Page layout ---- */
+    .bd-page-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      padding: 2.5rem 0 3rem;
+    }
+
+    /* ---- Sidebar ---- */
+    .bd-sidebar {
+      position: sticky;
+      top: 90px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .bd-sidebar-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #1C244B;
+      margin: 0 0 0.85rem;
+    }
+
+    .bd-cat-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .bd-cat-list li {
+      margin: 0;
+      padding: 0;
+    }
+
+    .bd-cat-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      font-size: 0.9rem;
+      color: #4a4a4a;
+      font-weight: 400;
+      transition: all 0.2s;
+    }
+
+    .bd-cat-item.active,
+    .bd-cat-item:hover {
+      border-left-color: #E2C033;
+      background: rgba(226, 192, 51, 0.08);
+      color: #1C244B;
+      font-weight: 600;
+    }
+
+    .bd-cat-item.active .bd-cat-count,
+    .bd-cat-item:hover .bd-cat-count {
+      background: rgba(226, 192, 51, 0.2);
+      color: #1C244B;
+    }
+
+    .bd-cat-count {
+      background: #F3F5F8;
+      color: #4a4a4a;
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .bd-sidebar-about {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #E5E7EB;
+    }
+
+    .bd-sidebar-about-heading {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #4a4a4a;
+      margin: 0 0 0.65rem;
+    }
+
+    .bd-sidebar-about p {
+      font-size: 0.82rem;
+      color: #4a4a4a;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .bd-sidebar-cta {
+      display: inline-block;
+      margin-top: 1rem;
+      background: #E2C033;
+      color: #1C244B;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .bd-sidebar-cta:hover {
+      background: #d4b12e;
+      transform: translateY(-1px);
+    }
+
+    /* ---- Main content area ---- */
+    .bd-main {
+      min-width: 0;
+    }
+
+    .bd-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .bd-section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1C244B;
+      margin: 0;
+    }
+
+    .bd-article-count {
+      font-size: 0.8rem;
+      color: #4a4a4a;
+      font-weight: 400;
+    }
+
+    /* ---- Card grid ---- */
+    .bd-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* ---- Individual card ---- */
+    .bd-card {
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .bd-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(28, 36, 75, 0.12);
+    }
+
+    .bd-card-img-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .bd-card-img-wrap img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Category badge — over image, top-right */
+    .bd-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      line-height: 1.4;
+    }
+
+    .bd-badge--culture   { background: #1C244B; color: #E2C033; }
+    .bd-badge--technique { background: #2c5f8a; color: #fff; }
+    .bd-badge--tips      { background: #5a8a2c; color: #fff; }
+    .bd-badge--lifestyle { background: #8a2c5a; color: #fff; }
+    .bd-badge--events    { background: #8a5a2c; color: #fff; }
+
+    /* Card body */
+    .bd-card-body {
+      padding: 1.1rem 1.2rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .bd-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1C244B;
+      line-height: 1.35;
+      margin: 0 0 0.55rem;
+    }
+
+    .bd-card-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .bd-card-title a:hover {
+      color: #E2C033;
+    }
+
+    .bd-card-excerpt {
+      font-size: 0.85rem;
+      color: #4a4a4a;
+      line-height: 1.6;
+      margin: 0 0 0.85rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .bd-card-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .bd-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.73rem;
+      color: #4a4a4a;
+      flex-wrap: wrap;
+    }
+
+    .bd-card-meta-sep {
+      color: #C7CAD4;
+    }
+
+    .bd-read-more {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #c9aa1a;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .bd-read-more:hover {
+      color: #1C244B;
+    }
+
+    /* ---- Hidden articles (7, 8 & 9) ---- */
+    .bd-hidden {
+      display: none;
+    }
+
+    /* ---- Load More wrapper ---- */
+    .bd-load-more-wrap {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: center;
+      padding-top: 0.5rem;
+    }
+
+    .bd-load-more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #E2C033;
+      color: #1C244B;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 0.75rem 2rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .bd-load-more-btn:hover {
+      background: #d4b12e;
+      transform: translateY(-2px);
+    }
+
+    .bd-load-more-btn:active {
+      transform: translateY(0);
+    }
+
+    /* ---- CTA section ---- */
+    .bd-cta-section {
+      background: #1C244B;
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    /* ============================================================
+       RESPONSIVE — tablet: sidebar collapses to horizontal pills
+    ============================================================ */
+    @media (max-width: 1023px) {
+      .bd-page-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1.5rem 0 2.5rem;
+      }
+
+      .bd-sidebar {
+        position: static;
+        padding: 1rem 1.25rem;
+      }
+
+      .bd-sidebar-title {
+        display: none;
+      }
+
+      .bd-sidebar-about {
+        display: none;
+      }
+
+      .bd-cat-list {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 6px;
+        padding-bottom: 4px;
+        scrollbar-width: thin;
+        scrollbar-color: #E5E7EB transparent;
+      }
+
+      .bd-cat-list::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      .bd-cat-list::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .bd-cat-list::-webkit-scrollbar-thumb {
+        background: #E5E7EB;
+        border-radius: 999px;
+      }
+
+      .bd-cat-list li {
+        flex-shrink: 0;
+      }
+
+      .bd-cat-item {
+        border-left: none;
+        border-radius: 999px;
+        padding: 0.4rem 0.85rem;
+        font-size: 0.82rem;
+        background: #F3F5F8;
+        color: #4a4a4a;
+        white-space: nowrap;
+        gap: 0.35rem;
+      }
+
+      .bd-cat-item.active,
+      .bd-cat-item:hover {
+        border-left-color: transparent;
+        background: #E2C033;
+        color: #1C244B;
+      }
+
+      .bd-cat-count {
+        font-size: 0.68rem;
+        padding: 1px 6px;
+      }
+
+      .bd-cat-item.active .bd-cat-count,
+      .bd-cat-item:hover .bd-cat-count {
+        background: rgba(28, 36, 75, 0.15);
+        color: #1C244B;
+      }
+    }
+
+    /* ---- Mobile: single-column card grid ---- */
+    @media (max-width: 767px) {
+      .bd-card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bd-hero h1 {
+        font-size: 1.6rem;
+      }
+
+      /* Prevent sidebar from causing horizontal page overflow */
+      .bd-sidebar {
+        overflow: hidden;
+      }
+    }
+
+    /* ---- Small mobile polish ---- */
+    @media (max-width: 479px) {
+      .bd-card-img-wrap img {
+        height: 160px;
+      }
+
+      .bd-card-body {
+        padding: 0.9rem 1rem 1rem;
+      }
+
+      /* Reduce sidebar padding so pills have more room */
+      .bd-sidebar {
+        padding: 0.75rem 0.75rem;
+      }
+    }
+
+    /* ---- Prevent page-level horizontal scroll on all small screens ---- */
+    @media (max-width: 1023px) {
+      body {
+        overflow-x: hidden;
+      }
+    }
+
+    /* NEWSLETTER SECTION */
+    :root { --gold: #E2C033; --navy: #1C244B; --white: #fff; }
+    .d4-newsletter-section {
+      background: var(--navy);
+      padding: 72px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .d4-newsletter-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 50%, rgba(226,192,51,0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 50%, rgba(226,192,51,0.05) 0%, transparent 50%);
+    }
+    .d4-newsletter-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .d4-newsletter-pretitle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .d4-newsletter-pretitle::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .d4-newsletter-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .d4-newsletter-title em { font-style: normal; color: var(--gold); }
+    .d4-newsletter-desc { font-size: 0.95rem; color: rgba(255,255,255,0.68); line-height: 1.7; }
+    .d4-nl-form-wrap { display: flex; flex-direction: column; gap: 14px; }
+    .d4-nl-row { display: flex; gap: 0; }
+    .d4-nl-row .newsletter-email-input {
+      flex: 1;
+      padding: 14px 18px;
+      border-radius: 8px 0 0 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-right: none;
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .d4-nl-row .newsletter-email-input::placeholder { color: rgba(255,255,255,0.35); }
+    .d4-nl-row .newsletter-email-input:focus {
+      border-color: rgba(226,192,51,0.5);
+      background: rgba(255,255,255,0.12);
+    }
+    .d4-nl-row .newsletter-submit {
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 14px 24px;
+      border-radius: 0 8px 8px 0;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .d4-nl-row .newsletter-submit:hover { background: #cba820; }
+    .d4-newsletter-note { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
+    @media (max-width: 1023px) {
+      .d4-newsletter-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 767px) {
+      .d4-newsletter-title { font-size: 1.9rem; }
+      .d4-nl-row { flex-direction: column; }
+      .d4-nl-row .newsletter-email-input { border-radius: 8px; border-right: 1px solid rgba(255,255,255,0.15); }
+      .d4-nl-row .newsletter-submit { border-radius: 8px; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Skip to main content link for accessibility -->
   <a href="#main-content" class="skip-link">Aller au contenu principal</a>
 
   <!-- HEADER -->
@@ -111,209 +837,428 @@
     </div>
   </header>
 
+  <!-- HERO -->
+  <section class="bd-hero" aria-label="Blog hero">
+    <div class="container">
+      <div class="bd-hero-inner">
+        <nav class="bd-breadcrumb" aria-label="Fil d'Ariane">
+          <a href="../">Accueil</a>
+          <span class="bd-breadcrumb-sep" aria-hidden="true">›</span>
+          <span class="bd-breadcrumb-current" aria-current="page">Blog</span>
+        </nav>
+        <span class="bd-hero-label">Blog BE-TANGO</span>
+        <h1>Dernières Nouvelles &amp; Articles</h1>
+        <p class="bd-hero-sub">Histoire, technique, conseils et événements du tango argentin — rédigés par les professeurs BE-TANGO Sonja et Sven.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- MAIN CONTENT -->
   <main id="main-content">
+    <div class="container">
+      <div class="bd-page-layout">
 
-    <!-- Blog Hero Section -->
-    <section class="blog-hero">
-      <div class="container">
-        <div class="blog-hero-content">
-          <p class="hero-label">BLOG BE-TANGO</p>
-          <h1>Dernières Nouvelles</h1>
-          <p class="hero-tagline">Découvrez l'histoire, les styles et les conseils sur le tango argentin</p>
-        </div>
-      </div>
-    </section>
+        <!-- LEFT SIDEBAR -->
+        <aside class="bd-sidebar" aria-label="Catégories du blog">
 
-    <!-- Blog Articles Section -->
-    <section>
-      <div class="container">
-        <div class="grid grid-3">
+          <h3 class="bd-sidebar-title">Parcourir par catégorie</h3>
 
-          <!-- Article 1: Histoire du tango argentin -->
-          <article class="card journey-card" data-href="histoire-du-tango-argentin/">
-            <div class="journey-image">
-              <img src="../../images/blog/prague-tango-marathon.jpg" alt="Histoire du tango argentin" loading="lazy">
-              <span class="journey-badge">HISTOIRE</span>
-            </div>
-            <div class="journey-content">
-              <div class="article-meta">
-                <span class="article-author"><i class="fas fa-user"></i> Sonja</span>
-                <span class="article-date"><i class="fas fa-calendar"></i> 1 février 2025</span>
+          <ul class="bd-cat-list" role="list" aria-label="Catégories d'articles">
+            <li>
+              <div class="bd-cat-item active" tabindex="0" role="button" aria-pressed="true" data-filter="all">
+                <span>Tous les articles</span>
+                <span class="bd-cat-count" aria-label="9 articles">9</span>
               </div>
-              <h3>Histoire du tango argentin : des ruelles de Buenos Aires aux scènes internationales</h3>
-              <p>Le tango argentin est né à la fin du 19e siècle à Buenos Aires et Montevideo lorsque les danses et musiques des esclaves noirs, des travailleurs saisonniers et des immigrants européens se sont fondues avec celles des gauchos.</p>
-              <a href="histoire-du-tango-argentin/" class="journey-link">Lire l'article <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Article 2: Les différents styles du tango argentin -->
-          <article class="card journey-card" data-href="les-differents-styles-du-tango-argentin/">
-            <div class="journey-image">
-              <picture>
-            <source srcset="../../images/blog/12_candombe.webp" type="image/webp">
-            <img src="../../images/blog/12_candombe.jpg" alt="Les différents styles du tango argentin" loading="lazy">
-          </picture>
-              <span class="journey-badge">STYLES</span>
-            </div>
-            <div class="journey-content">
-              <div class="article-meta">
-                <span class="article-author"><i class="fas fa-user"></i> Sonja</span>
-                <span class="article-date"><i class="fas fa-calendar"></i> 30 janvier 2025</span>
+            </li>
+            <li>
+              <div class="bd-cat-item" tabindex="0" role="button" aria-pressed="false" data-filter="culture">
+                <span>Culture</span>
+                <span class="bd-cat-count" aria-label="2 articles">2</span>
               </div>
-              <h3>Les différents styles du tango argentin</h3>
-              <p>Le tango argentin possède une histoire riche marquée par une évolution constante. Découvrez neuf styles distincts: Canyengue, Orillero, Salon, Milonguero, Candombé, Villa Urquiza, Fantasia, Nuevo et Escenario.</p>
-              <a href="les-differents-styles-du-tango-argentin/" class="journey-link">Lire l'article <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Article 3: Dictionnaire de Tango -->
-          <article class="card journey-card" data-href="dictionnaire-de-tango/">
-            <div class="journey-image">
-              <img src="../../images/blog/tango-dictionary.jpg" alt="Dictionnaire de Tango" loading="lazy">
-              <span class="journey-badge">TERMINOLOGIE</span>
-            </div>
-            <div class="journey-content">
-              <div class="article-meta">
-                <span class="article-author"><i class="fas fa-user"></i> Sven</span>
-                <span class="article-date"><i class="fas fa-calendar"></i> 24 février 2021</span>
+            </li>
+            <li>
+              <div class="bd-cat-item" tabindex="0" role="button" aria-pressed="false" data-filter="technique">
+                <span>Technique</span>
+                <span class="bd-cat-count" aria-label="3 articles">3</span>
               </div>
-              <h3>Dictionnaire de Tango, un guide de la terminologie du tango</h3>
-              <p>Un guide complet contenant tous les noms des pas de danse et la terminologie du tango argentin. Ocho, sacada, salida cruzada et bien d'autres.</p>
-              <a href="dictionnaire-de-tango/" class="journey-link">Lire l'article <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Article 4: Tango argentin vs tango de salon -->
-          <article class="card journey-card" data-href="tango-argentin-vs-tango-de-salon/">
-            <div class="journey-image">
-              <picture>
-            <source srcset="../../images/blog/ballroom-tango.webp" type="image/webp">
-            <img src="../../images/blog/ballroom-tango.jpg" alt="Tango argentin et le tango de salon" loading="lazy">
-          </picture>
-              <span class="journey-badge">COMPARAISONS</span>
-            </div>
-            <div class="journey-content">
-              <div class="article-meta">
-                <span class="article-author"><i class="fas fa-user"></i> Sven</span>
-                <span class="article-date"><i class="fas fa-calendar"></i> 24 février 2021</span>
+            </li>
+            <li>
+              <div class="bd-cat-item" tabindex="0" role="button" aria-pressed="false" data-filter="tips">
+                <span>Conseils</span>
+                <span class="bd-cat-count" aria-label="1 article">1</span>
               </div>
-              <h3>Tango argentin et le tango de salon, similarités et différences</h3>
-              <p>Comparaison entre le tango argentin et le tango de salon à travers des perspectives historiques et techniques. Le tango argentin privilégie l'improvisation tandis que le tango de salon met l'accent sur la standardisation technique.</p>
-              <a href="tango-argentin-vs-tango-de-salon/" class="journey-link">Lire l'article <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Article 5: Différence entre tango, valse et milonga -->
-          <article class="card journey-card" data-href="difference-entre-tango-valse-et-milonga/">
-            <div class="journey-image">
-              <picture>
-            <source srcset="../../images/blog/tango-milonga-vals.webp" type="image/webp">
-            <img src="../../images/blog/tango-milonga-vals.jpg" alt="La différence entre tango, valse et milonga" loading="lazy">
-          </picture>
-              <span class="journey-badge">STYLES</span>
-            </div>
-            <div class="journey-content">
-              <div class="article-meta">
-                <span class="article-author"><i class="fas fa-user"></i> Sonja</span>
-                <span class="article-date"><i class="fas fa-calendar"></i> 30 décembre 2020</span>
+            </li>
+            <li>
+              <div class="bd-cat-item" tabindex="0" role="button" aria-pressed="false" data-filter="lifestyle">
+                <span>Lifestyle</span>
+                <span class="bd-cat-count" aria-label="1 article">1</span>
               </div>
-              <h3>La différence entre tango, valse et milonga</h3>
-              <p>Le tango argentin ne signifie pas seulement que vous dansez le tango, mais aussi la valse et la milonga. Découvrez les trois styles de danse distincts avec leurs caractères uniques.</p>
-              <a href="difference-entre-tango-valse-et-milonga/" class="journey-link">Lire l'article <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Article 6: Conseils pour chaussures de tango -->
-          <article class="card journey-card" data-href="conseils-pour-chaussures-de-tango/">
-            <div class="journey-image">
-              <img src="../../images/blog/tango-schoenen-blogpost.jpg" alt="5 conseils pour les meilleures chaussures de tango" loading="lazy">
-              <span class="journey-badge">CONSEILS</span>
-            </div>
-            <div class="journey-content">
-              <div class="article-meta">
-                <span class="article-author"><i class="fas fa-user"></i> Sonja</span>
-                <span class="article-date"><i class="fas fa-calendar"></i> 15 décembre 2020</span>
+            </li>
+            <li>
+              <div class="bd-cat-item" tabindex="0" role="button" aria-pressed="false" data-filter="events">
+                <span>Événements</span>
+                <span class="bd-cat-count" aria-label="2 articles">2</span>
               </div>
-              <h3>5 conseils pour les meilleures chaussures de tango</h3>
-              <p>De bonnes chaussures de tango améliorent la technique de danse, réduisent les blessures et augmentent le plaisir du tango argentin. Découvrez nos 5 conseils essentiels.</p>
-              <a href="conseils-pour-chaussures-de-tango/" class="journey-link">Lire l'article <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
+            </li>
+          </ul>
 
-          <!-- Article 7: Événements de tango à Bruxelles -->
-          <article class="card journey-card" data-href="evenements-de-tango-a-bruxelles/">
-            <div class="journey-image">
-              <picture>
-            <source srcset="../../images/blog/milonga-la-milonguita-768x512.webp" type="image/webp">
-            <img src="../../images/blog/milonga-la-milonguita-768x512.jpg" alt="Événements tango à Bruxelles" loading="lazy">
-          </picture>
-              <span class="journey-badge">ÉVÉNEMENTS</span>
-            </div>
-            <div class="journey-content">
-              <div class="article-meta">
-                <span class="article-author"><i class="fas fa-user"></i> Sonja</span>
-                <span class="article-date"><i class="fas fa-calendar"></i> 15 avril 2020</span>
-              </div>
-              <h3>Événements tango à Bruxelles & environs</h3>
-              <p>Où puis-je aller pratiquer le tango? Quels sont les plus beaux événements de tango et milonga à Bruxelles et dans les environs? Découvrez nos milongas préférées!</p>
-              <a href="evenements-de-tango-a-bruxelles/" class="journey-link">Lire l'article <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Article 8: Événements de tango internationaux -->
-          <article class="card journey-card" data-href="evenements-de-tango-internationaux/">
-            <div class="journey-image">
-              <img src="../../images/blog/belgrade-768x512.jpg" alt="Événements de tango internationaux" loading="lazy">
-              <span class="journey-badge">ÉVÉNEMENTS</span>
-            </div>
-            <div class="journey-content">
-              <div class="article-meta">
-                <span class="article-author"><i class="fas fa-user"></i> Sonja</span>
-                <span class="article-date"><i class="fas fa-calendar"></i> 10 mai 2020</span>
-              </div>
-              <h3>Milongas et événements de tango internationaux</h3>
-              <p>Où pouvez-vous voyager pour le tango? Quels sont les meilleurs festivals de tango et quels marathons de tango nous conseillons. Découvrez nos coups de cœur à l'étranger.</p>
-              <a href="evenements-de-tango-internationaux/" class="journey-link">Lire l'article <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Article 9: Pourquoi apprendre le tango -->
-          <article class="card journey-card" data-href="pourquoi-apprendre-le-tango/">
-            <div class="journey-image">
-              <img src="../../images/blog/dancers_tango-1.jpg" alt="Pourquoi apprendre le tango" loading="lazy">
-              <span class="journey-badge">GUIDE</span>
-            </div>
-            <div class="journey-content">
-              <div class="article-meta">
-                <span class="article-author"><i class="fas fa-user"></i> Sonja</span>
-                <span class="article-date"><i class="fas fa-calendar"></i> 20 mars 2020</span>
-              </div>
-              <h3>Pourquoi apprendre le tango?</h3>
-              <p>Pourquoi apprendre à danser? 10 raisons pourquoi suivre des cours de danse et d'apprendre le tango argentin. Le tango est une danse sociale qui s'adresse à tous.</p>
-              <a href="pourquoi-apprendre-le-tango/" class="journey-link">Lire l'article <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section bg-dark">
-      <div class="container">
-        <div class="cta-content">
-          <h2>Prêt à découvrir le tango argentin ?</h2>
-          <p>Rejoignez nos cours de tango à Bruxelles et Woluwe. Essai gratuit disponible !</p>
-          <div class="cta-buttons">
-            <a href="../cours-de-tango/essai-gratuit/" class="btn btn-primary btn-large">RÉSERVEZ VOTRE ESSAI GRATUIT</a>
-            <a href="../cours-de-tango/" class="btn btn-secondary btn-large">VOIR LES COURS</a>
+          <div class="bd-sidebar-about">
+            <h4 class="bd-sidebar-about-heading">À propos du blog</h4>
+            <p>Articles sur le tango par les professeurs BE-TANGO Sonja et Sven — basés à Bruxelles depuis 2015.</p>
+            <a href="../cours-de-tango/essai-gratuit/" class="bd-sidebar-cta">Essai Gratuit →</a>
           </div>
-        </div>
+
+        </aside>
+
+        <!-- RIGHT — CARD GRID -->
+        <section class="bd-main" aria-label="Articles du blog">
+
+          <div class="bd-section-header">
+            <h2 class="bd-section-title">Tous les articles</h2>
+            <span class="bd-article-count">(9 articles)</span>
+          </div>
+
+          <div class="bd-card-grid" id="bd-card-grid">
+
+            <!-- Article 1: Histoire du tango argentin -->
+            <article class="bd-card" data-category="culture">
+              <div class="bd-card-img-wrap">
+                <a href="histoire-du-tango-argentin/" tabindex="-1" aria-hidden="true">
+                  <img src="../../images/blog/prague-tango-marathon.jpg"
+                       alt="Histoire du tango argentin"
+                       width="600" height="360"
+                       loading="lazy">
+                </a>
+                <span class="bd-badge bd-badge--culture">Culture</span>
+              </div>
+              <div class="bd-card-body">
+                <h2 class="bd-card-title">
+                  <a href="histoire-du-tango-argentin/">Histoire du tango argentin : des ruelles de Buenos Aires aux scènes internationales</a>
+                </h2>
+                <p class="bd-card-excerpt">Le tango argentin est né à la fin du 19e siècle à Buenos Aires et Montevideo lorsque les danses et musiques des esclaves noirs, des travailleurs saisonniers et des immigrants européens se sont fondues avec celles des gauchos.</p>
+                <div class="bd-card-footer">
+                  <div class="bd-card-meta">
+                    <span>Sonja</span>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <time datetime="2025-02-01">1 fév. 2025</time>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <span>3 min</span>
+                  </div>
+                  <a href="histoire-du-tango-argentin/" class="bd-read-more" aria-label="Lire l'article sur l'histoire du tango argentin">Lire la suite →</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Article 2: Les différents styles du tango argentin -->
+            <article class="bd-card" data-category="culture">
+              <div class="bd-card-img-wrap">
+                <a href="les-differents-styles-du-tango-argentin/" tabindex="-1" aria-hidden="true">
+                  <picture>
+                    <source srcset="../../images/blog/12_candombe.webp" type="image/webp">
+                    <img src="../../images/blog/12_candombe.jpg"
+                         alt="Les différents styles du tango argentin"
+                         width="600" height="360"
+                         loading="lazy">
+                  </picture>
+                </a>
+                <span class="bd-badge bd-badge--culture">Culture</span>
+              </div>
+              <div class="bd-card-body">
+                <h2 class="bd-card-title">
+                  <a href="les-differents-styles-du-tango-argentin/">Les différents styles du tango argentin</a>
+                </h2>
+                <p class="bd-card-excerpt">Le tango argentin possède une histoire riche marquée par une évolution constante. Découvrez neuf styles distincts : Canyengue, Orillero, Salon, Milonguero, Candombé, Villa Urquiza, Fantasia, Nuevo et Escenario.</p>
+                <div class="bd-card-footer">
+                  <div class="bd-card-meta">
+                    <span>Sonja</span>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <time datetime="2025-01-30">30 jan. 2025</time>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <span>8 min</span>
+                  </div>
+                  <a href="les-differents-styles-du-tango-argentin/" class="bd-read-more" aria-label="Lire l'article sur les différents styles du tango argentin">Lire la suite →</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Article 3: Dictionnaire de Tango -->
+            <article class="bd-card" data-category="technique">
+              <div class="bd-card-img-wrap">
+                <a href="dictionnaire-de-tango/" tabindex="-1" aria-hidden="true">
+                  <img src="../../images/blog/tango-dictionary.jpg"
+                       alt="Dictionnaire de Tango"
+                       width="600" height="360"
+                       loading="lazy">
+                </a>
+                <span class="bd-badge bd-badge--technique">Technique</span>
+              </div>
+              <div class="bd-card-body">
+                <h2 class="bd-card-title">
+                  <a href="dictionnaire-de-tango/">Dictionnaire de Tango, un guide de la terminologie du tango</a>
+                </h2>
+                <p class="bd-card-excerpt">Un guide complet contenant tous les noms des pas de danse et la terminologie du tango argentin. Ocho, sacada, salida cruzada et bien d'autres.</p>
+                <div class="bd-card-footer">
+                  <div class="bd-card-meta">
+                    <span>Sven</span>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <time datetime="2021-02-24">24 fév. 2021</time>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <span>5 min</span>
+                  </div>
+                  <a href="dictionnaire-de-tango/" class="bd-read-more" aria-label="Lire l'article sur le dictionnaire de tango">Lire la suite →</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Article 4: Tango argentin vs tango de salon -->
+            <article class="bd-card" data-category="technique">
+              <div class="bd-card-img-wrap">
+                <a href="tango-argentin-vs-tango-de-salon/" tabindex="-1" aria-hidden="true">
+                  <picture>
+                    <source srcset="../../images/blog/ballroom-tango.webp" type="image/webp">
+                    <img src="../../images/blog/ballroom-tango.jpg"
+                         alt="Tango argentin et le tango de salon"
+                         width="600" height="360"
+                         loading="lazy">
+                  </picture>
+                </a>
+                <span class="bd-badge bd-badge--technique">Technique</span>
+              </div>
+              <div class="bd-card-body">
+                <h2 class="bd-card-title">
+                  <a href="tango-argentin-vs-tango-de-salon/">Tango argentin et le tango de salon, similarités et différences</a>
+                </h2>
+                <p class="bd-card-excerpt">Comparaison entre le tango argentin et le tango de salon à travers des perspectives historiques et techniques. Le tango argentin privilégie l'improvisation tandis que le tango de salon met l'accent sur la standardisation technique.</p>
+                <div class="bd-card-footer">
+                  <div class="bd-card-meta">
+                    <span>Sven</span>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <time datetime="2021-02-24">24 fév. 2021</time>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <span>6 min</span>
+                  </div>
+                  <a href="tango-argentin-vs-tango-de-salon/" class="bd-read-more" aria-label="Lire l'article sur les différences entre tango argentin et tango de salon">Lire la suite →</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Article 5: Différence entre tango, valse et milonga -->
+            <article class="bd-card" data-category="technique">
+              <div class="bd-card-img-wrap">
+                <a href="difference-entre-tango-valse-et-milonga/" tabindex="-1" aria-hidden="true">
+                  <picture>
+                    <source srcset="../../images/blog/tango-milonga-vals.webp" type="image/webp">
+                    <img src="../../images/blog/tango-milonga-vals.jpg"
+                         alt="La différence entre tango, valse et milonga"
+                         width="600" height="360"
+                         loading="lazy">
+                  </picture>
+                </a>
+                <span class="bd-badge bd-badge--technique">Technique</span>
+              </div>
+              <div class="bd-card-body">
+                <h2 class="bd-card-title">
+                  <a href="difference-entre-tango-valse-et-milonga/">La différence entre tango, valse et milonga</a>
+                </h2>
+                <p class="bd-card-excerpt">Le tango argentin ne signifie pas seulement que vous dansez le tango, mais aussi la valse et la milonga. Découvrez les trois styles de danse distincts avec leurs caractères uniques.</p>
+                <div class="bd-card-footer">
+                  <div class="bd-card-meta">
+                    <span>Sonja</span>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <time datetime="2020-12-30">30 déc. 2020</time>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <span>5 min</span>
+                  </div>
+                  <a href="difference-entre-tango-valse-et-milonga/" class="bd-read-more" aria-label="Lire l'article sur la différence entre tango, valse et milonga">Lire la suite →</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Article 6: Conseils pour chaussures de tango -->
+            <article class="bd-card" data-category="tips">
+              <div class="bd-card-img-wrap">
+                <a href="conseils-pour-chaussures-de-tango/" tabindex="-1" aria-hidden="true">
+                  <img src="../../images/blog/tango-schoenen-blogpost.jpg"
+                       alt="5 conseils pour les meilleures chaussures de tango"
+                       width="600" height="360"
+                       loading="lazy">
+                </a>
+                <span class="bd-badge bd-badge--tips">Conseils</span>
+              </div>
+              <div class="bd-card-body">
+                <h2 class="bd-card-title">
+                  <a href="conseils-pour-chaussures-de-tango/">5 conseils pour les meilleures chaussures de tango</a>
+                </h2>
+                <p class="bd-card-excerpt">De bonnes chaussures de tango améliorent la technique de danse, réduisent les blessures et augmentent le plaisir du tango argentin. Découvrez nos 5 conseils essentiels.</p>
+                <div class="bd-card-footer">
+                  <div class="bd-card-meta">
+                    <span>Sonja</span>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <time datetime="2020-12-15">15 déc. 2020</time>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <span>6 min</span>
+                  </div>
+                  <a href="conseils-pour-chaussures-de-tango/" class="bd-read-more" aria-label="Lire l'article sur les conseils pour chaussures de tango">Lire la suite →</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Article 7: Événements de tango à Bruxelles (hidden initially) -->
+            <article class="bd-card bd-hidden" id="bd-extra-1" aria-hidden="true" data-category="events">
+              <div class="bd-card-img-wrap">
+                <a href="evenements-de-tango-a-bruxelles/" tabindex="-1" aria-hidden="true">
+                  <picture>
+                    <source srcset="../../images/blog/milonga-la-milonguita-768x512.webp" type="image/webp">
+                    <img src="../../images/blog/milonga-la-milonguita-768x512.jpg"
+                         alt="Événements tango à Bruxelles"
+                         width="600" height="360"
+                         loading="lazy">
+                  </picture>
+                </a>
+                <span class="bd-badge bd-badge--events">Événements</span>
+              </div>
+              <div class="bd-card-body">
+                <h2 class="bd-card-title">
+                  <a href="evenements-de-tango-a-bruxelles/">Événements tango à Bruxelles &amp; environs</a>
+                </h2>
+                <p class="bd-card-excerpt">Où puis-je aller pratiquer le tango ? Quels sont les plus beaux événements de tango et milonga à Bruxelles et dans les environs ? Découvrez nos milongas préférées !</p>
+                <div class="bd-card-footer">
+                  <div class="bd-card-meta">
+                    <span>Sonja</span>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <time datetime="2020-04-15">15 avr. 2020</time>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <span>6 min</span>
+                  </div>
+                  <a href="evenements-de-tango-a-bruxelles/" class="bd-read-more" aria-label="Lire l'article sur les événements tango à Bruxelles">Lire la suite →</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Article 8: Événements de tango internationaux (hidden initially) -->
+            <article class="bd-card bd-hidden" id="bd-extra-2" aria-hidden="true" data-category="events">
+              <div class="bd-card-img-wrap">
+                <a href="evenements-de-tango-internationaux/" tabindex="-1" aria-hidden="true">
+                  <img src="../../images/blog/belgrade-768x512.jpg"
+                       alt="Événements de tango internationaux"
+                       width="600" height="360"
+                       loading="lazy">
+                </a>
+                <span class="bd-badge bd-badge--events">Événements</span>
+              </div>
+              <div class="bd-card-body">
+                <h2 class="bd-card-title">
+                  <a href="evenements-de-tango-internationaux/">Milongas et événements de tango internationaux</a>
+                </h2>
+                <p class="bd-card-excerpt">Où pouvez-vous voyager pour le tango ? Quels sont les meilleurs festivals de tango et quels marathons de tango nous conseillons. Découvrez nos coups de cœur à l'étranger.</p>
+                <div class="bd-card-footer">
+                  <div class="bd-card-meta">
+                    <span>Sonja</span>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <time datetime="2020-05-10">10 mai 2020</time>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <span>7 min</span>
+                  </div>
+                  <a href="evenements-de-tango-internationaux/" class="bd-read-more" aria-label="Lire l'article sur les événements de tango internationaux">Lire la suite →</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Article 9: Pourquoi apprendre le tango (hidden initially) -->
+            <article class="bd-card bd-hidden" id="bd-extra-3" aria-hidden="true" data-category="lifestyle">
+              <div class="bd-card-img-wrap">
+                <a href="pourquoi-apprendre-le-tango/" tabindex="-1" aria-hidden="true">
+                  <img src="../../images/blog/why-learn-tango.webp"
+                       alt="Pourquoi apprendre le tango argentin"
+                       width="600" height="360"
+                       loading="lazy">
+                </a>
+                <span class="bd-badge bd-badge--lifestyle">Lifestyle</span>
+              </div>
+              <div class="bd-card-body">
+                <h2 class="bd-card-title">
+                  <a href="pourquoi-apprendre-le-tango/">Pourquoi apprendre le tango ?</a>
+                </h2>
+                <p class="bd-card-excerpt">Pourquoi apprendre à danser ? 10 raisons pourquoi suivre des cours de danse et d'apprendre le tango argentin. Le tango est une danse sociale qui s'adresse à tous.</p>
+                <div class="bd-card-footer">
+                  <div class="bd-card-meta">
+                    <span>Sonja</span>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <time datetime="2020-03-20">20 mars 2020</time>
+                    <span class="bd-card-meta-sep" aria-hidden="true">·</span>
+                    <span>5 min</span>
+                  </div>
+                  <a href="pourquoi-apprendre-le-tango/" class="bd-read-more" aria-label="Lire l'article sur les raisons d'apprendre le tango">Lire la suite →</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Load More button -->
+            <div class="bd-load-more-wrap" id="bd-load-more-wrap">
+              <button class="bd-load-more-btn" id="bd-load-more-btn" aria-label="Charger 3 articles supplémentaires">
+                Charger plus d'articles
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+            </div>
+
+          </div>
+          <!-- /bd-card-grid -->
+
+        </section>
+        <!-- /RIGHT -->
+
+      </div>
+      <!-- /bd-page-layout -->
+    </div>
+    <!-- /container -->
+
+    <!-- CTA SECTION -->
+    <section class="bd-cta-section" aria-label="Appel à l'action">
+      <div class="container">
+        <h2 style="color:#fff; margin-bottom:1rem;">Prêt à découvrir le tango argentin ?</h2>
+        <p style="color:rgba(255,255,255,0.85); margin-bottom:1.5rem;">Rejoignez nos cours de tango à Bruxelles et Woluwe. Essai gratuit disponible !</p>
+        <a href="../cours-de-tango/essai-gratuit/" style="display:inline-block; background:#E2C033; color:#1C244B; font-weight:700; padding:0.875rem 2rem; border-radius:6px; text-decoration:none; font-size:1rem;">RÉSERVEZ VOTRE ESSAI GRATUIT</a>
       </div>
     </section>
 
   </main>
+
+  <!-- NEWSLETTER -->
+  <section class="d4-newsletter-section">
+    <div class="container">
+      <div class="d4-newsletter-inner">
+        <div>
+          <div class="d4-newsletter-pretitle">Newsletter</div>
+          <h2 class="d4-newsletter-title">
+            Ressentez le <em>rythme</em><br>du tango
+          </h2>
+          <p class="d4-newsletter-desc">
+            Recevez en avant-première de nouveaux articles, horaires, annonces de milongas et ateliers spéciaux — directement dans votre boîte mail. Sans spam, juste du tango.
+          </p>
+        </div>
+        <div class="d4-nl-form-wrap">
+          <form class="newsletter-form" id="frNewsletterForm" action="#" method="POST" novalidate
+                data-endpoint="subscribe"
+                data-success-title="Vous êtes inscrit !"
+                data-success-msg="Parfait, vous êtes abonné à la newsletter BE-TANGO.">
+            <div class="d4-nl-row">
+              <input type="email" name="email"
+                     placeholder="votre@email.com" required
+                     aria-label="Adresse e-mail pour la newsletter BE-TANGO"
+                     class="newsletter-email-input">
+              <button type="submit" class="newsletter-submit">
+                <i class="fas fa-paper-plane"></i> S'abonner
+              </button>
+            </div>
+            <input type="hidden" name="_honey" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" aria-hidden="true">
+            <input type="hidden" name="_ts">
+          </form>
+          <div class="ft-success" id="frNewsletterFormSuccess" style="display:none"></div>
+          <p class="d4-newsletter-note">Désinscription en un clic à tout moment. Nous respectons votre vie privée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="site-footer">
@@ -389,7 +1334,7 @@
     </div>
   </footer>
 
-  <!-- Mobile Menu Toggle Script -->
+  <!-- Scripts -->
   <script>
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mainNav = document.querySelector('.main-nav');
@@ -416,7 +1361,6 @@
     }
 
     if (menuToggle && mainNav) {
-      // Toggle menu
       menuToggle.addEventListener('click', (e) => {
         e.stopPropagation();
         const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
@@ -428,7 +1372,6 @@
         }
       });
 
-      // Close menu when clicking outside
       document.addEventListener('click', (e) => {
         if (window.innerWidth < 768 &&
             mainNav.classList.contains('mobile-nav-open') &&
@@ -439,7 +1382,6 @@
         }
       });
 
-      // Handle window resize
       let resizeTimer;
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
@@ -448,29 +1390,96 @@
             mainNav.classList.remove('mobile-nav-open');
             menuToggle.setAttribute('aria-expanded', 'false');
             menuToggle.classList.remove('active');
-          }}, 100);
+          }
+        }, 100);
       });
 
-      // Set initial state
       if (window.innerWidth < 768) {
         mainNav.classList.remove('mobile-nav-open');
       }
     }
-
-    // Make journey cards clickable
-    document.querySelectorAll('.journey-card').forEach(card => {
-      card.addEventListener('click', function(e) {
-        // Don't trigger if clicking on the link itself
-        if (!e.target.closest('.journey-link')) {
-          const href = this.getAttribute('data-href');
-          if (href) {
-            window.location.href = href;
-          }
-        }
-      });
-    });
   </script>
 
-  <!-- Floating Mobile Call Button -->
+  <!-- Filter + Load More JS -->
+  <script>
+    (function () {
+      var catItems = document.querySelectorAll('.bd-cat-item');
+      var cards = document.querySelectorAll('#bd-card-grid .bd-card');
+      var loadMoreWrap = document.getElementById('bd-load-more-wrap');
+      var loadMoreBtn = document.getElementById('bd-load-more-btn');
+      var sectionTitle = document.querySelector('.bd-section-title');
+      var articleCount = document.querySelector('.bd-article-count');
+
+      var initialTitle = sectionTitle ? sectionTitle.textContent : '';
+      var initialCount = articleCount ? articleCount.textContent : '';
+      var initiallyHidden = [];
+      cards.forEach(function (card) {
+        if (card.classList.contains('bd-hidden')) initiallyHidden.push(card.id);
+      });
+
+      function filterBy(item) {
+        var filter = item.dataset.filter;
+        catItems.forEach(function (i) {
+          i.classList.remove('active');
+          i.setAttribute('aria-pressed', 'false');
+        });
+        item.classList.add('active');
+        item.setAttribute('aria-pressed', 'true');
+
+        if (filter === 'all') {
+          cards.forEach(function (card) {
+            if (initiallyHidden.indexOf(card.id) !== -1) {
+              card.classList.add('bd-hidden');
+              card.setAttribute('aria-hidden', 'true');
+            } else {
+              card.classList.remove('bd-hidden');
+              card.removeAttribute('aria-hidden');
+            }
+          });
+          if (loadMoreWrap) loadMoreWrap.style.display = '';
+          if (sectionTitle) sectionTitle.textContent = initialTitle;
+          if (articleCount) articleCount.textContent = initialCount;
+        } else {
+          var count = 0;
+          cards.forEach(function (card) {
+            if (card.dataset.category === filter) {
+              card.classList.remove('bd-hidden');
+              card.removeAttribute('aria-hidden');
+              count++;
+            } else {
+              card.classList.add('bd-hidden');
+              card.setAttribute('aria-hidden', 'true');
+            }
+          });
+          if (loadMoreWrap) loadMoreWrap.style.display = 'none';
+          var label = item.querySelector('span:first-child').textContent;
+          if (sectionTitle) sectionTitle.textContent = label;
+          if (articleCount) articleCount.textContent = '(' + count + ')';
+        }
+      }
+
+      catItems.forEach(function (item) {
+        item.addEventListener('click', function () { filterBy(item); });
+        item.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); filterBy(item); }
+        });
+      });
+
+      if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function () {
+          cards.forEach(function (card) {
+            if (initiallyHidden.indexOf(card.id) !== -1) {
+              card.classList.remove('bd-hidden');
+              card.removeAttribute('aria-hidden');
+            }
+          });
+          if (loadMoreWrap) loadMoreWrap.style.display = 'none';
+        });
+      }
+    })();
+  </script>
+
+  <script src="../../js/newsletter.min.js"></script>
+
 </body>
 </html>

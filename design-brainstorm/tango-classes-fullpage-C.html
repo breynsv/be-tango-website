@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tango Classes — Full Page Draft C</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/cropped-favicon-32x32.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome + Site Stylesheet -->
+  <link rel="stylesheet" href="../css/fontawesome.min.css?v=3.5">
+  <link rel="stylesheet" href="../css/styles.min.css?v=3.6">
+
+  <!-- Enhancement Scripts -->
+  <script src="../js/enhancements.min.js?v=3.5" defer></script>
+
+  <style>
+    /* ============================================================
+       HERO-C OVERRIDE — scoped to .hero-c so it wins cleanly
+       over styles.min.css without touching the rest of the page
+       ============================================================ */
+
+    .hero-c {
+      position: relative;
+      min-height: 720px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 72px;
+      /* reset any styles.min.css hero rules */
+      background-image: none !important;
+    }
+
+    .hero-c .hc-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-c .hc-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      filter: brightness(0.82);
+      animation: hcDrift 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes hcDrift {
+      from { transform: scale(1.0); }
+      to   { transform: scale(1.05) translateX(-1%); }
+    }
+
+    /* Vignette at edges so photo stays bright in the centre */
+    .hero-c .hc-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: radial-gradient(
+        ellipse 90% 80% at 55% 40%,
+        transparent 35%,
+        rgba(0,0,0,0.5) 100%
+      );
+    }
+
+    /* Gradient only at the bottom ~55% for text legibility */
+    .hero-c .hc-gradient {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 58%;
+      z-index: 2;
+      background: linear-gradient(
+        to top,
+        rgba(14,16,32,0.94) 0%,
+        rgba(14,16,32,0.65) 35%,
+        rgba(14,16,32,0.2) 60%,
+        transparent 100%
+      );
+    }
+
+    /* Grain */
+    .hero-c .hc-grain {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 160px 160px;
+      opacity: 0.035;
+      pointer-events: none;
+    }
+
+    /* Content grid */
+    .hero-c .hc-inner {
+      position: relative;
+      z-index: 4;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: end;
+    }
+
+    /* Eyebrow label */
+    .hero-c .hc-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #E2C033;
+      margin-bottom: 18px;
+      opacity: 0;
+      animation: hcFadeUp 0.6s 0.15s ease both;
+    }
+
+    .hero-c .hc-label::before {
+      content: '';
+      display: block;
+      width: 26px;
+      height: 1.5px;
+      background: #E2C033;
+    }
+
+    /* H1 */
+    .hero-c h1.hc-h1 {
+      font-size: clamp(2.8rem, 5.2vw, 5.2rem);
+      font-weight: 900;
+      line-height: 1.0;
+      color: #fff;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.55);
+      opacity: 0;
+      animation: hcFadeUp 0.7s 0.3s ease both;
+    }
+
+    .hero-c h1.hc-h1 .hc-gold {
+      display: block;
+      background: linear-gradient(100deg, #E2C033 0%, #f7e27a 55%, #c9a820 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Tagline */
+    .hero-c .hc-tagline {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.72);
+      max-width: 460px;
+      margin-bottom: 36px;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+      opacity: 0;
+      animation: hcFadeUp 0.7s 0.5s ease both;
+    }
+
+    /* CTA row */
+    .hero-c .hc-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: hcFadeUp 0.7s 0.7s ease both;
+    }
+
+    /* Override btn styles specifically inside hero-c */
+    .hero-c .hc-cta .btn {
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 14px 30px;
+    }
+
+    .hero-c .hc-cta .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-c .hc-cta .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.14);
+    }
+
+    /* Glass level picker — RIGHT side */
+    .hero-c .hc-levels {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      padding: 26px 26px 22px;
+      min-width: 206px;
+      opacity: 0;
+      animation: hcSlideRight 0.8s 1.0s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes hcSlideRight {
+      from { opacity: 0; transform: translateX(24px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .hero-c .hc-levels-title {
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #E2C033;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(226,192,51,0.2);
+    }
+
+    .hero-c .hc-level-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .hero-c .hc-level-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 9px 10px;
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.48);
+      transition: all 0.18s ease;
+      cursor: default;
+    }
+
+    .hero-c .hc-level-item:hover {
+      color: rgba(255,255,255,0.82);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero-c .hc-level-item.active {
+      color: #fff;
+      font-weight: 600;
+      background: rgba(226,192,51,0.11);
+      border-left: 2px solid #E2C033;
+    }
+
+    .hero-c .hc-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      flex-shrink: 0;
+    }
+
+    .hero-c .hc-level-item.active .hc-dot {
+      background: #E2C033;
+      box-shadow: 0 0 7px #E2C033;
+    }
+
+    /* Scroll indicator */
+    .hero-c .hc-scroll {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      opacity: 0;
+      animation: hcFadeUp 0.6s 1.5s ease both;
+    }
+
+    .hero-c .hc-scroll-label {
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+    }
+
+    .hero-c .hc-scroll-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.38), transparent);
+      animation: hcPulse 1.9s 2s ease-in-out infinite;
+    }
+
+    @keyframes hcPulse { 0%,100% { opacity:0.4 } 50% { opacity:1 } }
+
+    @keyframes hcFadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .hero-c { min-height: 600px; padding-bottom: 56px; }
+      .hero-c .hc-inner { grid-template-columns: 1fr; padding: 0 28px; }
+      .hero-c .hc-levels { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       SITE HEADER (verbatim from tango-classes)
+       ═══════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../" class="logo">
+          <img src="../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34" loading="lazy">
+        </a>
+
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="../">Home</a></li>
+            <li class="nav-item-dropdown">
+              <a href="../tango-classes/" class="active" aria-current="page">Tango Classes</a>
+              <ul class="dropdown-menu">
+                <li><a href="../tango-classes/beginners/">Beginners</a></li>
+                <li><a href="../tango-classes/experienced/">Experienced</a></li>
+                <li><a href="../tango-classes/private/">Private Lessons</a></li>
+                <li><a href="../tango-classes/online/">Online Classes</a></li>
+                <li><a href="../tango-classes/brussels/">Brussels</a></li>
+                <li><a href="../tango-classes/woluwe/">Woluwe</a></li>
+              </ul>
+            </li>
+            <li><a href="../tango-classes/free-trial/" class="btn btn-primary btn-nav">Free Trial</a></li>
+            <li><a href="../blog/">Blog</a></li>
+            <li><a href="../contact/">Contact</a></li>
+            <li class="language-switcher">
+              <button class="language-toggle" aria-label="Select language" aria-expanded="false">
+                <i class="fas fa-globe"></i>
+                <span class="current-lang">EN</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <ul class="language-dropdown">
+                <li>
+                  <a href="../nl/tangolessen/">
+                    <span class="flag-icon">🇳🇱</span>
+                    <span>Nederlands</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="../tango-classes/" class="active">
+                    <span class="flag-icon">🇬🇧</span>
+                    <span>English</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="../fr/cours-de-tango/">
+                    <span class="flag-icon">🇫🇷</span>
+                    <span>Français</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN
+       ═══════════════════════════════════════════ -->
+  <main id="main-content">
+
+    <!-- ── HERO C ────────────────────────────── -->
+    <section class="hero-c" aria-label="Tango Classes Hero">
+      <div class="hc-photo">
+        <img src="../images/Tango-classes-in-Brussels.png" alt="Tango class in Brussels" width="1600" height="720">
+      </div>
+      <div class="hc-vignette"></div>
+      <div class="hc-gradient"></div>
+      <div class="hc-grain"></div>
+
+      <div class="hc-inner">
+        <!-- Left: headline + CTAs -->
+        <div class="hc-text">
+          <p class="hc-label">Discover Your Tango Journey</p>
+          <h1 class="hc-h1">
+            Our Class Offer —
+            <span class="hc-gold">From Beginner<br>to Advanced.</span>
+          </h1>
+          <p class="hc-tagline">
+            Welcome to our Brussels tango school. We offer a wide range of lessons for all levels — no partner needed to begin.
+          </p>
+          <div class="hc-cta">
+            <a href="../tango-classes/beginners/" class="btn btn-primary btn-large">Info for Beginners</a>
+            <a href="../tango-classes/experienced/#choose-your-level" class="btn btn-secondary btn-large">View Levels</a>
+          </div>
+        </div>
+
+        <!-- Right: glass level picker -->
+        <aside class="hc-levels" aria-label="Class levels">
+          <p class="hc-levels-title">Choose Your Level</p>
+          <ul class="hc-level-list">
+            <li class="hc-level-item active"><span class="hc-dot"></span> Beginner</li>
+            <li class="hc-level-item"><span class="hc-dot"></span> First Year</li>
+            <li class="hc-level-item"><span class="hc-dot"></span> Second Year</li>
+            <li class="hc-level-item"><span class="hc-dot"></span> Intermediate</li>
+            <li class="hc-level-item"><span class="hc-dot"></span> Advanced</li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="hc-scroll" aria-hidden="true">
+        <span class="hc-scroll-label">Scroll</span>
+        <div class="hc-scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- ── CHOOSE YOUR PATH ───────────────────── -->
+    <section style="padding: var(--spacing-2xl) 0;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Choose Your Path</h2>
+          <p class="section-description">Start your tango journey at the right level for you</p>
+        </div>
+
+        <div class="grid grid-3">
+          <!-- Beginners -->
+          <article class="card journey-card" data-href="../tango-classes/beginners/">
+            <div class="journey-image">
+              <img src="../images/beginner-tango-classes.webp" alt="Beginner tango classes in Brussels" loading="lazy">
+              <span class="journey-badge">START HERE</span>
+            </div>
+            <div class="journey-content">
+              <h3>I am a Beginner</h3>
+              <p>Never danced tango before? No problem! Discover our 'Start-to-Tango' courses. You don't need a dance partner to start.</p>
+              <a href="../tango-classes/beginners/" class="journey-link">INFO FOR BEGINNERS <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- Experienced -->
+          <article class="card journey-card" data-href="../tango-classes/experienced/">
+            <div class="journey-image">
+              <img src="../images/tango-classes-in-Brussels-2-e1740646913571.webp" alt="Experienced tango classes in Brussels" loading="lazy">
+            </div>
+            <div class="journey-content">
+              <h3>I have Tango Experience</h3>
+              <p>Already mastered the basics? Join our next level, First Year, Second Year, Intermediate or Advanced groups. Refine your technique, musicality, and connection.</p>
+              <a href="../tango-classes/experienced/" class="journey-link">VIEW LEVELS <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- Locations -->
+          <article class="card journey-card" onclick="document.querySelector('.bg-light').scrollIntoView({behavior: 'smooth'});" style="cursor: pointer;">
+            <div class="journey-image">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10074.6!2d4.3970!3d50.8483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbe!4v1234567890"
+                width="100%" height="250"
+                style="border:0; display:block; pointer-events:none;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <div class="journey-content">
+              <h3>Or Choose by Location</h3>
+              <p>We have two convenient locations in Brussels. Choose the one that works best for you.</p>
+              <span class="journey-link" style="pointer-events:none;">VIEW LOCATIONS <i class="fas fa-arrow-right"></i></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CHOOSE BY LOCATION ─────────────────── -->
+    <section class="bg-light" style="padding: var(--spacing-2xl) 0;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Choose by Location</h2>
+          <p class="section-description">Classes at both locations throughout the week</p>
+        </div>
+
+        <div class="grid grid-2">
+          <!-- Brussels -->
+          <article class="card journey-card" data-href="../tango-classes/brussels/">
+            <div class="journey-image">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2518.5!2d4.3637!3d50.8547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3c4ed1d36c4d9%3A0x5c3f7f8e3e8c7a2!2sRue%20du%20Marais%2068%2C%201000%20Bruxelles!5e0!3m2!1sen!2sbe!4v1234567890"
+                width="100%" height="250"
+                style="border:0; display:block;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <div class="journey-content">
+              <h3>Brussels Center</h3>
+              <p><strong>Gatti de Gamond school</strong><br>Rue du Marais 68, 1000 Brussels<br><small>Metro Botanique/Rogier</small></p>
+              <p>Monday and Wednesday classes</p>
+              <a href="../tango-classes/brussels/" class="journey-link">Brussels location details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <!-- Woluwe -->
+          <article class="card journey-card" data-href="../tango-classes/woluwe/">
+            <div class="journey-image">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2517.8!2d4.4304!3d50.8419!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3dd1b38a9a3a1%3A0x9c4f3e2b1a8d7c5!2sAvenue%20Orban%2054%2C%201150%20Woluwe-Saint-Pierre!5e0!3m2!1sen!2sbe!4v1234567890"
+                width="100%" height="250"
+                style="border:0; display:block;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+            <div class="journey-content">
+              <h3>Woluwe-Saint-Pierre</h3>
+              <p><strong>GC Kontakt</strong><br>Avenue Orban 54, 1150 Woluwe-Saint-Pierre<br><small>Metro Stockel</small></p>
+              <p>Tuesday and Thursday classes</p>
+              <a href="../tango-classes/woluwe/" class="journey-link">Woluwe location details <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHAT TO EXPECT ─────────────────────── -->
+    <section style="padding: var(--spacing-2xl) 0;" id="locations">
+      <div class="container">
+        <div class="section-header">
+          <h2>What Can You Expect of Your Tango Lessons?</h2>
+          <p class="section-description">Our three-pillar approach to tango education</p>
+        </div>
+
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-music"></i></div>
+            <h3>Musicality & Improvisation</h3>
+            <p>Learn to interpret different rhythms and orchestras. Develop your ability to dance what you feel in the music, creating your own unique expression in the moment.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-user-friends"></i></div>
+            <h3>Technique & Connection</h3>
+            <p>Master proper posture, embrace, and partner communication. Build the technical foundation that allows for effortless leading and following.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon"><i class="fas fa-user-graduate"></i></div>
+            <h3>Professional & Patient</h3>
+            <p>Learn in a relaxed, supportive environment with experienced instructors. We provide clear explanations, individual attention, and a structured progression path.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FIND YOUR LEVEL (accordion) ───────── -->
+    <section class="bg-light" style="padding: var(--spacing-2xl) 0;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Find Your Level</h2>
+          <p class="section-description">Systematic progression from your first steps to advanced mastery</p>
+        </div>
+
+        <div style="max-width: 900px; margin: 0 auto;">
+          <details class="accordion-item" open>
+            <summary class="accordion-title">
+              <div>
+                <h3>Absolute Beginners</h3>
+                <p style="color: var(--color-text-light); font-size: 0.875rem; margin: var(--spacing-xs) 0 0;">No experience needed - 14 lessons</p>
+              </div>
+              <span class="accordion-icon">+</span>
+            </summary>
+            <div class="accordion-content">
+              <p><strong>Start your tango journey here.</strong> Our beginner series is designed for those with no prior tango experience. You'll learn:</p>
+              <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-lg);">
+                <li>Basic steps and patterns - the essential moves for navigating the floor</li>
+                <li>Proper posture and technique development</li>
+                <li>Partner connection and nonverbal communication</li>
+                <li>Musical awareness and rhythm response</li>
+              </ul>
+              <p><strong>Important:</strong> You don't need a dance partner to start. Our beginner series runs twice yearly (September and February).</p>
+              <div style="margin-top: var(--spacing-md);">
+                <a href="../tango-classes/beginners/" class="btn btn-primary">View beginner classes <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-title">
+              <div>
+                <h3>First Years</h3>
+                <p style="color: var(--color-text-light); font-size: 0.875rem; margin: var(--spacing-xs) 0 0;">After completing beginners - ~15 classes experience</p>
+              </div>
+              <span class="accordion-icon">+</span>
+            </summary>
+            <div class="accordion-content">
+              <p><strong>For dancers who completed the beginners course.</strong> Focus on expanding your foundation:</p>
+              <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-lg);">
+                <li>Cross-system walks and navigation</li>
+                <li>Smooth movement and flow</li>
+                <li>Ochos (forward and back pivots)</li>
+                <li>Simple turn patterns</li>
+              </ul>
+              <p><strong>Availability:</strong> Wednesday 18:30 (Brussels) and Thursday 18:30 (Woluwe)</p>
+              <div style="margin-top: var(--spacing-md);">
+                <a href="../tango-classes/experienced/" class="btn btn-primary">View experienced classes <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-title">
+              <div>
+                <h3>Second Years</h3>
+                <p style="color: var(--color-text-light); font-size: 0.875rem; margin: var(--spacing-xs) 0 0;">1.5 - 2.5 years experience</p>
+              </div>
+              <span class="accordion-icon">+</span>
+            </summary>
+            <div class="accordion-content">
+              <p><strong>Building on your solid foundation.</strong> Introducing more complex movements:</p>
+              <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-lg);">
+                <li>Giros (circular turns with partner)</li>
+                <li>Sacadas (displacements)</li>
+                <li>Barridas (sweeps and drags)</li>
+                <li>Emphasis on dissociation and body awareness</li>
+              </ul>
+              <p><strong>Availability:</strong> Monday 19:00 (Brussels) and Tuesday 19:00 (Woluwe)</p>
+              <div style="margin-top: var(--spacing-md);">
+                <a href="../tango-classes/experienced/" class="btn btn-primary">View experienced classes <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-title">
+              <div>
+                <h3>Second Years PLUS</h3>
+                <p style="color: var(--color-text-light); font-size: 0.875rem; margin: var(--spacing-xs) 0 0;">Bridge level - 2 to 3 years experience</p>
+              </div>
+              <span class="accordion-icon">+</span>
+            </summary>
+            <div class="accordion-content">
+              <p><strong>A bridge to intermediate level.</strong> Faster pace and more complexity:</p>
+              <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-lg);">
+                <li>More complex sequences and combinations</li>
+                <li>Styling and adornment variations</li>
+                <li>Advanced navigation techniques</li>
+                <li>Musicality development</li>
+              </ul>
+              <p><strong>Availability:</strong> Wednesday 19:30 (Brussels) and Tuesday 20:00 (Woluwe)</p>
+              <div style="margin-top: var(--spacing-md);">
+                <a href="../tango-classes/experienced/" class="btn btn-primary">View experienced classes <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </details>
+
+          <details class="accordion-item">
+            <summary class="accordion-title">
+              <div>
+                <h3>Intermediate & Advanced</h3>
+                <p style="color: var(--color-text-light); font-size: 0.875rem; margin: var(--spacing-xs) 0 0;">4+ years experience</p>
+              </div>
+              <span class="accordion-icon">+</span>
+            </summary>
+            <div class="accordion-content">
+              <p><strong>For experienced dancers ready to refine their artistry.</strong> Advanced techniques and musicality:</p>
+              <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-lg);">
+                <li>Boleos (whips and kicks)</li>
+                <li>Ganchos (hooks)</li>
+                <li>Enrosques (pivoting embellishments)</li>
+                <li>Vals and Milonga musicality variations</li>
+                <li>Complex improvisation work</li>
+              </ul>
+              <p><strong>Availability:</strong> Wednesday 20:30 (Brussels) and Thursday 20:30 (Woluwe)</p>
+              <div style="margin-top: var(--spacing-md);">
+                <a href="../tango-classes/experienced/" class="btn btn-primary">View experienced classes <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA SECTION ────────────────────────── -->
+    <section class="cta-section bg-dark">
+      <div class="container">
+        <div class="cta-content">
+          <h2>Ready to Start Your Tango Journey?</h2>
+          <p>Try a free trial class and experience the magic of Argentine tango</p>
+          <div class="cta-buttons">
+            <a href="../tango-classes/free-trial/" class="btn btn-primary btn-large">BOOK A FREE TRIAL</a>
+            <a href="../contact/" class="btn btn-secondary btn-large">CONTACT US</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>BE-TANGO</h3>
+          <p>Your dance school for Argentine tango in Brussels and Woluwe.</p>
+          <p>Experience the connection, the music, and the fun.</p>
+          <p style="margin-top:1rem;"><strong>Phone:</strong> <a href="tel:+32498392939" style="color:inherit;">+32 498 39 29 39</a></p>
+          <p><strong>Email:</strong> <a href="mailto:admin@be-tango.com" style="color:inherit;">admin@be-tango.com</a></p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/p/Be-tango-ART-100057312323946/" aria-label="Facebook" class="social-icon" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/be_tango_brussels/" aria-label="Instagram" class="social-icon" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../">Home</a></li>
+            <li><a href="../tango-classes/">Tango Classes</a></li>
+            <li><a href="../tango-classes/free-trial/" class="footer-free-trial">Free Trial</a></li>
+            <li><a href="../blog/">Blog</a></li>
+            <li><a href="../contact/">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Classes</h4>
+          <ul>
+            <li><a href="../tango-classes/beginners/">Beginners</a></li>
+            <li><a href="../tango-classes/experienced/">Experienced</a></li>
+            <li><a href="../tango-classes/private/">Private Lessons</a></li>
+            <li><a href="../tango-classes/online/">Online</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Locations</h4>
+          <div class="footer-location-cards">
+            <div class="location-card">
+              <strong>BE-TANGO Centre</strong>
+              <span class="loc-address">Rue du Marais 68, 1000 Brussels</span>
+              <a href="../tango-classes/brussels/" class="loc-link">View location →</a>
+            </div>
+            <div class="location-card">
+              <strong>BE-TANGO Woluwe</strong>
+              <span class="loc-address">Av. Orban 54, 1150 Woluwe-Saint-Pierre</span>
+              <a href="../tango-classes/woluwe/" class="loc-link">View location →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 BE-TANGO. All rights reserved.</p>
+        <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
+        <p class="footer-legal">
+          <a href="../privacy-policy/">Privacy Policy</a> |
+          <a href="../terms-and-conditions/">Terms &amp; Conditions</a> |
+          <a href="../links/">Links</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mainNav    = document.querySelector('.main-nav');
+    const siteHeader = document.querySelector('.site-header');
+
+    if (menuToggle && mainNav) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !expanded);
+        if (window.innerWidth < 768) {
+          mainNav.classList.toggle('mobile-nav-open');
+          menuToggle.classList.toggle('active');
+        }
+      });
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth < 768 &&
+            mainNav.classList.contains('mobile-nav-open') &&
+            !siteHeader.contains(e.target)) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+          mainNav.classList.remove('mobile-nav-open');
+          menuToggle.classList.remove('active');
+        }
+      });
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (window.innerWidth >= 768) {
+            mainNav.classList.remove('mobile-nav-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.classList.remove('active');
+          }
+        }, 100);
+      });
+    }
+
+    // Language dropdown
+    const langToggle   = document.querySelector('.language-toggle');
+    const langDropdown = document.querySelector('.language-dropdown');
+    if (langToggle && langDropdown) {
+      langToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const expanded = langToggle.getAttribute('aria-expanded') === 'true';
+        langToggle.setAttribute('aria-expanded', !expanded);
+        langDropdown.classList.toggle('active');
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.language-switcher')) {
+          langToggle.setAttribute('aria-expanded', 'false');
+          langDropdown.classList.remove('active');
+        }
+      });
+    }
+
+    // journey-card click → data-href
+    document.querySelectorAll('.journey-card[data-href]').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        window.location.href = card.dataset.href;
+      });
+    });
+  </script>
+</body>
+</html>

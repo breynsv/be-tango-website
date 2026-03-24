@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>De geschiedenis van de Argentijnse tango — BE-TANGO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #1c244b;
+      --gold: #e8c84a;
+      --white: #ffffff;
+      --off-white: #f9f9f9;
+      --light-gold: #fef9e0;
+      --gray: #888888;
+      --light-gray: #f5f5f5;
+      --border: #e8e8e8;
+      --text: #2c2c2c;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─────────────────────────────────────────
+       READING PROGRESS BAR
+    ───────────────────────────────────────── */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--gold);
+      z-index: 1000;
+      transition: width 0.1s linear;
+    }
+
+    /* ─────────────────────────────────────────
+       HEADER
+    ───────────────────────────────────────── */
+    .minimal-header {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: var(--white);
+      border-bottom: 1px solid var(--gold);
+    }
+
+    .header-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .main-nav a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+
+    .main-nav a:hover {
+      color: var(--gold);
+    }
+
+    .nav-cta {
+      background: var(--navy);
+      color: var(--white) !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 4px;
+      font-size: 0.8rem !important;
+      transition: background 0.2s, color 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold) !important;
+      color: var(--navy) !important;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    /* ─────────────────────────────────────────
+       MAIN
+    ───────────────────────────────────────── */
+    main {
+      min-height: 60vh;
+    }
+
+    /* ─────────────────────────────────────────
+       ARTICLE WRAPPER
+    ───────────────────────────────────────── */
+    .article-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 2rem;
+    }
+
+    /* ─────────────────────────────────────────
+       ARTICLE HEAD
+    ───────────────────────────────────────── */
+    .article-head {
+      margin-bottom: 2.5rem;
+    }
+
+    .category-pill {
+      display: inline-block;
+      background: var(--light-gold);
+      color: var(--navy);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.2rem;
+      border: 1px solid #f0e090;
+    }
+
+    .article-head h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .article-excerpt {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 1.4rem;
+      font-weight: 300;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--gray);
+      flex-wrap: wrap;
+    }
+
+    .meta-author {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+      color: var(--navy);
+    }
+
+    .meta-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), #c9a92e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .meta-dot {
+      color: #ccc;
+    }
+
+    .meta-read {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* ─────────────────────────────────────────
+       ARTICLE IMAGE
+    ───────────────────────────────────────── */
+    .article-image {
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      padding: 0 1.5rem;
+    }
+
+    .image-placeholder {
+      width: 100%;
+      max-height: 450px;
+      min-height: 280px;
+      background: linear-gradient(135deg, #1c244b 0%, #2d3a7c 50%, #1a2a5e 100%);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(232,200,74,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 30%, rgba(45,58,124,0.6) 0%, transparent 50%);
+    }
+
+    .image-placeholder i {
+      font-size: 2.5rem;
+      opacity: 0.4;
+      position: relative;
+    }
+
+    .image-placeholder span {
+      position: relative;
+      text-transform: uppercase;
+    }
+
+    .image-caption {
+      font-size: 0.78rem;
+      color: var(--gray);
+      text-align: center;
+      margin-top: 0.75rem;
+      font-style: italic;
+    }
+
+    /* ─────────────────────────────────────────
+       ARTICLE BODY
+    ───────────────────────────────────────── */
+    .article-body {
+      font-size: 19px;
+      line-height: 1.9;
+      color: var(--text);
+    }
+
+    .article-body p {
+      margin-bottom: 1.6rem;
+    }
+
+    .article-body h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-top: 3rem;
+      margin-bottom: 1.4rem;
+      line-height: 1.3;
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+
+    .article-body h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    /* Pullquote */
+    .pullquote {
+      background: var(--light-gold);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 1.5rem 1.75rem;
+      margin: 2.5rem 0;
+      font-size: 1.1rem;
+      font-style: italic;
+      line-height: 1.7;
+      color: #3a3a3a;
+    }
+
+    .pullquote cite {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      font-style: normal;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.03em;
+    }
+
+    /* Inline CTA */
+    .inline-cta {
+      background: var(--light-gold);
+      border-left: 4px solid var(--gold);
+      border-radius: 8px;
+      padding: 1.75rem 2rem;
+      margin: 2.5rem 0;
+      text-align: center;
+    }
+
+    .inline-cta p {
+      font-size: 1rem;
+      color: var(--navy);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .inline-cta a {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .inline-cta a:hover {
+      background: #d4b33a;
+      transform: translateY(-1px);
+    }
+
+    /* UNESCO badge */
+    .fact-badge {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+      font-size: 0.95rem;
+    }
+
+    .fact-badge i {
+      color: var(--gold);
+      font-size: 1.3rem;
+      margin-top: 0.1rem;
+      flex-shrink: 0;
+    }
+
+    .fact-badge p {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ─────────────────────────────────────────
+       ARTICLE FOOTER / SHARE
+    ───────────────────────────────────────── */
+    .article-footer {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    .article-divider {
+      border: none;
+      border-top: 1px solid var(--gold);
+      margin: 2.5rem 0;
+      opacity: 0.5;
+    }
+
+    .share-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .share-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.45rem 1rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--navy);
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: pointer;
+      background: none;
+    }
+
+    .share-btn:hover {
+      border-color: var(--gold);
+      background: var(--light-gold);
+    }
+
+    /* ─────────────────────────────────────────
+       RELATED POSTS
+    ───────────────────────────────────────── */
+    .related-posts {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .related-posts-heading {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .related-posts-heading::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .related-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      background: var(--white);
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .related-card:hover {
+      box-shadow: 0 6px 24px rgba(28,36,75,0.1);
+      transform: translateY(-3px);
+    }
+
+    .related-card-img {
+      width: 100%;
+      height: 140px;
+      background: linear-gradient(135deg, #d0d4e8, #e8eaf2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .related-card-img i {
+      font-size: 1.8rem;
+      color: #b0b5cc;
+    }
+
+    .related-card-body {
+      padding: 1rem 1.1rem 1.2rem;
+    }
+
+    .related-card-body .category-pill {
+      font-size: 0.65rem;
+      padding: 0.25rem 0.7rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .related-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    /* ─────────────────────────────────────────
+       NEWSLETTER — FULL WIDTH
+    ───────────────────────────────────────── */
+    .newsletter-minimal {
+      background: #f5f5f5;
+      padding: 5rem 0;
+      width: 100%;
+    }
+
+    .nl-inner {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+
+    .nl-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+
+    .nl-inner h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 0.9rem;
+    }
+
+    .nl-inner h2 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .nl-inner > p {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 1.75rem;
+      line-height: 1.6;
+    }
+
+    .nl-form {
+      margin-bottom: 1rem;
+    }
+
+    .nl-form-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .nl-form-row input[type="email"] {
+      flex: 1;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 0.875rem 1.25rem;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .nl-form-row input[type="email"]::placeholder {
+      color: #bbb;
+    }
+
+    .nl-form-row input[type="email"]:focus {
+      border-color: var(--gold);
+    }
+
+    .nl-form-row button {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      border: none;
+      border-radius: 4px;
+      padding: 0.875rem 1.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .nl-form-row button:hover {
+      background: #d4b33a;
+      transform: translateY(-1px);
+    }
+
+    .nl-fine {
+      font-size: 0.75rem;
+      color: #aaa;
+      margin-top: 0.75rem !important;
+    }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      padding: 3.5rem 0 0;
+    }
+
+    .footer-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-brand .logo {
+      color: var(--white);
+      display: block;
+      margin-bottom: 0.9rem;
+      font-size: 1.15rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .footer-social a {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      text-decoration: none;
+    }
+
+    .footer-social a:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(232,200,74,0.08);
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.55rem;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 1.25rem 2rem;
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--gold);
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .main-nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .article-head h1 {
+        font-size: 2rem;
+      }
+
+      .article-body {
+        font-size: 17px;
+      }
+
+      .related-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .nl-form-row {
+        flex-direction: column;
+      }
+
+      .nl-form-row button {
+        width: 100%;
+      }
+
+      .nl-inner h2 {
+        font-size: 1.6rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-brand {
+        grid-column: auto;
+      }
+
+      .article-head h1 {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════
+       READING PROGRESS BAR
+  ════════════════════════════════════════ -->
+  <div class="progress-bar" id="progress" role="progressbar" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════ -->
+  <header class="minimal-header">
+    <div class="header-inner">
+      <a href="#" class="logo">BE-TANGO</a>
+      <nav aria-label="Hoofdnavigatie">
+        <ul class="main-nav">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Lessen</a></li>
+          <li><a href="#">Agenda</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Over ons</a></li>
+          <li><a href="#" class="nav-cta">Proefles boeken</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Menu openen">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════
+       MAIN
+  ════════════════════════════════════════ -->
+  <main>
+
+    <!-- ── ARTICLE ── -->
+    <article class="article-wrapper">
+
+      <header class="article-head">
+        <span class="category-pill">Tango Informatie</span>
+        <h1>De geschiedenis van de Argentijnse tango</h1>
+        <p class="article-excerpt">De Argentijnse tango ontstond eind 19e eeuw in Buenos Aires en Montevideo. Ontdek de fascinerende geschiedenis van deze passionele dans.</p>
+        <div class="article-meta">
+          <div class="meta-author">
+            <div class="meta-avatar" aria-hidden="true">S</div>
+            <span>Sonja</span>
+          </div>
+          <span class="meta-dot" aria-hidden="true">·</span>
+          <span>24 januari 2025</span>
+          <span class="meta-dot" aria-hidden="true">·</span>
+          <span class="meta-read"><i class="fa-regular fa-clock" aria-hidden="true"></i> 7 min lezen</span>
+        </div>
+      </header>
+
+    </article>
+
+    <!-- Featured image — outside article-wrapper for visual breathing room -->
+    <div class="article-image">
+      <div class="image-placeholder" style="min-height:380px;" role="img" aria-label="Afbeelding: De geschiedenis van de Argentijnse tango">
+        <i class="fa-solid fa-music" aria-hidden="true"></i>
+        <span>Buenos Aires · Rio de la Plata · ca. 1890</span>
+      </div>
+      <p class="image-caption">Een dansend koppel in een traditionele milonga in Buenos Aires, circa 1900.</p>
+    </div>
+
+    <article class="article-wrapper" style="padding-top:0;">
+      <div class="article-body">
+
+        <!-- ── SECTION 1 ── -->
+        <h2>Het ontstaan van de Argentijnse tango in Buenos Aires</h2>
+        <p>De Argentijnse tango is ontstaan aan de oevers van de Rio de la Plata, in Buenos Aires (Argentinië) en Montevideo (Uruguay). Aan het einde van de 19e eeuw kwamen tot slaaf gemaakten, seizoenarbeiders, Europese immigranten en gaucho-cowboys samen in de steden op zoek naar werk, waarbij ze hun verschillende muzikale en danstradities mengden.</p>
+        <p>In de armere wijken van Buenos Aires — plaatsen als La Boca en San Telmo — vonden deze culturen elkaar in de kroegen, de patio's en op straat. Uit die ontmoeting ontstond een geheel nieuwe dans: expressief, innig en doorspekt met de melancholie van mensen ver van huis.</p>
+
+        <div class="pullquote">
+          "De tango is de directe uitdrukking van wat dichters hebben willen zeggen: de overtuiging dat het gevecht man tegen vrouw, de bereidheid die hem verheerlijkt, met verlies eindigt."
+          <cite>— Jorge Luis Borges</cite>
+        </div>
+
+        <!-- ── SECTION 2 ── -->
+        <h2>Van straatmuziek naar nationale passie (1890 – 1950)</h2>
+        <p>Tijdens de vroege periode (1890–1900) namen meer mannen dan vrouwen deel aan dansexperimenten met stijlen zoals de <em>canyengue</em>. De muzikale begeleiding was minimaal — een gitaar, een fluit en een accordeon volstonden. De dans was rauw, fysiek en ongepolijst.</p>
+        <p>Aan het begin van de 20e eeuw won de tango aanzienlijk aan populariteit. Composers als Carlos Gardel brachten de tango naar een breed publiek via opnames en radio-uitzendingen. Het gouden tijdperk — <em>la época de oro</em> (1930–1950) — zag wijdverbreide deelname aan milongas door alle lagen van de Argentijnse bevolking.</p>
+
+        <!-- Inline CTA -->
+        <div class="inline-cta">
+          <p>Wil jij de eerste stappen van de tango ontdekken?</p>
+          <a href="#">Boek Gratis Proefles</a>
+        </div>
+
+        <!-- ── SECTION 3 ── -->
+        <h2>De Argentijnse tango verovert Europa</h2>
+        <p>Rond 1910 waaide de tango over naar Parijs, dat in die periode de culturele hoofdstad van de wereld was. De dans verspreidde zich snel door Europa, maar stuitte op felle weerstand van religieuze en medische instellingen. Critici spraken van een "obscene", "zedenverdervende" dans die gevaarlijk was voor de volksgezondheid.</p>
+        <p>Uiteindelijk werd een gesaniteerde versie van de tango — met meer afstand tussen de dansers en zonder de intieme omarming — geaccepteerd in de Europese balzalen. Deze ballroomversie verschilt wezenlijk van de Argentijnse origineel en wordt vandaag nog steeds als aparte stijl gedanst.</p>
+
+        <!-- ── SECTION 4 ── -->
+        <h2>De heropleving en wereldwijde populariteit van de tango</h2>
+        <p>Na een periode van onderdrukking tijdens de militaire dictatuur in Argentinië (1976–1983) keerde de authentieke tango terug. In de jaren '80 trok de voorstelling <em>Tango Argentino</em> — die in 1983 op Broadway werd opgevoerd — wereldwijd de aandacht en ontketende een ware tango-revival.</p>
+        <p>Vandaag bloeit de tango op alle continenten. Europa telt duizenden dansscholen, milongas en tango-festivals. Steden als Berlijn, Amsterdam, Parijs en Brussel hebben bloeiende gemeenschappen van tangoliefhebbers die wekelijks samenkomen om te dansen, te verbinden en de tradities van Buenos Aires levend te houden.</p>
+
+        <div class="pullquote">
+          "De tango leert je te luisteren — naar de muziek, naar je partner, naar jezelf."
+          <cite>— Sonja, BE-TANGO</cite>
+        </div>
+
+        <!-- ── SECTION 5 ── -->
+        <h2>UNESCO Werelderfgoed</h2>
+        <p>In 2009 erkende de UNESCO de Argentijnse tango als immaterieel cultureel erfgoed van de mensheid. De erkenning bevestigde wat miljoenen tangoliefhebbers al lang wisten: de tango is meer dan een dans. Het is een levende cultuur, een taal van het lichaam, een manier om met anderen in contact te treden die grenzen overstijgt.</p>
+
+        <div class="fact-badge">
+          <i class="fa-solid fa-earth-americas" aria-hidden="true"></i>
+          <p><strong>UNESCO-erkenning (2009):</strong> De Argentijnse tango werd officieel opgenomen op de Representatieve Lijst van het Immaterieel Cultureel Erfgoed van de Mensheid — samen met Argentinië en Uruguay.</p>
+        </div>
+
+        <p>Bij BE-TANGO dragen we deze rijke traditie door in Brussel. Of je nu beginner bent of al jarenlang danst — we verwelkomen iedereen die wil ontdekken wat deze bijzondere dans te bieden heeft.</p>
+
+      </div><!-- /.article-body -->
+    </article>
+
+    <!-- ── AFTER ARTICLE ── -->
+    <div class="article-footer">
+      <hr class="article-divider">
+      <div class="share-row">
+        <span class="share-label">Deel</span>
+        <a href="#" class="share-btn"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i> Facebook</a>
+        <a href="#" class="share-btn"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i> X</a>
+        <a href="#" class="share-btn"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+        <a href="#" class="share-btn"><i class="fa-solid fa-link" aria-hidden="true"></i> Link kopiëren</a>
+      </div>
+    </div>
+
+    <!-- ── RELATED POSTS ── -->
+    <div class="related-posts">
+      <h2 class="related-posts-heading">Meer lezen</h2>
+      <div class="related-grid">
+
+        <a href="#" class="related-card">
+          <div class="related-card-img" aria-hidden="true">
+            <i class="fa-solid fa-people-arrows"></i>
+          </div>
+          <div class="related-card-body">
+            <span class="category-pill">Tango Informatie</span>
+            <p class="related-card-title">De verschillende dansstijlen van de Argentijnse tango</p>
+          </div>
+        </a>
+
+        <a href="#" class="related-card">
+          <div class="related-card-img" aria-hidden="true">
+            <i class="fa-solid fa-music"></i>
+          </div>
+          <div class="related-card-body">
+            <span class="category-pill">Tango Informatie</span>
+            <p class="related-card-title">Het verschil tussen tango, vals en milonga</p>
+          </div>
+        </a>
+
+        <a href="#" class="related-card">
+          <div class="related-card-img" aria-hidden="true">
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <div class="related-card-body">
+            <span class="category-pill">Tango Tips</span>
+            <p class="related-card-title">Waarom tango leren dansen?</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         NEWSLETTER — FULL WIDTH (outside grid)
+    ════════════════════════════════════════ -->
+    <section class="newsletter-minimal">
+      <div class="nl-inner">
+        <span class="nl-tag">Nieuwsbrief</span>
+        <h2>Blijf in het <em>ritme</em> van tango.</h2>
+        <p>Nieuwe artikelen, evenementen en lessen — direct in uw inbox.</p>
+        <form class="nl-form" action="#" method="POST" novalidate>
+          <div class="nl-form-row">
+            <input type="email" name="email" placeholder="u@voorbeeld.com" required aria-label="E-mailadres">
+            <button type="submit">Aanmelden</button>
+          </div>
+          <!-- Honeypot anti-spam -->
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" aria-hidden="true">
+        </form>
+        <p class="nl-fine">Geen spam · Op elk moment afmelden</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col footer-brand">
+        <a href="#" class="logo">BE-TANGO</a>
+        <p>Belgische school voor Argentijnse tango in Brussel. Lessen voor beginners, gevorderden en iedereen ertussenin.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Lessen</h4>
+        <ul>
+          <li><a href="#">Beginners</a></li>
+          <li><a href="#">Gevorderden</a></li>
+          <li><a href="#">Privélessen</a></li>
+          <li><a href="#">Workshops</a></li>
+          <li><a href="#">Gratis proefles</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Informatie</h4>
+        <ul>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Agenda</a></li>
+          <li><a href="#">Over ons</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:info@be-tango.be"><i class="fa-regular fa-envelope" style="margin-right:0.4rem" aria-hidden="true"></i>info@be-tango.be</a></li>
+          <li><a href="#"><i class="fa-solid fa-location-dot" style="margin-right:0.4rem" aria-hidden="true"></i>Brussel, België</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 BE-TANGO. Alle rechten voorbehouden.</span>
+      <span>
+        <a href="#">Privacybeleid</a>
+        &nbsp;·&nbsp;
+        <a href="#">Gebruiksvoorwaarden</a>
+      </span>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════
+       JS — Reading Progress Bar
+  ════════════════════════════════════════ -->
+  <script>
+    window.addEventListener('scroll', () => {
+      const el = document.getElementById('progress');
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      el.style.width = pct + '%';
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

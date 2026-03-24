@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>De geschiedenis van de Argentijnse tango — BE-TANGO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --gold:        #E2C033;
+      --navy:        #1C244B;
+      --black:       #000000;
+      --bg:          #F3F5F8;
+      --text:        #111827;
+      --text-light:  #4a4a4a;
+      --border:      #E5E7EB;
+      --white:       #FFFFFF;
+
+      --container:   1280px;
+      --radius:      8px;
+      --transition:  0.25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--navy); text-decoration: none; transition: color var(--transition); }
+    a:hover { color: var(--gold); }
+    img { max-width: 100%; display: block; }
+    ul, ol { list-style: none; }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ============================================================
+       SITE HEADER — white, sticky
+    ============================================================ */
+    .site-header {
+      background-color: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      overflow: visible;
+    }
+
+    .site-header.scrolled {
+      background-color: rgba(255,255,255,0.98);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      backdrop-filter: blur(10px);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.875rem 0 1.125rem 0;
+      position: relative;
+    }
+
+    .logo img {
+      height: auto;
+      width: 150px;
+    }
+
+    @media (min-width: 768px) {
+      .logo img { width: 200px; }
+    }
+
+    /* Mobile toggle */
+    .mobile-menu-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 10;
+    }
+
+    .mobile-menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: var(--black);
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .mobile-menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .mobile-menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (min-width: 768px) {
+      .mobile-menu-toggle { display: none; }
+    }
+
+    /* Nav */
+    .main-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: -1.5rem;
+      right: -1.5rem;
+      background-color: var(--white);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .main-nav.mobile-nav-open { display: block; }
+
+    .nav-list {
+      flex-direction: column;
+      padding: 0.5rem 0;
+    }
+
+    .nav-list li { width: 100%; }
+
+    .nav-list a {
+      display: block;
+      padding: 0.75rem 1.5rem;
+      font-weight: 500;
+      font-size: 0.9375rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .nav-list a:hover,
+    .nav-list a.active {
+      color: var(--gold);
+      background-color: rgba(226,192,51,0.06);
+    }
+
+    .dropdown-menu {
+      display: none;
+      background-color: var(--bg);
+      padding-left: 1.5rem;
+    }
+
+    .nav-item-dropdown:hover .dropdown-menu { display: block; }
+
+    .dropdown-menu a {
+      padding: 0.5rem 1.5rem;
+      font-size: 0.875rem;
+    }
+
+    /* Language switcher mobile */
+    .language-switcher {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+    }
+
+    .language-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 4px;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .language-toggle:hover { background-color: rgba(0,0,0,0.05); }
+    .language-toggle .fa-globe { font-size: 1.1rem; }
+    .language-toggle .fa-chevron-down { font-size: 0.7rem; transition: transform 0.3s ease; }
+    .language-toggle[aria-expanded="true"] .fa-chevron-down { transform: rotate(180deg); }
+
+    .language-dropdown {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      right: 0;
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      min-width: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      padding: 6px;
+    }
+
+    .language-dropdown.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .language-dropdown li { margin: 0; }
+
+    .language-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.625rem 1rem;
+      color: var(--text);
+      border-bottom: none;
+      border-radius: 4px;
+      font-size: 0.9375rem;
+      font-weight: 400;
+      transition: var(--transition);
+    }
+
+    .language-dropdown a:hover { background-color: var(--bg); color: var(--text); }
+
+    .language-dropdown a.active {
+      background-color: rgba(226,192,51,0.1);
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .flag-icon { font-size: 1.4rem; line-height: 1; }
+
+    /* Desktop nav overrides */
+    @media (min-width: 768px) {
+      .main-nav {
+        display: block !important;
+        position: static;
+        border: none;
+        box-shadow: none;
+        background: none;
+      }
+
+      .nav-list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0;
+      }
+
+      .nav-list li { width: auto; }
+
+      .nav-list a {
+        padding: 0.375rem 0;
+        border-bottom: none;
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+
+      .nav-list a:hover,
+      .nav-list a.active {
+        background-color: transparent;
+      }
+
+      .nav-item-dropdown {
+        position: relative;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        padding: 6px;
+        min-width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: var(--transition);
+        padding-left: 6px;
+      }
+
+      .nav-item-dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 0.5rem 0.875rem;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        border-bottom: none;
+        color: var(--text);
+      }
+
+      .dropdown-menu a:hover { background-color: var(--bg); }
+
+      .language-switcher { padding: 0; }
+      .language-toggle { color: var(--text); }
+    }
+
+    /* CTA button in nav */
+    .btn {
+      display: inline-block;
+      padding: 0.625rem 1.5rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      line-height: 1.4;
+      transition: var(--transition);
+      cursor: pointer;
+      border: 2px solid transparent;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+
+    .btn-primary:hover {
+      background: #f0d050;
+      border-color: #f0d050;
+      color: var(--black);
+      transform: translateY(-1px);
+    }
+
+    .btn-nav {
+      padding: 0.45rem 1.25rem !important;
+      font-size: 0.875rem !important;
+      font-weight: 700 !important;
+    }
+
+    @media (min-width: 768px) {
+      .nav-list a.btn {
+        border: 2px solid var(--gold) !important;
+      }
+    }
+
+    /* ============================================================
+       CINEMATIC ANIMATED HERO
+    ============================================================ */
+    @keyframes heroShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .article-hero {
+      background: linear-gradient(135deg, #0d1428 0%, #1C244B 35%, #2a3460 65%, #1C244B 100%);
+      background-size: 300% 300%;
+      animation: heroShift 12s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative oversized "TANGO" word */
+    .article-hero::before {
+      content: "TANGO";
+      position: absolute;
+      right: -2rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      font-size: 20rem;
+      font-weight: 800;
+      color: var(--white);
+      opacity: 0.04;
+      letter-spacing: 0.05em;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    /* Subtle grain texture overlay */
+    .article-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 20% 60%, rgba(226,192,51,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 30%, rgba(42,52,96,0.5) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 8rem 0 5rem;
+      width: 100%;
+    }
+
+    /* Breadcrumb */
+    .hero-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      animation: fadeIn 0.8s ease 0.1s both;
+    }
+
+    .hero-breadcrumb a {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color var(--transition);
+    }
+
+    .hero-breadcrumb a:hover { color: rgba(255,255,255,0.85); }
+
+    .hero-breadcrumb .sep {
+      color: rgba(255,255,255,0.25);
+      font-size: 0.75rem;
+    }
+
+    .hero-breadcrumb .current {
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      font-weight: 400;
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Category pill */
+    .hero-category {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 3px;
+      margin-bottom: 1.75rem;
+      font-variant: small-caps;
+      animation: fadeSlideUp 0.7s ease 0.2s both;
+    }
+
+    /* Hero H1 */
+    .hero-inner h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      max-width: 700px;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+      animation: fadeSlideUp 0.8s ease 0.35s both;
+    }
+
+    .hero-excerpt {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.75;
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      animation: fadeSlideUp 0.8s ease 0.5s both;
+    }
+
+    /* Meta row */
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem 0;
+      animation: fadeSlideUp 0.8s ease 0.65s both;
+    }
+
+    .hero-meta-item {
+      color: var(--gold);
+      font-size: 0.825rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-meta-sep {
+      color: rgba(226,192,51,0.35);
+      margin: 0 0.6rem;
+      font-size: 0.75rem;
+    }
+
+    /* Scroll hint arrow */
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      animation: fadeIn 1s ease 1.2s both;
+    }
+
+    .hero-scroll-hint span {
+      color: rgba(255,255,255,0.3);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    .hero-scroll-hint i {
+      color: rgba(255,255,255,0.25);
+      font-size: 1.1rem;
+      animation: bounce 2s ease infinite;
+    }
+
+    /* ============================================================
+       ARTICLE LAYOUT — 3-column grid
+    ============================================================ */
+    .article-wrapper {
+      background: var(--white);
+    }
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .article-grid {
+        grid-template-columns: 3fr 1fr;
+        gap: 3rem;
+        padding: 0 2rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .article-grid {
+        grid-template-columns: 60px 1fr 280px;
+        gap: 0;
+        padding: 0 2rem;
+      }
+    }
+
+    /* Share bar (left column) */
+    .share-bar {
+      display: none;
+    }
+
+    @media (min-width: 1200px) {
+      .share-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 4rem;
+      }
+
+      .share-bar-inner {
+        position: sticky;
+        top: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .share-label {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text-light);
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        margin-bottom: 0.5rem;
+      }
+
+      .share-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1.5px solid var(--border);
+        background: var(--white);
+        color: var(--text-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: var(--transition);
+        text-decoration: none;
+      }
+
+      .share-btn:hover {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--black);
+        transform: scale(1.1);
+      }
+
+      .share-count {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--text-light);
+        text-align: center;
+      }
+
+      .share-divider {
+        width: 1px;
+        height: 24px;
+        background: var(--border);
+        margin: 0.25rem 0;
+      }
+    }
+
+    /* Article body (center column) */
+    .article-body {
+      padding: 4rem 0 5rem;
+    }
+
+    @media (min-width: 1200px) {
+      .article-body {
+        padding: 4rem 4rem 5rem 3.5rem;
+        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+      }
+    }
+
+    .article-body-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Reading time / info bar below hero */
+    .article-infobar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      align-items: center;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.5rem;
+    }
+
+    .infobar-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.825rem;
+      color: var(--text-light);
+    }
+
+    .infobar-item i {
+      color: var(--gold);
+      font-size: 0.875rem;
+    }
+
+    .infobar-item strong { color: var(--text); font-weight: 600; }
+
+    /* Article prose */
+    .article-body p {
+      font-size: 1.0625rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .article-body h2 {
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+      margin: 3.5rem 0 1.25rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.875rem;
+    }
+
+    .article-body h2 .num {
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+      background: rgba(226,192,51,0.1);
+      border: 1.5px solid rgba(226,192,51,0.3);
+      border-radius: 3px;
+      padding: 0.1rem 0.45rem;
+    }
+
+    .article-body h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin: 2rem 0 0.875rem;
+    }
+
+    /* Section divider */
+    .section-hr {
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold) 0%, rgba(226,192,51,0.15) 100%);
+      margin: 2.5rem 0;
+      border-radius: 2px;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem 2rem;
+      margin: 2.5rem 0;
+      background: rgba(226,192,51,0.04);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    .pull-quote p {
+      font-size: 1.25rem !important;
+      font-weight: 500 !important;
+      color: var(--navy) !important;
+      line-height: 1.65 !important;
+      margin: 0 !important;
+      font-style: italic;
+    }
+
+    /* Highlighted fact box */
+    .fact-box {
+      background: linear-gradient(135deg, var(--navy) 0%, #2a3460 100%);
+      border-radius: var(--radius);
+      padding: 2rem 2.25rem;
+      margin: 2.5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fact-box::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      background: rgba(226,192,51,0.08);
+      border-radius: 50%;
+    }
+
+    .fact-box h4 {
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .fact-box p {
+      color: rgba(255,255,255,0.85) !important;
+      font-size: 0.9375rem !important;
+      margin: 0 !important;
+      line-height: 1.7 !important;
+    }
+
+    /* Year timeline inline marker */
+    .year-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      margin-right: 0.35rem;
+      vertical-align: middle;
+    }
+
+    /* Author card */
+    .author-card {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 1.75rem 2rem;
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin: 3.5rem 0;
+    }
+
+    .author-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), #2a3460);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.5rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .author-info h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .author-info p {
+      font-size: 0.85rem !important;
+      color: var(--text-light) !important;
+      margin: 0 !important;
+      line-height: 1.5 !important;
+    }
+
+    /* Tags */
+    .article-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 2rem 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.775rem;
+      font-weight: 500;
+      color: var(--text-light);
+      transition: var(--transition);
+    }
+
+    .tag:hover {
+      border-color: var(--gold);
+      color: var(--navy);
+      background: rgba(226,192,51,0.06);
+    }
+
+    /* CTA inside article */
+    .article-cta-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d1428 100%);
+      border-radius: var(--radius);
+      padding: 2.5rem 2.25rem;
+      text-align: center;
+      margin: 3.5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 40px,
+        rgba(226,192,51,0.025) 40px,
+        rgba(226,192,51,0.025) 41px
+      );
+    }
+
+    .article-cta-banner h3 {
+      color: var(--white);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .article-cta-banner p {
+      color: rgba(255,255,255,0.72);
+      font-size: 1rem !important;
+      margin-bottom: 1.75rem;
+      position: relative;
+    }
+
+    .article-cta-banner .btn {
+      position: relative;
+    }
+
+    /* TOC Sidebar (right column) */
+    .toc-sidebar {
+      display: none;
+    }
+
+    @media (min-width: 900px) {
+      .toc-sidebar {
+        display: block;
+        padding-top: 4rem;
+      }
+
+      .toc-sticky {
+        position: sticky;
+        top: 100px;
+      }
+    }
+
+    .toc-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      padding-bottom: 0.625rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .toc-list { list-style: none; }
+
+    .toc-list li {
+      border-left: 2px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .toc-list li:hover { border-left-color: var(--gold); }
+
+    .toc-list a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      padding: 0.5rem 0 0.5rem 1rem;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.4;
+      font-weight: 400;
+      transition: var(--transition);
+    }
+
+    .toc-list a:hover { color: var(--navy); }
+
+    .toc-list a .toc-num {
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Progress reading bar */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--gold);
+      z-index: 2000;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* ============================================================
+       NEWSLETTER — full-width, outside grid
+    ============================================================ */
+    .newsletter-section {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d1428 100%);
+      padding: 5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .newsletter-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 50px,
+        rgba(226,192,51,0.02) 50px,
+        rgba(226,192,51,0.02) 51px
+      );
+      pointer-events: none;
+    }
+
+    .newsletter-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .newsletter-inner {
+        grid-template-columns: 3fr 2fr;
+        gap: 4rem;
+      }
+    }
+
+    .newsletter-text .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .newsletter-text .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .newsletter-text h2 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .newsletter-text h2 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .newsletter-text p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .newsletter-form {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 0.9375rem;
+      transition: border-color var(--transition);
+      outline: none;
+    }
+
+    .form-group input::placeholder { color: rgba(255,255,255,0.3); }
+
+    .form-group input:focus {
+      border-color: rgba(226,192,51,0.5);
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Honeypot */
+    .form-honeypot { display: none; }
+
+    .newsletter-form .btn-submit {
+      width: 100%;
+      padding: 0.875rem;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 0.5rem;
+    }
+
+    .newsletter-form .btn-submit:hover {
+      background: #f0d050;
+      transform: translateY(-1px);
+    }
+
+    .form-note {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      margin-top: 0.75rem;
+    }
+
+    /* ============================================================
+       SITE FOOTER — dark navy, 4-column
+    ============================================================ */
+    .site-footer {
+      background: linear-gradient(135deg, var(--navy) 0%, rgba(0,0,0,0.95) 100%);
+      color: var(--white);
+      padding: 3rem 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-col:first-child { grid-column: 1 / -1; }
+    .footer-col:last-child  { grid-column: 1 / -1; }
+
+    @media (min-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 2rem;
+      }
+      .footer-col:first-child,
+      .footer-col:last-child { grid-column: auto; }
+    }
+
+    .footer-col h3 {
+      color: var(--gold);
+      font-size: 1.125rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col h4 {
+      color: var(--gold);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col:first-child p {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.8125rem;
+      line-height: 1.65;
+      margin-bottom: 0.25rem;
+    }
+
+    .footer-col:first-child a { color: rgba(255,255,255,0.8); }
+    .footer-col:first-child a:hover { color: var(--gold); }
+
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+    .footer-col li { padding: 4px 0; }
+    .footer-col a { color: rgba(255,255,255,0.75); font-size: 0.8125rem; line-height: 1.6; text-decoration: none; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold); }
+
+    .footer-col a.footer-free-trial {
+      color: var(--gold);
+      padding-left: 0.65rem;
+      position: relative;
+    }
+    .footer-col a.footer-free-trial::before {
+      content: '';
+      position: absolute; left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 3px; height: 70%;
+      background: var(--gold);
+      border-radius: 1px; opacity: 0.75;
+    }
+
+    .social-links { display: flex; gap: 1rem; margin-top: 1.25rem; }
+
+    .social-icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.72);
+      transition: background 0.2s, color 0.2s;
+    }
+    .social-icon:hover { background: var(--gold); color: var(--black); }
+
+    .footer-location-cards { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.25rem; }
+    .footer-location-cards .location-card {
+      flex: 1 1 140px;
+      padding: 7px 11px 8px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-left: 2px solid rgba(226,192,51,0.45);
+      border-radius: 0 3px 3px 0;
+      font-size: 0.775rem;
+      line-height: 1.5;
+      transition: border-left-color 0.18s, background 0.18s;
+    }
+    .footer-location-cards .location-card:hover { background: rgba(226,192,51,0.05); border-left-color: rgba(226,192,51,0.75); }
+    .footer-location-cards .location-card strong { display: block; color: rgba(255,255,255,0.92); font-weight: 600; font-size: 0.775rem; }
+    .footer-location-cards .location-card .loc-address { display: block; color: rgba(255,255,255,0.5); font-size: 0.725rem; }
+    .footer-location-cards .location-card .loc-link {
+      display: inline-block; margin-top: 3px;
+      color: var(--gold); font-size: 0.7rem; font-weight: 500;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: opacity 0.15s;
+    }
+    .footer-location-cards .location-card .loc-link:hover { opacity: 0.7; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 1.25rem 0;
+      display: flex; flex-direction: column;
+      gap: 0.35rem; align-items: center; text-align: center;
+    }
+    .footer-bottom p { color: rgba(255,255,255,0.42); font-size: 0.75rem; margin: 0; }
+    .footer-bottom a { color: rgba(255,255,255,0.48); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.85); }
+
+    @media (min-width: 768px) {
+      .footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; text-align: left; }
+    }
+
+    /* ============================================================
+       MOBILE SHARE BAR (bottom of article body on mobile)
+    ============================================================ */
+    .mobile-share {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 2.5rem 0 1rem;
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (min-width: 1200px) {
+      .mobile-share { display: none; }
+    }
+
+    .mobile-share span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .mobile-share-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .mobile-share-btn:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--black);
+    }
+
+    /* ============================================================
+       RELATED ARTICLES
+    ============================================================ */
+    .related-section {
+      background: var(--bg);
+      padding: 4rem 0;
+    }
+
+    .related-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .related-header .eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .related-header h2 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .related-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .related-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .related-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+    }
+
+    .related-card-thumb {
+      height: 180px;
+      background: linear-gradient(135deg, var(--navy) 0%, #2a3460 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .related-card-thumb .thumb-label {
+      color: rgba(255,255,255,0.12);
+      font-size: 4rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      user-select: none;
+    }
+
+    .related-card-thumb .thumb-cat {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+    }
+
+    .related-card-body {
+      padding: 1.25rem 1.5rem 1.5rem;
+    }
+
+    .related-card-body h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .related-card-body p {
+      font-size: 0.8375rem;
+      color: var(--text-light);
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    .related-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    .related-card-meta i { color: var(--gold); }
+
+  </style>
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <!-- SITE HEADER -->
+  <header class="site-header" id="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../" class="logo">
+          <img src="../../../images/logo-be-tango.png" alt="BE-TANGO - Argentijnse Tango Dansschool" width="200" height="34" loading="lazy">
+        </a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="../../">Home</a></li>
+            <li class="nav-item-dropdown">
+              <a href="../../tangolessen/">Tangolessen</a>
+              <ul class="dropdown-menu">
+                <li><a href="../../tangolessen/beginners/">Beginners</a></li>
+                <li><a href="../../tangolessen/ervaring/">Gevorderden</a></li>
+                <li><a href="../../tangolessen/prive/">Privélessen</a></li>
+                <li><a href="../../tangolessen/online/">Online Lessen</a></li>
+                <li><a href="../../tangolessen/brussel/">Brussel</a></li>
+                <li><a href="../../tangolessen/woluwe/">Woluwe</a></li>
+              </ul>
+            </li>
+            <li><a href="../../tangolessen/gratis-proefles/" class="btn btn-primary btn-nav">Gratis Proefles</a></li>
+            <li><a href="../" class="active">Blog</a></li>
+            <li><a href="../../contacteer-ons/">Contact</a></li>
+            <li class="language-switcher">
+              <button class="language-toggle" aria-label="Select language" aria-expanded="false">
+                <i class="fas fa-globe"></i>
+                <span class="current-lang">NL</span>
+                <i class="fas fa-chevron-down"></i>
+              </button>
+              <ul class="language-dropdown">
+                <li><a href="./" class="active"><span class="flag-icon">🇳🇱</span><span>Nederlands</span></a></li>
+                <li><a href="../../../blog/history-of-argentine-tango/"><span class="flag-icon">🇬🇧</span><span>English</span></a></li>
+                <li><a href="../../../fr/blog/histoire-du-tango-argentin/"><span class="flag-icon">🇫🇷</span><span>Français</span></a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- CINEMATIC HERO -->
+  <section class="article-hero" aria-label="Artikel header">
+    <div class="hero-inner">
+      <div class="container">
+
+        <!-- Breadcrumb -->
+        <nav class="hero-breadcrumb" aria-label="Breadcrumb">
+          <a href="../../">Home</a>
+          <span class="sep"><i class="fas fa-chevron-right" style="font-size:0.6rem;"></i></span>
+          <a href="../">Blog</a>
+          <span class="sep"><i class="fas fa-chevron-right" style="font-size:0.6rem;"></i></span>
+          <span class="current">De geschiedenis van de Argentijnse tango</span>
+        </nav>
+
+        <!-- Category pill -->
+        <span class="hero-category">Geschiedenis &amp; Cultuur</span>
+
+        <!-- Title -->
+        <h1>De geschiedenis van de<br>Argentijnse tango</h1>
+
+        <!-- Excerpt -->
+        <p class="hero-excerpt">De Argentijnse tango ontstond eind 19e eeuw in Buenos Aires en Montevideo. Ontdek de fascinerende geschiedenis van deze passionele dans — van de havenkantines tot de wereldpodia.</p>
+
+        <!-- Meta row -->
+        <div class="hero-meta" aria-label="Artikel info">
+          <span class="hero-meta-item"><i class="fas fa-tag" style="opacity:0.7; margin-right:0.3rem; font-size:0.75rem;"></i>Geschiedenis &amp; Cultuur</span>
+          <span class="hero-meta-sep">&bull;</span>
+          <span class="hero-meta-item"><i class="fas fa-user-circle" style="opacity:0.7; margin-right:0.3rem; font-size:0.75rem;"></i>Sonja</span>
+          <span class="hero-meta-sep">&bull;</span>
+          <span class="hero-meta-item"><i class="fas fa-calendar-alt" style="opacity:0.7; margin-right:0.3rem; font-size:0.75rem;"></i>23 maart 2026</span>
+          <span class="hero-meta-sep">&bull;</span>
+          <span class="hero-meta-item"><i class="fas fa-clock" style="opacity:0.7; margin-right:0.3rem; font-size:0.75rem;"></i>8 min leestijd</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- ARTICLE MAIN -->
+  <main class="article-wrapper" id="article-main">
+    <div class="article-grid">
+
+      <!-- LEFT: Share bar (desktop) -->
+      <aside class="share-bar" aria-label="Deel dit artikel">
+        <div class="share-bar-inner">
+          <span class="share-label">Delen</span>
+          <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" rel="noopener" aria-label="Deel op Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a class="share-btn" href="https://twitter.com/intent/tweet?text=" target="_blank" rel="noopener" aria-label="Deel op Twitter">
+            <i class="fab fa-x-twitter"></i>
+          </a>
+          <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=" target="_blank" rel="noopener" aria-label="Deel op LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <div class="share-divider"></div>
+          <a class="share-btn" href="mailto:?subject=De geschiedenis van de Argentijnse tango&body=" aria-label="Deel via e-mail">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <div class="share-count">
+            <span>247</span><br>shares
+          </div>
+        </div>
+      </aside>
+
+      <!-- CENTER: Article body -->
+      <article class="article-body" id="article-content">
+        <div class="article-body-inner">
+
+          <!-- Info bar -->
+          <div class="article-infobar">
+            <div class="infobar-item">
+              <i class="fas fa-user-circle"></i>
+              <span>Door <strong>Sonja</strong></span>
+            </div>
+            <div class="infobar-item">
+              <i class="fas fa-calendar-alt"></i>
+              <span>23 maart 2026</span>
+            </div>
+            <div class="infobar-item">
+              <i class="fas fa-clock"></i>
+              <span>8 min leestijd</span>
+            </div>
+            <div class="infobar-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Brussel, België</span>
+            </div>
+          </div>
+
+          <!-- Section 1 -->
+          <h2 id="s1">
+            <span class="num">01</span>
+            Het ontstaan van de Argentijnse tango in Buenos Aires
+          </h2>
+
+          <p>De Argentijnse tango is ontstaan aan de oevers van de Rio de la Plata, in de bruisende haven van Buenos Aires en de straten van Montevideo. Eind 19e eeuw was deze regio een smeltkroes van culturen: Europese immigranten — voornamelijk Italianen en Spanjaarden — mengden er hun muzikale tradities met de ritmes van Afrikaanse slaven en de lokale gauchocultuur.</p>
+
+          <p>In de volkswijken aan de rand van Buenos Aires, de <em>arrabales</em>, ontstond geleidelijk een nieuwe dans. De tango was aanvankelijk een dans van de armen, gespeeld in de kleine café-cantantes en op straathoeken. Het was een dans die de eenzaamheid en het verlangen van de migrant uitdrukte — het gevoel van thuisloosheid, maar ook de drang naar menselijk contact.</p>
+
+          <div class="pull-quote">
+            <p>"De tango is een droevig gevoel dat men dansend ervaart — het verhaal van twee mensen die elkaar vinden en weer verliezen in één omhelzing."</p>
+          </div>
+
+          <p>De muzikale wortels van de tango zijn divers. De <em>milonga</em> — een vroegere dansvorm — en de Habanera uit Cuba leverden ritmische elementen. De Afrikaans-Argentijnse <em>candombe</em> bracht syncopering en lichaamsbewustzijn. En de Europese viool en accordeon (later vervangen door de <em>bandoneón</em>) zorgden voor de melodische melancholie die de tango zo herkenbaar maakt.</p>
+
+          <hr class="section-hr">
+
+          <!-- Section 2 -->
+          <h2 id="s2">
+            <span class="num">02</span>
+            Van straatmuziek naar nationale passie (1890&nbsp;–&nbsp;1950)
+          </h2>
+
+          <p>Tijdens de vroege periode van de tango — ruwweg 1880 tot 1910 — was de dans strikt voorbehouden aan de lagere klassen. De Argentijnse bourgeoisie keek er met afschuw op neer; de tango gold als onfatsoenlijk en onbeschaafd. De dichte, innige omarming van het dansende koppel was schandalig in een tijdperk van strakke sociale conventies.</p>
+
+          <div class="fact-box">
+            <h4>Wist je dat?</h4>
+            <p>De oorspronkelijke tangostijl heette <em>tango orillero</em> — letterlijk 'tango van de rand'. Dansers gebruikten de smalle ruimte van keldertaveernes, wat leidde tot de kleine, gecontroleerde stappen en beenspelen die de tango tot op vandaag kenmerken.</p>
+          </div>
+
+          <p><span class="year-tag">1890</span> De tango verschijnt voor het eerst in gedrukte media, doorgaans met een negatieve connotatie. Kranten waarschuwen voor de "gevaarlijke" nieuwe dans die jongeren zou corrumperen.</p>
+
+          <p><span class="year-tag">1913</span> Na de doorbraak in Parijs keert de tango als "verfijnd" terug naar Buenos Aires. De upper class, die altijd erg gevoelig was voor Europese mode, accepteert de tango nu plots als respectabele dans. Een typisch geval van externe validatie.</p>
+
+          <p><span class="year-tag">1920–1940</span> De <em>Época de Oro</em>, de Gouden Eeuw van de tango. Grote orkesten zoals die van Carlos di Sarli, Osvaldo Pugliese en Aníbal Troilo vullen de ballrooms van Buenos Aires. De tango wordt een industrie: platenmaatschappijen, films, radio en milonga-zalen floreren. Zangers zoals Carlos Gardel tillen het genre naar ongekende hoogten.</p>
+
+          <hr class="section-hr">
+
+          <!-- Section 3 -->
+          <h2 id="s3">
+            <span class="num">03</span>
+            De Argentijnse tango verovert Europa
+          </h2>
+
+          <p>Europese adoptie stuitte aanvankelijk op hevige weerstand. In Frankrijk werd de tango in 1914 kortstondig verboden door het Parijse stadsbestuur. De Rooms-Katholieke Kerk in Italië en Duitsland veroordeelde de dans als "immoreel" en "aanstootgevend". Zelfs Paus Pius X liet zijn bezorgdheid optekenen.</p>
+
+          <p>Toch won de tango het van de weerstand. Parijs was de eerste Europese hoofdstad die werkelijk bezweek voor de Argentijnse dans. Rond 1910 waren Parijse salons en muziekzalen de tango razend populair, mede dankzij de Argentijnse elite die in Parijs resideerde en er de dans introduceerde in de hogere kringen.</p>
+
+          <p>Vanuit Parijs verspreidde de tango zich snel naar Londen, Berlijn, Wenen en Amsterdam. Elke stad gaf er zijn eigen draai aan. De Europese tango — later ook wel <em>ballroom tango</em> of <em>tango internacional</em> genoemd — ontwikkelde een meer rechtopstaande houding, stijvere armbewegingen en een theatraler karakter dan zijn Argentijnse origine.</p>
+
+          <div class="pull-quote">
+            <p>"In Parijs heruitgevonden, in Buenos Aires verfijnd, en op het wereldpodium vereeuwigd — de tango kent geen grenzen."</p>
+          </div>
+
+          <p>Dit onderscheid tussen de authentieke Argentijnse tango en de Europese ballroom-variant zou later leiden tot een identiteitsdiscussie binnen de tangowereld die tot op vandaag niet helemaal beslecht is.</p>
+
+          <hr class="section-hr">
+
+          <!-- Section 4 -->
+          <h2 id="s4">
+            <span class="num">04</span>
+            De heropleving en wereldwijde populariteit van de tango
+          </h2>
+
+          <p>Na de Gouden Eeuw kende de tango een periode van verval. De militaire dictaturen in Argentinië (1955–1983) beperkten publieke bijeenkomsten, waardoor de milonga's grotendeels verdwenen. De opkomst van rock-'n-roll en andere dansstijlen verdrongen de tango ook cultureel.</p>
+
+          <p>De authentieke Argentijnse vorm keerde pas in de jaren '70 terug, aanvankelijk in underground-kringen. Een kleine groep toegewijde dansers en muzikanten in Buenos Aires bewaarden de <em>tango de salón</em> — de intieme, geïmproviseerde dansstijl uit de Gouden Eeuw. Zij werden de bewakers van het erfgoed.</p>
+
+          <p><span class="year-tag">1983</span> De show <em>Tango Argentino</em> — gecreëerd door Claudio Segovia en Héctor Orezzoli — is een keerpunt. Na een succesvolle première in Parijs toert de show de hele wereld rond, ook op Broadway. Voor miljoenen mensen is dit de eerste kennismaking met de echte Argentijnse tango.</p>
+
+          <div class="fact-box">
+            <h4>De wereldwijde tangorenatissence</h4>
+            <p>De jaren '90 zagen een explosieve groei van tangoscholen en milonga's wereldwijd. In steden als Berlijn, Helsinki, Tokio en Brussel verschenen levendige tangogemeenschappen. Vandaag zijn er geschat meer dan 10.000 milonga's per jaar in meer dan 90 landen.</p>
+          </div>
+
+          <p>De populariteit van figuren als Astor Piazzolla — die de tango fuseerde met jazz en klassieke muziek tot de <em>tango nuevo</em> — zorgde ook voor een artistieke vernieuwing. Hoewel aanvankelijk controversieel in eigen land, legde Piazzolla de tango vast als serieuze concertmuziek en maakte het toegankelijk voor een nieuw, internationaal publiek.</p>
+
+          <hr class="section-hr">
+
+          <!-- Section 5 -->
+          <h2 id="s5">
+            <span class="num">05</span>
+            UNESCO Werelderfgoed
+          </h2>
+
+          <p>In 2009 erkende UNESCO de Argentijnse tango als immaterieel cultureel erfgoed van de mensheid. De erkenning bevestigde wat tangodansers al eeuwenlang wisten: de tango is niet louter een dans, maar een complete culturele uitdrukking — een manier van zijn, van communiceren, van verbinden.</p>
+
+          <p>De UNESCO-erkenning kaderde de tango als een "intens romantische muzikaal-danstraditie" die zijn wortels heeft in de multiculturele arbeidersklasse van Buenos Aires en Montevideo. Bijzonder is dat zowel Argentinië als Uruguay gezamenlijk de kandidatuur indienden — een erkenning van de gedeelde oorsprong van de dans aan beide oevers van de Rio de la Plata.</p>
+
+          <p>Vandaag is de Argentijnse tango een wereldwijd fenomeen. In België — en zeker in Brussel — is er een levendige tangogemeenschap die de traditie levend houdt. Bij BE-TANGO geloven wij dat de tango voor iedereen toegankelijk moet zijn: ongeacht leeftijd, achtergrond of danservaring.</p>
+
+          <!-- Mobile share bar -->
+          <div class="mobile-share">
+            <span>Deel</span>
+            <a class="mobile-share-btn" href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a class="mobile-share-btn" href="https://twitter.com/intent/tweet?text=" target="_blank" rel="noopener" aria-label="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+            <a class="mobile-share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a class="mobile-share-btn" href="mailto:?subject=De geschiedenis van de Argentijnse tango" aria-label="E-mail"><i class="fas fa-envelope"></i></a>
+          </div>
+
+          <!-- Tags -->
+          <div class="article-tags">
+            <a href="#" class="tag">Argentijnse Tango</a>
+            <a href="#" class="tag">Geschiedenis</a>
+            <a href="#" class="tag">Buenos Aires</a>
+            <a href="#" class="tag">Tango Cultuur</a>
+            <a href="#" class="tag">UNESCO</a>
+            <a href="#" class="tag">Milonga</a>
+          </div>
+
+          <!-- Author card -->
+          <div class="author-card">
+            <div class="author-avatar" aria-hidden="true">S</div>
+            <div class="author-info">
+              <h4>Sonja</h4>
+              <p>Sonja is medeoprichter van BE-TANGO en een gepassioneerde tango-instructrice met meer dan 15 jaar ervaring. Ze deelt haar kennis van de Argentijnse tango in Brussel en Woluwe, met een bijzondere interesse in de culturele en historische dimensies van de dans.</p>
+            </div>
+          </div>
+
+          <!-- In-article CTA -->
+          <div class="article-cta-banner">
+            <h3>Klaar om de tango zelf te ervaren?</h3>
+            <p>Ontdek de magie van de Argentijnse tango in een gratis proefles bij BE-TANGO in Brussel of Woluwe. Geen ervaring nodig.</p>
+            <a href="../../tangolessen/gratis-proefles/" class="btn btn-primary">Schrijf je in voor een gratis proefles</a>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- RIGHT: TOC Sidebar -->
+      <aside class="toc-sidebar" aria-label="Inhoudsopgave">
+        <div class="toc-sticky">
+          <p class="toc-label">In dit artikel</p>
+          <ul class="toc-list">
+            <li>
+              <a href="#s1">
+                <span class="toc-num">01</span>
+                Het ontstaan in Buenos Aires
+              </a>
+            </li>
+            <li>
+              <a href="#s2">
+                <span class="toc-num">02</span>
+                Van straatmuziek naar nationale passie
+              </a>
+            </li>
+            <li>
+              <a href="#s3">
+                <span class="toc-num">03</span>
+                De tango verovert Europa
+              </a>
+            </li>
+            <li>
+              <a href="#s4">
+                <span class="toc-num">04</span>
+                Heropleving en wereldwijde populariteit
+              </a>
+            </li>
+            <li>
+              <a href="#s5">
+                <span class="toc-num">05</span>
+                UNESCO Werelderfgoed
+              </a>
+            </li>
+          </ul>
+
+          <div style="margin-top: 2.5rem; padding: 1.25rem; background: rgba(226,192,51,0.06); border: 1.5px solid rgba(226,192,51,0.2); border-radius: 6px;">
+            <p style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.625rem;">Gratis proefles</p>
+            <p style="font-size: 0.8rem; color: var(--text-light); line-height: 1.55; margin-bottom: 0.875rem;">Ervaar de tango zelf. Geen ervaring vereist.</p>
+            <a href="../../tangolessen/gratis-proefles/" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.8125rem; display: block; text-align: center;">Inschrijven</a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- RELATED ARTICLES -->
+  <section class="related-section" aria-label="Meer artikelen">
+    <div class="container">
+      <div class="related-header">
+        <span class="eyebrow">Meer lezen</span>
+        <h2>Gerelateerde artikelen</h2>
+      </div>
+      <div class="related-grid">
+        <article class="related-card">
+          <div class="related-card-thumb">
+            <span class="thumb-label">MUZIEK</span>
+            <span class="thumb-cat">Muziek</span>
+          </div>
+          <div class="related-card-body">
+            <h3>De bandoneón: het hart van de Argentijnse tango</h3>
+            <p>Hoe dit kleine instrument uit Duitsland het ziel van de tango werd.</p>
+            <div class="related-card-meta">
+              <span><i class="fas fa-clock"></i> 5 min</span>
+              <span><i class="fas fa-user"></i> Sonja</span>
+            </div>
+          </div>
+        </article>
+        <article class="related-card">
+          <div class="related-card-thumb">
+            <span class="thumb-label">LESSEN</span>
+            <span class="thumb-cat">Tips &amp; Advies</span>
+          </div>
+          <div class="related-card-body">
+            <h3>5 tips voor beginners die met tango willen beginnen</h3>
+            <p>Praktisch advies voor wie de eerste stap wil zetten op de dansvloer.</p>
+            <div class="related-card-meta">
+              <span><i class="fas fa-clock"></i> 4 min</span>
+              <span><i class="fas fa-user"></i> Sonja</span>
+            </div>
+          </div>
+        </article>
+        <article class="related-card">
+          <div class="related-card-thumb">
+            <span class="thumb-label">MILONGA</span>
+            <span class="thumb-cat">Cultuur</span>
+          </div>
+          <div class="related-card-body">
+            <h3>Wat is een milonga? Alles wat je moet weten</h3>
+            <p>Van dansavond tot muziekstijl — de term milonga heeft meerdere betekenissen.</p>
+            <div class="related-card-meta">
+              <span><i class="fas fa-clock"></i> 6 min</span>
+              <span><i class="fas fa-user"></i> Sonja</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER — full-width -->
+  <section class="newsletter-section" aria-label="Nieuwsbrief">
+    <div class="container">
+      <div class="newsletter-inner">
+
+        <div class="newsletter-text">
+          <p class="eyebrow">Blijf op de hoogte</p>
+          <h2>Voel het <em>ritme</em> van de tango elke maand in je inbox</h2>
+          <p>Ontvang nieuws over lessen, evenementen en tangoculuur. Rechtstreeks van Sonja en Sven, zonder spam.</p>
+        </div>
+
+        <div class="newsletter-form">
+          <form action="#" method="post" novalidate>
+            <!-- Honeypot -->
+            <div class="form-honeypot" aria-hidden="true">
+              <label for="website">Website (laat leeg)</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="nl-name">Voornaam</label>
+              <input type="text" id="nl-name" name="name" placeholder="Jouw voornaam" autocomplete="given-name">
+            </div>
+            <div class="form-group">
+              <label for="nl-email">E-mailadres</label>
+              <input type="email" id="nl-email" name="email" placeholder="jouw@email.be" autocomplete="email" required>
+            </div>
+            <button type="submit" class="btn-submit">
+              <i class="fas fa-paper-plane" style="margin-right: 0.5rem;"></i>Inschrijven voor nieuwsbrief
+            </button>
+            <p class="form-note">Geen spam. Afmelden kan altijd. We respecteren je privacy.</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>BE-TANGO</h3>
+          <p>Uw dansschool voor Argentijnse tango in Brussel en Woluwe.</p>
+          <p>Ervaar de connectie, de muziek en het plezier.</p>
+          <p style="margin-top: 1rem;"><strong style="color:rgba(255,255,255,0.85);">Telefoon:</strong> <a href="tel:+32498392939">+32 498 39 29 39</a></p>
+          <p><strong style="color:rgba(255,255,255,0.85);">E-mail:</strong> <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/p/Be-tango-ART-100057312323946/" aria-label="Facebook" class="social-icon" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/be_tango_brussels/" aria-label="Instagram" class="social-icon" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Snelle Links</h4>
+          <ul>
+            <li><a href="../../">Home</a></li>
+            <li><a href="../../tangolessen/">Tangolessen</a></li>
+            <li><a href="../../tangolessen/gratis-proefles/" class="footer-free-trial">Gratis Proefles</a></li>
+            <li><a href="../">Blog</a></li>
+            <li><a href="../../contacteer-ons/">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Lessen</h4>
+          <ul>
+            <li><a href="../../tangolessen/beginners/">Beginners</a></li>
+            <li><a href="../../tangolessen/ervaring/">Gevorderden</a></li>
+            <li><a href="../../tangolessen/prive/">Privélessen</a></li>
+            <li><a href="../../tangolessen/online/">Online</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Locaties</h4>
+          <div class="footer-location-cards">
+            <div class="location-card">
+              <strong>BE-TANGO Centre</strong>
+              <span class="loc-address">Rue du Marais 68, 1000 Brussel</span>
+              <a href="../../tangolessen/brussel/" class="loc-link">Bekijk locatie →</a>
+            </div>
+            <div class="location-card">
+              <strong>BE-TANGO Woluwe</strong>
+              <span class="loc-address">Av. Orban 54, 1150 Woluwe-Sint-Pieters</span>
+              <a href="../../tangolessen/woluwe/" class="loc-link">Bekijk locatie →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 BE-TANGO. Alle rechten voorbehouden.</p>
+        <p class="footer-email">E-mail: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
+        <p class="footer-legal">
+          <a href="../../privacy-policy/">Privacybeleid</a> |
+          <a href="../../algemene-voorwaarden/">Algemene Voorwaarden</a> |
+          <a href="../../links/">Links</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Mobile nav & language switcher
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    const siteHeader = document.querySelector('.site-header');
+    const languageToggle = document.querySelector('.language-toggle');
+    const languageDropdown = document.querySelector('.language-dropdown');
+
+    if (languageToggle && languageDropdown) {
+      languageToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isExpanded = languageToggle.getAttribute('aria-expanded') === 'true';
+        languageToggle.setAttribute('aria-expanded', !isExpanded);
+        languageDropdown.classList.toggle('active');
+      });
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.language-switcher')) {
+          languageToggle.setAttribute('aria-expanded', 'false');
+          languageDropdown.classList.remove('active');
+        }
+      });
+    }
+
+    if (menuToggle && mainNav) {
+      menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+        if (window.innerWidth < 768) {
+          mainNav.classList.toggle('mobile-nav-open');
+          menuToggle.classList.toggle('active');
+        }
+      });
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth < 768 && mainNav.classList.contains('mobile-nav-open') && !siteHeader.contains(e.target)) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+          mainNav.classList.remove('mobile-nav-open');
+          menuToggle.classList.remove('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) siteHeader.classList.add('scrolled');
+      else siteHeader.classList.remove('scrolled');
+    });
+
+    // Reading progress bar
+    const progressBar = document.getElementById('readingProgress');
+    const articleContent = document.getElementById('article-content');
+
+    if (progressBar && articleContent) {
+      window.addEventListener('scroll', () => {
+        const articleTop = articleContent.offsetTop;
+        const articleHeight = articleContent.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const scrolled = window.scrollY;
+
+        const start = articleTop - windowHeight * 0.2;
+        const end = articleTop + articleHeight - windowHeight;
+        const progress = Math.min(Math.max((scrolled - start) / (end - start), 0), 1);
+        progressBar.style.width = (progress * 100) + '%';
+      }, { passive: true });
+    }
+
+    // Smooth active TOC highlighting
+    const tocLinks = document.querySelectorAll('.toc-list a');
+    const sections = document.querySelectorAll('h2[id]');
+
+    if (tocLinks.length && sections.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            tocLinks.forEach(link => {
+              link.style.color = '';
+              link.parentElement.style.borderLeftColor = '';
+            });
+            const id = entry.target.getAttribute('id');
+            const activeLink = document.querySelector(`.toc-list a[href="#${id}"]`);
+            if (activeLink) {
+              activeLink.style.color = '#1C244B';
+              activeLink.parentElement.style.borderLeftColor = '#E2C033';
+            }
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+
+      sections.forEach(section => observer.observe(section));
+    }
+  </script>
+
+</body>
+</html>
