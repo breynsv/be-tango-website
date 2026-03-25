@@ -254,6 +254,12 @@ Quick modifications to be done on the rebuild website.
 
 Submit BE-TANGO to directories that rank for relevant tango/dance queries and provide quality backlinks. All free unless noted.
 
+#### Post-launch technical
+
+- [ ] **Submit be-tango.be sitemap in Search Console** — after launch, submit the `.be` sitemap and verify canonical tags point to `.be` (not `.com`). Authority from `.com` transfers via the 301s already in place.
+- [ ] **Validate FAQPage schema** — run a handful of posts through Google Rich Results Test to confirm FAQPage markup is eligible for rich results.
+- [ ] **Verify 301 redirects** — confirm `be-tango.com` → `be-tango.be` redirects are live and no duplicate indexing occurs.
+
 #### Tier 1 — Immediate (Free, high relevance)
 
 - [ ] **milonga.be** — Tango-specific Belgian directory, ranks for every tango query; add classes listing

@@ -449,7 +449,7 @@
   <url>
     <loc>https://www.be-tango.be/fr/blog/difference-entre-tango-valse-et-milonga/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/blog/difference-entre-tango-valse-et-milonga/"/>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/blog/het-verschil-tussen-tango-vals-en-milonga/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/blog/tango-vals-en-milonga-wat-zijn-de-verschillen/"/>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -466,10 +466,11 @@
   </url>
 
   <url>
-    <loc>https://www.be-tango.be/nl/blog/het-verschil-tussen-tango-vals-en-milonga/</loc>
+    <loc>https://www.be-tango.be/nl/blog/tango-vals-en-milonga-wat-zijn-de-verschillen/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.be-tango.be/blog/tango-vals-milonga-differences/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/blog/tango-vals-en-milonga-wat-zijn-de-verschillen/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/blog/difference-entre-tango-valse-et-milonga/"/>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/blog/het-verschil-tussen-tango-vals-en-milonga/"/>
-    <lastmod>2026-02-09</lastmod>
+    <lastmod>2026-03-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
