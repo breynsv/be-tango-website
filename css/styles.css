@@ -7421,6 +7421,9 @@ section.hero-small {
 }
 
 /* Calendar icon button on schedule items */
+.bts-cal {
+  margin-right: 0.75rem;
+}
 .btn-cal-icon {
   background: transparent;
   border: 1px solid var(--color-border, #e2e8f0);
