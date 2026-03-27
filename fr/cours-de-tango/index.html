@@ -8,23 +8,30 @@
   <title>Cours de Tango – BE-TANGO</title>
   <link rel="canonical" href="https://www.be-tango.be/fr/cours-de-tango/">
 
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="en" href="https://www.be-tango.be/tango-classes/">
+  <link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/cours-de-tango/">
+  <link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/tangolessen/">
+  <link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/tango-classes/">
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/cropped-favicon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.7"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.7"></noscript>
 
   <!-- JSON-LD Structured Data for Course -->
   <script type="application/ld+json">
@@ -70,6 +77,18 @@
     ]
   }
   </script>
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.be-tango.be/fr/"},
+      {"@type": "ListItem", "position": 2, "name": "Cours de Tango", "item": "https://www.be-tango.be/fr/cours-de-tango/"}
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -81,7 +100,7 @@
     <div class="container">
       <div class="header-content">
         <a href="../" class="logo">
-          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - École de Danse de Tango Argentin" width="200" height="34" loading="lazy">
+          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - École de Danse de Tango Argentin" width="200" height="34">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -102,9 +121,7 @@
                 <li><a href="en-ligne/">Cours en Ligne</a></li>
                 <li><a href="bruxelles/">Bruxelles</a></li>
                 <li><a href="woluwe/">Woluwe</a></li>
-                <li><a href="en-couple/">En Couple</a></li>
-                <li><a href="danse-de-mariage/">Danse de Mariage</a></li>
-                <li><a href="team-building/">Team Building</a></li>
+                <li><a href="ateliers/">Ateliers</a></li>
               </ul>
             </li>
             <li><a href="essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
@@ -357,7 +374,6 @@
                 <li>Ochos (pivots avant et arrière)</li>
                 <li>Motifs de tours simples</li>
               </ul>
-              <p><strong>Disponibilité :</strong> Mercredi 18:30 (Bruxelles) et Jeudi 18:30 (Woluwe)</p>
               <div style="margin-top: var(--spacing-md);">
                 <a href="experimentes/" class="btn btn-primary">Voir les cours expérimentés <i class="fas fa-arrow-right"></i></a>
               </div>
@@ -380,7 +396,6 @@
                 <li>Barridas (balayages et traînées)</li>
                 <li>Accent sur la dissociation et la conscience corporelle</li>
               </ul>
-              <p><strong>Disponibilité :</strong> Lundi 19:00 (Bruxelles) et Mardi 19:00 (Woluwe)</p>
               <div style="margin-top: var(--spacing-md);">
                 <a href="experimentes/" class="btn btn-primary">Voir les cours expérimentés <i class="fas fa-arrow-right"></i></a>
               </div>
@@ -403,7 +418,6 @@
                 <li>Techniques de navigation avancées</li>
                 <li>Développement de la musicalité</li>
               </ul>
-              <p><strong>Disponibilité :</strong> Mercredi 19:30 (Bruxelles) et Mardi 20:00 (Woluwe)</p>
               <div style="margin-top: var(--spacing-md);">
                 <a href="experimentes/" class="btn btn-primary">Voir les cours expérimentés <i class="fas fa-arrow-right"></i></a>
               </div>
@@ -427,7 +441,6 @@
                 <li>Variations de musicalité Vals et Milonga</li>
                 <li>Travail d'improvisation complexe</li>
               </ul>
-              <p><strong>Disponibilité :</strong> Mercredi 20:30 (Bruxelles) et Jeudi 20:30 (Woluwe)</p>
               <div style="margin-top: var(--spacing-md);">
                 <a href="experimentes/" class="btn btn-primary">Voir les cours expérimentés <i class="fas fa-arrow-right"></i></a>
               </div>
@@ -438,54 +451,6 @@
     </section>
 
     <!-- CTA SECTION -->
-    <!-- PROGRAMMES SPÉCIAUX -->
-    <section style="padding: var(--spacing-2xl) 0;">
-      <div class="container">
-        <div class="section-header">
-          <h2>Programmes Spéciaux</h2>
-          <p class="section-description">Des expériences de tango sur mesure au-delà du programme régulier</p>
-        </div>
-
-        <div class="grid grid-3">
-          <!-- En Couple -->
-          <article class="card journey-card" data-href="en-couple/">
-            <div class="journey-content">
-              <div class="card-icon">
-                <i class="fas fa-heart"></i>
-              </div>
-              <h3>En Couple</h3>
-              <p>Dansez ensemble — parfait pour les couples qui souhaitent approfondir leur connexion à travers le tango.</p>
-              <a href="en-couple/" class="journey-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Danse de Mariage -->
-          <article class="card journey-card" data-href="danse-de-mariage/">
-            <div class="journey-content">
-              <div class="card-icon">
-                <i class="fas fa-ring"></i>
-              </div>
-              <h3>Danse de Mariage</h3>
-              <p>Votre première danse — nous créons une belle chorégraphie de tango pour votre mariage.</p>
-              <a href="danse-de-mariage/" class="journey-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Team Building -->
-          <article class="card journey-card" data-href="team-building/">
-            <div class="journey-content">
-              <div class="card-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <h3>Team Building</h3>
-              <p>Tango d'entreprise — leadership, confiance et connexion à travers la danse.</p>
-              <a href="team-building/" class="journey-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section class="cta-section bg-dark">
       <div class="container">
         <div class="cta-content">
@@ -531,6 +496,7 @@
             <li><a href="../cours-de-tango/">Cours de Tango</a></li>
             <li><a href="essai-gratuit/">Essai Gratuit</a></li>
             <li><a href="../contactez-nous/">Contact</a></li>
+            <li><a href="../faq/">FAQ</a></li>
             <li><a href="#">Blog</a></li>
           </ul>
         </div>
@@ -542,6 +508,7 @@
             <li><a href="#experimentes">Expérimentés</a></li>
             <li><a href="#particuliers">Cours Privés</a></li>
             <li><a href="#en-ligne">En Ligne</a></li>
+            
             <li><a href="en-couple/">En Couple</a></li>
             <li><a href="danse-de-mariage/">Danse de Mariage</a></li>
             <li><a href="team-building/">Team Building</a></li>
@@ -569,7 +536,7 @@
         <p>&copy; 2026 BE-TANGO. Tous droits réservés.</p>
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
-          <a href="../../privacy-policy/">Politique de confidentialité</a> |
+          <a href="../politique-de-confidentialite/">Politique de confidentialité</a> |
           <a href="../termes-et-conditions-generales/">Termes et Conditions</a> |
           <a href="../liens/">Liens</a>
         </p>

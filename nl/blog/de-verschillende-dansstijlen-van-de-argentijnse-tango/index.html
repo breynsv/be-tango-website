@@ -31,15 +31,16 @@
 <link href="../../../images/cropped-favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
 <link href="../../../images/cropped-favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <link href="../../../images/cropped-favicon-180x180.png" rel="apple-touch-icon" sizes="180x180"/>
+<link rel="manifest" href="/site.webmanifest">
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
 <link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<link href="../../../css/fontawesome.min.css?v=3.5" rel="stylesheet"/><noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/></noscript>
+<link href="../../../css/fontawesome.min.css?v=3.7" rel="stylesheet"/><noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/></noscript>
 <!-- Stylesheet -->
-<link href="../../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
-<noscript><link href="../../../css/styles.min.css?v=3.6" rel="stylesheet"/></noscript>
+<link href="../../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
+<noscript><link href="../../../css/styles.min.css?v=3.7" rel="stylesheet"/></noscript>
 <!-- D4 Blog Design Styles -->
 <style>
     :root {
@@ -759,6 +760,17 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Startpagina", "item": "https://www.be-tango.be/nl/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.be-tango.be/nl/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "De verschillende dansstijlen van de Argentijnse tango | BE-TANGO Blog", "item": "https://www.be-tango.be/nl/blog/de-verschillende-dansstijlen-van-de-argentijnse-tango/"}
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Spring naar hoofdinhoud</a>
@@ -767,7 +779,7 @@
 <div class="container">
 <div class="header-content">
 <a class="logo" href="../../">
-<img alt="BE-TANGO - Argentijnse Tango Dansschool" height="34" loading="lazy" src="../../../images/logo-be-tango.png" width="200"/>
+<img alt="BE-TANGO - Argentijnse Tango Dansschool" height="34"  src="../../../images/logo-be-tango.png" width="200"/>
 </a>
 <button aria-expanded="false" aria-label="Toggle menu" class="mobile-menu-toggle">
 <span></span>
@@ -786,9 +798,7 @@
 <li><a href="../../tangolessen/online/">Online Lessen</a></li>
 <li><a href="../../tangolessen/brussel/">Brussel</a></li>
 <li><a href="../../tangolessen/woluwe/">Woluwe</a></li>
-<li><a href="../../tangolessen/voor-koppels/">Voor Koppels</a></li>
-<li><a href="../../tangolessen/openingsdans/">Openingsdans</a></li>
-<li><a href="../../tangolessen/teambuilding/">Teambuilding</a></li>
+<li><a href="../../tangolessen/workshops/">Workshops</a></li>
 </ul>
 </li>
 <li><a class="btn btn-primary btn-nav" href="../../tangolessen/gratis-proefles/">Gratis Proefles</a></li>
@@ -849,7 +859,7 @@
             </a>
 </div>
 <div class="hero-image-panel">
-<img alt="De verschillende dansstijlen van de Argentijnse tango" loading="eager" src="../../../images/blog/12_candombe.jpg"/>
+<img fetchpriority="high" alt="De verschillende dansstijlen van de Argentijnse tango" src="../../../images/blog/12_candombe.webp"/>
 <div class="hero-image-label"><i class="fas fa-map-marker-alt"></i> Buenos Aires, dansvloer</div>
 </div>
 </div>
@@ -893,7 +903,7 @@
 <h2>Canyengue en Tango Orillero: de vroegste wortels</h2>
 </div>
 <p>
-<strong>Canyengue</strong> is de absolute oer-tango. Als cursisten me vragen waar onze dans vandaan komt, wijs ik naar deze stijl uit de jaren '20 en '30. Je herkent hem blindelings aan die <em>stevige, ritmische beat</em>. Je staat in een dichte V-vorm met diep gebogen knieën. Geen stijf of formeel gedoe, maar aards en speels. Je voelt het parket onder je voeten en rolt door de muziek heen.
+<strong>Canyengue</strong> is de oertango bij uitstek. Wanneer cursisten vragen naar de oorsprong van onze dans, verwijs ik steevast naar deze stijl uit de jaren twintig en dertig. Kenmerkend is de <em>stevige, ritmische beat</em>. Dansers staan in een dichte V-vorm, met diepgebogen knieën. Geen stijfheid, wel een aardse speelsheid. Je voelt het parket onder je voeten en rolt door de muziek.
               </p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--spacing-md);margin:var(--spacing-lg) 0;">
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--border-radius);">
@@ -904,16 +914,16 @@
 </div>
 </div>
 <p>
-                Zijn ruwere broertje is <strong>Tango Orillero</strong>. Letterlijk de tango van de <em>orillas</em>, de buitenwijken van Buenos Aires. In die krappe, rokerige cafés was geen plaats voor sierlijke lijnen, dus wat deden ze? Snel voetenwerk, snedige bewegingen en keihard improviseren om botsingen te vermijden.
+                Het ruwere broertje van de canyengue is de <strong>Tango Orillero</strong>. Letterlijk: de tango van de <em>orillas</em>, de buitenwijken van Buenos Aires. In de krappe, rokerige cafés was geen plaats voor sierlijke lijnen. Het antwoord? Snel voetenwerk, snedige bewegingen en improvisatie om botsingen te vermijden.
               </p>
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:var(--spacing-lg) 0;border-radius:var(--border-radius);">
 <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/T1aP7nb39zs" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" title="Rodolfo en Maria Cieri - El Chamuyo (Tango Orillero)"></iframe>
 </div>
 <div class="pullquote">
-<p>Vergeet de strakke ballroom. Echte tango ontstond op de straathoek: rauw, ritmisch en ongefilterd.</p>
+<p>Vergeet de strakke ballroom. De authentieke tango ontstond op de straathoek: rauw, ritmisch en ongefilterd.</p>
 </div>
 <p>
-                Eerlijk? In Brusselse milonga's zoals de Cellule 133 of La Tentation zie je dit zelden een hele avond lang. Maar de harde kern van gepassioneerde dansers houdt deze roots springlevend. Canyengue of Orillero dansen dwingt je om uit je hoofd te komen en de volkse, ongetemde ziel van de tango te ervaren.
+                In Brusselse milonga's zoals de Cellule 133 of La Tentation zie je deze stijlen zelden een hele avond lang. Toch houdt een harde kern van gepassioneerde dansers deze roots springlevend. Canyengue of Orillero dansen dwingt je om uit je hoofd te komen en de volkse, ongetemde ziel van de tango te ervaren.
               </p>
 </article>
 <article class="section-card" id="sectie-2">
@@ -923,16 +933,16 @@
 <h2>Tango de Salon en Tango Milonguero: de klassieke omhelzing</h2>
 </div>
 <p>
-                Wat dansen we meestal in Brussel? <strong>Tango de Salon</strong>. Dit is de elegante, vloeiende stijl die je op donderdagavond of zondagnamiddag op de meeste dansvloeren ziet. Alles draait hier om de <em>abrazo</em> (de omhelzing). We dansen gesloten (<em>abrazo cerrado</em>), maar met ademruimte. Lange passen, strakke lijnen. De absolute basisregel die ik er in mijn lessen in hamer: bewaar je eigen as.
+                De meest gedanste stijl in Brussel is de <strong>Tango de Salon</strong>. Deze elegante, vloeiende stijl zie je op donderdagavond en zondagnamiddag op de meeste dansvloeren. Alles draait om de <em>abrazo</em>, de omhelzing. Er wordt gesloten gedanst (<em>abrazo cerrado</em>), maar met ademruimte. Lange passen, strakke lijnen. De basisregel die ik in mijn lessen benadruk: bewaar je eigen as.
               </p>
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:var(--spacing-lg) 0;border-radius:var(--border-radius);">
 <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/p6BlOvgf14M" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" title="Tango de Salon in de Confitería Ideal, Buenos Aires"></iframe>
 </div>
 <p>
-                Daartegenover staat <strong>Tango Milonguero</strong>, ook wel *Estilo del Centro* genoemd. Denk aan de overvolle vloeren in het centrum van Buenos Aires. Geen millimeter ruimte voor zwierige showfiguren. Je danst borst-op-borst. De focus ligt honderd procent op <strong>muzikaliteit en ritme</strong>. Je stapt klein, compact en altijd samen.
+                Daartegenover staat de <strong>Tango Milonguero</strong>, ook wel *Estilo del Centro* genoemd. Stel je de overvolle dansvloeren in het centrum van Buenos Aires voor. Geen ruimte voor zwierige figuren. Je danst borst tegen borst, met een focus op <strong>muzikaliteit en ritme</strong>. Kleine, compacte passen, altijd synchroon.
               </p>
 <p>
-                Voor mij als docent is dit de essentie. Milonguero dwingt je tot een echte dialoog zonder woorden. Je luistert, je ademt samen, je pauzeert. Grote showfiguren zijn hier respectloos naar de andere koppels op de piste. Zodra de DJ een felle D'Arienzo, Tanturi of Biagi oplegt, weet je hoe laat het is: we sluiten de omhelzing en gaan vol voor het ritme.
+                Voor mij als docent is dit essentieel. Milonguero dwingt tot een dialoog zonder woorden. Je luistert, ademt en pauzeert samen. Grote showfiguren getuigen van disrespect voor de andere koppels op de dansvloer. Zodra de DJ een felle D'Arienzo, Tanturi of Biagi draait, is het duidelijk: sluit de omhelzing en ga volledig voor het ritme.
               </p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--spacing-md);margin:var(--spacing-lg) 0;">
 <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--border-radius);">
@@ -950,20 +960,20 @@
 <h2>Candombé en Tango Villa Urquiza: cultuur en verfijning</h2>
 </div>
 <p>
-                Mensen vergeten het vaak, maar <strong>Candombé</strong> is de zwarte, Afro-Uruguayaanse hartslag van onze dans. Zonder de ritmes van deze tot slaaf gemaakte Afrikanen bestond er simpelweg geen tango. Punt. Die diepe, meeslepende baslijn en die golvende cadans in het lichaam zitten onuitwisbaar in ons DNA verankerd.
+                Men vergeet het vaak, maar <strong>Candombé</strong> is de zwarte, Afro-Uruguayaanse hartslag van onze dans. Zonder de ritmes van tot slaaf gemaakte Afrikanen bestond er geen tango. Punt. Die diepe, meeslepende baslijn en golvende cadans zitten onuitwisbaar in ons DNA verankerd.
               </p>
 <p>
-                Tegelijkertijd heb je de <strong>Tango Villa Urquiza</strong>, vernoemd naar de gelijknamige wijk in Buenos Aires. Dit is de absolute verfijning uit de jaren '40 en '50. Je staat kaarsrecht in een subtiele V-omhelzing. Kenmerkend voor deze stijl? Prachtige, langgerekte stappen, naadloze ocho's en chirurgisch precies voetenwerk. Beide partners controleren perfect hun eigen as.
+                Daarnaast is er de <strong>Tango Villa Urquiza</strong>, genoemd naar de gelijknamige wijk in Buenos Aires. Deze stijl vertegenwoordigt de verfijning van de jaren veertig en vijftig. Een kaarsrechte houding in een subtiele V-omhelzing. Kenmerkend zijn de langgerekte stappen, naadloze ocho's en het chirurgisch precieze voetenwerk. Beide partners beheersen hun eigen as perfect.
               </p>
 <div class="pullquote">
-<p>Villa Urquiza dansen is flirten met perfectie: je beweegt met een enorme klasse, maar zonder een spatje arrogantie.</p>
+<p>Villa Urquiza dansen is flirten met perfectie: bewegen met klasse, zonder arrogantie.</p>
 </div>
 <p>
-                Ik waarschuw mijn leerlingen bij BE-TANGO altijd: Villa Urquiza is een werk van lange adem. Het vraagt een ijzersterke techniek en engelengeduld. Je pikt dit niet even op in je eerste lessenreeks. Maar als je het eenmaal voelt, is het de meest respectvolle en elegante manier om de dansvloer over te zweven.
+                Ik waarschuw mijn leerlingen bij BE-TANGO: Villa Urquiza vergt tijd. Een ijzersterke techniek en engelengeduld zijn vereist. Dit leer je niet in een eerste lessenreeks. Maar eens je het voelt, is het de meest respectvolle en elegante manier om over de dansvloer te zweven.
               </p>
 <figure class="article-featured-image img-portrait">
 <img alt="Candombé schilderij van Pedro Figari, 1921" loading="lazy" src="../../../images/blog/candombe-figari-1921.jpg"/>
-<figcaption>Candombé, vastgelegd door Pedro Figari (1921). Kijk naar de ritmische, Afrikaanse wortels waar onze tango uit is gegroeid.</figcaption>
+<figcaption>Candombé, vastgelegd door Pedro Figari (1921). Let op de ritmische, Afrikaanse wortels van de tango.</figcaption>
 </figure>
 </article>
 <article class="section-card" id="sectie-4">
@@ -973,17 +983,17 @@
 <h2>Tango Fantasía en Tango Escenario: de dans als spektakel</h2>
 </div>
 <p>
-                Dan de showtango. Ik zeg het wekelijks in mijn lessen: dit bewaar je voor het podium, níét voor de milonga. <strong>Tango Fantasía</strong> werd in de jaren '50 op de kaart gezet door de legendarische <strong>Juan Carlos Copes</strong>. Dit is gechoreografeerd spektakel. Ganchos in de lucht, dramatische poses, spectaculaire lifts. Prachtig om te zien, maar levensgevaarlijk als je dit op een drukke zaterdagavond in Brussel probeert.
+                Dit is showtango. Ik herhaal het wekelijks in mijn lessen: bewaar dit voor het podium, niet voor de milonga. <strong>Tango Fantasía</strong> werd in de jaren vijftig gelanceerd door de legendarische <strong>Juan Carlos Copes</strong>. Het is gechoreografeerd spektakel: ganchos in de lucht, dramatische poses, spectaculaire lifts. Prachtig om te zien, maar levensgevaarlijk op een drukke zaterdagavond in Brussel.
               </p>
 <figure class="article-featured-image img-portrait" style="max-width: 40%;">
 <img alt="Juan Carlos Copes, pionier van Tango Fantasia (1929–2021)" loading="lazy" src="../../../images/blog/juan-carlos-copes.jpg"/>
 <figcaption>Juan Carlos Copes (1929–2021). De maestro die met zijn Tango Fantasía onze dans wereldwijd naar de theaterzalen bracht.</figcaption>
 </figure>
 <p>
-                Nog een stap verder gaat <strong>Tango Escenario</strong>, oftewel podiumtango. Dit is pure theatrale topsport. Hier telt maar één ding: het publiek omverblazen met acrobatiek, extreme lijnen en drama. Je ziet dit op internationale festivals, in televisieshows en in de grote zalen.
+<strong>Tango Escenario</strong>, oftewel podiumtango, gaat nog een stap verder. Pure theatrale topsport. Het enige doel: het publiek overweldigen met acrobatiek, extreme lijnen en drama. Je ziet dit op internationale festivals, in televisieshows en in grote zalen.
               </p>
 <p>
-                Natuurlijk raken beginners hierdoor geïnspireerd als ze filmpjes op YouTube zien. Dat moedig ik aan. Maar vergis je niet: deze dansers trainen dagelijks klassiek ballet en moderne dans om dit te kunnen. Sociale tango is een compleet andere discipline. Een perfecte choreografie afwerken is knap, maar anticiperen, improviseren en connecteren op een volle Brusselse dansvloer is minstens zo uitdagend.
+                Natuurlijk raken beginners geïnspireerd door filmpjes op YouTube, wat ik aanmoedig. Maar vergis je niet: deze dansers trainen dagelijks klassiek ballet en moderne dans. Sociale tango is een andere discipline. Een perfecte choreografie afwerken is knap, maar anticiperen, improviseren en connecteren op een volle Brusselse dansvloer is minstens even uitdagend.
               </p>
 </article>
 <article class="section-card achievement" id="sectie-5">
@@ -995,13 +1005,13 @@
 <h2>Tango Nuevo: de levende evolutie</h2>
 </div>
 <p>
-                In de jaren '90 ontplofte de tangowereld met <strong>Tango Nuevo</strong>. Pioniers zoals <strong>Gustavo Naveira</strong> en een verse lichting iconen – denk aan <strong>Mariano 'Chicho' Frumboli</strong>, Norberto 'El Pulpo' Esbrés, Fabián Salas, Sebastian Arce en Mariana Montes – gooiden de regels overboord. Hun grootste ingreep? Ze braken de strakke, gesloten omhelzing open. Door die fysieke ruimte ontstond een compleet nieuwe speeltuin aan organische figuren.
+                De tangowereld ontplofte in de jaren negentig met <strong>Tango Nuevo</strong>. Pioniers zoals <strong>Gustavo Naveira</strong> en een nieuwe lichting iconen – <strong>Mariano 'Chicho' Frumboli</strong>, Norberto 'El Pulpo' Esbrés, Fabián Salas, Sebastian Arce en Mariana Montes – gooiden de regels overboord. Hun belangrijkste ingreep? De strakke, gesloten omhelzing werd opengebroken, waardoor een nieuwe speeltuin aan organische figuren ontstond.
               </p>
 <p>
-                Tango Nuevo herken je direct aan de <em>open, flexibele omhelzing</em>. Je krijgt de vrijheid om de as te delen en extreme hoeken op te zoeken. De beweging stopt nooit, alles stroomt door. Plots zagen we op de dansvloer diepe colgadas, zwevende volcadas en messcherpe, zweepachtige boleos die in de klassieke salonstijl fysiek onmogelijk waren.
+                Je herkent Tango Nuevo aan de <em>open, flexibele omhelzing</em>. Dit geeft de vrijheid om de as te delen en extreme hoeken op te zoeken. De beweging is continu. Plots verschenen diepe colgadas, zwevende volcadas en messcherpe, zweepachtige boleos op de dansvloer, fysiek onmogelijk in de klassieke salonstijl.
               </p>
 <p>
-                De oude milongueros in Buenos Aires riepen schande. Heiligschennis! Maar de jonge generatie, ook hier in Europa, omarmde die creatieve vrijheid vol overgave. Wat ik nu, na 15 jaar lesgeven in Brussel, op de vloer zie? De hokjes zijn weg. De beste dansers integreren elementen uit álle stijlen. Dat is precies de visie die we bij BE-TANGO doorgeven: leer de strikte basis, respecteer de geschiedenis, maar wees niet bang om de tango helemaal van jou te maken.
+                De oude milongueros in Buenos Aires spraken van heiligschennis, maar de jonge generatie, ook in Europa, omarmde de creatieve vrijheid vol overgave. Wat zie ik nu, na vijftien jaar lesgeven in Brussel? De hokjes zijn verdwenen. De beste dansers integreren elementen uit alle stijlen. Dat is de visie die we bij BE-TANGO doorgeven: leer de basis, respecteer de geschiedenis, maar wees niet bang om de tango eigen te maken.
               </p>
 <div>
 <span class="achievement-badge">
@@ -1177,6 +1187,7 @@
 <li><a class="footer-free-trial" href="../../tangolessen/gratis-proefles/">Gratis Proefles</a></li>
 <li><a href="../">Blog</a></li>
 <li><a href="../../contacteer-ons/">Contact</a></li>
+<li><a href="../../veelgestelde-vragen/">Veelgestelde Vragen</a></li>
 </ul>
 </div>
 <div class="footer-col">

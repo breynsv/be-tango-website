@@ -24,19 +24,20 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../images/cropped-favicon-32x32.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../css/fontawesome.min.css?v=3.7"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../css/styles.min.css?v=3.7"></noscript>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -54,6 +55,17 @@
     }
   }
 }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
+      {"@type": "ListItem", "position": 2, "name": "Terms and Conditions", "item": "https://www.be-tango.be/terms-and-conditions/"}
+    ]
+  }
   </script>
 </head>
 <body>
@@ -88,8 +100,6 @@
                 <li><a href="../tango-classes/brussels/">Brussels</a></li>
                 <li><a href="../tango-classes/woluwe/">Woluwe</a></li>
                 <li><a href="../tango-classes/couples/">Couples</a></li>
-                <li><a href="../tango-classes/wedding-dance/">Wedding Dance</a></li>
-                <li><a href="../tango-classes/team-building/">Team Building</a></li>
               </ul>
             </li>
             <li><a href="../tango-classes/free-trial/" class="btn btn-primary btn-nav">Free Trial</a></li>

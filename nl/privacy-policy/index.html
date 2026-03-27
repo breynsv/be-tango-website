@@ -24,19 +24,20 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.7"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.7"></noscript>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -54,6 +55,17 @@
     }
   }
 }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Startpagina", "item": "https://www.be-tango.be/nl/"},
+      {"@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://www.be-tango.be/nl/privacy-policy/"}
+    ]
+  }
   </script>
 </head>
 <body>
@@ -87,6 +99,7 @@
                 <li><a href="../../nl/tangolessen/online/">Online Lessen</a></li>
                 <li><a href="../../nl/tangolessen/brussel/">Brussel</a></li>
                 <li><a href="../../nl/tangolessen/woluwe/">Woluwe</a></li>
+                <li><a href="../../nl/tangolessen/workshops/">Workshops</a></li>
               </ul>
             </li>
             <li><a href="../../nl/tangolessen/gratis-proefles/" class="btn btn-primary btn-nav">Gratis Proefles</a></li>
@@ -206,6 +219,7 @@
             <li><a href="../../nl/tangolessen/gratis-proefles/" class="footer-free-trial">Gratis Proefles</a></li>
             <li><a href="../../nl/blog/">Blog</a></li>
             <li><a href="../../nl/contacteer-ons/">Contact</a></li>
+            <li><a href="../../nl/veelgestelde-vragen/">Veelgestelde Vragen</a></li>
           </ul>
         </div>
 

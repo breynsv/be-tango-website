@@ -24,6 +24,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,6 +50,17 @@
     "url": "https://www.be-tango.be"
   }
 }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Startpagina", "item": "https://www.be-tango.be/nl/"},
+      {"@type": "ListItem", "position": 2, "name": "Links", "item": "https://www.be-tango.be/nl/links/"}
+    ]
+  }
   </script>
 </head>
 <body data-page="links">
@@ -108,6 +120,9 @@
 
     <section class="content-section">
       <div class="container">
+
+        <!-- Tangobronnen -->
+        <h2 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl);">Tangobronnen</h2>
         <div class="links-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
 
           <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
@@ -115,26 +130,9 @@
               <i class="fas fa-music" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
               Milonga.be
             </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Milongas and tango events in Belgium</p>
-            <a href="https://www.milonga.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visit Website →</a>
-          </div>
-
-          <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
-            <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-primary);">
-              <i class="fas fa-user-friends" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
-              SonjaySven.be
-            </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Sonia & Sven - Your BE-TANGO instructors</p>
-            <a href="https://www.sonjaysven.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visit Website →</a>
-          </div>
-
-          <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
-            <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-primary);">
-              <i class="fas fa-theater-masks" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
-              Torsk.be
-            </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Theatre and cultural events</p>
-            <a href="https://www.torsk.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visit Website →</a>
+            <p style="margin-bottom: var(--spacing-xs);">Milonga's en tango-evenementen in België.</p>
+            <p style="margin-bottom: var(--spacing-sm); font-style: italic; color: var(--color-text-light);">De vaste agenda voor alle milonga's in België. Wij checken hem elke week.</p>
+            <a href="https://www.milonga.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Bezoek Website →</a>
           </div>
 
           <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
@@ -142,26 +140,9 @@
               <i class="fas fa-shoe-prints" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
               De Tango Se Trata
             </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Tango shoes in Brussels</p>
-            <a href="https://www.detangosetrata.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visit Website →</a>
-          </div>
-
-          <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
-            <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-primary);">
-              <i class="fas fa-utensils" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
-              NJAMelicious.be
-            </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Delicious catering services</p>
-            <a href="https://www.njamelicious.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visit Website →</a>
-          </div>
-
-          <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
-            <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-primary);">
-              <i class="fas fa-briefcase" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
-              DMV Advies
-            </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Business consulting services</p>
-            <a href="https://www.dmvadvies.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visit Website →</a>
+            <p style="margin-bottom: var(--spacing-xs);">Tangoschoenen in Brussel.</p>
+            <p style="margin-bottom: var(--spacing-sm); font-style: italic; color: var(--color-text-light);">Onze aanbevolen tangoschoenenwinkel in Brussel. BE-TANGO koopt er al jaren haar schoenen.</p>
+            <a href="https://www.detangosetrata.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Bezoek Website →</a>
           </div>
 
           <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
@@ -169,8 +150,42 @@
               <i class="fas fa-globe" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
               Milongas Worldwide
             </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Find milongas in any city worldwide</p>
-            <a href="https://www.todotango.com/english/milongas/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Find Milongas →</a>
+            <p style="margin-bottom: var(--spacing-xs);">Vind milonga's wereldwijd in elke stad.</p>
+            <p style="margin-bottom: var(--spacing-sm); font-style: italic; color: var(--color-text-light);">Op tangoreize? De beste manier om milonga's te vinden in elke stad.</p>
+            <a href="https://www.todotango.com/english/milongas/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Vind Milonga's →</a>
+          </div>
+
+        </div>
+
+        <!-- Onze Partners -->
+        <h2 style="margin-bottom: var(--spacing-md);">Onze Partners</h2>
+        <div class="links-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
+
+          <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
+            <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-primary);">
+              <i class="fas fa-theater-masks" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
+              Torsk.be
+            </h3>
+            <p style="margin-bottom: var(--spacing-sm);">Theater en culturele evenementen in Brussel.</p>
+            <a href="https://www.torsk.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Bezoek Website →</a>
+          </div>
+
+          <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
+            <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-primary);">
+              <i class="fas fa-utensils" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
+              NJAMelicious.be
+            </h3>
+            <p style="margin-bottom: var(--spacing-sm);">Heerlijke cateringdiensten in Brussel.</p>
+            <a href="https://www.njamelicious.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Bezoek Website →</a>
+          </div>
+
+          <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
+            <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-primary);">
+              <i class="fas fa-briefcase" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
+              DMV Advies
+            </h3>
+            <p style="margin-bottom: var(--spacing-sm);">Bedrijfsadvies.</p>
+            <a href="https://www.dmvadvies.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Bezoek Website →</a>
           </div>
 
           <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
@@ -178,8 +193,8 @@
               <i class="fas fa-laptop-code" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
               Deal Webdesign
             </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Our partner in webdesign</p>
-            <a href="https://www.deal-webdesign.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visit Website →</a>
+            <p style="margin-bottom: var(--spacing-sm);">Onze partner in webdesign.</p>
+            <a href="https://www.deal-webdesign.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Bezoek Website →</a>
           </div>
 
         </div>
@@ -219,6 +234,7 @@
             <li><a href="../tangolessen/gratis-proefles/" class="footer-free-trial">Gratis Proefles</a></li>
             <li><a href="../blog/">Blog</a></li>
             <li><a href="../contacteer-ons/">Contact</a></li>
+            <li><a href="../veelgestelde-vragen/">Veelgestelde Vragen</a></li>
           </ul>
         </div>
 
@@ -229,7 +245,9 @@
             <li><a href="../tangolessen/ervaring/">Gevorderden</a></li>
             <li><a href="../tangolessen/prive/">Privélessen</a></li>
             <li><a href="../tangolessen/online/">Online</a></li>
+            
             <li><a href="../tangolessen/voor-koppels/">Voor Koppels</a></li>
+            
             <li><a href="../tangolessen/openingsdans/">Openingsdans</a></li>
             <li><a href="../tangolessen/teambuilding/">Teambuilding</a></li>
           </ul>

@@ -18,3 +18,19 @@ Allow: /images/
 
 # Sitemap location
 Sitemap: https://www.be-tango.be/sitemap.xml
+
+# AI Search Crawlers — explicitly allowed for search and citation indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /

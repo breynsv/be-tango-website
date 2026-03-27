@@ -8,23 +8,30 @@
   <title>Tangolessen - BE-TANGO</title>
   <link rel="canonical" href="https://www.be-tango.be/nl/tangolessen/">
 
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="en" href="https://www.be-tango.be/tango-classes/">
+  <link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/cours-de-tango/">
+  <link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/tangolessen/">
+  <link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/tango-classes/">
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/cropped-favicon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.7"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.7"></noscript>
 
   <!-- JSON-LD Structured Data - Multiple Courses -->
   <script type="application/ld+json">
@@ -317,6 +324,18 @@
     ]
   }
   </script>
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Startpagina", "item": "https://www.be-tango.be/nl/"},
+      {"@type": "ListItem", "position": 2, "name": "Tangolessen", "item": "https://www.be-tango.be/nl/tangolessen/"}
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -328,7 +347,7 @@
     <div class="container">
       <div class="header-content">
         <a href="../../nl/" class="logo">
-          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentijnse Tango Dansschool" width="200" height="34" loading="lazy">
+          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentijnse Tango Dansschool" width="200" height="34">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -349,9 +368,7 @@
                 <li><a href="online/">Online Lessen</a></li>
                 <li><a href="brussel/">Brussel</a></li>
                 <li><a href="woluwe/">Woluwe</a></li>
-                <li><a href="voor-koppels/">Voor Koppels</a></li>
-                <li><a href="openingsdans/">Openingsdans</a></li>
-                <li><a href="teambuilding/">Teambuilding</a></li>
+                <li><a href="workshops/">Workshops</a></li>
               </ul>
             </li>
             <li><a href="gratis-proefles/" class="btn btn-primary btn-nav">Gratis Proefles</a></li>
@@ -397,7 +414,7 @@
     <section class="hero hero-small" style="background-image: url('../../images/Tango-classes-in-Brussels.png');">
       <div class="container">
         <div class="hero-content">
-          <p class="hero-label">ONTDEK JE TANGO REIS</p>
+          <p class="hero-label">Vind de les die bij je past</p>
           <h1>Ons Lesaanbod<br><span class="highlight">Van Beginner tot Gevorderd</span></h1>
           <p class="hero-tagline">Welkom bij onze tangodansschool!<br> We bieden een breed scala aan lessen voor alle niveaus, van absolute beginners tot gevorderden.</p>
 
@@ -458,7 +475,7 @@
             </div>
             <div class="journey-content">
               <h3>Of Kies per Locatie</h3>
-              <p>We hebben twee handige locaties in Brussel. Kies degene die het beste voor jou werkt.</p>
+              <p>We hebben twee handige locaties in Brussel. Kies de locatie die jou het beste uitkomt.</p>
               <span class="journey-link" style="pointer-events: none;">BEKIJK LOCATIES <i class="fas fa-arrow-right"></i></span>
             </div>
           </article>
@@ -604,7 +621,6 @@
                 <li>Ochos (voorwaartse en achterwaartse draaibewegingen)</li>
                 <li>Eenvoudige draaipatronen</li>
               </ul>
-              <p><strong>Beschikbaarheid:</strong> Woensdag 18:30 (Brussel) en Donderdag 18:30 (Woluwe)</p>
               <div style="margin-top: var(--spacing-md);">
                 <a href="ervaring/" class="btn btn-primary">Bekijk gevorderde lessen <i class="fas fa-arrow-right"></i></a>
               </div>
@@ -627,7 +643,6 @@
                 <li>Barridas (vegen en slepen)</li>
                 <li>Nadruk op dissociatie en lichaamsbewustzijn</li>
               </ul>
-              <p><strong>Beschikbaarheid:</strong> Maandag 19:00 (Brussel) en Dinsdag 19:00 (Woluwe)</p>
               <div style="margin-top: var(--spacing-md);">
                 <a href="ervaring/" class="btn btn-primary">Bekijk gevorderde lessen <i class="fas fa-arrow-right"></i></a>
               </div>
@@ -650,7 +665,6 @@
                 <li>Geavanceerde navigatietechnieken</li>
                 <li>Muzikaliteitsontwikkeling</li>
               </ul>
-              <p><strong>Beschikbaarheid:</strong> Woensdag 19:30 (Brussel) en Dinsdag 20:00 (Woluwe)</p>
               <div style="margin-top: var(--spacing-md);">
                 <a href="ervaring/" class="btn btn-primary">Bekijk gevorderde lessen <i class="fas fa-arrow-right"></i></a>
               </div>
@@ -666,7 +680,7 @@
               <span class="accordion-icon">+</span>
             </summary>
             <div class="accordion-content">
-              <p><strong>Voor ervaren dansers klaar om hun kunstenaarschap te verfijnen.</strong> Geavanceerde technieken en muzikaliteit:</p>
+              <p><strong>Voor ervaren dansers klaar om hun danstechniek te verfijnen.</strong> Geavanceerde technieken en muzikaliteit:</p>
               <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-lg);">
                 <li>Boleos (zweepslagen en kicks)</li>
                 <li>Ganchos (haken)</li>
@@ -674,7 +688,6 @@
                 <li>Vals en Milonga muzikaliteitsvariaties</li>
                 <li>Complex improvisatiewerk</li>
               </ul>
-              <p><strong>Beschikbaarheid:</strong> Woensdag 20:30 (Brussel) en Donderdag 20:30 (Woluwe)</p>
               <div style="margin-top: var(--spacing-md);">
                 <a href="ervaring/" class="btn btn-primary">Bekijk gevorderde lessen <i class="fas fa-arrow-right"></i></a>
               </div>
@@ -722,54 +735,6 @@
     </section>
 
     <!-- CTA SECTION -->
-    <!-- SPECIALE PROGRAMMA'S -->
-    <section style="padding: var(--spacing-2xl) 0;">
-      <div class="container">
-        <div class="section-header">
-          <h2>Speciale Programma's</h2>
-          <p class="section-description">Op maat gemaakte tango-ervaringen buiten het reguliere lesrooster</p>
-        </div>
-
-        <div class="grid grid-3">
-          <!-- Voor Koppels -->
-          <article class="card journey-card" data-href="voor-koppels/">
-            <div class="journey-content">
-              <div class="card-icon">
-                <i class="fas fa-heart"></i>
-              </div>
-              <h3>Voor Koppels</h3>
-              <p>Samen dansen — perfect voor koppels die hun verbinding willen verdiepen via tango.</p>
-              <a href="voor-koppels/" class="journey-link">Meer info <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Openingsdans -->
-          <article class="card journey-card" data-href="openingsdans/">
-            <div class="journey-content">
-              <div class="card-icon">
-                <i class="fas fa-ring"></i>
-              </div>
-              <h3>Openingsdans</h3>
-              <p>Jullie eerste dans — wij maken een prachtige tangochoreografie voor jullie huwelijk.</p>
-              <a href="openingsdans/" class="journey-link">Meer info <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Teambuilding -->
-          <article class="card journey-card" data-href="teambuilding/">
-            <div class="journey-content">
-              <div class="card-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <h3>Teambuilding</h3>
-              <p>Zakelijke tango — leiderschap, vertrouwen en verbinding door dans.</p>
-              <a href="teambuilding/" class="journey-link">Meer info <i class="fas fa-arrow-right"></i></a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
     <section class="cta-section bg-dark">
       <div class="container">
         <div class="cta-content">
@@ -815,6 +780,7 @@
             <li><a href="gratis-proefles/" class="footer-free-trial">Gratis Proefles</a></li>
             <li><a href="../../nl/contacteer-ons/">Contact</a></li>
             <li><a href="#">Blog</a></li>
+            <li><a href="../../nl/veelgestelde-vragen/">Veelgestelde Vragen</a></li>
           </ul>
         </div>
 
@@ -825,7 +791,9 @@
             <li><a href="ervaring/">Gevorderden</a></li>
             <li><a href="prive/">Privélessen</a></li>
             <li><a href="online/">Online</a></li>
+            
             <li><a href="voor-koppels/">Voor Koppels</a></li>
+            
             <li><a href="openingsdans/">Openingsdans</a></li>
             <li><a href="teambuilding/">Teambuilding</a></li>
           </ul>

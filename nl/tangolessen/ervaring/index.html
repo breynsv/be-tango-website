@@ -8,6 +8,12 @@
   <title>Tangolessen voor Ervaren Dansers - BE-TANGO</title>
   <link rel="canonical" href="https://www.be-tango.be/nl/tangolessen/ervaring/">
 
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="en" href="https://www.be-tango.be/tango-classes/experienced/">
+  <link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/cours-de-tango/experimentes/">
+  <link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/tangolessen/ervaring/">
+  <link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/tango-classes/experienced/">
+
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Tangolessen voor Ervaren Dansers - BE-TANGO">
@@ -27,19 +33,20 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../../../images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../../images/cropped-favicon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.7"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.7"></noscript>
   <link rel="stylesheet" href="../../../css/enrollment-modal.css?v=1.0">
   <style>
     .btlc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
@@ -362,6 +369,19 @@
     ]
   }
   </script>
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Startpagina", "item": "https://www.be-tango.be/nl/"},
+      {"@type": "ListItem", "position": 2, "name": "Tangolessen", "item": "https://www.be-tango.be/nl/tangolessen/"},
+      {"@type": "ListItem", "position": 3, "name": "Ervaring", "item": "https://www.be-tango.be/nl/tangolessen/ervaring/"}
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -372,7 +392,7 @@
     <div class="container">
       <div class="header-content">
         <a href="../../../nl/" class="logo">
-          <img src="../../../images/logo-be-tango.png" alt="BE-TANGO - Argentijnse Tangodansschool" width="200" height="34" loading="lazy">
+          <img src="../../../images/logo-be-tango.png" alt="BE-TANGO - Argentijnse Tangodansschool" width="200" height="34">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Menu openen/sluiten" aria-expanded="false">
@@ -393,9 +413,7 @@
                 <li><a href="../online/">Online Lessen</a></li>
                 <li><a href="../brussel/">Brussel</a></li>
                 <li><a href="../woluwe/">Woluwe</a></li>
-                <li><a href="../voor-koppels/">Voor Koppels</a></li>
-                <li><a href="../openingsdans/">Openingsdans</a></li>
-                <li><a href="../teambuilding/">Teambuilding</a></li>
+                <li><a href="../workshops/">Workshops</a></li>
               </ul>
             </li>
             <li><a href="../gratis-proefles/" class="btn btn-primary btn-nav">Gratis Proefles</a></li>
@@ -763,6 +781,7 @@
             <li><a href="../gratis-proefles/" class="footer-free-trial">Gratis Proefles</a></li>
             <li><a href="../../../nl/contacteer-ons/">Contact</a></li>
             <li><a href="#">Blog</a></li>
+            <li><a href="../../../nl/veelgestelde-vragen/">Veelgestelde Vragen</a></li>
           </ul>
         </div>
 
@@ -773,7 +792,9 @@
             <li><a href="../ervaring/">Ervaring</a></li>
             <li><a href="../prive/">Privélessen</a></li>
             <li><a href="../online/">Online</a></li>
+            
             <li><a href="../voor-koppels/">Voor Koppels</a></li>
+            
             <li><a href="../openingsdans/">Openingsdans</a></li>
             <li><a href="../teambuilding/">Teambuilding</a></li>
           </ul>

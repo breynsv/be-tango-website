@@ -24,6 +24,7 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,6 +50,17 @@
     "url": "https://www.be-tango.be"
   }
 }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.be-tango.be/fr/"},
+      {"@type": "ListItem", "position": 2, "name": "Liens", "item": "https://www.be-tango.be/fr/liens/"}
+    ]
+  }
   </script>
 </head>
 <body data-page="links">
@@ -108,6 +120,9 @@
 
     <section class="content-section">
       <div class="container">
+
+        <!-- Ressources Tango -->
+        <h2 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl);">Ressources Tango</h2>
         <div class="links-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
 
           <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
@@ -115,26 +130,9 @@
               <i class="fas fa-music" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
               Milonga.be
             </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Milongas et événements de tango en Belgique</p>
+            <p style="margin-bottom: var(--spacing-xs);">Milongas et événements de tango en Belgique.</p>
+            <p style="margin-bottom: var(--spacing-sm); font-style: italic; color: var(--color-text-light);">L'agenda de référence pour toutes les milongas en Belgique. On le consulte chaque semaine.</p>
             <a href="https://www.milonga.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visiter le Site →</a>
-          </div>
-
-          <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
-            <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-primary);">
-              <i class="fas fa-user-friends" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
-              SonjaySven.be
-            </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Sonia & Sven - Vos instructeurs BE-TANGO</p>
-            <a href="https://www.sonjaysven.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visiter le Site →</a>
-          </div>
-
-          <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
-            <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-primary);">
-              <i class="fas fa-theater-masks" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
-              Torsk.be
-            </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Théâtre et événements culturels</p>
-            <a href="https://www.torsk.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visiter le Site →</a>
           </div>
 
           <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
@@ -142,8 +140,34 @@
               <i class="fas fa-shoe-prints" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
               De Tango Se Trata
             </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Chaussures de tango à Bruxelles</p>
+            <p style="margin-bottom: var(--spacing-xs);">Chaussures de tango à Bruxelles.</p>
+            <p style="margin-bottom: var(--spacing-sm); font-style: italic; color: var(--color-text-light);">Notre boutique de chaussures de tango recommandée à Bruxelles. BE-TANGO y achète les siennes depuis des années.</p>
             <a href="https://www.detangosetrata.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visiter le Site →</a>
+          </div>
+
+          <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
+            <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-primary);">
+              <i class="fas fa-globe" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
+              Milongas Worldwide
+            </h3>
+            <p style="margin-bottom: var(--spacing-xs);">Trouvez des milongas dans n'importe quelle ville du monde.</p>
+            <p style="margin-bottom: var(--spacing-sm); font-style: italic; color: var(--color-text-light);">Vous voyagez ? C'est le meilleur moyen de trouver des milongas dans n'importe quelle ville.</p>
+            <a href="https://www.todotango.com/english/milongas/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Trouver des Milongas →</a>
+          </div>
+
+        </div>
+
+        <!-- Nos Partenaires -->
+        <h2 style="margin-bottom: var(--spacing-md);">Nos Partenaires</h2>
+        <div class="links-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
+
+          <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
+            <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-primary);">
+              <i class="fas fa-theater-masks" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
+              Torsk.be
+            </h3>
+            <p style="margin-bottom: var(--spacing-sm);">Théâtre et événements culturels à Bruxelles.</p>
+            <a href="https://www.torsk.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visiter le Site →</a>
           </div>
 
           <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
@@ -151,7 +175,7 @@
               <i class="fas fa-utensils" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
               NJAMelicious.be
             </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Services de restauration délicieux</p>
+            <p style="margin-bottom: var(--spacing-sm);">Services de restauration à Bruxelles.</p>
             <a href="https://www.njamelicious.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visiter le Site →</a>
           </div>
 
@@ -160,17 +184,8 @@
               <i class="fas fa-briefcase" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
               DMV Advies
             </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Services de conseil aux entreprises</p>
+            <p style="margin-bottom: var(--spacing-sm);">Services de conseil aux entreprises.</p>
             <a href="https://www.dmvadvies.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visiter le Site →</a>
-          </div>
-
-          <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
-            <h3 style="margin-bottom: var(--spacing-sm); color: var(--color-primary);">
-              <i class="fas fa-globe" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
-              Milongas Worldwide
-            </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Trouvez des milongas dans n'importe quelle ville du monde</p>
-            <a href="https://www.todotango.com/english/milongas/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Trouver des Milongas →</a>
           </div>
 
           <div class="link-card" style="background: var(--color-white); padding: var(--spacing-lg); border-radius: var(--border-radius); box-shadow: var(--box-shadow); transition: var(--transition);">
@@ -178,7 +193,7 @@
               <i class="fas fa-laptop-code" style="color: var(--color-secondary); margin-right: var(--spacing-xs);"></i>
               Deal Webdesign
             </h3>
-            <p style="margin-bottom: var(--spacing-sm);">Notre partenaire en webdesign</p>
+            <p style="margin-bottom: var(--spacing-sm);">Notre partenaire en développement web.</p>
             <a href="https://www.deal-webdesign.be" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Visiter le Site →</a>
           </div>
 
@@ -219,6 +234,7 @@
             <li><a href="../cours-de-tango/essai-gratuit/">Essai Gratuit</a></li>
             <li><a href="../blog/">Blog</a></li>
             <li><a href="../contactez-nous/">Contact</a></li>
+            <li><a href="../faq/">FAQ</a></li>
           </ul>
         </div>
 
@@ -229,6 +245,7 @@
             <li><a href="../cours-de-tango/experimentes/">Expérimentés</a></li>
             <li><a href="../cours-de-tango/particuliers/">Cours Privés</a></li>
             <li><a href="../cours-de-tango/en-ligne/">En Ligne</a></li>
+            
             <li><a href="../cours-de-tango/en-couple/">En Couple</a></li>
             <li><a href="../cours-de-tango/danse-de-mariage/">Danse de Mariage</a></li>
             <li><a href="../cours-de-tango/team-building/">Team Building</a></li>
@@ -256,8 +273,8 @@
         <p>&copy; 2026 BE-TANGO. Tous droits réservés.</p>
         <p class="footer-email">Email : <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
-          <a href="../../privacy-policy/">Politique de Confidentialité</a> |
-          <a href="../../terms-and-conditions/">Termes et Conditions</a> |
+          <a href="../politique-de-confidentialite/">Politique de confidentialité</a> |
+          <a href="../termes-et-conditions-generales/">Termes et Conditions</a> |
           <a href="./">Liens</a>
         </p>
       </div>

@@ -33,6 +33,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/cropped-favicon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +57,7 @@
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Wedding Dance Tango Choreography Brussels",
-    "description": "Custom Argentine tango choreography for your first dance. 5–10 private lessons in Brussels or Woluwe. No prior dance experience required. Instructors Sonja & Sven have personal experience dancing tango at their own wedding.",
+    "description": "Custom Argentine tango choreography for your first dance. 5–10 private lessons in Brussels or Woluwe. No prior dance experience required. Our instructors have personal experience dancing tango at weddings.",
     "provider": {
       "@type": "DanceSchool",
       "name": "BE-TANGO",
@@ -66,7 +67,7 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5",
-        "reviewCount": "141",
+        "reviewCount": "151",
         "bestRating": "5"
       },
       "address": {
@@ -110,7 +111,7 @@
         "name": "Do we need any prior dance experience?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No prior dance experience is needed. We design the choreography to match your level and comfort. Our instructors Sonja & Sven have guided many couples — from complete beginners to experienced dancers — through a beautiful wedding first dance."
+          "text": "No prior dance experience is needed. We design the choreography to match your level and comfort. Our experienced instructors have guided many couples — from complete beginners to experienced dancers — through a beautiful wedding first dance."
         }
       },
       {
@@ -156,6 +157,19 @@
     ]
   }
   </script>
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
+      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/tango-classes/"},
+      {"@type": "ListItem", "position": 3, "name": "Wedding Dance", "item": "https://www.be-tango.be/tango-classes/wedding-dance/"}
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -167,7 +181,7 @@
     <div class="container">
       <div class="header-content">
         <a href="../../" class="logo">
-          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34" loading="lazy">
+          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -189,8 +203,6 @@
                 <li><a href="../brussels/">Brussels</a></li>
                 <li><a href="../woluwe/">Woluwe</a></li>
                 <li><a href="../couples/">Couples</a></li>
-                <li><a href="../wedding-dance/" class="active" aria-current="page">Wedding Dance</a></li>
-                <li><a href="../team-building/">Team Building</a></li>
               </ul>
             </li>
             <li><a href="../free-trial/" class="btn btn-primary btn-nav">Free Trial</a></li>
@@ -242,7 +254,7 @@
 
           <div class="hero-rating">
             <div class="hero-stars">★★★★★</div>
-            <p class="hero-reviews">5/5 - 141 Google reviews</p>
+            <p class="hero-reviews">5/5 - 151 Google reviews</p>
           </div>
 
           <div class="hero-cta">
@@ -324,19 +336,19 @@
 
             <p>Unlike most ballroom dances, tango is built on close connection, improvisation, and musicality. Even a simplified, learner-friendly choreography looks elegant and confident to wedding guests. There is no need for flashy kicks or complicated lifts — the beauty of tango lies in the embrace, the pauses, and the shared movement.</p>
 
-            <p>Our instructors Sonja &amp; Sven danced tango at their own wedding and have since created wedding choreographies for many couples — from complete beginners to experienced social dancers.</p>
+            <p>Our experienced instructors danced tango at their own wedding and have since created wedding choreographies for many couples — from complete beginners to experienced social dancers.</p>
 
             <ul style="margin-top: var(--spacing-md);">
               <li><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 8px;" aria-hidden="true"></i>Elegant and unique — no one else will have the same first dance</li>
               <li><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 8px;" aria-hidden="true"></i>No experience required — we start from the very beginning</li>
               <li><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 8px;" aria-hidden="true"></i>Tailored to your song, your style, your timeline</li>
               <li><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 8px;" aria-hidden="true"></i>Available at two Brussels-area locations</li>
-              <li><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 8px;" aria-hidden="true"></i>5-star rated school — 141 Google reviews</li>
+              <li><i class="fas fa-check-circle" style="color: var(--color-secondary); margin-right: 8px;" aria-hidden="true"></i>5-star rated school — 151 Google reviews</li>
             </ul>
           </div>
 
           <div>
-            <img src="../../images/tango-classes-in-Brussels-2-e1740646913571.webp" alt="Argentine tango couple dancing — perfect for a wedding first dance in Brussels" loading="lazy" style="border-radius: var(--border-radius); width: 100%;">
+            <img src="../../images/tango-classes-in-Brussels-2-e1740646913571.webp" alt="Argentine tango couple dancing — perfect for a wedding first dance in Brussels" fetchpriority="high" style="border-radius: var(--border-radius); width: 100%;">
           </div>
         </div>
       </div>
@@ -371,7 +383,7 @@
               <i class="fas fa-user-graduate" aria-hidden="true"></i>
             </div>
             <h3>Instruction by experienced teachers</h3>
-            <p>Sonja &amp; Sven bring 15+ years of teaching experience and have personally danced tango at their own wedding — they understand what works for couples.</p>
+            <p>Our instructors bring 15+ years of teaching experience and have personally danced tango at their own wedding — they understand what works for couples.</p>
           </article>
 
           <article class="card">
@@ -381,39 +393,6 @@
             <h3>Rehearsal and refinement sessions</h3>
             <p>The final lessons focus on polish and confidence — making sure you feel completely comfortable and natural on the day. We also advise on dress and shoes.</p>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Q&A SECTION (GEO-optimised) -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header text-center">
-          <h2>Wedding Dance in Brussels — Your Questions Answered</h2>
-        </div>
-
-        <div class="grid grid-2" style="gap: var(--spacing-xl);">
-          <div>
-            <h3>Do I need dance experience to learn a wedding tango?</h3>
-            <p>No experience is needed. We have helped many complete beginners create a beautiful first dance. We start from scratch and build a choreography that suits your actual level — not an imagined ideal.</p>
-
-            <h3 style="margin-top: var(--spacing-lg);">How many lessons does a wedding dance take?</h3>
-            <p>Most couples take 5 to 10 private lessons. The exact number depends on your starting level and how elaborate you want the choreography to be. We'll recommend a package after a short initial chat.</p>
-
-            <h3 style="margin-top: var(--spacing-lg);">Can we use our own song?</h3>
-            <p>Absolutely. We work with your chosen song — whether it's a classic Argentine tango, a modern pop song, or anything else. The choreography is built to match the music and feel personal to you.</p>
-          </div>
-
-          <div>
-            <h3>Where do wedding dance lessons take place?</h3>
-            <p>At our two Brussels-area locations: Brussels city centre (Rue du Marais 68) or Woluwe-Saint-Pierre (Avenue Orban 54). You choose what works best for you.</p>
-
-            <h3 style="margin-top: var(--spacing-lg);">When should we start preparing?</h3>
-            <p>We recommend starting 3 to 6 months before your wedding. This gives comfortable time to learn and practice without pressure. That said, we have helped couples with shorter timelines — contact us and we'll see what's possible.</p>
-
-            <h3 style="margin-top: var(--spacing-lg);">What is the price for a wedding dance package?</h3>
-            <p>Pricing is tailored to your package (number of lessons, location, timing). Contact us for a personalised quote — we'll respond quickly.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -442,7 +421,7 @@
               <span class="accordion-icon">+</span>
             </summary>
             <div class="accordion-content">
-              <p>No prior dance experience is needed. We design the choreography to match your level and comfort. Our instructors Sonja & Sven have guided many couples — from complete beginners to experienced dancers — through a beautiful wedding first dance.</p>
+              <p>No prior dance experience is needed. We design the choreography to match your level and comfort. Our experienced instructors have guided many couples — from complete beginners to experienced dancers — through a beautiful wedding first dance.</p>
             </div>
           </details>
 
@@ -504,7 +483,7 @@
       <div class="container">
         <div class="section-header text-center">
           <h2>What Our Students Say About <span class="highlight">BE-TANGO</span></h2>
-          <p class="section-description">141 Google reviews — 5-star rating</p>
+          <p class="section-description">151 Google reviews — 5-star rating</p>
         </div>
 
         <div class="reviews-carousel-wrapper">
@@ -515,7 +494,7 @@
           <div class="reviews-carousel">
             <div class="review-card">
               <div class="review-rating">★★★★★</div>
-              <p class="review-text">"It's our first interaction with Tango lessons as a couple and we are enormously enjoying the passion and dedication you put on each of the sessions. For the people outside wanting to learn Tango we really recommend Sven and Sonja if you want to learn this amazing dance!"</p>
+              <p class="review-text">"It's our first interaction with Tango lessons as a couple and we are enormously enjoying the passion and dedication in each session. For people wanting to learn Tango we really recommend BE-TANGO if you want to learn this amazing dance!"</p>
               <div class="review-author">
                 <strong>Jorge Roque</strong>
                 <span>Google Review</span>
@@ -524,7 +503,7 @@
 
             <div class="review-card">
               <div class="review-rating">★★★★★</div>
-              <p class="review-text">"I have been taking classes with Sonya and Sven for the past year, and it's been a truly wonderful experience. They're both passionate dancers and dedicated teachers, and their love for tango really shines through in every class."</p>
+              <p class="review-text">"I have been taking classes at BE-TANGO for the past year, and it's been a truly wonderful experience. The instructors are passionate dancers and dedicated teachers, and their love for tango really shines through in every class."</p>
               <div class="review-author">
                 <strong>Maria Beatriz Estevo Loterio</strong>
                 <span>Google Review</span>
@@ -533,7 +512,7 @@
 
             <div class="review-card">
               <div class="review-rating">★★★★★</div>
-              <p class="review-text">"As passionate lovers of Argentine Tango, we were from the very first moment deeply impressed with Sven and Sonja by the exceptional quality and depth of their lessons. Their unique approach makes you feel right at home and part of a warm, inclusive community."</p>
+              <p class="review-text">"As passionate lovers of Argentine Tango, we were from the very first moment deeply impressed with BE-TANGO by the exceptional quality and depth of the lessons. Their unique approach makes you feel right at home and part of a warm, inclusive community."</p>
               <div class="review-author">
                 <strong>Hilde Gedopt</strong>
                 <span>Google Review</span>
@@ -664,6 +643,26 @@
           menuToggle.setAttribute("aria-expanded", "false");
           mainNav.classList.remove("mobile-nav-open");
           menuToggle.classList.remove("active");
+        }
+      });
+    }
+
+    // Language dropdown toggle
+    const languageToggle = document.querySelector('.language-toggle');
+    const languageDropdown = document.querySelector('.language-dropdown');
+
+    if (languageToggle && languageDropdown) {
+      languageToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isExpanded = languageToggle.getAttribute('aria-expanded') === 'true';
+        languageToggle.setAttribute('aria-expanded', !isExpanded);
+        languageDropdown.classList.toggle('active');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.language-switcher')) {
+          languageToggle.setAttribute('aria-expanded', 'false');
+          languageDropdown.classList.remove('active');
         }
       });
     }

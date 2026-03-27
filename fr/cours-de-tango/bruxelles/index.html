@@ -8,6 +8,12 @@
   <title>Cours de tango à Bruxelles - BE-TANGO</title>
   <link rel="canonical" href="https://www.be-tango.be/fr/cours-de-tango/bruxelles/">
 
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="en" href="https://www.be-tango.be/tango-classes/brussels/">
+  <link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/cours-de-tango/bruxelles/">
+  <link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/tangolessen/brussel/">
+  <link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/tango-classes/brussels/">
+
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Cours de tango à Bruxelles - BE-TANGO">
@@ -27,19 +33,20 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../../../images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../../images/cropped-favicon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.7"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.7"></noscript>
 
   <!-- JSON-LD Structured Data for Place -->
   <script type="application/ld+json">
@@ -64,26 +71,14 @@
       "longitude": 4.3658
     },
     "priceRange": "€€",
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Monday",
-        "opens": "19:00",
-        "closes": "23:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Wednesday",
-        "opens": "20:00",
-        "closes": "22:00"
-      }
-    ],
+    "openingHours": ["Mo 18:30-22:00", "We 18:30-22:00"],
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "5",
-      "reviewCount": "141",
+      "reviewCount": "151",
       "bestRating": "5"
-    }
+    },
+    "sameAs": "https://maps.google.com/?cid=7397240013699561184"
   }
   </script>
 
@@ -209,6 +204,19 @@
     .lsched-btn-outline{padding:8px 16px;border-radius:6px;font-size:0.78rem;font-weight:600;background:none;border:1px solid #E5E7EB;cursor:pointer;color:#1C244B;transition:background 0.2s;font-family:inherit}
     .lsched-btn-outline:hover{background:#F3F5F8}
   </style>
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.be-tango.be/fr/"},
+      {"@type": "ListItem", "position": 2, "name": "Cours de Tango", "item": "https://www.be-tango.be/fr/cours-de-tango/"},
+      {"@type": "ListItem", "position": 3, "name": "Bruxelles", "item": "https://www.be-tango.be/fr/cours-de-tango/bruxelles/"}
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -219,7 +227,7 @@
     <div class="container">
       <div class="header-content">
         <a href="../../../fr/" class="logo">
-          <img src="../../../images/logo-be-tango.png" alt="BE-TANGO - École de Danse de Tango Argentin" width="200" height="34" loading="lazy">
+          <img src="../../../images/logo-be-tango.png" alt="BE-TANGO - École de Danse de Tango Argentin" width="200" height="34">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -240,9 +248,7 @@
                 <li><a href="../en-ligne/">Cours en Ligne</a></li>
                 <li><a href="./" class="active" aria-current="page">Bruxelles</a></li>
                 <li><a href="../woluwe/">Woluwe</a></li>
-                <li><a href="../en-couple/">En Couple</a></li>
-                <li><a href="../danse-de-mariage/">Danse de Mariage</a></li>
-                <li><a href="../team-building/">Team Building</a></li>
+                <li><a href="../ateliers/">Ateliers</a></li>
               </ul>
             </li>
             <li><a href="../essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
@@ -345,7 +351,7 @@
           </div>
 
           <div>
-            <img src="../../../images/tango-classes-in-Brussels-2-e1740646913571.webp" alt="Cours de tango à l'École Gatti de Gamond Bruxelles" loading="lazy" style="border-radius: var(--border-radius); width: 100%;">
+            <img src="../../../images/tango-classes-in-Brussels-2-e1740646913571.webp" alt="Cours de tango à l'École Gatti de Gamond Bruxelles" fetchpriority="high" style="border-radius: var(--border-radius); width: 100%;">
           </div>
         </div>
         <div class="cta-buttons" style="margin-top: var(--spacing-xl);">
@@ -640,6 +646,7 @@
             <li><a href="../">Cours de Tango</a></li>
             <li><a href="../essai-gratuit/">Essai Gratuit</a></li>
             <li><a href="../../../fr/contactez-nous/">Contact</a></li>
+            <li><a href="../../../fr/faq/">FAQ</a></li>
           </ul>
         </div>
 
@@ -650,6 +657,7 @@
             <li><a href="../experimentes/">Expérimentés</a></li>
             <li><a href="../particuliers/">Cours Privés</a></li>
             <li><a href="../en-ligne/">En Ligne</a></li>
+            
             <li><a href="../en-couple/">En Couple</a></li>
             <li><a href="../danse-de-mariage/">Danse de Mariage</a></li>
             <li><a href="../team-building/">Team Building</a></li>
@@ -678,7 +686,7 @@
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
           <a href="../../politique-de-confidentialite/">Politique de confidentialité</a> |
-          <a href="../../../fr/termes-et-conditions-generales/">Termes et Conditions</a> |
+          <a href="../../termes-et-conditions-generales/">Termes et Conditions</a> |
           <a href="../../liens/">Liens</a>
         </p>
       </div>

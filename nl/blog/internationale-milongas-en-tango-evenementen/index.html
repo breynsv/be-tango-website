@@ -31,15 +31,16 @@
 <link href="../../../images/cropped-favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
 <link href="../../../images/cropped-favicon-192x192.png" rel="icon" sizes="192x192" type="image/png"/>
 <link href="../../../images/cropped-favicon-180x180.png" rel="apple-touch-icon" sizes="180x180"/>
+<link rel="manifest" href="/site.webmanifest">
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
 <link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<link href="../../../css/fontawesome.min.css?v=3.5" rel="stylesheet"/><noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/></noscript>
+<link href="../../../css/fontawesome.min.css?v=3.7" rel="stylesheet"/><noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/></noscript>
 <!-- Stylesheet -->
-<link href="../../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
-<noscript><link href="../../../css/styles.min.css?v=3.6" rel="stylesheet"/></noscript>
+<link href="../../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
+<noscript><link href="../../../css/styles.min.css?v=3.7" rel="stylesheet"/></noscript>
 <!-- D4 Blog Design Styles -->
 <style>
     :root {
@@ -769,6 +770,17 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Startpagina", "item": "https://www.be-tango.be/nl/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.be-tango.be/nl/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "Internationale milongas en tango evenementen | BE-TANGO Blog", "item": "https://www.be-tango.be/nl/blog/internationale-milongas-en-tango-evenementen/"}
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Spring naar hoofdinhoud</a>
@@ -777,7 +789,7 @@
 <div class="container">
 <div class="header-content">
 <a class="logo" href="../../">
-<img alt="BE-TANGO - Argentijnse Tango Dansschool" height="34" loading="lazy" src="../../../images/logo-be-tango.png" width="200"/>
+<img alt="BE-TANGO - Argentijnse Tango Dansschool" height="34"  src="../../../images/logo-be-tango.png" width="200"/>
 </a>
 <button aria-expanded="false" aria-label="Toggle menu" class="mobile-menu-toggle">
 <span></span>
@@ -796,9 +808,7 @@
 <li><a href="../../tangolessen/online/">Online Lessen</a></li>
 <li><a href="../../tangolessen/brussel/">Brussel</a></li>
 <li><a href="../../tangolessen/woluwe/">Woluwe</a></li>
-<li><a href="../../tangolessen/voor-koppels/">Voor Koppels</a></li>
-<li><a href="../../tangolessen/openingsdans/">Openingsdans</a></li>
-<li><a href="../../tangolessen/teambuilding/">Teambuilding</a></li>
+<li><a href="../../tangolessen/workshops/">Workshops</a></li>
 </ul>
 </li>
 <li><a class="btn btn-primary btn-nav" href="../../tangolessen/gratis-proefles/">Gratis Proefles</a></li>
@@ -859,7 +869,7 @@
             </a>
 </div>
 <div class="hero-image-panel">
-<img alt="Internationale tango evenementen" loading="eager" src="../../../images/blog/international-tango-events.webp"/>
+<img fetchpriority="high" alt="Internationale tango evenementen" src="../../../images/blog/international-tango-events.webp"/>
 <div class="hero-image-label"><i class="fas fa-globe"></i> Wereldwijd tango</div>
 </div>
 </div>
@@ -895,13 +905,13 @@
 <h2>Informatiebronnen voor internationale evenementen</h2>
 </div>
 <p>
-                Zin om de wereld rond te dansen? Natuurlijk. Een citytrip combineren met een festival of marathon is het beste wat er is. Maar waar vind je een goed overzicht?
+                Droom je ervan de wereld al dansend te verkennen? Een festival of marathon combineren met een citytrip is een onvergetelijke ervaring. Maar waar vind je een betrouwbaar overzicht van evenementen?
               </p>
 <p>
-                Voor festivals is er maar één site die telt: <strong>www.tangopolix.com</strong>. Echt, stop met zoeken. Alles staat erop, van Buenos Aires tot Tokio. Ik gebruik 'm al jaren.
+                Voor tango festivals is er één referentie: <strong>www.tangopolix.com</strong>. Zoek niet verder. Deze site biedt een compleet overzicht, van Buenos Aires tot Tokio. Ik gebruik hem al jaren.
               </p>
 <p>
-                Ben je meer een marathon-beest? Puur dansen, geen gedoe met workshops? Dan moet je <strong>www.tangomarathons.com</strong> bookmarken. Dat is jouw agenda voor het hele jaar. Data, locaties, inschrijvingen... alles staat er. Onmisbaar.
+                Ben je meer een marathonloper? Focus je puur op het dansen, zonder workshops? Bookmark dan <strong>www.tangomarathons.com</strong>. Dit is dé agenda voor het hele jaar. Je vindt er data, locaties, inschrijvingsdetails... onmisbaar voor de marathonloper.
               </p>
 </article>
 <article class="section-card" id="sectie-2">
@@ -911,19 +921,19 @@
 <h2>Onze favoriete festivals in Europa</h2>
 </div>
 <p>
-<strong>Belgrade Tango Encuentro (Servië)</strong> — Een absolute aanrader. Ik ga er bijna elk jaar naartoe. De sfeer in Belgrado is zo warm en open. De hele Oost-Europese scene komt hier samen, en die mensen kunnen dansen! Het voelt echt, zonder pretentie.
+<strong>Belgrade Tango Encuentro (Servië)</strong> — Een absolute aanrader, die ik bijna jaarlijks bezoek. De sfeer in Belgrado is er warm en open. De volledige Oost-Europese scene komt hier samen, en ze beheersen de kunst van het dansen! Het is authentiek, zonder pretentie.
               </p>
 <p>
-<strong>Ljubljana Tango Festival (Slovenië)</strong> — Hier zie je de grote maestro's aan het werk. De shows zijn vaak adembenemend. Ljubljana zelf is een gezellige, kleine stad. Je loopt iedereen tegen het lijf, van de workshops tot de milonga's die doorgaan tot de vroege uurtjes.
+<strong>Ljubljana Tango Festival (Slovenië)</strong> — Hier bewonder je de grote maestro's aan het werk. De shows zijn vaak adembenemend. Ljubljana zelf is een gezellige, kleine stad. Je ontmoet er iedereen, van de workshops tot de milonga's die tot in de vroege uurtjes doorgaan.
               </p>
 <p>
-<strong>Mediterranean Summer Tango Festival (Poreč, Kroatië)</strong> — Dit is de droom: tango en vakantie. Overdag zwemmen in de Adriatische Zee, 's avonds dansen onder de sterren. De openluchtmilonga's zijn legendarisch. Neem je zwemgerief mee!
+<strong>Mediterranean Summer Tango Festival (Poreč, Kroatië)</strong> — De perfecte combinatie: tango en vakantie. Overdag zwemmen in de Adriatische Zee, 's avonds dansen onder de sterrenhemel. De openluchtmilonga's zijn er legendarisch. Vergeet je zwemkledij niet!
               </p>
 <p>
-<strong>Tango Amadeus (Wenen, Oostenrijk)</strong> — Dansen in de keizerlijke balzalen van Wenen, dat vergeet je nooit. Die grandeur, die elegantie... gecombineerd met de passie van onze tango. Een unieke mix. Je voelt je even Sissi en Franz.
+<strong>Tango Amadeus (Wenen, Oostenrijk)</strong> — Dansen in de keizerlijke balzalen van Wenen is een onvergetelijke ervaring. De grandeur en elegantie vormen een unieke combinatie met de passie van de tango. Je waant je er even Sissi en Franz.
               </p>
 <p>
-<strong>Tango Alchemie (Praag, Tsjechië)</strong> — Praag is sowieso al magisch, maar met dit festival erbij is het compleet. De gala-avonden zijn onvergetelijk, vaak in paleizen en met live orkesten. De perfecte stad voor een tango-sprookje.
+<strong>Tango Alchemie (Praag, Tsjechië)</strong> — Praag is van nature al magisch, maar dit festival maakt het sprookje compleet. De gala-avonden zijn onvergetelijk, vaak in paleizen en met live orkesten. De perfecte setting voor een tango-sprookje.
               </p>
 </article>
 <article class="section-card" id="sectie-3">
@@ -933,25 +943,25 @@
 <h2>Top tangomarathons</h2>
 </div>
 <p>
-                Een marathon is voor de die-hards. Geen workshops, geen shows. Alleen de milonga. Drie dagen lang dansen, eten, een beetje slapen, en opnieuw dansen. Intens, verslavend, en absoluut fantastisch.
+                Een marathon is voor de doorzetters. Geen workshops, geen shows, enkel de milonga. Drie dagen lang dansen, eten, kort slapen en opnieuw dansen. Intens, verslavend en absoluut fantastisch.
               </p>
 <p>
-<strong>Prague Tango Marathon</strong> — Een instituut. Bestaat al sinds 2013 en de organisatie is een geoliede machine. Altijd een perfecte mix van zo'n 200 dansers, top-DJ's en een houten vloer waar je voeten van gaan zingen. Als je er één moet kiezen, is dit een veilige gok.
+<strong>Prague Tango Marathon</strong> — Een gevestigde waarde sinds 2013, met een perfect geoliede organisatie. Verwacht een ideale mix van zo'n 200 dansers, top-dj's en een houten vloer die je voeten doet zingen. Een veilige keuze als je er maar één kan kiezen.
               </p>
 <p>
-<strong>Copenhagen Marathon (Denemarken)</strong> — Dit voelt als thuiskomen. Kleiner, intiemer, en een ongelooflijk warme sfeer. De Denen zijn zo gastvrij. Het dansniveau ligt hoog, maar de sfeer is relaxed. Je komt hier niet anoniem binnen en buiten.
+<strong>Copenhagen Marathon (Denemarken)</strong> — Dit voelt als thuiskomen. Kleiner, intiemer en met een ongelooflijk warme sfeer. De Deense gastvrijheid is onovertroffen. Het dansniveau is hoog, maar de sfeer is ontspannen. Hier verdwijn je niet anoniem in de massa.
               </p>
 <p>
-<strong>Palace Cita (Brussel, België)</strong> — Ah, onze eigen lentemarathon! Dansen in die prachtige oude Palace-bioscoop, dat is pure Brusselse magie. Art deco, rode pluche... je waant je in een film. Het is een echte 'cita' van vrienden, veel bekende gezichten elk jaar. Een must als je in Brussel bent.
+<strong>Palace Cita (Brussel, België)</strong> — Onze eigen lentemarathon! Dansen in de prachtige oude Palace-bioscoop is pure Brusselse magie. Art deco, rood pluche... je waant je in een film. Het is een echte 'cita' van vrienden, met elk jaar veel bekende gezichten. Een must voor wie in Brussel is.
               </p>
 <p>
-<strong>La Tosca (Toscane, Italië)</strong> — Eén van de oudste en grootste. Je danst er met 300 man midden in de Toscaanse heuvels. Overdag een glas chianti in de zon, 's nachts de milonga. De Italianen weten hoe het moet. Bereid je voor op passie, drama en heerlijk eten.
+<strong>La Tosca (Toscane, Italië)</strong> — Een van de oudste en grootste marathons. Je danst er met 300 anderen te midden van de Toscaanse heuvels. Overdag een glas chianti in de zon, 's nachts de milonga. De Italianen verstaan de kunst van het genieten. Bereid je voor op passie, drama en heerlijk eten.
               </p>
 <p>
-<strong>Pensalobien (Milaan, Italië)</strong> — Hip, modern en artistiek. Deze marathon in Milaan, vlak bij de Fondazione Prada, trekt een heel internationaal en stijlvol publiek. Minder traditioneel, meer een 'urban' vibe. Cool.
+<strong>Pensalobien (Milaan, Italië)</strong> — Hip, modern en artistiek. Deze marathon in Milaan, vlak bij de Fondazione Prada, trekt een internationaal en stijlvol publiek aan. Minder traditioneel, met een meer 'urban' sfeer. Cool.
               </p>
 <p>
-<strong>La Cita de los Amigos</strong> — Nog een Belgische parel. In de winter in de Brigittinenkapel in de Marollen, sfeervoller wordt het niet. In de zomer in het Kurhaus van Spa. Super intiem, met maar 100 dansers. Je moet er snel bij zijn, want de tickets zijn direct weg. Echt een weekend voor de fijnproevers.
+<strong>La Cita de los Amigos</strong> — Nog een Belgische parel. In de winter in de Brigittinenkapel in de Marollen, een sfeervollere locatie is nauwelijks denkbaar. In de zomer in het Kurhaus van Spa. Super intiem, met slechts 100 dansers. Je moet er snel bij zijn, want de tickets zijn zo de deur uit. Een weekend voor de echte fijnproevers.
               </p>
 </article>
 <article class="section-card" id="sectie-4">
@@ -960,15 +970,15 @@
 <div class="section-number-pill">4</div>
 <h2>Tips voor je eerste internationale tango-evenement</h2>
 </div>
-<p>Je eerste keer naar een internationaal event? Super! Ik heb het al honderd keer gedaan, dus hier zijn een paar tips die je veel leed zullen besparen:</p>
+<p>Eerste keer naar een internationaal evenement? Geweldig! Ik heb het al honderden keren gedaan, dus hier zijn een paar tips die je veel ellende kunnen besparen:</p>
 <ul>
-<li><strong>Schrijf je op tijd in:</strong> Ik kan het niet genoeg herhalen. De populaire events zijn soms in een paar uur volzet. Zet een alarm in je agenda voor de dag dat de inschrijvingen openen. Geen grap.</li>
-<li><strong>Ken je niveau:</strong> Wees eerlijk over je niveau. Sommige marathons zijn echt voor 'advanced' dansers. Je doet jezelf geen plezier als je er niet op je plek bent. Lees de beschrijving goed.</li>
-<li><strong>Slaap dichtbij:</strong> Boek je hotel of Airbnb op wandelafstand. Geloof me, om vijf uur 's ochtends heb je geen zin meer in een taxirit van een halfuur. Je wilt gewoon je bed inrollen.</li>
-<li><strong>Neem extra schoenen mee:</strong> Minimaal twee paar dansschoenen. Geen discussie. Je voeten zullen me later bedanken.</li>
-<li><strong>Wees sociaal:</strong> Gebruik de <em>mirada</em> en <em>cabeceo</em>, maar wees ook niet bang om gewoon een praatje te maken aan de bar. Iedereen is daar voor hetzelfde: tango. Dat schept een band.</li>
-<li><strong>Leer een paar woordjes:</strong> Een simpel 'dank u' in de lokale taal (<em>grazie, dziękuję, hvala</em>) kan wonderen doen. Het toont respect en opent deuren.</li>
-<li><strong>Speel toerist:</strong> Plak er een dag voor of na aan. Je bent er nu toch. Ga de stad verkennen, proef de lokale keuken. Tango is meer dan alleen dansen.</li>
+<li><strong>Schrijf je tijdig in:</strong> Ik kan het niet genoeg benadrukken. De populaire evenementen zijn soms binnen enkele uren volgeboekt. Zet een herinnering in je agenda voor de dag dat de inschrijvingen openen. Geen grap.</li>
+<li><strong>Ken je niveau:</strong> Wees eerlijk over je eigen niveau. Sommige marathons zijn echt gericht op 'advanced' dansers. Je doet jezelf geen plezier als je niet op je plek bent. Lees de beschrijving aandachtig.</li>
+<li><strong>Logeer dichtbij:</strong> Boek je hotel of Airbnb op wandelafstand. Geloof me, om vijf uur 's ochtends wil je geen halfuur meer in een taxi zitten. Je wilt gewoon je bed in.</li>
+<li><strong>Neem extra schoenen mee:</strong> Minstens twee paar dansschoenen. Punt. Je voeten zullen je dankbaar zijn.</li>
+<li><strong>Wees sociaal:</strong> Gebruik de <em>mirada</em> en <em>cabeceo</em>, maar schroom ook niet om een praatje te maken aan de bar. Iedereen is er voor hetzelfde: de tango. Dat schept een band.</li>
+<li><strong>Leer een paar woorden:</strong> Een simpel 'dank u' in de lokale taal (<em>grazie, dziękuję, hvala</em>) kan wonderen verrichten. Het toont respect en opent deuren.</li>
+<li><strong>Speel toerist:</strong> Plan een extra dag voor of na het evenement. Je bent er nu toch. Verken de stad, proef de lokale keuken. Tango is meer dan alleen dansen.</li>
 </ul>
 </article>
 <article class="section-card" id="sectie-5">
@@ -978,13 +988,13 @@
 <h2>De internationale tango-gemeenschap en Buenos Aires</h2>
 </div>
 <p>
-                Waarom we dit allemaal doen? Voor mij is het de <strong>wereldwijde community</strong>. Ik kan in een wildvreemde stad een milonga binnenstappen en me na vijf minuten thuis voelen. Je ziet overal dezelfde gezichten terug. Je bouwt vriendschappen op de dansvloer die jaren meegaan, van Helsinki tot Singapore.
+                Waarom we dit allemaal doen? Voor mij is het de kracht van de <strong>wereldwijde community</strong>. Ik kan in een vreemde stad een milonga binnenstappen en me na vijf minuten thuis voelen. Je ziet overal dezelfde gezichten terugkomen. Je bouwt op de dansvloer vriendschappen op die jarenlang meegaan, van Helsinki tot Singapore.
               </p>
 <div class="pullquote">
 <p>In tango spreek je één universele taal — de taal van beweging, muziek en verbinding.</p>
 </div>
 <p>
-                En dan, de heilige graal: <strong>Buenos Aires</strong>. De bron van alles. Daar moet je naartoe. De sfeer in een traditionele milonga in San Telmo, dansen op een houten vloer waar al honderd jaar op gedanst wordt... dat kan je nergens anders ervaren. Het is de ultieme reis voor elke tangodanser. Begin al maar te sparen.
+                En dan, de heilige graal: <strong>Buenos Aires</strong>. De oorsprong van alles. Daar moet je geweest zijn. De sfeer in een traditionele milonga in San Telmo, dansen op een houten vloer waar al honderd jaar op gedanst wordt... dat is een unieke ervaring. Het is de ultieme reis voor elke tangodanser. Begin maar alvast te sparen.
               </p>
 </article></div><!-- end article-body -->
 <!-- SIDEBAR -->
@@ -1154,6 +1164,7 @@
 <li><a class="footer-free-trial" href="../../tangolessen/gratis-proefles/">Gratis Proefles</a></li>
 <li><a href="../">Blog</a></li>
 <li><a href="../../contacteer-ons/">Contact</a></li>
+<li><a href="../../veelgestelde-vragen/">Veelgestelde Vragen</a></li>
 </ul>
 </div>
 <div class="footer-col">

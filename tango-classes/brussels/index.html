@@ -8,6 +8,12 @@
   <title>Tango Classes in Brussels - BE-TANGO</title>
   <link rel="canonical" href="https://www.be-tango.be/tango-classes/brussels/">
 
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="en" href="https://www.be-tango.be/tango-classes/brussels/">
+  <link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/cours-de-tango/bruxelles/">
+  <link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/tangolessen/brussel/">
+  <link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/tango-classes/brussels/">
+
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Tango Classes in Brussels - BE-TANGO">
@@ -27,19 +33,20 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/cropped-favicon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.7"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.7"></noscript>
 
   <!-- Enhancement Scripts -->
   <script src="../../js/enhancements.min.js?v=3.5" defer></script>
@@ -68,27 +75,15 @@
       "latitude": 50.8503,
       "longitude": 4.3517
     },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Monday",
-        "opens": "19:00",
-        "closes": "21:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Wednesday",
-        "opens": "19:00",
-        "closes": "21:30"
-      }
-    ],
+    "openingHours": ["Mo 18:30-22:00", "We 18:30-22:00"],
     "priceRange": "€€",
     "hasMap": "https://www.google.com/maps/place/Rue+du+Marais+68,+1000+Brussels",
     "parentOrganization": {
       "@type": "Organization",
       "name": "BE-TANGO",
       "url": "https://www.be-tango.be"
-    }
+    },
+    "sameAs": "https://maps.google.com/?cid=7397240013699561184"
   }
   </script>
   <!-- Live Schedule Component Styles -->
@@ -155,6 +150,19 @@
     .lsched-btn-outline{padding:8px 16px;border-radius:6px;font-size:0.78rem;font-weight:600;background:none;border:1px solid #E5E7EB;cursor:pointer;color:#1C244B;transition:background 0.2s;font-family:inherit}
     .lsched-btn-outline:hover{background:#F3F5F8}
   </style>
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
+      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/tango-classes/"},
+      {"@type": "ListItem", "position": 3, "name": "Brussels", "item": "https://www.be-tango.be/tango-classes/brussels/"}
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -166,7 +174,7 @@
     <div class="container">
       <div class="header-content">
         <a href="../../" class="logo">
-          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34" loading="lazy">
+          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -188,8 +196,6 @@
                 <li><a href="./" class="active">Brussels</a></li>
                 <li><a href="../woluwe/">Woluwe</a></li>
                 <li><a href="../couples/">Couples</a></li>
-                <li><a href="../wedding-dance/">Wedding Dance</a></li>
-                <li><a href="../team-building/">Team Building</a></li>
               </ul>
             </li>
             <li><a href="../free-trial/" class="btn btn-primary btn-nav">Free Trial</a></li>
@@ -293,7 +299,7 @@
           </div>
 
           <div>
-            <img src="../../images/Tango-in-Brussels-e1740649554215.webp" alt="Tango classes at Ecole Gatti de Gamond in Brussels" loading="lazy" style="border-radius: var(--border-radius); width: 100%;">
+            <img src="../../images/Tango-in-Brussels-e1740649554215.webp" alt="Tango classes at Ecole Gatti de Gamond in Brussels" fetchpriority="high" style="border-radius: var(--border-radius); width: 100%;">
           </div>
         </div>
         <div class="cta-buttons" style="margin-top: var(--spacing-xl);">

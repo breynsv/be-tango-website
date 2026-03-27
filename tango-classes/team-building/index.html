@@ -33,6 +33,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/cropped-favicon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,7 +67,7 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "5",
-        "reviewCount": "141",
+        "reviewCount": "151",
         "bestRating": "5"
       },
       "address": {
@@ -126,6 +127,1045 @@
     ]
   }
   </script>
+
+  <style>
+    /* ===========================
+       CSS CUSTOM PROPERTIES
+    =========================== */
+    :root {
+      --black:  #000000;
+      --gold:   #E2C033;
+      --navy:   #1C244B;
+      --white:  #FFFFFF;
+      --bg:     #F3F5F8;
+      --gold-dark: #c9a820;
+      --navy-light: #2a3566;
+      --text-muted: #6b7280;
+      --radius: 4px;
+      --shadow-card: 0 8px 32px rgba(0,0,0,0.12);
+      --shadow-hover: 0 16px 48px rgba(0,0,0,0.18);
+      --transition: 0.25s ease;
+    }
+
+    /* ===========================
+       RESET & BASE
+    =========================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--black);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ===========================
+       HEADER
+    =========================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .logo .dot {
+      color: var(--gold);
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .header-nav a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--navy);
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      transition: background var(--transition), color var(--transition);
+      white-space: nowrap;
+    }
+
+    .header-nav a:hover {
+      background: var(--bg);
+      color: var(--gold-dark);
+    }
+
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .lang-switcher a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 20px;
+      transition: all var(--transition);
+      letter-spacing: 0.04em;
+    }
+
+    .lang-switcher a.active,
+    .lang-switcher a:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .lang-switcher .sep {
+      color: #d1d5db;
+      font-size: 0.75rem;
+    }
+
+    /* ===========================
+       HERO — ASYMMETRIC SPLIT
+    =========================== */
+    .hero {
+      display: flex;
+      min-height: 420px !important;
+      max-height: 600px !important;
+      padding: 0 !important;
+      background-image: none !important;
+    }
+
+    .hero::before { content: none !important; display: none !important; background: none !important; }
+
+    .hero .container { position: static !important; z-index: auto !important; }
+
+    /* LEFT PANEL */
+    .hero-left {
+      width: 42%;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 64px 56px 64px 0;
+    }
+
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: var(--gold);
+    }
+
+    .hero-left-inner {
+      padding-left: 48px;
+      max-width: 480px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .hero-h1 {
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--navy) !important;
+      letter-spacing: -0.03em;
+      margin-bottom: 22px;
+    }
+
+    .hero-h1 .highlight {
+      color: var(--gold-dark);
+      position: relative;
+    }
+
+    .hero-divider {
+      width: 56px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 36px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      padding: 14px 28px;
+      border-radius: var(--radius);
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--black);
+      border-color: var(--gold);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-dark);
+      border-color: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(226,192,51,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .btn-secondary:hover {
+      background: var(--navy);
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(28,36,75,0.25);
+    }
+
+    .btn-secondary-light {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .btn-secondary-light:hover {
+      background: var(--white);
+      color: var(--navy);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* RIGHT PANEL */
+    .hero-right {
+      width: 58%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(28,36,75,0.45) 0%,
+        rgba(0,0,0,0.25) 50%,
+        rgba(0,0,0,0.15) 100%
+      );
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 32px;
+      left: 32px;
+      z-index: 2;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+
+    .hero-badge-star {
+      font-size: 1.4rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .hero-badge-text {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .hero-badge-sub {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    /* ===========================
+       SECTION SHARED
+    =========================== */
+    .section-pad {
+      padding: 96px 32px;
+    }
+
+    .section-pad-sm {
+      padding: 72px 32px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .container-narrow {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 12px;
+    }
+
+    /* ===========================
+       INTRO SECTION
+    =========================== */
+    .intro-section {
+      background: var(--white);
+      text-align: center;
+    }
+
+    .intro-h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .intro-h2-wrap {
+      margin-bottom: 32px;
+    }
+
+    .intro-gold-rule {
+      display: block;
+      width: 64px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 16px auto 0;
+    }
+
+    .intro-lead {
+      font-size: 1.1rem;
+      font-weight: 400;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 24px;
+    }
+
+    .intro-body {
+      font-size: 0.97rem;
+      font-weight: 400;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .intro-body strong {
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    /* ===========================
+       FEATURES SECTION (navy bg)
+    =========================== */
+    .features-section {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .features-section::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(226,192,51,0.04);
+      pointer-events: none;
+    }
+
+    .features-section::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.02);
+      pointer-events: none;
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .features-h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .features-h2 .highlight {
+      color: var(--gold);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 40px 36px;
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .feature-card:hover {
+      background: rgba(255,255,255,0.09);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    }
+
+    .feature-card:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+
+    .feature-h3 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: #fff !important;
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .feature-p {
+      font-size: 0.9rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.85) !important;
+    }
+
+    /* ===========================
+       PROCESS / STEPS SECTION
+    =========================== */
+    .process-section {
+      background: var(--bg);
+    }
+
+    .process-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .process-h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .process-h2-underline {
+      display: block;
+      width: 56px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 16px auto 0;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      position: relative;
+      max-width: none !important;
+      width: 100% !important;
+    }
+
+    .timeline::before {
+      content: none !important;
+      display: none !important;
+    }
+
+    .timeline-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    /* Connector line between steps */
+    .timeline-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: calc(50% + 30px);
+      right: calc(-50% + 30px);
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--gold) 0,
+        var(--gold) 8px,
+        transparent 8px,
+        transparent 16px
+      );
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 1.3rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 16px rgba(226,192,51,0.35);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .timeline-step:hover .step-number {
+      transform: scale(1.08);
+      box-shadow: 0 8px 28px rgba(226,192,51,0.5);
+    }
+
+    .step-h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-p {
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: #555;
+    }
+
+    /* ===========================
+       CTA SECTION (black bg)
+    =========================== */
+    .cta-section {
+      background: var(--black);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(226,192,51,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .cta-h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .cta-h2 .highlight {
+      color: var(--gold);
+    }
+
+    .cta-p {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 40px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-large {
+      padding: 18px 36px;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    .site-footer {
+      background: var(--navy);
+    }
+
+    .footer-main {
+      padding: 72px 32px 48px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+      gap: 48px;
+    }
+
+    .footer-col-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .footer-logo-text {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-logo-text .dot {
+      color: var(--gold);
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.83rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 8px;
+    }
+
+    .footer-contact-item i {
+      color: var(--gold);
+      width: 16px;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      transition: color var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-links a::before {
+      content: '';
+      width: 14px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+      opacity: 0.6;
+      transition: opacity var(--transition), width var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .footer-links a:hover::before {
+      opacity: 1;
+      width: 20px;
+    }
+
+    .footer-location-item {
+      margin-bottom: 18px;
+    }
+
+    .footer-location-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-location-name i {
+      color: var(--gold);
+      font-size: 0.8rem;
+    }
+
+    .footer-location-addr {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+      padding-left: 22px;
+    }
+
+    /* Footer bottom bar */
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 20px 32px;
+    }
+
+    .footer-bottom-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-legal a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      transition: color var(--transition);
+    }
+
+    .footer-legal a:hover {
+      color: var(--gold);
+    }
+
+    /* ===========================
+       SCROLL ANIMATION HELPER
+    =========================== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger children */
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
+    .stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.1s; }
+    .stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.2s; }
+    .stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.3s; }
+
+    /* ===========================
+       RESPONSIVE
+    =========================== */
+    @media (max-width: 1024px) {
+      .hero-left {
+        padding: 56px 40px 56px 0;
+      }
+
+      .hero-left-inner {
+        padding-left: 40px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        min-height: auto;
+      }
+
+      .hero-left {
+        width: 100%;
+        padding: 48px 32px 48px 0;
+        order: 2;
+      }
+
+      .hero-left::before {
+        top: 0;
+        bottom: 0;
+        width: 4px;
+      }
+
+      .hero-left-inner {
+        padding-left: 32px;
+      }
+
+      .hero-right {
+        width: 100%;
+        height: 340px;
+        order: 1;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .timeline-step {
+        padding: 0;
+        align-items: flex-start;
+        text-align: left;
+        flex-direction: row;
+        gap: 24px;
+      }
+
+      .timeline-step::after {
+        display: none;
+      }
+
+      .step-number {
+        margin-bottom: 0;
+        flex-shrink: 0;
+        margin-top: 0;
+      }
+
+      .step-content {
+        padding-top: 8px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .footer-bottom-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .header-nav {
+        display: none;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .cta-buttons .btn {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section-pad {
+        padding: 64px 20px;
+      }
+
+      .section-pad-sm {
+        padding: 52px 20px;
+      }
+
+      .hero-left {
+        padding: 40px 20px 40px 0;
+      }
+
+      .hero-left-inner {
+        padding-left: 24px;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+      }
+
+      .hero-cta-group .btn {
+        text-align: center;
+        justify-content: center;
+      }
+    }
+  </style>
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
+      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/tango-classes/"},
+      {"@type": "ListItem", "position": 3, "name": "Team Building", "item": "https://www.be-tango.be/tango-classes/team-building/"}
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -137,7 +1177,7 @@
     <div class="container">
       <div class="header-content">
         <a href="../../" class="logo">
-          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34" loading="lazy">
+          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34">
         </a>
         <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
           <span></span>
@@ -154,8 +1194,6 @@
                 <li><a href="../../tango-classes/experienced/">Experienced</a></li>
                 <li><a href="../../tango-classes/private/">Private Lessons</a></li>
                 <li><a href="../../tango-classes/couples/">Couples</a></li>
-                <li><a href="../../tango-classes/wedding-dance/">Wedding Dance</a></li>
-                <li><a href="../../tango-classes/team-building/">Team Building</a></li>
                 <li><a href="../../tango-classes/online/">Online Classes</a></li>
                 <li><a href="../../tango-classes/brussels/">Brussels</a></li>
                 <li><a href="../../tango-classes/woluwe/">Woluwe</a></li>
@@ -200,174 +1238,158 @@
   <!-- MAIN CONTENT -->
   <main id="main-content">
 
-    <!-- Hero Section -->
-    <section class="hero hero-small">
+    <!-- HERO -->
+    <section class="hero">
+
+      <!-- Left: content panel -->
+      <div class="hero-left">
+        <div class="hero-left-inner">
+          <span class="hero-eyebrow">TEAM BUILDING</span>
+          <h1 class="hero-h1">
+            Tango Team Building<br>
+            <span class="highlight">in Brussels</span>
+          </h1>
+          <div class="hero-divider"></div>
+          <p class="hero-tagline">
+            Looking for a team building in Brussels that truly sticks? At BE-TANGO we use Argentine tango to teach colleagues how to communicate, lead and trust each other on the dance floor.
+          </p>
+          <div class="hero-cta-group">
+            <a href="../../contact/" class="btn btn-primary">
+              <i class="fas fa-file-invoice"></i>
+              Request a Quote
+            </a>
+            <a href="../../tango-classes/free-trial/" class="btn btn-secondary">
+              Try a Class First
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: photo panel -->
+      <div class="hero-right">
+        <img
+          src="../../images/tango-classes-in-Brussels-2-e1740646913571.webp"
+          alt="Tango team building session in Brussels — BE-TANGO"
+          loading="eager"
+        />
+        <div class="hero-badge">
+          <div class="hero-badge-star">★</div>
+          <div>
+            <div class="hero-badge-text">151 reviews</div>
+            <div class="hero-badge-sub">Google · Facebook</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro-section section-pad">
+      <div class="container-narrow fade-up">
+        <div class="intro-h2-wrap">
+          <h2 class="intro-h2">A Team Building Experience Unlike Any Other</h2>
+          <span class="intro-gold-rule"></span>
+        </div>
+        <p class="intro-lead">
+          Argentine tango is one hundred percent non-verbal communication. One person leads, the other follows, and both listen carefully to each other. That is exactly the dynamic every strong team needs in the workplace. No abstract theory — just a direct experience of how you move together, adapt, and collaborate.
+        </p>
+        <p class="intro-body">
+          BE-TANGO has been organising tango workshops for companies in Brussels and beyond for years. Whether you are planning an intimate session for ten colleagues or a large department event, we tailor every workshop to your team's dynamics. And rest assured: <strong>no dance experience required.</strong> Everyone can join.
+        </p>
+      </div>
+    </section>
+
+    <!-- FEATURES (navy bg) -->
+    <section class="features-section section-pad">
       <div class="container">
-        <div class="hero-content">
-          <p class="hero-label">TEAM BUILDING</p>
-          <h1>Tango Team Building <span class="highlight">in Brussels</span></h1>
-          <p class="hero-tagline">A unique corporate activity that builds trust, communication and leadership through the art of Argentine tango.</p>
-          <div class="hero-cta">
-            <a href="../../contact/" class="btn btn-primary btn-large">Request a Custom Quote</a>
-            <a href="../../tango-classes/free-trial/" class="btn btn-secondary btn-large">Try a Class First</a>
+        <div class="features-header fade-up">
+          <h2 class="features-h2">What Tango Teaches <span class="highlight">Every Team</span></h2>
+        </div>
+        <div class="features-grid stagger">
+          <div class="feature-card">
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-handshake"></i></div>
+            <h3 class="feature-h3">Trust &amp; Vulnerability</h3>
+            <p class="feature-p">Tango simply does not work without trust. Instead of standard office games, colleagues experience on the dance floor exactly what it means to literally lean on one another and find balance together.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-comments"></i></div>
+            <h3 class="feature-h3">Non-Verbal Communication</h3>
+            <p class="feature-p">In tango we do not speak with words, but with our bodies. Your team quickly discovers how many signals we send unconsciously — and how to communicate clearly and powerfully without raising your voice.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-exchange-alt"></i></div>
+            <h3 class="feature-h3">Leadership &amp; Followership</h3>
+            <p class="feature-p">Leading means giving direction; following means actively interpreting and filling the space. Because everyone rotates roles, participants develop immediate empathy and understanding for each other's position in the company.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i aria-hidden="true" class="fas fa-smile"></i></div>
+            <h3 class="feature-h3">Shared Fun &amp; Laughter</h3>
+            <p class="feature-p">Beyond the insights on leadership, learning tango together is simply a lot of fun. The initial nerves usually vanish within five minutes, there is plenty of laughter, and your team leaves with a new shared energy.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Intro Section -->
-    <section class="section">
+    <!-- PROCESS / TIMELINE -->
+    <section class="process-section section-pad">
       <div class="container">
-        <div class="content-block content-centered">
-          <h2>A Team Building Experience Unlike Any Other</h2>
-          <p class="lead">Argentine tango is fundamentally about two people working together — one leads, one follows, both listen. These dynamics mirror the skills every great team needs: trust, communication, adaptability, and the courage to lead and to let others lead.</p>
-          <p>BE-TANGO offers custom tango group workshops for companies in Brussels. Whether as a one-off team event or a series of sessions, we tailor each experience to your group size and goals. <strong>No dance experience required.</strong></p>
+        <div class="process-header fade-up">
+          <h2 class="process-h2">How a Session Works</h2>
+          <span class="process-h2-underline"></span>
         </div>
-      </div>
-    </section>
+        <div class="timeline stagger">
 
-    <!-- What Tango Teaches Teams -->
-    <section class="section bg-light">
-      <div class="container">
-        <div class="section-header text-center">
-          <h2>What Tango Teaches <span class="highlight">Every Team</span></h2>
-        </div>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-handshake" aria-hidden="true"></i></div>
-            <h3>Trust &amp; Vulnerability</h3>
-            <p>Tango requires you to trust your partner — physically and mentally. This is one of the most powerful exercises for building genuine trust in a team, without any artificial "fall and catch" games.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-comments" aria-hidden="true"></i></div>
-            <h3>Non-Verbal Communication</h3>
-            <p>Most of what happens in tango is communicated through body language alone. Teams discover how much information they miss when only listening to words — and how powerful non-verbal clarity can be.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-exchange-alt" aria-hidden="true"></i></div>
-            <h3>Leadership &amp; Followership</h3>
-            <p>In tango, both roles are equally skilled and equally important. Participants rotate between leading and following, developing empathy for both positions — a key insight for any workplace.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-smile" aria-hidden="true"></i></div>
-            <h3>Shared Fun &amp; Laughter</h3>
-            <p>Beyond the insights, tango team building is simply a lot of fun. Participants leave energised, having shared something genuinely new together — which is exactly what good team events should do.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header text-center">
-          <h2>How a Session Works</h2>
-        </div>
-        <div class="steps-list">
-          <div class="step-item">
+          <div class="timeline-step">
             <div class="step-number">1</div>
             <div class="step-content">
-              <h3>Introduction</h3>
-              <p>A short explanation of the tango principles that apply to teamwork: the lead-follow dynamic, the role of listening, and the idea of improvised dialogue.</p>
+              <h3 class="step-h3">Introduction</h3>
+              <p class="step-p">We start with a no-nonsense explanation of the essence of tango. How does the connection between two people work? What does leading and following mean in practice? We draw the parallel to your team's everyday collaboration right away.</p>
             </div>
           </div>
-          <div class="step-item">
+
+          <div class="timeline-step">
             <div class="step-number">2</div>
             <div class="step-content">
-              <h3>Partner Exercises</h3>
-              <p>Guided exercises where participants work in pairs — no prior experience required. Focus is on communication, sensitivity, and mutual adaptation.</p>
+              <h3 class="step-h3">Partner Exercises</h3>
+              <p class="step-p">In rotating pairs we take to the floor. With simple, step-by-step exercises we focus on posture, attunement, and sensing what your partner wants to do. Making mistakes is allowed — that is how we learn.</p>
             </div>
           </div>
-          <div class="step-item">
+
+          <div class="timeline-step">
             <div class="step-number">3</div>
             <div class="step-content">
-              <h3>Group Practice</h3>
-              <p>Everyone dances together in a social format, rotating partners. The energy in the room builds as people discover they can actually dance tango — even in a single session.</p>
+              <h3 class="step-h3">Group Practice</h3>
+              <p class="step-p">Then we bring the whole group together. The atmosphere in the room always shifts when colleagues realise they can — after barely an hour — actually navigate the dance floor together in a real tango flow.</p>
             </div>
           </div>
-          <div class="step-item">
+
+          <div class="timeline-step">
             <div class="step-number">4</div>
             <div class="step-content">
-              <h3>Debrief &amp; Reflection</h3>
-              <p>Optional group debrief connecting the tango experience to your team's real dynamics. Which insights surprised people? What can be brought back to the workplace?</p>
+              <h3 class="step-h3">Debrief &amp; Reflection</h3>
+              <p class="step-p">If desired, we close with a short reflection. What stood out? Who turned out to be a surprising leader or a remarkably strong follower? Together we translate the lessons from the dance floor into the daily reality of your workplace.</p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="section bg-light">
-      <div class="container">
-        <div class="section-header text-center">
-          <h2>Questions About Tango Team Building</h2>
-        </div>
-        <div class="accordion">
-
-          <details class="accordion-item">
-            <summary class="accordion-title">
-              <h3>Do participants need any dance experience?</h3>
-              <span class="accordion-icon">+</span>
-            </summary>
-            <div class="accordion-content">
-              <p>No experience is needed whatsoever. Tango team building sessions are designed for complete beginners. The focus is on the soft skills — trust, communication, and collaboration — not on learning to dance perfectly.</p>
-            </div>
-          </details>
-
-          <details class="accordion-item">
-            <summary class="accordion-title">
-              <h3>How large can the group be?</h3>
-              <span class="accordion-icon">+</span>
-            </summary>
-            <div class="accordion-content">
-              <p>We can accommodate groups of varying sizes. <a href="../../contact/">Contact us</a> with your group size and we will tailor the session accordingly. Sessions can be held at our Brussels venue or at your own company location.</p>
-            </div>
-          </details>
-
-          <details class="accordion-item">
-            <summary class="accordion-title">
-              <h3>What does a tango team building session involve?</h3>
-              <span class="accordion-icon">+</span>
-            </summary>
-            <div class="accordion-content">
-              <p>A typical session combines a short introduction to Argentine tango principles, guided partner exercises that build trust and communication, and a fun social dancing experience. Our instructors guide the entire session — no preparation needed from participants.</p>
-            </div>
-          </details>
-
-          <details class="accordion-item">
-            <summary class="accordion-title">
-              <h3>Can the session be held at our company location?</h3>
-              <span class="accordion-icon">+</span>
-            </summary>
-            <div class="accordion-content">
-              <p>Yes, we can come to your venue if you have a suitable space with a clear floor area. We can also host the event at our Brussels dance studio. <a href="../../contact/">Contact us</a> to discuss options.</p>
-            </div>
-          </details>
-
-          <details class="accordion-item">
-            <summary class="accordion-title">
-              <h3>How much does a tango team building session cost?</h3>
-              <span class="accordion-icon">+</span>
-            </summary>
-            <div class="accordion-content">
-              <p>Pricing depends on group size, session duration, and location. <a href="../../contact/">Contact us</a> with your requirements and we will provide a personalised quote.</p>
-            </div>
-          </details>
 
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="bg-dark">
+    <!-- CTA (black bg) -->
+    <section class="cta-section section-pad">
       <div class="container">
-        <div class="section-header text-center">
-          <h2>Ready to Try Something <span class="highlight">Truly Different?</span></h2>
-          <p>Contact us to discuss your team building needs. We will create a custom tango workshop tailored to your group, your goals, and your schedule.</p>
-        </div>
-        <div class="cta-buttons">
-          <a href="../../contact/" class="btn btn-primary btn-large">REQUEST A CUSTOM QUOTE</a>
-          <a href="../../tango-classes/free-trial/" class="btn btn-secondary btn-large">TRY A CLASS FIRST</a>
+        <div class="cta-inner fade-up">
+          <h2 class="cta-h2">Ready for Something <span class="highlight">Truly Different?</span></h2>
+          <p class="cta-p">Ready to shake up your team's dynamics? Get in touch to discuss your team building with BE-TANGO in Brussels. We are happy to help design the ideal workshop, perfectly tailored to your team and schedule.</p>
+          <div class="cta-buttons">
+            <a href="../../contact/" class="btn btn-primary btn-large">
+              <i class="fas fa-file-invoice"></i>
+              REQUEST A CUSTOM QUOTE
+            </a>
+            <a href="../../tango-classes/free-trial/" class="btn btn-secondary-light btn-large">
+              TRY A CLASS FIRST
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -379,11 +1401,24 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <h3>BE-TANGO</h3>
+          <a href="../../" class="footer-logo-link" style="font-family:'Poppins',sans-serif;font-weight:900;font-size:1.4rem;letter-spacing:.15em;color:#fff;text-decoration:none;display:inline-block;margin-bottom:.5rem;">BE<span style="color:#E2C033">·</span>TANGO</a>
           <p>Your dance school for Argentine tango in Brussels and Woluwe.</p>
+          <p>Experience the connection, the music and the joy.</p>
           <p style="margin-top: 1rem;"><strong>Phone:</strong> <a href="tel:+32498392939" style="color: inherit;">+32 498 39 29 39</a></p>
-          <p><strong>Email:</strong> <a href="mailto:admin@be-tango.com" style="color: inherit;">admin@be-tango.com</a></p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/p/Be-tango-ART-100057312323946/" aria-label="Facebook" class="social-icon" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/be_tango_brussels/" aria-label="Instagram" class="social-icon" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+          </div>
         </div>
+
         <div class="footer-col">
           <h4>Quick Links</h4>
           <ul>
@@ -392,41 +1427,49 @@
             <li><a href="../../tango-classes/free-trial/" class="footer-free-trial">Free Trial</a></li>
             <li><a href="../../blog/">Blog</a></li>
             <li><a href="../../contact/">Contact</a></li>
+            <li><a href="../../faq/">FAQ</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h4>Classes</h4>
           <ul>
             <li><a href="../../tango-classes/beginners/">Beginners</a></li>
             <li><a href="../../tango-classes/experienced/">Experienced</a></li>
             <li><a href="../../tango-classes/private/">Private Lessons</a></li>
+            <li><a href="../../tango-classes/online/">Online</a></li>
             <li><a href="../../tango-classes/couples/">Couples</a></li>
             <li><a href="../../tango-classes/wedding-dance/">Wedding Dance</a></li>
             <li><a href="../../tango-classes/team-building/">Team Building</a></li>
           </ul>
         </div>
+
         <div class="footer-col">
           <h4>Locations</h4>
           <div class="footer-location-cards">
             <div class="location-card">
               <strong>BE-TANGO Centre</strong>
               <span class="loc-address">Rue du Marais 68, 1000 Brussels</span>
+              <a href="../../tango-classes/brussels/" class="loc-link">View location →</a>
             </div>
             <div class="location-card">
               <strong>BE-TANGO Woluwe</strong>
               <span class="loc-address">Av. Orban 54, 1150 Woluwe-Saint-Pierre</span>
+              <a href="../../tango-classes/woluwe/" class="loc-link">View location →</a>
             </div>
           </div>
         </div>
       </div>
+
       <div class="footer-bottom">
-        <p>&copy; 2026 BE-TANGO. All rights reserved.</p>
-        <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
-        <p class="footer-legal">
-          <a href="../../privacy-policy/">Privacy Policy</a> |
-          <a href="../../terms-and-conditions/">Terms &amp; Conditions</a> |
-          <a href="../../links/">Links</a>
-        </p>
+        <div class="footer-bottom-inner">
+          <p class="footer-copy">&copy; 2026 BE-TANGO. All rights reserved.</p>
+          <div class="footer-legal">
+            <a href="../../privacy-policy/">Privacy Policy</a>
+            <a href="../../terms-and-conditions/">Terms &amp; Conditions</a>
+            <a href="../../links/">Links</a>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
@@ -470,6 +1513,26 @@
         }
       });
     }
+  </script>
+
+  <!-- Scroll animations -->
+  <script>
+    (function () {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('.fade-up, .stagger').forEach((el) => {
+        observer.observe(el);
+      });
+    })();
   </script>
 
   <script src="../../js/cookie-consent.min.js?v=3.7" defer></script>
