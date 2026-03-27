@@ -43,3 +43,9 @@ qa-report.html
 qa-report.md
 qa-screenshots/
 .superpowers/
+
+# Dependencies
+node_modules/
+
+# Environment
+.env
