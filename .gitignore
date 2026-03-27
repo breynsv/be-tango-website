@@ -44,12 +44,6 @@ docs/
 _dev/
 pages/
 
-# Blog source/backup folders
-blog/_originals/
-blog/_model_compare/
-blog/__pycache__/
-fr/blog/_originals/
-nl/blog/_originals/
 
 # Dependencies
 node_modules/
