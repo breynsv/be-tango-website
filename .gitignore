@@ -38,24 +38,10 @@ Temporary Items
 tmp/
 temp/
 
-# QA audit output
-qa-report.html
-qa-report.md
-qa-screenshots/
+# Local-only (not deployed)
 .superpowers/
-
-# Dependencies
-node_modules/
-
-# Environment
-.env
-
-# Local-only docs & planning (not for deployment)
 docs/
-design-brainstorm/
-audit/
-TODO_SCREENSHOTS/
-tests/
+_dev/
 pages/
 
 # Blog source/backup folders
@@ -65,11 +51,11 @@ blog/__pycache__/
 fr/blog/_originals/
 nl/blog/_originals/
 
-# Development tools (scripts, QA tools — not part of the site)
-_dev/
+# Dependencies
+node_modules/
 
-# Logs
-*.log
+# Environment
+.env
 
 # Planning/notes markdown files (README.md is excluded below)
 *.md
