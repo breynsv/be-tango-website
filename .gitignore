@@ -65,9 +65,8 @@ blog/__pycache__/
 fr/blog/_originals/
 nl/blog/_originals/
 
-# Scripts (build/automation tools, not part of the site)
-*.py
-*.sh
+# Development tools (scripts, QA tools — not part of the site)
+_dev/
 
 # Logs
 *.log
