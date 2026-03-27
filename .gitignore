@@ -49,3 +49,29 @@ node_modules/
 
 # Environment
 .env
+
+# Local-only docs & planning (not for deployment)
+docs/
+design-brainstorm/
+audit/
+TODO_SCREENSHOTS/
+tests/
+pages/
+
+# Blog source/backup folders
+blog/_originals/
+blog/_model_compare/
+blog/__pycache__/
+fr/blog/_originals/
+nl/blog/_originals/
+
+# Scripts (build/automation tools, not part of the site)
+*.py
+*.sh
+
+# Logs
+*.log
+
+# Planning/notes markdown files (README.md is excluded below)
+*.md
+!README.md
