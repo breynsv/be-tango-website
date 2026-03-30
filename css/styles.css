@@ -269,6 +269,7 @@ p {
   display: inline-block;
   margin: 0 0 4px 0 !important;
   text-transform: none !important;
+  color: #000000 !important; /* WCAG AA: #000 on #E2C033 = 9.73:1 contrast */
 }
 
 .nav-list .btn-nav {
