@@ -110,7 +110,9 @@ ul {
 /* Enhanced focus for interactive elements */
 a:focus-visible,
 button:focus-visible,
-input:focus-visible {
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
   outline: 3px solid var(--color-secondary);
   outline-offset: 2px;
 }
@@ -291,6 +293,12 @@ p {
   box-shadow: var(--box-shadow);
   transition: all 0.3s ease;
   overflow: visible;
+}
+
+.site-header.scrolled {
+  background-color: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
 }
 
 .header-content {
@@ -786,6 +794,10 @@ p {
   display: none;
 }
 
+.announcements-section.has-items {
+  display: block;
+}
+
 /* Section header — white on dark navy */
 .announcements-section .section-label {
   color: var(--color-secondary);
@@ -806,17 +818,177 @@ p {
   gap: 24px;
 }
 
+.announcements-grid.count-1 {
+  grid-template-columns: 1fr;
+}
+
+.announcements-grid.count-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 /* ── Activity cards ── */
+.activity-card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 28px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.activity-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-secondary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.activity-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(226, 192, 51, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.activity-card:hover::before {
+  transform: scaleX(1);
+}
+
+.card-date-badge {
+  display: inline-block;
+  background: rgba(226, 192, 51, 0.15);
+  color: var(--color-secondary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(226, 192, 51, 0.3);
+  margin-bottom: 14px;
+  align-self: flex-start;
+}
+
+.activity-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.activity-card p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(226, 192, 51, 0.4);
+}
+
+.card-link:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
 
 /* ── Carousel (4+ items) ── */
+.announcements-grid.count-carousel {
+  display: block;
+  overflow: hidden;
+}
+
+.ann-carousel-track {
+  display: flex;
+  gap: 24px;
+  transition: transform 0.4s ease;
+}
+
+.ann-carousel-track .activity-card {
+  /* Narrower than 1/3 so ~50px of the next card peeks at the right edge */
+  flex: 0 0 calc((100% - 120px) / 3);
+  min-width: calc((100% - 120px) / 3);
+}
+
+.ann-carousel-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+  width: 100%;
+}
+
+.ann-carousel-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ann-carousel-btn:hover {
+  background: rgba(226, 192, 51, 0.2);
+  border-color: rgba(226, 192, 51, 0.5);
+  color: var(--color-secondary);
+}
+
+.ann-carousel-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
 
 /* Drag cursor feedback on the carousel track */
+.ann-carousel-track {
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ann-carousel-track.is-dragging {
+  cursor: grabbing;
+}
 
 /* Prevent text/link drag ghosts while swiping */
+.ann-carousel-track a,
+.ann-carousel-track img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .announcements-grid {
+  .announcements-grid,
+  .announcements-grid.count-2,
+  .announcements-grid.count-3 {
     grid-template-columns: 1fr;
     gap: 20px;
   }
@@ -824,11 +996,24 @@ p {
   .announcements-section .section-header h2 {
     font-size: 1.875rem;
   }
+
+  .ann-carousel-track .activity-card {
+    /* ~40px peek of next card on mobile */
+    flex: 0 0 calc(100% - 40px);
+    min-width: calc(100% - 40px);
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  .announcements-grid {
+  .announcements-grid,
+  .announcements-grid.count-3 {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ann-carousel-track .activity-card {
+    /* ~48px peek of next card on tablet */
+    flex: 0 0 calc((100% - 72px) / 2);
+    min-width: calc((100% - 72px) / 2);
   }
 }
 
@@ -1642,6 +1827,53 @@ section {
 
 /* Contact Form */
 
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.form-group label {
+  color: var(--color-dark-navy);
+  font-weight: 500;
+  font-size: 0.875rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: border-color var(--transition);
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
 /* Locations Section */
 
 .section-header {
@@ -2140,6 +2372,10 @@ section {
 /* CTA Box */
 
 /* Form Container */
+.form-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
 
 .required {
   color: var(--color-secondary);
@@ -2179,6 +2415,21 @@ section {
 /* Form Note */
 
 /* Select Styling */
+.form-group select {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  transition: border-color var(--transition);
+  background-color: var(--color-white);
+  cursor: pointer;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+}
 
 /* Reviews Carousel for Private Page */
 .reviews-carousel-wrapper {
@@ -2477,6 +2728,22 @@ section {
 }
 
 /* Select dropdown styles for dark backgrounds */
+.bg-dark .form-group select,
+.bg-dark .form-group input,
+.bg-dark .form-group textarea {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-white);
+}
+
+.bg-dark .form-group select option {
+  background-color: var(--color-dark-navy);
+  color: var(--color-white);
+}
+
+.bg-dark .form-group label {
+  color: var(--color-white);
+}
 
 /* ===================================
    ONLINE CLASSES PAGE STYLES
@@ -2923,8 +3190,33 @@ a:focus {
 }
 
 /* 5.4 Make form input field edges more visible */
+.form-group input,
+.form-group textarea,
+.form-group select {
+  border: 2px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(226, 192, 51, 0.1);
+}
 
 /* Dark background form improvements */
+.bg-dark .form-group input,
+.bg-dark .form-group textarea,
+.bg-dark .form-group select {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.bg-dark .form-group input:focus,
+.bg-dark .form-group textarea:focus,
+.bg-dark .form-group select:focus {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(226, 192, 51, 0.2);
+}
 
 /* ===================================
    FREE TRIAL PAGE IMPROVEMENTS
@@ -2936,6 +3228,14 @@ a:focus {
 }
 
 /* 8.2 Form layout - consistent column widths */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  width: 100%;
+}
 
 /* Ensure single-column form groups match width of two-column rows */
 
@@ -3241,6 +3541,21 @@ a:focus {
    =================================== */
 
 /* ---------- Skeleton loader ---------- */
+.ft-skeleton-wrap {
+  padding: 0.5rem 0;
+}
+
+.ft-skeleton {
+  background: linear-gradient(90deg, rgba(226,192,51,0.08) 25%, rgba(226,192,51,0.18) 50%, rgba(226,192,51,0.08) 75%);
+  background-size: 200% 100%;
+  animation: ft-shimmer 1.4s infinite;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.ft-skeleton--header { height: 1.25rem; width: 60%; }
+.ft-skeleton--card   { height: 3.5rem; width: 100%; }
+.ft-skeleton--short  { width: 75%; }
 
 @keyframes ft-shimmer {
   0%   { background-position: 200% 0; }
@@ -3248,17 +3563,180 @@ a:focus {
 }
 
 /* ---------- Empty / Error states ---------- */
+.ft-empty,
+.ft-empty--error {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+}
+
+.ft-empty-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto 0.75rem;
+  opacity: 0.45;
+}
+
+.ft-empty-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--color-secondary);
+}
 
 /* ---------- Schedule grid ---------- */
+.ft-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ft-location-block {
+  background: #0d0d0d;
+  border: 1px solid rgba(226,192,51,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+
+.ft-location-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(226,192,51,0.15);
+  background: rgba(226,192,51,0.05);
+}
+
+.ft-pin-icon {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 2px;
+  stroke: var(--color-secondary);
+}
+
+.ft-loc-name {
+  display: block;
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.ft-loc-building,
+.ft-loc-address {
+  display: block;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.4;
+  margin-top: 1px;
+}
 
 /* ---------- Trial cards inside location block ---------- */
+.ft-trials-grid {
+  padding: 0.5rem 0;
+}
+
+.ft-trial-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  opacity: 0;
+  animation: ft-fade-in 0.4s ease forwards;
+  transition: background 0.2s ease;
+}
+
+.ft-trial-card:last-child {
+  border-bottom: none;
+}
+
+.ft-trial-card:hover {
+  background: rgba(226,192,51,0.06);
+}
 
 @keyframes ft-fade-in {
   from { opacity: 0; transform: translateY(6px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+.ft-trial-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ft-trial-date {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.ft-trial-time {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.ft-trial-time svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  flex-shrink: 0;
+  stroke: var(--color-secondary);
+  opacity: 0.7;
+}
+
+.ft-trial-right {
+  flex-shrink: 0;
+}
+
 /* ---------- Spots badge ---------- */
+.ft-spots-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.ft-spots-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ft-spots-badge.ft-spots--ok {
+  background: rgba(0, 208, 132, 0.12);
+  color: #00d084;
+  border: 1px solid rgba(0, 208, 132, 0.25);
+}
+.ft-spots-badge.ft-spots--ok .ft-spots-dot { background: #00d084; }
+
+.ft-spots-badge.ft-spots--low {
+  background: rgba(255, 177, 60, 0.12);
+  color: #ffb13c;
+  border: 1px solid rgba(255, 177, 60, 0.25);
+}
+.ft-spots-badge.ft-spots--low .ft-spots-dot { background: #ffb13c; }
+
+.ft-spots-badge.ft-spots--critical {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+.ft-spots-badge.ft-spots--critical .ft-spots-dot { background: #ef4444; }
 
 /* ---------- Success card ---------- */
 .ft-success {
@@ -3272,13 +3750,120 @@ a:focus {
   animation: ft-fade-in 0.5s ease forwards;
 }
 
+.ft-success-check {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  background: rgba(226,192,51,0.12);
+  border: 2px solid var(--color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ft-success-check svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  stroke: var(--color-secondary);
+}
+
+.ft-success-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.ft-success-msg {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 0.5rem;
+}
+
+.ft-success-email {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1.5rem;
+}
+
+.ft-success-email strong {
+  color: rgba(255,255,255,0.85);
+}
+
+.ft-success-meta {
+  border-top: 1px solid rgba(226,192,51,0.15);
+  padding-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ft-success-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  text-align: left;
+}
+
+.ft-success-lbl {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.ft-success-val {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.85);
+  text-align: right;
+}
+
+.ft-success-val em {
+  display: block;
+  font-style: normal;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8rem;
+}
+
+.ft-success-ref {
+  font-weight: 700;
+  color: var(--color-secondary);
+  font-size: 1rem;
+}
+
 /* ---------- Inline form error ---------- */
+.ft-form-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 480px) {
+  .ft-trial-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
 
   .ft-success {
     padding: 1.75rem 1.25rem;
+  }
+
+  .ft-success-row {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .ft-success-val {
+    text-align: left;
   }
 }
 
@@ -3299,6 +3884,9 @@ a:focus {
 }
 
 /* Calendar icon button on schedule items */
+.bts-cal {
+  margin-right: 0.75rem;
+}
 .btn-cal-icon {
   background: transparent;
   border: 1px solid var(--color-border, #e2e8f0);
