@@ -5503,32 +5503,26 @@ section {
 
 /* Mobile Optimization */
 @media (max-width: 767px) {
-  /* Hero adjustments for mobile */
+  /* Hero adjustments for mobile — use <img> tag (via <picture>) for LCP preloadability */
   .hero {
     min-height: 500px;
     padding: var(--spacing-2xl) 0;
-    background-image: url('../images/Tango-mobile.jpg') !important;
-    background-position: center center !important;
-    -webkit-background-image: url('../images/Tango-mobile.jpg') !important;
-    background-position: center center !important;
+    background-image: none !important; /* <img class="hero-bg-image"> handles this */
   }
 
   .hero-bg-image {
-    display: none !important;
+    object-position: center center; /* center-crop portrait mobile image */
   }
 }
 
 /* iPhone Safari specific fix */
 @media only screen and (max-device-width: 767px) {
   .hero {
-    background-image: url('../images/Tango-mobile.jpg') !important;
-    background-position: center center !important;
-    -webkit-background-image: url('../images/Tango-mobile.jpg') !important;
-    background-position: center center !important;
+    background-image: none !important;
   }
 
   .hero-bg-image {
-    display: none !important;
+    object-position: center center;
   }
 
   .hero h1 {

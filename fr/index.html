@@ -21,8 +21,9 @@
   <link rel="apple-touch-icon" sizes="180x180" href="../images/cropped-favicon-180x180.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- LCP hero image preload -->
-  <link rel="preload" as="image" href="../images/Tango-2048x1365-1.webp" fetchpriority="high">
+  <!-- LCP hero image preloads — media queries match <picture> sources below -->
+  <link rel="preload" as="image" href="../images/Tango-mobile.webp" media="(max-width: 767px)" fetchpriority="high">
+  <link rel="preload" as="image" href="../images/Tango-2048x1365-1.webp" media="(min-width: 768px)" fetchpriority="high">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,12 +32,11 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional"></noscript>
 
-  <!-- Font Awesome (preloaded but render-blocking to prevent CLS from icon reflow) -->
+  <!-- Stylesheets (preloaded + render-blocking = start fetching early, no CLS) -->
   <link rel="preload" href="../css/fontawesome.min.css?v=3.7" as="style">
   <link rel="stylesheet" href="../css/fontawesome.min.css?v=3.7">
-
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <link rel="preload" href="../css/styles.min.css?v=3.7" as="style">
+  <link rel="stylesheet" href="../css/styles.min.css?v=3.7">
   <noscript><link rel="stylesheet" href="../css/styles.min.css?v=3.7"></noscript>
 
   <!-- JSON-LD Structured Data -->
@@ -179,7 +179,10 @@
 
     <!-- Hero Section -->
     <section class="hero">
-      <img src="../images/Tango-2048x1365-1.webp" alt="Danseurs de tango argentin à Bruxelles" class="hero-bg-image" fetchpriority="high" width="2048" height="1365">
+      <picture>
+        <source srcset="../images/Tango-mobile.webp" media="(max-width: 767px)" width="800" height="800">
+        <img src="../images/Tango-2048x1365-1.webp" alt="Danseurs de tango argentin à Bruxelles" class="hero-bg-image" fetchpriority="high" width="2048" height="1365">
+      </picture>
       <div class="container">
         <div class="hero-content">
           <p class="hero-label">BIENVENUE CHEZ BE-TANGO</p>
@@ -393,12 +396,13 @@
           <h2>Où nous trouver ?</h2>
         </div>
 
-        <!-- Google Map -->
+        <!-- Google Map (JS-lazy: src set only when iframe enters viewport, prevents loading 190KB Maps JS upfront) -->
         <div class="map-wrapper">
-          <iframe loading="lazy"
-            src="https://maps.google.com/maps?q=BE-TANGO&t=m&z=12&output=embed&iwloc=near"
-            title="BE-TANGO"
-            aria-label="BE-TANGO">
+          <iframe id="map-iframe"
+            data-src="https://maps.google.com/maps?q=BE-TANGO&t=m&z=12&output=embed&iwloc=near"
+            title="Carte BE-TANGO Bruxelles et Woluwe"
+            aria-label="Carte BE-TANGO Bruxelles et Woluwe"
+            style="border:0;" allowfullscreen>
           </iframe>
         </div>
 
@@ -834,10 +838,28 @@
       });
     });
   </script>
-  <script src="../js/newsletter.min.js"></script>
+  <script src="../js/newsletter.min.js" defer></script>
   <script src="../js/announcements.min.js?v=3.7" defer></script>
   <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
+  </script>
+  <script>
+    // Lazy-load Google Maps iframe — prevents loading 190KB+ Maps JS on page init
+    (function(){
+      var iframe = document.getElementById('map-iframe');
+      if (!iframe) return;
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !iframe.src) {
+              iframe.src = iframe.dataset.src;
+            }
+          });
+        }, { rootMargin: '300px' }).observe(iframe);
+      } else {
+        iframe.src = iframe.dataset.src;
+      }
+    })();
   </script>
 </body>
 </html>
