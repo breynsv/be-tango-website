@@ -380,8 +380,8 @@ p {
 
 .nav-list a:hover,
 .nav-list a.active {
-  color: var(--color-secondary);
-  background-color: rgba(226, 192, 51, 0.1);
+  color: var(--color-dark-navy); /* Dark navy — 16:1 contrast on white (WCAG AAA) */
+  background-color: rgba(226, 192, 51, 0.15);
 }
 
 /* Mobile Dropdown */
@@ -1381,7 +1381,7 @@ section {
   padding: 16px 20px 20px;
   width: auto;
   background-color: transparent;
-  color: var(--color-secondary);
+  color: #7A6600; /* Accessible dark gold — 5.2:1 contrast on white (WCAG AA) */
   text-decoration: none;
   font-weight: 600;
   font-size: 0.875rem;
@@ -1393,7 +1393,7 @@ section {
 
 .journey-link:hover {
   background-color: transparent;
-  color: var(--color-secondary);
+  color: #5C4C00; /* Darker on hover — 7.5:1 contrast on white */
   transform: none;
   box-shadow: none;
   gap: 8px;
@@ -5656,10 +5656,6 @@ section {
 .journey-link {
   font-size: 1rem;
   font-weight: 700;
-}
-
-.journey-link:hover {
-  color: #d4a929; /* Darker gold for better contrast */
 }
 
 /* Enhance focus states for accessibility */
