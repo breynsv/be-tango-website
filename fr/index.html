@@ -32,26 +32,9 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional"></noscript>
 
-  <!-- Critical Font Awesome CSS — only icons used on this page, inlined to avoid render-blocking -->
-  <style>
-    @font-face{font-display:swap;font-family:"Font Awesome 6 Free";font-style:normal;font-weight:400;src:url(../fonts/fontawesome/fa-regular-400.woff2) format("woff2"),url(../fonts/fontawesome/fa-regular-400.ttf) format("truetype")}
-    @font-face{font-display:swap;font-family:"Font Awesome 6 Free";font-style:normal;font-weight:900;src:url(../fonts/fontawesome/fa-solid-900.woff2) format("woff2"),url(../fonts/fontawesome/fa-solid-900.ttf) format("truetype")}
-    .fa,.fas,.far{-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:inline-block;font-style:normal;font-variant:normal;line-height:1;text-rendering:auto}
-    .fas{font-family:"Font Awesome 6 Free";font-weight:900}
-    .far{font-family:"Font Awesome 6 Free";font-weight:400}
-    .fa-globe:before{content:"\f0ac"}
-    .fa-chevron-down:before{content:"\f078"}
-    .fa-lightbulb:before{content:"\f0eb"}
-    .fa-map-marked-alt:before{content:"\f5a0"}
-    .fa-user-graduate:before{content:"\f501"}
-    .fa-arrow-right:before{content:"\f061"}
-  </style>
-
-  <!-- Full Font Awesome loaded async (non-render-blocking) — critical icons above cover first paint -->
-  <link rel="preload" href="../css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="../css/fontawesome.min.css?v=3.7"></noscript>
-
   <!-- Stylesheets (preloaded + render-blocking = start fetching early, no CLS) -->
+  <link rel="preload" href="../css/fontawesome.min.css?v=3.7" as="style">
+  <link rel="stylesheet" href="../css/fontawesome.min.css?v=3.7">
   <link rel="preload" href="../css/styles.min.css?v=3.7" as="style">
   <link rel="stylesheet" href="../css/styles.min.css?v=3.7">
   <noscript><link rel="stylesheet" href="../css/styles.min.css?v=3.7"></noscript>
