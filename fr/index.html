@@ -706,10 +706,12 @@
         }, 100);
       });
 
-      // Set initial state
-      if (window.innerWidth < 768) {
-        mainNav.classList.remove('mobile-nav-open');
-      }
+      // Set initial state — deferred to avoid forced reflow during initial paint
+      requestAnimationFrame(() => {
+        if (window.innerWidth < 768) {
+          mainNav.classList.remove('mobile-nav-open');
+        }
+      });
     }
 
     // Language dropdown toggle
