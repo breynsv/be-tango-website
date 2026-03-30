@@ -21,20 +21,19 @@
   <link rel="apple-touch-icon" sizes="180x180" href="../images/cropped-favicon-180x180.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- LCP hero image preload (mobile + desktop) -->
-  <link rel="preload" as="image" href="../images/Tango-mobile.webp" media="(max-width: 767px)" fetchpriority="high">
-  <link rel="preload" as="image" href="../images/Tango-2048x1365-1.webp" media="(min-width: 768px)" fetchpriority="high">
+  <!-- LCP hero image preload -->
+  <link rel="preload" as="image" href="../images/Tango-2048x1365-1.webp" fetchpriority="high">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional"></noscript>
 
-  <!-- Font Awesome (async — non-render-blocking) -->
-  <link rel="preload" href="../css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="../css/fontawesome.min.css?v=3.7"></noscript>
+  <!-- Font Awesome (preloaded but render-blocking to prevent CLS from icon reflow) -->
+  <link rel="preload" href="../css/fontawesome.min.css?v=3.7" as="style">
+  <link rel="stylesheet" href="../css/fontawesome.min.css?v=3.7">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
@@ -180,10 +179,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-      <picture>
-        <source srcset="../images/Tango-mobile.webp" media="(max-width: 767px)" width="800" height="800">
-        <img src="../images/Tango-2048x1365-1.webp" alt="Danseurs de tango argentin à Bruxelles" class="hero-bg-image" fetchpriority="high" width="2048" height="1365">
-      </picture>
+      <img src="../images/Tango-2048x1365-1.webp" alt="Danseurs de tango argentin à Bruxelles" class="hero-bg-image" fetchpriority="high" width="2048" height="1365">
       <div class="container">
         <div class="hero-content">
           <p class="hero-label">BIENVENUE CHEZ BE-TANGO</p>
