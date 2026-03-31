@@ -1,60 +1,117 @@
 # BE-TANGO
-> Argentine tango dance school in Brussels and Woluwe, Belgium. Classes for all levels, taught by Sonja and Sven Breynaert. Instruction available in English, Dutch (Nederlands), and French (Français). 5/5 rating based on 141 Google reviews.
+> Argentine tango dance school in Brussels and Woluwe, Belgium. Classes for all levels. Instruction available in English, Dutch (Nederlands), and French (Français). 5/5 rating based on 151 Google reviews.
+> License: RSL-1.0
 
 ## English — Tango Classes
-- [All Tango Classes](https://www.be-tango.be/tango-classes/): Overview of all class types and levels
-- [Beginners](https://www.be-tango.be/tango-classes/beginners/): Start-to-Tango beginner course, 14 lessons, no partner needed
-- [Experienced](https://www.be-tango.be/tango-classes/experienced/): Intermediate and advanced tango classes
-- [Brussels Classes](https://www.be-tango.be/tango-classes/brussels/): Weekly classes at Rue du Marais 68, 1000 Brussels
-- [Woluwe Classes](https://www.be-tango.be/tango-classes/woluwe/): Weekly classes at Avenue Orban 54, 1150 Woluwe-Saint-Pierre
-- [Free Trial Class](https://www.be-tango.be/tango-classes/free-trial/): Book a free first lesson, no commitment
-- [Private Lessons](https://www.be-tango.be/tango-classes/private/): One-on-one or couple instruction
-- [Online Classes](https://www.be-tango.be/tango-classes/online/): Learn Argentine tango online via video
+- [All Tango Classes](https://www.be-tango.be/en/tango-classes/): Overview of all class types and levels
+- [Beginners](https://www.be-tango.be/en/tango-classes/beginners/): Start-to-Tango beginner course, 14 lessons, no partner needed
+- [Experienced](https://www.be-tango.be/en/tango-classes/experienced/): Intermediate and advanced tango classes
+- [Couples](https://www.be-tango.be/en/tango-classes/couples/): Argentine tango for couples in Brussels — no experience needed, free trial available, €195 for 14 lessons
+- [Brussels Classes](https://www.be-tango.be/en/tango-classes/brussels/): Weekly classes at Rue du Marais 68, 1000 Brussels
+- [Woluwe Classes](https://www.be-tango.be/en/tango-classes/woluwe/): Weekly classes at Avenue Orban 54, 1150 Woluwe-Saint-Pierre
+- [Free Trial Class](https://www.be-tango.be/en/tango-classes/free-trial/): Book a free first lesson, no commitment
+- [Private Lessons](https://www.be-tango.be/en/tango-classes/private/): One-on-one or couple instruction with a BE-TANGO instructor
+- [Online Classes](https://www.be-tango.be/en/tango-classes/online/): Learn Argentine tango online via video
+- [Workshops](https://www.be-tango.be/en/tango-classes/workshops/): Intensive tango workshops and special themed sessions
+- [Wedding Dance](https://www.be-tango.be/en/tango-classes/wedding-dance/): Argentine tango lessons for your wedding first dance
+- [Team Building](https://www.be-tango.be/en/tango-classes/team-building/): Tango team building activities for companies in Brussels
 
 ## English — Key Pages
-- [Home](https://www.be-tango.be/): Homepage with class overview, locations, and reviews
-- [Contact](https://www.be-tango.be/contact/): Contact form, addresses, and map
-- [FAQ](https://www.be-tango.be/faq/): Frequently asked questions about tango classes
-- [Blog](https://www.be-tango.be/blog/): Tango articles, guides, and inspiration
-- [Privacy Policy](https://www.be-tango.be/privacy-policy/): Data protection information
-- [Terms and Conditions](https://www.be-tango.be/terms-and-conditions/): General terms
+- [Home](https://www.be-tango.be/en/): Homepage with class overview, locations, and reviews
+- [Contact](https://www.be-tango.be/en/contact/): Contact form, addresses, and map
+- [FAQ](https://www.be-tango.be/en/faq/): Frequently asked questions about tango classes
+- [Blog](https://www.be-tango.be/en/blog/): Tango articles, guides, and inspiration
+- [Privacy Policy](https://www.be-tango.be/en/privacy-policy/): Data protection information
+- [Terms and Conditions](https://www.be-tango.be/en/terms-and-conditions/): General terms
+- [Useful Links](https://www.be-tango.be/en/links/): Partner organisations and recommended tango resources
 
 ## English — Blog Posts
-- [Why Learn Tango](https://www.be-tango.be/blog/why-learn-tango/): Benefits and reasons to start dancing Argentine tango
-- [Why Argentine Tango is the Best Dance for Adults in Brussels](https://www.be-tango.be/blog/why-argentine-tango-best-dance-adults-brussels/): Comparison with other dances
-- [History of Argentine Tango](https://www.be-tango.be/blog/history-of-argentine-tango/): Origins and evolution of the dance
-- [Different Styles of Argentine Tango](https://www.be-tango.be/blog/different-styles-of-argentine-tango/): Milonguero, salon, nuevo, and more
-- [Tango Vals and Milonga Differences](https://www.be-tango.be/blog/tango-vals-milonga-differences/): How these three dances relate
-- [Tango Glossary](https://www.be-tango.be/blog/tango-glossary/): Definitions of common tango terms
-- [Argentine Tango vs Ballroom Tango](https://www.be-tango.be/blog/argentine-tango-ballroom-tango-differences/): Key differences explained
-- [5 Tips for the Best Tango Shoes](https://www.be-tango.be/blog/5-tips-best-tango-shoes/): Shoe selection guide
-- [Tango Classes Brussels for Beginners](https://www.be-tango.be/blog/argentine-tango-classes-brussels-beginners/): What to expect as a beginner
-- [Tango Events in Brussels](https://www.be-tango.be/blog/tango-events-brussels/): Local milongas and tango events
-- [International Tango Events](https://www.be-tango.be/blog/international-tango-events/): Festivals and marathons worldwide
-- [Tango for Couples in Brussels](https://www.be-tango.be/blog/tango-for-couples-brussels/): Why tango is great for couples
+- [Tango for Couples in Brussels](https://www.be-tango.be/en/blog/tango-for-couples-brussels/): Why Argentine tango is one of the most rewarding things couples can learn together in Brussels
+- [History of Argentine Tango](https://www.be-tango.be/en/blog/history-of-argentine-tango/): Origins and evolution of Argentine tango from Buenos Aires to Europe
+- [The Different Styles of Argentine Tango](https://www.be-tango.be/en/blog/different-styles-of-argentine-tango/): Milonguero, salon, nuevo, and more — a complete guide to tango styles
+- [Tango, Vals & Milonga: What's the Difference?](https://www.be-tango.be/en/blog/tango-vals-milonga-differences/): The three dances you'll discover at every milonga in Brussels and around the world
+- [Argentine Tango vs Ballroom Tango](https://www.be-tango.be/en/blog/argentine-tango-ballroom-tango-differences/): Key differences between Argentine and ballroom tango explained
+- [5 Tips for the Best Tango Shoes](https://www.be-tango.be/en/blog/5-tips-best-tango-shoes/): How to choose the right tango shoes for Argentine tango
+- [Why You Should Learn Argentine Tango](https://www.be-tango.be/en/blog/why-learn-tango/): Benefits and reasons to start dancing Argentine tango
+- [Tango Glossary](https://www.be-tango.be/en/blog/tango-glossary/): Essential Argentine tango terms explained — from abrazo to yumba
+- [Tango Events in Brussels](https://www.be-tango.be/en/blog/tango-events-brussels/): Best tango milongas and events in Brussels and Belgium
+- [International Tango Events & Milongas](https://www.be-tango.be/en/blog/international-tango-events/): Best international tango festivals and marathons worldwide
 
 ## Français — Cours de Tango
 - [Accueil](https://www.be-tango.be/fr/): Page d'accueil en français
 - [Tous les cours](https://www.be-tango.be/fr/cours-de-tango/): Vue d'ensemble de tous les cours
-- [Débutants](https://www.be-tango.be/fr/cours-de-tango/debutants/): Cours Start-to-Tango pour débutants
+- [Débutants](https://www.be-tango.be/fr/cours-de-tango/debutants/): Cours Start-to-Tango pour débutants, 14 leçons, sans partenaire ni expérience
 - [Expérimentés](https://www.be-tango.be/fr/cours-de-tango/experimentes/): Cours intermédiaires et avancés
-- [Bruxelles](https://www.be-tango.be/fr/cours-de-tango/bruxelles/): Cours hebdomadaires à Bruxelles
-- [Woluwe](https://www.be-tango.be/fr/cours-de-tango/woluwe/): Cours hebdomadaires à Woluwe
-- [Essai gratuit](https://www.be-tango.be/fr/cours-de-tango/essai-gratuit/): Réservez un premier cours gratuit
-- [Cours particuliers](https://www.be-tango.be/fr/cours-de-tango/particuliers/): Cours individuels ou en couple
-- [Cours en ligne](https://www.be-tango.be/fr/cours-de-tango/en-ligne/): Apprendre le tango en ligne
+- [Cours en couple](https://www.be-tango.be/fr/cours-de-tango/en-couple/): Cours de tango argentin pour couples à Bruxelles — aucune expérience requise, essai gratuit
+- [Bruxelles](https://www.be-tango.be/fr/cours-de-tango/bruxelles/): Cours hebdomadaires à Bruxelles, Rue du Marais 68
+- [Woluwe](https://www.be-tango.be/fr/cours-de-tango/woluwe/): Cours hebdomadaires à Woluwe-Saint-Pierre
+- [Essai gratuit](https://www.be-tango.be/fr/cours-de-tango/essai-gratuit/): Réservez un premier cours gratuit sans engagement
+- [Cours particuliers](https://www.be-tango.be/fr/cours-de-tango/particuliers/): Cours individuels ou en couple avec un instructeur BE-TANGO
+- [Cours en ligne](https://www.be-tango.be/fr/cours-de-tango/en-ligne/): Apprendre le tango argentin en ligne via vidéo
+- [Ateliers](https://www.be-tango.be/fr/cours-de-tango/ateliers/): Ateliers de tango intensifs et sessions spéciales à thème
+- [Danse de mariage](https://www.be-tango.be/fr/cours-de-tango/danse-de-mariage/): Cours de tango argentin pour votre première danse de mariage
+- [Team building](https://www.be-tango.be/fr/cours-de-tango/team-building/): Activités de team building tango pour entreprises à Bruxelles
 - [Contactez-nous](https://www.be-tango.be/fr/contactez-nous/): Formulaire de contact et adresses
+- [FAQ](https://www.be-tango.be/fr/faq/): Questions fréquentes sur les cours de tango argentin
 - [Blog FR](https://www.be-tango.be/fr/blog/): Articles et guides sur le tango en français
+- [Politique de confidentialité](https://www.be-tango.be/fr/politique-de-confidentialite/): Politique de protection des données
+- [Termes et conditions](https://www.be-tango.be/fr/termes-et-conditions-generales/): Conditions générales d'utilisation
+- [Liens](https://www.be-tango.be/fr/liens/): Organisations partenaires et ressources tango recommandées
+
+## Français — Blog articles
+- [Tango en couple à Bruxelles](https://www.be-tango.be/fr/blog/tango-en-couple-bruxelles/): Pourquoi le tango argentin est l'activité idéale pour les couples à Bruxelles
+- [Histoire du tango argentin](https://www.be-tango.be/fr/blog/histoire-du-tango-argentin/): Les origines et l'évolution du tango argentin de Buenos Aires à l'Europe
+- [Les différents styles du tango argentin](https://www.be-tango.be/fr/blog/les-differents-styles-du-tango-argentin/): Canyengue, Milonguero, Salon, Nuevo et autres styles expliqués
+- [Dictionnaire de Tango](https://www.be-tango.be/fr/blog/dictionnaire-de-tango/): Guide complet de la terminologie du tango argentin — de abrazo à yumba
+- [Tango argentin vs tango de salon](https://www.be-tango.be/fr/blog/tango-argentin-vs-tango-de-salon/): Similarités et différences entre tango argentin et tango de salon
+- [La différence entre tango, valse et milonga](https://www.be-tango.be/fr/blog/difference-entre-tango-valse-et-milonga/): Les trois danses du tango argentin expliquées
+- [5 conseils pour les meilleures chaussures de tango](https://www.be-tango.be/fr/blog/conseils-pour-chaussures-de-tango/): Comment choisir les bonnes chaussures pour le tango argentin
+- [Événements tango à Bruxelles](https://www.be-tango.be/fr/blog/evenements-de-tango-a-bruxelles/): Les meilleurs milongas et événements de tango à Bruxelles et environs
+- [Événements de tango internationaux](https://www.be-tango.be/fr/blog/evenements-de-tango-internationaux/): Les meilleurs festivals et marathons de tango dans le monde
+- [Pourquoi apprendre le tango ?](https://www.be-tango.be/fr/blog/pourquoi-apprendre-le-tango/): 10 raisons de commencer les cours de tango argentin
 
 ## Nederlands — Tangolessen
 - [Startpagina](https://www.be-tango.be/nl/): Nederlandstalige startpagina
-- [Alle lessen](https://www.be-tango.be/nl/tangolessen/): Overzicht van alle tangolessen
-- [Beginners](https://www.be-tango.be/nl/tangolessen/beginners/): Start-to-Tango beginnerscursus
-- [Ervaring](https://www.be-tango.be/nl/tangolessen/ervaring/): Lessen voor gevorderden
-- [Brussel](https://www.be-tango.be/nl/tangolessen/brussel/): Wekelijkse lessen in Brussel
-- [Woluwe](https://www.be-tango.be/nl/tangolessen/woluwe/): Wekelijkse lessen in Woluwe
-- [Gratis proefles](https://www.be-tango.be/nl/tangolessen/gratis-proefles/): Boek een gratis eerste les
-- [Privélessen](https://www.be-tango.be/nl/tangolessen/prive/): Individuele lessen of als koppel
-- [Online lessen](https://www.be-tango.be/nl/tangolessen/online/): Tango leren via video
+- [Alle lessen](https://www.be-tango.be/nl/tangolessen/): Overzicht van alle tangolessen en niveaus
+- [Beginners](https://www.be-tango.be/nl/tangolessen/beginners/): Start-to-Tango beginnerscursus, 14 lessen, geen partner nodig
+- [Ervaring](https://www.be-tango.be/nl/tangolessen/ervaring/): Lessen voor gevorderden en intermediair niveau
+- [Voor koppels](https://www.be-tango.be/nl/tangolessen/voor-koppels/): Argentijnse tangolessen voor koppels in Brussel — geen ervaring nodig, gratis proefles
+- [Brussel](https://www.be-tango.be/nl/tangolessen/brussel/): Wekelijkse lessen in Brussel, Rue du Marais 68
+- [Woluwe](https://www.be-tango.be/nl/tangolessen/woluwe/): Wekelijkse lessen in Woluwe-Sint-Pieter
+- [Gratis proefles](https://www.be-tango.be/nl/tangolessen/gratis-proefles/): Boek een gratis eerste les zonder verplichting
+- [Privélessen](https://www.be-tango.be/nl/tangolessen/prive/): Individuele lessen of als koppel met een BE-TANGO instructeur
+- [Online lessen](https://www.be-tango.be/nl/tangolessen/online/): Tango leren via video-les
+- [Workshops](https://www.be-tango.be/nl/tangolessen/workshops/): Intensieve tango workshops en speciale sessies
+- [Openingsdans](https://www.be-tango.be/nl/tangolessen/openingsdans/): Argentijnse tango voor je openingsdans op het huwelijk
+- [Teambuilding](https://www.be-tango.be/nl/tangolessen/teambuilding/): Tango teambuilding activiteiten voor bedrijven in Brussel
 - [Contacteer ons](https://www.be-tango.be/nl/contacteer-ons/): Contactformulier en adressen
+- [Veelgestelde vragen](https://www.be-tango.be/nl/veelgestelde-vragen/): Veelgestelde vragen over tangolessen
 - [Blog NL](https://www.be-tango.be/nl/blog/): Tango artikelen en gidsen in het Nederlands
+- [Privacy policy](https://www.be-tango.be/nl/privacy-policy/): Gegevensbeschermingsbeleid
+- [Algemene voorwaarden](https://www.be-tango.be/nl/algemene-voorwaarden/): Algemene gebruiksvoorwaarden
+- [Links](https://www.be-tango.be/nl/links/): Partnerorganisaties en aanbevolen tangobronnen
+
+## Nederlands — Blog artikelen
+- [Waarom Argentijnse tango de beste danslessen voor volwassenen zijn in Brussel](https://www.be-tango.be/nl/blog/waarom-argentijnse-tango-beste-danslessen-volwassenen-brussel/): Ontdek waarom volwassenen Argentijnse tango kiezen als beste danslessen in Brussel
+- [De geschiedenis van de Argentijnse tango](https://www.be-tango.be/nl/blog/de-geschiedenis-van-de-argentijnse-tango/): Hoe de Argentijnse tango ontstond in Buenos Aires en de wereld veroverde
+- [De verschillende dansstijlen van de Argentijnse tango](https://www.be-tango.be/nl/blog/de-verschillende-dansstijlen-van-de-argentijnse-tango/): Van Canyengue tot Tango Nuevo — alle stijlen uitgelegd
+- [Tango woordenboek](https://www.be-tango.be/nl/blog/tango-woordenboek/): Complete gids van de Argentijnse tango terminologie — van abrazo tot yumba
+- [Argentijnse tango vs ballroomtango](https://www.be-tango.be/nl/blog/argentijnse-tango-vs-ballroomtango-de-verschillen-en-gelijkenissen/): De belangrijkste verschillen en gelijkenissen uitgelegd
+- [Tango, Vals & Milonga: wat zijn de verschillen?](https://www.be-tango.be/nl/blog/tango-vals-en-milonga-wat-zijn-de-verschillen/): De drie dansen van de Argentijnse tango uitgelegd
+- [5 tips voor de beste tangoschoenen](https://www.be-tango.be/nl/blog/5-tips-voor-de-beste-tangoschoenen/): Hoe kies je de juiste tangoschoenen voor Argentijnse tango
+- [Waarom tango leren dansen?](https://www.be-tango.be/nl/blog/waarom-tango-leren-dansen/): 10 redenen om te beginnen met Argentijnse tango
+- [Tango evenementen in Brussel en omstreken](https://www.be-tango.be/nl/blog/tango-evenementen-in-brussel-en-omstreken/): De beste milonga's en tango-evenementen in Brussel en omgeving
+- [Internationale tango evenementen](https://www.be-tango.be/nl/blog/internationale-milongas-en-tango-evenementen/): De beste internationale tangofestivals en marathons wereldwijd
+
+## Key Facts
+- Founded: 2007
+- Instructors: Professional Argentine tango instructors with 18+ years of experience
+- Languages: English, French (Français), Dutch (Nederlands)
+- Locations: Rue du Marais 68, 1000 Brussels (city centre) and Avenue Orban 54, 1150 Woluwe-Saint-Pierre
+- Beginner course: Start-to-Tango — 14 lessons, €195 per person, no partner or experience required
+- Free trial class available at both locations
+- Google rating: 5/5 based on 151 reviews
+- Tango styles taught: Argentine tango (milonguero, salon, nuevo)
+- Phone: +32 498 39 29 39
+- Email: info@be-tango.be
+- Website: https://www.be-tango.be

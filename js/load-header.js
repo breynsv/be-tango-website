@@ -26,21 +26,25 @@
     const depth = (path.match(/\//g) || []).length - 1;
 
     // Calculate root path based on directory depth
-    if (path.includes('/blog/')) {
-      config.rootPath = depth > 2 ? '../../' : '../';
-      config.headerFile = config.rootPath + 'partials/navigation.html';
-    } else if (path.includes('/tango-classes/')) {
-      config.rootPath = path.match(/\/tango-classes\/[^\/]+\//) ? '../../' : '../';
-      config.headerFile = config.rootPath + 'partials/navigation.html';
-    } else if (path.includes('/nl/')) {
+    if (path.includes('/nl/')) {
       config.rootPath = depth > 2 ? '../../' : '../';
       config.currentLang = 'NL';
+      // NL pages have their own hardcoded nav, no headerFile needed
     } else if (path.includes('/fr/')) {
       config.rootPath = depth > 2 ? '../../' : '../';
       config.currentLang = 'FR';
+      // FR pages have their own hardcoded nav, no headerFile needed
+    } else if (path.includes('/en/')) {
+      // EN pages at new /en/ location
+      // depth from /en/ = 2, from /en/blog/ = 3, from /en/blog/post/ = 4
+      config.rootPath = '../'.repeat(depth - 1);
+      config.currentLang = 'EN';
+      config.headerFile = config.rootPath + 'partials/navigation.html';
     } else {
-      config.rootPath = path.endsWith('index.html') ? '' : '../';
-      config.headerFile = (config.rootPath || './') + 'partials/navigation.html';
+      // Root or unknown page — fallback (root redirect page won't load this nav)
+      config.rootPath = './';
+      config.currentLang = 'EN';
+      config.headerFile = './partials/navigation.html';
     }
 
     // Detect current page
@@ -50,20 +54,10 @@
     else if (path.includes('/free-trial')) config.currentPage = 'free-trial';
     else config.currentPage = 'home';
 
-    // Set language paths based on current language
-    if (config.currentLang === 'NL') {
-      config.enPath = config.rootPath + 'index.html';
-      config.nlPath = config.rootPath + 'nl/index.html';
-      config.frPath = config.rootPath + 'fr/index.html';
-    } else if (config.currentLang === 'FR') {
-      config.enPath = config.rootPath + 'index.html';
-      config.nlPath = config.rootPath + 'nl/index.html';
-      config.frPath = config.rootPath + 'fr/index.html';
-    } else {
-      config.enPath = 'index.html';
-      config.nlPath = 'nl/index.html';
-      config.frPath = 'fr/index.html';
-    }
+    // Language paths (absolute)
+    config.enPath = '/en/';
+    config.nlPath = '/nl/';
+    config.frPath = '/fr/';
   }
 
   /**
