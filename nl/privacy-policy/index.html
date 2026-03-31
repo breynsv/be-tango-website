@@ -3,9 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
   <meta name="description" content="Privacy Policy - BE-TANGO Argentijnse Tango Dansschool. Ontdek hoe we uw persoonlijke informatie verzamelen, gebruiken en beschermen.">
   <title>Privacy Policy - BE-TANGO</title>
   <link rel="canonical" href="https://www.be-tango.be/nl/privacy-policy/">
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/politique-de-confidentialite/">
+  <link rel="alternate" hreflang="en" href="https://www.be-tango.be/en/privacy-policy/">
+  <link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/privacy-policy/">
+  <link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/fr/politique-de-confidentialite/">
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website">
@@ -24,19 +31,20 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="preload" href="../../css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.7"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.7"></noscript>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -54,6 +62,17 @@
     }
   }
 }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Startpagina", "item": "https://www.be-tango.be/nl/"},
+      {"@type": "ListItem", "position": 2, "name": "Privacy Policy", "item": "https://www.be-tango.be/nl/privacy-policy/"}
+    ]
+  }
   </script>
 </head>
 <body>
@@ -87,6 +106,7 @@
                 <li><a href="../../nl/tangolessen/online/">Online Lessen</a></li>
                 <li><a href="../../nl/tangolessen/brussel/">Brussel</a></li>
                 <li><a href="../../nl/tangolessen/woluwe/">Woluwe</a></li>
+                <li><a href="../../nl/tangolessen/workshops/">Workshops</a></li>
               </ul>
             </li>
             <li><a href="../../nl/tangolessen/gratis-proefles/" class="btn btn-primary btn-nav">Gratis Proefles</a></li>
@@ -106,7 +126,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="../../privacy-policy/">
+                  <a href="/en/privacy-policy/">
                     <span class="flag-icon">🇬🇧</span>
                     <span>English</span>
                   </a>
@@ -176,7 +196,7 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="site-footer">
+    <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
@@ -201,21 +221,26 @@
         <div class="footer-col">
           <h4>Snelle Links</h4>
           <ul>
-            <li><a href="../../nl/">Home</a></li>
-            <li><a href="../../nl/tangolessen/">Tangolessen</a></li>
-            <li><a href="../../nl/tangolessen/gratis-proefles/" class="footer-free-trial">Gratis Proefles</a></li>
-            <li><a href="../../nl/blog/">Blog</a></li>
-            <li><a href="../../nl/contacteer-ons/">Contact</a></li>
+            <li><a href="/nl/">Home</a></li>
+            <li><a href="/nl/tangolessen/">Tangolessen</a></li>
+            <li><a href="/nl/tangolessen/gratis-proefles/" class="footer-free-trial">Gratis Proefles</a></li>
+            <li><a href="/nl/blog/">Blog</a></li>
+            <li><a href="/nl/contacteer-ons/">Contact</a></li>
+            <li><a href="/nl/veelgestelde-vragen/">Veelgestelde Vragen</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h4>Lessen</h4>
           <ul>
-            <li><a href="../../nl/tangolessen/beginners/">Beginners</a></li>
-            <li><a href="../../nl/tangolessen/ervaring/">Ervaren</a></li>
-            <li><a href="../../nl/tangolessen/prive/">Privélessen</a></li>
-            <li><a href="../../nl/tangolessen/online/">Online</a></li>
+            <li><a href="/nl/tangolessen/beginners/">Beginners</a></li>
+            <li><a href="/nl/tangolessen/ervaring/">Gevorderden</a></li>
+            <li><a href="/nl/tangolessen/prive/">Privélessen</a></li>
+            <li><a href="/nl/tangolessen/online/">Online</a></li>
+            <li><a href="/nl/tangolessen/voor-koppels/">Voor Koppels</a></li>
+            <li><a href="/nl/tangolessen/workshops/">Workshops</a></li>
+            <li><a href="/nl/tangolessen/openingsdans/">Openingsdans</a></li>
+            <li><a href="/nl/tangolessen/teambuilding/">Teambuilding</a></li>
           </ul>
         </div>
 
@@ -225,12 +250,12 @@
             <div class="location-card">
               <strong>BE-TANGO Centre</strong>
               <span class="loc-address">Rue du Marais 68, 1000 Brussel</span>
-              <a href="../../nl/tangolessen/brussel/" class="loc-link">Bekijk locatie →</a>
+              <a href="/nl/tangolessen/brussel/" class="loc-link">Bekijk locatie →</a>
             </div>
             <div class="location-card">
               <strong>BE-TANGO Woluwe</strong>
               <span class="loc-address">Av. Orban 54, 1150 Woluwe-Sint-Pieters</span>
-              <a href="../../nl/tangolessen/woluwe/" class="loc-link">Bekijk locatie →</a>
+              <a href="/nl/tangolessen/woluwe/" class="loc-link">Bekijk locatie →</a>
             </div>
           </div>
         </div>
@@ -238,11 +263,11 @@
 
       <div class="footer-bottom">
         <p>&copy; 2026 BE-TANGO. Alle rechten voorbehouden.</p>
-        <p class="footer-email">E-mail: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
+        <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
-          <a href="./">Privacy Policy</a> |
-          <a href="../algemene-voorwaarden/">Algemene voorwaarden</a> |
-          <a href="../links/">Links</a>
+          <a href="/nl/privacy-policy/">Privacybeleid</a> |
+          <a href="/nl/algemene-voorwaarden/">Algemene Voorwaarden</a> |
+          <a href="/nl/links/">Links</a>
         </p>
       </div>
     </div>

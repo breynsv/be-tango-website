@@ -38,14 +38,19 @@ Temporary Items
 tmp/
 temp/
 
-# QA audit output
-qa-report.html
-qa-report.md
-qa-screenshots/
+# Local-only (not deployed)
 .superpowers/
+docs/
+_dev/
+pages/
+
 
 # Dependencies
 node_modules/
 
 # Environment
 .env
+
+# Planning/notes markdown files (README.md is excluded below)
+*.md
+!README.md

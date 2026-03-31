@@ -34,6 +34,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/cropped-favicon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,11 +42,11 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"></noscript>
-  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.5">
+  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.7">
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.7"></noscript>
   <link rel="stylesheet" href="../../css/free-trial.css">
 
   <!-- JSON-LD Structured Data -->
@@ -96,8 +97,21 @@
     },
     "performer": {
       "@type": "PerformingGroup",
-      "name": "Sonja & Sven - BE-TANGO"
+      "name": "BE-TANGO"
     }
+  }
+  </script>
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
+      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/tango-classes/"},
+      {"@type": "ListItem", "position": 3, "name": "Free Trial", "item": "https://www.be-tango.be/tango-classes/free-trial/"}
+    ]
   }
   </script>
 </head>
@@ -111,7 +125,7 @@
     <div class="container">
       <div class="header-content">
         <a href="../../" class="logo">
-          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34" loading="lazy">
+          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -133,8 +147,6 @@
                 <li><a href="../brussels/">Brussels</a></li>
                 <li><a href="../woluwe/">Woluwe</a></li>
                 <li><a href="../couples/">Couples</a></li>
-                <li><a href="../wedding-dance/">Wedding Dance</a></li>
-                <li><a href="../team-building/">Team Building</a></li>
               </ul>
             </li>
             <li><a href="./" class="btn btn-primary btn-nav active" aria-current="page">Free Trial</a></li>
@@ -207,7 +219,7 @@
           <p class="ft-section-sub">Curious about tango but not sure if it's for you? Our free introduction class is the perfect way to find out — one hour to taste the atmosphere, music and connection.</p>
 
           <div class="ft-intro-image">
-            <img src="../../images/beginner-tango-classes.webp" alt="Free trial tango class in Brussels" loading="lazy">
+            <img src="../../images/beginner-tango-classes.webp" alt="Free trial tango class in Brussels" fetchpriority="high">
           </div>
 
           <ul class="ft-checklist">

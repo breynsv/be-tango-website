@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
   <meta name="description" content="Tangolessen in Sint-Pieters-Woluwe bij GC Kontakt. Wekelijkse lessen van beginners tot gevorderden. Gemakkelijk bereikbaar met de metro, gratis parking. Dinsdag en donderdag avond.">
   <meta name="keywords" content="tango Woluwe, tangolessen Sint-Pieters-Woluwe, Argentijnse tango Brussel, tango metro Stockel, GC Kontakt">
   <title>Tangolessen in Woluwe - BE-TANGO</title>
   <link rel="canonical" href="https://www.be-tango.be/nl/tangolessen/woluwe/">
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="en" href="https://www.be-tango.be/en/tango-classes/woluwe/">
+  <link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/cours-de-tango/woluwe/">
+  <link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/tangolessen/woluwe/">
+  <link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/fr/cours-de-tango/woluwe/">
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website">
@@ -27,19 +34,20 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../../../images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../../images/cropped-favicon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="preload" href="../../../css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.7"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.6"></noscript>
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.7"></noscript>
 
   <!-- JSON-LD Structured Data - Place Schema for Woluwe -->
   <script type="application/ld+json">
@@ -65,27 +73,15 @@
       "latitude": 50.8294,
       "longitude": 4.4243
     },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Tuesday",
-        "opens": "19:00",
-        "closes": "21:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Thursday",
-        "opens": "18:30",
-        "closes": "21:30"
-      }
-    ],
+    "openingHours": ["Tu 18:30-22:00", "Th 18:30-22:00"],
     "priceRange": "€195",
     "hasMap": "https://www.google.com/maps/place/Orbanlaan+54,+1150+Sint-Pieters-Woluwe",
     "parentOrganization": {
       "@type": "Organization",
       "name": "BE-TANGO",
       "url": "https://www.be-tango.be"
-    }
+    },
+    "sameAs": "https://maps.google.com/?cid=17403292616488097271"
   }
   </script>
 
@@ -153,6 +149,19 @@
     .lsched-btn-outline{padding:8px 16px;border-radius:6px;font-size:0.78rem;font-weight:600;background:none;border:1px solid #E5E7EB;cursor:pointer;color:#1C244B;transition:background 0.2s;font-family:inherit}
     .lsched-btn-outline:hover{background:#F3F5F8}
   </style>
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Startpagina", "item": "https://www.be-tango.be/nl/"},
+      {"@type": "ListItem", "position": 2, "name": "Tangolessen", "item": "https://www.be-tango.be/nl/tangolessen/"},
+      {"@type": "ListItem", "position": 3, "name": "Woluwe", "item": "https://www.be-tango.be/nl/tangolessen/woluwe/"}
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -164,7 +173,7 @@
     <div class="container">
       <div class="header-content">
         <a href="../../../nl/" class="logo">
-          <img src="../../../images/logo-be-tango.png" alt="BE-TANGO - Argentijnse Tango Dansschool" width="200" height="34" loading="lazy">
+          <img src="../../../images/logo-be-tango.png" alt="BE-TANGO - Argentijnse Tango Dansschool" width="200" height="34">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -185,9 +194,7 @@
                 <li><a href="../online/">Online Lessen</a></li>
                 <li><a href="../brussel/">Brussel</a></li>
                 <li><a href="./">Woluwe</a></li>
-                <li><a href="../voor-koppels/">Voor Koppels</a></li>
-                <li><a href="../openingsdans/">Openingsdans</a></li>
-                <li><a href="../teambuilding/">Teambuilding</a></li>
+                <li><a href="../workshops/">Workshops</a></li>
               </ul>
             </li>
             <li><a href="../gratis-proefles/" class="btn btn-primary btn-nav">Gratis Proefles</a></li>
@@ -207,7 +214,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="../../../tango-classes/woluwe/">
+                  <a href="/en/tango-classes/woluwe/">
                     <span class="flag-icon">🇬🇧</span>
                     <span>English</span>
                   </a>
@@ -291,7 +298,7 @@
           </div>
 
           <div>
-            <img src="../../../images/tango-classes-in-Brussels-2-e1740646913571.webp" alt="Tangolessen bij GC Kontakt Woluwe" loading="lazy" style="border-radius: var(--border-radius); width: 100%;">
+            <img src="../../../images/tango-classes-in-Brussels-2-e1740646913571.webp" alt="Tangolessen bij GC Kontakt Woluwe" fetchpriority="high" style="border-radius: var(--border-radius); width: 100%;">
           </div>
         </div>
         <div class="cta-buttons" style="margin-top: var(--spacing-xl);">
@@ -518,13 +525,14 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="site-footer">
+    <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
           <h3>BE-TANGO</h3>
           <p>Uw dansschool voor Argentijnse tango in Brussel en Woluwe.</p>
           <p>Ervaar de connectie, de muziek en het plezier.</p>
+          <p style="margin-top: 1rem;"><strong>Telefoon:</strong> +32 498 39 29 39</p>
           <div class="social-links">
             <a href="https://www.facebook.com/p/Be-tango-ART-100057312323946/" aria-label="Facebook" class="social-icon" target="_blank" rel="noopener">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -542,23 +550,26 @@
         <div class="footer-col">
           <h4>Snelle Links</h4>
           <ul>
-            <li><a href="../../../nl/">Home</a></li>
-            <li><a href="../">Tangolessen</a></li>
-            <li><a href="../gratis-proefles/" class="footer-free-trial">Gratis Proefles</a></li>
-            <li><a href="../../../nl/contacteer-ons/">Contact</a></li>
+            <li><a href="/nl/">Home</a></li>
+            <li><a href="/nl/tangolessen/">Tangolessen</a></li>
+            <li><a href="/nl/tangolessen/gratis-proefles/" class="footer-free-trial">Gratis Proefles</a></li>
+            <li><a href="/nl/blog/">Blog</a></li>
+            <li><a href="/nl/contacteer-ons/">Contact</a></li>
+            <li><a href="/nl/veelgestelde-vragen/">Veelgestelde Vragen</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h4>Lessen</h4>
           <ul>
-            <li><a href="../beginners/">Beginners</a></li>
-            <li><a href="../ervaring/">Gevorderden</a></li>
-            <li><a href="../prive/">Privélessen</a></li>
-            <li><a href="../online/">Online</a></li>
-            <li><a href="../voor-koppels/">Voor Koppels</a></li>
-            <li><a href="../openingsdans/">Openingsdans</a></li>
-            <li><a href="../teambuilding/">Teambuilding</a></li>
+            <li><a href="/nl/tangolessen/beginners/">Beginners</a></li>
+            <li><a href="/nl/tangolessen/ervaring/">Gevorderden</a></li>
+            <li><a href="/nl/tangolessen/prive/">Privélessen</a></li>
+            <li><a href="/nl/tangolessen/online/">Online</a></li>
+            <li><a href="/nl/tangolessen/voor-koppels/">Voor Koppels</a></li>
+            <li><a href="/nl/tangolessen/workshops/">Workshops</a></li>
+            <li><a href="/nl/tangolessen/openingsdans/">Openingsdans</a></li>
+            <li><a href="/nl/tangolessen/teambuilding/">Teambuilding</a></li>
           </ul>
         </div>
 
@@ -568,12 +579,12 @@
             <div class="location-card">
               <strong>BE-TANGO Centre</strong>
               <span class="loc-address">Rue du Marais 68, 1000 Brussel</span>
-              <a href="../brussel/" class="loc-link">Bekijk locatie →</a>
+              <a href="/nl/tangolessen/brussel/" class="loc-link">Bekijk locatie →</a>
             </div>
             <div class="location-card">
               <strong>BE-TANGO Woluwe</strong>
               <span class="loc-address">Av. Orban 54, 1150 Woluwe-Sint-Pieters</span>
-              <a href="./" class="loc-link">Bekijk locatie →</a>
+              <a href="/nl/tangolessen/woluwe/" class="loc-link">Bekijk locatie →</a>
             </div>
           </div>
         </div>
@@ -583,9 +594,9 @@
         <p>&copy; 2026 BE-TANGO. Alle rechten voorbehouden.</p>
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
-          <a href="../../../privacy-policy/">Privacybeleid</a> |
-          <a href="../../algemene-voorwaarden/">Algemene Voorwaarden</a> |
-          <a href="../../links/">Links</a>
+          <a href="/nl/privacy-policy/">Privacybeleid</a> |
+          <a href="/nl/algemene-voorwaarden/">Algemene Voorwaarden</a> |
+          <a href="/nl/links/">Links</a>
         </p>
       </div>
     </div>

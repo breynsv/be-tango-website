@@ -4,27 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="BE-TANGO - Votre école de danse de tango argentin à Bruxelles et Woluwe. Encadrement professionnel dans une ambiance décontractée. Rejoignez notre communauté de tango vibrante dès aujourd'hui !">
-  <meta name="keywords" content="tango argentin, cours de tango Bruxelles, tango Woluwe, école de danse, cours de tango, milonga, vals, Sven, Sonja">
+  <meta name="keywords" content="tango argentin, cours de tango Bruxelles, tango Woluwe, école de danse, cours de tango, milonga, vals, BE-TANGO, BE-TANGO">
+  <meta name="robots" content="index, follow">
   <title>Cours de Tango Argentin à Bruxelles | École de Danse BE-TANGO</title>
   <link rel="canonical" href="https://www.be-tango.be/fr/">
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/">
+  <link rel="alternate" hreflang="en" href="https://www.be-tango.be/en/">
+  <link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/">
+  <link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/fr/">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="../images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../images/cropped-favicon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- LCP hero image preloads — media queries match <picture> sources below -->
+  <link rel="preload" as="image" href="../images/Tango-mobile-640w.webp" imagesrcset="../images/Tango-mobile-640w.webp" imagesizes="100vw" media="(max-width: 767px)" fetchpriority="high">
+  <link rel="preload" as="image" href="../images/Tango-2048x1365-1.webp" media="(min-width: 768px)" fetchpriority="high">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional"></noscript>
 
-  <!-- Font Awesome -->
-
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../css/styles.min.css?v=3.6"></noscript>
+  <!-- Stylesheets (preloaded + render-blocking = start fetching early, no CLS) -->
+  <link rel="preload" href="../css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../css/fontawesome.min.css?v=3.7"></noscript>
+  <link rel="preload" href="../css/styles.min.css?v=3.7" as="style">
+  <link rel="stylesheet" href="../css/styles.min.css?v=3.7">
+  <noscript><link rel="stylesheet" href="../css/styles.min.css?v=3.7"></noscript>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -41,13 +52,18 @@
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "5",
-      "reviewCount": "141",
+      "reviewCount": "151",
       "bestRating": "5",
       "worstRating": "1"
     },
+    "openingHours": ["Mo 18:30-22:00", "Tu 18:30-22:00", "We 18:30-22:00", "Th 18:30-22:00"],
     "sameAs": [
       "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
-      "https://www.instagram.com/betango"
+      "https://www.instagram.com/be_tango_brussels/",
+      "https://www.youtube.com/@betango",
+      "https://maps.google.com/?cid=7397240013699561184",
+      "https://maps.google.com/?cid=17403292616488097271",
+      "https://www.wikidata.org/wiki/Q138794927"
     ],
     "location": [
       {
@@ -96,7 +112,7 @@
     <div class="container">
       <div class="header-content">
         <a href="../" class="logo">
-          <img src="../images/logo-be-tango.png" alt="BE-TANGO - École de Danse de Tango Argentin" width="200" height="34" loading="lazy">
+          <img src="../images/logo-be-tango.png" alt="BE-TANGO - École de Danse de Tango Argentin" width="200" height="34">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -117,16 +133,14 @@
                 <li><a href="cours-de-tango/en-ligne/">Cours en Ligne</a></li>
                 <li><a href="cours-de-tango/bruxelles/">Bruxelles</a></li>
                 <li><a href="cours-de-tango/woluwe/">Woluwe</a></li>
-                <li><a href="cours-de-tango/en-couple/">En Couple</a></li>
-                <li><a href="cours-de-tango/danse-de-mariage/">Danse de Mariage</a></li>
-                <li><a href="cours-de-tango/team-building/">Team Building</a></li>
+                <li><a href="cours-de-tango/ateliers/">Ateliers</a></li>
               </ul>
             </li>
             <li><a href="cours-de-tango/essai-gratuit/" class="btn btn-primary btn-nav">Essai Gratuit</a></li>
             <li><a href="blog/">Blog</a></li>
             <li><a href="contactez-nous/">Contact</a></li>
             <li class="language-switcher">
-              <button class="language-toggle" aria-label="Select language" aria-expanded="false">
+              <button class="language-toggle" aria-label="FR – Changer de langue" aria-expanded="false">
                 <i class="fas fa-globe" aria-hidden="true"></i>
                 <span class="current-lang">FR</span>
                 <i class="fas fa-chevron-down" aria-hidden="true"></i>
@@ -139,7 +153,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="../">
+                  <a href="/en/">
                     <span class="flag-icon">🇬🇧</span>
                     <span>English</span>
                   </a>
@@ -163,7 +177,10 @@
 
     <!-- Hero Section -->
     <section class="hero">
-      <img src="../images/Tango-2048x1365-1.webp" alt="Danseurs de tango argentin à Bruxelles" class="hero-bg-image" fetchpriority="high" width="2048" height="1365">
+      <picture>
+        <source srcset="../images/Tango-mobile-640w.webp" media="(max-width: 767px)">
+        <img src="../images/Tango-2048x1365-1.webp" alt="Danseurs de tango argentin à Bruxelles" class="hero-bg-image" fetchpriority="high" width="2048" height="1365">
+      </picture>
       <div class="container">
         <div class="hero-content">
           <p class="hero-label">BIENVENUE CHEZ BE-TANGO</p>
@@ -174,7 +191,7 @@
             <div class="hero-stars">
               <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
             </div>
-            <p class="hero-reviews">5/5 - 141 avis Google</p>
+            <p class="hero-reviews">5/5 - 151 avis Google</p>
           </div>
 
           <div class="hero-cta">
@@ -207,7 +224,7 @@
             <div class="info-icon">
               <i class="fas fa-user-graduate" aria-hidden="true"></i>
             </div>
-            <h3>15 ans d'expérience</h3>
+            <p class="info-card-title">15 ans d'expérience</p>
             <p>Encadrement professionnel dans une ambiance décontractée.</p>
           </div>
         </div>
@@ -245,7 +262,7 @@
     <section class="bg-light">
       <div class="container">
         <div class="section-header">
-          <h2>Commencez votre voyage tango</h2>
+          <h2>Par où commencer ?</h2>
         </div>
 
         <div class="grid grid-3 journey-grid">
@@ -278,7 +295,7 @@
             </div>
             <div class="journey-content">
               <h3>Cours Particuliers</h3>
-              <p>Découvrez les avantages d'un <strong>enseignement personnalisé du tango</strong>.</p>
+              <p>Un cours, un thème, entièrement à votre rythme. <strong>Progressez plus vite</strong> avec un cours conçu pour vous.</p>
               <a href="cours-de-tango/particuliers/" class="journey-link">Réserver une session <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
@@ -289,7 +306,7 @@
             </div>
             <div class="journey-content">
               <h3>Ateliers</h3>
-              <p>Que vous soyez nouveau au tango ou un danseur expérimenté, nos ateliers de danse offrent quelque chose pour tout le monde.</p>
+              <p>Approfondissez un seul thème — <em>sacadas</em>, <em>boleos</em>, musicalité. Pour ceux qui veulent aller plus loin que le cours hebdomadaire.</p>
               <a href="cours-de-tango/ateliers/" class="journey-link">Ateliers <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
@@ -313,7 +330,7 @@
       <div class="container">
         <div class="section-header">
           <h2>Pourquoi Choisir BE-TANGO ?</h2>
-          <p class="section-description">Le tango argentin est plus qu'une simple danse ; c'est un voyage passionnant qui enrichit votre vie de multiples façons.</p>
+          <p class="section-description">Le tango, ça ne s'explique pas — ça se ressent. Dès le premier cours, il y a quelque chose. La musique, la connexion, l'improvisation. Voilà ce qui rend le tango différent.</p>
         </div>
 
         <div class="accordion">
@@ -377,12 +394,13 @@
           <h2>Où nous trouver ?</h2>
         </div>
 
-        <!-- Google Map -->
+        <!-- Google Map (JS-lazy: src set only when iframe enters viewport, prevents loading 190KB Maps JS upfront) -->
         <div class="map-wrapper">
-          <iframe loading="lazy"
-            src="https://maps.google.com/maps?q=BE-TANGO&t=m&z=12&output=embed&iwloc=near"
-            title="BE-TANGO"
-            aria-label="BE-TANGO">
+          <iframe id="map-iframe"
+            data-src="https://maps.google.com/maps?q=BE-TANGO&t=m&z=12&output=embed&iwloc=near"
+            title="Carte BE-TANGO Bruxelles et Woluwe"
+            aria-label="Carte BE-TANGO Bruxelles et Woluwe"
+            style="border:0;" allowfullscreen>
           </iframe>
         </div>
 
@@ -412,7 +430,7 @@
           <div class="reviews-summary">
             <div class="summary-rating">EXCELLENT</div>
             <div class="summary-stars">★★★★★</div>
-            <div class="summary-text">Basé sur <strong>150 avis</strong></div>
+            <div class="summary-text">Basé sur <strong>151 avis</strong></div>
             <img src="https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg" alt="Google" class="summary-google-logo" width="74" height="24" loading="lazy">
           </div>
 
@@ -432,7 +450,7 @@
                 </div>
                 <div class="review-stars">★★★★★ <span class="verified">✓</span></div>
                 <div class="review-text">
-                  Nous adorons le tango. Nous adorons le défi. Nous adorons Sonja et Sven.
+                  Nous adorons le tango. Nous adorons le défi. Nous adorons BE-TANGO.
                 </div>
               </div>
 
@@ -448,7 +466,7 @@
                 <div class="review-stars">★★★★★ <span class="verified">✓</span></div>
                 <div class="review-text">
                   Vous voulez apprendre le tango Argentin serieusement et dans une ambiance conviviale, rejoignez les cours de Sonya e...
-                  <a href="#" class="read-more">Lire la suite</a>
+                  <a href="https://www.google.com/search?q=be-tango+bruxelles" class="read-more" target="_blank" rel="noopener noreferrer">Lire la suite</a>
                 </div>
               </div>
 
@@ -463,8 +481,8 @@
                 </div>
                 <div class="review-stars">★★★★★ <span class="verified">✓</span></div>
                 <div class="review-text">
-                  Expérience merveilleuse ! Sonja et Sven sont d'excellents professeurs et le cours est super intéressant, le tango aussi...
-                  <a href="#" class="read-more">Lire la suite</a>
+                  Expérience merveilleuse ! BE-TANGO sont d'excellents professeurs et le cours est super intéressant, le tango aussi...
+                  <a href="https://www.google.com/search?q=be-tango+bruxelles" class="read-more" target="_blank" rel="noopener noreferrer">Lire la suite</a>
                 </div>
               </div>
 
@@ -479,8 +497,8 @@
                 </div>
                 <div class="review-stars">★★★★★ <span class="verified">✓</span></div>
                 <div class="review-text">
-                  De proefles met Sven en Sonja was geweldig! Ze deden de uitleg in het Engels en Frans zodat iedereen hen verstond....
-                  <a href="#" class="read-more">Lire la suite</a>
+                  De proefles met BE-TANGO en BE-TANGO was geweldig! Ze deden de uitleg in het Engels en Frans zodat iedereen hen verstond....
+                  <a href="https://www.google.com/search?q=be-tango+bruxelles" class="read-more" target="_blank" rel="noopener noreferrer">Lire la suite</a>
                 </div>
               </div>
             </div>
@@ -541,7 +559,7 @@
     <!-- CTA Section -->
     <section class="bg-dark">
       <div class="container text-center">
-        <h2>Prêt à commencer votre voyage tango ?</h2>
+        <h2>Prêt à commencer ?</h2>
         <p class="section-description mb-4">
           Rejoignez notre communauté chaleureuse et accueillante où plaisir et technique vont de pair.
         </p>
@@ -568,7 +586,7 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="site-footer">
+    <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
@@ -593,24 +611,26 @@
         <div class="footer-col">
           <h4>Liens rapides</h4>
           <ul>
-            <li><a href="./">Accueil</a></li>
-            <li><a href="cours-de-tango/">Cours de Tango</a></li>
-            <li><a href="cours-de-tango/essai-gratuit/">Essai Gratuit</a></li>
-            <li><a href="blog/">Blog</a></li>
-            <li><a href="contactez-nous/">Contact</a></li>
+            <li><a href="/fr/">Accueil</a></li>
+            <li><a href="/fr/cours-de-tango/">Cours de Tango</a></li>
+            <li><a href="/fr/cours-de-tango/essai-gratuit/" class="footer-free-trial">Essai Gratuit</a></li>
+            <li><a href="/fr/blog/">Blog</a></li>
+            <li><a href="/fr/contactez-nous/">Contact</a></li>
+            <li><a href="/fr/faq/">FAQ</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h4>Classes</h4>
           <ul>
-            <li><a href="cours-de-tango/debutants/">Débutants</a></li>
-            <li><a href="cours-de-tango/experimentes/">Expérimentés</a></li>
-            <li><a href="cours-de-tango/particuliers/">Cours Privés</a></li>
-            <li><a href="cours-de-tango/en-ligne/">En ligne</a></li>
-            <li><a href="cours-de-tango/en-couple/">En Couple</a></li>
-            <li><a href="cours-de-tango/danse-de-mariage/">Danse de Mariage</a></li>
-            <li><a href="cours-de-tango/team-building/">Team Building</a></li>
+            <li><a href="/fr/cours-de-tango/debutants/">Débutants</a></li>
+            <li><a href="/fr/cours-de-tango/experimentes/">Expérimentés</a></li>
+            <li><a href="/fr/cours-de-tango/particuliers/">Cours Privés</a></li>
+            <li><a href="/fr/cours-de-tango/en-ligne/">En ligne</a></li>
+            <li><a href="/fr/cours-de-tango/en-couple/">En Couple</a></li>
+            <li><a href="/fr/cours-de-tango/ateliers/">Ateliers</a></li>
+            <li><a href="/fr/cours-de-tango/danse-de-mariage/">Danse de Mariage</a></li>
+            <li><a href="/fr/cours-de-tango/team-building/">Team Building</a></li>
           </ul>
         </div>
 
@@ -620,12 +640,12 @@
             <div class="location-card">
               <strong>BE-TANGO Centre</strong>
               <span class="loc-address">Rue du Marais 68, 1000 Bruxelles</span>
-              <a href="cours-de-tango/bruxelles/" class="loc-link">Voir l'emplacement →</a>
+              <a href="/fr/cours-de-tango/bruxelles/" class="loc-link">Voir l'emplacement →</a>
             </div>
             <div class="location-card">
               <strong>BE-TANGO Woluwe</strong>
               <span class="loc-address">Av. Orban 54, 1150 Woluwe-Saint-Pierre</span>
-              <a href="cours-de-tango/woluwe/" class="loc-link">Voir l'emplacement →</a>
+              <a href="/fr/cours-de-tango/woluwe/" class="loc-link">Voir l'emplacement →</a>
             </div>
           </div>
         </div>
@@ -635,9 +655,9 @@
         <p>&copy; 2026 BE-TANGO. Tous droits réservés.</p>
         <p class="footer-email">Email: <a href="mailto:admin@be-tango.com">admin@be-tango.com</a></p>
         <p class="footer-legal">
-          <a href="politique-de-confidentialite/">Politique de confidentialité</a> |
-          <a href="termes-et-conditions-generales/">Termes et Conditions</a> |
-          <a href="liens/">Liens</a>
+          <a href="/fr/politique-de-confidentialite/">Politique de confidentialité</a> |
+          <a href="/fr/termes-et-conditions-generales/">Termes et Conditions</a> |
+          <a href="/fr/liens/">Liens</a>
         </p>
       </div>
     </div>
@@ -686,10 +706,12 @@
         }, 100);
       });
 
-      // Set initial state
-      if (window.innerWidth < 768) {
-        mainNav.classList.remove('mobile-nav-open');
-      }
+      // Set initial state — deferred to avoid forced reflow during initial paint
+      requestAnimationFrame(() => {
+        if (window.innerWidth < 768) {
+          mainNav.classList.remove('mobile-nav-open');
+        }
+      });
     }
 
     // Language dropdown toggle
@@ -816,10 +838,28 @@
       });
     });
   </script>
-  <script src="../js/newsletter.min.js"></script>
+  <script src="../js/newsletter.min.js" defer></script>
   <script src="../js/announcements.min.js?v=3.7" defer></script>
   <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
+  </script>
+  <script>
+    // Lazy-load Google Maps iframe — prevents loading 190KB+ Maps JS on page init
+    (function(){
+      var iframe = document.getElementById('map-iframe');
+      if (!iframe) return;
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting && !iframe.src) {
+              iframe.src = iframe.dataset.src;
+            }
+          });
+        }, { rootMargin: '300px' }).observe(iframe);
+      } else {
+        iframe.src = iframe.dataset.src;
+      }
+    })();
   </script>
 </body>
 </html>

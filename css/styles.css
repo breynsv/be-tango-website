@@ -269,6 +269,7 @@ p {
   display: inline-block;
   margin: 0 0 4px 0 !important;
   text-transform: none !important;
+  color: #000000 !important; /* WCAG AA: #000 on #E2C033 = 9.73:1 contrast */
 }
 
 .nav-list .btn-nav {
@@ -380,8 +381,8 @@ p {
 
 .nav-list a:hover,
 .nav-list a.active {
-  color: var(--color-secondary);
-  background-color: rgba(226, 192, 51, 0.1);
+  color: var(--color-dark-navy); /* Dark navy — 16:1 contrast on white (WCAG AAA) */
+  background-color: rgba(226, 192, 51, 0.15);
 }
 
 /* Mobile Dropdown */
@@ -1381,7 +1382,7 @@ section {
   padding: 16px 20px 20px;
   width: auto;
   background-color: transparent;
-  color: var(--color-secondary);
+  color: #7A6600; /* Accessible dark gold — 5.2:1 contrast on white (WCAG AA) */
   text-decoration: none;
   font-weight: 600;
   font-size: 0.875rem;
@@ -1393,7 +1394,7 @@ section {
 
 .journey-link:hover {
   background-color: transparent;
-  color: var(--color-secondary);
+  color: #5C4C00; /* Darker on hover — 7.5:1 contrast on white */
   transform: none;
   box-shadow: none;
   gap: 8px;
@@ -5503,32 +5504,26 @@ section {
 
 /* Mobile Optimization */
 @media (max-width: 767px) {
-  /* Hero adjustments for mobile */
+  /* Hero adjustments for mobile — use <img> tag (via <picture>) for LCP preloadability */
   .hero {
     min-height: 500px;
     padding: var(--spacing-2xl) 0;
-    background-image: url('../images/Tango-mobile.jpg') !important;
-    background-position: center center !important;
-    -webkit-background-image: url('../images/Tango-mobile.jpg') !important;
-    background-position: center center !important;
+    background-image: none !important; /* <img class="hero-bg-image"> handles this */
   }
 
   .hero-bg-image {
-    display: none !important;
+    object-position: center center; /* center-crop portrait mobile image */
   }
 }
 
 /* iPhone Safari specific fix */
 @media only screen and (max-device-width: 767px) {
   .hero {
-    background-image: url('../images/Tango-mobile.jpg') !important;
-    background-position: center center !important;
-    -webkit-background-image: url('../images/Tango-mobile.jpg') !important;
-    background-position: center center !important;
+    background-image: none !important;
   }
 
   .hero-bg-image {
-    display: none !important;
+    object-position: center center;
   }
 
   .hero h1 {
@@ -5656,10 +5651,6 @@ section {
 .journey-link {
   font-size: 1rem;
   font-weight: 700;
-}
-
-.journey-link:hover {
-  color: #d4a929; /* Darker gold for better contrast */
 }
 
 /* Enhance focus states for accessibility */

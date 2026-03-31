@@ -8,6 +8,12 @@
   <title>Tango Classes in Woluwe - BE-TANGO</title>
   <link rel="canonical" href="https://www.be-tango.be/tango-classes/woluwe/">
 
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="en" href="https://www.be-tango.be/tango-classes/woluwe/">
+  <link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/cours-de-tango/woluwe/">
+  <link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/tangolessen/woluwe/">
+  <link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/tango-classes/woluwe/">
+
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Tango Classes in Woluwe - BE-TANGO">
@@ -27,19 +33,20 @@
   <link rel="icon" type="image/png" sizes="32x32" href="../../images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="../../images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="../../images/cropped-favicon-180x180.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.5"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
+  <link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.7"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"></noscript>
 
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=3.5" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.5"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.7"></noscript>
 
   <!-- Enhancement Scripts -->
   <script src="../../js/enhancements.min.js?v=3.5" defer></script>
@@ -68,27 +75,15 @@
       "latitude": 50.8294,
       "longitude": 4.4243
     },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Tuesday",
-        "opens": "19:00",
-        "closes": "21:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Thursday",
-        "opens": "18:30",
-        "closes": "21:30"
-      }
-    ],
+    "openingHours": ["Tu 18:30-22:00", "Th 18:30-22:00"],
     "priceRange": "€195",
     "hasMap": "https://www.google.com/maps/place/Avenue+Orban+54,+1150+Woluwe-Saint-Pierre",
     "parentOrganization": {
       "@type": "Organization",
       "name": "BE-TANGO",
       "url": "https://www.be-tango.be"
-    }
+    },
+    "sameAs": "https://maps.google.com/?cid=17403292616488097271"
   }
   </script>
   <!-- Live Schedule Component Styles -->
@@ -155,6 +150,19 @@
     .lsched-btn-outline{padding:8px 16px;border-radius:6px;font-size:0.78rem;font-weight:600;background:none;border:1px solid #E5E7EB;cursor:pointer;color:#1C244B;transition:background 0.2s;font-family:inherit}
     .lsched-btn-outline:hover{background:#F3F5F8}
   </style>
+
+  <!-- BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
+      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/tango-classes/"},
+      {"@type": "ListItem", "position": 3, "name": "Woluwe", "item": "https://www.be-tango.be/tango-classes/woluwe/"}
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -166,7 +174,7 @@
     <div class="container">
       <div class="header-content">
         <a href="../../" class="logo">
-          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34" loading="lazy">
+          <img src="../../images/logo-be-tango.png" alt="BE-TANGO - Argentine Tango Dance School" width="200" height="34">
         </a>
 
         <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -188,8 +196,6 @@
                 <li><a href="../brussels/">Brussels</a></li>
                 <li><a href="./" class="active">Woluwe</a></li>
                 <li><a href="../couples/">Couples</a></li>
-                <li><a href="../wedding-dance/">Wedding Dance</a></li>
-                <li><a href="../team-building/">Team Building</a></li>
               </ul>
             </li>
             <li><a href="../free-trial/" class="btn btn-primary btn-nav">Free Trial</a></li>
@@ -293,7 +299,7 @@
           </div>
 
           <div>
-            <img src="../../images/tango-classes-in-Brussels-2-e1740646913571.webp" alt="Tango classes at GC Kontakt Woluwe" loading="lazy" style="border-radius: var(--border-radius); width: 100%;">
+            <img src="../../images/tango-classes-in-Brussels-2-e1740646913571.webp" alt="Tango classes at GC Kontakt Woluwe" fetchpriority="high" style="border-radius: var(--border-radius); width: 100%;">
           </div>
         </div>
         <div class="cta-buttons" style="margin-top: var(--spacing-xl);">
