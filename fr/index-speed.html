@@ -33,14 +33,14 @@
     requestIdleCallback(function() {
       var l = document.createElement('link');
       l.rel = 'stylesheet';
-      l.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap';
+      l.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=optional';
       document.head.appendChild(l);
     });
   } else {
     window.addEventListener('load', function() {
       var l = document.createElement('link');
       l.rel = 'stylesheet';
-      l.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap';
+      l.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=optional';
       document.head.appendChild(l);
     });
   }
