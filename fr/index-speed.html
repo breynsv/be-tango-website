@@ -25,13 +25,26 @@
   <link rel="preload" as="image" href="../images/Tango-mobile-640w.webp" imagesrcset="../images/Tango-mobile-640w.webp" imagesizes="100vw" media="(max-width: 767px)" fetchpriority="high">
   <link rel="preload" as="image" href="../images/Tango-2048x1365-1.webp" media="(min-width: 768px)" fetchpriority="high">
 
-  <!-- Google Fonts (Opt 3: dropped weights 300 & 500 — browser synthesizes from 400/600) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- Google Fonts CSS — async load, display=optional prevents FOUT -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=optional"></noscript>
+  <!-- Google Fonts — deferred past optional block window to prevent font-swap CLS -->
+  <script>
+  // Load Poppins after first paint to prevent CLS from font swap
+  // On return visits, fonts are cached and load instantly
+  if (typeof requestIdleCallback === 'function') {
+    requestIdleCallback(function() {
+      var l = document.createElement('link');
+      l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap';
+      document.head.appendChild(l);
+    });
+  } else {
+    window.addEventListener('load', function() {
+      var l = document.createElement('link');
+      l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap';
+      document.head.appendChild(l);
+    });
+  }
+  </script>
 
   <!-- Opt 1: Inline critical CSS for above-the-fold, defer full stylesheet -->
   <style>
