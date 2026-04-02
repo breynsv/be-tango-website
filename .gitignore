@@ -43,6 +43,10 @@ temp/
 docs/
 _dev/
 pages/
+blog-backup/
+qa-report.html
+llms-full.txt
+*.py
 
 
 # Dependencies
