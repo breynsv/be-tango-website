@@ -36,30 +36,46 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&amp;display=swap" rel="stylesheet"/></noscript>
-<link rel="preload" href="../../../css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.7"></noscript>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&amp;display=optional" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&amp;display=optional" rel="stylesheet"/></noscript>
+<link rel="preload" href="../../../css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fa-subset.min.css?v=4.0"></noscript>
 <!-- Stylesheet -->
 <link href="../../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
 <noscript><link href="../../../css/styles.min.css?v=3.7" rel="stylesheet"/></noscript>
 <link href="../../../css/free-trial.css" rel="stylesheet"/>
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Event",
-    "name": "Gratis Proefles Argentijnse Tango",
-    "description": "Probeer Argentijnse tango helemaal gratis. Een uur kennismaken met de basisstappen, houding en verbinding in een ontspannen sfeer. Geen partner? Wij zoeken er één voor jou.ntspannen sfeer.",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "organizer": {
-      "@type": "Organization",
-      "name": "BE-TANGO",
-      "url": "https://www.be-tango.be/nl/",
-      "telephone": "+32498392939"
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Gratis proefles Argentijnse tango",
+  "description": "Probeer je eerste Argentijnse tangoles gratis bij BE-TANGO. Geen partner nodig. Beginners welkom in onze studio's in Brussel en Woluwe. Ontspannen sfeer.",
+  "url": "https://www.be-tango.be/nl/tangolessen/gratis-proefles/",
+  "provider": {
+    "@type": "DanceSchool",
+    "name": "BE-TANGO",
+    "url": "https://www.be-tango.be/nl/",
+    "telephone": "+32 498 39 29 39",
+      "sameAs": [
+        "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
+        "https://www.instagram.com/be_tango_brussels/",
+        "https://www.youtube.com/@betango",
+        "https://maps.google.com/?cid=7397240013699561184",
+        "https://maps.google.com/?cid=17403292616488097271",
+        "https://www.wikidata.org/wiki/Q138794927"
+      ]
     },
-    "location": [
-      {
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  },
+  "hasCourseInstance": [
+    {
+      "@type": "CourseInstance",
+      "courseMode": "onsite",
+      "location": {
         "@type": "Place",
         "name": "BE-TANGO Brussel",
         "address": {
@@ -69,32 +85,26 @@
           "postalCode": "1000",
           "addressCountry": "BE"
         }
-      },
-      {
+      }
+    },
+    {
+      "@type": "CourseInstance",
+      "courseMode": "onsite",
+      "location": {
         "@type": "Place",
         "name": "BE-TANGO Woluwe",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Avenue Orban 54",
-          "addressLocality": "Sint-Pieters-Woluwe",
-          "postalCode": "1150",
+          "addressLocality": "Woluwe-Sint-Lambrechts",
+          "postalCode": "1200",
           "addressCountry": "BE"
         }
       }
-    ],
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock",
-      "validFrom": "2025-01-01"
-    },
-    "performer": {
-      "@type": "PerformingGroup",
-      "name": "BE-TANGO - BE-TANGO"
     }
-  }
-  </script>
+  ]
+}
+</script>
 
   <!-- BreadcrumbList Structured Data -->
   <script type="application/ld+json">
@@ -605,7 +615,7 @@
 <!-- CRM Integration -->
 <script defer="" src="../../../js/crm-api.js?v=1.0"></script>
 <script defer="" src="../../../js/free-trial.js?v=1.0"></script>
-<script src="../../../js/newsletter.min.js"></script>
+<script src="../../../js/newsletter.min.js" defer></script>
 <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
   </script>

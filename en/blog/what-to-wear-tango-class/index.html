@@ -32,8 +32,8 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<link rel="preload" href="/css/fontawesome.min.css?v=3.5" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fontawesome.min.css?v=3.5"></noscript>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=optional" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<link rel="preload" href="/css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fa-subset.min.css?v=4.0"></noscript>
 <link href="/css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
 <noscript><link href="/css/styles.min.css?v=3.6" rel="stylesheet"/></noscript>
 <style>
@@ -147,18 +147,27 @@
     @media (max-width: 1024px) { .hero-inner { grid-template-columns: 1fr; } .hero-image-panel { display: none; } .hero-title { font-size: 2.8rem; } .article-grid { grid-template-columns: 1fr; } .d4-sidebar { position: static; } .d4-newsletter-inner { grid-template-columns: 1fr; gap: 40px; } }
     @media (max-width: 768px) { .hero-title { font-size: 2.2rem; } .blog-hero { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); } .related-grid { grid-template-columns: 1fr; } .meta-strip-inner { flex-direction: column; align-items: flex-start; } .section-card { padding: 36px 24px 32px; } .section-card h2 { font-size: 1.2rem; } .d4-newsletter-title { font-size: 1.9rem; } .d4-nl-row { flex-direction: column; } .d4-nl-row .newsletter-email-input { border-radius: 8px; border-right: 1px solid rgba(255,255,255,0.15); } .d4-nl-row .newsletter-submit { border-radius: 8px; } }
     @media (max-width: 480px) { .hero-title { font-size: 1.9rem; } }
+  
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .faq-item summary { padding: 16px 20px; font-weight: 600; color: var(--navy); cursor: pointer; font-size: 0.95rem; line-height: 1.5; }
+    .faq-item summary:hover { background: var(--gold-bg); }
+    .faq-item[open] summary { border-bottom: 1px solid var(--border); background: var(--gold-bg); }
+    .faq-item p { padding: 16px 20px; margin: 0; color: var(--text-light); font-size: 0.95rem; line-height: 1.8; }
   </style>
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.be-tango.be/en/blog/what-to-wear-tango-class/"},
     "headline": "What to Wear to a Tango Class: The Beginner's Guide",
     "description": "Not sure what to wear to your first tango class? Here's a practical guide to clothing and footwear — from your first lesson to the milonga.",
     "image": "https://www.be-tango.be/images/blog/what-to-wear-tango.webp",
     "author": { "@type": "Organization", "name": "BE-TANGO", "url": "https://www.be-tango.be" },
     "datePublished": "2026-03-24",
     "dateModified": "2026-03-24",
-    "publisher": { "@type": "Organization", "name": "BE-TANGO", "url": "https://www.be-tango.be/en" }
+    "inLanguage": "en",
+    "publisher": { "@type": "Organization", "name": "BE-TANGO", "logo": { "@type": "ImageObject", "url": "https://www.be-tango.be/images/logo-be-tango.png" } }
   }
   </script>
 <script type="application/ld+json">
@@ -168,7 +177,23 @@
   "mainEntity": [
     { "@type": "Question", "name": "What should I wear to a tango class?", "acceptedAnswer": { "@type": "Answer", "text": "Wear comfortable clothing that lets you move freely. Trousers, leggings, or a skirt work well. Avoid very baggy clothes that might get in the way of the embrace. The most important thing is that you feel comfortable and unrestricted." } },
     { "@type": "Question", "name": "Do I need special dance shoes for tango?", "acceptedAnswer": { "@type": "Answer", "text": "For your first classes, smooth-soled shoes are fine — anything without rubber soles. As you progress, proper tango shoes make pivoting and footwork much easier. Women typically wear heeled tango shoes (3–7 cm); men wear tango oxfords or smooth leather shoes." } },
-    { "@type": "Question", "name": "Can I wear jeans to a tango class?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, jeans are fine for class as long as they're not so tight they restrict movement. Many dancers wear jeans to casual classes and practicas. For milongas (social tango evenings), smart-casual clothing is customary." } }
+    { "@type": "Question", "name": "Can I wear jeans to a tango class?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, jeans are fine for class as long as they're not so tight they restrict movement. Many dancers wear jeans to casual classes and practicas. For milongas (social tango evenings), smart-casual clothing is customary." } },
+    {"@type": "Question", "name": "Q: Can I wear jeans to tango class?", "acceptedAnswer": {"@type": "Answer", "text": "A: While you <em>can</em>, it's not ideal. Jeans can restrict your movement. More comfortable and breathable fabrics are recommended."}},
+    {"@type": "Question", "name": "Q: Do I need to buy tango shoes immediately?", "acceptedAnswer": {"@type": "Answer", "text": "A: No! For your first few classes, flat shoes or even socks are perfectly fine. You can invest in tango shoes later once you're sure you enjoy it."}},
+    {"@type": "Question", "name": "Q: What shoes work for both class and milonga?", "acceptedAnswer": {"@type": "Answer", "text": "A: A good pair of tango shoes will work for both. Look for a comfortable heel height and a suede sole. A versatile style that can be dressed up or down is a bonus."}},
+    {"@type": "Question", "name": "Q: Is there a strict dress code at Brussels milongas?", "acceptedAnswer": {"@type": "Answer", "text": "A: Not usually a <em>strict</em> dress code, but Brussels milongas tend to be a bit more formal than in some other cities. \"Smart casual\" is a good guideline. Avoid overly casual attire."}},
+    {"@type": "Question", "name": "Q: Where can I buy tango shoes in Belgium?", "acceptedAnswer": {"@type": "Answer", "text": "A: Several dance shops in Brussels carry tango shoes. Check online retailers that ship to Belgium. Look for pop-up shops at local tango events."}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/en/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.be-tango.be/en/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "What to Wear to a Tango Class: The Beginner\u2019s Guide", "item": "https://www.be-tango.be/en/blog/what-to-wear-tango-class/"}
   ]
 }
 </script>
@@ -247,7 +272,7 @@
 <span>What to Wear to a Tango Class</span>
 </nav>
 <div class="meta-right">
-<span class="meta-item"><i class="fas fa-clock"></i> 4 min read</span>
+<span class="meta-item"><i class="fas fa-clock"></i> 7 min read</span>
 <span class="meta-item"><i class="fas fa-calendar"></i> 24 March 2026</span>
 </div>
 </div>
@@ -303,7 +328,83 @@
 <i class="fas fa-calendar-check"></i> Book your free trial class →
                 </a>
 </div>
-</article></div>
+</article>
+<article class="section-card" id="section-5">
+<span class="bg-number">05</span>
+<div class="section-card-header">
+<div class="section-number-pill">5</div>
+<h2>The Complete Tango Shoe Guide for Beginners</h2>
+</div>
+<p>Ah, tango shoes! They're more than just footwear; they're your connection to the floor, your partner, and the music itself. Choosing your first pair can feel overwhelming, but don't worry, I'm here to help. For beginners, comfort and stability are key. You don't need the highest heels right away! Look for a leader's heel around 2-3cm and a follower's heel between 5-8cm. </p>
+
+<p>When choosing between suede and leather soles, consider your dance floor. Suede soles are more common and offer good grip and slide on most surfaces. Leather soles are slicker and better suited to very smooth floors. Most beginners start with suede. </p>
+
+<p>Where to buy in Brussels? Several dance shops carry tango shoes, and sometimes you'll find pop-up shops at milongas. Online, you have a wider selection. Popular brands include Comme il Faut (known for their stunning designs but often pricier), Madame Pivot (comfortable and stylish), Tangolera (excellent quality), and Mr. Tango (reliable and affordable). Expect to pay between EUR 60-200 for a decent pair of beginner tango shoes. Don't forget to check online marketplaces for second-hand options too.</p>
+
+<p>Breaking in new tango shoes is crucial. Wear them around the house with thick socks to stretch them out. Some dancers even use a shoe stretcher. Small adjustments can make a big difference. For more in-depth advice, check out my blog post on <a href="/en/blog/5-tips-best-tango-shoes/">best tango shoes</a>.</p>
+</article>
+
+<article class="section-card" id="section-6">
+<span class="bg-number">06</span>
+<div class="section-card-header">
+<div class="section-number-pill">6</div>
+<h2>What to Wear to Your First Milonga in Brussels</h2>
+</div>
+<p>So, you're ready to brave your first milonga! Wonderful! Dressing for a milonga is a chance to express your personal style while respecting the traditions of tango. Think "smart casual" to "elegant," but above all, be comfortable and able to dance freely.</p>
+
+<p>For men, a collared shirt (long or short-sleeved) is a good starting point. Dark trousers (chinos or dress pants) are ideal, paired with leather shoes. Avoid sneakers or overly casual footwear. </p>
+
+<p>For women, a dress or smart separates (skirt and top) are both excellent choices. Heels are common, but make sure you can dance in them comfortably. If you're unsure, opt for a lower heel or even elegant flats. Your tango shoes are essential, of course! </p>
+
+<p>A few things to avoid: overpowering perfume (especially in close quarters), jewelry that might catch on your partner's clothing, and overly casual attire like jeans and t-shirts. Brussels milongas tend to be a bit more dressed up than some other cities, but the most important thing is to feel confident and ready to dance. Remember, the focus is on the connection and the music, not the clothes. You'll find a wide range of styles, so don't be afraid to express yourself. It's also worth reading my article <a href="/en/blog/what-is-a-milonga/">What is a Milonga?</a> to get a feel for the atmosphere.</p>
+</article>
+
+<article class="section-card" id="section-7">
+<span class="bg-number">07</span>
+<div class="section-card-header">
+<div class="section-number-pill">7</div>
+<h2>Seasonal Tips: Tango Clothing for Brussels Weather</h2>
+</div>
+<p>Brussels weather can be unpredictable, so dressing for tango here requires a bit of strategic thinking. In the summer, many milongas are held indoors with air conditioning, which can vary from venue to venue. Layers are your best friend! Bring a light cardigan or shawl to throw on if you get chilly. </p>
+
+<p>Winter arrivals require a different approach. You'll likely be bundled up in a coat, scarf, and boots when you arrive. Most venues have a designated area for changing into your tango shoes, so factor that into your planning. </p>
+
+<p>And then there are the magical outdoor milongas in the summer! Imagine dancing tango in the Grand Place under the stars. For these events, comfort is key, but don't forget the Brussels "elegance" factor. Lighter fabrics and comfortable shoes are a must.</p>
+</article>
+
+<article class="section-card" id="section-8">
+<span class="bg-number">08</span>
+<div class="section-card-header">
+<div class="section-number-pill">8</div>
+<h2>Practical Accessories Every Tango Dancer Needs</h2>
+</div>
+<p>Beyond shoes and clothing, a few practical accessories can make your tango experience much smoother. A shoe bag is essential for protecting your precious tango shoes. A spare shirt is always a good idea, especially if you tend to sweat during dancing. A shoe brush will help keep your suede soles clean and grippy. Band-aids are a lifesaver for blisters, and deodorant is a must for maintaining good hygiene. These small items show you're an experienced and considerate dancer.</p>
+</article>
+
+<article class="section-card" id="section-9">
+<span class="bg-number">09</span>
+<div class="section-card-header">
+<div class="section-number-pill">9</div>
+<h2>Common Clothing Mistakes Beginners Make</h2>
+</div>
+<p>As a beginner, it's easy to make a few clothing faux pas. Don't worry, we've all been there! Avoid heavy boots, as they'll make it difficult to feel the floor and move gracefully. Tight jeans can restrict your movement and make it hard to execute certain steps. Scarves can get caught on your partner's clothing, so it's best to leave them at home. Oversized jewelry can also be a hazard. This is all friendly advice, of course! We want you to feel comfortable and confident on the dance floor. And remember, the most important thing is to <a href="/en/blog/what-to-expect-first-tango-class/">have fun in your first tango class</a>!</p>
+</article>
+
+<article class="section-card" id="section-faq">
+<span class="bg-number">FAQ</span>
+<div class="section-card-header">
+<div class="section-number-pill"><i class="fas fa-question-circle"></i></div>
+<h2>Frequently Asked Questions</h2>
+</div>
+<div class="faq-list">
+<details class="faq-item"><summary>Can I wear jeans to tango class?</summary><p>While you <em>can</em>, it's not ideal. Jeans can restrict your movement. More comfortable and breathable fabrics are recommended.</p></details>
+<details class="faq-item"><summary>Do I need to buy tango shoes immediately?</summary><p>No! For your first few classes, flat shoes or even socks are perfectly fine. You can invest in tango shoes later once you're sure you enjoy it.</p></details>
+<details class="faq-item"><summary>What shoes work for both class and milonga?</summary><p>A good pair of tango shoes will work for both. Look for a comfortable heel height and a suede sole. A versatile style that can be dressed up or down is a bonus.</p></details>
+<details class="faq-item"><summary>Is there a strict dress code at Brussels milongas?</summary><p>Not usually a <em>strict</em> dress code, but Brussels milongas tend to be a bit more formal than in some other cities. "Smart casual" is a good guideline. Avoid overly casual attire.</p></details>
+<details class="faq-item"><summary>Where can I buy tango shoes in Belgium?</summary><p>Several dance shops in Brussels carry tango shoes. Check online retailers that ship to Belgium. Look for pop-up shops at local tango events.</p></details>
+</div>
+</article>
+</div>
 <aside class="d4-sidebar">
 <div class="d4-sidebar-card">
 <div class="d4-sidebar-card-header"><h3><i class="fas fa-list-ul"></i> Contents</h3></div>
@@ -313,6 +414,12 @@
 <li class="toc-item"><span class="toc-dot">2</span><a href="#section-2">Shoes: the key gear</a></li>
 <li class="toc-item"><span class="toc-dot">3</span><a href="#section-3">Clothing for regular classes</a></li>
 <li class="toc-item"><span class="toc-dot">4</span><a href="#section-4">Dressing for a milonga</a></li>
+<li class="toc-item"><span class="toc-dot">5</span><a href="#section-5">Tango shoe guide</a></li>
+<li class="toc-item"><span class="toc-dot">6</span><a href="#section-6">First milonga outfit</a></li>
+<li class="toc-item"><span class="toc-dot">7</span><a href="#section-7">Seasonal tips</a></li>
+<li class="toc-item"><span class="toc-dot">8</span><a href="#section-8">Essential accessories</a></li>
+<li class="toc-item"><span class="toc-dot">9</span><a href="#section-9">Common mistakes</a></li>
+<li class="toc-item"><span class="toc-dot"><i class="fas fa-question-circle"></i></span><a href="#section-faq">FAQ</a></li>
 </ol>
 </div>
 </div>
@@ -372,7 +479,7 @@
 </div>
 <div class="related-grid">
 <a class="related-card" href="../5-tips-best-tango-shoes/">
-<div class="related-img"><img alt="5 tips to find the best tango shoes" height="360" loading="lazy" src="/images/blog/tango-schoenen-blogpost.jpg" width="600"/></div>
+<div class="related-img"><img alt="5 tips to find the best tango shoes" height="360" loading="lazy" src="/images/blog/tango-schoenen-blogpost.webp" width="600"/></div>
 <div class="related-card-body">
 <span class="related-category">Gear &amp; Style</span>
 <h3 class="related-title">5 tips to find the best tango shoes for you</h3>

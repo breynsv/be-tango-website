@@ -37,8 +37,8 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<link rel="preload" href="/css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fontawesome.min.css?v=3.7"></noscript>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=optional" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<link rel="preload" href="/css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fa-subset.min.css?v=4.0"></noscript>
 <!-- Stylesheet -->
 <link href="/css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
 <noscript><link href="/css/styles.min.css?v=3.7" rel="stylesheet"/></noscript>
@@ -292,7 +292,7 @@
     .section-card p:last-child { margin-bottom: 0; }
     .section-card strong { color: var(--text); font-weight: 600; }
 
-    /* Pullquote */
+    /<em> Pullquote </em>/
     .pullquote {
       margin: 28px 0;
       padding: 28px 36px;
@@ -319,7 +319,7 @@
       line-height: 1.6 !important;
     }
 
-    /* Achievement card */
+    /<em> Achievement card </em>/
     .section-card.achievement {
       background: var(--navy);
       border-color: transparent;
@@ -362,7 +362,7 @@
     }
     .achievement-badge i { font-size: 1rem; }
 
-    /* Article figures */
+    /<em> Article figures </em>/
     .article-featured-image {
       margin: 24px 0 0;
     }
@@ -415,7 +415,7 @@
     .d4-sidebar-card-header h3 i { color: var(--gold); }
     .d4-sidebar-card-body { padding: 18px 20px; }
 
-    /* TOC */
+    /<em> TOC </em>/
     .toc-list { display: flex; flex-direction: column; gap: 4px; list-style: none; margin: 0; padding: 0; }
     .toc-item {
       display: flex;
@@ -459,7 +459,7 @@
     }
     .toc-item:hover a, .toc-item.active a { color: var(--navy); }
 
-    /* About card */
+    /<em> About card </em>/
     .about-author {
       display: flex;
       flex-direction: column;
@@ -481,7 +481,7 @@
     .author-name { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
     .author-bio { font-size: 0.8rem; color: var(--text-light); line-height: 1.6; }
 
-    /* CTA card */
+    /<em> CTA card </em>/
     .cta-card-inner {
       padding: 20px;
       text-align: center;
@@ -748,12 +748,20 @@
     @media (max-width: 480px) {
       .hero-title { font-size: 1.9rem; }
     }
+  
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .faq-item summary { padding: 16px 20px; font-weight: 600; color: var(--navy); cursor: pointer; font-size: 0.95rem; line-height: 1.5; }
+    .faq-item summary:hover { background: var(--gold-bg); }
+    .faq-item[open] summary { border-bottom: 1px solid var(--border); background: var(--gold-bg); }
+    .faq-item p { padding: 16px 20px; margin: 0; color: var(--text-light); font-size: 0.95rem; line-height: 1.8; }
   </style>
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.be-tango.be/en/blog/5-tips-best-tango-shoes/"},
     "headline": "5 Tips to Find the Best Tango Shoes for You",
     "description": "How to choose the right tango shoes as a beginner. Heel height, sole material, fit — everything you need to know before buying your first pair.",
     "image": "https://www.be-tango.be/images/blog/tango-shoes.webp",
@@ -764,7 +772,9 @@
       "logo": { "@type": "ImageObject", "url": "https://www.be-tango.be/images/logo-be-tango.png" }
     },
     "datePublished": "2022-06-01",
-    "dateModified": "2026-03-25"
+    "dateModified": "2026-03-25",
+    "inLanguage": "en",
+    "url": "https://www.be-tango.be/en/blog/5-tips-best-tango-shoes/"
   }
   </script>
 <script type="application/ld+json">
@@ -774,7 +784,12 @@
   "mainEntity": [
     { "@type": "Question", "name": "What shoes should I wear for tango?", "acceptedAnswer": { "@type": "Answer", "text": "For tango, you need shoes with a smooth leather or suede sole that allows you to pivot and slide without gripping the floor. A heel of 3–7 cm is standard for women's tango shoes. Men typically dance in low-heeled leather dress shoes or dedicated tango oxfords." } },
     { "@type": "Question", "name": "Can I start tango without special shoes?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — for your first few classes, any smooth-soled shoe works fine. Avoid sneakers with rubber soles, as they grip the floor and make pivots difficult. Once you decide to continue, investing in proper tango shoes makes a real difference to your technique." } },
-    { "@type": "Question", "name": "What makes a good pair of tango shoes?", "acceptedAnswer": { "@type": "Answer", "text": "A good tango shoe has a suede or leather sole for pivoting, a secure fit around the heel and ankle, and a heel height that suits your level. Flexibility through the ball of the foot is also important. Popular brands include Comme Il Faut, NeoTango, and Darcos." } }
+    { "@type": "Question", "name": "What makes a good pair of tango shoes?", "acceptedAnswer": { "@type": "Answer", "text": "A good tango shoe has a suede or leather sole for pivoting, a secure fit around the heel and ankle, and a heel height that suits your level. Flexibility through the ball of the foot is also important. Popular brands include Comme Il Faut, NeoTango, and Darcos." } },
+    {"@type": "Question", "name": "How much should I spend on my first pair of tango shoes?", "acceptedAnswer": {"@type": "Answer", "text": "For your first pair, I recommend aiming for the \u20ac120-\u20ac180 range. This will get you a decent quality shoe that's comfortable and supportive without breaking the bank. You can always upgrade later as you become more serious about tango."}},
+    {"@type": "Question", "name": "Can I use dance sneakers for tango?", "acceptedAnswer": {"@type": "Answer", "text": "While dance sneakers are suitable for some dance styles, they are generally not recommended for tango. Tango requires specific movements and footwork that are best facilitated by the flexibility and grip of proper tango shoes. Dance sneakers often lack the necessary support and can make it difficult to execute tango steps correctly. See our page on what to expect from..."}},
+    {"@type": "Question", "name": "How long do tango shoes last?", "acceptedAnswer": {"@type": "Answer", "text": "The lifespan of tango shoes depends on how often you dance and how well you care for them. With regular use (2-3 times per week) and proper maintenance, a good pair of tango shoes can last for 1-2 years or even longer. However, the soles will eventually wear down and may need to be replaced."}},
+    {"@type": "Question", "name": "Should I buy shoes before my first class?", "acceptedAnswer": {"@type": "Answer", "text": "It's not essential to buy tango shoes before your first class. Many beginners start with comfortable street shoes that have smooth soles. This will allow you to get a feel for the dance before investing in specialized footwear. However, if you're already committed to learning tango, buying a pair of tango shoes early on can help you develop proper technique..."}},
+    {"@type": "Question", "name": "Are expensive shoes worth it?", "acceptedAnswer": {"@type": "Answer", "text": "Expensive tango shoes often offer superior comfort, craftsmanship, and design. While they're not necessary for beginners, experienced dancers who dance frequently may find that the investment is worthwhile. High-quality shoes can provide better support, stability, and flexibility, which can enhance your dancing and reduce the risk of injuries. Ultimately, the decision of whether or not to buy expensive shoes depends..."}}
   ]
 }
 </script>
@@ -783,9 +798,9 @@
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
-    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.be-tango.be/blog/"},
-    {"@type": "ListItem", "position": 3, "name": "5 Tips to Find the Best Tango Shoes for You | BE-TANGO Blog", "item": "https://www.be-tango.be/blog/5-tips-best-tango-shoes/"}
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/en/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.be-tango.be/en/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "5 Tips to Find the Best Tango Shoes for You | BE-TANGO Blog", "item": "https://www.be-tango.be/en/blog/5-tips-best-tango-shoes/"}
   ]
 }
 </script>
@@ -894,7 +909,7 @@
 <span class="current">5 Tips to Find the Best Tango Shoes</span>
 </nav>
 <div class="meta-right">
-<span class="meta-item"><i class="fas fa-clock"></i> 8 min read</span>
+<span class="meta-item"><i class="fas fa-clock"></i> 10 min read</span>
 <span class="meta-item"><i class="fas fa-calendar"></i> 1 June 2022</span>
 </div>
 </div>
@@ -951,7 +966,7 @@
                 Beginners should avoid excessively high stilettos of 9 cm. These can compromise balance, induce panic, and strain the Achilles tendon. It's best to begin with a lower heel and develop ankle strength <strong>gradually over several months</strong>. I advise my students to wait at least six months before transitioning to higher heels.
               </p>
 <figure class="article-featured-image img-banner">
-<img alt="Recommended heel height for tango shoes" loading="lazy" src="/images/blog/tango-shoes-heel-height.jpg"/>
+<img alt="Recommended heel height for tango shoes" loading="lazy" src="/images/blog/tango-shoes-heel-height.webp" width="1024" height="256" />
 <figcaption>Recommended heel heights: a minimum of 5 cm for women, 1.5–2 cm for men</figcaption>
 </figure>
 <figure class="article-featured-image">
@@ -966,7 +981,7 @@
 <h2>Tip 3 — Sole materials and dance floors</h2>
 </div>
 <p>
-                The choice of sole should correspond to the <strong>type of dance floor</strong>. In Brussels, dancers encounter surfaces ranging from smooth modern tiles to aged parquet. Suede (*daim*) offers a reliable balance of grip and slide, making it suitable for venues like the wooden floor at C.C. Joli-Bois in Woluwe-Saint-Pierre.
+                The choice of sole should correspond to the <strong>type of dance floor</strong>. In Brussels, dancers encounter surfaces ranging from smooth modern tiles to aged parquet. Suede (<em>daim</em>) offers a reliable balance of grip and slide, making it suitable for venues like the wooden floor at C.C. Joli-Bois in Woluwe-Saint-Pierre.
               </p>
 <p>
                 Hard leather soles offer greater speed, performing well on sticky floors but proving slippery on smooth surfaces. Carrying a small wire shoe brush is advisable; roughening suede soles will increase grip on overly slick milonga floors. Conversely, the dust accumulation from a few tandas will resolve excessive stickiness.
@@ -994,7 +1009,7 @@
                 Expect a price range of <strong>€120 to €180</strong>. This investment is worthwhile, representing the most effective contribution to your technique. Prioritise appropriate equipment, protect your knees, and concentrate on enjoying the tanda.
               </p>
 <figure class="article-featured-image">
-<img alt="Tango dance shoes" loading="lazy" src="/images/blog/tango-dance-shoes.jpg"/>
+<img alt="Tango dance shoes" loading="lazy" src="/images/blog/tango-dance-shoes.webp" width="850" height="388" />
 <figcaption>Quality tango shoes — budget €120–€180 for a pair that truly supports your technique</figcaption>
 </figure>
 <div>
@@ -1003,7 +1018,119 @@
                   Invest in your dance — it pays off
                 </span>
 </div>
-</article></div><!-- end article-body -->
+</article>
+<article class="section-card" id="section-6">
+<span class="bg-number">06</span>
+<div class="section-card-header">
+<div class="section-number-pill">6</div>
+<h2>Best Tango Shoe Brands for Beginners and Advanced Dancers</h2>
+</div>
+<p>Choosing the right brand can significantly impact your tango experience. Here's a look at some popular options, catering to different levels and budgets. Remember, fit is crucial, so try them on if possible!
+</p>
+<p>
+<strong>Comme il Faut (Argentina):</strong> The undisputed queen of tango shoes. These are premium shoes, with prices typically ranging from €250-€400. The designs are stunning, often incorporating unique fabrics and embellishments. The fit is generally very comfortable, and they're known for their exceptional craftsmanship. The downside? The price. They're an investment.
+</p>
+<p>
+<strong>Madame Pivot (Europe):</strong> A fantastic mid-range option, usually costing between €180-€280. Madame Pivot offers a wide variety of styles, heel heights, and colors. They are generally well-made and comfortable, making them a popular choice for both beginners and experienced dancers. They're a great balance of quality and price.
+</p>
+<p>
+<strong>Tangolera (Italy):</strong> Another excellent Italian brand, similar in price range to Madame Pivot. Tangolera is known for its stability and well-balanced designs. They offer a good selection of styles, from classic to more modern. Many dancers find them particularly comfortable for long milongas.
+</p>
+<p>
+<strong>Mr. Tango Shoes:</strong> A brand known for its sturdy construction and focus on comfort, especially for leaders. Prices are generally in the €150-€250 range. They offer a good selection of classic styles and are a reliable choice if you prioritize durability. They are a great option for those looking for a more traditional, robust tango shoe.
+</p>
+<p>
+<strong>Nueva Epoca:</strong> Another well-regarded brand, often seen at international tango festivals <a href="/en/blog/international-tango-events/">international tango events</a>. They offer a good range of styles, and the quality is generally very good. Prices vary depending on the model but are typically in the €200-€350 range.
+</p>
+</article>
+
+<article class="section-card" id="section-7">
+<span class="bg-number">07</span>
+<div class="section-card-header">
+<div class="section-number-pill">7</div>
+<h2>Where to Buy Tango Shoes in Brussels and Belgium</h2>
+</div>
+<p>Finding the perfect tango shoes in Brussels and Belgium requires a bit of searching, but it's definitely possible!
+</p>
+<p>
+Unfortunately, dedicated tango shoe shops are rare in Brussels itself. However, some dancewear shops may carry a limited selection. It's always best to call ahead to check their stock.
+</p>
+<p>
+<strong>Online Retailers:</strong> Several online retailers specialize in tango shoes and ship to Belgium. Look for reputable sites with good return policies, as sizing can be tricky. Pay close attention to size charts and read reviews from other customers. If you're unsure about sizing, consider ordering a couple of sizes and returning the ones that don't fit.
+</p>
+<p>
+<strong>Festival Shoe Stalls:</strong> Tango festivals are a fantastic opportunity to try on and purchase a wide range of tango shoes. Vendors often attend major tango events, such as the Brussels Tango Festival (if held) and other festivals throughout Europe. This allows you to see and feel the shoes in person and get expert advice from the vendors. Check if any festivals are coming up near Brussels <a href="/en/blog/international-tango-events/">international tango events</a>.
+</p>
+<p>
+<strong>Sizing Advice:</strong> Tango shoe sizing can vary significantly between brands. It's generally recommended to go up half a size or even a full size from your regular street shoe size. When ordering online, measure your foot carefully and compare it to the brand's size chart. Remember to measure both feet, as one may be slightly larger than the other.
+</p>
+</article>
+
+<article class="section-card" id="section-8">
+<span class="bg-number">08</span>
+<div class="section-card-header">
+<div class="section-number-pill">8</div>
+<h2>How to Care for Your Tango Shoes</h2>
+</div>
+<p>Proper care will extend the life of your tango shoes and keep them performing their best.
+</p>
+<p>
+<strong>Shoe Brush:</strong> A suede shoe brush is essential for maintaining the soles of your tango shoes. Brush the soles regularly to remove dirt and debris, which can reduce their grip. A few quick strokes before each dance session will make a big difference.
+</p>
+<p>
+<strong>Storage Tips:</strong> Store your tango shoes in a cool, dry place, away from direct sunlight. Consider using shoe bags to protect them from dust and scratches. Avoid storing them in plastic bags, as this can trap moisture and lead to mildew.
+</p>
+<p>
+<strong>Sole Replacement:</strong> The soles of your tango shoes will eventually wear down, especially if you dance frequently. Depending on the brand and the extent of the wear, you may be able to have the soles replaced by a cobbler. This is often more economical than buying a new pair of shoes.
+</p>
+<p>
+<strong>Rotating Between Pairs:</strong> If you dance regularly, consider investing in multiple pairs of tango shoes. Rotating between pairs allows each pair to rest and air out, which can help prevent the build-up of moisture and odors.
+</p>
+<p>
+<strong>When to Replace Shoes:</strong> Eventually, your tango shoes will need to be replaced. Signs that it's time for a new pair include: significant wear and tear on the soles, loss of support, and discomfort while dancing. If your shoes are no longer providing the necessary support and stability, it's time to invest in a new pair.
+</p>
+</article>
+
+<article class="section-card" id="section-9">
+<span class="bg-number">09</span>
+<div class="section-card-header">
+<div class="section-number-pill">9</div>
+<h2>Tango Shoes for Leaders vs. Followers: A Complete Guide</h2>
+</div>
+<p>While both leaders and followers need specialized tango shoes, the ideal features can differ significantly. Let's break down the key considerations for each role.
+</p>
+<p>
+<strong>Heel Height:</strong> This is a primary difference. Leaders generally prefer lower heels, typically between 1.5 and 2.5 cm. This allows for better balance and stability, crucial for guiding the follower. Followers, on the other hand, often opt for higher heels, ranging from 5 cm upwards. Higher heels can enhance the line of the leg and facilitate certain movements, such as ochos. However, beginners should always start with lower heels and gradually increase the height as their balance and technique improve. Remember our advice from Tip 2?
+</p>
+<p>
+<strong>Open vs. Closed Toe:</strong> Followers often choose open-toe shoes to showcase their footwork and allow for greater flexibility. Leaders typically prefer closed-toe shoes for added protection and a more classic, masculine look. However, these are just general preferences, and individual comfort is always the most important factor.
+</p>
+<p>
+<strong>Ankle Support:</strong> Some leaders and followers prefer shoes with ankle straps or other forms of ankle support. This can provide added stability and prevent injuries, particularly for those with weaker ankles. Ankle support can be especially helpful for beginners who are still developing their balance and coordination.
+</p>
+<p>
+<strong>Material Preferences:</strong> While both leaders and followers can wear shoes made from various materials, there are some common preferences. Followers often opt for softer, more flexible materials like leather or suede, which allow for greater freedom of movement. Leaders may prefer more durable materials like leather or synthetic materials, which can withstand the rigors of leading.
+</p>
+<p>
+Ultimately, the best tango shoes are the ones that feel most comfortable and allow you to dance with confidence and ease. Don't be afraid to experiment with different styles and brands to find what works best for you. And remember to check out our <a href="/en/blog/what-to-wear-tango-class/">what to wear to tango class</a> guide for more tips on tango attire! Perhaps after a few classes, including a <a href="/en/tango-classes/free-trial/">free trial</a>, you'll have a better idea of what you need.
+</p>
+</article>
+
+<article class="section-card" id="section-faq">
+<span class="bg-number">FAQ</span>
+<div class="section-card-header">
+<div class="section-number-pill"><i class="fas fa-question-circle"></i></div>
+<h2>Frequently Asked Questions</h2>
+</div>
+<div class="faq-list">
+<details class="faq-item"><summary>How much should I spend on my first pair of tango shoes?</summary><p>For your first pair, I recommend aiming for the €120-€180 range. This will get you a decent quality shoe that's comfortable and supportive without breaking the bank. You can always upgrade later as you become more serious about tango.</p></details>
+<details class="faq-item"><summary>Can I use dance sneakers for tango?</summary><p>While dance sneakers are suitable for some dance styles, they are generally not recommended for tango. Tango requires specific movements and footwork that are best facilitated by the flexibility and grip of proper tango shoes. Dance sneakers often lack the necessary support and can make it difficult to execute tango steps correctly. See our page on <a href="/en/blog/what-to-expect-first-tango-class/">what to expect from your first tango class</a>.</p></details>
+<details class="faq-item"><summary>How long do tango shoes last?</summary><p>The lifespan of tango shoes depends on how often you dance and how well you care for them. With regular use (2-3 times per week) and proper maintenance, a good pair of tango shoes can last for 1-2 years or even longer. However, the soles will eventually wear down and may need to be replaced.</p></details>
+<details class="faq-item"><summary>Should I buy shoes before my first class?</summary><p>It's not essential to buy tango shoes before your first class. Many beginners start with comfortable street shoes that have smooth soles. This will allow you to get a feel for the dance before investing in specialized footwear. However, if you're already committed to learning tango, buying a pair of tango shoes early on can help you develop proper technique and avoid injuries.</p></details>
+<details class="faq-item"><summary>Are expensive shoes worth it?</summary><p>Expensive tango shoes often offer superior comfort, craftsmanship, and design. While they're not necessary for beginners, experienced dancers who dance frequently may find that the investment is worthwhile. High-quality shoes can provide better support, stability, and flexibility, which can enhance your dancing and reduce the risk of injuries. Ultimately, the decision of whether or not to buy expensive shoes depends on your individual needs and budget.</p></details>
+</div>
+</article>
+</div><!-- end article-body -->
 <!-- SIDEBAR -->
 <aside class="d4-sidebar">
 <div class="d4-sidebar-card">
@@ -1031,6 +1158,26 @@
 <li class="toc-item">
 <span class="toc-dot">5</span>
 <a href="#section-5">Tips 4 &amp; 5 — Fit &amp; buying</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot">6</span>
+<a href="#section-6">Best tango shoe brands</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot">7</span>
+<a href="#section-7">Where to buy in Belgium</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot">8</span>
+<a href="#section-8">Shoe care tips</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot">9</span>
+<a href="#section-9">Leaders vs. followers guide</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot"><i class="fas fa-question-circle"></i></span>
+<a href="#section-faq">FAQ</a>
 </li>
 </ol>
 </div>
@@ -1118,7 +1265,7 @@
 </a>
 <a class="related-card" href="../history-of-argentine-tango/">
 <div class="related-img">
-<img alt="The history of Argentine tango" height="360" loading="lazy" src="/images/blog/prague-tango-marathon.jpg" width="600"/>
+<img alt="The history of Argentine tango" height="360" loading="lazy" src="/images/blog/prague-tango-marathon.webp" width="600"/>
 </div>
 <div class="related-card-body">
 <span class="related-category">History</span>

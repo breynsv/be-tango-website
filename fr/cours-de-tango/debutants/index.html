@@ -36,8 +36,8 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<link rel="preload" href="../../../css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.7"></noscript>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=optional" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<link rel="preload" href="../../../css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fa-subset.min.css?v=4.0"></noscript>
 <!-- Font Awesome -->
 <!-- Stylesheet -->
 <link href="../../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
@@ -864,11 +864,11 @@ if (menuToggle && mainNav) {
     });
   </script>
 <!-- CRM API Integration -->
-<script src="../../../js/crm-api.min.js"></script>
-<script src="../../../js/schedule-loader.min.js?v=4.0"></script>
+<script src="../../../js/crm-api.min.js" defer></script>
+<script src="../../../js/schedule-loader.min.js?v=4.0" defer></script>
 <script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script defer="" src="../../../js/enrollment-modal.js?v=1.0"></script>
-<script src="../../../js/newsletter.min.js"></script>
+<script src="../../../js/newsletter.min.js" defer></script>
 <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
   </script>

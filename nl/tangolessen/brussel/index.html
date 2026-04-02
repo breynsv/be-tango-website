@@ -36,14 +36,14 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<link rel="preload" href="../../../css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.7"></noscript>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=optional" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<link rel="preload" href="../../../css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fa-subset.min.css?v=4.0"></noscript>
 <!-- Font Awesome -->
 <!-- Stylesheet -->
 <link href="../../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
 <noscript><link href="../../../css/styles.min.css?v=3.7" rel="stylesheet"/></noscript>
 <!-- Enhancement Scripts -->
-<script defer="" src="../../../js/enhancements.min.js?v=3.5"></script>
+<script defer="" src="../../../js/enhancements.min.js?v=3.7"></script>
 <!-- JSON-LD Structured Data - Place Schema for Brussels -->
 <script type="application/ld+json">
   {
@@ -57,7 +57,7 @@
     "email": "admin@be-tango.com",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Broekstraat 68",
+      "streetAddress": "Rue du Marais 68",
       "addressLocality": "Brussel",
       "postalCode": "1000",
       "addressRegion": "Brussel",
@@ -76,7 +76,14 @@
       "name": "BE-TANGO",
       "url": "https://www.be-tango.be"
     },
-    "sameAs": "https://maps.google.com/?cid=7397240013699561184"
+    "sameAs": [
+      "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
+      "https://www.instagram.com/be_tango_brussels/",
+      "https://www.youtube.com/@betango",
+      "https://maps.google.com/?cid=7397240013699561184",
+      "https://maps.google.com/?cid=17403292616488097271",
+      "https://www.wikidata.org/wiki/Q138794927"
+    ]
   }
   </script>
 <!-- Live Schedule Component Styles -->
@@ -156,6 +163,49 @@
     ]
   }
   </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Wekelijkse Argentijnse tangolessen in Brussel",
+  "description": "Wekelijkse Argentijnse tangolessen voor alle niveaus bij BE-TANGO Brussel, Broekstraat 68.",
+  "startDate": "2026-04-07",
+  "endDate": "2026-06-30",
+  "eventSchedule": {
+    "@type": "Schedule",
+    "repeatFrequency": "P1W"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "BE-TANGO Brussel",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rue du Marais 68",
+      "addressLocality": "Brussel",
+      "postalCode": "1000",
+      "addressRegion": "Brussel",
+      "addressCountry": "BE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 50.8503,
+      "longitude": 4.3517
+    }
+  },
+  "organizer": {
+    "@type": "DanceSchool",
+    "name": "BE-TANGO",
+    "url": "https://www.be-tango.be/"
+  },
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
 </head>
 <body>
 <!-- Skip to main content link for accessibility -->

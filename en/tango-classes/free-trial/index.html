@@ -40,9 +40,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"></noscript>
-  <link rel="preload" href="/css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fontawesome.min.css?v=3.7"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=optional"></noscript>
+  <link rel="preload" href="/css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fa-subset.min.css?v=4.0"></noscript>
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
@@ -53,52 +53,62 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Event",
-    "name": "Free Trial Argentine Tango Class",
-    "description": "Try Argentine tango for free. No partner needed. One hour to discover the basic steps, posture and connection in a relaxed atmosphere.",
-    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "eventStatus": "https://schema.org/EventScheduled",
-    "organizer": {
-      "@type": "Organization",
+    "@type": "Course",
+    "name": "Free Trial Tango Class",
+    "description": "Try your first Argentine tango class for free at BE-TANGO. No partner needed. Beginners welcome at our Brussels and Woluwe studios.",
+    "url": "https://www.be-tango.be/en/tango-classes/free-trial/",
+    "provider": {
+      "@type": "DanceSchool",
       "name": "BE-TANGO",
       "url": "https://www.be-tango.be/en/",
-      "telephone": "+32498392939"
+      "telephone": "+32 498 39 29 39",
+      "sameAs": [
+        "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
+        "https://www.instagram.com/be_tango_brussels/",
+        "https://www.youtube.com/@betango",
+        "https://maps.google.com/?cid=7397240013699561184",
+        "https://maps.google.com/?cid=17403292616488097271",
+        "https://www.wikidata.org/wiki/Q138794927"
+      ]
     },
-    "location": [
-      {
-        "@type": "Place",
-        "name": "BE-TANGO Brussels",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Rue du Marais 68",
-          "addressLocality": "Brussels",
-          "postalCode": "1000",
-          "addressCountry": "BE"
-        }
-      },
-      {
-        "@type": "Place",
-        "name": "BE-TANGO Woluwe",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Avenue Orban 54",
-          "addressLocality": "Woluwe-Saint-Pierre",
-          "postalCode": "1150",
-          "addressCountry": "BE"
-        }
-      }
-    ],
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock",
-      "validFrom": "2025-01-01"
+      "availability": "https://schema.org/InStock"
     },
-    "performer": {
-      "@type": "PerformingGroup",
-      "name": "BE-TANGO"
-    }
+    "hasCourseInstance": [
+      {
+        "@type": "CourseInstance",
+        "courseMode": "onsite",
+        "location": {
+          "@type": "Place",
+          "name": "BE-TANGO Brussels",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rue du Marais 68",
+            "addressLocality": "Brussels",
+            "postalCode": "1000",
+            "addressCountry": "BE"
+          }
+        }
+      },
+      {
+        "@type": "CourseInstance",
+        "courseMode": "onsite",
+        "location": {
+          "@type": "Place",
+          "name": "BE-TANGO Woluwe",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Avenue Orban 54",
+            "addressLocality": "Woluwe-Saint-Lambert",
+            "postalCode": "1200",
+            "addressCountry": "BE"
+          }
+        }
+      }
+    ]
   }
   </script>
 
@@ -108,9 +118,9 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
-      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/tango-classes/"},
-      {"@type": "ListItem", "position": 3, "name": "Free Trial", "item": "https://www.be-tango.be/tango-classes/free-trial/"}
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/en/"},
+      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/en/tango-classes/"},
+      {"@type": "ListItem", "position": 3, "name": "Free Trial", "item": "https://www.be-tango.be/en/tango-classes/free-trial/"}
     ]
   }
   </script>
@@ -680,7 +690,7 @@
   <!-- CRM Integration -->
   <script src="/js/crm-api.js?v=1.0" defer></script>
   <script src="/js/free-trial.js?v=1.0" defer></script>
-  <script src="/js/newsletter.min.js"></script>
+  <script src="/js/newsletter.min.js" defer></script>
   <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
   </script>

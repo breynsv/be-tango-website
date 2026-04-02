@@ -40,8 +40,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="../../../css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.7"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="../../../css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fa-subset.min.css?v=4.0"></noscript>
 
   <!-- Font Awesome -->
 
@@ -135,6 +135,7 @@
         "@type": "Course",
         "name": "Tangolessen Eerste Jaar",
         "description": "Voor dansers die de beginnerscursus hebben afgerond. Consolideer de basis, focus op cross-systeem wandelen, soepel wandelen en Ochos.",
+        "url": "https://www.be-tango.be/nl/tangolessen/ervaring/",
         "provider": {
           "@type": "Organization",
           "name": "BE-TANGO",
@@ -194,6 +195,7 @@
         "@type": "Course",
         "name": "Tangolessen Tweede Jaar",
         "description": "Voor dansers die het eerste jaar hebben voltooid. Ga verder met het opbouwen van techniek, muzikaliteit en partnerconnectie met meer complexe patronen.",
+        "url": "https://www.be-tango.be/nl/tangolessen/ervaring/",
         "provider": {
           "@type": "Organization",
           "name": "BE-TANGO",
@@ -253,6 +255,7 @@
         "@type": "Course",
         "name": "Tangolessen Tweede Jaar PLUS",
         "description": "Geavanceerde fundamentals voor ervaren dansers. Verfijn uw techniek, verken complexe sequenties en verdiep uw muzikale interpretatie.",
+        "url": "https://www.be-tango.be/nl/tangolessen/ervaring/",
         "provider": {
           "@type": "Organization",
           "name": "BE-TANGO",
@@ -312,6 +315,7 @@
         "@type": "Course",
         "name": "Gemiddeld/Gevorderd Tangolessen",
         "description": "Voor dansers met 4+ jaar ervaring. Meester Boleos, Ganchos, Enrosques. Diepgaand werk aan muzikaliteit (Vals/Milonga) en improvisatie.",
+        "url": "https://www.be-tango.be/nl/tangolessen/ervaring/",
         "provider": {
           "@type": "Organization",
           "name": "BE-TANGO",
@@ -926,13 +930,13 @@
     });
   </script>
   <!-- CRM API Integration -->
-  <script src="../../../js/crm-api.min.js"></script>
+  <script src="../../../js/crm-api.min.js" defer></script>
   <script src="../../../js/experienced-schedule.min.js?v=1.0"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer crossorigin="anonymous"></script>
   <script src="../../../js/enrollment-modal.js?v=1.0" defer></script>
 
   <!-- Floating Mobile Call Button -->
-  <script src="../../../js/newsletter.min.js"></script>
+  <script src="../../../js/newsletter.min.js" defer></script>
   <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
   </script>

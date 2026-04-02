@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BE-TANGO QA Audit Report</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; padding: 24px; background: #fafafa; color: #222; }
+  h1 { color: #b71c1c; }
+  h2 { border-bottom: 2px solid #eee; padding-bottom: 8px; margin-top: 40px; }
+  h3 { font-size: 0.95em; color: #666; margin-bottom: 8px; }
+  .summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 24px 0; }
+  .card { background: #fff; border-radius: 8px; padding: 16px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .card .count { font-size: 2.5em; font-weight: 700; }
+  .card.critical .count { color: #c62828; }
+  .card.warning .count { color: #e65100; }
+  .card.mobile .count { color: #1565c0; }
+  .card.tablet .count { color: #6a1b9a; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 24px; }
+  th { background: #f5f5f5; text-align: left; padding: 10px 12px; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; }
+  td { padding: 8px 12px; border-top: 1px solid #eee; font-size: 0.9em; word-break: break-all; }
+  tr:hover td { background: #fafafa; }
+  .screenshot-row { margin-bottom: 32px; }
+  .screenshot-label { font-family: monospace; font-size: 0.9em; color: #555; margin-bottom: 8px; }
+  .screenshot-pair { display: grid; grid-template-columns: 375px 768px; gap: 24px; }
+  .screenshot-pair img { width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  .vp-label { font-size: 0.75em; color: #888; margin-bottom: 4px; }
+  .clean-list { columns: 3; list-style: none; padding: 0; }
+  .clean-list li::before { content: "\2705 "; }
+  section { margin-bottom: 48px; }
+</style>
+</head>
+<body>
+<h1>BE-TANGO QA Audit Report</h1>
+<p>Generated: 2026-03-23T14:01:10.104Z &nbsp;|&nbsp; Pages crawled: 70</p>
+
+<div class="summary">
+  <div class="card critical"><div class="count">135</div><div>Critical</div></div>
+  <div class="card warning"><div class="count">11</div><div>Warnings</div></div>
+  <div class="card mobile"><div class="count">70</div><div>Mobile Issues</div></div>
+  <div class="card tablet"><div class="count">0</div><div>Tablet Issues</div></div>
+</div>
+
+<section>
+<h2>Broken Links</h2>
+<h3>Unique broken URLs (deduplicated)</h3>
+<p style="color:#388e3c">None found.</p>
+<h3>All occurrences (per page)</h3>
+<p style="color:#388e3c">None found.</p>
+</section>
+
+<section>
+<h2>Missing Images</h2>
+<table><thead><tr><th>Page</th><th>Image URL</th></tr></thead><tbody><tr><td>/blog/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/blog/5-tips-best-tango-shoes/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/blog/5-tips-best-tango-shoes/</td><td>http://localhost:8002/images/blog/tango-schoenen-blogpost.jpg</td></tr><tr><td>/blog/argentine-tango-ballroom-tango-differences/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/blog/different-styles-of-argentine-tango/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/blog/different-styles-of-argentine-tango/</td><td>http://localhost:8002/images/blog/12_candombe.webp</td></tr><tr><td>/blog/history-of-argentine-tango/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/blog/history-of-argentine-tango/</td><td>http://localhost:8002/images/blog/prague-tango-marathon.jpg</td></tr><tr><td>/blog/international-tango-events/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/blog/international-tango-events/</td><td>http://localhost:8002/images/blog/international-tango-events.webp</td></tr><tr><td>/blog/tango-events-brussels/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/blog/tango-events-brussels/</td><td>http://localhost:8002/images/blog/brussels-tango-events.webp</td></tr><tr><td>/blog/why-learn-tango/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/blog/why-learn-tango/</td><td>http://localhost:8002/images/blog/why-learn-tango.webp</td></tr><tr><td>/contact/</td><td>http://localhost:8002/images/Tango-2048x1365-1.webp</td></tr><tr><td>/contact/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/</td><td>http://localhost:8002/images/Tango-2048x1365-1.webp</td></tr><tr><td>/fr/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/blog/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/blog/conseils-pour-chaussures-de-tango/</td><td>http://localhost:8002/images/blog/tango-schoenen-blogpost.jpg</td></tr><tr><td>/fr/blog/conseils-pour-chaussures-de-tango/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/blog/conseils-pour-chaussures-de-tango/</td><td>http://localhost:8002/images/blog/12_candombe.webp</td></tr><tr><td>/fr/blog/conseils-pour-chaussures-de-tango/</td><td>http://localhost:8002/images/blog/tango-milonga-vals.webp</td></tr><tr><td>/fr/blog/dictionnaire-de-tango/</td><td>http://localhost:8002/images/blog/tango-dictionary.jpg</td></tr><tr><td>/fr/blog/dictionnaire-de-tango/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/blog/dictionnaire-de-tango/</td><td>http://localhost:8002/images/blog/12_candombe.webp</td></tr><tr><td>/fr/blog/dictionnaire-de-tango/</td><td>http://localhost:8002/images/blog/prague-tango-marathon.jpg</td></tr><tr><td>/fr/blog/difference-entre-tango-valse-et-milonga/</td><td>http://localhost:8002/images/blog/tango-milonga-vals.webp</td></tr><tr><td>/fr/blog/difference-entre-tango-valse-et-milonga/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/blog/difference-entre-tango-valse-et-milonga/</td><td>http://localhost:8002/images/blog/12_candombe.webp</td></tr><tr><td>/fr/blog/difference-entre-tango-valse-et-milonga/</td><td>http://localhost:8002/images/blog/prague-tango-marathon.jpg</td></tr><tr><td>/fr/blog/evenements-de-tango-a-bruxelles/</td><td>http://localhost:8002/images/blog/milonga-la-milonguita-768x512.webp</td></tr><tr><td>/fr/blog/evenements-de-tango-a-bruxelles/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/blog/evenements-de-tango-a-bruxelles/</td><td>http://localhost:8002/images/blog/prague-tango-marathon.jpg</td></tr><tr><td>/fr/blog/evenements-de-tango-internationaux/</td><td>http://localhost:8002/images/blog/prague-tango-marathon.jpg</td></tr><tr><td>/fr/blog/evenements-de-tango-internationaux/</td><td>http://localhost:8002/images/blog/belgrade-768x512.jpg</td></tr><tr><td>/fr/blog/evenements-de-tango-internationaux/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/blog/evenements-de-tango-internationaux/</td><td>http://localhost:8002/images/blog/tango-marathon-palace-tango-cita-brussels.png</td></tr><tr><td>/fr/blog/evenements-de-tango-internationaux/</td><td>http://localhost:8002/images/blog/la-cita-de-los-amigos-tango-marathon.png</td></tr><tr><td>/fr/blog/histoire-du-tango-argentin/</td><td>http://localhost:8002/images/blog/prague-tango-marathon.jpg</td></tr><tr><td>/fr/blog/histoire-du-tango-argentin/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/blog/histoire-du-tango-argentin/</td><td>http://localhost:8002/images/blog/12_candombe.webp</td></tr><tr><td>/fr/blog/histoire-du-tango-argentin/</td><td>http://localhost:8002/images/blog/tango-dictionary.jpg</td></tr><tr><td>/fr/blog/histoire-du-tango-argentin/</td><td>http://localhost:8002/images/blog/ballroom-tango.webp</td></tr><tr><td>/fr/blog/les-differents-styles-du-tango-argentin/</td><td>http://localhost:8002/images/blog/12_candombe.webp</td></tr><tr><td>/fr/blog/les-differents-styles-du-tango-argentin/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/blog/les-differents-styles-du-tango-argentin/</td><td>http://localhost:8002/images/blog/prague-tango-marathon.jpg</td></tr><tr><td>/fr/blog/les-differents-styles-du-tango-argentin/</td><td>http://localhost:8002/images/blog/tango-dictionary.jpg</td></tr><tr><td>/fr/blog/les-differents-styles-du-tango-argentin/</td><td>http://localhost:8002/images/blog/tango-milonga-vals.webp</td></tr><tr><td>/fr/blog/pourquoi-apprendre-le-tango/</td><td>http://localhost:8002/images/blog/dancers_tango-1.jpg</td></tr><tr><td>/fr/blog/pourquoi-apprendre-le-tango/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/blog/pourquoi-apprendre-le-tango/</td><td>http://localhost:8002/images/blog/12_candombe.webp</td></tr><tr><td>/fr/blog/tango-argentin-vs-tango-de-salon/</td><td>http://localhost:8002/images/blog/ballroom-tango.webp</td></tr><tr><td>/fr/blog/tango-argentin-vs-tango-de-salon/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/contactez-nous/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/cours-de-tango/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/cours-de-tango/ateliers/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/cours-de-tango/bruxelles/</td><td>http://localhost:8002/images/tango-classes-in-Brussels-2-e1740646913571.webp</td></tr><tr><td>/fr/cours-de-tango/bruxelles/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/cours-de-tango/debutants/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/cours-de-tango/en-ligne/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/cours-de-tango/en-ligne/</td><td>http://localhost:8002/images/tango-classes-in-Brussels-2-e1740646913571.webp</td></tr><tr><td>/fr/cours-de-tango/en-ligne/</td><td>http://localhost:8002/images/beginner-tango-classes.webp</td></tr><tr><td>/fr/cours-de-tango/en-ligne/</td><td>http://localhost:8002/images/Tango-workshops-e1740647379561.webp</td></tr><tr><td>/fr/cours-de-tango/essai-gratuit/</td><td>http://localhost:8002/images/Tango-2048x1365-1.webp</td></tr><tr><td>/fr/cours-de-tango/essai-gratuit/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/cours-de-tango/essai-gratuit/</td><td>http://localhost:8002/images/beginner-tango-classes.webp</td></tr><tr><td>/fr/cours-de-tango/experimentes/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/cours-de-tango/particuliers/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/cours-de-tango/woluwe/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/cours-de-tango/woluwe/</td><td>http://localhost:8002/images/tango-classes-in-Brussels-2-e1740646913571.webp</td></tr><tr><td>/fr/liens/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/politique-de-confidentialite/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/fr/termes-et-conditions-generales/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/links/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/</td><td>http://localhost:8002/images/Tango-2048x1365-1.webp</td></tr><tr><td>/nl/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/</td><td>http://localhost:8002/images/Tango-in-Brussels-e1740649554215.webp</td></tr><tr><td>/nl/</td><td>http://localhost:8002/images/tango-classes-in-Brussels-2-e1740646913571.webp</td></tr><tr><td>/nl/</td><td>http://localhost:8002/images/Private-dance-classes.webp</td></tr><tr><td>/nl/</td><td>http://localhost:8002/images/Tango-workshops-e1740647379561.webp</td></tr><tr><td>/nl/</td><td>http://localhost:8002/images/tango-classes-fun.webp</td></tr><tr><td>/nl/algemene-voorwaarden/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/blog/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/blog/5-tips-voor-de-beste-tangoschoenen/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/blog/5-tips-voor-de-beste-tangoschoenen/</td><td>http://localhost:8002/images/blog/tango-schoenen-blogpost.jpg</td></tr><tr><td>/nl/blog/argentijnse-tango-vs-ballroomtango-de-verschillen-en-gelijkenissen/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/blog/argentijnse-tango-vs-ballroomtango-de-verschillen-en-gelijkenissen/</td><td>http://localhost:8002/images/blog/ballroom-tango.webp</td></tr><tr><td>/nl/blog/de-geschiedenis-van-de-argentijnse-tango/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/blog/de-verschillende-dansstijlen-van-de-argentijnse-tango/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/blog/de-verschillende-dansstijlen-van-de-argentijnse-tango/</td><td>http://localhost:8002/images/blog/12_candombe.webp</td></tr><tr><td>/nl/blog/het-verschil-tussen-tango-vals-en-milonga/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/blog/het-verschil-tussen-tango-vals-en-milonga/</td><td>http://localhost:8002/images/blog/12_candombe.webp</td></tr><tr><td>/nl/blog/internationale-milongas-en-tango-evenementen/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/blog/tango-evenementen-in-brussel-en-omstreken/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/blog/tango-woordenboek/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/blog/tango-woordenboek/</td><td>http://localhost:8002/images/blog/tango-dictionary.jpg</td></tr><tr><td>/nl/blog/waarom-tango-leren-dansen/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/contacteer-ons/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/links/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/privacy-policy/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/tangolessen/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/tangolessen/beginners/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/tangolessen/brussel/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/tangolessen/ervaring/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/tangolessen/gratis-proefles/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/tangolessen/online/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/tangolessen/online/</td><td>http://localhost:8002/images/beginner-tango-classes.webp</td></tr><tr><td>/nl/tangolessen/online/</td><td>http://localhost:8002/images/Tango-in-Brussels-e1740649554215.webp</td></tr><tr><td>/nl/tangolessen/prive/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/tangolessen/woluwe/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/nl/tangolessen/woluwe/</td><td>http://localhost:8002/images/tango-classes-in-Brussels-2-e1740646913571.webp</td></tr><tr><td>/nl/tangolessen/workshops/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/privacy-policy/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/tango-classes/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/tango-classes/</td><td>http://localhost:8002/images/tango-classes-in-Brussels-2-e1740646913571.webp</td></tr><tr><td>/tango-classes/beginners/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/tango-classes/brussels/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/tango-classes/brussels/</td><td>http://localhost:8002/images/Tango-2048x1365-1.webp</td></tr><tr><td>/tango-classes/experienced/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/tango-classes/free-trial/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/tango-classes/free-trial/</td><td>http://localhost:8002/images/beginner-tango-classes.webp</td></tr><tr><td>/tango-classes/online/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/tango-classes/online/</td><td>http://localhost:8002/images/tango-classes-in-Brussels-2-e1740646913571.webp</td></tr><tr><td>/tango-classes/online/</td><td>http://localhost:8002/images/beginner-tango-classes.webp</td></tr><tr><td>/tango-classes/online/</td><td>http://localhost:8002/images/Tango-workshops-e1740647379561.webp</td></tr><tr><td>/tango-classes/online/</td><td>http://localhost:8002/images/Tango-in-Brussels-e1740649554215.webp</td></tr><tr><td>/tango-classes/private/</td><td>http://localhost:8002/images/Tango-in-Brussels-e1740649554215.webp</td></tr><tr><td>/tango-classes/private/</td><td>http://localhost:8002/images/tango-lessons-in-Brussels-technique-and-posture.webp</td></tr><tr><td>/tango-classes/private/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/tango-classes/woluwe/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/tango-classes/woluwe/</td><td>http://localhost:8002/images/tango-classes-in-Brussels-2-e1740646913571.webp</td></tr><tr><td>/tango-classes/workshops/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr><tr><td>/terms-and-conditions/</td><td>http://localhost:8002/images/logo-be-tango.png</td></tr></tbody></table>
+</section>
+
+<section>
+<h2>JS Console Errors</h2>
+<table><thead><tr><th>Page</th><th>Error</th></tr></thead><tbody><tr><td>/nl/blog/het-verschil-tussen-tango-vals-en-milonga/</td><td>Failed to load resource: the server responded with a status of 404 (Not Found)</td></tr></tbody></table>
+</section>
+
+<section>
+<h2>🔴 Page Load Errors</h2>
+<p style="color:#388e3c">None found.</p>
+</section>
+
+<section>
+<h2>Language Switcher Issues</h2>
+<p style="color:#388e3c">None found.</p>
+</section>
+
+<section>
+<h2>Missing Alt Text</h2>
+<p style="color:#388e3c">None found.</p>
+</section>
+
+<section>
+<h2>Missing Title / Meta Description</h2>
+<p style="color:#388e3c">None found.</p>
+</section>
+
+<section>
+<h2>Incorrect html lang Attribute</h2>
+<p style="color:#388e3c">None found.</p>
+</section>
+
+<section>
+<h2>🟠 Empty / Anchor-Only Links</h2>
+<table><thead><tr><th>Page</th><th>Link text</th></tr></thead><tbody><tr><td>/</td><td>Learn more</td></tr><tr><td>/contact/</td><td>Learn more</td></tr><tr><td>/fr/</td><td>Lire la suite</td></tr><tr><td>/fr/</td><td>Lire la suite</td></tr><tr><td>/fr/</td><td>Lire la suite</td></tr><tr><td>/fr/contactez-nous/</td><td>Blog</td></tr><tr><td>/fr/cours-de-tango/</td><td>Blog</td></tr><tr><td>/nl/tangolessen/</td><td>Blog</td></tr><tr><td>/nl/tangolessen/beginners/</td><td>Blog</td></tr><tr><td>/nl/tangolessen/ervaring/</td><td>Blog</td></tr><tr><td>/nl/tangolessen/prive/</td><td>Blog</td></tr></tbody></table>
+</section>
+
+<section>
+<h2>External Links (informational)</h2>
+<table><thead><tr><th>Page</th><th>External URL</th></tr></thead><tbody><tr><td>/</td><td>https://share.google/gEhPWeNVzTLcQS4Yd</td></tr><tr><td>/</td><td>https://share.google/gEhPWeNVzTLcQS4Yd</td></tr><tr><td>/</td><td>https://share.google/gEhPWeNVzTLcQS4Yd</td></tr><tr><td>/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/blog/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/blog/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/blog/5-tips-best-tango-shoes/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/blog/5-tips-best-tango-shoes/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/blog/argentine-tango-ballroom-tango-differences/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/blog/argentine-tango-ballroom-tango-differences/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/blog/different-styles-of-argentine-tango/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/blog/different-styles-of-argentine-tango/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/blog/history-of-argentine-tango/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/blog/history-of-argentine-tango/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/blog/international-tango-events/</td><td>https://www.tangopolix.com/</td></tr><tr><td>/blog/international-tango-events/</td><td>https://www.tangomarathons.com/</td></tr><tr><td>/blog/international-tango-events/</td><td>https://www.tangopolix.com/</td></tr><tr><td>/blog/international-tango-events/</td><td>https://www.tangomarathons.com/</td></tr><tr><td>/blog/international-tango-events/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/blog/international-tango-events/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/blog/tango-events-brussels/</td><td>https://www.milonga.be/</td></tr><tr><td>/blog/tango-events-brussels/</td><td>https://www.tango.be/</td></tr><tr><td>/blog/tango-events-brussels/</td><td>https://www.milonga.be/</td></tr><tr><td>/blog/tango-events-brussels/</td><td>https://www.tango.be/</td></tr><tr><td>/blog/tango-events-brussels/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/blog/tango-events-brussels/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/blog/why-learn-tango/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/blog/why-learn-tango/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/contact/</td><td>https://wa.me/32498392939</td></tr><tr><td>/contact/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/contact/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/blog/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/blog/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/blog/conseils-pour-chaussures-de-tango/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/blog/conseils-pour-chaussures-de-tango/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/blog/dictionnaire-de-tango/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/blog/dictionnaire-de-tango/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/blog/difference-entre-tango-valse-et-milonga/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/blog/difference-entre-tango-valse-et-milonga/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/blog/evenements-de-tango-a-bruxelles/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/blog/evenements-de-tango-a-bruxelles/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/blog/evenements-de-tango-internationaux/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/blog/evenements-de-tango-internationaux/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/blog/histoire-du-tango-argentin/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/blog/histoire-du-tango-argentin/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/blog/les-differents-styles-du-tango-argentin/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/blog/les-differents-styles-du-tango-argentin/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/blog/pourquoi-apprendre-le-tango/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/blog/pourquoi-apprendre-le-tango/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/blog/tango-argentin-vs-tango-de-salon/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/blog/tango-argentin-vs-tango-de-salon/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/contactez-nous/</td><td>https://wa.me/32498392939</td></tr><tr><td>/fr/contactez-nous/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/contactez-nous/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/cours-de-tango/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/cours-de-tango/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/cours-de-tango/ateliers/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/cours-de-tango/ateliers/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/cours-de-tango/bruxelles/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/cours-de-tango/bruxelles/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/cours-de-tango/debutants/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/cours-de-tango/debutants/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/cours-de-tango/en-ligne/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/cours-de-tango/en-ligne/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/cours-de-tango/essai-gratuit/</td><td>https://wa.me/32498392939</td></tr><tr><td>/fr/cours-de-tango/essai-gratuit/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/cours-de-tango/essai-gratuit/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/cours-de-tango/experimentes/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/cours-de-tango/experimentes/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/cours-de-tango/particuliers/</td><td>https://www.google.com/search?q=be-tango+brussels</td></tr><tr><td>/fr/cours-de-tango/particuliers/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/cours-de-tango/particuliers/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/cours-de-tango/woluwe/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/cours-de-tango/woluwe/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/liens/</td><td>https://www.milonga.be/</td></tr><tr><td>/fr/liens/</td><td>https://www.sonjaysven.be/</td></tr><tr><td>/fr/liens/</td><td>https://www.torsk.be/</td></tr><tr><td>/fr/liens/</td><td>https://www.detangosetrata.com/</td></tr><tr><td>/fr/liens/</td><td>https://www.njamelicious.be/</td></tr><tr><td>/fr/liens/</td><td>https://www.dmvadvies.be/</td></tr><tr><td>/fr/liens/</td><td>https://www.todotango.com/english/milongas/</td></tr><tr><td>/fr/liens/</td><td>https://www.deal-webdesign.be/</td></tr><tr><td>/fr/liens/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/liens/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/politique-de-confidentialite/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/politique-de-confidentialite/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/fr/termes-et-conditions-generales/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/fr/termes-et-conditions-generales/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/links/</td><td>https://www.milonga.be/</td></tr><tr><td>/links/</td><td>https://www.sonjaysven.be/</td></tr><tr><td>/links/</td><td>https://www.torsk.be/</td></tr><tr><td>/links/</td><td>https://www.detangosetrata.com/</td></tr><tr><td>/links/</td><td>https://www.njamelicious.be/</td></tr><tr><td>/links/</td><td>https://www.dmvadvies.be/</td></tr><tr><td>/links/</td><td>https://www.todotango.com/english/milongas/</td></tr><tr><td>/links/</td><td>https://www.deal-webdesign.be/</td></tr><tr><td>/links/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/links/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/</td><td>https://share.google/gEhPWeNVzTLcQS4Yd</td></tr><tr><td>/nl/</td><td>https://share.google/gEhPWeNVzTLcQS4Yd</td></tr><tr><td>/nl/</td><td>https://share.google/gEhPWeNVzTLcQS4Yd</td></tr><tr><td>/nl/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/algemene-voorwaarden/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/algemene-voorwaarden/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/blog/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/blog/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/blog/5-tips-voor-de-beste-tangoschoenen/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/blog/5-tips-voor-de-beste-tangoschoenen/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/blog/argentijnse-tango-vs-ballroomtango-de-verschillen-en-gelijkenissen/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/blog/argentijnse-tango-vs-ballroomtango-de-verschillen-en-gelijkenissen/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/blog/de-geschiedenis-van-de-argentijnse-tango/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/blog/de-geschiedenis-van-de-argentijnse-tango/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/blog/de-verschillende-dansstijlen-van-de-argentijnse-tango/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/blog/de-verschillende-dansstijlen-van-de-argentijnse-tango/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/blog/het-verschil-tussen-tango-vals-en-milonga/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/blog/het-verschil-tussen-tango-vals-en-milonga/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/blog/internationale-milongas-en-tango-evenementen/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/blog/internationale-milongas-en-tango-evenementen/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/blog/tango-evenementen-in-brussel-en-omstreken/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/blog/tango-evenementen-in-brussel-en-omstreken/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/blog/tango-woordenboek/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/blog/tango-woordenboek/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/blog/waarom-tango-leren-dansen/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/blog/waarom-tango-leren-dansen/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/contacteer-ons/</td><td>https://wa.me/32498392939</td></tr><tr><td>/nl/contacteer-ons/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/contacteer-ons/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/links/</td><td>https://www.milonga.be/</td></tr><tr><td>/nl/links/</td><td>https://www.sonjaysven.be/</td></tr><tr><td>/nl/links/</td><td>https://www.torsk.be/</td></tr><tr><td>/nl/links/</td><td>https://www.detangosetrata.com/</td></tr><tr><td>/nl/links/</td><td>https://www.njamelicious.be/</td></tr><tr><td>/nl/links/</td><td>https://www.dmvadvies.be/</td></tr><tr><td>/nl/links/</td><td>https://www.todotango.com/english/milongas/</td></tr><tr><td>/nl/links/</td><td>https://www.deal-webdesign.be/</td></tr><tr><td>/nl/links/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/links/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/privacy-policy/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/privacy-policy/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/tangolessen/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/tangolessen/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/tangolessen/beginners/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/tangolessen/beginners/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/tangolessen/brussel/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/tangolessen/brussel/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/tangolessen/ervaring/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/tangolessen/ervaring/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/tangolessen/gratis-proefles/</td><td>https://wa.me/32498392939</td></tr><tr><td>/nl/tangolessen/gratis-proefles/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/tangolessen/gratis-proefles/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/tangolessen/online/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/tangolessen/online/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/tangolessen/prive/</td><td>https://www.google.com/search?q=be-tango+brussels</td></tr><tr><td>/nl/tangolessen/prive/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/tangolessen/prive/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/tangolessen/woluwe/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/tangolessen/woluwe/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/nl/tangolessen/workshops/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/nl/tangolessen/workshops/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/privacy-policy/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/privacy-policy/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/tango-classes/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/tango-classes/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/tango-classes/beginners/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/tango-classes/beginners/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/tango-classes/brussels/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/tango-classes/brussels/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/tango-classes/experienced/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/tango-classes/experienced/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/tango-classes/free-trial/</td><td>https://wa.me/32498392939</td></tr><tr><td>/tango-classes/free-trial/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/tango-classes/free-trial/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/tango-classes/online/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/tango-classes/online/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/tango-classes/private/</td><td>https://www.google.com/search?q=be-tango+brussels</td></tr><tr><td>/tango-classes/private/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/tango-classes/private/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/tango-classes/woluwe/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/tango-classes/woluwe/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/tango-classes/workshops/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/tango-classes/workshops/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr><tr><td>/terms-and-conditions/</td><td>https://www.facebook.com/p/Be-tango-ART-100057312323946/</td></tr><tr><td>/terms-and-conditions/</td><td>https://www.instagram.com/be_tango_brussels/</td></tr></tbody></table>
+</section>
+
+<section>
+<h2>Mobile Issues (375px)</h2>
+<table><thead><tr><th>Page</th><th>Issue</th><th>Detail</th></tr></thead><tbody><tr><td>/</td><td>small-tap-targets</td><td>22 elements below 44×44px</td></tr><tr><td>/blog/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/blog/5-tips-best-tango-shoes/</td><td>small-tap-targets</td><td>19 elements below 44×44px</td></tr><tr><td>/blog/argentine-tango-ballroom-tango-differences/</td><td>small-tap-targets</td><td>19 elements below 44×44px</td></tr><tr><td>/blog/different-styles-of-argentine-tango/</td><td>small-tap-targets</td><td>19 elements below 44×44px</td></tr><tr><td>/blog/history-of-argentine-tango/</td><td>small-tap-targets</td><td>19 elements below 44×44px</td></tr><tr><td>/blog/international-tango-events/</td><td>small-tap-targets</td><td>23 elements below 44×44px</td></tr><tr><td>/blog/tango-events-brussels/</td><td>small-tap-targets</td><td>23 elements below 44×44px</td></tr><tr><td>/blog/why-learn-tango/</td><td>small-tap-targets</td><td>19 elements below 44×44px</td></tr><tr><td>/contact/</td><td>small-tap-targets</td><td>21 elements below 44×44px</td></tr><tr><td>/fr/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/fr/blog/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/fr/blog/conseils-pour-chaussures-de-tango/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/fr/blog/dictionnaire-de-tango/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/fr/blog/difference-entre-tango-valse-et-milonga/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/fr/blog/evenements-de-tango-a-bruxelles/</td><td>small-tap-targets</td><td>27 elements below 44×44px</td></tr><tr><td>/fr/blog/evenements-de-tango-internationaux/</td><td>small-tap-targets</td><td>28 elements below 44×44px</td></tr><tr><td>/fr/blog/histoire-du-tango-argentin/</td><td>small-tap-targets</td><td>27 elements below 44×44px</td></tr><tr><td>/fr/blog/les-differents-styles-du-tango-argentin/</td><td>small-tap-targets</td><td>23 elements below 44×44px</td></tr><tr><td>/fr/blog/pourquoi-apprendre-le-tango/</td><td>small-tap-targets</td><td>29 elements below 44×44px</td></tr><tr><td>/fr/blog/tango-argentin-vs-tango-de-salon/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/fr/contactez-nous/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/fr/cours-de-tango/</td><td>small-tap-targets</td><td>16 elements below 44×44px</td></tr><tr><td>/fr/cours-de-tango/ateliers/</td><td>small-tap-targets</td><td>19 elements below 44×44px</td></tr><tr><td>/fr/cours-de-tango/bruxelles/</td><td>small-tap-targets</td><td>16 elements below 44×44px</td></tr><tr><td>/fr/cours-de-tango/debutants/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/fr/cours-de-tango/en-ligne/</td><td>small-tap-targets</td><td>15 elements below 44×44px</td></tr><tr><td>/fr/cours-de-tango/essai-gratuit/</td><td>small-tap-targets</td><td>21 elements below 44×44px</td></tr><tr><td>/fr/cours-de-tango/experimentes/</td><td>small-tap-targets</td><td>22 elements below 44×44px</td></tr><tr><td>/fr/cours-de-tango/particuliers/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/fr/cours-de-tango/woluwe/</td><td>small-tap-targets</td><td>16 elements below 44×44px</td></tr><tr><td>/fr/liens/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/fr/politique-de-confidentialite/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/fr/termes-et-conditions-generales/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/links/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/nl/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/nl/algemene-voorwaarden/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/nl/blog/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/nl/blog/5-tips-voor-de-beste-tangoschoenen/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/nl/blog/argentijnse-tango-vs-ballroomtango-de-verschillen-en-gelijkenissen/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/nl/blog/de-geschiedenis-van-de-argentijnse-tango/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/nl/blog/de-verschillende-dansstijlen-van-de-argentijnse-tango/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/nl/blog/het-verschil-tussen-tango-vals-en-milonga/</td><td>small-tap-targets</td><td>22 elements below 44×44px</td></tr><tr><td>/nl/blog/internationale-milongas-en-tango-evenementen/</td><td>small-tap-targets</td><td>21 elements below 44×44px</td></tr><tr><td>/nl/blog/tango-evenementen-in-brussel-en-omstreken/</td><td>small-tap-targets</td><td>21 elements below 44×44px</td></tr><tr><td>/nl/blog/tango-woordenboek/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/nl/blog/waarom-tango-leren-dansen/</td><td>small-tap-targets</td><td>21 elements below 44×44px</td></tr><tr><td>/nl/contacteer-ons/</td><td>small-tap-targets</td><td>20 elements below 44×44px</td></tr><tr><td>/nl/links/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/nl/privacy-policy/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/nl/tangolessen/</td><td>small-tap-targets</td><td>16 elements below 44×44px</td></tr><tr><td>/nl/tangolessen/beginners/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/nl/tangolessen/brussel/</td><td>small-tap-targets</td><td>18 elements below 44×44px</td></tr><tr><td>/nl/tangolessen/ervaring/</td><td>small-tap-targets</td><td>23 elements below 44×44px</td></tr><tr><td>/nl/tangolessen/gratis-proefles/</td><td>small-tap-targets</td><td>21 elements below 44×44px</td></tr><tr><td>/nl/tangolessen/online/</td><td>small-tap-targets</td><td>15 elements below 44×44px</td></tr><tr><td>/nl/tangolessen/prive/</td><td>small-tap-targets</td><td>18 elements below 44×44px</td></tr><tr><td>/nl/tangolessen/woluwe/</td><td>small-tap-targets</td><td>16 elements below 44×44px</td></tr><tr><td>/nl/tangolessen/workshops/</td><td>small-tap-targets</td><td>18 elements below 44×44px</td></tr><tr><td>/privacy-policy/</td><td>small-tap-targets</td><td>18 elements below 44×44px</td></tr><tr><td>/tango-classes/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/tango-classes/beginners/</td><td>small-tap-targets</td><td>18 elements below 44×44px</td></tr><tr><td>/tango-classes/brussels/</td><td>small-tap-targets</td><td>18 elements below 44×44px</td></tr><tr><td>/tango-classes/experienced/</td><td>small-tap-targets</td><td>24 elements below 44×44px</td></tr><tr><td>/tango-classes/free-trial/</td><td>small-tap-targets</td><td>21 elements below 44×44px</td></tr><tr><td>/tango-classes/online/</td><td>small-tap-targets</td><td>17 elements below 44×44px</td></tr><tr><td>/tango-classes/private/</td><td>small-tap-targets</td><td>19 elements below 44×44px</td></tr><tr><td>/tango-classes/woluwe/</td><td>small-tap-targets</td><td>18 elements below 44×44px</td></tr><tr><td>/tango-classes/workshops/</td><td>small-tap-targets</td><td>19 elements below 44×44px</td></tr><tr><td>/terms-and-conditions/</td><td>small-tap-targets</td><td>18 elements below 44×44px</td></tr></tbody></table>
+</section>
+
+<section>
+<h2>Tablet Issues (768px)</h2>
+<p style="color:#388e3c">None found.</p>
+</section>
+
+<section>
+<h2>Screenshots</h2>
+
+      <div class="screenshot-row">
+        <div class="screenshot-label">/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-index-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-index-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/blog/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-blog-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-blog-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/blog/5-tips-best-tango-shoes/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-blog-5-tips-best-tango-shoes-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-blog-5-tips-best-tango-shoes-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/blog/argentine-tango-ballroom-tango-differences/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-blog-argentine-tango-ballroom-tango-differences-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-blog-argentine-tango-ballroom-tango-differences-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/blog/different-styles-of-argentine-tango/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-blog-different-styles-of-argentine-tango-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-blog-different-styles-of-argentine-tango-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/blog/history-of-argentine-tango/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-blog-history-of-argentine-tango-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-blog-history-of-argentine-tango-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/blog/international-tango-events/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-blog-international-tango-events-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-blog-international-tango-events-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/blog/tango-events-brussels/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-blog-tango-events-brussels-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-blog-tango-events-brussels-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/blog/why-learn-tango/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-blog-why-learn-tango-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-blog-why-learn-tango-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/contact/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-contact-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-contact-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-index-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-index-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/blog/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-blog-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-blog-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/blog/conseils-pour-chaussures-de-tango/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-blog-conseils-pour-chaussures-de-tango-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-blog-conseils-pour-chaussures-de-tango-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/blog/dictionnaire-de-tango/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-blog-dictionnaire-de-tango-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-blog-dictionnaire-de-tango-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/blog/difference-entre-tango-valse-et-milonga/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-blog-difference-entre-tango-valse-et-milonga-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-blog-difference-entre-tango-valse-et-milonga-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/blog/evenements-de-tango-a-bruxelles/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-blog-evenements-de-tango-a-bruxelles-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-blog-evenements-de-tango-a-bruxelles-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/blog/evenements-de-tango-internationaux/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-blog-evenements-de-tango-internationaux-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-blog-evenements-de-tango-internationaux-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/blog/histoire-du-tango-argentin/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-blog-histoire-du-tango-argentin-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-blog-histoire-du-tango-argentin-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/blog/les-differents-styles-du-tango-argentin/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-blog-les-differents-styles-du-tango-argentin-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-blog-les-differents-styles-du-tango-argentin-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/blog/pourquoi-apprendre-le-tango/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-blog-pourquoi-apprendre-le-tango-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-blog-pourquoi-apprendre-le-tango-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/blog/tango-argentin-vs-tango-de-salon/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-blog-tango-argentin-vs-tango-de-salon-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-blog-tango-argentin-vs-tango-de-salon-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/contactez-nous/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-contactez-nous-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-contactez-nous-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/cours-de-tango/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-cours-de-tango-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-cours-de-tango-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/cours-de-tango/ateliers/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-cours-de-tango-ateliers-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-cours-de-tango-ateliers-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/cours-de-tango/bruxelles/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-cours-de-tango-bruxelles-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-cours-de-tango-bruxelles-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/cours-de-tango/debutants/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-cours-de-tango-debutants-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-cours-de-tango-debutants-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/cours-de-tango/en-ligne/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-cours-de-tango-en-ligne-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-cours-de-tango-en-ligne-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/cours-de-tango/essai-gratuit/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-cours-de-tango-essai-gratuit-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-cours-de-tango-essai-gratuit-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/cours-de-tango/experimentes/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-cours-de-tango-experimentes-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-cours-de-tango-experimentes-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/cours-de-tango/particuliers/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-cours-de-tango-particuliers-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-cours-de-tango-particuliers-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/cours-de-tango/woluwe/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-cours-de-tango-woluwe-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-cours-de-tango-woluwe-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/liens/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-liens-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-liens-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/politique-de-confidentialite/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-politique-de-confidentialite-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-politique-de-confidentialite-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/fr/termes-et-conditions-generales/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/fr-termes-et-conditions-generales-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/fr-termes-et-conditions-generales-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/links/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-links-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-links-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-index-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-index-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/algemene-voorwaarden/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-algemene-voorwaarden-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-algemene-voorwaarden-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/blog/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-blog-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-blog-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/blog/5-tips-voor-de-beste-tangoschoenen/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-blog-5-tips-voor-de-beste-tangoschoenen-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-blog-5-tips-voor-de-beste-tangoschoenen-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/blog/argentijnse-tango-vs-ballroomtango-de-verschillen-en-gelijkenissen/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-blog-argentijnse-tango-vs-ballroomtango-de-verschillen-en-gelijkenissen-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-blog-argentijnse-tango-vs-ballroomtango-de-verschillen-en-gelijkenissen-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/blog/de-geschiedenis-van-de-argentijnse-tango/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-blog-de-geschiedenis-van-de-argentijnse-tango-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-blog-de-geschiedenis-van-de-argentijnse-tango-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/blog/de-verschillende-dansstijlen-van-de-argentijnse-tango/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-blog-de-verschillende-dansstijlen-van-de-argentijnse-tango-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-blog-de-verschillende-dansstijlen-van-de-argentijnse-tango-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/blog/het-verschil-tussen-tango-vals-en-milonga/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-blog-het-verschil-tussen-tango-vals-en-milonga-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-blog-het-verschil-tussen-tango-vals-en-milonga-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/blog/internationale-milongas-en-tango-evenementen/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-blog-internationale-milongas-en-tango-evenementen-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-blog-internationale-milongas-en-tango-evenementen-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/blog/tango-evenementen-in-brussel-en-omstreken/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-blog-tango-evenementen-in-brussel-en-omstreken-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-blog-tango-evenementen-in-brussel-en-omstreken-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/blog/tango-woordenboek/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-blog-tango-woordenboek-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-blog-tango-woordenboek-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/blog/waarom-tango-leren-dansen/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-blog-waarom-tango-leren-dansen-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-blog-waarom-tango-leren-dansen-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/contacteer-ons/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-contacteer-ons-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-contacteer-ons-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/links/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-links-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-links-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/privacy-policy/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-privacy-policy-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-privacy-policy-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/tangolessen/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-tangolessen-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-tangolessen-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/tangolessen/beginners/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-tangolessen-beginners-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-tangolessen-beginners-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/tangolessen/brussel/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-tangolessen-brussel-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-tangolessen-brussel-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/tangolessen/ervaring/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-tangolessen-ervaring-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-tangolessen-ervaring-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/tangolessen/gratis-proefles/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-tangolessen-gratis-proefles-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-tangolessen-gratis-proefles-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/tangolessen/online/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-tangolessen-online-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-tangolessen-online-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/tangolessen/prive/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-tangolessen-prive-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-tangolessen-prive-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/tangolessen/woluwe/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-tangolessen-woluwe-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-tangolessen-woluwe-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/nl/tangolessen/workshops/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/nl-tangolessen-workshops-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/nl-tangolessen-workshops-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/privacy-policy/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-privacy-policy-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-privacy-policy-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/tango-classes/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-tango-classes-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-tango-classes-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/tango-classes/beginners/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-tango-classes-beginners-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-tango-classes-beginners-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/tango-classes/brussels/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-tango-classes-brussels-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-tango-classes-brussels-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/tango-classes/experienced/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-tango-classes-experienced-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-tango-classes-experienced-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/tango-classes/free-trial/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-tango-classes-free-trial-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-tango-classes-free-trial-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/tango-classes/online/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-tango-classes-online-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-tango-classes-online-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/tango-classes/private/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-tango-classes-private-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-tango-classes-private-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/tango-classes/woluwe/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-tango-classes-woluwe-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-tango-classes-woluwe-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/tango-classes/workshops/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-tango-classes-workshops-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-tango-classes-workshops-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="screenshot-row">
+        <div class="screenshot-label">/terms-and-conditions/</div>
+        <div class="screenshot-pair">
+          <div><div class="vp-label">Mobile 375px</div><img src="qa-screenshots/en-terms-and-conditions-mobile.png" loading="lazy"></div>
+          <div><div class="vp-label">Tablet 768px</div><img src="qa-screenshots/en-terms-and-conditions-tablet.png" loading="lazy"></div>
+        </div>
+      </div>
+</section>
+
+<section>
+<h2>Clean Pages (0)</h2>
+<ul class="clean-list"></ul>
+</section>
+
+</body></html>

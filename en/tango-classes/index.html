@@ -30,6 +30,9 @@
   <meta name="twitter:description" content="Tango classes in Brussels and Woluwe for all levels - beginners to advanced. Weekly group lessons, private sessions, and weekend workshops.">
   <meta name="twitter:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
 
+  <!-- LCP hero image preload -->
+  <link rel="preload" as="image" type="image/webp" imagesrcset="../../images/Tango-mobile-640w.webp 640w, ../../images/Tango-desktop-1400w.webp 1400w, ../../images/Tango-2048w.webp 2048w" imagesizes="100vw" fetchpriority="high">
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/images/cropped-favicon-192x192.png">
@@ -40,8 +43,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="/css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fontawesome.min.css?v=3.7"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="/css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fa-subset.min.css?v=4.0"></noscript>
 
   <!-- Font Awesome -->
 
@@ -50,7 +53,7 @@
   <noscript><link rel="stylesheet" href="/css/styles.min.css?v=3.7"></noscript>
 
   <!-- Enhancement Scripts -->
-  <script src="/js/enhancements.min.js?v=3.5" defer></script>
+  <script src="/js/enhancements.min.js?v=3.7" defer></script>
 
   <!-- JSON-LD Structured Data - Multiple Courses -->
   <script type="application/ld+json">
@@ -350,7 +353,7 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/en/"},
       {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/tango-classes/"}
     ]
   }

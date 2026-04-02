@@ -40,8 +40,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="../../../css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.7"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="../../../css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fa-subset.min.css?v=4.0"></noscript>
 
   <!-- Font Awesome -->
 
@@ -129,127 +129,22 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": [
-      {
-        "@type": "Course",
-        "name": "Cours de tango 1ère année",
-        "description": "Pour les danseurs ayant terminé le cours pour débutants. Consolidation des bases, système croisé, marche fluide et Ochos.",
-        "provider": {
-          "@type": "Organization",
-          "name": "BE-TANGO",
-          "url": "https://www.be-tango.be/fr/"
-        },
-        "courseCode": "FIRST_YEAR",
-        "numberOfCredits": 15,
-        "offers": {
-          "@type": "Offer",
-          "price": "185",
-          "priceCurrency": "EUR",
-          "description": "Cours semestriel - 15 leçons"
-        },
-        "hasCourseInstance": [
-          {
-            "@type": "CourseInstance",
-            "courseMode": "onsite",
-            "location": {
-              "@type": "Place",
-              "name": "BE-TANGO Brussels",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Rue du Marais 68",
-                "addressLocality": "Bruxelles",
-                "postalCode": "1000",
-                "addressCountry": "BE"
-              }
-            },
-            "courseSchedule": {
-              "@type": "Schedule",
-              "byDay": "Wednesday",
-              "startTime": "18:30",
-              "endTime": "19:30",
-              "repeatFrequency": "Weekly"
-            }
-          },
-          {
-            "@type": "CourseInstance",
-            "courseMode": "onsite",
-            "location": {
-              "@type": "Place",
-              "name": "BE-TANGO Woluwe",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Avenue Orban 54",
-                "addressLocality": "Woluwe-Saint-Pierre",
-                "postalCode": "1150",
-                "addressCountry": "BE"
-              }
-            },
-            "courseSchedule": {
-              "@type": "Schedule",
-              "byDay": "Thursday",
-              "startTime": "18:30",
-              "endTime": "19:30",
-              "repeatFrequency": "Weekly"
-            }
-          }
-        ]
-      },
-      {
-        "@type": "Course",
-        "name": "Cours de tango 2ème année",
-        "description": "1,5-2,5 ans d'expérience. Introduction aux Giros, Sacadas et Barridas. Accent sur la dissociation.",
-        "provider": {
-          "@type": "Organization",
-          "name": "BE-TANGO",
-          "url": "https://www.be-tango.be/fr/"
-        },
-        "courseCode": "SECOND_YEAR",
-        "numberOfCredits": 15,
-        "offers": {
-          "@type": "Offer",
-          "price": "185",
-          "priceCurrency": "EUR",
-          "description": "Cours semestriel - 15 leçons"
-        }
-      },
-      {
-        "@type": "Course",
-        "name": "Cours de tango 2ème année PLUS",
-        "description": "Un pont entre les 2èmes années et le niveau Avancé. Rythme plus rapide, séquences plus complexes et variations de style.",
-        "provider": {
-          "@type": "Organization",
-          "name": "BE-TANGO",
-          "url": "https://www.be-tango.be/fr/"
-        },
-        "courseCode": "SECOND_YEAR_PLUS",
-        "numberOfCredits": 15,
-        "offers": {
-          "@type": "Offer",
-          "price": "185",
-          "priceCurrency": "EUR",
-          "description": "Cours semestriel - 15 leçons"
-        }
-      },
-      {
-        "@type": "Course",
-        "name": "Cours de tango Intermédiaire / Avancé",
-        "description": "4+ ans d'expérience. Boleos, Ganchos, Enrosques. Travail approfondi sur la musicalité (Vals/Milonga) et l'improvisation.",
-        "provider": {
-          "@type": "Organization",
-          "name": "BE-TANGO",
-          "url": "https://www.be-tango.be/fr/"
-        },
-        "courseCode": "INTERMEDIATE_ADVANCED",
-        "numberOfCredits": 15,
-        "offers": {
-          "@type": "Offer",
-          "price": "185",
-          "priceCurrency": "EUR",
-          "description": "Cours semestriel - 15 leçons"
-        }
-      }
-    ]
+    "@type": "Course",
+    "name": "Cours de tango argentin pour danseurs expérimentés",
+    "description": "Cours de tango pour danseurs expérimentés à Bruxelles et Woluwe. Niveaux 2, 3, 4 et 5 disponibles — perfectionnez votre technique, votre musicalité et votre improvisation.",
+    "url": "https://www.be-tango.be/fr/cours-de-tango/experimentes/",
+    "provider": {
+      "@type": "DanceSchool",
+      "name": "BE-TANGO",
+      "url": "https://www.be-tango.be/fr/",
+      "telephone": "+32 498 39 29 39"
+    },
+    "hasCourseInstance": [
+      { "@type": "CourseInstance", "name": "Niveau 2", "courseMode": "onsite", "location": { "@type": "Place", "name": "BE-TANGO Bruxelles", "address": { "@type": "PostalAddress", "streetAddress": "Rue du Marais 68", "addressLocality": "Bruxelles", "postalCode": "1000", "addressCountry": "BE" } } },
+      { "@type": "CourseInstance", "name": "Niveau 3", "courseMode": "onsite", "location": { "@type": "Place", "name": "BE-TANGO Bruxelles", "address": { "@type": "PostalAddress", "streetAddress": "Rue du Marais 68", "addressLocality": "Bruxelles", "postalCode": "1000", "addressCountry": "BE" } } }
+    ],
+    "offers": { "@type": "Offer", "price": "195", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
+    "inLanguage": "fr"
   }
   </script>
 
@@ -808,13 +703,13 @@
     });
   </script>
   <!-- CRM API Integration -->
-  <script src="../../../js/crm-api.min.js"></script>
+  <script src="../../../js/crm-api.min.js" defer></script>
   <script src="../../../js/experienced-schedule.min.js?v=1.0"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer crossorigin="anonymous"></script>
   <script src="../../../js/enrollment-modal.js?v=1.0" defer></script>
 
   <!-- Floating Mobile Call Button -->
-  <script src="../../../js/newsletter.min.js"></script>
+  <script src="../../../js/newsletter.min.js" defer></script>
   <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
   </script>

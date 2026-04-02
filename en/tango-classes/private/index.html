@@ -40,8 +40,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="/css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fontawesome.min.css?v=3.7"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="/css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fa-subset.min.css?v=4.0"></noscript>
 
   <!-- Font Awesome -->
 
@@ -51,7 +51,7 @@
   <link rel="stylesheet" href="/css/private-lessons.css">
 
   <!-- Enhancement Scripts -->
-  <script src="/js/enhancements.min.js?v=3.5" defer></script>
+  <script src="/js/enhancements.min.js?v=3.7" defer></script>
 
   <!-- JSON-LD Structured Data - Private Lessons Course -->
   <script type="application/ld+json">
@@ -59,6 +59,7 @@
     "@context": "https://schema.org",
     "@type": "Course",
     "name": "Private Tango Lessons",
+    "url": "https://www.be-tango.be/en/tango-classes/private/",
     "description": "Personalized Argentine tango instruction tailored to your specific needs. Perfect for individuals, couples, or small groups. Available for technique refinement, wedding choreography, or catching up on missed classes.",
     "provider": {
       "@type": "Organization",
@@ -137,9 +138,9 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
-      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/tango-classes/"},
-      {"@type": "ListItem", "position": 3, "name": "Private Lessons", "item": "https://www.be-tango.be/tango-classes/private/"}
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/en/"},
+      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/en/tango-classes/"},
+      {"@type": "ListItem", "position": 3, "name": "Private Lessons", "item": "https://www.be-tango.be/en/tango-classes/private/"}
     ]
   }
   </script>
@@ -741,7 +742,7 @@
   <!-- Private Lessons Scripts -->
   <script src="/js/crm-api.js" defer></script>
   <script src="/js/private-lessons.min.js" defer></script>
-  <script src="/js/newsletter.min.js"></script>
+  <script src="/js/newsletter.min.js" defer></script>
   <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
   </script>

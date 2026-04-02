@@ -37,8 +37,8 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<link rel="preload" href="/css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fontawesome.min.css?v=3.7"></noscript>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=optional" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<link rel="preload" href="/css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fa-subset.min.css?v=4.0"></noscript>
 <!-- Stylesheet -->
 <link href="/css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
 <noscript><link href="/css/styles.min.css?v=3.7" rel="stylesheet"/></noscript>
@@ -55,7 +55,7 @@
       --gold-bg: rgba(226,192,51,0.08);
     }
 
-    /* HERO */
+    /<em> HERO </em>/
     .blog-hero {
       background: var(--navy);
       position: relative;
@@ -153,7 +153,7 @@
       backdrop-filter: blur(10px);
     }
 
-    /* META STRIP */
+    /<em> META STRIP </em>/
     .meta-strip {
       background: var(--white);
       border-bottom: 1px solid var(--border);
@@ -191,7 +191,7 @@
     }
     .meta-item i { color: var(--gold); font-size: 0.85rem; }
 
-    /* ARTICLE LAYOUT */
+    /<em> ARTICLE LAYOUT </em>/
     .d4-article-section { padding: 64px 0 80px; }
     .article-grid {
       display: grid;
@@ -201,7 +201,7 @@
     }
     .article-body { display: flex; flex-direction: column; gap: 32px; }
 
-    /* SECTION CARDS */
+    /<em> SECTION CARDS </em>/
     .section-card {
       background: var(--white);
       border-radius: 8px;
@@ -282,7 +282,7 @@
     .section-card p:last-child { margin-bottom: 0; }
     .section-card strong { color: var(--text); font-weight: 600; }
 
-    /* Venue list */
+    /<em> Venue list </em>/
     .venue-list { list-style: none; margin: 16px 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
     .venue-list li {
       display: flex;
@@ -296,7 +296,7 @@
     .venue-list li strong { color: var(--navy); font-size: 0.95rem; }
     .venue-list li span { color: var(--text-light); font-size: 0.83rem; }
 
-    /* Pullquote */
+    /<em> Pullquote </em>/
     .pullquote {
       margin: 28px 0;
       padding: 28px 36px;
@@ -323,7 +323,7 @@
       line-height: 1.6 !important;
     }
 
-    /* Achievement card */
+    /<em> Achievement card </em>/
     .section-card.achievement { background: var(--navy); border-color: transparent; }
     .section-card.achievement::before {
       background: linear-gradient(90deg, var(--gold) 0%, rgba(226,192,51,0.4) 100%);
@@ -361,7 +361,7 @@
       letter-spacing: 0.05em;
     }
 
-    /* SIDEBAR */
+    /<em> SIDEBAR </em>/
     .d4-sidebar {
       position: sticky;
       top: 88px;
@@ -474,7 +474,7 @@
     }
     .btn-d4-cta:hover { background: #cba820; transform: translateY(-1px); color: var(--navy); }
 
-    /* NEWSLETTER SECTION */
+    /<em> NEWSLETTER SECTION </em>/
     .d4-newsletter-section {
       background: var(--navy);
       padding: 72px 0;
@@ -561,7 +561,7 @@
     .d4-nl-row .newsletter-submit:hover { background: #cba820; }
     .d4-newsletter-note { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 4px; }
 
-    /* RELATED ARTICLES */
+    /<em> RELATED ARTICLES </em>/
     .d4-related-section { padding: 72px 0; background: var(--bg); }
     .d4-section-header {
       display: flex;
@@ -640,7 +640,7 @@
     }
     .related-card:hover .related-link { gap: 10px; }
 
-    /* RESPONSIVE */
+    /<em> RESPONSIVE </em>/
     @media (max-width: 1024px) {
       .hero-inner { grid-template-columns: 1fr; }
       .hero-image-panel { display: none; }
@@ -664,22 +664,31 @@
     @media (max-width: 480px) {
       .hero-title { font-size: 1.9rem; }
     }
+  
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .faq-item summary { padding: 16px 20px; font-weight: 600; color: var(--navy); cursor: pointer; font-size: 0.95rem; line-height: 1.5; }
+    .faq-item summary:hover { background: var(--gold-bg); }
+    .faq-item[open] summary { border-bottom: 1px solid var(--border); background: var(--gold-bg); }
+    .faq-item p { padding: 16px 20px; margin: 0; color: var(--text-light); font-size: 0.95rem; line-height: 1.8; }
   </style>
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.be-tango.be/en/blog/tango-events-brussels/"},
     "headline": "Tango Events in Brussels & Around",
     "description": "Where can I go to practice tango? What are the nicest tango events and milongas in Brussels and around? Discover the best venues, festivals, and marathons.",
     "image": "https://www.be-tango.be/images/blog/brussels-tango-events.webp",
     "author": { "@type": "Organization", "name": "BE-TANGO", "url": "https://www.be-tango.be" },
     "datePublished": "2020-04-01",
     "dateModified": "2025-01-31",
+    "inLanguage": "en",
     "publisher": {
       "@type": "Organization",
       "name": "BE-TANGO",
-      "url": "https://www.be-tango.be/en"
+      "logo": { "@type": "ImageObject", "url": "https://www.be-tango.be/images/logo-be-tango.png" }
     }
   }
   </script>
@@ -690,7 +699,12 @@
   "mainEntity": [
     { "@type": "Question", "name": "Where can I dance tango in Brussels?", "acceptedAnswer": { "@type": "Answer", "text": "Brussels has a vibrant tango scene. Regular milongas take place at La Pianofabriek, La Milonguita, and various pop-up venues across the city. BE-TANGO also organises practica evenings where students and experienced dancers can practice in a relaxed setting." } },
     { "@type": "Question", "name": "What is a milonga?", "acceptedAnswer": { "@type": "Answer", "text": "A milonga is a social tango event where people come to dance Argentine tango, vals, and milonga (the dance). It's structured around tandas — sets of 3–4 songs — and cortinas — short musical breaks between sets. There's a social code (la ronda, the cabeceo) that makes milongas run smoothly." } },
-    { "@type": "Question", "name": "How do I find tango events in Brussels?", "acceptedAnswer": { "@type": "Answer", "text": "The best sources for Brussels tango events are milonga.be (comprehensive listing), the BE-TANGO events page, and local Facebook groups for the Brussels tango community. Many milongas are free or have a small entrance fee." } }
+    { "@type": "Question", "name": "How do I find tango events in Brussels?", "acceptedAnswer": { "@type": "Answer", "text": "The best sources for Brussels tango events are milonga.be (comprehensive listing), the BE-TANGO events page, and local Facebook groups for the Brussels tango community. Many milongas are free or have a small entrance fee." } },
+    {"@type": "Question", "name": "Do I need to register for milongas?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the milonga. Some, especially the more popular ones or those with live music, may require pre-registration to ensure space. Check the event details on Milonga.be or Tango.be, or contact the organizers directly."}},
+    {"@type": "Question", "name": "How much does entry cost?", "acceptedAnswer": {"@type": "Answer", "text": "Entry fees vary, typically ranging from \u20ac8 to \u20ac18. Some milongas are free (but encourage bar purchases), while others charge more for special events like live music or guest DJs."}},
+    {"@type": "Question", "name": "Can beginners attend milongas?", "acceptedAnswer": {"@type": "Answer", "text": "Absolutely! While it can be intimidating at first, milongas are welcoming to dancers of all levels. Look for milongas that specifically mention being beginner-friendly or offer a beginner class beforehand. Don't be afraid to ask experienced dancers for a dance \u2013 most are happy to help!"}},
+    {"@type": "Question", "name": "What time do milongas start and end?", "acceptedAnswer": {"@type": "Answer", "text": "Milongas in Brussels usually start around 9:00 or 10:00 PM and continue until 1:00 or 2:00 AM, sometimes later. Check the specific event details for accurate times. It's perfectly acceptable to arrive later or leave earlier if you need to."}},
+    {"@type": "Question", "name": "Is there a summer break?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, many tango venues and events take a break during July and August, as many people go on vacation. However, some milongas and practicas continue throughout the summer, often in outdoor locations. Check the websites and Facebook groups for the most up-to-date information. Also, remember to think about what to wear in summer!"}}
   ]
 }
 </script>
@@ -699,7 +713,7 @@
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/en/"},
     {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.be-tango.be/blog/"},
     {"@type": "ListItem", "position": 3, "name": "Tango Events in Brussels &amp; Around | BE-TANGO Blog", "item": "https://www.be-tango.be/blog/tango-events-brussels/"}
   ]
@@ -793,7 +807,7 @@
             </a>
 </div>
 <div class="hero-image-panel">
-<img fetchpriority="high" alt="Tango events in Brussels" src="/images/blog/brussels-tango-events.webp"/>
+<img fetchpriority="high" alt="Tango events in Brussels" src="/images/blog/brussels-tango-events.webp" width="1000" height="667" />
 <div class="hero-image-label"><i class="fas fa-map-marker-alt"></i> Brussels, Belgium</div>
 </div>
 </div>
@@ -811,7 +825,7 @@
 <span>Tango Events in Brussels</span>
 </nav>
 <div class="meta-right">
-<span class="meta-item"><i class="fas fa-clock"></i> 6 min read</span>
+<span class="meta-item"><i class="fas fa-clock"></i> 9 min read</span>
 <span class="meta-item"><i class="fas fa-calendar"></i> 1 April 2020</span>
 </div>
 </div>
@@ -942,7 +956,96 @@ A <strong>tango marathon</strong> eliminates classes and performances, focusing 
                   Brussels — dancing every night of the week
                 </span>
 </div>
-</article></div><!-- end article-body -->
+</article>
+<article class="section-card" id="section-6">
+<span class="bg-number">06</span>
+<div class="section-card-header">
+<div class="section-number-pill">6</div>
+<h2>Weekly Tango Schedule in Brussels: Your Dance Guide</h2>
+</div>
+<p>So, you're ready to dance tango in Brussels! Fantastic! One of the most common questions I get is, "Where can I dance, and when?" Here's a peek at a typical week. Keep in mind that schedules can change, so always double-check before heading out!</p>
+
+<p><strong>Monday:</strong> Usually a quieter night, but sometimes a practica pops up. Keep an eye on the Facebook groups mentioned later in this post.</p>
+
+<p><strong>Tuesday:</strong> Tango Bar is a popular option, often with a class beforehand. Expect a vibrant atmosphere and a mix of dancers. Entry is usually around €8-12.</p>
+
+<p><strong>Wednesday:</strong> El Regalo often hosts a milonga on Wednesdays. Check their schedule for details, as it can vary. Expect to pay around €10.</p>
+
+<p><strong>Thursday:</strong> Maison du Peuple is a fantastic option, with a large dance floor and a very friendly atmosphere. It’s free to enter, but be sure to support the bar! This is a great option if you are new to the Brussels tango scene.</p>
+
+<p><strong>Friday:</strong> The weekend begins! La Milonguita usually has a milonga on Fridays, with a class beforehand. Expect to pay around €10-15.</p>
+
+<p><strong>Saturday:</strong> El Dorado often has a milonga on Saturdays, sometimes with live music! Prices vary depending on the event, but typically range from €12-18.</p>
+
+<p><strong>Sunday:</strong> Pianofabriek often hosts a milonga on Sundays, offering a relaxed and welcoming environment. Expect to pay around €8-12.</p>
+
+<p>Remember to check the specific event details for times and prices, as they can vary. And don't forget to read up on <a href="/en/blog/what-is-a-milonga/">what a milonga is</a> before you go!</p>
+</article>
+
+<article class="section-card" id="section-7">
+<span class="bg-number">07</span>
+<div class="section-card-header">
+<div class="section-number-pill">7</div>
+<h2>Practicas in Brussels: Honing Your Skills</h2>
+</div>
+<p>Practicas are essential for tango dancers of all levels. They provide a relaxed environment to practice what you've learned in class, experiment with new moves, and connect with other dancers. Unlike milongas, practicas are less formal and more focused on learning and improvement.</p>
+
+<p>Several regular practicas take place in Brussels. Keep an eye on Facebook groups and the websites mentioned earlier for announcements. The location and frequency can shift, but there are usually several options each week.</p>
+
+<p>Etiquette at a practica is slightly different from a milonga. It's perfectly acceptable to ask someone to practice a specific step or technique. Don't be afraid to experiment and make mistakes! Also, it's common to switch partners frequently, allowing you to practice with a variety of leaders and followers.</p>
+
+<p>Practicas are usually less expensive than milongas, often around €5-8. They are a fantastic way to improve your tango and build confidence before venturing onto the milonga floor. Before going to a practica, consider reading my post about <a href="/en/blog/tango-glossary/">tango terminology</a> to familiarize yourself with the dance terms.</p>
+</article>
+
+<article class="section-card" id="section-8">
+<span class="bg-number">08</span>
+<div class="section-card-header">
+<div class="section-number-pill">8</div>
+<h2>Tango Events Outside Brussels: Exploring Belgium</h2>
+</div>
+<p>While Brussels is a tango hub, don't limit yourself! Other Belgian cities have vibrant tango scenes worth exploring, making for great weekend trips.</p>
+
+<p><strong>Ghent:</strong> Ghent boasts a thriving tango community, with regular milongas and classes. It has a charming, historical atmosphere. Check local listings for events.</p>
+
+<p><strong>Antwerp:</strong> Antwerp is another excellent option, hosting various milongas and workshops throughout the year. The <a href="/en/blog/international-tango-events/">Antwerp Tango Festival</a> is a major event. It's a very exciting city to visit!</p>
+
+<p><strong>Liège:</strong> Liège, with its Walloon charm, also has a smaller but dedicated tango scene. It’s a great option for a day trip from Brussels.</p>
+
+<p>These cities offer a different flavor of tango, and exploring them can enrich your dance experience. Consider a weekend getaway to immerse yourself in another Belgian tango community. It's a great way to expand your network and discover new venues and dancers.</p>
+</article>
+
+<article class="section-card" id="section-9">
+<span class="bg-number">09</span>
+<div class="section-card-header">
+<div class="section-number-pill">9</div>
+<h2>How to Stay Informed About Tango Events in Belgium</h2>
+</div>
+<p>Staying up-to-date is key to enjoying the Belgian tango scene. Here's how to keep your finger on the pulse:</p>
+
+<p><strong>Milonga.be and Tango.be:</strong> These websites are invaluable resources, listing milongas, practicas, classes, and festivals across Belgium. They often feature detailed information about each event, including location, time, price, and music.</p>
+
+<p><strong>Facebook Groups:</strong> Search for "Tango Brussels" or similar terms. Many local tango groups share event announcements, discuss tango-related topics, and connect dancers.</p>
+
+<p><strong>WhatsApp Groups:</strong> Many tango organizers and communities use WhatsApp groups to share last-minute updates and announcements. Ask around at milongas or classes to find relevant groups.</p>
+
+<p><strong>BE-TANGO Newsletter:</strong> Of course, sign up for our BE-TANGO newsletter! We'll keep you informed about our classes, workshops, and special events, as well as highlight other important tango happenings in Brussels and beyond.</p>
+</article>
+
+<article class="section-card" id="section-faq">
+<span class="bg-number">FAQ</span>
+<div class="section-card-header">
+<div class="section-number-pill"><i class="fas fa-question-circle"></i></div>
+<h2>Frequently Asked Questions</h2>
+</div>
+<div class="faq-list">
+<details class="faq-item"><summary>Do I need to register for milongas?</summary><p>It depends on the milonga. Some, especially the more popular ones or those with live music, may require pre-registration to ensure space. Check the event details on Milonga.be or Tango.be, or contact the organizers directly.</p></details>
+<details class="faq-item"><summary>How much does entry cost?</summary><p>Entry fees vary, typically ranging from €8 to €18. Some milongas are free (but encourage bar purchases), while others charge more for special events like live music or guest DJs.</p></details>
+<details class="faq-item"><summary>Can beginners attend milongas?</summary><p>Absolutely! While it can be intimidating at first, milongas are welcoming to dancers of all levels. Look for milongas that specifically mention being beginner-friendly or offer a beginner class beforehand. Don't be afraid to ask experienced dancers for a dance – most are happy to help!</p></details>
+<details class="faq-item"><summary>What time do milongas start and end?</summary><p>Milongas in Brussels usually start around 9:00 or 10:00 PM and continue until 1:00 or 2:00 AM, sometimes later. Check the specific event details for accurate times. It's perfectly acceptable to arrive later or leave earlier if you need to.</p></details>
+<details class="faq-item"><summary>Is there a summer break?</summary><p>Yes, many tango venues and events take a break during July and August, as many people go on vacation. However, some milongas and practicas continue throughout the summer, often in outdoor locations. Check the websites and Facebook groups for the most up-to-date information. Also, remember to think about <a href="/en/blog/what-to-wear-tango-class/">what to wear in summer</a>!</p></details>
+</div>
+</article>
+</div><!-- end article-body -->
 <!-- SIDEBAR -->
 <aside class="d4-sidebar">
 <div class="d4-sidebar-card">
@@ -970,6 +1073,26 @@ A <strong>tango marathon</strong> eliminates classes and performances, focusing 
 <li class="toc-item">
 <span class="toc-dot">5</span>
 <a href="#section-5">Join the community</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot">6</span>
+<a href="#section-6">Weekly tango schedule</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot">7</span>
+<a href="#section-7">Practicas in Brussels</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot">8</span>
+<a href="#section-8">Events outside Brussels</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot">9</span>
+<a href="#section-9">Staying informed</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot"><i class="fas fa-question-circle"></i></span>
+<a href="#section-faq">FAQ</a>
 </li>
 </ol>
 </div>
@@ -1057,7 +1180,7 @@ A <strong>tango marathon</strong> eliminates classes and performances, focusing 
 </a>
 <a class="related-card" href="../history-of-argentine-tango/">
 <div class="related-img">
-<img alt="The history of Argentine tango" height="360" loading="lazy" src="/images/blog/prague-tango-marathon.jpg" width="600"/>
+<img alt="The history of Argentine tango" height="360" loading="lazy" src="/images/blog/prague-tango-marathon.webp" width="600"/>
 </div>
 <div class="related-card-body">
 <span class="related-category">History</span>

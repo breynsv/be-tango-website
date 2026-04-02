@@ -40,44 +40,54 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="/css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fontawesome.min.css?v=3.7"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="/css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fa-subset.min.css?v=4.0"></noscript>
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="/css/styles.min.css?v=3.7"></noscript>
 
   <!-- Enhancement Scripts -->
-  <script src="/js/enhancements.min.js?v=3.5" defer></script>
+  <script src="/js/enhancements.min.js?v=3.7" defer></script>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Event",
-    "name": "BE-TANGO Workshops",
-    "description": "Intensive themed tango workshops in Brussels for all levels. Explore musicality, technique, specific figures, or guest styles in focused half-day or full-day sessions.",
-    "organizer": {
-      "@type": "Organization",
+    "@type": "Service",
+    "name": "Argentine Tango Workshops",
+    "description": "Intensive tango workshops for all levels in Brussels and Woluwe. Special themed workshops throughout the year covering technique, musicality, and performance.",
+    "url": "https://www.be-tango.be/en/tango-classes/workshops/",
+    "provider": {
+      "@type": "DanceSchool",
       "name": "BE-TANGO",
-      "url": "https://www.be-tango.be/en",
-      "telephone": "+32498392939",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Brussels",
-        "addressCountry": "BE"
-      }
-    },
-    "location": {
-      "@type": "Place",
-      "name": "BE-TANGO Centre",
+      "url": "https://www.be-tango.be/en/",
+      "telephone": "+32 498 39 29 39",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Rue du Marais 68",
         "addressLocality": "Brussels",
         "postalCode": "1000",
         "addressCountry": "BE"
-      }
+      },
+      "sameAs": [
+        "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
+        "https://www.instagram.com/be_tango_brussels/",
+        "https://www.youtube.com/@betango",
+        "https://maps.google.com/?cid=7397240013699561184",
+        "https://maps.google.com/?cid=17403292616488097271",
+        "https://www.wikidata.org/wiki/Q138794927"
+      ]
+    },
+    "serviceType": "Dance Workshop",
+    "areaServed": [
+      {"@type": "City", "name": "Brussels"},
+      {"@type": "City", "name": "Woluwe"}
+    ],
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "EUR"
     }
   }
   </script>
@@ -88,9 +98,9 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
-      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/tango-classes/"},
-      {"@type": "ListItem", "position": 3, "name": "Workshops", "item": "https://www.be-tango.be/tango-classes/workshops/"}
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/en/"},
+      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/en/tango-classes/"},
+      {"@type": "ListItem", "position": 3, "name": "Workshops", "item": "https://www.be-tango.be/en/tango-classes/workshops/"}
     ]
   }
   </script>
@@ -524,7 +534,7 @@
       });
     }
   </script>
-  <script src="/js/newsletter.min.js"></script>
+  <script src="/js/newsletter.min.js" defer></script>
   <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
   </script>

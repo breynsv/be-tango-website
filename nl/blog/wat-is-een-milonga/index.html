@@ -31,8 +31,8 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<link rel="preload" href="../../../css/fontawesome.min.css?v=3.5" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.5"></noscript>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=optional" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<link rel="preload" href="../../../css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fa-subset.min.css?v=4.0"></noscript>
 <link href="../../../css/styles.min.css?v=3.6" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
 <noscript><link href="../../../css/styles.min.css?v=3.6" rel="stylesheet"/></noscript>
 <style>
@@ -156,12 +156,14 @@
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.be-tango.be/nl/blog/wat-is-een-milonga/"},
     "headline": "Wat is een milonga? Gids voor beginners",
     "description": "Een milonga is het sociale evenement waar argentijnse tangodansers samenkomen. Leer wat er gebeurt, hoe je je gedraagt, en hoe je van je eerste milonga geniet.",
     "image": "https://www.be-tango.be/images/blog/milonga-brussels.webp",
     "author": { "@type": "Organization", "name": "BE-TANGO", "url": "https://www.be-tango.be" },
     "datePublished": "2026-03-24",
     "dateModified": "2026-03-24",
+    "inLanguage": "nl",
     "publisher": { "@type": "Organization", "name": "BE-TANGO", "logo": { "@type": "ImageObject", "url": "https://www.be-tango.be/images/logo-be-tango.png" } }
   }
   </script>
@@ -170,9 +172,57 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Wat is een milonga?", "acceptedAnswer": { "@type": "Answer", "text": "Een milonga is een sociaal dansevenement waar mensen samenkomen om Argentijnse tango, vals en milonga (de dansstijl) te dansen. Het woord milonga verwijst zowel naar een specifiek ritme/dansstijl als naar het sociale evenement. Milonga's volgen een traditionele structuur: muziek wordt gespeeld in tanda's (sets van 3-4 nummers) gescheiden door cortina's (korte niet-tango-pauzes)." } },
-    { "@type": "Question", "name": "Hoe verloopt een milonga-avond?", "acceptedAnswer": { "@type": "Answer", "text": "Op een milonga zitten dansers rond de dansvloer en nodigen elkaar uit via de cabeceo — een subtiele knik en oogcontact. Je danst een volledige tanda (set) met je partner en keert dan terug naar je stoel tijdens de cortina. Dit systeem houdt de energie gaande en laat iedereen in de loop van de avond met veel partners dansen." } },
-    { "@type": "Question", "name": "Kunnen beginners naar een milonga gaan?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, maar we raden aan om je eerste milonga bij te wonen na minstens 3 tot 6 maanden lessen. BE-TANGO organiseert practica-avonden — informele oefensessies — die de perfecte tussenstap zijn voor een echte milonga. Veel docenten organiseren ook speciale beginnersmilong's met een ontspannen sfeer." } }
+      {
+        "@type": "Question",
+        "name": "Wat is een milonga?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Een milonga is een sociaal dansevenement waar mensen samenkomen om Argentijnse tango, vals en milonga (de dansstijl) te dansen. Het woord milonga verwijst zowel naar een specifiek ritme/dansstijl als naar het sociale evenement. Milonga's volgen een traditionele structuur: muziek wordt gespeeld in tanda's (sets van 3-4 nummers) gescheiden door cortina's (korte niet-tango-pauzes)." }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoe verloopt een milonga-avond?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Op een milonga zitten dansers rond de dansvloer en nodigen elkaar uit via de cabeceo \u2014 een subtiele knik en oogcontact. Je danst een volledige tanda (set) met je partner en keert dan terug naar je stoel tijdens de cortina. Dit systeem houdt de energie gaande en laat iedereen in de loop van de avond met veel partners dansen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kunnen beginners naar een milonga gaan?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, maar we raden aan om je eerste milonga bij te wonen na minstens 3 tot 6 maanden lessen. BE-TANGO organiseert practica-avonden \u2014 informele oefensessies \u2014 die de perfecte tussenstap zijn voor een echte milonga. Veel docenten organiseren ook speciale beginnersmilong's met een ontspannen sfeer." }
+      },
+      {
+        "@type": "Question",
+        "name": "Moet ik met iedereen dansen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nee, je bent nooit verplicht om te dansen met iemand met wie je niet wilt dansen. Tango is een sociale dans, maar het gaat ook om persoonlijke connectie en comfort. Als je geen connectie voelt of gewoon een tanda wilt overslaan, is dat volkomen acceptabel. De cabeceo geeft je de mogelijkheid om een \u200b\u200buitnodiging gracieus te accepteren of af te wijzen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat als niemand me ten dans vraagt?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Het kan ontmoedigend zijn als je niet ten dans wordt gevraagd, vooral als beginner. Vat het niet persoonlijk op! Er zijn veel redenen waarom iemand je misschien niet ten dans vraagt. Wees proactief en initieer zelf de cabeceo. Overweeg ook om in de buurt van de dansvloer te zitten, waar je beter zichtbaar bent. Het bijwonen met vrienden kan ook helpen om je zelfvertrouwen te vergroten en je kansen te vergroten om ten dans te worden gevraagd. Onthoud dat iedereen ooit een beginner is geweest!" }
+      },
+      {
+        "@type": "Question",
+        "name": "Is er eten en drinken?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Veel milonga's in Brussel bieden eten en drinken aan, vari\u00ebrend van eenvoudige snacks en drankjes tot volledige maaltijden. Sommige milonga's hebben een bar waar je drankjes kunt kopen, terwijl andere gratis drankjes aanbieden. Het is altijd een goed idee om de website of sociale media-pagina van de specifieke milonga te raadplegen om te zien wat er beschikbaar is. De BE-TANGO milonga's bieden vaak lokale Belgische bieren en lichte snacks." }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoe lang duurt een milonga?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Milonga's duren doorgaans enkele uren, vaak beginnend in de late avond en doorlopend tot in de vroege ochtenduren. De exacte duur varieert afhankelijk van de milonga en de dag van de week. Sommige milonga's in Brussel beginnen rond 21.00 uur en eindigen rond 02.00 uur, terwijl andere mogelijk nog later doorgaan. Het is volkomen acceptabel om zo lang of zo kort te blijven als je wilt." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan ik alleen naar een milonga gaan?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, absoluut! Veel mensen bezoeken milonga's alleen en vinden het een geweldige manier om nieuwe mensen te ontmoeten en in contact te komen met de tango-gemeenschap. Wees niet bang om een \u200b\u200bgesprek aan te knopen met andere dansers en jezelf voor te stellen. Tango is een zeer sociale dans en de meeste mensen zijn gastvrij en vriendelijk. Het bijwonen van onze BE-TANGO milonga's is een geweldige manier om andere tango-enthousiastelingen in Brussel te ontmoeten." }
+      }
+    ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Startpagina", "item": "https://www.be-tango.be/nl/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.be-tango.be/nl/blog/"},
+    {"@type": "ListItem", "position": 3, "name": "Wat is een milonga? Gids voor beginners", "item": "https://www.be-tango.be/nl/blog/wat-is-een-milonga/"}
   ]
 }
 </script>
@@ -247,7 +297,7 @@
 <span class="current">Wat is een milonga?</span>
 </nav>
 <div class="meta-right">
-<span class="meta-item"><i class="fas fa-clock"></i> 6 min leestijd</span>
+<span class="meta-item"><i class="fas fa-clock"></i> 26 min leestijd</span>
 <span class="meta-item"><i class="fas fa-calendar"></i> 24 maart 2026</span>
 </div>
 </div>
@@ -302,7 +352,101 @@
 <p>Eens binnen, is er geen verplichting om meteen de dansvloer op te gaan. Bestel iets aan de bar, luister naar de opbouw van de avond door de DJ, observeer het spel van de cabeceo. Word je toch uitgenodigd door een ervaren danser? Wees eerlijk over je beginnende status. Negen van de tien tangueros passen zich graag aan jouw niveau aan.</p>
 <p>Nog twijfels over de juiste plek? Vraag raad aan BE-TANGO of mij na je volgende les. We vertellen je graag welke Brusselse milonga dit weekend het meest geschikt is voor jou. Ben je toevallig op deze pagina beland en heb je nog nooit een tangostap gezet? Kom dan eerst de sfeer proeven in onze studio.</p>
 <div><a class="achievement-badge" href="../../tangolessen/gratis-proefles/"><i class="fas fa-arrow-right"></i> Gratis proefles aanvragen</a></div>
+</article>
+<article class="section-card" id="section-6">
+<span class="bg-number">06</span>
+<div class="section-card-header">
+<div class="section-number-pill">6</div>
+<h2>Het verschil tussen een milonga, een practica en een les</h2>
+</div>
+<p>Als beginner in de tango zul je deze drie woorden snel horen: milonga, practica en les. Hoewel ze allemaal draaien om Argentijnse tango, bieden ze verschillende ervaringen en dienen ze verschillende doelen. Laat me het even uitleggen.</p>
+
+<p>Een <b>les</b>, zoals je weet, is waar je de basisprincipes leert. Het is gestructureerd, met een leraar die je door stappen, techniek en muzikaliteit leidt. Je werkt met verschillende partners, krijgt directe instructie en bouwt je basisvaardigheden op. Lessen zijn perfect om nieuwe stappen te leren en je techniek te verbeteren.</p>
+
+<p>Een <b>practica</b> daarentegen is een meer ontspannen en informele setting om te oefenen wat je hebt geleerd. Zie het als een begeleide oefensessie. Vaak is er een leraar aanwezig die vragen kan beantwoorden en begeleiding kan bieden, maar de focus ligt op het toepassen van wat je hebt geleerd in een minder gestructureerde omgeving. Je kunt experimenteren met nieuwe bewegingen, werken aan je omhelzing en dansen met verschillende partners zonder de druk om te presteren. Het is een geweldige plek om vragen te stellen die je misschien niet comfortabel vindt om tijdens een les te stellen. Practica's zijn fantastisch om je begrip te verstevigen en zelfvertrouwen te winnen. Zie de BE-TANGO practica's als een veilige plek om uit te testen wat je in de les leert.</p>
+
+<p>Ten slotte is een <b>milonga</b>, zoals we al hebben besproken, een sociaal tango-evenement. Het is waar je je vaardigheden in de praktijk brengt in een real-world setting. De sfeer is formeler dan een practica, met nadruk op sociaal dansen en het naleven van de códigos (etiquette). Hoewel je zeker je dansen kunt verbeteren op een milonga, ligt de primaire focus op het genieten van de muziek, het verbinden met partners en het onderdompelen in de tango-gemeenschap. Zie een milonga als een viering van tango, een plek om in contact te komen met andere dansers en te genieten van de muziek.</p>
+
+<p>Wanneer moet je wat bezoeken? Begin met lessen om je basis te leggen. Zodra je je comfortabel voelt met de basisstappen, introduceer je practica's om je vaardigheden te verfijnen. Wanneer je klaar bent om te socialiseren en de magie van tango te ervaren, stap je de milonga-vloer op. Misschien vind je deze tango woordenlijst /nl/blog/tango-glossary/ handig als je meer leert over de tango terminologie.
+</p>
+</article>
+
+<article class="section-card" id="section-7">
+<span class="bg-number">07</span>
+<div class="section-card-header">
+<div class="section-number-pill">7</div>
+<h2>Welke muziek wordt er gedraaid op een milonga?</h2>
+</div>
+<p>De muziek op een milonga is zorgvuldig samengesteld om een ​​specifieke sfeer en flow te creëren. Het is niet zomaar een willekeurige afspeellijst; het is een reis door de wereld van de Argentijnse tangomuziek.</p>
+
+<p>De muziek wordt afgespeeld in <b>tandas</b>, dit zijn sets van 3-4 nummers van hetzelfde orkest. Dit stelt dansers in staat om zonder onderbreking verbinding te maken met de muziek en hun partner. De meest voorkomende tandas zijn <b>tango tandas</b>, maar je hoort ook <b>vals tandas</b> (walsen) en <b>milonga tandas</b> (snellere, meer ritmische muziek). Misschien vind je dit artikel over tango, vals en milonga verschillen /nl/blog/tango-vals-en-milonga-wat-zijn-de-verschillen/ nuttig.</p>
+
+<p>Tussen elke tanda zit een korte muzikale interlude genaamd een <b>cortina</b> (gordijn). Dit is een niet-tango muziekstuk, dat meestal ongeveer 30 seconden duurt. De cortina signaleert het einde van de tanda en geeft dansers de kans om hun partner te bedanken, terug te keren naar hun stoel en een nieuwe partner te zoeken voor de volgende tanda. Het is ook een moment om op adem te komen!</p>
+
+<p>De DJ (of musicalizador) speelt een cruciale rol bij het bepalen van de toon van de milonga. Er zijn doorgaans twee belangrijke denkwijzen als het gaat om muziekselectie: <b>Golden Age</b> en <b>Neo-Tango</b>. Golden Age DJ's richten zich op de klassieke orkesten van de jaren 30, 40 en 50, zoals Carlos Di Sarli, Juan D'Arienzo, Anibal Troilo en Osvaldo Pugliese. Deze orkesten staan ​​bekend om hun verschillende stijlen en arrangementen, en ze vormen de basis van tangomuziek. Neo-Tango DJ's daarentegen integreren meer hedendaagse tangomuziek, vaak inclusief elektronische elementen en moderne arrangementen. Hoewel BE-TANGO milonga's vaak neigen naar de Golden Age, waarderen we een goed geplaatste neo-tango tanda om het interessant te houden. Je zult waarschijnlijk ook enkele van de klassiekers zoals Piazzolla horen.</p>
+
+<p>De specifieke orkesten die je zult horen, zijn afhankelijk van de voorkeuren van de DJ en de algehele stijl van de milonga. Je kunt echter over het algemeen verwachten dat je een mix hoort van de hierboven genoemde klassieke orkesten, evenals andere opmerkelijke namen zoals Rodolfo Biagi en Miguel Caló. De sleutel is om naar de muziek te luisteren en je bewegingen erdoor te laten leiden.
+</p>
+</article>
+
+<article class="section-card" id="section-8">
+<span class="bg-number">08</span>
+<div class="section-card-header">
+<div class="section-number-pill">8</div>
+<h2>Je eerste milonga: een stapsgewijze handleiding</h2>
+</div>
+<p>Voor het eerst een milonga binnenstappen kan een beetje ontmoedigend zijn, maar met een beetje voorbereiding en begrip van het proces, zul je in een mum van tijd van het dansen genieten. Hier is een stapsgewijze handleiding om je zenuwen te kalmeren:</p>
+
+<p><b>1. Aankomen en settelen:</b> Zoek de locatie (check /nl/blog/tango-events-brussels/ voor Brusselse milonga's!), en haal diep adem. Eenmaal binnen, zoek een plek om je jas en tas achter te laten. Veel milonga's hebben hiervoor aangewezen plekken.</p>
+
+<p><b>2. Schoenen wisselen:</b> Tangoschoenen zijn essentieel om comfortabel en veilig te dansen. Zoek een plek om je tangoschoenen aan te trekken. Vergeet niet een schoenenzak mee te nemen om je gewone schoenen te beschermen.</p>
+
+<p><b>3. Zoek een zitplaats:</b> Milonga's zijn meestal ingericht met tafels en stoelen rond de dansvloer. Zoek een lege stoel en nestel je. Het is volkomen acceptabel om alleen te zitten, vooral als je nieuw bent.</p>
+
+<p><b>4. Observeer de dansvloer:</b> Neem de tijd om naar de dansers te kijken en de sfeer te proeven. Let op de ronda (de stroom dansers tegen de klok in) en de cabeceo (de oogcontact uitnodiging). Observeren is een geweldige manier om de etiquette te leren en je zelfvertrouwen op te bouwen.</p>
+
+<p><b>5. Maak oogcontact (Cabeceo):</b> Wanneer je iemand ziet met wie je wilt dansen, maak dan oogcontact. Houd hun blik vast en bied een subtiele knik of glimlach. Als ze reageren, heb je je uitnodiging! Zo niet, vat het dan niet persoonlijk op; probeer het gewoon opnieuw met iemand anders.</p>
+
+<p><b>6. Loop de dansvloer op:</b> Zodra je bent uitgenodigd om te dansen, ontmoet je je partner aan de rand van de dansvloer en neem je plaats in de ronda.</p>
+
+<p><b>7. Dans de tanda:</b> Geniet van de muziek en maak contact met je partner. Focus op het duidelijk en respectvol leiden of volgen. Onthoud de stappen die je in de les hebt geleerd en oefen. Wees niet bang om fouten te maken; iedereen doet dat!</p>
+
+<p><b>8. Bedank je partner:</b> Aan het einde van de tanda bedank je je partner voor de dans. Een simpele "gracias" (dank je) is voldoende. Je kunt ook een compliment geven over hun dansen.</p>
+
+<p><b>9. Keer terug naar je zitplaats:</b> Nadat je je partner hebt bedankt, keer je terug naar je zitplaats en herhaal je het proces. Wees niet bang om zelf de cabeceo te initiëren of uitnodigingen van anderen te accepteren. Onthoud dat het doel is om van de muziek te genieten, contact te maken met mensen en plezier te hebben. En vergeet niet om je te kleden voor de gelegenheid - lees ons artikel over wat je moet aantrekken naar de tangoles: /nl/blog/wat-aantrekken-tangoles/.</p>
+</article>
+
+<article class="section-card" id="section-faq">
+<span class="bg-number">FAQ</span>
+<div class="section-card-header">
+<div class="section-number-pill"><i class="fas fa-question-circle"></i></div>
+<h2>Veelgestelde vragen</h2>
+</div>
+<div class="faq-list">
+<details class="faq-item"><summary>Kunnen beginners naar een milonga gaan?</summary><p>Absoluut! Hoewel het handig is om wat basiskennis van tango te hebben, zijn beginners welkom op de meeste milonga's. Het is een geweldige manier om jezelf onder te dompelen in de tango-gemeenschap en te leren door observatie. Houd gewoon rekening met de etiquette op de dansvloer en wees voorbereid om te dansen met meer ervaren dansers die je kunnen helpen.</p></details>
+<details class="faq-item"><summary>Moet ik met iedereen dansen?</summary><p>Nee, je bent nooit verplicht om te dansen met iemand met wie je niet wilt dansen. Tango is een sociale dans, maar het gaat ook om persoonlijke connectie en comfort. Als je geen connectie voelt of gewoon een tanda wilt overslaan, is dat volkomen acceptabel. De cabeceo geeft je de mogelijkheid om een ​​uitnodiging gracieus te accepteren of af te wijzen.</p></details>
+<details class="faq-item"><summary>Wat als niemand me ten dans vraagt?</summary><p>Het kan ontmoedigend zijn als je niet ten dans wordt gevraagd, vooral als beginner. Vat het niet persoonlijk op! Er zijn veel redenen waarom iemand je misschien niet ten dans vraagt. Wees proactief en initieer zelf de cabeceo. Overweeg ook om in de buurt van de dansvloer te zitten, waar je beter zichtbaar bent. Het bijwonen met vrienden kan ook helpen om je zelfvertrouwen te vergroten en je kansen te vergroten om ten dans te worden gevraagd. Onthoud dat iedereen ooit een beginner is geweest!</p></details>
+<details class="faq-item"><summary>Is er eten en drinken?</summary><p>Veel milonga's in Brussel bieden eten en drinken aan, variërend van eenvoudige snacks en drankjes tot volledige maaltijden. Sommige milonga's hebben een bar waar je drankjes kunt kopen, terwijl andere gratis drankjes aanbieden. Het is altijd een goed idee om de website of sociale media-pagina van de specifieke milonga te raadplegen om te zien wat er beschikbaar is. De BE-TANGO milonga's bieden vaak lokale Belgische bieren en lichte snacks.</p></details>
+<details class="faq-item"><summary>Hoe lang duurt een milonga?</summary><p>Milonga's duren doorgaans enkele uren, vaak beginnend in de late avond en doorlopend tot in de vroege ochtenduren. De exacte duur varieert afhankelijk van de milonga en de dag van de week. Sommige milonga's in Brussel beginnen rond 21.00 uur en eindigen rond 02.00 uur, terwijl andere mogelijk nog later doorgaan. Het is volkomen acceptabel om zo lang of zo kort te blijven als je wilt.</p></details>
+<details class="faq-item"><summary>Kan ik alleen naar een milonga gaan?</summary><p>Ja, absoluut! Veel mensen bezoeken milonga's alleen en vinden het een geweldige manier om nieuwe mensen te ontmoeten en in contact te komen met de tango-gemeenschap. Wees niet bang om een ​​gesprek aan te knopen met andere dansers en jezelf voor te stellen. Tango is een zeer sociale dans en de meeste mensen zijn gastvrij en vriendelijk. Het bijwonen van onze BE-TANGO milonga's is een geweldige manier om andere tango-enthousiastelingen in Brussel te ontmoeten.</p></details>
+</div>
+</article>
+<article class="section-card achievement" id="section-5">
+<span class="bg-number">05</span>
+<div class="section-card-header">
+<div class="achievement-icon"><i class="fas fa-music"></i></div>
+<h2>Hoe je je voorbereidt op je eerste milonga</h2>
+</div>
+<p>Wanneer voel je je er klaar voor? Realistisch gezien, na <strong>minstens drie tot vier maanden consistente lessen</strong>. Het gaat niet om ingewikkelde stappen. De gereedheid komt wanneer je loopje geaard aanvoelt, je omhelzing comfortabel is en je vol vertrouwen door de ronda kunt navigeren. Te vroeg gaan riskeert frustratie.</p>
+<p>Ga voor je eerste milonga met BE-TANGO klasgenoten; met een groep aankomen transformeert de ervaring. Vermijd hoe dan ook om meteen de dansvloer op te rennen. <strong>Neem plaats, bestel wijn en observeer een paar tandas.</strong> Bestudeer de kamer, noteer bekwame navigators en adem.</p>
+<p>Raadpleeg ons van tevoren. Vraag onze BE-TANGO instructeurs naar de Brusselse milonga die die week het meest geschikt is voor beginners. We organiseren regelmatig groepsuitjes, waardoor je de dansvloer kunt betreden met instructeurs in de buurt. Je tango-reis begint hier in de studio. <strong>Boek een proefles</strong>, en we bereiden je voor op die eerste, onvergetelijke avond.</p>
+<div>
+<a class="achievement-badge" href="/nl/tangolessen/gratis-proefles/">
+<i class="fas fa-calendar-check"></i> Boek een gratis proefles →
+                </a>
+</div>
 </article></div>
+</div>
 <aside class="d4-sidebar">
 <div class="d4-sidebar-card">
 <div class="d4-sidebar-card-header"><h3><i class="fas fa-list-ul"></i> Inhoud</h3></div>
@@ -313,6 +457,23 @@
 <li class="toc-item"><span class="toc-dot">3</span><a href="#sectie-3">Etiquette op de milonga</a></li>
 <li class="toc-item"><span class="toc-dot">4</span><a href="#sectie-4">Milonga's in Brussel</a></li>
 <li class="toc-item"><span class="toc-dot">5</span><a href="#sectie-5">Voorbereiding op je eerste milonga</a></li>
+<li class="toc-item"><span class="toc-dot">6</span><a href="#section-6">Het verschil tussen een milonga, een practi...</a></li>
+<li class="toc-item"><span class="toc-dot">7</span><a href="#section-7">Welke muziek wordt er gedraaid op een milonga?</a></li>
+<li class="toc-item"><span class="toc-dot">8</span><a href="#section-8">Je eerste milonga: een stapsgewijze handleiding</a></li>
+<li class="toc-item"><span class="toc-dot"><i class="fas fa-question-circle"></i></span><a href="#section-faq">Veelgestelde vragen</a></li>
+<a class="related-card" href="../tango-events-brussels/">
+<div class="related-img"><img alt="Tango events in Brussels" height="360" loading="lazy" src="/images/blog/tango-events-brussels.webp" width="600"/></div>
+<span class="related-category">Evenementen</span>
+<h3 class="related-title">Tango evenementen in Brussel</h3>
+<a class="related-card" href="../tango-vals-milonga-differences/">
+<div class="related-img"><img alt="Tango, vals, milonga: the differences" height="360" loading="lazy" src="/images/blog/tango-vals-milonga.webp" width="600"/></div>
+<span class="related-category">Tango Muziek</span>
+<h3 class="related-title">Tango, vals &amp; milonga: de verschillen</h3>
+<a class="related-card" href="../what-to-wear-tango-class/">
+<div class="related-img"><img alt="What to wear to tango class" height="360" loading="lazy" src="/images/blog/what-to-wear-tango.webp" width="600"/></div>
+<span class="related-category">Beginnershandleiding</span>
+<h3 class="related-title">Wat aan te trekken naar de tangoles</h3>
+
 </ol>
 </div>
 </div>

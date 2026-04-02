@@ -14,13 +14,13 @@
 <meta content="Tango Glossary: The Essential Argentine Tango Dictionary | BE-TANGO Blog" property="og:title"/>
 <meta content="Your complete guide to Argentine tango terminology. From abrazo to volcada, learn the words every tango dancer needs to know." property="og:description"/>
 <meta content="https://www.be-tango.be/en/blog/tango-glossary/" property="og:url"/>
-<meta content="https://www.be-tango.be/images/blog/tango-dictionary.jpg" property="og:image"/>
+<meta content="https://www.be-tango.be/images/blog/tango-dictionary.webp" property="og:image"/>
 <meta content="BE-TANGO" property="og:site_name"/>
 <meta content="en_US" property="og:locale"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Tango Glossary: The Essential Argentine Tango Dictionary | BE-TANGO Blog" name="twitter:title"/>
 <meta content="Your complete guide to Argentine tango terminology. From abrazo to volcada, learn the words every tango dancer needs to know." name="twitter:description"/>
-<meta content="https://www.be-tango.be/images/blog/tango-dictionary.jpg" name="twitter:image"/>
+<meta content="https://www.be-tango.be/images/blog/tango-dictionary.webp" name="twitter:image"/>
 <!-- Hreflang -->
 <link href="https://www.be-tango.be/en/blog/tango-glossary/" hreflang="en" rel="alternate"/>
 <link href="https://www.be-tango.be/nl/blog/tango-woordenboek/" hreflang="nl" rel="alternate"/>
@@ -33,8 +33,8 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
-<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
-<link rel="preload" href="/css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fontawesome.min.css?v=3.7"></noscript>
+<link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=optional" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
+<link rel="preload" href="/css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fa-subset.min.css?v=4.0"></noscript>
 <link href="/css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
 <noscript><link href="/css/styles.min.css?v=3.7" rel="stylesheet"/></noscript>
 <style>
@@ -84,7 +84,7 @@
     .section-card p { color: var(--text-light); font-size: 0.97rem; line-height: 1.85; margin-bottom: 16px; }
     .section-card p:last-child { margin-bottom: 0; }
     .section-card strong { color: var(--text); font-weight: 600; }
-    /* Term list */
+    /<em> Term list </em>/
     .term-list { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
     .term-list li { display: flex; flex-direction: column; gap: 2px; padding: 14px 18px; border-radius: 6px; background: var(--bg); border-left: 3px solid var(--gold); }
     .term-list .term-name { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
@@ -163,17 +163,26 @@
     @media (max-width: 1024px) { .hero-inner { grid-template-columns: 1fr; } .hero-image-panel { display: none; } .hero-title { font-size: 2.8rem; } .article-grid { grid-template-columns: 1fr; } .d4-sidebar { position: static; } .d4-newsletter-inner { grid-template-columns: 1fr; gap: 40px; } }
     @media (max-width: 768px) { .hero-title { font-size: 2.2rem; } .blog-hero { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); } .related-grid { grid-template-columns: 1fr; } .meta-strip-inner { flex-direction: column; align-items: flex-start; } .section-card { padding: 36px 24px 32px; } .section-card h2 { font-size: 1.2rem; } .d4-newsletter-title { font-size: 1.9rem; } .d4-nl-row { flex-direction: column; } .d4-nl-row .newsletter-email-input { border-radius: 8px; border-right: 1px solid rgba(255,255,255,0.15); } .d4-nl-row .newsletter-submit { border-radius: 8px; } }
     @media (max-width: 480px) { .hero-title { font-size: 1.9rem; } }
+  
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .faq-item summary { padding: 16px 20px; font-weight: 600; color: var(--navy); cursor: pointer; font-size: 0.95rem; line-height: 1.5; }
+    .faq-item summary:hover { background: var(--gold-bg); }
+    .faq-item[open] summary { border-bottom: 1px solid var(--border); background: var(--gold-bg); }
+    .faq-item p { padding: 16px 20px; margin: 0; color: var(--text-light); font-size: 0.95rem; line-height: 1.8; }
   </style>
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.be-tango.be/en/blog/tango-glossary/"},
     "headline": "Tango Glossary: The Essential Argentine Tango Dictionary",
     "description": "Your complete guide to Argentine tango terminology. From abrazo to volcada, learn the words every tango dancer needs to know.",
-    "image": "https://www.be-tango.be/images/blog/tango-dictionary.jpg",
+    "image": "https://www.be-tango.be/images/blog/tango-dictionary.webp",
     "author": { "@type": "Organization", "name": "BE-TANGO", "url": "https://www.be-tango.be" },
     "datePublished": "2021-01-27",
     "dateModified": "2026-03-25",
+    "inLanguage": "en",
     "publisher": { "@type": "Organization", "name": "BE-TANGO", "logo": { "@type": "ImageObject", "url": "https://www.be-tango.be/images/logo-be-tango.png" } }
   }
   </script>
@@ -184,7 +193,12 @@
   "mainEntity": [
     { "@type": "Question", "name": "What are the most important tango terms to know?", "acceptedAnswer": { "@type": "Answer", "text": "The essential tango vocabulary includes: abrazo (embrace), ocho (figure-eight foot pattern), gancho (hook), sacada (displacement), boleo (leg flick), caminata (walking), parada (stop), and milonga (both the dance and the social event). Knowing these terms helps you follow class instructions and discuss tango with other dancers." } },
     { "@type": "Question", "name": "What does 'abrazo' mean in tango?", "acceptedAnswer": { "@type": "Answer", "text": "Abrazo means 'embrace' in Spanish. In tango, the abrazo is the hold between the two partners — the fundamental connection through which all communication happens. Argentine tango uses a close, warm embrace compared to the more rigid frame of ballroom tango." } },
-    { "@type": "Question", "name": "What is the difference between a leader and follower in tango?", "acceptedAnswer": { "@type": "Answer", "text": "In tango, the leader initiates movements and navigates the dance floor; the follower interprets and responds to those movements. These roles are not gender-fixed — anyone can learn either role. At BE-TANGO, we encourage students to try both roles to develop a deeper understanding of tango." } }
+    { "@type": "Question", "name": "What is the difference between a leader and follower in tango?", "acceptedAnswer": { "@type": "Answer", "text": "In tango, the leader initiates movements and navigates the dance floor; the follower interprets and responds to those movements. These roles are not gender-fixed — anyone can learn either role. At BE-TANGO, we encourage students to try both roles to develop a deeper understanding of tango." } },
+    {"@type": "Question", "name": "What does 'tanda' mean?", "acceptedAnswer": {"@type": "Answer", "text": "A 'tanda' is a set of 3-5 songs played consecutively at a milonga, typically by the same orchestra and in the same style (e.g., tango, vals, or milonga). See more on the differences between tango, vals, and milonga."}},
+    {"@type": "Question", "name": "What is a cortina?", "acceptedAnswer": {"@type": "Answer", "text": "A 'cortina' is a short piece of music played between tandas. It signals the end of one tanda and allows dancers to change partners or leave the dance floor."}},
+    {"@type": "Question", "name": "What does 'cabeceo' mean literally?", "acceptedAnswer": {"@type": "Answer", "text": "'Cabeceo' literally means \"nod\" in Spanish. It refers to the subtle eye contact and nod used to invite someone to dance at a milonga."}},
+    {"@type": "Question", "name": "What is 'the ronda'?", "acceptedAnswer": {"@type": "Answer", "text": "'The ronda' refers to the line of dance formed by couples moving counter-clockwise around the dance floor at a milonga. Maintaining the flow of the ronda is crucial for smooth and safe dancing."}},
+    {"@type": "Question", "name": "What is the difference between a milonguero and a tanguero?", "acceptedAnswer": {"@type": "Answer", "text": "While both terms refer to tango dancers, a 'milonguero' (or 'milonguera') is generally understood to be someone deeply immersed in the milonga culture, frequently attending social dances and prioritizing the social aspect of tango. A 'tanguero' (or 'tanguera') is a more general term for anyone who dances tango, regardless of their frequency of milonga attendance. You can read more about..."}}
   ]
 }
 </script>
@@ -193,7 +207,7 @@
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/en/"},
     {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.be-tango.be/blog/"},
     {"@type": "ListItem", "position": 3, "name": "Tango Glossary: The Essential Argentine Tango Dictionary | BE-TANGO Blog", "item": "https://www.be-tango.be/blog/tango-glossary/"}
   ]
@@ -280,7 +294,7 @@
             </a>
 </div>
 <div class="hero-image-panel">
-<img fetchpriority="high" alt="Tango glossary: Argentine tango terms explained" src="/images/blog/tango-dictionary.jpg"/>
+<img fetchpriority="high" alt="Tango glossary: Argentine tango terms explained" src="/images/blog/tango-dictionary.webp" width="724" height="543" />
 <div class="hero-image-label"><i class="fas fa-book-open"></i> From Abrazo to Yumba</div>
 </div>
 </div>
@@ -297,7 +311,7 @@
 <span>Tango Glossary</span>
 </nav>
 <div class="meta-right">
-<span class="meta-item"><i class="fas fa-clock"></i> 15 min read</span>
+<span class="meta-item"><i class="fas fa-clock"></i> 9 min read</span>
 <span class="meta-item"><i class="fas fa-calendar"></i> January 27, 2021</span>
 </div>
 </div>
@@ -481,7 +495,76 @@
                   Milonga culture — feel at home anywhere in the world
                 </span>
 </div>
-</article></div><!-- end article-body -->
+</article>
+<article class="section-card" id="section-6">
+<span class="bg-number">06</span>
+<div class="section-card-header">
+<div class="section-number-pill">6</div>
+<h2>Advanced Tango Vocabulary</h2>
+</div>
+<p>As you progress in your tango journey with BE-TANGO here in Brussels, you'll encounter even more exciting and intricate movements. Let's explore some advanced vocabulary that will add flair and complexity to your dance.</p>
+
+<p><strong>Enrosque:</strong> A swirling leg wrap around your partner's leg. You'll start learning the foundations for this in our Intermediate classes, focusing on control and precision before adding the speed and flair.</p>
+
+<p><strong>Planeo:</strong> A "glide" or "hovering" movement where the follower's foot appears to float just above the floor. We'll touch upon this in our Advanced classes, concentrating on the leader's technique to create this illusion.</p>
+
+<p><strong>Barrida (Sweep):</strong> A sweeping movement of the leader's foot, displacing the follower's foot. This requires impeccable leading and connection, typically introduced in Advanced/Master classes.</p>
+
+<p><strong>Sandwich (Mordida):</strong> A "bite" or "sandwich" where the leader traps the follower's foot between their own. This is a playful and challenging movement, also for Advanced/Master levels.</p>
+
+<p><strong>Traspie:</strong> A broken step or a change of weight on an unexpected beat. This adds a playful element of surprise and is explored in Intermediate/Advanced classes.</p>
+
+<p><strong>Corrida:</strong> Literally "running," a series of quick steps, often used to travel across the dance floor. We integrate this into our choreography workshops, offering a fun challenge.</p>
+
+<p><strong>Rebote:</strong> A "rebound" or "bounce" action, often used to create energy and momentum. This is covered in our Musicality workshops, teaching you how to express the music through movement.</p>
+
+<p><strong>Lapiz:</strong> A "pencil" movement, where the leader traces small circles on the floor with their foot near the follower's foot. This elegant adornment is introduced in Intermediate and elaborated in Advanced classes.</p>
+
+<p>Remember to be patient and focus on mastering the fundamentals before diving into these advanced techniques. Enjoy the process of expanding your tango vocabulary!</p>
+</article>
+
+<article class="section-card" id="section-7">
+<span class="bg-number">07</span>
+<div class="section-card-header">
+<div class="section-number-pill">7</div>
+<h2>Tango Slang and Lunfardo</h2>
+</div>
+<p>Tango is more than just steps; it's a culture rich with its own slang and history. Understanding some of these terms, especially those originating from Lunfardo (the slang of Buenos Aires), adds a layer of depth to your tango experience.</p>
+
+<p><strong>Milonguero/Milonguera:</strong> A dedicated tango dancer who frequents milongas (tango social dances). They are known for their passion and dedication to the dance. You'll see plenty of milongueros and milongueras at the Brussels milongas!</p>
+
+<p><strong>Tanguero/Tanguera:</strong> Simply someone who dances tango. While often used interchangeably with milonguero/a, it can refer to anyone who enjoys the dance, regardless of their frequency of attendance at milongas.</p>
+
+<p><strong>Maestro:</strong> A tango teacher or master. We at BE-TANGO are honored to share our knowledge with you!</p>
+
+<p><strong>Pista:</strong> The dance floor.</p>
+
+<p><strong>Bandoneon:</strong> The quintessential instrument of tango music, a type of concertina.</p>
+
+<p><strong>Arrabal:</strong> The outskirts or slums of Buenos Aires, where tango originated. Check out more about the <a href="/en/blog/history-of-argentine-tango/">history of Argentine tango</a> on our blog.</p>
+
+<p><strong>Conventillo:</strong> A tenement building, often housing immigrants, common in the arrabales.</p>
+
+<p><strong>Compadrito:</strong> A type of swaggering, working-class man from the arrabales, often romanticized in tango lyrics.</p>
+
+<p>Lunfardo is heavily featured in tango lyrics, adding a layer of poetic grit and realism to the songs. Understanding these terms allows you to appreciate the cultural context and emotional depth of the music. As you listen to the music at the milongas in Brussels, you'll start to recognize these terms and understand their significance.</p>
+</article>
+
+<article class="section-card" id="section-faq">
+<span class="bg-number">FAQ</span>
+<div class="section-card-header">
+<div class="section-number-pill"><i class="fas fa-question-circle"></i></div>
+<h2>Frequently Asked Questions</h2>
+</div>
+<div class="faq-list">
+<details class="faq-item"><summary>What does 'tanda' mean?</summary><p>A 'tanda' is a set of 3-5 songs played consecutively at a milonga, typically by the same orchestra and in the same style (e.g., tango, vals, or milonga). See more on <a href="/en/blog/tango-vals-milonga-differences/">the differences between tango, vals, and milonga</a>.</p></details>
+<details class="faq-item"><summary>What is a cortina?</summary><p>A 'cortina' is a short piece of music played between tandas. It signals the end of one tanda and allows dancers to change partners or leave the dance floor.</p></details>
+<details class="faq-item"><summary>What does 'cabeceo' mean literally?</summary><p>'Cabeceo' literally means "nod" in Spanish. It refers to the subtle eye contact and nod used to invite someone to dance at a milonga.</p></details>
+<details class="faq-item"><summary>What is 'the ronda'?</summary><p>'The ronda' refers to the line of dance formed by couples moving counter-clockwise around the dance floor at a milonga. Maintaining the flow of the ronda is crucial for smooth and safe dancing.</p></details>
+<details class="faq-item"><summary>What is the difference between a milonguero and a tanguero?</summary><p>While both terms refer to tango dancers, a 'milonguero' (or 'milonguera') is generally understood to be someone deeply immersed in the milonga culture, frequently attending social dances and prioritizing the social aspect of tango. A 'tanguero' (or 'tanguera') is a more general term for anyone who dances tango, regardless of their frequency of milonga attendance. You can read more about what makes a milonga special <a href="/en/blog/what-is-a-milonga/">here</a>.</p></details>
+</div>
+</article>
+</div><!-- end article-body -->
 <aside class="d4-sidebar">
 <div class="d4-sidebar-card">
 <div class="d4-sidebar-card-header">
@@ -508,6 +591,18 @@
 <li class="toc-item">
 <span class="toc-dot">5</span>
 <a href="#section-5">The milonga and etiquette</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot">6</span>
+<a href="#section-6">Advanced vocabulary</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot">7</span>
+<a href="#section-7">Tango slang &amp; Lunfardo</a>
+</li>
+<li class="toc-item">
+<span class="toc-dot"><i class="fas fa-question-circle"></i></span>
+<a href="#section-faq">FAQ</a>
 </li>
 </ol>
 </div>

@@ -40,8 +40,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="/css/fontawesome.min.css?v=3.7" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fontawesome.min.css?v=3.7"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="/css/fa-subset.min.css?v=4.0" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fa-subset.min.css?v=4.0"></noscript>
 
   <!-- Font Awesome -->
 
@@ -127,7 +127,7 @@
   </style>
 
   <!-- Enhancement Scripts -->
-  <script src="/js/enhancements.min.js?v=3.5" defer></script>
+  <script src="/js/enhancements.min.js?v=3.7" defer></script>
 
   <!-- JSON-LD Structured Data - Experienced Courses -->
   <script type="application/ld+json">
@@ -138,6 +138,7 @@
       {
         "@type": "Course",
         "name": "First Year Tango Classes",
+        "url": "https://www.be-tango.be/en/tango-classes/experienced/",
         "description": "For dancers who completed the beginners course. Consolidate basics, focus on cross-system walks, smooth walking, and Ochos.",
         "provider": {
           "@type": "Organization",
@@ -196,6 +197,7 @@
       {
         "@type": "Course",
         "name": "Second Year Tango Classes",
+        "url": "https://www.be-tango.be/en/tango-classes/experienced/",
         "description": "For dancers who completed the first year. Continue building technique, musicality, and partner connection with more complex patterns.",
         "provider": {
           "@type": "Organization",
@@ -254,6 +256,7 @@
       {
         "@type": "Course",
         "name": "Second Year PLUS Tango Classes",
+        "url": "https://www.be-tango.be/en/tango-classes/experienced/",
         "description": "Advanced fundamentals for experienced dancers. Refine technique, explore complex sequences, and deepen musical interpretation.",
         "provider": {
           "@type": "Organization",
@@ -312,6 +315,7 @@
       {
         "@type": "Course",
         "name": "Intermediate/Advanced Tango Classes",
+        "url": "https://www.be-tango.be/en/tango-classes/experienced/",
         "description": "For dancers with 4+ years experience. Master Boleos, Ganchos, Enrosques. Deep work on musicality (Vals/Milonga) and improvisation.",
         "provider": {
           "@type": "Organization",
@@ -377,9 +381,9 @@
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/"},
-      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/tango-classes/"},
-      {"@type": "ListItem", "position": 3, "name": "Experienced", "item": "https://www.be-tango.be/tango-classes/experienced/"}
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/en/"},
+      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/en/tango-classes/"},
+      {"@type": "ListItem", "position": 3, "name": "Experienced", "item": "https://www.be-tango.be/en/tango-classes/experienced/"}
     ]
   }
   </script>
@@ -928,13 +932,13 @@
   </script>
 
   <!-- CRM API Integration -->
-  <script src="/js/crm-api.min.js"></script>
+  <script src="/js/crm-api.min.js" defer></script>
   <script src="/js/experienced-schedule.min.js?v=1.0"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer crossorigin="anonymous"></script>
   <script src="/js/enrollment-modal.js?v=1.0" defer></script>
 
   <!-- Floating Mobile Call Button -->
-  <script src="/js/newsletter.min.js"></script>
+  <script src="/js/newsletter.min.js" defer></script>
   <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
   </script>
