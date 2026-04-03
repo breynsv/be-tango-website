@@ -148,6 +148,20 @@
     @media (max-width: 1024px) { .hero-inner { grid-template-columns: 1fr; } .hero-image-panel { display: none; } .hero-title { font-size: 2.8rem; } .article-grid { grid-template-columns: 1fr; } .d4-sidebar { position: static; } .d4-newsletter-inner { grid-template-columns: 1fr; gap: 40px; } }
     @media (max-width: 768px) { .hero-title { font-size: 2.2rem; } .blog-hero { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); } .related-grid { grid-template-columns: 1fr; } .meta-strip-inner { flex-direction: column; align-items: flex-start; } .section-card { padding: 36px 24px 32px; } .section-card h2 { font-size: 1.2rem; } .d4-newsletter-title { font-size: 1.9rem; } .d4-nl-row { flex-direction: column; } .d4-nl-row .newsletter-email-input { border-radius: 8px; border-right: 1px solid rgba(255,255,255,0.15); } .d4-nl-row .newsletter-submit { border-radius: 8px; } }
     @media (max-width: 480px) { .hero-title { font-size: 1.9rem; } }
+    /* FAQ Accordion - Elegant Minimal */
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item { border: none; padding: 0; }
+    .faq-item + .faq-item { border-top: 1px solid var(--border); }
+    .faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.5rem 0; font-size: 1.175rem; font-weight: 600; color: var(--navy); cursor: pointer; list-style: none; position: relative; transition: color 0.3s ease; }
+    .faq-item summary::-webkit-details-marker, .faq-item summary::marker { display: none; content: ''; }
+    .faq-item summary::before { content: ''; position: absolute; bottom: 1.25rem; left: 0; width: 0; height: 1.5px; background-color: var(--gold); transition: width 0.35s ease; }
+    .faq-item summary:hover { color: var(--gold); }
+    .faq-item summary:hover::before { width: calc(100% - 3rem); }
+    .faq-item summary::after { content: ''; position: relative; flex-shrink: 0; width: 20px; height: 20px; background: linear-gradient(var(--navy), var(--navy)) center / 1.5px 100% no-repeat, linear-gradient(var(--navy), var(--navy)) center / 100% 1.5px no-repeat; transition: transform 0.35s ease, background 0.3s ease; }
+    .faq-item summary:hover::after { background: linear-gradient(var(--gold), var(--gold)) center / 1.5px 100% no-repeat, linear-gradient(var(--gold), var(--gold)) center / 100% 1.5px no-repeat; }
+    .faq-item[open] > summary::after { background: linear-gradient(var(--navy), var(--navy)) center / 100% 1.5px no-repeat; }
+    .faq-item[open] > summary:hover::after { background: linear-gradient(var(--gold), var(--gold)) center / 100% 1.5px no-repeat; }
+    .faq-item p { padding: 0 0 1.75rem 0; margin: 0; }
   </style>
 <script type="application/ld+json">
   {
