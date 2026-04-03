@@ -6007,13 +6007,25 @@ a:focus {
   color: var(--color-primary);
 }
 
-.article-content a {
+.article-content a,
+.section-card p a,
+.section-card li a {
   color: var(--color-secondary);
   text-decoration: underline;
 }
 
-.article-content a:hover {
+.article-content a:hover,
+.section-card p a:hover,
+.section-card li a:hover {
   color: var(--color-primary);
+}
+
+.section-card.achievement p a {
+  color: var(--color-secondary);
+}
+
+.section-card.achievement p a:hover {
+  color: #fff;
 }
 
 /* Article CTA Section */
