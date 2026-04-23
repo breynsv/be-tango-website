@@ -991,9 +991,8 @@
       iban,                         // 7  IBAN
       'EUR' + amount.toFixed(2),    // 8  Amount
       '',                           // 9  Purpose (optional)
-      ref,                          // 10 Structured remittance reference
-      '',                           // 11 Unstructured remittance
-      '',                           // 12 Beneficiary info
+      '',                           // 10 Structured creditor reference (ISO 11649) — empty for Belgian +++ format
+      ref,                          // 11 Unstructured remittance — Belgian +++ format goes here
     ];
 
     try {
