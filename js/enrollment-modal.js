@@ -924,18 +924,15 @@
   function loadQrCodeScript() {
     return new Promise(function (resolve, reject) {
       if (typeof QRCode !== 'undefined') { resolve(); return; }
-      // Reuse any existing script tag already in the document
-      var existing = document.querySelector('script[src="' + QRCODE_CDN + '"]');
-      if (existing) {
-        existing.addEventListener('load', resolve);
-        existing.addEventListener('error', reject);
-        return;
-      }
+      // Always inject a fresh tag — never reuse an existing one that may have
+      // already errored (reusing adds a listener to an already-fired event
+      // which causes the promise to hang forever, leaving the canvas blank).
       var s = document.createElement('script');
       s.src = QRCODE_CDN;
       s.crossOrigin = 'anonymous';
-      s.addEventListener('load', resolve);
-      s.addEventListener('error', reject);
+      var timer = setTimeout(function () { reject(new Error('QRCode.js load timeout')); }, 6000);
+      s.addEventListener('load', function () { clearTimeout(timer); resolve(); });
+      s.addEventListener('error', function () { clearTimeout(timer); reject(new Error('QRCode.js load error')); });
       document.head.appendChild(s);
     });
   }
