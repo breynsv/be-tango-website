@@ -239,6 +239,17 @@ class CRMApi {
     }
 
     /**
+     * Fetch the SEPA EPC payment QR code for a confirmed enrollment.
+     * Called lazily after the confirmation page is already shown.
+     */
+    async fetchPaymentQr(enrollmentId, paymentReference) {
+        return await this.post('/enrollments/payment-qr', {
+            enrollment_id: enrollmentId,
+            payment_reference: paymentReference,
+        });
+    }
+
+    /**
      * Register for free trial
      */
     async registerFreeTrial(registrationData) {

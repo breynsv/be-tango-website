@@ -577,6 +577,15 @@
 
     const t = getT();
     document.body.insertAdjacentHTML('beforeend', buildModalHtml(t));
+
+    // Inject spinner keyframe once
+    if (!document.getElementById('em-spin-style')) {
+      var style = document.createElement('style');
+      style.id = 'em-spin-style';
+      style.textContent = '@keyframes em-spin{to{transform:rotate(360deg)}}';
+      document.head.appendChild(style);
+    }
+
     modalInjected = true;
 
     // Wire close button & backdrop
@@ -706,8 +715,6 @@
       document.getElementById('em-pay-due').textContent = formatDueDate(data.due_date);
       document.getElementById('em-pay-bank').textContent = data.bank_name || 'BE-TANGO ART';
 
-      // Generate QR
-      generateEpcQrCode(data);
     }
 
     // Update progress dots to complete state
@@ -728,6 +735,11 @@
     // Scroll dialog to top
     var dialog = document.querySelector('.em-dialog');
     if (dialog) dialog.scrollTop = 0;
+
+    // Lazy-load QR after the page is visible (only for couple enrollments with payment)
+    if (!data.partner_needed) {
+      loadPaymentQr(data);
+    }
   }
 
   // ========================
@@ -916,95 +928,47 @@
   }
 
   // ========================
-  // EPC / SEPA QR CODE
+  // EPC / SEPA QR CODE — lazy-loaded from server after confirmation page shows
   // ========================
 
-  var QRCODE_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
-
-  function loadQrCodeScript() {
-    return new Promise(function (resolve, reject) {
-      if (typeof QRCode !== 'undefined') { resolve(); return; }
-      // Always inject a fresh tag — never reuse an existing one that may have
-      // already errored (reusing adds a listener to an already-fired event
-      // which causes the promise to hang forever, leaving the canvas blank).
-      var s = document.createElement('script');
-      s.src = QRCODE_CDN;
-      s.crossOrigin = 'anonymous';
-      var timer = setTimeout(function () { reject(new Error('QRCode.js load timeout')); }, 6000);
-      s.addEventListener('load', function () { clearTimeout(timer); resolve(); });
-      s.addEventListener('error', function () { clearTimeout(timer); reject(new Error('QRCode.js load error')); });
-      document.head.appendChild(s);
-    });
+  function showQrSpinner(canvas) {
+    var lang = getLang();
+    var label = lang === 'FR' ? 'Génération du QR code…'
+              : lang === 'NL' ? 'QR-code genereren…'
+              : 'Generating QR code…';
+    canvas.innerHTML =
+      '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:200px;gap:10px;">'
+      + '<div style="width:36px;height:36px;border:3px solid #e5e7eb;border-top-color:#C9A820;border-radius:50%;animation:em-spin 0.8s linear infinite;"></div>'
+      + '<span style="font-size:12px;color:#9ca3af;">' + label + '</span>'
+      + '</div>';
   }
 
-  function showFallbackQr(canvas, data) {
-    var section = document.getElementById('em-qr-section');
-    if (data.qr_code_url) {
-      var img = document.createElement('img');
-      img.src = data.qr_code_url;
-      img.alt = 'QR Code';
-      img.style.cssText = 'width:200px;height:200px;display:block;margin:0 auto;';
-      canvas.appendChild(img);
-      // Swap SEPA label for generic QR label
-      var body = canvas.closest('.em-qr-body');
-      if (body) {
-        var lbl = body.querySelector('.em-qr-label');
-        if (lbl) lbl.textContent = getLang() === 'FR' ? 'Votre QR code' : getLang() === 'NL' ? 'Uw QR-code' : 'Your QR code';
-        var cap = body.querySelector('.em-qr-caption');
-        if (cap) cap.hidden = true;
-      }
-    } else {
-      section.hidden = true;
-    }
-  }
-
-  async function generateEpcQrCode(data) {
+  async function loadPaymentQr(data) {
     var canvas = document.getElementById('em-qr-canvas');
     if (!canvas) return;
 
-    canvas.innerHTML = '';
-
-    // Ensure QRCode.js is loaded (dynamically if needed)
-    if (typeof QRCode === 'undefined') {
-      try {
-        await loadQrCodeScript();
-      } catch (err) {
-        console.warn('[EnrollmentModal] QRCode.js unavailable — using fallback QR');
-        showFallbackQr(canvas, data);
-        return;
-      }
+    if (!data.enrollment_id || !data.payment_reference) {
+      document.getElementById('em-qr-section').hidden = true;
+      return;
     }
 
-    var iban   = (data.bank_account || 'BE97068896456849').replace(/\s/g, '');
-    var name   = data.bank_name || 'BE-TANGO ART';
-    var amount = parseFloat(data.amount || 0);
-    var ref    = data.payment_reference || '';
-
-    // EPC QR Code (SEPA Credit Transfer) — GiroCode standard
-    var epcLines = [
-      'BCD',                        // 1  Service tag
-      '002',                        // 2  Version
-      '1',                          // 3  Character set (UTF-8)
-      'SCT',                        // 4  Identification
-      data.bank_bic || 'GEBABEBB',  // 5  BIC
-      name,                         // 6  Beneficiary name
-      iban,                         // 7  IBAN
-      'EUR' + amount.toFixed(2),    // 8  Amount
-      '',                           // 9  Purpose (optional)
-      '',                           // 10 Structured creditor reference (ISO 11649) — empty for Belgian +++ format
-      ref,                          // 11 Unstructured remittance — Belgian +++ format goes here
-    ];
+    showQrSpinner(canvas);
 
     try {
-      new QRCode(canvas, {
-        text: epcLines.join('\n'),
-        width: 200,
-        height: 200,
-        correctLevel: QRCode.CorrectLevel.M,
-      });
+      var res = await window.BETangoCRM.api.fetchPaymentQr(data.enrollment_id, data.payment_reference);
+      if (res && res.qr_base64) {
+        canvas.innerHTML = '';
+        var img = document.createElement('img');
+        img.src = res.qr_base64;
+        img.alt = 'Payment QR Code';
+        img.style.cssText = 'width:200px;height:200px;display:block;margin:0 auto;';
+        canvas.appendChild(img);
+      } else {
+        document.getElementById('em-qr-section').hidden = true;
+      }
     } catch (err) {
-      console.error('[EnrollmentModal] SEPA QR generation failed:', err);
-      showFallbackQr(canvas, data);
+      console.warn('[EnrollmentModal] QR fetch failed:', err);
+      document.getElementById('em-qr-section').hidden = true;
     }
   }
 
