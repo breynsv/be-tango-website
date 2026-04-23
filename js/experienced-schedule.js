@@ -152,12 +152,9 @@
 
     listEl.innerHTML = '<div style="text-align:center;padding:40px 24px;color:#4a4a4a;">' + t.loading + '</div>';
 
-    var baseURL = 'http://betango.membrero.test:8001/api/v1';
-    if (window.API_CONFIG && window.API_CONFIG.baseURL) {
-      baseURL = window.API_CONFIG.baseURL;
-    } else if (window.BETangoCRM && window.BETangoCRM.api && window.BETangoCRM.api.baseURL) {
-      baseURL = window.BETangoCRM.api.baseURL;
-    }
+    var baseURL = (window.API_CONFIG && window.API_CONFIG.baseURL)
+      ? window.API_CONFIG.baseURL
+      : 'https://betango.membrero.com/api/v1';
 
     fetch(baseURL + '/classes/experienced', { headers: { 'Accept': 'application/json' } })
       .then(function (r) { return r.json(); })

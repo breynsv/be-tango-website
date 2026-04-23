@@ -7,10 +7,9 @@
 (function () {
   'use strict';
 
-  const API_BASE = window.location.hostname === 'localhost' ||
-    window.location.hostname === '127.0.0.1'
-    ? 'http://betango.membrero.test:8001/api/v1'
-    : 'https://crm.be-tango.be/api/v1';
+  const API_BASE = (window.API_CONFIG && window.API_CONFIG.baseURL)
+    ? window.API_CONFIG.baseURL
+    : 'https://betango.membrero.com/api/v1';
 
   const lang = (document.documentElement.lang ||
     'en').toLowerCase().split('-')[0];

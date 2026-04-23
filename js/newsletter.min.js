@@ -12,11 +12,9 @@
 (function () {
   'use strict';
 
-  var BASE = (typeof API_CONFIG !== 'undefined' && API_CONFIG.baseURL)
-    ? API_CONFIG.baseURL
-    : (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-      ? 'http://betango.membrero.test:8001/api/v1'
-      : 'https://crm.be-tango.be/api/v1';
+  var BASE = (window.API_CONFIG && window.API_CONFIG.baseURL)
+    ? window.API_CONFIG.baseURL
+    : 'https://betango.membrero.com/api/v1';
 
   var LANG_MAP = { fr: 'FR', nl: 'NL' };
 

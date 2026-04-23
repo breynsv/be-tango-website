@@ -112,10 +112,11 @@ Complete documentation available in the [`docs/`](./docs) folder:
 
 ### Production
 
-Update API base URL in `js/crm-api.js`:
+API base URL is configured in a single file — `js/api-config.js`:
 ```javascript
-baseURL: 'https://crm.be-tango.be/api/v1'
+baseURL: 'https://betango.membrero.com/api/v1'
 ```
+All other scripts read from `window.API_CONFIG.baseURL`. To change the production URL, edit only `js/api-config.js` (and regenerate `js/api-config.min.js`).
 
 ## 📱 Pages
 

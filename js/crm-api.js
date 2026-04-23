@@ -5,16 +5,13 @@
  * Includes caching, error handling, and retry logic.
  */
 
-// API Configuration
-const API_CONFIG = {
-    // Auto-detect environment and set base URL
-    baseURL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'http://betango.membrero.test:8001/api/v1'
-        : 'https://crm.be-tango.be/api/v1',
+// API Configuration — base URL comes from api-config.js (loaded first)
+const API_CONFIG = Object.assign({
+    baseURL: 'https://betango.membrero.com/api/v1', // fallback if api-config.js not loaded
     timeout: 10000, // 10 seconds
     retryAttempts: 2,
     retryDelay: 1000, // 1 second
-};
+}, window.API_CONFIG);
 
 /**
  * In-memory cache manager for API responses
