@@ -37,6 +37,7 @@
       consentError: 'Please tick the consent box to continue.',
       // Notify mode — shown when no free trial dates are scheduled
       notifyLead: 'Our free trial lessons take place in January and September, just before the start of each 14-week course cycle. Leave your details below and we\'ll let you know as soon as the next dates are announced.',
+      notifyBanner: 'There are currently no free trial lessons planned. Leave your details and we\'ll notify you as soon as new dates are announced.',
       notifyFormTitle: 'Keep me informed',
       notifyFormSubtitle: 'We\'ll email you as soon as the next free trial dates are scheduled.',
       notifySubmit: 'Notify me of next dates',
@@ -44,7 +45,10 @@
       notifyEmailRequired: 'Please enter your name and email so we can reach you.',
       notifySuccessTitle: 'You\'re on the list!',
       notifySuccessMessage: 'We\'ll email you as soon as the next free trial dates are announced.',
+      notifySuccessSoloNote: 'As you indicated you don\'t have a dance partner yet, please note that we can only confirm your reservation once we find a suitable partner that matches your profile — both age and height. We strongly recommend also looking for a partner among your own friends, family or colleagues.',
       notifyMessagePrefix: '[Free trial — notify me] Would like to be notified when the next free trial dates are scheduled.',
+      notifyCheckbox: 'I can\'t make any of these dates — keep me informed about future lessons',
+      notifyMessagePrefixWithDates: '[Free trial — none of these dates work] Cannot make any of the scheduled dates, would like to be notified of future free trial dates.',
     },
     FR: {
       loading: 'Chargement des dates disponibles…',
@@ -73,6 +77,7 @@
       consentError: 'Veuillez cocher la case de consentement pour continuer.',
       // Mode notification — affiché quand aucune date d'essai gratuit n'est programmée
       notifyLead: 'Nos cours d\'essai gratuits ont lieu en janvier et en septembre, juste avant le début de chaque cycle de 14 semaines. Laissez-nous vos coordonnées ci-dessous et nous vous préviendrons dès que les prochaines dates seront annoncées.',
+      notifyBanner: 'Il n\'y a actuellement aucun cours d\'essai gratuit prévu. Laissez-nous vos coordonnées et nous vous préviendrons dès que de nouvelles dates seront annoncées.',
       notifyFormTitle: 'Tenez-moi informé(e)',
       notifyFormSubtitle: 'Nous vous enverrons un email dès que les prochaines dates d\'essai gratuit seront programmées.',
       notifySubmit: 'Prévenez-moi des prochaines dates',
@@ -80,7 +85,10 @@
       notifyEmailRequired: 'Veuillez renseigner votre nom et votre email pour que nous puissions vous contacter.',
       notifySuccessTitle: 'Vous êtes sur la liste !',
       notifySuccessMessage: 'Nous vous enverrons un email dès que les prochaines dates d\'essai gratuit seront annoncées.',
+      notifySuccessSoloNote: 'Comme vous avez indiqué ne pas encore avoir de partenaire de danse, sachez que nous ne pourrons confirmer votre réservation que lorsque nous aurons trouvé un(e) partenaire adapté(e) à votre profil — tant en âge qu\'en taille. Nous vous conseillons vivement de chercher également un(e) partenaire parmi vos amis, votre famille ou vos collègues.',
       notifyMessagePrefix: '[Essai gratuit — me prévenir] Souhaite être prévenu(e) lorsque les prochaines dates d\'essai gratuit seront programmées.',
+      notifyCheckbox: 'Aucune de ces dates ne me convient — tenez-moi informé(e) des prochains cours',
+      notifyMessagePrefixWithDates: '[Essai gratuit — aucune date ne convient] Ne peut se rendre à aucune des dates prévues, souhaite être prévenu(e) des prochaines dates.',
     },
     NL: {
       loading: 'Beschikbare data laden…',
@@ -109,6 +117,7 @@
       consentError: 'Vink het toestemmingsvakje aan om door te gaan.',
       // Notificatiemodus — zichtbaar wanneer er geen gratis proeflessen gepland zijn
       notifyLead: 'Onze gratis proeflessen vinden plaats in januari en september, net voor de start van elke lescyclus van 14 weken. Laat hieronder je gegevens achter en we laten het je weten zodra de volgende data bekend zijn.',
+      notifyBanner: 'Er zijn momenteel geen gratis proeflessen gepland. Laat je gegevens achter en we laten het je weten zodra er nieuwe data aangekondigd worden.',
       notifyFormTitle: 'Hou me op de hoogte',
       notifyFormSubtitle: 'We sturen je een mail zodra de volgende gratis proeflesdata gepland zijn.',
       notifySubmit: 'Breng me op de hoogte',
@@ -116,7 +125,10 @@
       notifyEmailRequired: 'Vul je naam en e-mailadres in zodat we je kunnen bereiken.',
       notifySuccessTitle: 'Je staat op de lijst!',
       notifySuccessMessage: 'We sturen je een mail zodra de volgende gratis proeflesdata aangekondigd worden.',
+      notifySuccessSoloNote: 'Omdat je hebt aangegeven nog geen danspartner te hebben, willen we je laten weten dat we je reservering pas kunnen bevestigen zodra we een geschikte partner vinden die bij je profiel past — zowel qua leeftijd als lengte. We raden je sterk aan om ook in je eigen netwerk van vrienden, familie en collega\'s te zoeken naar een danspartner.',
       notifyMessagePrefix: '[Gratis proefles — breng me op de hoogte] Wenst op de hoogte gebracht te worden wanneer de volgende gratis proeflesdata gepland zijn.',
+      notifyCheckbox: 'Geen van deze data past mij — hou me op de hoogte van toekomstige lessen',
+      notifyMessagePrefixWithDates: '[Gratis proefles — geen datum past] Kan niet op de geplande data, wenst op de hoogte gebracht te worden van toekomstige proeflessen.',
     },
   };
 
@@ -219,16 +231,19 @@
 
     if (!trials.length) {
       container.innerHTML = `
-        <div class="ft-empty">
-          <div class="ft-empty-icon">
+        <div class="ft-empty-banner">
+          <div class="ft-empty-banner__icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <rect x="3" y="4" width="18" height="18" rx="2"/>
               <line x1="16" y1="2" x2="16" y2="6"/>
               <line x1="8" y1="2" x2="8" y2="6"/>
               <line x1="3" y1="10" x2="21" y2="10"/>
+              <line x1="9" y1="14" x2="15" y2="20" stroke-linecap="round"/>
+              <line x1="15" y1="14" x2="9" y2="20" stroke-linecap="round"/>
             </svg>
           </div>
-          <p>${t.noSlots}</p>
+          <p class="ft-empty-banner__title">${t.noSlots}</p>
+          <p class="ft-empty-banner__text">${t.notifyBanner}</p>
         </div>`;
       return;
     }
@@ -404,7 +419,89 @@
     form.dataset.mode = 'notify';
   }
 
-  function showNotifySuccess(form, lang) {
+  /**
+   * Enter notify mode when there ARE dates available but user picked
+   * "none of these dates work". The date select stays visible but locked
+   * on the notify option. The form header & submit text change.
+   */
+  function enterNotifyModeWithDates(lang) {
+    const t = T[lang];
+    const form = document.getElementById('free-trial-form');
+    if (!form) return;
+
+    // Disable the date select — it's irrelevant when user can't make any date
+    const selectEl = form.querySelector('#class-date');
+    if (selectEl) {
+      selectEl.required = false;
+      selectEl.disabled = true;
+      selectEl.value = '';
+    }
+
+    // Rewrite the form card header
+    const formCard = form.closest('.ft-form-card') || form.parentElement;
+    const formTitle = formCard?.querySelector('.ft-form-title');
+    const formSubtitle = formCard?.querySelector('.ft-form-subtitle');
+    if (formTitle) formTitle.textContent = t.notifyFormTitle;
+    if (formSubtitle) formSubtitle.textContent = t.notifyFormSubtitle;
+
+    // Swap submit button text
+    const btn = form.querySelector('[type="submit"]');
+    if (btn) {
+      const svg = btn.querySelector('svg');
+      btn.textContent = '';
+      btn.appendChild(document.createTextNode(t.notifySubmit + ' '));
+      if (svg) btn.appendChild(svg);
+    }
+    const note = formCard?.querySelector('.ft-form-note');
+    if (note) note.textContent = t.notifyFormNote;
+
+    form.dataset.mode = 'notify';
+  }
+
+  /**
+   * Exit notify mode — restore the original form header & submit text
+   * when user picks a real date again.
+   */
+  function exitNotifyMode(lang) {
+    const form = document.getElementById('free-trial-form');
+    if (!form) return;
+
+    // Re-enable the date select
+    const selectEl = form.querySelector('#class-date');
+    if (selectEl) {
+      selectEl.required = true;
+      selectEl.disabled = false;
+    }
+
+    const formCard = form.closest('.ft-form-card') || form.parentElement;
+
+    // Restore original texts from the HTML (hardcoded per lang)
+    const originals = {
+      EN: { title: 'Book Your Free Class', subtitle: 'We\'ll send you a confirmation within 24 hours.', submit: 'Confirm Registration', note: 'We\'ll confirm your free trial class within 24 hours.' },
+      FR: { title: 'Réservez Votre Cours Gratuit', subtitle: 'Nous vous enverrons une confirmation dans les 24 heures.', submit: 'Confirmer mon inscription', note: 'Nous confirmerons votre cours d\'essai gratuit dans les 24 heures.' },
+      NL: { title: 'Boek Je Gratis Les', subtitle: 'We sturen je een bevestiging binnen 24 uur.', submit: 'Bevestig je registratie', note: 'We bevestigen je gratis proefles binnen 24 uur.' },
+    };
+    const o = originals[lang] || originals.EN;
+
+    const formTitle = formCard?.querySelector('.ft-form-title');
+    const formSubtitle = formCard?.querySelector('.ft-form-subtitle');
+    if (formTitle) formTitle.textContent = o.title;
+    if (formSubtitle) formSubtitle.textContent = o.subtitle;
+
+    const btn = form.querySelector('[type="submit"]');
+    if (btn) {
+      const svg = btn.querySelector('svg');
+      btn.textContent = '';
+      btn.appendChild(document.createTextNode(o.submit + ' '));
+      if (svg) btn.appendChild(svg);
+    }
+    const note = formCard?.querySelector('.ft-form-note');
+    if (note) note.textContent = o.note;
+
+    delete form.dataset.mode;
+  }
+
+  function showNotifySuccess(form, lang, hasPartner) {
     const t = T[lang];
     const wrap = form.closest('.form-container') || form.parentElement;
     const email = form.querySelector('#email')?.value || '';
@@ -419,6 +516,7 @@
         </div>
         <h3 class="ft-success-title">${t.notifySuccessTitle}</h3>
         <p class="ft-success-msg">${t.notifySuccessMessage}</p>
+        ${!hasPartner ? `<p class="ft-success-msg ft-success-solo-note">${t.notifySuccessSoloNote}</p>` : ''}
         ${email ? `<p class="ft-success-email">${t.successEmailNote} <strong>${email}</strong></p>` : ''}
       </div>`;
   }
@@ -525,7 +623,29 @@
         renderSchedule(scheduleEl, trials, lang);
         wireScheduleClicks(scheduleEl, selectEl);
       }
-      if (selectEl) populateSelect(selectEl, trials, lang);
+      if (selectEl) {
+        populateSelect(selectEl, trials, lang);
+
+        // Add "can't make any date" checkbox below the date field
+        if (trials.length) {
+          const dateField = selectEl.closest('.ft-form-field');
+          if (dateField) {
+            const notifyWrap = document.createElement('label');
+            notifyWrap.className = 'ft-notify-checkbox';
+            notifyWrap.innerHTML = `<input type="checkbox" name="notify-me"> <span>${t.notifyCheckbox}</span>`;
+            dateField.after(notifyWrap);
+
+            const cb = notifyWrap.querySelector('input');
+            cb.addEventListener('change', () => {
+              if (cb.checked) {
+                enterNotifyModeWithDates(lang);
+              } else {
+                exitNotifyMode(lang);
+              }
+            });
+          }
+        }
+      }
 
       // Switch the page into "keep me informed" mode when there are no
       // upcoming free trial dates. The form stays submittable but collects
@@ -590,7 +710,13 @@
           submitBtn.textContent = t.btnLoading;
         }
 
-        const msgParts = [t.notifyMessagePrefix];
+        // Use the "with dates" variant when trials exist but none work for the user
+        // Use the "with dates" variant when trials exist but none work for the user
+        const notifyCb = form.querySelector('input[name="notify-me"]');
+        const prefix = (notifyCb?.checked && trials.length)
+          ? t.notifyMessagePrefixWithDates
+          : t.notifyMessagePrefix;
+        const msgParts = [prefix];
         msgParts.push(hasPartner ? '(with partner)' : '(coming alone)');
         if (userNote) msgParts.push('\n---\n' + userNote);
 
@@ -610,7 +736,7 @@
 
         try {
           await api.submitContactForm(contactPayload);
-          showNotifySuccess(form, lang);
+          showNotifySuccess(form, lang, hasPartner);
         } catch (err) {
           console.error('[FreeTrial] Notify signup error:', err);
           if (submitBtn) {

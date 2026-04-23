@@ -48,6 +48,39 @@
   display: block;
 }
 
+/* ---------- Empty-state banner (no trials) ---------- */
+.ft-empty-banner {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: rgba(201, 168, 32, 0.08);
+  border: 2px dashed rgba(201, 168, 32, 0.35);
+  border-radius: 12px;
+}
+.ft-empty-banner__icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 1rem;
+  color: #C9A820;
+}
+.ft-empty-banner__icon svg {
+  width: 3rem;
+  height: 3rem;
+  display: block;
+}
+.ft-empty-banner__title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #111827;
+  margin: 0 0 0.5rem;
+}
+.ft-empty-banner__text {
+  font-size: 0.9rem;
+  color: #4B5563;
+  margin: 0;
+  line-height: 1.5;
+}
+
 /* ---------- Schedule container ---------- */
 .ft-schedule {
   display: flex;
@@ -1111,6 +1144,35 @@ body { background: #FAF8F5; }
   height: 16px;
   margin-top: 2px;
   accent-color: #E2C033;
+  cursor: pointer;
+}
+
+/* ── Notify-me checkbox (when dates exist but none work) ───────── */
+.ft-notify-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: rgba(201, 168, 32, 0.07);
+  border: 1px solid rgba(201, 168, 32, 0.25);
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.45;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.ft-notify-checkbox:hover {
+  border-color: rgba(201, 168, 32, 0.5);
+}
+.ft-notify-checkbox input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+  margin-top: 1px;
+  accent-color: #C9A820;
   cursor: pointer;
 }
 
