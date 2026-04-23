@@ -12,7 +12,7 @@
   const T = {
     EN: {
       loading: 'Loading available dates…',
-      noSlots: 'No upcoming free trials available. Please contact us!',
+      noSlots: 'No upcoming free trial dates scheduled right now.',
       apiError: 'Could not load available dates. Please contact us directly.',
       spotsOk: (n) => `${n} spots available`,
       spotsLow: (n) => n === 1 ? '1 spot left!' : `${n} spots left!`,
@@ -22,17 +22,33 @@
       selectNoSlots: 'No available dates',
       successTitle: 'You\'re Registered!',
       successMessage: 'Your free trial has been booked. We\'ll see you on the dance floor!',
-      successTitleWaitlist: 'You\'re on the Waiting List!',
-      successMessageWaitlist: 'We\'ve added you to the waiting list. We\'ll contact you as soon as a spot opens up!',
+      successTitleWaitlist: 'Registration Received',
+      successMessageWaitlist: [
+        'As you indicated you are searching for a dance partner, we cannot confirm your participation immediately.',
+        'If we find a partner that matches your criteria — both age and height — we will send you an email with a confirmation.',
+        'As it\'s not always easy to find a dance partner, we strongly advise you to search for a partner in your own network of friends, family and coworkers.',
+        'If you do manage to find someone, please let us know as soon as possible.',
+      ],
       successEmailNote: 'A confirmation has been sent to',
       successRefLabel: 'Reference',
       successDateLabel: 'Your class',
       errorDefault: 'Something went wrong. Please try again or contact us directly.',
       btnLoading: 'Submitting…',
+      consentError: 'Please tick the consent box to continue.',
+      // Notify mode — shown when no free trial dates are scheduled
+      notifyLead: 'Our free trial lessons take place in January and September, just before the start of each 14-week course cycle. Leave your details below and we\'ll let you know as soon as the next dates are announced.',
+      notifyFormTitle: 'Keep me informed',
+      notifyFormSubtitle: 'We\'ll email you as soon as the next free trial dates are scheduled.',
+      notifySubmit: 'Notify me of next dates',
+      notifyFormNote: 'No commitment — you\'ll only hear from us when new free trials are announced.',
+      notifyEmailRequired: 'Please enter your name and email so we can reach you.',
+      notifySuccessTitle: 'You\'re on the list!',
+      notifySuccessMessage: 'We\'ll email you as soon as the next free trial dates are announced.',
+      notifyMessagePrefix: '[Free trial — notify me] Would like to be notified when the next free trial dates are scheduled.',
     },
     FR: {
       loading: 'Chargement des dates disponibles…',
-      noSlots: 'Aucun essai gratuit disponible prochainement. Contactez-nous !',
+      noSlots: 'Aucune date d\'essai gratuit n\'est programmée pour le moment.',
       apiError: 'Impossible de charger les dates. Veuillez nous contacter directement.',
       spotsOk: (n) => `${n} places disponibles`,
       spotsLow: (n) => n === 1 ? '1 place restante !' : `${n} places restantes !`,
@@ -42,17 +58,33 @@
       selectNoSlots: 'Aucune date disponible',
       successTitle: 'Inscription Confirmée !',
       successMessage: 'Votre essai gratuit est réservé. À bientôt sur la piste de danse !',
-      successTitleWaitlist: 'Vous êtes sur la liste d\'attente !',
-      successMessageWaitlist: 'Nous vous avons ajouté à la liste d\'attente. Nous vous contacterons dès qu\'une place se libère !',
+      successTitleWaitlist: 'Demande Reçue',
+      successMessageWaitlist: [
+        'Comme vous avez indiqué que vous cherchez un(e) partenaire de danse, nous ne pouvons pas confirmer votre participation immédiatement.',
+        'Si nous trouvons un(e) partenaire qui correspond à vos critères — à la fois en âge et en taille — nous vous enverrons un email de confirmation.',
+        'Trouver un(e) partenaire de danse n\'est pas toujours facile. Nous vous conseillons vivement d\'en chercher un(e) dans votre propre réseau d\'amis, de famille ou de collègues.',
+        'Si vous trouvez quelqu\'un, merci de nous le faire savoir au plus vite.',
+      ],
       successEmailNote: 'Une confirmation a été envoyée à',
       successRefLabel: 'Référence',
       successDateLabel: 'Votre cours',
       errorDefault: 'Une erreur est survenue. Veuillez réessayer ou nous contacter directement.',
       btnLoading: 'Envoi en cours…',
+      consentError: 'Veuillez cocher la case de consentement pour continuer.',
+      // Mode notification — affiché quand aucune date d'essai gratuit n'est programmée
+      notifyLead: 'Nos cours d\'essai gratuits ont lieu en janvier et en septembre, juste avant le début de chaque cycle de 14 semaines. Laissez-nous vos coordonnées ci-dessous et nous vous préviendrons dès que les prochaines dates seront annoncées.',
+      notifyFormTitle: 'Tenez-moi informé(e)',
+      notifyFormSubtitle: 'Nous vous enverrons un email dès que les prochaines dates d\'essai gratuit seront programmées.',
+      notifySubmit: 'Prévenez-moi des prochaines dates',
+      notifyFormNote: 'Sans engagement — vous n\'aurez de nouvelles que lorsque de nouveaux essais gratuits seront annoncés.',
+      notifyEmailRequired: 'Veuillez renseigner votre nom et votre email pour que nous puissions vous contacter.',
+      notifySuccessTitle: 'Vous êtes sur la liste !',
+      notifySuccessMessage: 'Nous vous enverrons un email dès que les prochaines dates d\'essai gratuit seront annoncées.',
+      notifyMessagePrefix: '[Essai gratuit — me prévenir] Souhaite être prévenu(e) lorsque les prochaines dates d\'essai gratuit seront programmées.',
     },
     NL: {
       loading: 'Beschikbare data laden…',
-      noSlots: 'Geen aankomende gratis proeflessen beschikbaar. Contacteer ons!',
+      noSlots: 'Er zijn momenteel geen gratis proeflesdata gepland.',
       apiError: 'Kon geen beschikbare data laden. Neem rechtstreeks contact op.',
       spotsOk: (n) => `${n} plaatsen beschikbaar`,
       spotsLow: (n) => n === 1 ? '1 plek over!' : `${n} plekken over!`,
@@ -62,13 +94,29 @@
       selectNoSlots: 'Geen beschikbare data',
       successTitle: 'Inschrijving Bevestigd!',
       successMessage: 'Je gratis proefles is geboekt. Tot snel op de dansvloer!',
-      successTitleWaitlist: 'Je staat op de wachtlijst!',
-      successMessageWaitlist: 'We hebben je toegevoegd aan de wachtlijst. We nemen contact op zodra er een plek vrijkomt!',
+      successTitleWaitlist: 'Aanvraag Ontvangen',
+      successMessageWaitlist: [
+        'Omdat je hebt aangegeven dat je op zoek bent naar een danspartner, kunnen we je deelname niet onmiddellijk bevestigen.',
+        'Zodra we een partner vinden die bij jouw criteria past — zowel qua leeftijd als lengte — sturen we je een bevestigingsmail.',
+        'Een danspartner vinden is niet altijd eenvoudig. We raden je sterk aan om ook in je eigen netwerk van vrienden, familie en collega\'s te zoeken.',
+        'Vind je iemand? Laat het ons dan zo snel mogelijk weten.',
+      ],
       successEmailNote: 'Een bevestiging is verzonden naar',
       successRefLabel: 'Referentie',
       successDateLabel: 'Je les',
       errorDefault: 'Er is iets misgegaan. Probeer opnieuw of contacteer ons rechtstreeks.',
       btnLoading: 'Verzenden…',
+      consentError: 'Vink het toestemmingsvakje aan om door te gaan.',
+      // Notificatiemodus — zichtbaar wanneer er geen gratis proeflessen gepland zijn
+      notifyLead: 'Onze gratis proeflessen vinden plaats in januari en september, net voor de start van elke lescyclus van 14 weken. Laat hieronder je gegevens achter en we laten het je weten zodra de volgende data bekend zijn.',
+      notifyFormTitle: 'Hou me op de hoogte',
+      notifyFormSubtitle: 'We sturen je een mail zodra de volgende gratis proeflesdata gepland zijn.',
+      notifySubmit: 'Breng me op de hoogte',
+      notifyFormNote: 'Geen verplichtingen — je hoort alleen van ons wanneer er nieuwe proeflessen aangekondigd worden.',
+      notifyEmailRequired: 'Vul je naam en e-mailadres in zodat we je kunnen bereiken.',
+      notifySuccessTitle: 'Je staat op de lijst!',
+      notifySuccessMessage: 'We sturen je een mail zodra de volgende gratis proeflesdata aangekondigd worden.',
+      notifyMessagePrefix: '[Gratis proefles — breng me op de hoogte] Wenst op de hoogte gebracht te worden wanneer de volgende gratis proeflesdata gepland zijn.',
     },
   };
 
@@ -119,6 +167,25 @@
       groups[key].items.push(trial);
     });
     return groups;
+  }
+
+  // Default capacity per free trial when the backend hasn't set max_students.
+  // Roughly 5 couples = 10 dancers.
+  const DEFAULT_FT_CAPACITY = 10;
+
+  // Resolve a meaningful "spots remaining" number from a trial payload.
+  // The CRM currently returns spots_remaining=null / max_students=null for
+  // free trials, so we fall back to DEFAULT_FT_CAPACITY - current_enrollment
+  // instead of letting null coerce into the "almost full" bucket.
+  function effectiveSpots(trial) {
+    if (!trial) return 0;
+    if (trial.is_full === true) return 0;
+    if (typeof trial.spots_remaining === 'number') return trial.spots_remaining;
+    const cap = (typeof trial.max_students === 'number' && trial.max_students > 0)
+      ? trial.max_students
+      : DEFAULT_FT_CAPACITY;
+    const enrolled = typeof trial.current_enrollment === 'number' ? trial.current_enrollment : 0;
+    return Math.max(0, cap - enrolled);
   }
 
   function spotsClass(n) {
@@ -186,8 +253,9 @@
           <div class="ft-trials-grid">`;
 
       items.forEach((trial, i) => {
-        const cls = spotsClass(trial.spots_remaining);
-        const lbl = spotsLabel(trial.spots_remaining, t);
+        const n = effectiveSpots(trial);
+        const cls = spotsClass(n);
+        const lbl = spotsLabel(n, t);
         html += `
           <div class="ft-trial-card ft-trial-card--selectable" data-trial-id="${trial.id}" style="animation-delay:${i * 0.08}s" role="button" tabindex="0" aria-label="${formatDate(trial.start_date, lang)} ${trial.start_time}–${trial.end_time}">
             <div class="ft-trial-left">
@@ -280,6 +348,82 @@
   }
 
   // ========================
+  // NOTIFY MODE (no upcoming trials)
+  // ========================
+
+  /**
+   * Rewrite the page UI into "keep me informed" mode when no free trial
+   * dates are currently scheduled. The form stays submittable, but instead
+   * of booking a specific lesson it collects the visitor's details so we
+   * can reach out when the next January / September dates open up.
+   */
+  function enterNotifyMode(lang) {
+    const t = T[lang];
+    const form = document.getElementById('free-trial-form');
+    if (!form) return;
+
+    // 1) Update the schedule section's lead paragraph with Jan/Sep message
+    const scheduleWrapper = document.querySelector('.ft-schedule-wrapper');
+    if (scheduleWrapper) {
+      const sub = scheduleWrapper.querySelector('.ft-section-sub');
+      if (sub) sub.textContent = t.notifyLead;
+      // The inner "Available trial classes" header is misleading here — hide it.
+      const blockTitle = scheduleWrapper.querySelector('.ft-schedule-block-title');
+      if (blockTitle) blockTitle.style.display = 'none';
+    }
+
+    // 2) Rewrite the form card header
+    const formCard = form.closest('.ft-form-card') || form.parentElement;
+    const formTitle = formCard?.querySelector('.ft-form-title');
+    const formSubtitle = formCard?.querySelector('.ft-form-subtitle');
+    if (formTitle) formTitle.textContent = t.notifyFormTitle;
+    if (formSubtitle) formSubtitle.textContent = t.notifyFormSubtitle;
+
+    // 3) Hide the "Your free class date" field entirely. Also drop `required`
+    //    so the disabled select can't block submission.
+    const selectEl = form.querySelector('#class-date');
+    if (selectEl) {
+      selectEl.required = false;
+      selectEl.disabled = true;
+      const field = selectEl.closest('.ft-form-field');
+      if (field) field.style.display = 'none';
+    }
+
+    // 4) Swap submit button text (preserve the arrow SVG) and footer note
+    const btn = form.querySelector('[type="submit"]');
+    if (btn) {
+      const svg = btn.querySelector('svg');
+      btn.textContent = '';
+      btn.appendChild(document.createTextNode(t.notifySubmit + ' '));
+      if (svg) btn.appendChild(svg);
+    }
+    const note = formCard?.querySelector('.ft-form-note');
+    if (note) note.textContent = t.notifyFormNote;
+
+    // 5) Flag mode so the submit handler takes the notify branch
+    form.dataset.mode = 'notify';
+  }
+
+  function showNotifySuccess(form, lang) {
+    const t = T[lang];
+    const wrap = form.closest('.form-container') || form.parentElement;
+    const email = form.querySelector('#email')?.value || '';
+
+    wrap.innerHTML = `
+      <div class="ft-success">
+        <div class="ft-success-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <h3 class="ft-success-title">${t.notifySuccessTitle}</h3>
+        <p class="ft-success-msg">${t.notifySuccessMessage}</p>
+        ${email ? `<p class="ft-success-email">${t.successEmailNote} <strong>${email}</strong></p>` : ''}
+      </div>`;
+  }
+
+  // ========================
   // SUCCESS CARD
   // ========================
 
@@ -296,7 +440,11 @@
     const locationStr = selectedTrial?.location?.name || '';
 
     const title = isWaitlisted ? t.successTitleWaitlist : t.successTitle;
-    const message = isWaitlisted ? t.successMessageWaitlist : t.successMessage;
+    const rawMessage = isWaitlisted ? t.successMessageWaitlist : t.successMessage;
+    const paragraphs = Array.isArray(rawMessage) ? rawMessage : [rawMessage];
+    const messageHtml = paragraphs
+      .map((p) => `<p class="ft-success-msg">${p}</p>`)
+      .join('');
 
     wrap.innerHTML = `
       <div class="ft-success">
@@ -307,7 +455,7 @@
           </svg>
         </div>
         <h3 class="ft-success-title">${title}</h3>
-        <p class="ft-success-msg">${message}</p>
+        ${messageHtml}
         ${email ? `<p class="ft-success-email">${t.successEmailNote} <strong>${email}</strong></p>` : ''}
         <div class="ft-success-meta">
           ${dateStr ? `
@@ -378,6 +526,11 @@
         wireScheduleClicks(scheduleEl, selectEl);
       }
       if (selectEl) populateSelect(selectEl, trials, lang);
+
+      // Switch the page into "keep me informed" mode when there are no
+      // upcoming free trial dates. The form stays submittable but collects
+      // contacts for the next January / September cycle.
+      if (!trials.length) enterNotifyMode(lang);
     } catch (err) {
       console.error('[FreeTrial] Failed to fetch free trials:', err);
       if (scheduleEl) renderScheduleError(scheduleEl, lang);
@@ -406,7 +559,70 @@
       const prevErr = form.querySelector('.ft-form-error');
       if (prevErr) prevErr.hidden = true;
 
-      // Get product
+      // Consent required
+      const consentEl = form.querySelector('input[name="consent"]');
+      if (consentEl && !consentEl.checked) {
+        showFormError(form, t.consentError);
+        consentEl.focus();
+        return;
+      }
+
+      // Common fields
+      const firstName = form.querySelector('#first-name')?.value?.trim() || '';
+      const lastName  = form.querySelector('#last-name')?.value?.trim() || '';
+      const email     = form.querySelector('#email')?.value?.trim() || '';
+      const phone     = form.querySelector('#phone')?.value?.trim() || null;
+      const userNote  = form.querySelector('#message')?.value?.trim() || '';
+
+      // Detect partner: second option = with partner
+      const partnerSel = form.querySelector('#partner');
+      const hasPartner = (partnerSel?.selectedIndex || 0) > 0;
+
+      // ----- NOTIFY MODE: no upcoming trials, user wants to be kept informed -----
+      if (form.dataset.mode === 'notify') {
+        if (!firstName || !lastName || !email) {
+          showFormError(form, t.notifyEmailRequired);
+          return;
+        }
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = t.btnLoading;
+        }
+
+        const msgParts = [t.notifyMessagePrefix];
+        msgParts.push(hasPartner ? '(with partner)' : '(coming alone)');
+        if (userNote) msgParts.push('\n---\n' + userNote);
+
+        const contactPayload = {
+          first_name: firstName,
+          last_name:  lastName,
+          email:      email,
+          phone:      phone,
+          // Use the existing `free_trial` topic enum; the "notify me" intent
+          // is encoded in the message body (notifyMessagePrefix).
+          topic:      'free_trial',
+          message:    msgParts.join(' '),
+          lang:       lang,
+          _honey: (form.querySelector('[name="_honey"]') || { value: '' }).value,
+          _ts:    parseInt((form.querySelector('[name="_ts"]') || { value: '0' }).value, 10),
+        };
+
+        try {
+          await api.submitContactForm(contactPayload);
+          showNotifySuccess(form, lang);
+        } catch (err) {
+          console.error('[FreeTrial] Notify signup error:', err);
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          }
+          showFormError(form, err.message || t.errorDefault);
+        }
+        return;
+      }
+
+      // ----- BOOKING MODE: register for a specific free trial date -----
       const productId = parseInt(selectEl?.value);
       const selectedTrial = trials.find((tr) => tr.id === productId) || null;
 
@@ -418,21 +634,17 @@
         submitBtn.textContent = t.btnLoading;
       }
 
-      // Detect partner: second option = with partner
-      const partnerSel = form.querySelector('#partner');
-      const hasPartner = (partnerSel?.selectedIndex || 0) > 0;
-
       const payload = {
         contact: {
-          first_name: form.querySelector('#first-name')?.value?.trim() || '',
-          last_name: form.querySelector('#last-name')?.value?.trim() || '',
-          email: form.querySelector('#email')?.value?.trim() || '',
-          phone: form.querySelector('#phone')?.value?.trim() || null,
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          phone: phone,
           language: lang,
         },
         product_id: productId,
         has_partner: hasPartner,
-        remarks: form.querySelector('#message')?.value?.trim() || null,
+        remarks: userNote || null,
         _honey: (form.querySelector('[name="_honey"]') || { value: '' }).value,
         _ts:    parseInt((form.querySelector('[name="_ts"]') || { value: '0' }).value, 10),
       };

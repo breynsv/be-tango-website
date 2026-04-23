@@ -9,7 +9,7 @@
 const API_CONFIG = {
     // Auto-detect environment and set base URL
     baseURL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'http://127.0.0.1:8001/api/v1'
+        ? 'http://betango.membrero.test:8001/api/v1'
         : 'https://crm.be-tango.be/api/v1',
     timeout: 10000, // 10 seconds
     retryAttempts: 2,

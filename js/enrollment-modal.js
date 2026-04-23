@@ -54,9 +54,11 @@
       close: 'Close',
       required: 'required',
       waitlistTitle: 'Registration Received',
-      waitlistMessage: 'As you indicated you are searching for a dance partner, we cannot confirm your participation immediately. If we find a partner that matches your criteria we will send you an email with a confirmation.',
-      waitlistAdvice: 'We strongly advise searching for a partner in your own network of friends, family and coworkers.',
+      waitlistMessage: 'As you indicated you are searching for a dance partner, we cannot confirm your participation immediately. If we find a partner that matches your criteria — both age and height — we will send you an email with a confirmation.',
+      waitlistAdvice: 'As it\'s not always easy to find a dance partner, we strongly advise you to search for a partner in your own network of friends, family and coworkers. If you do manage to find someone, please let us know as soon as possible.',
       waitlistClose: 'Close',
+      consent: 'I agree to receive information about BE-TANGO courses and events.',
+      consentError: 'Please tick the consent box to continue.',
     },
     FR: {
       modalTitle: 'S\'inscrire au cours',
@@ -99,9 +101,11 @@
       close: 'Fermer',
       required: 'obligatoire',
       waitlistTitle: 'Demande Reçue',
-      waitlistMessage: 'Comme vous cherchez un partenaire de danse, nous ne pouvons pas confirmer votre participation immédiatement. Nous vous enverrons un email dès que nous aurons trouvé un partenaire correspondant à vos critères.',
-      waitlistAdvice: 'Nous vous conseillons vivement de chercher un partenaire dans votre réseau.',
+      waitlistMessage: 'Comme vous avez indiqué que vous cherchez un(e) partenaire de danse, nous ne pouvons pas confirmer votre participation immédiatement. Si nous trouvons un(e) partenaire qui correspond à vos critères — à la fois en âge et en taille — nous vous enverrons un email de confirmation.',
+      waitlistAdvice: 'Trouver un(e) partenaire de danse n\'est pas toujours facile. Nous vous conseillons vivement d\'en chercher un(e) dans votre propre réseau d\'amis, de famille ou de collègues. Si vous trouvez quelqu\'un, merci de nous le faire savoir au plus vite.',
       waitlistClose: 'Fermer',
+      consent: 'J\'accepte de recevoir des informations sur les cours et événements BE-TANGO.',
+      consentError: 'Veuillez cocher la case de consentement pour continuer.',
     },
     NL: {
       modalTitle: 'Inschrijven voor de les',
@@ -144,9 +148,11 @@
       close: 'Sluiten',
       required: 'verplicht',
       waitlistTitle: 'Aanvraag Ontvangen',
-      waitlistMessage: 'Omdat u op zoek bent naar een danspartner, kunnen wij uw deelname niet onmiddellijk bevestigen. We sturen u een e-mail zodra we een geschikte partner gevonden hebben.',
-      waitlistAdvice: 'We raden u sterk aan om in uw eigen netwerk van vrienden, familie en collega\'s naar een partner te zoeken.',
+      waitlistMessage: 'Omdat je hebt aangegeven dat je op zoek bent naar een danspartner, kunnen we je deelname niet onmiddellijk bevestigen. Zodra we een partner vinden die bij jouw criteria past — zowel qua leeftijd als lengte — sturen we je een bevestigingsmail.',
+      waitlistAdvice: 'Een danspartner vinden is niet altijd eenvoudig. We raden je sterk aan om ook in je eigen netwerk van vrienden, familie en collega\'s te zoeken. Vind je iemand? Laat het ons dan zo snel mogelijk weten.',
       waitlistClose: 'Sluiten',
+      consent: 'Ik ga akkoord met het ontvangen van informatie over BE-TANGO cursussen en evenementen.',
+      consentError: 'Vink het toestemmingsvakje aan om door te gaan.',
     },
   };
 
@@ -399,6 +405,11 @@
           <label class="em-label" for="em-remarks">${t.remarks}</label>
           <textarea class="em-textarea" id="em-remarks" name="remarks" placeholder="${t.remarksPlaceholder}"></textarea>
         </div>
+
+        <label class="em-consent">
+          <input type="checkbox" id="em-consent" name="consent" required>
+          <span>${t.consent} <span class="em-required" aria-hidden="true">*</span></span>
+        </label>
 
         <div class="em-submit-wrap">
           <button type="submit" class="em-submit" id="em-submit">
@@ -799,6 +810,13 @@
     const form = document.getElementById('em-form');
     if (!form.checkValidity()) {
       form.reportValidity();
+      return;
+    }
+
+    // Consent required (custom message — friendlier than native bubble on checkbox)
+    const consentEl = document.getElementById('em-consent');
+    if (consentEl && !consentEl.checked) {
+      showError(t.consentError, 'em-consent');
       return;
     }
 

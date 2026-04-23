@@ -15,7 +15,7 @@
   var BASE = (typeof API_CONFIG !== 'undefined' && API_CONFIG.baseURL)
     ? API_CONFIG.baseURL
     : (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
-      ? 'http://127.0.0.1:8001/api/v1'
+      ? 'http://betango.membrero.test:8001/api/v1'
       : 'https://crm.be-tango.be/api/v1';
 
   var LANG_MAP = { fr: 'FR', nl: 'NL' };

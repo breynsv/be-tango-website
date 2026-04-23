@@ -475,8 +475,43 @@
 .em-sub-section .em-field:first-child { margin-top: 0; }
 .em-sub-section .em-row .em-field { margin-top: 0; }
 
+/* ─── Consent ───────────────────────────────────────────────── */
+.em-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  color: #6B7280;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.em-consent input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: #E2C033;
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .em-consent {
+    gap: 12px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .em-consent input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+  }
+}
+
 /* ─── Submit button ─────────────────────────────────────────── */
-.em-submit-wrap { margin-top: 28px; }
+.em-submit-wrap { margin-top: 20px; }
 
 .em-submit {
   width: 100%;
