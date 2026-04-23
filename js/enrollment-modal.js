@@ -919,53 +919,96 @@
   // EPC / SEPA QR CODE
   // ========================
 
-  function generateEpcQrCode(data) {
-    const canvas = document.getElementById('em-qr-canvas');
+  var QRCODE_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+
+  function loadQrCodeScript() {
+    return new Promise(function (resolve, reject) {
+      if (typeof QRCode !== 'undefined') { resolve(); return; }
+      // Reuse any existing script tag already in the document
+      var existing = document.querySelector('script[src="' + QRCODE_CDN + '"]');
+      if (existing) {
+        existing.addEventListener('load', resolve);
+        existing.addEventListener('error', reject);
+        return;
+      }
+      var s = document.createElement('script');
+      s.src = QRCODE_CDN;
+      s.crossOrigin = 'anonymous';
+      s.addEventListener('load', resolve);
+      s.addEventListener('error', reject);
+      document.head.appendChild(s);
+    });
+  }
+
+  function showFallbackQr(canvas, data) {
+    var section = document.getElementById('em-qr-section');
+    if (data.qr_code_url) {
+      var img = document.createElement('img');
+      img.src = data.qr_code_url;
+      img.alt = 'QR Code';
+      img.style.cssText = 'width:200px;height:200px;display:block;margin:0 auto;';
+      canvas.appendChild(img);
+      // Swap SEPA label for generic QR label
+      var body = canvas.closest('.em-qr-body');
+      if (body) {
+        var lbl = body.querySelector('.em-qr-label');
+        if (lbl) lbl.textContent = getLang() === 'FR' ? 'Votre QR code' : getLang() === 'NL' ? 'Uw QR-code' : 'Your QR code';
+        var cap = body.querySelector('.em-qr-caption');
+        if (cap) cap.hidden = true;
+      }
+    } else {
+      section.hidden = true;
+    }
+  }
+
+  async function generateEpcQrCode(data) {
+    var canvas = document.getElementById('em-qr-canvas');
     if (!canvas) return;
 
-    // Clear previous QR
     canvas.innerHTML = '';
 
+    // Ensure QRCode.js is loaded (dynamically if needed)
     if (typeof QRCode === 'undefined') {
-      console.warn('[EnrollmentModal] QRCode.js not loaded — skipping QR generation');
-      document.getElementById('em-qr-section').hidden = true;
-      return;
+      try {
+        await loadQrCodeScript();
+      } catch (err) {
+        console.warn('[EnrollmentModal] QRCode.js unavailable — using fallback QR');
+        showFallbackQr(canvas, data);
+        return;
+      }
     }
 
-    const iban    = (data.bank_account || 'BE97068896456849').replace(/\s/g, '');
-    const name    = data.bank_name || 'BE-TANGO ART';
-    const amount  = parseFloat(data.amount || 0);
-    const ref     = data.payment_reference || '';
+    var iban   = (data.bank_account || 'BE97068896456849').replace(/\s/g, '');
+    var name   = data.bank_name || 'BE-TANGO ART';
+    var amount = parseFloat(data.amount || 0);
+    var ref    = data.payment_reference || '';
 
     // EPC QR Code (SEPA Credit Transfer) — GiroCode standard
-    // Line 10 = structured creditor reference, Line 11 = unstructured (empty)
-    const epcLines = [
-      'BCD',              // 1  Service tag
-      '002',              // 2  Version
-      '1',                // 3  Character set (UTF-8)
-      'SCT',              // 4  Identification
-      data.bank_bic || 'GEBABEBB', // 5  BIC
-      name,               // 6  Beneficiary name
-      iban,               // 7  IBAN
-      'EUR' + amount.toFixed(2), // 8  Amount
-      '',                 // 9  Purpose (optional)
-      ref,                // 10 Structured remittance reference
-      '',                 // 11 Unstructured remittance (empty when structured used)
-      '',                 // 12 Beneficiary to originator info
+    var epcLines = [
+      'BCD',                        // 1  Service tag
+      '002',                        // 2  Version
+      '1',                          // 3  Character set (UTF-8)
+      'SCT',                        // 4  Identification
+      data.bank_bic || 'GEBABEBB',  // 5  BIC
+      name,                         // 6  Beneficiary name
+      iban,                         // 7  IBAN
+      'EUR' + amount.toFixed(2),    // 8  Amount
+      '',                           // 9  Purpose (optional)
+      ref,                          // 10 Structured remittance reference
+      '',                           // 11 Unstructured remittance
+      '',                           // 12 Beneficiary info
     ];
-
-    const epcString = epcLines.join('\n');
 
     try {
       new QRCode(canvas, {
-        text: epcString,
+        text: epcLines.join('\n'),
         width: 200,
         height: 200,
         correctLevel: QRCode.CorrectLevel.M,
       });
     } catch (err) {
-      console.error('[EnrollmentModal] QR generation failed:', err);
-      document.getElementById('em-qr-section').hidden = true;
+      console.error('[EnrollmentModal] SEPA QR generation failed:', err);
+      showFallbackQr(canvas, data);
     }
   }
 
