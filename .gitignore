@@ -41,7 +41,10 @@ temp/
 # Local-only (not deployed)
 .superpowers/
 docs/
-_dev/
+_dev/*
+!_dev/e2e
+_dev/e2e/screenshots/
+_dev/e2e/last-report.json
 pages/
 blog-backup/
 qa-report.html
