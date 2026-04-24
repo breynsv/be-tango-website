@@ -956,10 +956,10 @@
 
     try {
       var res = await window.BETangoCRM.api.fetchPaymentQr(data.enrollment_id, data.payment_reference);
-      if (res && res.qr_base64) {
+      if (res && res.data && res.data.qr_base64) {
         canvas.innerHTML = '';
         var img = document.createElement('img');
-        img.src = res.qr_base64;
+        img.src = res.data.qr_base64;
         img.alt = 'Payment QR Code';
         img.style.cssText = 'width:200px;height:200px;display:block;margin:0 auto;';
         canvas.appendChild(img);
