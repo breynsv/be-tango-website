@@ -1,0 +1,54 @@
+name: E2E Production Tests
+
+on:
+  schedule:
+    # Mondays at 08:00 Brussels time (07:00 UTC)
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+    # Allows one-click manual trigger from GitHub Actions UI
+
+jobs:
+  e2e:
+    name: Run E2E Suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Create .env file
+        run: |
+          echo "E2E_CLEANUP_SECRET=${{ secrets.E2E_CLEANUP_SECRET }}" >> .env
+          echo "BREVO_API_KEY=${{ secrets.BREVO_API_KEY }}" >> .env
+
+      - name: Run E2E tests
+        run: npm run test:e2e
+
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-screenshots-${{ github.run_id }}
+          path: _dev/e2e/screenshots/
+          retention-days: 7
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-report-${{ github.run_id }}
+          path: _dev/e2e/last-report.json
+          retention-days: 30
