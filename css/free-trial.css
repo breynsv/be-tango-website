@@ -529,7 +529,15 @@ body { background: #FAF8F5; }
   grid-row: 1 / span 3;
   position: sticky;
   top: 96px;
+  max-height: calc(100vh - 112px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.15) transparent;
 }
+.ft-right::-webkit-scrollbar { width: 6px; }
+.ft-right::-webkit-scrollbar-track { background: transparent; }
+.ft-right::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 3px; }
+.ft-right::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
 
 /* ── Section headings ────────────────────────────────────────────── */
 .ft-section-label {
@@ -1418,7 +1426,7 @@ body { background: #FAF8F5; }
   }
 
   .ft-schedule-wrapper { order: -3; margin-bottom: 32px; grid-row: auto; grid-column: 1; }
-  .ft-right             { position: static; order: -2; margin-bottom: 40px; grid-row: auto; grid-column: 1; }
+  .ft-right             { position: static; order: -2; margin-bottom: 40px; grid-row: auto; grid-column: 1; max-height: none; overflow-y: visible; }
   .ft-left-top          { order: -1; grid-row: auto; grid-column: 1; }
   .ft-left-bottom       { order: 0;  grid-row: auto; grid-column: 1; }
 }
