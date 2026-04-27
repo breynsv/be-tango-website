@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
-  <meta http-equiv="refresh" content="0;url=/fr/">
+  <meta name="description" content="BE-TANGO - Votre école de danse de tango argentin à Bruxelles et Woluwe. Encadrement professionnel dans une ambiance décontractée. Rejoignez notre communauté de tango vibrante dès aujourd'hui !">
   <link rel="canonical" href="https://www.be-tango.be/fr/">
   <title>BE-TANGO – Cours de Tango Argentin à Bruxelles</title>
-  <script>window.location.replace('/fr/');</script>
+  <script>
+    var m = document.cookie.match(/(?:^|; )lang=(fr|nl|en)/);
+    window.location.replace('/' + (m ? m[1] : 'fr') + '/');
+  </script>
 </head>
 <body>
-  <p>Redirection vers <a href="/fr/">be-tango.be/fr/</a>…</p>
+  <p>Redirection… <a href="/fr/">FR</a> | <a href="/nl/">NL</a> | <a href="/en/">EN</a></p>
 </body>
 </html>

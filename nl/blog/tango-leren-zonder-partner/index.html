@@ -631,6 +631,7 @@
     function updateTOC(){let c='';sections.forEach(s=>{if(s.getBoundingClientRect().top<=120)c=s.id});tocItems.forEach(i=>{i.classList.remove('active');const l=i.querySelector('a');if(l&&l.getAttribute('href')==='#'+c)i.classList.add('active')})}
     window.addEventListener('scroll',updateTOC,{passive:true});updateTOC();
   </script>
+<script src="/js/lang-cookie.min.js"></script>
 <script src="../../../js/api-config.min.js"></script>
 <script src="../../../js/newsletter.min.js"></script>
 </body>
