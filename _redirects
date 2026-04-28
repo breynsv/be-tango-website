@@ -15,6 +15,11 @@
 /en/portfolio/  /en/  301
 /en/hello-world/  /en/blog/  301
 
+# Old WordPress URLs without /en/ prefix
+/contact/  /en/contact/  301
+/tango-classes/  /en/tango-classes/  301
+/tango-classes/woluwe/  /en/tango-classes/woluwe/  301
+
 # WordPress wp-content assets — 404 is correct, no redirect needed
 # /wp-content/* paths are old media/theme assets that no longer exist
 
