@@ -5512,7 +5512,7 @@ section {
   }
 
   .hero-bg-image {
-    object-position: 35% center; /* shift crop left to center dancers on mobile */
+    object-position: center center; /* portrait-cropped mobile image is already centered */
   }
 }
 
@@ -5523,7 +5523,7 @@ section {
   }
 
   .hero-bg-image {
-    object-position: 35% center;
+    object-position: center center;
   }
 
   .hero h1 {
