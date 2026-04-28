@@ -1,0 +1,23 @@
+# Old WordPress URLs → new site (301 permanent redirects)
+# Detected via Google Search Console 404 report 2026-04-28
+
+# Direct content matches
+/tango-classes/online-tango-classes/  /en/tango-classes/online/  301
+/fr/en-ligne/  /fr/cours-de-tango/en-ligne/  301
+/en/tango-classes/tango-classes-in-brussels/tango-classes-for-beginners/  /en/tango-classes/beginners/  301
+
+# Old /about pages → homepage (no about page in new site)
+/about/  /en/  301
+/en/about/  /en/  301
+
+# WordPress default pages
+/en/sample-page/  /en/  301
+/en/portfolio/  /en/  301
+/en/hello-world/  /en/blog/  301
+
+# WordPress wp-content assets — 404 is correct, no redirect needed
+# /wp-content/* paths are old media/theme assets that no longer exist
+
+# Note: Query-string redirects (/?p=1, /?page_id=2, /?p=1053)
+# are not supported by Cloudflare Pages _redirects file.
+# These will naturally stop being crawled over time.
