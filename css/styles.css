@@ -5540,7 +5540,7 @@ section {
   /* 4. Small text — bump to readable sizes on mobile */
   .nl-split-tag,
   .nl-split-right-tag {
-    font-size: 12px;
+    font-size: 12px !important;
   }
 
   .nl-split-form-label,
@@ -5549,12 +5549,12 @@ section {
   }
 
   .ft-label {
-    font-size: 13px;
+    font-size: 13px !important;
   }
 
   .loc-address,
   .loc-link {
-    font-size: 13px;
+    font-size: 13px !important;
   }
 
   .lsched-level-badge,
@@ -5603,7 +5603,7 @@ section {
   .breadcrumb a,
   .toc-link,
   .bd-read-more {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
     min-height: 44px;
   }
