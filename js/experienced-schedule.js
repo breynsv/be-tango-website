@@ -31,6 +31,10 @@
       closeCalendar: 'Close',
       calMonthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
       calWeekDays: ['Mo','Tu','We','Th','Fr','Sa','Su'],
+      dayFull: {
+        'Monday': 'Monday', 'Tuesday': 'Tuesday', 'Wednesday': 'Wednesday',
+        'Thursday': 'Thursday', 'Friday': 'Friday', 'Saturday': 'Saturday', 'Sunday': 'Sunday'
+      },
       cities: { 'Brussels': 'Brussels', 'Woluwe': 'Woluwe' },
       levels: {
         '1':  'First Year',
@@ -62,6 +66,10 @@
       closeCalendar: 'Fermer',
       calMonthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
       calWeekDays: ['Lu','Ma','Me','Je','Ve','Sa','Di'],
+      dayFull: {
+        'Monday': 'Lundi', 'Tuesday': 'Mardi', 'Wednesday': 'Mercredi',
+        'Thursday': 'Jeudi', 'Friday': 'Vendredi', 'Saturday': 'Samedi', 'Sunday': 'Dimanche'
+      },
       cities: { 'Brussels': 'Bruxelles', 'Woluwe': 'Woluwe' },
       levels: {
         '1':  'Première Année',
@@ -93,6 +101,10 @@
       closeCalendar: 'Sluiten',
       calMonthNames: ['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December'],
       calWeekDays: ['Ma','Di','Wo','Do','Vr','Za','Zo'],
+      dayFull: {
+        'Monday': 'Maandag', 'Tuesday': 'Dinsdag', 'Wednesday': 'Woensdag',
+        'Thursday': 'Donderdag', 'Friday': 'Vrijdag', 'Saturday': 'Zaterdag', 'Sunday': 'Zondag'
+      },
       cities: { 'Brussels': 'Brussel', 'Woluwe': 'Woluwe' },
       levels: {
         '1':  'Eerste Jaar',
@@ -113,6 +125,11 @@
     if (!field) return '';
     if (typeof field === 'string') return field;
     return field[lang] || field['en'] || Object.values(field)[0] || '';
+  }
+
+  function translateDay(dow, t) {
+    if (!dow) return '';
+    return (t.dayFull && t.dayFull[dow]) || dow;
   }
 
   function getLang() {
@@ -265,7 +282,8 @@
       var address     = cls.location ? locStr(cls.location.full_address, lang) || locStr(cls.location.address, lang) || city : '';
       var street      = address ? address.split(',')[0].trim() : '';
       var streetCity  = street ? street + ', ' + city : city;
-      var day         = cls.day_of_week || '';
+      var dayRaw      = cls.day_of_week || '';
+      var day         = translateDay(dayRaw, t);
       var time        = (cls.start_time || '') + ' \u2013 ' + (cls.end_time || '');
       var friendlyName = levelName + ' \u00b7 ' + day;
 
@@ -405,7 +423,8 @@
 
     var levelCode   = String(classData.level_code || '');
     var levelLabel  = (classData.level_name && classData.level_name[lang]) || t.levels[levelCode] || '';
-    var friendlyName = levelLabel + (classData.day_of_week ? ' \u00b7 ' + classData.day_of_week : '');
+    var dayLabel    = translateDay(classData.day_of_week, t);
+    var friendlyName = levelLabel + (dayLabel ? ' \u00b7 ' + dayLabel : '');
     var calendarHtml = buildCalendarHTML(classData, t, lang);
 
     var BADGE_STYLES = {
@@ -559,7 +578,8 @@
     var practicaDates = classData.practica_dates || [];
     var levelCode     = String(classData.level_code || '');
     var levelLabel    = (classData.level_name && classData.level_name[lang]) || t.levels[levelCode] || '';
-    var friendlyName  = levelLabel + (classData.day_of_week ? ' \u00b7 ' + classData.day_of_week : '');
+    var dayLabel      = translateDay(classData.day_of_week, t);
+    var friendlyName  = levelLabel + (dayLabel ? ' \u00b7 ' + dayLabel : '');
     var location      = (classData.location && locStr(classData.location.full_address, lang)) || '';
     var startTime     = classData.start_time || '19:00';
     var endTime       = classData.end_time || (function () {
@@ -612,7 +632,8 @@
   function printCalendar(classData, t, lang) {
     var levelCode   = String(classData.level_code || '');
     var levelLabel  = (classData.level_name && classData.level_name[lang]) || t.levels[levelCode] || '';
-    var friendlyName = levelLabel + (classData.day_of_week ? ' \u00b7 ' + classData.day_of_week : '');
+    var dayLabel    = translateDay(classData.day_of_week, t);
+    var friendlyName = levelLabel + (dayLabel ? ' \u00b7 ' + dayLabel : '');
     var lessonSet   = {};
     var practicaSet = {};
     (classData.lesson_dates || []).forEach(function (d) { lessonSet[d] = true; });
