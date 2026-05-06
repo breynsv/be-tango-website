@@ -10,6 +10,70 @@
   const CONSENT_EXPIRY_DAYS = 365;
 
   /**
+   * UI translations — keyed by language code from <html lang="...">
+   * Brand voice: always plural ("we"/"nous"/"wij"), never first-person singular.
+   */
+  const TRANSLATIONS = {
+    en: {
+      title: 'Cookie Consent',
+      description: 'We use cookies to improve your experience on our website. By continuing to browse, you agree to our use of cookies.',
+      learnMore: 'Learn more',
+      accept: 'Accept',
+      decline: 'Decline',
+      closeAria: 'Close banner',
+      moreInfoTitle: 'Cookie Information',
+      moreInfoIntro: 'We use cookies to:',
+      moreInfoItem1: '- Remember your preferences',
+      moreInfoItem2: '- Analyze website traffic',
+      moreInfoItem3: '- Improve user experience',
+      moreInfoChange: 'You can change your cookie preferences at any time.',
+      moreInfoPolicy: 'For more details, please read our Privacy Policy.'
+    },
+    fr: {
+      title: 'Consentement aux cookies',
+      description: 'Nous utilisons des cookies pour améliorer votre expérience sur notre site. En poursuivant votre navigation, vous acceptez notre utilisation des cookies.',
+      learnMore: 'En savoir plus',
+      accept: 'Accepter',
+      decline: 'Refuser',
+      closeAria: 'Fermer la bannière',
+      moreInfoTitle: 'Informations sur les cookies',
+      moreInfoIntro: 'Nous utilisons des cookies pour :',
+      moreInfoItem1: '- Mémoriser vos préférences',
+      moreInfoItem2: '- Analyser le trafic du site',
+      moreInfoItem3: '- Améliorer l\'expérience utilisateur',
+      moreInfoChange: 'Vous pouvez modifier vos préférences de cookies à tout moment.',
+      moreInfoPolicy: 'Pour plus de détails, veuillez consulter notre Politique de confidentialité.'
+    },
+    nl: {
+      title: 'Cookietoestemming',
+      description: 'We gebruiken cookies om uw ervaring op onze website te verbeteren. Door verder te bladeren, gaat u akkoord met ons gebruik van cookies.',
+      learnMore: 'Meer info',
+      accept: 'Accepteren',
+      decline: 'Weigeren',
+      closeAria: 'Banner sluiten',
+      moreInfoTitle: 'Informatie over cookies',
+      moreInfoIntro: 'We gebruiken cookies om:',
+      moreInfoItem1: '- Uw voorkeuren te onthouden',
+      moreInfoItem2: '- Websiteverkeer te analyseren',
+      moreInfoItem3: '- De gebruikerservaring te verbeteren',
+      moreInfoChange: 'U kunt uw cookievoorkeuren op elk moment wijzigen.',
+      moreInfoPolicy: 'Lees voor meer details ons Privacybeleid.'
+    }
+  };
+
+  /**
+   * Detect active language from <html lang="..."> with EN fallback.
+   */
+  function getLang() {
+    const raw = (document.documentElement.lang || 'en').toLowerCase().slice(0, 2);
+    return TRANSLATIONS[raw] ? raw : 'en';
+  }
+
+  function t() {
+    return TRANSLATIONS[getLang()];
+  }
+
+  /**
    * Cookie consent manager
    */
   const CookieConsent = {
@@ -108,25 +172,25 @@
       banner.setAttribute('aria-labelledby', 'cookie-consent-title');
       banner.setAttribute('aria-describedby', 'cookie-consent-description');
 
+      const i18n = t();
       banner.innerHTML = `
         <div class="cookie-consent-container">
           <div class="cookie-consent-text">
-            <h3 id="cookie-consent-title" class="visually-hidden">Cookie Consent</h3>
+            <h3 id="cookie-consent-title" class="visually-hidden">${i18n.title}</h3>
             <p id="cookie-consent-description">
-              We use cookies to improve your experience on our website.
-              By continuing to browse, you agree to our use of cookies.
-              <a href="#" id="cookie-learn-more">Learn more</a>
+              ${i18n.description}
+              <a href="#" id="cookie-learn-more">${i18n.learnMore}</a>
             </p>
           </div>
           <div class="cookie-consent-buttons">
             <button class="cookie-consent-btn cookie-consent-btn-accept" id="cookie-accept" type="button">
-              Accept
+              ${i18n.accept}
             </button>
             <button class="cookie-consent-btn cookie-consent-btn-decline" id="cookie-decline" type="button">
-              Decline
+              ${i18n.decline}
             </button>
           </div>
-          <button class="cookie-consent-close" id="cookie-close" type="button" aria-label="Close banner">
+          <button class="cookie-consent-close" id="cookie-close" type="button" aria-label="${i18n.closeAria}">
             &times;
           </button>
         </div>
@@ -288,14 +352,15 @@
      */
     showMoreInfo: function() {
       // You can customize this to show a modal or navigate to privacy policy
+      const i18n = t();
       alert(
-        'Cookie Information\n\n' +
-        'We use cookies to:\n' +
-        '- Remember your preferences\n' +
-        '- Analyze website traffic\n' +
-        '- Improve user experience\n\n' +
-        'You can change your cookie preferences at any time.\n\n' +
-        'For more details, please read our Privacy Policy.'
+        i18n.moreInfoTitle + '\n\n' +
+        i18n.moreInfoIntro + '\n' +
+        i18n.moreInfoItem1 + '\n' +
+        i18n.moreInfoItem2 + '\n' +
+        i18n.moreInfoItem3 + '\n\n' +
+        i18n.moreInfoChange + '\n\n' +
+        i18n.moreInfoPolicy
       );
 
       // Better approach: Navigate to privacy policy page
