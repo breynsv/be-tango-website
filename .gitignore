@@ -34,6 +34,9 @@ Temporary Items
 .vscode/
 .idea/
 
+# Claude Code working directory
+.claude/
+
 # Temporary files
 tmp/
 temp/
