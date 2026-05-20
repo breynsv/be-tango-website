@@ -434,10 +434,8 @@
           <path d="M21 37.5L30.5 47L51 26" class="em-check-path"/>
         </svg>
         <h2 class="em-success-title" id="em-success-title">${t.successTitle}</h2>
-        <p class="em-success-msg">${t.successMessage}</p>
+        <p class="em-success-msg" id="em-success-msg">${t.successMessage}</p>
       </div>
-
-      <div class="em-chips" id="em-success-chips" role="list" aria-label="Class details"></div>
 
       <div id="em-success-payment">
         <div class="em-divider"></div>
@@ -558,9 +556,6 @@
 
     var chipsEl = document.getElementById('em-chips');
     if (chipsEl) chipsEl.innerHTML = html || chipsEl.innerHTML;
-
-    var successChipsEl = document.getElementById('em-success-chips');
-    if (successChipsEl) successChipsEl.innerHTML = html;
   }
 
   // ========================
@@ -695,6 +690,7 @@
     if (data.partner_needed) {
       // Waitlist state — no payment info
       document.getElementById('em-success-title').textContent = t.waitlistTitle;
+      document.getElementById('em-success-msg').hidden = true;
       document.getElementById('em-success-payment').hidden = true;
       document.getElementById('em-success-waitlist').hidden = false;
       document.getElementById('em-waitlist-message').textContent = t.waitlistMessage;
@@ -702,6 +698,8 @@
     } else {
       // Payment state
       document.getElementById('em-success-title').textContent = t.successTitle;
+      document.getElementById('em-success-msg').hidden = false;
+      document.getElementById('em-success-msg').textContent = t.successMessage;
       document.getElementById('em-success-payment').hidden = false;
       document.getElementById('em-success-waitlist').hidden = true;
 
