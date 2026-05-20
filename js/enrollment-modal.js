@@ -772,33 +772,42 @@
   // LANGUAGE LOADER
   // ========================
 
+  // Localized names for the 3 supported language codes, shown in the dropdown.
+  // Keys = page language (EN/FR/NL); inner keys = language code.
+  const LANG_NAMES = {
+    EN: { EN: 'English',  FR: 'French',       NL: 'Dutch'      },
+    FR: { EN: 'Anglais',  FR: 'Français',     NL: 'Néerlandais' },
+    NL: { EN: 'Engels',   FR: 'Frans',        NL: 'Nederlands' },
+  };
+
+  function localizedLangName(code, pageLang) {
+    return (LANG_NAMES[pageLang] && LANG_NAMES[pageLang][code]) || code;
+  }
+
   async function loadLanguages() {
     const select = document.getElementById('em-language');
     if (!select) return;
 
+    const pageLang = getLang(); // EN | FR | NL
+
+    function appendOption(code) {
+      const opt = document.createElement('option');
+      opt.value = code;
+      opt.textContent = localizedLangName(code, pageLang);
+      // Use the HTML attribute (not just the property) so form.reset() preserves the preselection
+      if (code === pageLang) opt.setAttribute('selected', 'selected');
+      select.appendChild(opt);
+    }
+
     try {
       const res = await window.BETangoCRM.api.getLanguages();
       const languages = res.data || res;
-      const pageLang = getLang(); // EN | FR | NL
-
       languages.forEach(function (lang) {
-        const opt = document.createElement('option');
-        opt.value = lang.code;
-        opt.textContent = lang.name;
-        // Pre-select the option that matches the current page language
-        if (lang.code === pageLang) opt.selected = true;
-        select.appendChild(opt);
+        appendOption(lang.code);
       });
     } catch (err) {
       console.warn('[EnrollmentModal] Could not load languages:', err);
-      // Fallback: add EN/FR/NL manually so the form still works
-      [['EN', 'English'], ['FR', 'French'], ['NL', 'Dutch']].forEach(function ([code, name]) {
-        const opt = document.createElement('option');
-        opt.value = code;
-        opt.textContent = name;
-        if (code === getLang()) opt.selected = true;
-        select.appendChild(opt);
-      });
+      ['EN', 'FR', 'NL'].forEach(appendOption);
     }
   }
 
