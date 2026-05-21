@@ -530,7 +530,16 @@
     const wrap = form.closest('.form-container') || form.parentElement;
     const email = form.querySelector('#email')?.value || '';
     const enrollmentId = responseData?.data?.enrollment_id;
-    const isWaitlisted = responseData?.data?.status === 'Waitlisted';
+    // Waitlist copy applies in two backend cases:
+    //   1. status === 'Waitlisted'  → class is fully booked
+    //   2. partner_needed === true  → registered without a partner; status is
+    //                                  CONFIRMED in the CRM (Singles tab) but
+    //                                  the registrant sees the partner-search
+    //                                  message + gets the partner-search email
+    const data = responseData?.data || {};
+    const isWaitlisted = data.status === 'Waitlisted'
+      || data.partner_needed === true
+      || data.waitlisted === true;
 
     const dateStr = selectedTrial
       ? `${formatDate(selectedTrial.start_date, lang)}&nbsp;·&nbsp;${selectedTrial.start_time}–${selectedTrial.end_time}`
