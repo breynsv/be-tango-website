@@ -53,9 +53,9 @@
       qrTitle: 'Scan to Pay (SEPA)',
       close: 'Close',
       required: 'required',
-      waitlistTitle: 'Registration Received',
-      waitlistMessage: 'As you indicated you are searching for a dance partner, we cannot confirm your participation immediately. If we find a partner that matches your criteria — both age and height — we will send you an email with a confirmation.',
-      waitlistAdvice: 'As it\'s not always easy to find a dance partner, we strongly advise you to search for a partner in your own network of friends, family and coworkers. If you do manage to find someone, please let us know as soon as possible.',
+      waitlistTitle: 'Added to Waitlist',
+      waitlistMessage: 'This class is currently fully booked, so you\'ve been added to the waitlist. If a spot opens up we\'ll send you a confirmation email with the payment details.',
+      waitlistAdvice: 'In the meantime, feel free to browse our other classes — many of them still have spots available.',
       waitlistClose: 'Close',
       consent: 'I agree to receive information about BE-TANGO courses and events.',
       consentError: 'Please tick the consent box to continue.',
@@ -100,9 +100,9 @@
       qrTitle: 'Scanner pour payer (SEPA)',
       close: 'Fermer',
       required: 'obligatoire',
-      waitlistTitle: 'Demande Reçue',
-      waitlistMessage: 'Comme vous avez indiqué que vous cherchez un(e) partenaire de danse, nous ne pouvons pas confirmer votre participation immédiatement. Si nous trouvons un(e) partenaire qui correspond à vos critères — à la fois en âge et en taille — nous vous enverrons un email de confirmation.',
-      waitlistAdvice: 'Trouver un(e) partenaire de danse n\'est pas toujours facile. Nous vous conseillons vivement d\'en chercher un(e) dans votre propre réseau d\'amis, de famille ou de collègues. Si vous trouvez quelqu\'un, merci de nous le faire savoir au plus vite.',
+      waitlistTitle: 'Ajouté à la liste d\'attente',
+      waitlistMessage: 'Ce cours est actuellement complet, vous avez donc été ajouté(e) à la liste d\'attente. Si une place se libère, nous vous enverrons un e-mail de confirmation avec les détails de paiement.',
+      waitlistAdvice: 'En attendant, n\'hésitez pas à découvrir nos autres cours — beaucoup ont encore des places disponibles.',
       waitlistClose: 'Fermer',
       consent: 'J\'accepte de recevoir des informations sur les cours et événements BE-TANGO.',
       consentError: 'Veuillez cocher la case de consentement pour continuer.',
@@ -147,9 +147,9 @@
       qrTitle: 'Scan om te betalen (SEPA)',
       close: 'Sluiten',
       required: 'verplicht',
-      waitlistTitle: 'Aanvraag Ontvangen',
-      waitlistMessage: 'Omdat je hebt aangegeven dat je op zoek bent naar een danspartner, kunnen we je deelname niet onmiddellijk bevestigen. Zodra we een partner vinden die bij jouw criteria past — zowel qua leeftijd als lengte — sturen we je een bevestigingsmail.',
-      waitlistAdvice: 'Een danspartner vinden is niet altijd eenvoudig. We raden je sterk aan om ook in je eigen netwerk van vrienden, familie en collega\'s te zoeken. Vind je iemand? Laat het ons dan zo snel mogelijk weten.',
+      waitlistTitle: 'Op wachtlijst geplaatst',
+      waitlistMessage: 'Deze les is momenteel volgeboekt, dus je staat op de wachtlijst. Zodra er een plek vrijkomt sturen we je een bevestigingsmail met de betalingsgegevens.',
+      waitlistAdvice: 'Bekijk in tussentijd zeker onze andere lessen — veel daarvan hebben nog plaatsen beschikbaar.',
       waitlistClose: 'Sluiten',
       consent: 'Ik ga akkoord met het ontvangen van informatie over BE-TANGO cursussen en evenementen.',
       consentError: 'Vink het toestemmingsvakje aan om door te gaan.',
@@ -687,7 +687,13 @@
   function showSuccessView(data) {
     var t = getT();
 
-    if (data.partner_needed) {
+    // Branching keys on the explicit `waitlisted` flag the API returns, not
+    // on `partner_needed`. Old logic showed the partner-search waitlist
+    // popup for every solo registrant, but the backend now creates a normal
+    // Pending enrollment + payment confirmation email for solo students
+    // when the class still has spots. Waitlist only triggers when the
+    // class is genuinely full.
+    if (data.waitlisted) {
       // Waitlist state — no payment info
       document.getElementById('em-success-title').textContent = t.waitlistTitle;
       document.getElementById('em-success-msg').hidden = true;
@@ -703,11 +709,18 @@
       document.getElementById('em-success-payment').hidden = false;
       document.getElementById('em-success-waitlist').hidden = true;
 
-      // Fill payment details
+      // Fill payment details \u2014 2\u00d7 per-person split only for couple
+      // registrations; solos get the single amount.
       var amount = parseFloat(data.amount || 0);
-      var perPerson = amount / 2;
-      document.getElementById('em-pay-amount').innerHTML =
-        '<span class="em-pay-amount-split">2 \u00d7 \u20ac' + perPerson.toFixed(0) + ' p.p.</span>\u20ac' + amount.toFixed(2);
+      var hasPartner = !data.partner_needed; // partner_needed=true means solo
+      var amountEl = document.getElementById('em-pay-amount');
+      if (hasPartner) {
+        var perPerson = amount / 2;
+        amountEl.innerHTML =
+          '<span class="em-pay-amount-split">2 \u00d7 \u20ac' + perPerson.toFixed(0) + ' p.p.</span>\u20ac' + amount.toFixed(2);
+      } else {
+        amountEl.textContent = '\u20ac' + amount.toFixed(2);
+      }
       document.getElementById('em-pay-iban').textContent = formatIban(data.bank_account || 'BE97068896456849');
       document.getElementById('em-pay-ref').textContent = data.payment_reference || '';
       document.getElementById('em-pay-due').textContent = formatDueDate(data.due_date);
@@ -734,8 +747,10 @@
     var dialog = document.querySelector('.em-dialog');
     if (dialog) dialog.scrollTop = 0;
 
-    // Lazy-load QR after the page is visible (only for couple enrollments with payment)
-    if (!data.partner_needed) {
+    // Lazy-load QR after the page is visible for every payment-popup case
+    // (solo + couple). Waitlist responses skip it — no payment reference
+    // exists yet, the QR endpoint would 404.
+    if (!data.waitlisted) {
       loadPaymentQr(data);
     }
   }
