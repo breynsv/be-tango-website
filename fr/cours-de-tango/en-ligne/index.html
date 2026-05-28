@@ -759,10 +759,10 @@
       let embedUrl = url;
       if (url.includes('youtu.be')) {
         const videoId = url.split('/').pop();
-        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        embedUrl = `https://www.youtube.com/embed/${videoId}?playsinline=1&rel=0`;
       } else if (url.includes('youtube.com/watch')) {
         const videoId = new URL(url).searchParams.get('v');
-        embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        embedUrl = `https://www.youtube.com/embed/${videoId}?playsinline=1&rel=0`;
       }
 
       videoFrame.src = embedUrl;
