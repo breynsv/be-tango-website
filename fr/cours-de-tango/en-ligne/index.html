@@ -42,8 +42,8 @@
   <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
 <!-- Font Awesome -->
 <!-- Stylesheet -->
-<link href="../../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
-<noscript><link href="../../../css/styles.min.css?v=3.7" rel="stylesheet"/></noscript>
+<link href="../../../css/styles.min.css?v=3.8" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
+<noscript><link href="../../../css/styles.min.css?v=3.8" rel="stylesheet"/></noscript>
 <!-- JSON-LD Structured Data for Course -->
 <script type="application/ld+json">
   {
@@ -578,6 +578,39 @@
       </div>
     </div>
   </footer>
+<!-- Video Lesson Modal -->
+<div class="tango-modal" id="tangoCourseModal">
+<div class="tango-modal-content">
+<button class="tango-close-btn" onclick="closeTangoModal()">×</button>
+<div class="tango-modal-body">
+<!-- Video Section -->
+<div class="tango-video-section">
+<div id="tangoVideoContainer">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" id="tangoMainVideoFrame" src="">
+</iframe>
+<!-- Placeholder shown when no video is selected -->
+<div id="tangoVideoPlaceholder">
+<svg fill="none" height="64" stroke="#6B7280" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" width="64" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10"></circle>
+<polygon points="10 8 16 12 10 16 10 8"></polygon>
+</svg>
+<p>Sélectionnez une leçon dans la liste.</p>
+</div>
+</div>
+</div>
+<!-- Lessons List Section -->
+<div class="tango-list-section">
+<!-- Header -->
+<div class="tango-list-header">
+<h3 id="tangoModalTitle">Titre du cours</h3>
+<p>Choisissez une vidéo</p>
+</div>
+<!-- Lessons List Container -->
+<div id="tangoModuleList"></div>
+</div>
+</div>
+</div>
+</div>
 <!-- Scripts -->
 <script>
     // Mobile menu toggle
@@ -643,41 +676,6 @@
         }
       });
     }
-
-
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !isExpanded);
-      menuToggle.classList.toggle('active');
-
-      if (window.innerWidth < 768) {
-        mainNav.classList.toggle('mobile-nav-open');
-      }
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (window.innerWidth < 768 &&
-          !mainNav.contains(e.target) &&
-          !menuToggle.contains(e.target) &&
-          menuToggle.getAttribute('aria-expanded') === 'true') {
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.classList.remove('active');
-        mainNav.classList.remove('mobile-nav-open');
-      }
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 768) {
-        mainNav.classList.remove('mobile-nav-open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.classList.remove('active');
-      } else if (menuToggle.getAttribute('aria-expanded') === 'false') {
-        mainNav.classList.remove('mobile-nav-open');
-      }
-    });
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

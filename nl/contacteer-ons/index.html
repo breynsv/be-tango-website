@@ -46,8 +46,8 @@
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.min.css?v=3.7" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.7"></noscript>
+  <link rel="stylesheet" href="../../css/styles.min.css?v=3.8" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="../../css/styles.min.css?v=3.8"></noscript>
   <link rel="stylesheet" href="../../css/private-lessons.css">
 
   <!-- Schema.org Structured Data -->
@@ -566,35 +566,6 @@
         if (!e.target.closest('.language-switcher')) {
           languageToggle.setAttribute('aria-expanded', 'false');
           languageDropdown.classList.remove('active');
-        }
-      });
-    }
-
-    if (menuToggle && mainNav) {
-      menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        menuToggle.setAttribute('aria-expanded', !isExpanded);
-
-        if (window.innerWidth < 768) {
-          mainNav.classList.toggle('mobile-nav-open');
-        }
-      });
-
-      // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (window.innerWidth < 768 && !mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
-          mainNav.classList.remove('mobile-nav-open');
-          menuToggle.setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      // Handle window resize
-      window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768) {
-          mainNav.classList.remove('mobile-nav-open');
-        } else if (menuToggle.getAttribute('aria-expanded') === 'false') {
-          mainNav.classList.remove('mobile-nav-open');
         }
       });
     }

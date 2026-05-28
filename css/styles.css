@@ -6847,10 +6847,26 @@ section.hero-small {
   background-color: var(--color-background);
 }
 
+/* Content hero-small pages carry a <img class="hero-bg-image"> (z-index:-1).
+   The opaque background-color above paints over it (most visible on mobile
+   where the desktop background-image is disabled), hiding the photo. Keep
+   these transparent so the hero image shows. Legal hero-small pages have no
+   hero-bg-image and keep their solid background. */
+section.hero-small:has(.hero-bg-image) {
+  background-color: transparent;
+}
+
+/* The white h1 below is only legible over a hero photo. Legal hero-small pages
+   have no image and a light background, so their h1 must stay dark (see the
+   .hero-small h1 base rule). Restore white only when a hero image is present. */
+section.hero-small:has(.hero-bg-image) h1 {
+  color: var(--color-white);
+}
+
 .hero-small h1 {
   font-size: 2rem;
   margin: 0;
-  color: var(--color-white);
+  color: var(--color-dark-navy);
 }
 
 @media (min-width: 768px) {
