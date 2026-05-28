@@ -696,27 +696,51 @@
       return url;
     }
 
-    // Remove any injected facade/iframe, leaving the placeholder intact.
+    // --- YouTube IFrame Player API loader (loaded once, on demand) ---
+    var ytApiRequested = false, ytApiReady = false, ytReadyQueue = [];
+    function loadYouTubeApi() {
+      if (ytApiRequested) return;
+      ytApiRequested = true;
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    }
+    window.onYouTubeIframeAPIReady = function () {
+      ytApiReady = true;
+      ytReadyQueue.forEach(function (cb) { cb(); });
+      ytReadyQueue = [];
+    };
+    function whenYouTubeApiReady(cb) {
+      if (ytApiReady && window.YT && window.YT.Player) cb();
+      else { ytReadyQueue.push(cb); loadYouTubeApi(); }
+    }
+
+    var tangoPlayer = null;
+
+    // Tear down any facade / player, leaving the placeholder intact.
     function clearTangoPlayer() {
-      const container = document.getElementById('tangoVideoContainer');
-      container.querySelectorAll('.tango-lite-yt, #tangoMainVideoFrame').forEach(el => el.remove());
+      var container = document.getElementById('tangoVideoContainer');
+      if (tangoPlayer && tangoPlayer.destroy) { try { tangoPlayer.destroy(); } catch (e) {} }
+      tangoPlayer = null;
+      container.querySelectorAll('.tango-lite-yt, #tangoYTPlayer, #tangoMainVideoFrame').forEach(function (el) { el.remove(); });
     }
 
     function openTangoModal(categoryName, lessons) {
-      const modal = document.getElementById('tangoCourseModal');
-      const modalTitle = document.getElementById('tangoModalTitle');
-      const moduleList = document.getElementById('tangoModuleList');
-      const videoPlaceholder = document.getElementById('tangoVideoPlaceholder');
+      var modal = document.getElementById('tangoCourseModal');
+      var modalTitle = document.getElementById('tangoModalTitle');
+      var moduleList = document.getElementById('tangoModuleList');
+      var videoPlaceholder = document.getElementById('tangoVideoPlaceholder');
+
+      loadYouTubeApi(); // warm up the API while the user scans the lesson list
 
       modalTitle.textContent = categoryName;
       moduleList.innerHTML = '';
 
-      // Reset the player area back to the placeholder
       clearTangoPlayer();
       videoPlaceholder.style.display = 'flex';
 
-      lessons.forEach((lesson, index) => {
-        const lessonItem = document.createElement('div');
+      lessons.forEach(function (lesson, index) {
+        var lessonItem = document.createElement('div');
         lessonItem.className = 'tango-lesson-item';
         lessonItem.innerHTML = `
           <div class="lesson-number">${index + 1}</div>
@@ -730,9 +754,9 @@
           </div>
         `;
 
-        lessonItem.addEventListener('click', () => {
+        lessonItem.addEventListener('click', function () {
           playTangoVideo(lesson.url);
-          document.querySelectorAll('.tango-lesson-item').forEach(item => item.classList.remove('active'));
+          document.querySelectorAll('.tango-lesson-item').forEach(function (item) { item.classList.remove('active'); });
           lessonItem.classList.add('active');
         });
 
@@ -744,46 +768,61 @@
     }
 
     function closeTangoModal() {
-      const modal = document.getElementById('tangoCourseModal');
+      var modal = document.getElementById('tangoCourseModal');
       modal.style.display = 'none';
       document.body.style.overflow = 'auto';
-      // Stop playback by removing the injected player
       clearTangoPlayer();
+      var ph = document.getElementById('tangoVideoPlaceholder');
+      if (ph) ph.style.display = 'flex';
     }
 
-    // Lite-YouTube facade: show the thumbnail + play button, and create the real
-    // iframe ONLY when the user taps it (with autoplay). Building the iframe
-    // inside the tap gesture is what makes iOS Safari play the video inline.
+    // Lite-YouTube + IFrame API. Picking a lesson builds a muted, inline,
+    // autoplaying player hidden behind a thumbnail facade (iOS permits muted
+    // inline autoplay). Tapping the facade unmutes within the user gesture —
+    // which iOS allows — so the lesson plays inline WITH SOUND on iPhone.
     function playTangoVideo(url) {
-      const container = document.getElementById('tangoVideoContainer');
-      const videoPlaceholder = document.getElementById('tangoVideoPlaceholder');
-      const id = extractYouTubeId(url);
+      var container = document.getElementById('tangoVideoContainer');
+      var videoPlaceholder = document.getElementById('tangoVideoPlaceholder');
+      var id = extractYouTubeId(url);
       if (!id) return;
 
       videoPlaceholder.style.display = 'none';
       clearTangoPlayer();
 
-      const facade = document.createElement('button');
+      var mount = document.createElement('div');
+      mount.id = 'tangoYTPlayer';
+      mount.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
+      container.appendChild(mount);
+
+      var facade = document.createElement('button');
       facade.type = 'button';
       facade.className = 'tango-lite-yt';
       facade.setAttribute('aria-label', 'Play video');
-      facade.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;margin:0;cursor:pointer;background-color:#000;background-position:center;background-size:cover;background-repeat:no-repeat;display:flex;align-items:center;justify-content:center;';
+      facade.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:2;border:0;padding:0;margin:0;cursor:pointer;background-color:#000;background-position:center;background-size:cover;background-repeat:no-repeat;display:flex;align-items:center;justify-content:center;';
       facade.style.backgroundImage = "url('https://i.ytimg.com/vi/" + id + "/hqdefault.jpg')";
       facade.innerHTML = '<svg width="68" height="48" viewBox="0 0 68 48" aria-hidden="true"><path fill="#f00" d="M66.5 7.7c-.8-2.9-3-5.1-5.9-5.9C55.3.5 34 .5 34 .5S12.7.5 7.4 1.8C4.5 2.6 2.3 4.8 1.5 7.7.2 13 .2 24 .2 24s0 11 1.3 16.3c.8 2.9 3 5.1 5.9 5.9C12.7 47.5 34 47.5 34 47.5s21.3 0 26.6-1.3c2.9-.8 5.1-3 5.9-5.9C67.8 35 67.8 24 67.8 24s0-11-1.3-16.3z"/><path fill="#fff" d="M27 34l18-10-18-10z"/></svg>';
 
-      facade.addEventListener('click', () => {
-        const iframe = document.createElement('iframe');
-        iframe.id = 'tangoMainVideoFrame';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        iframe.allowFullscreen = true;
-        iframe.setAttribute('playsinline', '');
-        iframe.style.cssText = 'width:100%;height:100%;position:absolute;top:0;left:0;border:0;';
-        iframe.src = 'https://www.youtube.com/embed/' + id + '?autoplay=1&playsinline=1&rel=0';
-        clearTangoPlayer();
-        container.appendChild(iframe);
+      // Unmute + play happens inside the tap gesture -> iOS lets sound through.
+      facade.addEventListener('click', function () {
+        facade.remove();
+        if (tangoPlayer && tangoPlayer.playVideo) {
+          try { tangoPlayer.unMute(); tangoPlayer.setVolume(100); tangoPlayer.playVideo(); } catch (e) {}
+        }
       });
 
       container.appendChild(facade);
+
+      whenYouTubeApiReady(function () {
+        // Lesson may have been switched / modal closed before the API loaded.
+        if (!document.getElementById('tangoYTPlayer')) return;
+        tangoPlayer = new YT.Player('tangoYTPlayer', {
+          videoId: id,
+          playerVars: { playsinline: 1, rel: 0, controls: 1, autoplay: 1, mute: 1 },
+          events: {
+            onReady: function (e) { try { e.target.mute(); e.target.playVideo(); } catch (err) {} }
+          }
+        });
+      });
     }
 
     // Close modal when clicking outside
