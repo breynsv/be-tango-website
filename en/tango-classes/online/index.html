@@ -766,33 +766,9 @@
       return url;
     }
 
-    // --- YouTube IFrame Player API loader (loaded once, on demand) ---
-    var ytApiRequested = false, ytApiReady = false, ytReadyQueue = [];
-    function loadYouTubeApi() {
-      if (ytApiRequested) return;
-      ytApiRequested = true;
-      var tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      document.head.appendChild(tag);
-    }
-    window.onYouTubeIframeAPIReady = function () {
-      ytApiReady = true;
-      ytReadyQueue.forEach(function (cb) { cb(); });
-      ytReadyQueue = [];
-    };
-    function whenYouTubeApiReady(cb) {
-      if (ytApiReady && window.YT && window.YT.Player) cb();
-      else { ytReadyQueue.push(cb); loadYouTubeApi(); }
-    }
-
-    var tangoPlayer = null;
-
-    // Tear down any facade / player, leaving the placeholder intact.
     function clearTangoPlayer() {
       var container = document.getElementById('tangoVideoContainer');
-      if (tangoPlayer && tangoPlayer.destroy) { try { tangoPlayer.destroy(); } catch (e) {} }
-      tangoPlayer = null;
-      container.querySelectorAll('.tango-lite-yt, #tangoYTPlayer, #tangoMainVideoFrame').forEach(function (el) { el.remove(); });
+      container.querySelectorAll('.tango-lite-yt, #tangoMainVideoFrame').forEach(function (el) { el.remove(); });
     }
 
     function openTangoModal(categoryName, lessons) {
@@ -801,13 +777,19 @@
       var moduleList = document.getElementById('tangoModuleList');
       var videoPlaceholder = document.getElementById('tangoVideoPlaceholder');
 
-      loadYouTubeApi(); // warm up the API while the user scans the lesson list
+      // iOS Safari renders video BLACK when an ancestor clips it with rounded
+      // corners (border-radius + overflow:hidden). Square off the top corners
+      // (the video area) so the lesson renders; the list below stays rounded.
+      var content = modal.querySelector('.tango-modal-content');
+      if (content) { content.style.borderTopLeftRadius = '0'; content.style.borderTopRightRadius = '0'; }
 
       modalTitle.textContent = categoryName;
       moduleList.innerHTML = '';
-
       clearTangoPlayer();
       videoPlaceholder.style.display = 'flex';
+
+      var fb = document.getElementById('tangoYouTubeFallback');
+      if (fb) fb.style.display = 'none';
 
       lessons.forEach(function (lesson, index) {
         var lessonItem = document.createElement('div');
@@ -846,10 +828,10 @@
       if (ph) ph.style.display = 'flex';
     }
 
-    // Lite-YouTube + IFrame API. Picking a lesson builds a muted, inline,
-    // autoplaying player hidden behind a thumbnail facade (iOS permits muted
-    // inline autoplay). Tapping the facade unmutes within the user gesture —
-    // which iOS allows — so the lesson plays inline WITH SOUND on iPhone.
+    // Lite-YouTube facade. Tapping it loads the player inline (autoplay +
+    // playsinline) within the user gesture. A persistent "Watch on YouTube"
+    // link is always available as a guaranteed fallback (opens the native
+    // YouTube player) in case inline playback is blocked on a given device.
     function playTangoVideo(url) {
       var container = document.getElementById('tangoVideoContainer');
       var videoPlaceholder = document.getElementById('tangoVideoPlaceholder');
@@ -859,40 +841,41 @@
       videoPlaceholder.style.display = 'none';
       clearTangoPlayer();
 
-      var mount = document.createElement('div');
-      mount.id = 'tangoYTPlayer';
-      mount.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
-      container.appendChild(mount);
+      // Always-available fallback link in the list header.
+      var header = document.querySelector('.tango-list-header');
+      var fb = document.getElementById('tangoYouTubeFallback');
+      if (!fb && header) {
+        fb = document.createElement('a');
+        fb.id = 'tangoYouTubeFallback';
+        fb.target = '_blank';
+        fb.rel = 'noopener';
+        fb.style.cssText = 'display:inline-block;margin-top:6px;color:#ff0000;font-weight:600;font-size:0.9rem;text-decoration:none;';
+        header.appendChild(fb);
+      }
+      if (fb) { fb.href = 'https://youtu.be/' + id; fb.textContent = '▶ Watch on YouTube'; fb.style.display = 'inline-block'; }
 
       var facade = document.createElement('button');
       facade.type = 'button';
       facade.className = 'tango-lite-yt';
       facade.setAttribute('aria-label', 'Play video');
-      facade.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:2;border:0;padding:0;margin:0;cursor:pointer;background-color:#000;background-position:center;background-size:cover;background-repeat:no-repeat;display:flex;align-items:center;justify-content:center;';
+      facade.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;margin:0;cursor:pointer;background-color:#000;background-position:center;background-size:cover;background-repeat:no-repeat;display:flex;align-items:center;justify-content:center;';
       facade.style.backgroundImage = "url('https://i.ytimg.com/vi/" + id + "/hqdefault.jpg')";
       facade.innerHTML = '<svg width="68" height="48" viewBox="0 0 68 48" aria-hidden="true"><path fill="#f00" d="M66.5 7.7c-.8-2.9-3-5.1-5.9-5.9C55.3.5 34 .5 34 .5S12.7.5 7.4 1.8C4.5 2.6 2.3 4.8 1.5 7.7.2 13 .2 24 .2 24s0 11 1.3 16.3c.8 2.9 3 5.1 5.9 5.9C12.7 47.5 34 47.5 34 47.5s21.3 0 26.6-1.3c2.9-.8 5.1-3 5.9-5.9C67.8 35 67.8 24 67.8 24s0-11-1.3-16.3z"/><path fill="#fff" d="M27 34l18-10-18-10z"/></svg>';
 
-      // Unmute + play happens inside the tap gesture -> iOS lets sound through.
       facade.addEventListener('click', function () {
-        facade.remove();
-        if (tangoPlayer && tangoPlayer.playVideo) {
-          try { tangoPlayer.unMute(); tangoPlayer.setVolume(100); tangoPlayer.playVideo(); } catch (e) {}
-        }
+        var iframe = document.createElement('iframe');
+        iframe.id = 'tangoMainVideoFrame';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.setAttribute('playsinline', '');
+        // translateZ promotes the iframe to its own layer (iOS black-video fix)
+        iframe.style.cssText = 'width:100%;height:100%;position:absolute;top:0;left:0;border:0;transform:translateZ(0);-webkit-transform:translateZ(0);';
+        iframe.src = 'https://www.youtube.com/embed/' + id + '?playsinline=1&rel=0';
+        clearTangoPlayer();
+        container.appendChild(iframe);
       });
 
       container.appendChild(facade);
-
-      whenYouTubeApiReady(function () {
-        // Lesson may have been switched / modal closed before the API loaded.
-        if (!document.getElementById('tangoYTPlayer')) return;
-        tangoPlayer = new YT.Player('tangoYTPlayer', {
-          videoId: id,
-          playerVars: { playsinline: 1, rel: 0, controls: 1, autoplay: 1, mute: 1 },
-          events: {
-            onReady: function (e) { try { e.target.mute(); e.target.playVideo(); } catch (err) {} }
-          }
-        });
-      });
     }
 
     // Close modal when clicking outside
