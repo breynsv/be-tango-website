@@ -55,6 +55,7 @@
       payOnlineOr: 'Or pay by bank transfer',
       alreadyTitle: 'You\'re Already Registered',
       alreadyMessage: 'You\'re already signed up for this class. We\'ve re-sent the confirmation to your email — please check your spam folder too.',
+      paymentReturn: 'Payment received — thank you! A confirmation email is on its way.',
       close: 'Close',
       required: 'required',
       waitlistTitle: 'Registration Received',
@@ -109,6 +110,7 @@
       payOnlineOr: 'Ou payer par virement bancaire',
       alreadyTitle: 'Vous êtes déjà inscrit(e)',
       alreadyMessage: 'Vous êtes déjà inscrit(e) à ce cours. Nous venons de renvoyer la confirmation à votre adresse e-mail — pensez à vérifier vos spams.',
+      paymentReturn: 'Paiement reçu — merci ! Un e-mail de confirmation est en route.',
       close: 'Fermer',
       required: 'obligatoire',
       waitlistTitle: 'Demande Reçue',
@@ -163,6 +165,7 @@
       payOnlineOr: 'Of betaal via bankoverschrijving',
       alreadyTitle: 'Je bent al ingeschreven',
       alreadyMessage: 'Je bent al ingeschreven voor deze les. We hebben de bevestiging opnieuw naar je e-mailadres gestuurd — kijk ook in je spam.',
+      paymentReturn: 'Betaling ontvangen — bedankt! Een bevestigingsmail is onderweg.',
       close: 'Sluiten',
       required: 'verplicht',
       waitlistTitle: 'Aanvraag Ontvangen',
@@ -1058,10 +1061,31 @@
   // BOOT
   // ========================
 
+  // Acknowledge return from the hosted payment page (?be_payment_return=1). The
+  // final paid status is confirmed by the provider webhook; this banner is just
+  // an acknowledgement so the customer isn't left on a blank page after paying.
+  function checkPaymentReturn() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('be_payment_return') !== '1') return;
+      var t = getT();
+      var bar = document.createElement('div');
+      bar.setAttribute('role', 'status');
+      bar.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#1a7f37;color:#fff;padding:14px 18px;text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.4;box-shadow:0 2px 10px rgba(0,0,0,.25);';
+      bar.innerHTML = '✓ ' + t.paymentReturn + ' <button type="button" aria-label="Close" style="margin-left:14px;background:rgba(255,255,255,.2);border:0;color:#fff;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:14px;">✕</button>';
+      bar.querySelector('button').addEventListener('click', function () { bar.remove(); });
+      document.body.appendChild(bar);
+      params.delete('be_payment_return');
+      var qs = params.toString();
+      history.replaceState({}, '', window.location.pathname + (qs ? '?' + qs : '') + window.location.hash);
+    } catch (e) {}
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', function () { init(); checkPaymentReturn(); });
   } else {
     init();
+    checkPaymentReturn();
   }
 
   console.log('[Enrollment Modal] Initialized');
