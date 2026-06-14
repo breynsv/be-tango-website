@@ -51,6 +51,10 @@
       paymentDue: 'Pay Before',
       paymentBankName: 'Bank Name',
       qrTitle: 'Scan to Pay (SEPA)',
+      payOnline: 'Pay now online',
+      payOnlineOr: 'Or pay by bank transfer',
+      alreadyTitle: 'You\'re Already Registered',
+      alreadyMessage: 'You\'re already signed up for this class. We\'ve re-sent the confirmation to your email — please check your spam folder too.',
       close: 'Close',
       required: 'required',
       waitlistTitle: 'Registration Received',
@@ -101,6 +105,10 @@
       paymentDue: 'Payer avant le',
       paymentBankName: 'Nom de la banque',
       qrTitle: 'Scanner pour payer (SEPA)',
+      payOnline: 'Payer maintenant en ligne',
+      payOnlineOr: 'Ou payer par virement bancaire',
+      alreadyTitle: 'Vous êtes déjà inscrit(e)',
+      alreadyMessage: 'Vous êtes déjà inscrit(e) à ce cours. Nous venons de renvoyer la confirmation à votre adresse e-mail — pensez à vérifier vos spams.',
       close: 'Fermer',
       required: 'obligatoire',
       waitlistTitle: 'Demande Reçue',
@@ -151,6 +159,10 @@
       paymentDue: 'Betaal voor',
       paymentBankName: 'Banknaam',
       qrTitle: 'Scan om te betalen (SEPA)',
+      payOnline: 'Nu online betalen',
+      payOnlineOr: 'Of betaal via bankoverschrijving',
+      alreadyTitle: 'Je bent al ingeschreven',
+      alreadyMessage: 'Je bent al ingeschreven voor deze les. We hebben de bevestiging opnieuw naar je e-mailadres gestuurd — kijk ook in je spam.',
       close: 'Sluiten',
       required: 'verplicht',
       waitlistTitle: 'Aanvraag Ontvangen',
@@ -447,6 +459,14 @@
       </div>
 
       <div id="em-success-payment">
+
+        <a id="em-pay-online-btn" href="#" rel="noopener noreferrer"
+           style="display:none;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px 18px;margin-top:4px;background:#1a1a1a;color:#fff;border-radius:9999px;font-weight:600;font-size:15px;text-decoration:none;">
+          <span>${t.payOnline}</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <p id="em-pay-online-or" style="display:none;text-align:center;color:#8a8a82;font-size:13px;margin:14px 0 0;">${t.payOnlineOr}</p>
+
         <div class="em-divider"></div>
 
         <div class="em-payment">
@@ -704,7 +724,16 @@
     //                                payment details only arrive later, when
     //                                admin pairs the registrant with a partner.
     //   3. else                   → couple registration with payment popup.
-    if (data.waitlisted) {
+    if (data.already_registered) {
+      // Re-submission of a class the contact is already enrolled in. Show a clear
+      // "already registered" message — no payment/QR (the API returns no payment
+      // payload for duplicates; details were re-sent by email).
+      document.getElementById('em-success-title').textContent = t.alreadyTitle;
+      document.getElementById('em-success-msg').hidden = false;
+      document.getElementById('em-success-msg').textContent = t.alreadyMessage;
+      document.getElementById('em-success-payment').hidden = true;
+      document.getElementById('em-success-waitlist').hidden = true;
+    } else if (data.waitlisted) {
       document.getElementById('em-success-title').textContent = t.classFullTitle;
       document.getElementById('em-success-msg').hidden = true;
       document.getElementById('em-success-payment').hidden = true;
@@ -738,6 +767,24 @@
       document.getElementById('em-pay-ref').textContent = data.payment_reference || '';
       document.getElementById('em-pay-due').textContent = formatDueDate(data.due_date);
       document.getElementById('em-pay-bank').textContent = data.bank_name || 'BE-TANGO ART';
+
+      // Online payment (Mollie/Stripe): when the API returns a checkout URL, show
+      // a prominent "Pay now" button. Bank details stay below as a fallback, with
+      // the "or pay by bank transfer" label. When there is no checkout URL
+      // (bank-only tenant), the button + label stay hidden and bank details show
+      // exactly as before.
+      var payBtn = document.getElementById('em-pay-online-btn');
+      var payOr = document.getElementById('em-pay-online-or');
+      if (payBtn && payOr) {
+        if (data.checkout_url) {
+          payBtn.href = data.checkout_url;
+          payBtn.style.display = 'flex';
+          payOr.style.display = 'block';
+        } else {
+          payBtn.style.display = 'none';
+          payOr.style.display = 'none';
+        }
+      }
 
     }
 

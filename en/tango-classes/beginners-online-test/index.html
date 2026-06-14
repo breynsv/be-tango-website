@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Start your tango journey with our beginner classes in Brussels and Woluwe. Learn the basics of Argentine tango in a relaxed, friendly atmosphere. No experience required. Try a free trial class!">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="noindex, nofollow">
   <meta name="keywords" content="tango beginners Brussels, tango lessons for beginners, learn tango Brussels, beginner tango classes, start-to-tango, tango courses Woluwe">
-  <title>Beginners Tango Classes - BE-TANGO</title>
-  <link rel="canonical" href="https://www.be-tango.be/en/tango-classes/beginners/">
+  <title>TEST &middot; Online Payment (Beginners) - BE-TANGO</title>
+  <link rel="canonical" href="https://www.be-tango.be/en/tango-classes/beginners-online-test/">
 
   <!-- Hreflang -->
   <link rel="alternate" hreflang="en" href="https://www.be-tango.be/en/tango-classes/beginners/">
@@ -422,7 +422,7 @@
           <p class="section-description">We start twice a year (September and February). Mid-year entry is possible if you have some basic experience.</p>
         </div>
 
-        <div class="schedule-grid" data-schedule-container data-free-trial-url="../free-trial/">
+        <div class="schedule-grid" id="test-classes-container">
 
           <!-- Brussels Schedule -->
           <div class="schedule-location">
@@ -1084,7 +1084,6 @@
   <script src="/js/lang-cookie.min.js"></script>
 <script src="/js/api-config.min.js"></script>
   <script src="/js/crm-api.min.js?v=2.0" defer></script>
-  <script src="/js/schedule-loader.min.js?v=4.0" defer></script>
   <script src="/js/enrollment-modal.js?v=2.1" defer></script>
 
   <script src="/js/newsletter.min.js" defer></script>
@@ -1092,5 +1091,31 @@
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
   </script>
   <script src="/js/cookie-consent.min.js?v=3.8" defer></script>
+  <script>
+  // TEST PAGE — renders the hidden online-payment test classes (not the live
+  // schedule). The enrollment modal binds to .btn-sign-up via event delegation.
+  document.addEventListener('DOMContentLoaded', async function () {
+    var box = document.getElementById('test-classes-container');
+    if (!box || !window.BETangoCRM || !window.BETangoCRM.api) return;
+    var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]); }); };
+    try {
+      var res = await window.BETangoCRM.api.get('/test/online-classes');
+      var list = (res && res.data) ? res.data : [];
+      var banner = '<p style="grid-column:1/-1;background:#fff3cd;border:1px solid #e0c97a;border-radius:8px;padding:10px 14px;margin:0 0 14px;font-size:14px;">&#129514; <strong>Test page</strong> &mdash; online-payment sandbox. The live enrollment pages are unaffected.</p>';
+      if (!list.length) { box.innerHTML = banner + '<p style="grid-column:1/-1;color:#888;">No test classes configured. Run <code>php artisan payments:provision-test-classes betango</code> in the CRM.</p>'; return; }
+      box.innerHTML = banner + list.map(function (c) {
+        var label = c.methods === 'online' ? 'Online only' : 'Bank + online';
+        var time = esc(c.start_time || '') + (c.end_time ? '&ndash;' + esc(c.end_time) : '');
+        return '<div style="border:1px solid #e5e5e2;border-radius:10px;padding:18px;background:#fff;">'
+          + '<span style="display:inline-block;font-size:11px;font-weight:700;color:#8B0000;background:#f7e9e9;border-radius:999px;padding:2px 10px;margin-bottom:8px;">' + label + '</span>'
+          + '<h3 style="margin:6px 0 4px;font-size:17px;">' + esc(c.name) + '</h3>'
+          + '<p style="margin:0 0 14px;color:#666;font-size:14px;">' + esc(c.day_of_week || '') + ' ' + time + ' &middot; &euro;' + esc(c.price) + '</p>'
+          + '<button class="btn btn-sign-up" data-product-id="' + esc(c.id) + '" data-class-name="' + esc(c.name) + '" data-price="' + esc(c.price) + '" data-location="Brussels" data-time="' + esc(c.start_time || '') + '">SIGN UP &rarr;</button>'
+          + '</div>';
+      }).join('');
+    } catch (e) { box.innerHTML = '<p style="color:#c00;">Failed to load test classes.</p>'; }
+  });
+  </script>
+
 </body>
 </html>
