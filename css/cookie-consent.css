@@ -92,6 +92,70 @@
   border-color: #999;
 }
 
+.cookie-consent-btn-customize {
+  background-color: transparent;
+  color: #1C244B;
+  border: 1px solid #ddd;
+}
+
+.cookie-consent-btn-customize:hover {
+  background-color: #f5f5f5;
+  border-color: #999;
+}
+
+.cookie-consent-btn-save {
+  background-color: var(--color-secondary, #E2C033);
+  color: var(--color-dark-navy, #1c244b);
+}
+
+.cookie-consent-btn-save:hover {
+  background-color: var(--color-primary, #00d084);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 208, 132, 0.3);
+}
+
+/* Granular category reveal panel (shown via Customize) */
+.cookie-consent-cats {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cookie-consent-cats[hidden] {
+  display: none;
+}
+
+.cookie-cat {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #333;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.cookie-cat input[type="checkbox"] {
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  width: 15px;
+  height: 15px;
+  accent-color: var(--color-primary, #00d084);
+  cursor: pointer;
+}
+
+.cookie-cat:has(input:disabled) {
+  color: #999;
+  cursor: default;
+}
+
+.cookie-cat input:disabled {
+  cursor: default;
+}
+
 /* Close button (X) */
 .cookie-consent-close {
   position: absolute;
@@ -154,6 +218,14 @@
     padding: 0.75rem 1rem;
     font-size: 0.8125rem;
   }
+
+  .cookie-consent-cats {
+    max-width: 100%;
+  }
+
+  .cookie-cat {
+    font-size: 0.8125rem;
+  }
 }
 
 @media (max-width: 400px) {
@@ -191,6 +263,29 @@
   border-color: rgba(255, 255, 255, 0.5);
 }
 
+.cookie-consent-banner.dark .cookie-consent-btn-customize {
+  background-color: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.cookie-consent-banner.dark .cookie-consent-btn-customize:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.cookie-consent-banner.dark .cookie-consent-cats {
+  border-top-color: rgba(255, 255, 255, 0.2);
+}
+
+.cookie-consent-banner.dark .cookie-cat {
+  color: #fff;
+}
+
+.cookie-consent-banner.dark .cookie-cat:has(input:disabled) {
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .cookie-consent-banner.dark .cookie-consent-close {
   color: rgba(255, 255, 255, 0.6);
 }
@@ -212,6 +307,11 @@
 }
 
 .cookie-consent-close:focus {
+  outline: 2px solid var(--color-secondary, #E2C033);
+  outline-offset: 2px;
+}
+
+.cookie-cat input:focus-visible {
   outline: 2px solid var(--color-secondary, #E2C033);
   outline-offset: 2px;
 }
