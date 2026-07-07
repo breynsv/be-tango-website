@@ -15,7 +15,7 @@
   // applied globally. A returning visitor's stored choice is re-applied here
   // so tags respect it on the very first GTM evaluation.
   // ==========================================================================
-  const GTM_ID = 'GTM-XXXXXXX'; // ← replace with the real container ID (prerequisite)
+  const GTM_ID = 'GTM-KV6WBWF5';
 
   window.dataLayer = window.dataLayer || [];
   function gtag() { window.dataLayer.push(arguments); }
