@@ -90,6 +90,8 @@
       .then(function (r) { return r.json(); })
       .then(function (data) {
         if (data.success) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'newsletter_signup', lang: lang });
           nf.style.display = 'none';
           if (successEl && successEl.classList.contains('ft-success')) {
             successEl.innerHTML =
