@@ -88,7 +88,14 @@
       moreInfoItem2: '- Analyze website traffic',
       moreInfoItem3: '- Improve user experience',
       moreInfoChange: 'You can change your cookie preferences at any time.',
-      moreInfoPolicy: 'For more details, please read our Privacy Policy.'
+      moreInfoPolicy: 'For more details, please read our Privacy Policy.',
+      acceptAll: 'Accept all',
+      rejectAll: 'Reject all',
+      customize: 'Customize',
+      savePrefs: 'Save preferences',
+      catNecessaryLabel: 'Strictly necessary (always on)',
+      catAnalyticsLabel: 'Analytics — help us understand site usage',
+      catMarketingLabel: 'Marketing — personalised ads on Google & Meta'
     },
     fr: {
       title: 'Consentement aux cookies',
@@ -103,7 +110,14 @@
       moreInfoItem2: '- Analyser le trafic du site',
       moreInfoItem3: '- Améliorer l\'expérience utilisateur',
       moreInfoChange: 'Vous pouvez modifier vos préférences de cookies à tout moment.',
-      moreInfoPolicy: 'Pour plus de détails, veuillez consulter notre Politique de confidentialité.'
+      moreInfoPolicy: 'Pour plus de détails, veuillez consulter notre Politique de confidentialité.',
+      acceptAll: 'Tout accepter',
+      rejectAll: 'Tout refuser',
+      customize: 'Personnaliser',
+      savePrefs: 'Enregistrer les préférences',
+      catNecessaryLabel: 'Strictement nécessaires (toujours actifs)',
+      catAnalyticsLabel: 'Statistiques — comprendre l\'utilisation du site',
+      catMarketingLabel: 'Marketing — publicités personnalisées sur Google & Meta'
     },
     nl: {
       title: 'Cookietoestemming',
@@ -118,7 +132,14 @@
       moreInfoItem2: '- Websiteverkeer te analyseren',
       moreInfoItem3: '- De gebruikerservaring te verbeteren',
       moreInfoChange: 'U kunt uw cookievoorkeuren op elk moment wijzigen.',
-      moreInfoPolicy: 'Lees voor meer details ons Privacybeleid.'
+      moreInfoPolicy: 'Lees voor meer details ons Privacybeleid.',
+      acceptAll: 'Alles accepteren',
+      rejectAll: 'Alles weigeren',
+      customize: 'Aanpassen',
+      savePrefs: 'Voorkeuren opslaan',
+      catNecessaryLabel: 'Strikt noodzakelijk (altijd aan)',
+      catAnalyticsLabel: 'Statistieken — inzicht in websitegebruik',
+      catMarketingLabel: 'Marketing — gepersonaliseerde advertenties op Google & Meta'
     }
   };
 
@@ -152,12 +173,12 @@
       const consent = this.getConsent();
 
       if (consent === null) {
-        // No consent recorded, show banner
         this.createBanner();
         this.showBanner();
       } else {
-        // Consent already recorded
-        if (consent === 'accepted') {
+        // Re-apply stored categories (bootstrap already did this on load; this
+        // keeps the CustomEvents firing for other scripts).
+        if (consent.categories.analytics || consent.categories.marketing) {
           this.enableCookies();
         } else {
           this.disableCookies();
@@ -167,7 +188,7 @@
 
     /**
      * Get stored consent preference
-     * @returns {string|null} 'accepted', 'declined', or null
+     * @returns {object|null} stored consent record, or null
      */
     getConsent: function() {
       try {
@@ -177,13 +198,19 @@
         const data = JSON.parse(stored);
         const now = new Date().getTime();
 
-        // Check if consent has expired
         if (data.expiry && now > data.expiry) {
           localStorage.removeItem(COOKIE_CONSENT_KEY);
           return null;
         }
 
-        return data.consent;
+        // Normalise legacy binary records to the categories shape.
+        if (!data.categories) {
+          data.categories = {
+            analytics: data.consent === 'accepted',
+            marketing: data.consent === 'accepted'
+          };
+        }
+        return data;
       } catch (e) {
         console.error('Error reading cookie consent:', e);
         return null;
@@ -192,25 +219,27 @@
 
     /**
      * Store consent preference
-     * @param {string} consent - 'accepted' or 'declined'
+     * @param {object} categories - { analytics: boolean, marketing: boolean }
      */
-    setConsent: function(consent) {
+    setConsent: function(categories) {
       try {
         const now = new Date().getTime();
         const expiry = now + (CONSENT_EXPIRY_DAYS * 24 * 60 * 60 * 1000);
 
         const data = {
-          consent: consent,
+          consent: 'custom',
+          categories: {
+            analytics: !!categories.analytics,
+            marketing: !!categories.marketing
+          },
           timestamp: now,
           expiry: expiry
         };
 
         localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(data));
+        gtag('consent', 'update', consentSignals(data.categories));
 
-        // Trigger custom event for other scripts to listen to
-        const event = new CustomEvent('cookieConsentChanged', {
-          detail: { consent: consent }
-        });
+        const event = new CustomEvent('cookieConsentChanged', { detail: data });
         document.dispatchEvent(event);
       } catch (e) {
         console.error('Error storing cookie consent:', e);
@@ -242,13 +271,24 @@
               ${i18n.description}
               <a href="#" id="cookie-learn-more">${i18n.learnMore}</a>
             </p>
+            <div class="cookie-consent-cats" id="cookie-cats" hidden>
+              <label class="cookie-cat"><input type="checkbox" checked disabled> ${i18n.catNecessaryLabel}</label>
+              <label class="cookie-cat"><input type="checkbox" id="cookie-cat-analytics"> ${i18n.catAnalyticsLabel}</label>
+              <label class="cookie-cat"><input type="checkbox" id="cookie-cat-marketing"> ${i18n.catMarketingLabel}</label>
+            </div>
           </div>
           <div class="cookie-consent-buttons">
-            <button class="cookie-consent-btn cookie-consent-btn-accept" id="cookie-accept" type="button">
-              ${i18n.accept}
+            <button class="cookie-consent-btn cookie-consent-btn-accept" id="cookie-accept-all" type="button">
+              ${i18n.acceptAll}
             </button>
-            <button class="cookie-consent-btn cookie-consent-btn-decline" id="cookie-decline" type="button">
-              ${i18n.decline}
+            <button class="cookie-consent-btn cookie-consent-btn-decline" id="cookie-reject-all" type="button">
+              ${i18n.rejectAll}
+            </button>
+            <button class="cookie-consent-btn cookie-consent-btn-customize" id="cookie-customize" type="button">
+              ${i18n.customize}
+            </button>
+            <button class="cookie-consent-btn cookie-consent-btn-save" id="cookie-save" type="button" hidden>
+              ${i18n.savePrefs}
             </button>
           </div>
           <button class="cookie-consent-close" id="cookie-close" type="button" aria-label="${i18n.closeAria}">
@@ -267,40 +307,37 @@
      * Attach event listeners to banner buttons
      */
     attachEventListeners: function(banner) {
-      const acceptBtn = banner.querySelector('#cookie-accept');
-      const declineBtn = banner.querySelector('#cookie-decline');
-      const closeBtn = banner.querySelector('#cookie-close');
-      const learnMoreLink = banner.querySelector('#cookie-learn-more');
+      const acceptAllBtn = banner.querySelector('#cookie-accept-all');
+      const rejectAllBtn = banner.querySelector('#cookie-reject-all');
+      const customizeBtn = banner.querySelector('#cookie-customize');
+      const saveBtn      = banner.querySelector('#cookie-save');
+      const closeBtn     = banner.querySelector('#cookie-close');
+      const learnMore    = banner.querySelector('#cookie-learn-more');
+      const cats         = banner.querySelector('#cookie-cats');
 
-      if (acceptBtn) {
-        acceptBtn.addEventListener('click', () => {
-          this.handleAccept();
+      if (acceptAllBtn) acceptAllBtn.addEventListener('click', () => this.handleSave({ analytics: true,  marketing: true  }));
+      if (rejectAllBtn) rejectAllBtn.addEventListener('click', () => this.handleSave({ analytics: false, marketing: false }));
+
+      if (customizeBtn) customizeBtn.addEventListener('click', () => {
+        if (cats) cats.hidden = false;
+        if (saveBtn) saveBtn.hidden = false;
+        customizeBtn.hidden = true;
+      });
+
+      if (saveBtn) saveBtn.addEventListener('click', () => {
+        this.handleSave({
+          analytics: banner.querySelector('#cookie-cat-analytics').checked,
+          marketing: banner.querySelector('#cookie-cat-marketing').checked
         });
-      }
+      });
 
-      if (declineBtn) {
-        declineBtn.addEventListener('click', () => {
-          this.handleDecline();
-        });
-      }
+      if (closeBtn) closeBtn.addEventListener('click', () => this.handleSave({ analytics: false, marketing: false }));
 
-      if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-          this.handleDecline(); // Closing = declining
-        });
-      }
+      if (learnMore) learnMore.addEventListener('click', (e) => { e.preventDefault(); this.showMoreInfo(); });
 
-      if (learnMoreLink) {
-        learnMoreLink.addEventListener('click', (e) => {
-          e.preventDefault();
-          this.showMoreInfo();
-        });
-      }
-
-      // Handle escape key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && banner.classList.contains('show')) {
-          this.handleDecline();
+          this.handleSave({ analytics: false, marketing: false });
         }
       });
     },
@@ -318,7 +355,7 @@
 
             // Set focus after paint to avoid forced reflow
             requestAnimationFrame(() => {
-              const acceptBtn = banner.querySelector('#cookie-accept');
+              const acceptBtn = banner.querySelector('#cookie-accept-all');
               if (acceptBtn) {
                 acceptBtn.focus();
               }
@@ -350,28 +387,27 @@
     },
 
     /**
-     * Handle accept button click
+     * Handle save (accept all / reject all / customize) button clicks
      */
-    handleAccept: function() {
-      this.setConsent('accepted');
-      this.enableCookies();
-      this.hideBanner();
-    },
-
-    /**
-     * Handle decline button click
-     */
-    handleDecline: function() {
-      this.setConsent('declined');
-      this.disableCookies();
+    handleSave: function(categories) {
+      this.setConsent(categories);
+      if (categories.analytics || categories.marketing) {
+        this.enableCookies();
+      } else {
+        this.disableCookies();
+      }
       this.hideBanner();
     },
 
     /**
      * Enable cookies (load analytics, etc.)
+     * Reads the just-stored categories so a partial grant (e.g. analytics
+     * only) isn't overwritten by a hardcoded full grant.
      */
     enableCookies: function() {
-      gtag('consent', 'update', consentSignals({ analytics: true, marketing: true }));
+      const consent = this.getConsent();
+      const cats = (consent && consent.categories) || { analytics: true, marketing: true };
+      gtag('consent', 'update', consentSignals(cats));
 
       // Trigger event for other scripts (backward compat)
       const event = new CustomEvent('cookiesEnabled');
@@ -382,7 +418,9 @@
      * Disable cookies (remove/block analytics, etc.)
      */
     disableCookies: function() {
-      gtag('consent', 'update', consentSignals({ analytics: false, marketing: false }));
+      const consent = this.getConsent();
+      const cats = (consent && consent.categories) || { analytics: false, marketing: false };
+      gtag('consent', 'update', consentSignals(cats));
 
       // Trigger event for other scripts (backward compat)
       const event = new CustomEvent('cookiesDisabled');
@@ -441,9 +479,9 @@
   window.addEventListener('storage', (e) => {
     if (e.key === COOKIE_CONSENT_KEY) {
       const consent = CookieConsent.getConsent();
-      if (consent === 'accepted') {
+      if (consent && (consent.categories.analytics || consent.categories.marketing)) {
         CookieConsent.enableCookies();
-      } else if (consent === 'declined') {
+      } else {
         CookieConsent.disableCookies();
       }
     }
