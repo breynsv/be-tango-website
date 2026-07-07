@@ -134,6 +134,8 @@
           throw new Error('API client not loaded');
         }
         await window.BETangoCRM.api.submitContactForm(payload);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'contact_submit', topic: payload.topic || undefined });
         showSuccess(form, successEl, T);
       } catch (err) {
         var isNetwork = err.message && (

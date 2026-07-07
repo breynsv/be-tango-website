@@ -745,6 +745,8 @@
 
         try {
           await api.submitContactForm(contactPayload);
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'free_trial_notify' });
           showNotifySuccess(form, lang, hasPartner);
         } catch (err) {
           console.error('[FreeTrial] Notify signup error:', err);
@@ -786,6 +788,11 @@
 
       try {
         const res = await api.registerFreeTrial(payload);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'free_trial_signup',
+          enrollment_id: (res && res.data && res.data.enrollment_id) || undefined
+        });
         showSuccess(form, res, selectedTrial, lang);
       } catch (err) {
         console.error('[FreeTrial] Registration error:', err);

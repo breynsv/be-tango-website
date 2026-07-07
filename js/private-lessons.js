@@ -132,6 +132,8 @@
           throw new Error('API client not loaded');
         }
         await window.BETangoCRM.api.submitPrivateLessonsForm(payload);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'private_lesson_request', lesson_type: payload.lesson_type || undefined });
         showSuccess(form, successEl, T);
       } catch (err) {
         var isNetwork = err.message && (
