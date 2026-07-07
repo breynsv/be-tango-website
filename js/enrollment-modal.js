@@ -716,8 +716,28 @@
     document.getElementById('em-success-view').hidden = true;
   }
 
+  function enrollmentType(data) {
+    if (data.already_registered) return 'already_registered';
+    if (data.waitlisted)         return 'waitlist';
+    if (data.partner_needed)     return 'partner_needed';
+    return 'paid';
+  }
+
+  function pushEnrollmentConversion(data) {
+    var type = enrollmentType(data);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'enrollment_success',
+      enrollment_type: type,
+      value: type === 'paid' ? parseFloat(data.amount || 0) : 0,
+      currency: 'EUR',
+      transaction_id: data.payment_reference || undefined
+    });
+  }
+
   function showSuccessView(data) {
     var t = getT();
+    pushEnrollmentConversion(data);
 
     // Three outcomes, in priority order:
     //   1. data.waitlisted        → class is fully booked. Defense-in-depth:
