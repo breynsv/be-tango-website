@@ -9,6 +9,67 @@
   const COOKIE_CONSENT_KEY = 'be-tango-cookie-consent';
   const CONSENT_EXPIRY_DAYS = 365;
 
+  // ==========================================================================
+  // Google Consent Mode v2 (Advanced) + GTM bootstrap.
+  // MUST run before GTM loads and before any tag fires. Deny-by-default,
+  // applied globally. A returning visitor's stored choice is re-applied here
+  // so tags respect it on the very first GTM evaluation.
+  // ==========================================================================
+  const GTM_ID = 'GTM-XXXXXXX'; // ← replace with the real container ID (prerequisite)
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { window.dataLayer.push(arguments); }
+
+  // Map our two consent categories → Consent Mode v2 signals.
+  function consentSignals(cats) {
+    return {
+      analytics_storage:       cats.analytics ? 'granted' : 'denied',
+      ad_storage:              cats.marketing ? 'granted' : 'denied',
+      ad_user_data:            cats.marketing ? 'granted' : 'denied',
+      ad_personalization:      cats.marketing ? 'granted' : 'denied',
+      personalization_storage: cats.marketing ? 'granted' : 'denied'
+    };
+  }
+
+  // 1. Default everything denied (Advanced mode → tags load cookieless & model).
+  gtag('consent', 'default', {
+    ad_storage:              'denied',
+    ad_user_data:            'denied',
+    ad_personalization:      'denied',
+    analytics_storage:       'denied',
+    personalization_storage: 'denied',
+    functionality_storage:   'granted',
+    security_storage:        'granted',
+    wait_for_update:         500
+  });
+
+  // 2. Re-apply a returning visitor's stored choice BEFORE GTM evaluates tags.
+  (function applyStoredConsent() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(COOKIE_CONSENT_KEY) || 'null');
+      if (!stored) return;
+      if (stored.expiry && Date.now() > stored.expiry) return;
+      // Task 3 stores `categories`; until then, map the binary flag.
+      const cats = stored.categories || {
+        analytics: stored.consent === 'accepted',
+        marketing: stored.consent === 'accepted'
+      };
+      gtag('consent', 'update', consentSignals(cats));
+    } catch (e) { /* no stored consent → stay denied */ }
+  })();
+
+  // 3. Load GTM (consent state above is already queued in dataLayer).
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    const f = d.getElementsByTagName(s)[0];
+    const j = d.createElement(s);
+    const dl = l !== 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', GTM_ID);
+
   /**
    * UI translations — keyed by language code from <html lang="...">
    * Brand voice: always plural ("we"/"nous"/"wij"), never first-person singular.
@@ -310,19 +371,9 @@
      * Enable cookies (load analytics, etc.)
      */
     enableCookies: function() {
-      // Placeholder for enabling analytics/tracking scripts
-      // Example: Load Google Analytics
-      /*
-      if (typeof gtag !== 'undefined') {
-        gtag('consent', 'update', {
-          'analytics_storage': 'granted'
-        });
-      }
-      */
+      gtag('consent', 'update', consentSignals({ analytics: true, marketing: true }));
 
-      console.log('Cookies enabled');
-
-      // Trigger event for other scripts
+      // Trigger event for other scripts (backward compat)
       const event = new CustomEvent('cookiesEnabled');
       document.dispatchEvent(event);
     },
@@ -331,18 +382,9 @@
      * Disable cookies (remove/block analytics, etc.)
      */
     disableCookies: function() {
-      // Placeholder for disabling analytics/tracking scripts
-      /*
-      if (typeof gtag !== 'undefined') {
-        gtag('consent', 'update', {
-          'analytics_storage': 'denied'
-        });
-      }
-      */
+      gtag('consent', 'update', consentSignals({ analytics: false, marketing: false }));
 
-      console.log('Cookies disabled');
-
-      // Trigger event for other scripts
+      // Trigger event for other scripts (backward compat)
       const event = new CustomEvent('cookiesDisabled');
       document.dispatchEvent(event);
     },
