@@ -112,16 +112,30 @@ async function run(browser) {
     // Wait for success view to appear
     await page.waitForSelector('#em-success-view', { state: 'visible', timeout: 8000 });
 
-    // Capture the payment reference from the UI
-    const paymentRef = await page.locator('#em-pay-ref').textContent({ timeout: 5000 });
-    if (!paymentRef || paymentRef.trim().length === 0) {
-      throw new Error('Payment reference not displayed in success view');
+    // Which payment surface renders depends on the school's payment_methods
+    // (bank / online / both) — production may be any of the three, so assert
+    // whichever is actually shown rather than assuming the bank block. The bank
+    // block (#em-bank-block) carries #em-pay-ref; online-only schools hide it
+    // entirely and show the Pay-now button instead.
+    const bankBlockVisible = await page.locator('#em-bank-block').isVisible();
+    let paymentRef = null;
+    if (bankBlockVisible) {
+      paymentRef = await page.locator('#em-pay-ref').textContent({ timeout: 5000 });
+      if (!paymentRef || paymentRef.trim().length === 0) {
+        throw new Error('Payment reference not displayed in success view');
+      }
+      paymentRef = paymentRef.trim();
+    } else {
+      const payBtnVisible = await page.locator('#em-pay-online-btn').isVisible();
+      if (!payBtnVisible) {
+        throw new Error('Neither the bank block nor the Pay-now button is displayed in success view');
+      }
     }
 
     // Verify confirmation email via Brevo
     await waitForEmail(BREVO_API_KEY, leaderEmail, 'tango');
 
-    results.push({ name: 'enrollment:couple', passed: true, error: null, paymentRef: paymentRef.trim() });
+    results.push({ name: 'enrollment:couple', passed: true, error: null, paymentRef });
   } catch (err) {
     await page.screenshot({ path: '_dev/e2e/screenshots/enrollment.png', fullPage: true });
     results.push({ name: 'enrollment:couple', passed: false, error: err.message });
