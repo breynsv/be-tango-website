@@ -470,9 +470,9 @@
         </a>
         <p id="em-pay-online-or" style="display:none;text-align:center;color:#8a8a82;font-size:13px;margin:14px 0 0;">${t.payOnlineOr}</p>
 
-        <div class="em-divider"></div>
+        <div class="em-divider" id="em-divider-1"></div>
 
-        <div class="em-payment">
+        <div class="em-payment" id="em-bank-block">
           <p class="em-payment-heading">${t.paymentTitle}</p>
           <div class="em-pay-rows">
             <div class="em-pay-row">
@@ -505,7 +505,7 @@
           </div>
         </div>
 
-        <div class="em-divider"></div>
+        <div class="em-divider" id="em-divider-2"></div>
 
         <div class="em-qr-section" id="em-qr-section">
           <div class="em-qr-body">
@@ -739,6 +739,25 @@
     var t = getT();
     pushEnrollmentConversion(data);
 
+    // Payment methods drive the pay-now button, the bank block (IBAN / ref / due /
+    // bank name) and the SEPA QR. The CRM now returns payment_methods on the
+    // response; fall back to reproducing today's exact behaviour when it's absent
+    // (old CRM still deployed — the frontend and CRM ship independently).
+    var methods = Array.isArray(data.payment_methods)
+      ? data.payment_methods
+      : (data.checkout_url ? ['bank', 'online'] : ['bank']);
+
+    var payBtn = document.getElementById('em-pay-online-btn');
+    var payOr = document.getElementById('em-pay-online-or');
+    var bankBlock = document.getElementById('em-bank-block');
+    var divider1 = document.getElementById('em-divider-1');
+    var divider2 = document.getElementById('em-divider-2');
+    var qrSection = document.getElementById('em-qr-section');
+
+    // Whether to fetch the QR below — only when the bank block is actually
+    // visible, regardless of which branch below set that.
+    var shouldLoadQr = false;
+
     // Three outcomes, in priority order:
     //   1. data.waitlisted        → class is fully booked. Defense-in-depth:
     //                                the API rejects full classes at 400 so
@@ -748,14 +767,31 @@
     //                                admin pairs the registrant with a partner.
     //   3. else                   → couple registration with payment popup.
     if (data.already_registered) {
-      // Re-submission of a class the contact is already enrolled in. Show a clear
-      // "already registered" message — no payment/QR (the API returns no payment
-      // payload for duplicates; details were re-sent by email).
+      // Re-submission of a class the contact is already enrolled in. Show a
+      // clear "already registered" message — no bank details/QR (those were
+      // re-sent by email). The CRM also returns payment_methods/checkout_url
+      // here now, so an unpaid duplicate registrant can still pay online.
       document.getElementById('em-success-title').textContent = t.alreadyTitle;
       document.getElementById('em-success-msg').hidden = false;
       document.getElementById('em-success-msg').textContent = t.alreadyMessage;
-      document.getElementById('em-success-payment').hidden = true;
       document.getElementById('em-success-waitlist').hidden = true;
+
+      if (bankBlock) bankBlock.hidden = true;
+      if (divider1) divider1.hidden = true;
+      if (divider2) divider2.hidden = true;
+      if (qrSection) qrSection.hidden = true;
+      if (payOr) payOr.style.display = 'none';
+
+      var alreadyHasOnline = !!data.checkout_url;
+      if (payBtn) {
+        if (alreadyHasOnline) {
+          payBtn.href = data.checkout_url;
+          payBtn.style.display = 'flex';
+        } else {
+          payBtn.style.display = 'none';
+        }
+      }
+      document.getElementById('em-success-payment').hidden = !alreadyHasOnline;
     } else if (data.waitlisted) {
       document.getElementById('em-success-title').textContent = t.classFullTitle;
       document.getElementById('em-success-msg').hidden = true;
@@ -776,12 +812,12 @@
       document.getElementById('em-success-title').textContent = t.successTitle;
       document.getElementById('em-success-msg').hidden = false;
       document.getElementById('em-success-msg').textContent = t.successMessage;
-      document.getElementById('em-success-payment').hidden = false;
       document.getElementById('em-success-waitlist').hidden = true;
 
       // Fill payment details. Only couple registrations reach this branch
       // (solos go through partner-search), so the 2\u00d7 per-person split is
-      // always shown.
+      // always shown. These fields sit inside the bank block, which may end up
+      // hidden below — harmless to fill regardless.
       var amount = parseFloat(data.amount || 0);
       var perPerson = amount / 2;
       document.getElementById('em-pay-amount').innerHTML =
@@ -791,24 +827,33 @@
       document.getElementById('em-pay-due').textContent = formatDueDate(data.due_date);
       document.getElementById('em-pay-bank').textContent = data.bank_name || 'BE-TANGO ART';
 
-      // Online payment (Mollie/Stripe): when the API returns a checkout URL, show
-      // a prominent "Pay now" button. Bank details stay below as a fallback, with
-      // the "or pay by bank transfer" label. When there is no checkout URL
-      // (bank-only tenant), the button + label stay hidden and bank details show
-      // exactly as before.
-      var payBtn = document.getElementById('em-pay-online-btn');
-      var payOr = document.getElementById('em-pay-online-or');
-      if (payBtn && payOr) {
-        if (data.checkout_url) {
+      // Drive the pay-now button, the "or pay by bank transfer" label, the bank
+      // block (IBAN/ref/due/bank name) and the QR from payment_methods:
+      //   ["bank"]         → button+label hidden, bank block + QR shown
+      //   ["online"]       → button shown, label+bank block+QR hidden
+      //   ["bank","online"]→ button+label shown, bank block + QR shown
+      // The pay-now button additionally requires checkout_url — if the mint
+      // failed server-side the field is absent, and a button with no href is
+      // worse than none.
+      var hasBank = methods.indexOf('bank') !== -1;
+      var hasOnline = methods.indexOf('online') !== -1 && !!data.checkout_url;
+
+      if (payBtn) {
+        if (hasOnline) {
           payBtn.href = data.checkout_url;
           payBtn.style.display = 'flex';
-          payOr.style.display = 'block';
         } else {
           payBtn.style.display = 'none';
-          payOr.style.display = 'none';
         }
       }
+      if (payOr) payOr.style.display = (hasBank && hasOnline) ? 'block' : 'none';
+      if (bankBlock) bankBlock.hidden = !hasBank;
+      if (divider1) divider1.hidden = !hasBank;
+      if (divider2) divider2.hidden = !hasBank;
+      if (qrSection) qrSection.hidden = !hasBank;
 
+      document.getElementById('em-success-payment').hidden = !(hasBank || hasOnline);
+      shouldLoadQr = hasBank;
     }
 
     // Update progress dots to complete state
@@ -830,10 +875,11 @@
     var dialog = document.querySelector('.em-dialog');
     if (dialog) dialog.scrollTop = 0;
 
-    // Lazy-load QR only when the payment popup is the active branch —
-    // couples with payment_reference set. Partner-search and class-full
-    // responses skip it (no reference yet, the QR endpoint would 404).
-    if (!data.partner_needed && !data.waitlisted) {
+    // Lazy-load QR only when the bank block is actually visible — otherwise skip
+    // the /enrollments/payment-qr call entirely rather than drawing into a
+    // hidden node (online-only, already-registered without bank, partner-search,
+    // waitlist all skip it).
+    if (shouldLoadQr) {
       loadPaymentQr(data);
     }
   }
