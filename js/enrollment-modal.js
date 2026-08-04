@@ -1093,8 +1093,48 @@
       bar.setAttribute('role', 'status');
       bar.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#1a7f37;color:#fff;padding:14px 18px;text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.4;box-shadow:0 2px 10px rgba(0,0,0,.25);';
       bar.innerHTML = '✓ ' + t.paymentReturn + ' <button type="button" aria-label="Close" style="margin-left:14px;background:rgba(255,255,255,.2);border:0;color:#fff;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:14px;">✕</button>';
-      bar.querySelector('button').addEventListener('click', function () { bar.remove(); });
       document.body.appendChild(bar);
+
+      // The bar is fixed at top:0 and the site header is sticky at top:0, so
+      // without this the bar sits ON the header — slicing the logo in half and
+      // clipping the header CTA. Pad the page down by the bar's height (the
+      // header moves with it, being in normal flow) and push the header's
+      // sticky offset down too, so it parks under the bar once you scroll.
+      var header = document.querySelector('.site-header');
+      var prevPad = document.body.style.paddingTop;
+      var prevTop = header ? header.style.top : '';
+
+      function offsetForBar() {
+        var h = bar.offsetHeight;
+        document.body.style.paddingTop = h + 'px';
+        if (header) header.style.top = h + 'px';
+      }
+      function clearOffset() {
+        document.body.style.paddingTop = prevPad;
+        if (header) header.style.top = prevTop;
+      }
+
+      offsetForBar();
+
+      // Measuring once is not enough: the message wraps to two or three lines on
+      // narrow screens, and the final line count only settles after the webfont
+      // swaps in — measured too early, EN on a 390px viewport reserved 73px for a
+      // bar that ended up 93px tall, putting the header back under it. Track the
+      // bar's real height instead of guessing when it stops changing.
+      var ro = null;
+      if (typeof ResizeObserver === 'function') {
+        ro = new ResizeObserver(offsetForBar);
+        ro.observe(bar);
+      } else {
+        window.addEventListener('resize', offsetForBar);
+      }
+
+      bar.querySelector('button').addEventListener('click', function () {
+        if (ro) ro.disconnect(); else window.removeEventListener('resize', offsetForBar);
+        clearOffset();
+        bar.remove();
+      });
+
       params.delete('be_payment_return');
       var qs = params.toString();
       history.replaceState({}, '', window.location.pathname + (qs ? '?' + qs : '') + window.location.hash);

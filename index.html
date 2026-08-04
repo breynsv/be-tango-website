@@ -10,7 +10,12 @@
   <title>BE-TANGO – Cours de Tango Argentin à Bruxelles</title>
   <script>
     var m = document.cookie.match(/(?:^|; )lang=(fr|nl|en)/);
-    window.location.replace('/' + (m ? m[1] : 'fr') + '/');
+    // Carry the query string and hash across the language redirect. Dropping
+    // them silently broke any deep link that landed on the root with params —
+    // e.g. the hosted-checkout return (?be_payment_return=1), whose bar then
+    // never rendered because the parameter was gone by the time a real page
+    // loaded.
+    window.location.replace('/' + (m ? m[1] : 'fr') + '/' + window.location.search + window.location.hash);
   </script>
 </head>
 <body>
