@@ -74,6 +74,16 @@ class CRMApi {
             const response = await fetch(`${this.baseURL}${endpoint}`, {
                 ...options,
                 signal: controller.signal,
+                // The site sends `Referrer-Policy: strict-origin-when-cross-origin`
+                // (_headers), so a cross-origin call to the CRM carries only the
+                // origin — "https://be-tango.be/", no path. The enrollment endpoint
+                // builds the hosted-checkout return URL from that Referer, so the
+                // customer came back to the root language splash (which drops the
+                // query string) instead of the page they registered on, and the
+                // payment-return bar never showed. Send the full URL for this
+                // same-scheme https call so the backend can return them to the
+                // exact page. (Downgraded https->http still sends nothing.)
+                referrerPolicy: 'no-referrer-when-downgrade',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
