@@ -8364,3 +8364,10 @@ section.hero-small:has(.hero-bg-image) h1 {
 /* ===================================
    END NEWSLETTER BLOG COMPACT CARD
    =================================== */
+/* Accessible gold for text on light grounds. The brand gold #E2C033 measures 1.78:1 on
+   white — below the 4.5:1 AA threshold for small text. It stays #E2C033 everywhere it sits
+   on navy (8.42:1) or as a button/background fill, and on the hero H1 over the photo.
+   This darker tone is scoped to gold TEXT on light backgrounds only. */
+:root{--color-gold-on-light:#8C6F10}
+h2 .highlight,h3 .highlight,h4 .highlight{color:var(--color-gold-on-light)}
+.schedule-day,.lsched-day-abbr,.lsched-time-val{color:var(--color-gold-on-light)}
