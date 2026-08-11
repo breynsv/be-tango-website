@@ -31,11 +31,11 @@ Argentine tango choreography for wedding first dances. Instructors have personal
 ### Brussels Centre
 - Address: Rue du Marais 68, 1000 Brussels, Belgium
 - Schedule: Monday–Thursday evenings, 18:30–22:00
-- Coordinates: 50.8503, 4.3517
+- Coordinates: 50.85242, 4.35975
 
 ### Woluwe-Saint-Pierre
 - Address: Avenue Orban 54, 1150 Woluwe-Saint-Pierre, Belgium
-- Coordinates: 50.8283, 4.4367
+- Coordinates: 50.83343, 4.45401
 
 ## Frequently Asked Questions
 
