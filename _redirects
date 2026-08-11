@@ -11,6 +11,11 @@
 # partials/ is dead code — js/load-header.js fetches partials/navigation.html,
 # but no page includes load-header.js, so nothing here is a runtime dependency.
 # Re-check that before reviving the header-injection approach.
+# Probe: this path has no file behind it. If it redirects, this _redirects
+# file is live, which means the 404 rules below are being overridden by the
+# static assets themselves rather than simply not deployed yet.
+/zz-deploy-probe-946eb30  /en/  301
+
 /_dev/*                /404.html  404
 /.github/*             /404.html  404
 /partials/*            /404.html  404

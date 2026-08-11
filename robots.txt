@@ -1,9 +1,18 @@
 User-agent: *
 Allow: /
 
-# Repo files that are served but should not be indexed
+# Repo files that are served but should not be indexed.
+# This is an indexing control, NOT an access control — every path below is
+# still fetchable by anyone who asks for it directly. Cloudflare Pages
+# publishes whatever is committed, and _redirects cannot 404 a file that
+# actually exists in the deployment.
 Disallow: /README.md
 Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /_dev/
+Disallow: /.github/
+Disallow: /index-maintenance
+Disallow: /index-maintenance.html
 
 # Disallow backup files
 Disallow: /*.backup$
