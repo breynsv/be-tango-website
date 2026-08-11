@@ -49,7 +49,7 @@
   <!-- Font Awesome -->
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.8" media="print" onload="this.media='all';this.onload=null">
+  <link rel="stylesheet" href="../../../css/styles.min.css?v=3.8">
   <noscript><link rel="stylesheet" href="../../../css/styles.min.css?v=3.8"></noscript>
   <link rel="stylesheet" href="../../../css/enrollment-modal.css?v=1.0">
   <style>
@@ -130,26 +130,64 @@
 
   <!-- JSON-LD Structured Data - Experienced Courses -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    "name": "Cours de tango argentin pour danseurs expérimentés",
-    "description": "Cours de tango pour danseurs expérimentés à Bruxelles et Woluwe. Niveaux 2, 3, 4 et 5 disponibles — perfectionnez votre technique, votre musicalité et votre improvisation.",
-    "url": "https://www.be-tango.be/fr/cours-de-tango/experimentes/",
-    "provider": {
-      "@type": ["LocalBusiness", "DanceSchool"],
-      "name": "BE-TANGO",
-      "url": "https://www.be-tango.be/fr/",
-      "telephone": "+32 498 39 29 39"
-    },
-    "hasCourseInstance": [
-      { "@type": "CourseInstance", "name": "Niveau 2", "courseMode": "onsite", "location": { "@type": "Place", "name": "BE-TANGO Bruxelles", "address": { "@type": "PostalAddress", "streetAddress": "Rue du Marais 68", "addressLocality": "Bruxelles", "postalCode": "1000", "addressCountry": "BE" } } },
-      { "@type": "CourseInstance", "name": "Niveau 3", "courseMode": "onsite", "location": { "@type": "Place", "name": "BE-TANGO Bruxelles", "address": { "@type": "PostalAddress", "streetAddress": "Rue du Marais 68", "addressLocality": "Bruxelles", "postalCode": "1000", "addressCountry": "BE" } } }
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Cours de tango argentin pour danseurs expérimentés",
+  "description": "Cours de tango pour danseurs expérimentés à Bruxelles et Woluwe. Niveaux 2, 3, 4 et 5 disponibles — perfectionnez votre technique, votre musicalité et votre improvisation.",
+  "url": "https://www.be-tango.be/fr/cours-de-tango/experimentes/",
+  "provider": {
+    "@type": [
+      "LocalBusiness",
+      "EducationalOrganization"
     ],
-    "offers": { "@type": "Offer", "price": "195", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
-    "inLanguage": "fr"
-  }
-  </script>
+    "name": "BE-TANGO",
+    "url": "https://www.be-tango.be/fr/",
+    "telephone": "+32 498 39 29 39"
+  },
+  "hasCourseInstance": [
+    {
+      "@type": "CourseInstance",
+      "name": "Niveau 2",
+      "courseMode": "onsite",
+      "location": {
+        "@type": "Place",
+        "name": "BE-TANGO Bruxelles",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rue du Marais 68",
+          "addressLocality": "Bruxelles",
+          "postalCode": "1000",
+          "addressCountry": "BE"
+        }
+      }
+    },
+    {
+      "@type": "CourseInstance",
+      "name": "Niveau 3",
+      "courseMode": "onsite",
+      "location": {
+        "@type": "Place",
+        "name": "BE-TANGO Bruxelles",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rue du Marais 68",
+          "addressLocality": "Bruxelles",
+          "postalCode": "1000",
+          "addressCountry": "BE"
+        }
+      }
+    }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "195",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  },
+  "inLanguage": "fr"
+}
+</script>
 
   <!-- BreadcrumbList Structured Data -->
   <script type="application/ld+json">
@@ -244,7 +282,7 @@
       <div class="container">
         <div class="hero-content">
           <p class="hero-label">DANSEURS EXPÉRIMENTÉS</p>
-          <h1>Niveaux fondamentaux, intermédiaires<br><span class="highlight">& avancés</span></h1>
+          <h1>Niveaux fondamentaux, intermédiaires<br> <span class="highlight">& avancés</span></h1>
           <p class="hero-tagline">Continuez votre voyage de tango avec des conseils d'experts</p>
         </div>
       </div>
@@ -354,7 +392,7 @@
             <div class="nl-split-bracket"></div>
             <div class="nl-split-body">
               <p class="nl-split-tag">BE-TANGO Bruxelles</p>
-              <h2 class="nl-split-headline">Restez en<br>avance sur<br>le <em>rythme.</em></h2>
+              <h2 class="nl-split-headline">Restez en<br> avance sur<br> le <em>rythme.</em></h2>
               <p class="nl-split-desc">Ateliers avancés. Professeurs invités.<br>Milongas. Soyez les premiers informés.</p>
               <div class="nl-split-dots">
                 <span></span><span></span><span></span><span></span><span></span>
@@ -364,7 +402,7 @@
           </div>
           <div class="nl-split-right">
             <span class="nl-split-right-tag">Newsletter</span>
-            <h3 class="nl-split-right-title">L'actu tango avancé,<br>à votre mesure.</h3>
+            <h3 class="nl-split-right-title">L'actu tango avancé,<br> à votre mesure.</h3>
             <p class="nl-split-right-sub">Soyez le premier à connaître les nouveaux ateliers, professeurs invités et événements.</p>
             <ul class="nl-split-perks">
               <li>Nouveaux ateliers & stages intensifs</li>

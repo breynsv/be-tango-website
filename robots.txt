@@ -1,12 +1,14 @@
 User-agent: *
 Allow: /
 
-# Disallow test/demo pages
-Disallow: /test-ux-features.html
-Disallow: /accessibility-demo.html
+# Repo files that are served but should not be indexed
+Disallow: /README.md
+Disallow: /package.json
 
 # Disallow backup files
 Disallow: /*.backup$
+Disallow: /*.bak$
+Disallow: /*.mobilebak$
 
 # Disallow partial HTML files
 Disallow: /partials/

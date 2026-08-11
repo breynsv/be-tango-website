@@ -42,7 +42,7 @@
   <link rel="preload" href="/css/cookie-consent.min.css?v=3.8" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
 <!-- Stylesheet -->
-<link href="../../../css/styles.min.css?v=3.8" media="print" onload="this.media='all';this.onload=null" rel="stylesheet"/>
+<link href="../../../css/styles.min.css?v=3.8" rel="stylesheet"/>
 <noscript><link href="../../../css/styles.min.css?v=3.8" rel="stylesheet"/></noscript>
 <!-- Enhancement Scripts -->
 <script defer="" src="../../../js/enhancements.min.js?v=3.7"></script>
@@ -56,7 +56,10 @@
   "description": "Ateliers intensifs de tango pour tous les niveaux à Bruxelles et Woluwe. Ateliers thématiques couvrant la technique, la musicalité et la performance.",
   "url": "https://www.be-tango.be/fr/cours-de-tango/ateliers/",
   "provider": {
-    "@type": ["LocalBusiness", "DanceSchool"],
+    "@type": [
+      "LocalBusiness",
+      "EducationalOrganization"
+    ],
     "name": "BE-TANGO",
     "url": "https://www.be-tango.be/fr/",
     "telephone": "+32 498 39 29 39",
@@ -67,19 +70,24 @@
       "postalCode": "1000",
       "addressCountry": "BE"
     },
-      "sameAs": [
-        "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
-        "https://www.instagram.com/be_tango_brussels/",
-        "https://www.youtube.com/@betango",
-        "https://maps.google.com/?cid=7397240013699561184",
-        "https://maps.google.com/?cid=17403292616488097271",
-        "https://www.wikidata.org/wiki/Q138794927"
-      ]
-    },
+    "sameAs": [
+      "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
+      "https://www.instagram.com/be_tango_brussels/",
+      "https://www.youtube.com/@betango",
+      "https://maps.google.com/?cid=7397240013699561184",
+      "https://maps.google.com/?cid=17403292616488097271"
+    ]
+  },
   "serviceType": "Atelier de danse",
   "areaServed": [
-    {"@type": "City", "name": "Bruxelles"},
-    {"@type": "City", "name": "Woluwe"}
+    {
+      "@type": "City",
+      "name": "Bruxelles"
+    },
+    {
+      "@type": "City",
+      "name": "Woluwe"
+    }
   ],
   "offers": {
     "@type": "Offer",
@@ -318,7 +326,7 @@
 <div class="nl-split-bracket"></div>
 <div class="nl-split-body">
 <p class="nl-split-tag">BE-TANGO Bruxelles</p>
-<h2 class="nl-split-headline">Soyez le<br/>premier à<br/><em>savoir.</em></h2>
+<h2 class="nl-split-headline">Soyez le<br/> premier à<br/> <em>savoir.</em></h2>
 <p class="nl-split-desc">Nos futurs stages. Les maestros de passage à Bruxelles.<br/>Les masterclasses exclusives. Directement dans votre boîte e-mail.</p>
 <div class="nl-split-dots">
 <span></span><span></span><span></span><span></span><span></span>

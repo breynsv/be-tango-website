@@ -1,11 +1,11 @@
 # BE-TANGO
-> Argentine tango dance school in Brussels and Woluwe, Belgium. Classes for all levels. Instruction available in English, Dutch (Nederlands), and French (Français). 5/5 rating based on 151 Google reviews.
+> Argentine tango dance school in Brussels and Woluwe, Belgium. Classes for all levels. Instruction available in English, Dutch (Nederlands), and French (Français). 5/5 rating based on 151 Google reviews. Classes are danced with one fixed partner for the whole course; register alone and BE-TANGO matches you, with enrolment confirmed once a partner is found.
 > License: RSL-1.0
 > Detailed guide: https://www.be-tango.be/llms-full.txt
 
 ## English — Tango Classes
 - [All Tango Classes](https://www.be-tango.be/en/tango-classes/): Overview of all class types and levels
-- [Beginners](https://www.be-tango.be/en/tango-classes/beginners/): Start-to-Tango beginner course, 14 lessons, no partner needed
+- [Beginners](https://www.be-tango.be/en/tango-classes/beginners/): Start-to-Tango beginner course, 14 lessons; register alone and we match you with a fixed partner
 - [Experienced](https://www.be-tango.be/en/tango-classes/experienced/): Intermediate and advanced tango classes
 - [Couples](https://www.be-tango.be/en/tango-classes/couples/): Argentine tango for couples in Brussels — no experience needed, free trial available, €195 for 14 lessons
 - [Brussels Classes](https://www.be-tango.be/en/tango-classes/brussels/): Weekly classes at Rue du Marais 68, 1000 Brussels
@@ -49,7 +49,7 @@
 ## Français — Cours de Tango
 - [Accueil](https://www.be-tango.be/fr/): Page d'accueil en français
 - [Tous les cours](https://www.be-tango.be/fr/cours-de-tango/): Vue d'ensemble de tous les cours
-- [Débutants](https://www.be-tango.be/fr/cours-de-tango/debutants/): Cours Start-to-Tango pour débutants, 14 leçons, sans partenaire ni expérience
+- [Débutants](https://www.be-tango.be/fr/cours-de-tango/debutants/): Cours Start-to-Tango pour débutants, 14 leçons ; inscrivez-vous seul, nous vous attribuons un partenaire fixe
 - [Expérimentés](https://www.be-tango.be/fr/cours-de-tango/experimentes/): Cours intermédiaires et avancés
 - [Cours en couple](https://www.be-tango.be/fr/cours-de-tango/en-couple/): Cours de tango argentin pour couples à Bruxelles — aucune expérience requise, essai gratuit
 - [Bruxelles](https://www.be-tango.be/fr/cours-de-tango/bruxelles/): Cours hebdomadaires à Bruxelles, Rue du Marais 68
@@ -90,7 +90,7 @@
 ## Nederlands — Tangolessen
 - [Startpagina](https://www.be-tango.be/nl/): Nederlandstalige startpagina
 - [Alle lessen](https://www.be-tango.be/nl/tangolessen/): Overzicht van alle tangolessen en niveaus
-- [Beginners](https://www.be-tango.be/nl/tangolessen/beginners/): Start-to-Tango beginnerscursus, 14 lessen, geen partner nodig
+- [Beginners](https://www.be-tango.be/nl/tangolessen/beginners/): Start-to-Tango beginnerscursus, 14 lessen; schrijf je alleen in, wij zoeken een vaste partner
 - [Ervaring](https://www.be-tango.be/nl/tangolessen/ervaring/): Lessen voor gevorderden en intermediair niveau
 - [Voor koppels](https://www.be-tango.be/nl/tangolessen/voor-koppels/): Argentijnse tangolessen voor koppels in Brussel — geen ervaring nodig, gratis proefles
 - [Brussel](https://www.be-tango.be/nl/tangolessen/brussel/): Wekelijkse lessen in Brussel, Rue du Marais 68
@@ -138,5 +138,5 @@
 - Google rating: 5/5 based on 151 reviews
 - Tango styles taught: Argentine tango (milonguero, salon, nuevo)
 - Phone: +32 498 39 29 39
-- Email: info@be-tango.be
+- Email: admin@be-tango.com
 - Website: https://www.be-tango.be

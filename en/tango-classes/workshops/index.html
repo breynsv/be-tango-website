@@ -47,7 +47,7 @@
   <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="/css/styles.min.css?v=3.8" media="print" onload="this.media='all';this.onload=null">
+  <link rel="stylesheet" href="/css/styles.min.css?v=3.8">
   <noscript><link rel="stylesheet" href="/css/styles.min.css?v=3.8"></noscript>
 
   <!-- Enhancement Scripts -->
@@ -55,45 +55,53 @@
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Argentine Tango Workshops",
-    "description": "Intensive tango workshops for all levels in Brussels and Woluwe. Special themed workshops throughout the year covering technique, musicality, and performance.",
-    "url": "https://www.be-tango.be/en/tango-classes/workshops/",
-    "provider": {
-      "@type": ["LocalBusiness", "DanceSchool"],
-      "name": "BE-TANGO",
-      "url": "https://www.be-tango.be/en/",
-      "telephone": "+32 498 39 29 39",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Rue du Marais 68",
-        "addressLocality": "Brussels",
-        "postalCode": "1000",
-        "addressCountry": "BE"
-      },
-      "sameAs": [
-        "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
-        "https://www.instagram.com/be_tango_brussels/",
-        "https://www.youtube.com/@betango",
-        "https://maps.google.com/?cid=7397240013699561184",
-        "https://maps.google.com/?cid=17403292616488097271",
-        "https://www.wikidata.org/wiki/Q138794927"
-      ]
-    },
-    "serviceType": "Dance Workshop",
-    "areaServed": [
-      {"@type": "City", "name": "Brussels"},
-      {"@type": "City", "name": "Woluwe"}
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Argentine Tango Workshops",
+  "description": "Intensive tango workshops for all levels in Brussels and Woluwe. Special themed workshops throughout the year covering technique, musicality, and performance.",
+  "url": "https://www.be-tango.be/en/tango-classes/workshops/",
+  "provider": {
+    "@type": [
+      "LocalBusiness",
+      "EducationalOrganization"
     ],
-    "offers": {
-      "@type": "Offer",
-      "availability": "https://schema.org/InStock",
-      "priceCurrency": "EUR"
+    "name": "BE-TANGO",
+    "url": "https://www.be-tango.be/en/",
+    "telephone": "+32 498 39 29 39",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rue du Marais 68",
+      "addressLocality": "Brussels",
+      "postalCode": "1000",
+      "addressCountry": "BE"
+    },
+    "sameAs": [
+      "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
+      "https://www.instagram.com/be_tango_brussels/",
+      "https://www.youtube.com/@betango",
+      "https://maps.google.com/?cid=7397240013699561184",
+      "https://maps.google.com/?cid=17403292616488097271"
+    ]
+  },
+  "serviceType": "Dance Workshop",
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Brussels"
+    },
+    {
+      "@type": "City",
+      "name": "Woluwe"
     }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "EUR"
   }
-  </script>
+}
+</script>
 
   <!-- BreadcrumbList Structured Data -->
   <script type="application/ld+json">
@@ -349,7 +357,7 @@
             <div class="nl-split-bracket"></div>
             <div class="nl-split-body">
               <p class="nl-split-tag">BE-TANGO Brussels</p>
-              <h2 class="nl-split-headline">Be first<br>to <em>know.</em></h2>
+              <h2 class="nl-split-headline">Be first<br> to <em>know.</em></h2>
               <p class="nl-split-desc">New workshops. Guest teachers.<br>Special sessions. Direct to you.</p>
               <div class="nl-split-dots">
                 <span></span><span></span><span></span><span></span><span></span>
@@ -359,7 +367,7 @@
           </div>
           <div class="nl-split-right">
             <span class="nl-split-right-tag">Newsletter</span>
-            <h3 class="nl-split-right-title">Workshop news,<br>delivered.</h3>
+            <h3 class="nl-split-right-title">Workshop news,<br> delivered.</h3>
             <p class="nl-split-right-sub">Never miss a workshop, intensive or guest teacher event at BE-TANGO.</p>
             <ul class="nl-split-perks">
               <li>New workshop dates as soon as they're set</li>

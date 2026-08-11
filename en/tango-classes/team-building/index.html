@@ -45,7 +45,7 @@
   <link rel="preload" href="/css/fontawesome.min.css?v=3.8" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fontawesome.min.css?v=3.8"></noscript>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="/css/styles.min.css?v=3.8" media="print" onload="this.media='all';this.onload=null">
+  <link rel="stylesheet" href="/css/styles.min.css?v=3.8">
   <noscript><link rel="stylesheet" href="/css/styles.min.css?v=3.8"></noscript>
   <link rel="preload" href="/css/cookie-consent.min.css?v=3.8" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
@@ -55,88 +55,45 @@
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Tango Team Building Brussels",
-    "description": "Corporate group tango workshops in Brussels. Unique team building activity that develops trust, communication, leadership, and collaboration through Argentine tango. Available on request for groups of all sizes.",
-    "provider": {
-      "@type": ["LocalBusiness", "DanceSchool"],
-      "name": "BE-TANGO",
-      "url": "https://www.be-tango.be/en",
-      "telephone": "+32498392939",
-      "email": "admin@be-tango.com",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "reviewCount": "151",
-        "bestRating": "5"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Rue du Marais 68",
-        "addressLocality": "Brussels",
-        "postalCode": "1000",
-        "addressCountry": "BE"
-      },
-      "sameAs": [
-        "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
-        "https://www.instagram.com/be_tango_brussels/",
-        "https://www.youtube.com/@betango",
-        "https://maps.google.com/?cid=7397240013699561184",
-        "https://maps.google.com/?cid=17403292616488097271",
-        "https://www.wikidata.org/wiki/Q138794927"
-      ]
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Tango Team Building Brussels",
+  "description": "Corporate group tango workshops in Brussels. Unique team building activity that develops trust, communication, leadership, and collaboration through Argentine tango. Available on request for groups of all sizes.",
+  "provider": {
+    "@type": [
+      "LocalBusiness",
+      "EducationalOrganization"
+    ],
+    "name": "BE-TANGO",
+    "url": "https://www.be-tango.be/en",
+    "telephone": "+32498392939",
+    "email": "admin@be-tango.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rue du Marais 68",
+      "addressLocality": "Brussels",
+      "postalCode": "1000",
+      "addressCountry": "BE"
     },
-    "serviceType": "Corporate Team Building Workshop",
-    "areaServed": {
-      "@type": "City",
-      "name": "Brussels"
-    }
+    "sameAs": [
+      "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
+      "https://www.instagram.com/be_tango_brussels/",
+      "https://www.youtube.com/@betango",
+      "https://maps.google.com/?cid=7397240013699561184",
+      "https://maps.google.com/?cid=17403292616488097271"
+    ]
+  },
+  "serviceType": "Corporate Team Building Workshop",
+  "areaServed": {
+    "@type": "City",
+    "name": "Brussels"
   }
-  </script>
+}
+</script>
 
   <!-- FAQPage Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Do participants need any dance experience for tango team building?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No experience is needed whatsoever. Tango team building sessions are designed for complete beginners. The focus is on the soft skills — trust, communication, and collaboration — not on learning to dance perfectly."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How large can the group be for a tango team building session?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We can accommodate groups of varying sizes. Contact us with your group size and we will tailor the session accordingly. Sessions can be held at our Brussels venue or at your own company location."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What does a tango team building session involve?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A typical session combines a short introduction to Argentine tango principles (lead, follow, listen), guided partner exercises that build trust and communication, and a fun social dancing experience. No prior experience required — our instructors guide the entire session."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can the session be held at our company location?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, we can come to your venue if you have a suitable space with a clear floor area. We can also host the event at our Brussels dance studio. Contact us to discuss options."
-        }
-      }
-    ]
-  }
-  </script>
+  
 
   <style>
     /* ===========================
@@ -1171,8 +1128,8 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.be-tango.be/en/"},
-      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/tango-classes/"},
-      {"@type": "ListItem", "position": 3, "name": "Team Building", "item": "https://www.be-tango.be/tango-classes/team-building/"}
+      {"@type": "ListItem", "position": 2, "name": "Tango Classes", "item": "https://www.be-tango.be/en/tango-classes/"},
+      {"@type": "ListItem", "position": 3, "name": "Team Building", "item": "https://www.be-tango.be/en/tango-classes/team-building/"}
     ]
   }
   </script>
