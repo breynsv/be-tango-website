@@ -42,295 +42,305 @@
 
   <!-- JSON-LD Structured Data - Multiple Courses -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": [
-      {
-        "@type": "Course",
-        "name": "Tango Beginnerslessen (Start-to-Tango)",
-        "description": "14-lessen reeks voor absolute beginners. Leer basisstappen, houding, partnerconnectie en muzikaal bewustzijn. Geen danspartner nodig.",
-        "provider": {
-          "@type": "Organization",
-          "name": "BE-TANGO",
-          "url": "https://www.be-tango.be"
-        },
-        "courseCode": "BEGINNER",
-        "numberOfCredits": 14,
-        "hasCourseInstance": [
-          {
-            "@type": "CourseInstance",
-            "courseMode": "onsite",
-            "location": {
-              "@type": "Place",
-              "name": "BE-TANGO Brussel",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Rue du Marais 68",
-                "addressLocality": "Brussel",
-                "postalCode": "1000",
-                "addressCountry": "BE"
-              }
-            },
-            "courseSchedule": {
-              "@type": "Schedule",
-              "byDay": "Monday",
-              "startTime": "20:00",
-              "endTime": "21:00",
-              "repeatFrequency": "Weekly"
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "Course",
+      "name": "Tango Beginnerslessen (Start-to-Tango)",
+      "description": "14-lessen reeks voor absolute beginners. Leer basisstappen, houding, partnerconnectie en muzikaal bewustzijn. Geen danspartner nodig.",
+      "provider": {
+        "@type": "Organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be"
+      },
+      "courseCode": "BEGINNER",
+      "numberOfCredits": 14,
+      "hasCourseInstance": [
+        {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "BE-TANGO Brussel",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Rue du Marais 68",
+              "addressLocality": "Brussel",
+              "postalCode": "1000",
+              "addressCountry": "BE"
             }
           },
-          {
-            "@type": "CourseInstance",
-            "courseMode": "onsite",
-            "location": {
-              "@type": "Place",
-              "name": "BE-TANGO Woluwe",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Avenue Orban 54",
-                "addressLocality": "Woluwe-Saint-Pierre",
-                "postalCode": "1150",
-                "addressCountry": "BE"
-              }
-            },
-            "courseSchedule": {
-              "@type": "Schedule",
-              "byDay": "Thursday",
-              "startTime": "19:30",
-              "endTime": "20:30",
-              "repeatFrequency": "Weekly"
-            }
+          "courseSchedule": {
+            "@type": "Schedule",
+            "byDay": "Monday",
+            "startTime": "20:00",
+            "endTime": "21:00",
+            "repeatFrequency": "Weekly"
           }
-        ]
-      },
-      {
-        "@type": "Course",
-        "name": "Eerste Jaar Tangolessen",
-        "description": "Voor dansers die de beginnerscursus hebben afgerond. Focus op cross-system walks, vloeiende beweging en Ochos.",
-        "provider": {
-          "@type": "Organization",
-          "name": "BE-TANGO",
-          "url": "https://www.be-tango.be"
         },
-        "courseCode": "FIRST_YEAR",
-        "numberOfCredits": 15,
-        "offers": {
-          "@type": "Offer",
-          "price": "195",
-          "priceCurrency": "EUR",
-          "description": "Semestercursus - 15 lessen"
-        },
-        "hasCourseInstance": [
-          {
-            "@type": "CourseInstance",
-            "courseMode": "onsite",
-            "location": {
-              "@type": "Place",
-              "name": "BE-TANGO Brussel"
-            },
-            "courseSchedule": {
-              "@type": "Schedule",
-              "byDay": "Wednesday",
-              "startTime": "18:30",
-              "endTime": "19:30",
-              "repeatFrequency": "Weekly"
+        {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "BE-TANGO Woluwe",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Avenue Orban 54",
+              "addressLocality": "Woluwe-Saint-Pierre",
+              "postalCode": "1150",
+              "addressCountry": "BE"
             }
           },
-          {
-            "@type": "CourseInstance",
-            "courseMode": "onsite",
-            "location": {
-              "@type": "Place",
-              "name": "BE-TANGO Woluwe"
-            },
-            "courseSchedule": {
-              "@type": "Schedule",
-              "byDay": "Thursday",
-              "startTime": "18:30",
-              "endTime": "19:30",
-              "repeatFrequency": "Weekly"
-            }
+          "courseSchedule": {
+            "@type": "Schedule",
+            "byDay": "Thursday",
+            "startTime": "19:30",
+            "endTime": "20:30",
+            "repeatFrequency": "Weekly"
           }
-        ]
+        }
+      ]
+    },
+    {
+      "@type": "Course",
+      "name": "Eerste Jaar Tangolessen",
+      "description": "Voor dansers die de beginnerscursus hebben afgerond. Focus op cross-system walks, vloeiende beweging en Ochos.",
+      "provider": {
+        "@type": "Organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be"
       },
-      {
-        "@type": "Course",
-        "name": "Tweede Jaar Tangolessen",
-        "description": "Voor dansers met 1,5-2,5 jaar ervaring. Introductie van Giros, Sacadas en Barridas met nadruk op dissociatie.",
-        "provider": {
-          "@type": "Organization",
-          "name": "BE-TANGO",
-          "url": "https://www.be-tango.be"
-        },
-        "courseCode": "SECOND_YEAR",
-        "numberOfCredits": 15,
-        "offers": {
-          "@type": "Offer",
-          "price": "195",
-          "priceCurrency": "EUR",
-          "description": "Semestercursus - 15 lessen"
-        },
-        "hasCourseInstance": [
-          {
-            "@type": "CourseInstance",
-            "courseMode": "onsite",
-            "location": {
-              "@type": "Place",
-              "name": "BE-TANGO Brussel"
-            },
-            "courseSchedule": {
-              "@type": "Schedule",
-              "byDay": "Monday",
-              "startTime": "19:00",
-              "endTime": "20:00",
-              "repeatFrequency": "Weekly"
-            }
+      "courseCode": "FIRST_YEAR",
+      "numberOfCredits": 15,
+      "offers": {
+        "@type": "Offer",
+        "price": "195",
+        "priceCurrency": "EUR",
+        "description": "Semestercursus - 15 lessen"
+      },
+      "hasCourseInstance": [
+        {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "BE-TANGO Brussel"
           },
-          {
-            "@type": "CourseInstance",
-            "courseMode": "onsite",
-            "location": {
-              "@type": "Place",
-              "name": "BE-TANGO Woluwe"
-            },
-            "courseSchedule": {
-              "@type": "Schedule",
-              "byDay": "Tuesday",
-              "startTime": "19:00",
-              "endTime": "20:00",
-              "repeatFrequency": "Weekly"
-            }
+          "courseSchedule": {
+            "@type": "Schedule",
+            "byDay": "Wednesday",
+            "startTime": "18:30",
+            "endTime": "19:30",
+            "repeatFrequency": "Weekly"
           }
-        ]
-      },
-      {
-        "@type": "Course",
-        "name": "Tweede Jaar PLUS Tangolessen",
-        "description": "Brugklasse met sneller tempo en complexere sequenties met stijlvariaties.",
-        "provider": {
-          "@type": "Organization",
-          "name": "BE-TANGO",
-          "url": "https://www.be-tango.be"
         },
-        "courseCode": "SECOND_YEAR_PLUS",
-        "numberOfCredits": 15,
-        "offers": {
-          "@type": "Offer",
-          "price": "195",
-          "priceCurrency": "EUR",
-          "description": "Semestercursus - 15 lessen"
-        },
-        "hasCourseInstance": [
-          {
-            "@type": "CourseInstance",
-            "courseMode": "onsite",
-            "location": {
-              "@type": "Place",
-              "name": "BE-TANGO Brussel"
-            },
-            "courseSchedule": {
-              "@type": "Schedule",
-              "byDay": "Wednesday",
-              "startTime": "19:30",
-              "endTime": "20:30",
-              "repeatFrequency": "Weekly"
-            }
+        {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "BE-TANGO Woluwe"
           },
-          {
-            "@type": "CourseInstance",
-            "courseMode": "onsite",
-            "location": {
-              "@type": "Place",
-              "name": "BE-TANGO Woluwe"
-            },
-            "courseSchedule": {
-              "@type": "Schedule",
-              "byDay": "Tuesday",
-              "startTime": "20:00",
-              "endTime": "21:00",
-              "repeatFrequency": "Weekly"
-            }
+          "courseSchedule": {
+            "@type": "Schedule",
+            "byDay": "Thursday",
+            "startTime": "18:30",
+            "endTime": "19:30",
+            "repeatFrequency": "Weekly"
           }
-        ]
+        }
+      ]
+    },
+    {
+      "@type": "Course",
+      "name": "Tweede Jaar Tangolessen",
+      "description": "Voor dansers met 1,5-2,5 jaar ervaring. Introductie van Giros, Sacadas en Barridas met nadruk op dissociatie.",
+      "provider": {
+        "@type": "Organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be"
       },
-      {
-        "@type": "Course",
-        "name": "Halfgevorderd & Gevorderd Tangolessen",
-        "description": "Voor dansers met 4+ jaar ervaring. Boleos, Ganchos, Enrosques, plus Vals/Milonga muzikaliteit en improvisatiewerk.",
-        "provider": {
-          "@type": "Organization",
-          "name": "BE-TANGO",
-          "url": "https://www.be-tango.be"
-        },
-        "courseCode": "INTERMEDIATE_ADVANCED",
-        "numberOfCredits": 15,
-        "offers": {
-          "@type": "Offer",
-          "price": "195",
-          "priceCurrency": "EUR",
-          "description": "Semestercursus - 15 lessen"
-        },
-        "hasCourseInstance": [
-          {
-            "@type": "CourseInstance",
-            "courseMode": "onsite",
-            "location": {
-              "@type": "Place",
-              "name": "BE-TANGO Brussel"
-            },
-            "courseSchedule": {
-              "@type": "Schedule",
-              "byDay": "Wednesday",
-              "startTime": "20:30",
-              "endTime": "21:30",
-              "repeatFrequency": "Weekly"
-            }
+      "courseCode": "SECOND_YEAR",
+      "numberOfCredits": 15,
+      "offers": {
+        "@type": "Offer",
+        "price": "195",
+        "priceCurrency": "EUR",
+        "description": "Semestercursus - 15 lessen"
+      },
+      "hasCourseInstance": [
+        {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "BE-TANGO Brussel"
           },
-          {
-            "@type": "CourseInstance",
-            "courseMode": "onsite",
-            "location": {
-              "@type": "Place",
-              "name": "BE-TANGO Woluwe"
-            },
-            "courseSchedule": {
-              "@type": "Schedule",
-              "byDay": "Thursday",
-              "startTime": "20:30",
-              "endTime": "21:30",
-              "repeatFrequency": "Weekly"
-            }
+          "courseSchedule": {
+            "@type": "Schedule",
+            "byDay": "Monday",
+            "startTime": "19:00",
+            "endTime": "20:00",
+            "repeatFrequency": "Weekly"
           }
-        ]
-      },
-      {
-        "@type": "Course",
-        "name": "Online Tango Academie",
-        "description": "Gestructureerde online tango-instructie via videolessen toegankelijk op meerdere apparaten. Alle niveaus van absolute beginners tot gevorderde dansers.",
-        "provider": {
-          "@type": "Organization",
-          "name": "BE-TANGO",
-          "url": "https://www.be-tango.be"
         },
-        "courseMode": "online",
-        "courseCode": "ONLINE"
+        {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "BE-TANGO Woluwe"
+          },
+          "courseSchedule": {
+            "@type": "Schedule",
+            "byDay": "Tuesday",
+            "startTime": "19:00",
+            "endTime": "20:00",
+            "repeatFrequency": "Weekly"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Course",
+      "name": "Tweede Jaar PLUS Tangolessen",
+      "description": "Brugklasse met sneller tempo en complexere sequenties met stijlvariaties.",
+      "provider": {
+        "@type": "Organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be"
       },
-      {
-        "@type": "Course",
-        "name": "Privé Tangolessen",
-        "description": "Volledig gepersonaliseerde één-op-één instructie. Techniek verfijning, inhaal sessies en bruiloftschoreografie. 1-1,5 uur duur.",
-        "provider": {
-          "@type": "Organization",
-          "name": "BE-TANGO",
-          "url": "https://www.be-tango.be"
+      "courseCode": "SECOND_YEAR_PLUS",
+      "numberOfCredits": 15,
+      "offers": {
+        "@type": "Offer",
+        "price": "195",
+        "priceCurrency": "EUR",
+        "description": "Semestercursus - 15 lessen"
+      },
+      "hasCourseInstance": [
+        {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "BE-TANGO Brussel"
+          },
+          "courseSchedule": {
+            "@type": "Schedule",
+            "byDay": "Wednesday",
+            "startTime": "19:30",
+            "endTime": "20:30",
+            "repeatFrequency": "Weekly"
+          }
         },
-        "courseMode": "onsite",
-        "courseCode": "PRIVATE"
-      }
-    ]
-  }
-  </script>
+        {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "BE-TANGO Woluwe"
+          },
+          "courseSchedule": {
+            "@type": "Schedule",
+            "byDay": "Tuesday",
+            "startTime": "20:00",
+            "endTime": "21:00",
+            "repeatFrequency": "Weekly"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Course",
+      "name": "Halfgevorderd & Gevorderd Tangolessen",
+      "description": "Voor dansers met 4+ jaar ervaring. Boleos, Ganchos, Enrosques, plus Vals/Milonga muzikaliteit en improvisatiewerk.",
+      "provider": {
+        "@type": "Organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be"
+      },
+      "courseCode": "INTERMEDIATE_ADVANCED",
+      "numberOfCredits": 15,
+      "offers": {
+        "@type": "Offer",
+        "price": "195",
+        "priceCurrency": "EUR",
+        "description": "Semestercursus - 15 lessen"
+      },
+      "hasCourseInstance": [
+        {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "BE-TANGO Brussel"
+          },
+          "courseSchedule": {
+            "@type": "Schedule",
+            "byDay": "Wednesday",
+            "startTime": "20:30",
+            "endTime": "21:30",
+            "repeatFrequency": "Weekly"
+          }
+        },
+        {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite",
+          "location": {
+            "@type": "Place",
+            "name": "BE-TANGO Woluwe"
+          },
+          "courseSchedule": {
+            "@type": "Schedule",
+            "byDay": "Thursday",
+            "startTime": "20:30",
+            "endTime": "21:30",
+            "repeatFrequency": "Weekly"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Course",
+      "name": "Online Tango Academie",
+      "description": "Gestructureerde online tango-instructie via videolessen toegankelijk op meerdere apparaten. Alle niveaus van absolute beginners tot gevorderde dansers.",
+      "provider": {
+        "@type": "Organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be"
+      },
+      "courseCode": "ONLINE",
+      "hasCourseInstance": [
+        {
+          "@type": "CourseInstance",
+          "courseMode": "Online"
+        }
+      ]
+    },
+    {
+      "@type": "Course",
+      "name": "Privé Tangolessen",
+      "description": "Volledig gepersonaliseerde één-op-één instructie. Techniek verfijning, inhaal sessies en bruiloftschoreografie. 1-1,5 uur duur.",
+      "provider": {
+        "@type": "Organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be"
+      },
+      "courseCode": "PRIVATE",
+      "hasCourseInstance": [
+        {
+          "@type": "CourseInstance",
+          "courseMode": "Onsite"
+        }
+      ]
+    }
+  ]
+}
+</script>
 
   <!-- BreadcrumbList Structured Data -->
   <script type="application/ld+json">
