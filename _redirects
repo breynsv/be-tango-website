@@ -1,29 +1,21 @@
 # ---------------------------------------------------------------------------
-# Dev and CI files: present in git because CI needs them, but not part of the
-# site. Cloudflare Pages publishes whatever is committed, so without these
-# rules /_dev/e2e/*, /README.md, /package.json and /.github/* are all served
-# with real content to anyone who asks. No credentials are in them — every
-# secret comes from process.env or GitHub Actions — but the E2E suite maps the
-# CRM API surface and names the data-cleanup endpoint's secret header, which is
-# free reconnaissance. They cannot simply be .gitignored: the e2e workflow runs
-# `node _dev/e2e/run.js` from the repo.
+# DO NOT try to block dev files here. Measured 2026-08-11: Cloudflare Pages
+# serves an existing static asset in preference to any _redirects rule, so a
+# "/README.md /404.html 404" line does nothing. Proven with a probe rule on a
+# path with no file behind it — the probe returned 301 (so the file was live)
+# while /README.md kept returning 200 with real content.
 #
-# partials/ is dead code — js/load-header.js fetches partials/navigation.html,
-# but no page includes load-header.js, so nothing here is a runtime dependency.
-# Re-check that before reviving the header-injection approach.
-# Probe: this path has no file behind it. If it redirects, this _redirects
-# file is live, which means the 404 rules below are being overridden by the
-# static assets themselves rather than simply not deployed yet.
-/zz-deploy-probe-946eb30  /en/  301
-
-/_dev/*                /404.html  404
-/.github/*             /404.html  404
-/partials/*            /404.html  404
-/README.md             /404.html  404
-/package.json          /404.html  404
-/package-lock.json     /404.html  404
-/index-maintenance     /404.html  404
-/index-maintenance.html  /404.html  404
+# Pages publishes everything committed, which currently exposes /_dev/e2e/*,
+# /README.md, /package.json, /package-lock.json, /.github/workflows/e2e.yml,
+# /partials/* and /index-maintenance. No credentials are in any of them — every
+# secret resolves from process.env or GitHub Actions — but the E2E suite maps
+# the CRM API surface and names the cleanup endpoint's X-E2E-Secret header.
+#
+# They cannot be .gitignored either: the e2e workflow runs `node
+# _dev/e2e/run.js` from the repo. The fix is a Cloudflare Pages BUILD COMMAND
+# that strips them from the deployed output — see README/handover notes.
+# robots.txt covers indexing in the meantime, but is not an access control.
+# ---------------------------------------------------------------------------
 
 # Old WordPress URLs → new site (301 permanent redirects)
 # Detected via Google Search Console 404 report 2026-04-28
