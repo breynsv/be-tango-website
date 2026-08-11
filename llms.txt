@@ -1,6 +1,7 @@
 # BE-TANGO
 > Argentine tango dance school in Brussels and Woluwe, Belgium. Classes for all levels. Instruction available in English, Dutch (Nederlands), and French (Français). 5/5 rating based on 151 Google reviews.
 > License: RSL-1.0
+> Detailed guide: https://www.be-tango.be/llms-full.txt
 
 ## English — Tango Classes
 - [All Tango Classes](https://www.be-tango.be/en/tango-classes/): Overview of all class types and levels

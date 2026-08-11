@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <title>Page introuvable · Page not found · Pagina niet gevonden | BE-TANGO</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/images/cropped-favicon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
+  <style>
+    :root {
+      --gold: #E2C033;
+      --navy: #1C244B;
+      --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      background: var(--navy);
+      color: var(--white);
+      font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      text-align: center;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 40%, rgba(226,192,51,0.10) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .wrap { position: relative; max-width: 640px; width: 100%; }
+    /* The logo PNG is black-on-light, so it disappears on navy — the site's own
+       footer uses the wordmark as text on dark backgrounds. Match that. */
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      color: var(--white);
+      margin: 0 0 36px;
+    }
+    .brand span { color: var(--gold); }
+    .code {
+      font-size: 5rem;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 0 0 8px;
+    }
+    h1 { font-size: 1.35rem; font-weight: 700; margin: 0 0 6px; }
+    .sub { color: rgba(255,255,255,0.72); font-size: 0.95rem; margin: 0 0 32px; }
+    .langs { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 36px; }
+    .langs a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .langs a:hover { background: #cba820; transform: translateY(-1px); }
+    .links {
+      border-top: 1px solid rgba(255,255,255,0.14);
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 26px;
+      justify-content: center;
+    }
+    .links a {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.88rem;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    .links a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    @media (max-width: 600px) {
+      .code { font-size: 3.5rem; }
+      h1 { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="brand">BE<span>-</span>TANGO</p>
+
+    <p class="code">404</p>
+    <h1>Page introuvable · Page not found · Pagina niet gevonden</h1>
+    <p class="sub">
+      Cette page n'existe pas ou a été déplacée.<br>
+      This page doesn't exist or has moved. · Deze pagina bestaat niet of is verplaatst.
+    </p>
+
+    <div class="langs">
+      <a href="/fr/"><span aria-hidden="true">🇫🇷</span> Français</a>
+      <a href="/nl/"><span aria-hidden="true">🇳🇱</span> Nederlands</a>
+      <a href="/en/"><span aria-hidden="true">🇬🇧</span> English</a>
+    </div>
+
+    <div class="links">
+      <a href="/fr/cours-de-tango/">Cours de tango</a>
+      <a href="/nl/tangolessen/">Tangolessen</a>
+      <a href="/en/tango-classes/">Tango classes</a>
+      <a href="/fr/blog/">Blog FR</a>
+      <a href="/nl/blog/">Blog NL</a>
+      <a href="/en/blog/">Blog EN</a>
+      <a href="/fr/contactez-nous/">Contact</a>
+    </div>
+  </div>
+</body>
+</html>
