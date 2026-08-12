@@ -5,16 +5,24 @@
 # path with no file behind it — the probe returned 301 (so the file was live)
 # while /README.md kept returning 200 with real content.
 #
-# Pages publishes everything committed, which currently exposes /_dev/e2e/*,
-# /README.md, /package.json, /package-lock.json, /.github/workflows/e2e.yml,
-# /partials/* and /index-maintenance. No credentials are in any of them — every
-# secret resolves from process.env or GitHub Actions — but the E2E suite maps
-# the CRM API surface and names the cleanup endpoint's X-E2E-Secret header.
+# Pages publishes everything committed, which exposed /_dev/e2e/*, /README.md,
+# /package.json, /package-lock.json, /.github/workflows/e2e.yml and
+# /index-maintenance. No credentials were in any of them — every secret
+# resolves from process.env or GitHub Actions — but the E2E suite maps the CRM
+# API surface and names the cleanup endpoint's X-E2E-Secret header.
 #
-# They cannot be .gitignored either: the e2e workflow runs `node
-# _dev/e2e/run.js` from the repo. The fix is a Cloudflare Pages BUILD COMMAND
-# that strips them from the deployed output — see README/handover notes.
-# robots.txt covers indexing in the meantime, but is not an access control.
+# They cannot be .gitignored either, and this is the key point: the e2e
+# workflow file IS read from the repo by GitHub, `npm ci` needs
+# package-lock.json, and `npm run test:e2e` runs `node _dev/e2e/run.js`.
+# .gitignore controls what is in the repo; the build command controls what is
+# on the CDN. Only the second question is the one we need answered.
+#
+# FIXED 2026-08-12 by a Cloudflare Pages BUILD COMMAND that strips them from
+# the deployed output:
+#   rm -rf _dev .github partials README.md package.json package-lock.json index-maintenance.html
+# It names `partials` too, which is now a harmless no-op — that directory was
+# deleted from the repo outright (dead code: js/load-header.js fetched
+# partials/navigation.html, but no page ever included load-header.js).
 # ---------------------------------------------------------------------------
 
 # Old WordPress URLs → new site (301 permanent redirects)

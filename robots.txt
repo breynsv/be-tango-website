@@ -1,11 +1,11 @@
 User-agent: *
 Allow: /
 
-# Repo files that are served but should not be indexed.
-# This is an indexing control, NOT an access control — every path below is
-# still fetchable by anyone who asks for it directly. Cloudflare Pages
-# publishes whatever is committed, and _redirects cannot 404 a file that
-# actually exists in the deployment.
+# Repo files that must stay in git for CI but are not part of the site.
+# A Cloudflare Pages BUILD COMMAND now strips them from the deployed output, so
+# these paths 404 at origin. These rules are belt-and-braces: robots.txt is an
+# indexing control, not an access control, and some stale edge-cached copies
+# outlived the change. Keep them — the build command is what actually blocks.
 Disallow: /README.md
 Disallow: /package.json
 Disallow: /package-lock.json
@@ -18,9 +18,6 @@ Disallow: /index-maintenance.html
 Disallow: /*.backup$
 Disallow: /*.bak$
 Disallow: /*.mobilebak$
-
-# Disallow partial HTML files
-Disallow: /partials/
 
 # Allow CSS and JS
 Allow: /css/
