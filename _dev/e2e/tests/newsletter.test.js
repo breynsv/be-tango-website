@@ -1,5 +1,6 @@
 // _dev/e2e/tests/newsletter.test.js
 const { SITE_URL, testEmail } = require('../config');
+const { formSubmitSlot } = require('../helpers/rate-limit');
 
 const VARIANTS = [
   { lang: 'en', path: '/en/', formId: 'homeNewsletterForm', successId: 'homeNewsletterFormSuccess' },
@@ -22,6 +23,7 @@ async function run(browser) {
 
       await page.fill(`#${formId} [name="email"]`, email);
 
+      await formSubmitSlot('newsletter');
       const [response] = await Promise.all([
         page.waitForResponse(
           (res) => res.url().includes('/newsletter/subscribe') && res.request().method() === 'POST',

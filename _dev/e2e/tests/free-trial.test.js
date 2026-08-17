@@ -1,6 +1,7 @@
 // _dev/e2e/tests/free-trial.test.js
 const { SITE_URL, testEmail } = require('../config');
 const { verifyEmailDelivered } = require('../helpers/email-verify');
+const { formSubmitSlot } = require('../helpers/rate-limit');
 
 const PAGE_URL = SITE_URL + '/en/tango-classes/free-trial/';
 
@@ -46,6 +47,8 @@ async function selectFirstAvailableDate(page) {
 
 async function submitAndAwaitResponse(page) {
   await page.check('[name="consent"]');
+
+  await formSubmitSlot('free-trial');
 
   const [response] = await Promise.all([
     page.waitForResponse(
@@ -104,8 +107,12 @@ async function run(browser) {
       await selectFirstAvailableDate(page);
       await choosePartnerOption(page, 'ft-radio-partner');
 
-      // Wait for partner panel to appear
-      await page.waitForSelector('#partner', { state: 'visible', timeout: 5000 });
+      // There is no partner panel on this form. #partner is an internal <select>
+      // that is display:none at all times, so the old wait for it to become
+      // "visible" could only ever time out. Choosing "with a partner" shows a tick
+      // on the chosen card and nothing else — that is the real UI feedback.
+      // (choosePartnerOption has already asserted the radio is actually checked.)
+      await page.waitForSelector('.ft-partner-check', { state: 'visible', timeout: 5000 });
 
       await submitAndAwaitResponse(page);
 

@@ -2,6 +2,7 @@
 const https = require('https');
 const { SITE_URL, API_BASE, testEmail } = require('../config');
 const { verifyEmailDelivered } = require('../helpers/email-verify');
+const { formSubmitSlot } = require('../helpers/rate-limit');
 
 async function fetchAvailableBeginnerClass() {
   return new Promise((resolve, reject) => {
@@ -87,8 +88,15 @@ async function run(browser) {
     });
     if (firstLang) await page.selectOption('#em-language', firstLang);
 
-    // Select "with partner"
-    await page.click('#em-with-partner');
+    // Select "with partner". #em-with-partner is a visually-hidden radio (opacity:0,
+    // 0x0) behind a styled label[for=...].em-partner-card — the same pattern as the
+    // free-trial cards — so clicking the input itself only ever times out.
+    await page.click('label[for="em-with-partner"]');
+    await page.waitForFunction(
+      () => document.getElementById('em-with-partner').checked,
+      null,
+      { timeout: 5000 }
+    );
     await page.waitForSelector('#em-partner-section', { state: 'visible', timeout: 5000 });
 
     // Fill partner fields
@@ -100,6 +108,7 @@ async function run(browser) {
     // Accept consent and submit
     await page.check('#em-consent');
 
+    await formSubmitSlot('enrollment');
     const [response] = await Promise.all([
       page.waitForResponse(
         (res) =>
