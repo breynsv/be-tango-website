@@ -64,8 +64,11 @@ async function submitAndAwaitResponse(page) {
     throw new Error(`API returned HTTP ${response.status()}: ${body}`);
   }
 
-  // Wait for dynamically-created success message
-  await page.waitForSelector('.form-success-message', { timeout: 8000 });
+  // Wait for the dynamically-created success panel. NOT .form-success-message —
+  // that class is emitted by js/enrollment-form.js, which this page does not load.
+  // The free-trial page is driven by js/free-trial.js, which renders .ft-success
+  // (for both the confirmed and the waitlisted variants).
+  await page.waitForSelector('.ft-success', { timeout: 8000 });
 
   return response;
 }
