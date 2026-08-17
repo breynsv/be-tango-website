@@ -1,5 +1,6 @@
 // _dev/e2e/tests/private-lessons.test.js
 const { SITE_URL, testEmail } = require('../config');
+const { formSubmitSlot } = require('../helpers/rate-limit');
 
 async function run(browser) {
   const results = [];
@@ -22,6 +23,7 @@ async function run(browser) {
       'Automated E2E test — please ignore this message.'
     );
 
+    await formSubmitSlot('private-lessons');
     const [response] = await Promise.all([
       page.waitForResponse(
         (res) =>

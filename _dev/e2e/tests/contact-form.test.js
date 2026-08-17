@@ -1,5 +1,6 @@
 // _dev/e2e/tests/contact-form.test.js
 const { SITE_URL, testEmail } = require('../config');
+const { formSubmitSlot } = require('../helpers/rate-limit');
 
 const VARIANTS = [
   { lang: 'en', path: '/en/contact/' },
@@ -25,6 +26,7 @@ async function run(browser) {
       await page.fill('#message', 'Automated E2E test — please ignore this message.');
 
       // Submit and wait for API response + success element
+      await formSubmitSlot('contact-form');
       const [response] = await Promise.all([
         page.waitForResponse(
           (res) => res.url().includes('/api/v1/contact') && res.request().method() === 'POST',
