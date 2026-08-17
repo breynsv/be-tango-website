@@ -1,7 +1,7 @@
 // _dev/e2e/tests/enrollment.test.js
 const https = require('https');
-const { SITE_URL, API_BASE, testEmail, BREVO_API_KEY } = require('../config');
-const { waitForEmail } = require('../helpers/brevo');
+const { SITE_URL, API_BASE, testEmail } = require('../config');
+const { verifyEmailDelivered } = require('../helpers/email-verify');
 
 async function fetchAvailableBeginnerClass() {
   return new Promise((resolve, reject) => {
@@ -15,8 +15,15 @@ async function fetchAvailableBeginnerClass() {
           try {
             const body = JSON.parse(data);
             const classes = body.data || [];
+            // The previous filter — `c.current_enrollment < c.max_students && c.publish_on_website`
+            // — could never match anything, for two independent reasons:
+            //   1. max_students is null on production classes (null = unlimited), and in JS
+            //      `57 < null` coerces to `57 < 0` => false. Every class looked full.
+            //   2. publish_on_website is not a field this endpoint returns at all, so it was
+            //      always undefined => falsy.
+            // The API does expose is_full / spots_remaining / is_visible / is_active; use those.
             const available = classes.find(
-              (c) => c.current_enrollment < c.max_students && c.publish_on_website
+              (c) => c.is_full === false && c.is_visible !== false && c.is_active !== false
             );
             resolve(available || null);
           } catch (e) {
@@ -132,8 +139,7 @@ async function run(browser) {
       }
     }
 
-    // Verify confirmation email via Brevo
-    await waitForEmail(BREVO_API_KEY, leaderEmail, 'tango');
+    await verifyEmailDelivered(leaderEmail, 'tango');
 
     results.push({ name: 'enrollment:couple', passed: true, error: null, paymentRef });
   } catch (err) {
