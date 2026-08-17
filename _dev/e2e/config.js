@@ -6,12 +6,12 @@ const API_BASE    = 'https://betango.membrero.com/api/v1';
 const CLEANUP_URL = API_BASE + '/e2e/cleanup';
 
 const CLEANUP_SECRET = process.env.E2E_CLEANUP_SECRET;
-const BREVO_API_KEY  = process.env.BREVO_API_KEY;
 
 if (!CLEANUP_SECRET) throw new Error('E2E_CLEANUP_SECRET not set in .env');
-if (!BREVO_API_KEY || BREVO_API_KEY === 'FILL_IN_MANUALLY') {
-  console.warn('WARNING: BREVO_API_KEY not set — Brevo email verification tests will fail');
-}
+
+// BREVO_API_KEY is deliberately gone: Brevo is no longer a Membrero send path, and the key
+// never held a real value (it was the literal string 'FILL_IN_MANUALLY'). Email verification
+// now lives in helpers/email-verify.js — see that file for the email_logs replacement plan.
 
 // Each test run gets a unique ID so emails never collide between runs
 const RUN_ID = process.env.E2E_RUN_ID || String(Date.now());
@@ -20,4 +20,4 @@ function testEmail(slug) {
   return `e2e-${RUN_ID}-${slug}@test.be-tango.be`;
 }
 
-module.exports = { SITE_URL, API_BASE, CLEANUP_URL, CLEANUP_SECRET, BREVO_API_KEY, RUN_ID, testEmail };
+module.exports = { SITE_URL, API_BASE, CLEANUP_URL, CLEANUP_SECRET, RUN_ID, testEmail };

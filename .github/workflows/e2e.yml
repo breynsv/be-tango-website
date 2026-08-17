@@ -31,8 +31,12 @@ jobs:
 
       - name: Create .env file
         run: |
+          if [ -z "${{ secrets.E2E_CLEANUP_SECRET }}" ]; then
+            echo "::error::E2E_CLEANUP_SECRET repo secret is empty or unset."
+            echo "Set it with: gh secret set E2E_CLEANUP_SECRET --repo breynsv/be-tango-website"
+            exit 1
+          fi
           echo "E2E_CLEANUP_SECRET=${{ secrets.E2E_CLEANUP_SECRET }}" >> .env
-          echo "BREVO_API_KEY=${{ secrets.BREVO_API_KEY }}" >> .env
 
       - name: Run E2E tests
         run: npm run test:e2e

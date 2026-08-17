@@ -1,8 +1,20 @@
 // _dev/e2e/tests/free-trial.test.js
-const { SITE_URL, testEmail, BREVO_API_KEY } = require('../config');
-const { waitForEmail } = require('../helpers/brevo');
+const { SITE_URL, testEmail } = require('../config');
+const { verifyEmailDelivered } = require('../helpers/email-verify');
 
 const PAGE_URL = SITE_URL + '/en/tango-classes/free-trial/';
+
+// #ft-radio-solo / #ft-radio-partner are visually-hidden inputs (opacity:0, position:absolute,
+// 0x0), so Playwright correctly refuses to click them — "element is not visible". Each has a
+// styled label[for=...] (.ft-partner-card) which is what a real user actually clicks.
+async function choosePartnerOption(page, radioId) {
+  await page.click(`label[for="${radioId}"]`);
+  await page.waitForFunction(
+    (id) => document.getElementById(id) && document.getElementById(id).checked,
+    radioId,
+    { timeout: 5000 }
+  );
+}
 
 async function fillBaseFields(page, email) {
   await page.fill('#free-trial-form [name="first-name"]', 'E2E');
@@ -67,11 +79,10 @@ async function run(browser) {
       await page.goto(PAGE_URL, { waitUntil: 'networkidle', timeout: 20000 });
       await fillBaseFields(page, email);
       await selectFirstAvailableDate(page);
-      await page.click('#ft-radio-solo');
+      await choosePartnerOption(page, 'ft-radio-solo');
       await submitAndAwaitResponse(page);
 
-      // Verify waitlist confirmation email via Brevo
-      await waitForEmail(BREVO_API_KEY, email, 'tango');
+      await verifyEmailDelivered(email, 'tango');
 
       results.push({ name: 'free-trial:solo-waitlist', passed: true, error: null });
     } catch (err) {
@@ -91,15 +102,14 @@ async function run(browser) {
       await page.goto(PAGE_URL, { waitUntil: 'networkidle', timeout: 20000 });
       await fillBaseFields(page, email);
       await selectFirstAvailableDate(page);
-      await page.click('#ft-radio-partner');
+      await choosePartnerOption(page, 'ft-radio-partner');
 
       // Wait for partner panel to appear
       await page.waitForSelector('#partner', { state: 'visible', timeout: 5000 });
 
       await submitAndAwaitResponse(page);
 
-      // Verify confirmation email via Brevo
-      await waitForEmail(BREVO_API_KEY, email, 'tango');
+      await verifyEmailDelivered(email, 'tango');
 
       results.push({ name: 'free-trial:couple-confirmed', passed: true, error: null });
     } catch (err) {
