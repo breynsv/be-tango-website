@@ -1780,6 +1780,18 @@ section {
   margin-top: 0.35rem;
 }
 
+/* GDPR note under every newsletter form — injected by js/newsletter.js */
+.newsletter-privacy {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  opacity: 0.75;
+  margin-top: 0.6rem;
+}
+.newsletter-privacy a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* ── Footer ── */
 .site-footer {
   background: linear-gradient(135deg, #1C244B 0%, rgba(0,0,0,0.95) 100%);

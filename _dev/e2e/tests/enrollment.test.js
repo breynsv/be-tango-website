@@ -1,12 +1,14 @@
 // _dev/e2e/tests/enrollment.test.js
 const https = require('https');
+const http  = require('http');
 const { SITE_URL, API_BASE, testEmail } = require('../config');
 const { verifyEmailDelivered } = require('../helpers/email-verify');
 const { formSubmitSlot } = require('../helpers/rate-limit');
 
 async function fetchAvailableBeginnerClass() {
   return new Promise((resolve, reject) => {
-    https.get(
+    // Transport follows the configured API_BASE so local runs work — see cleanup.js.
+    (API_BASE.startsWith('https:') ? https : http).get(
       API_BASE + '/classes/beginner',
       { headers: { accept: 'application/json' } },
       (res) => {
@@ -105,8 +107,10 @@ async function run(browser) {
     await page.fill('#em-partner-email', followerEmail);
     await page.selectOption('#em-partner-gender', 'Female');
 
-    // Accept consent and submit
-    await page.check('#em-consent');
+    // Accept the terms (required) and submit. The marketing opt-in beside it is
+    // deliberately left unticked — booking must succeed without it, which is the
+    // whole point of splitting the old single required checkbox in two.
+    await page.check('#em-terms');
 
     await formSubmitSlot('enrollment');
     const [response] = await Promise.all([

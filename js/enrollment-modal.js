@@ -65,8 +65,13 @@
       classFullTitle: 'Class is Fully Booked',
       classFullMessage: 'This class is currently full. We\'ve added you to the waitlist — if a spot opens up we\'ll email you with confirmation and payment details.',
       classFullAdvice: 'In the meantime, feel free to check out our other classes that still have spots available.',
-      consent: 'I agree to receive information about BE-TANGO courses and events.',
-      consentError: 'Please tick the consent box to continue.',
+      gdprTitle: 'GDPR (General Data Protection Regulation)',
+      gdprBody: 'You allow us to use your email address to send newsletters or to inform you about our classes, workshops and events. We don\'t like spam either, so we limit ourselves to what might genuinely interest you. You can unsubscribe at any time.',
+      gdprMore: 'More info.',
+      marketingOptIn: 'Yes, I would like to be kept informed by email.',
+      terms: 'By submitting, I agree to the {link} of BE-TANGO.',
+      termsLink: 'terms and conditions',
+      termsError: 'Please accept the terms and conditions to continue.',
     },
     FR: {
       modalTitle: 'S\'inscrire au cours',
@@ -120,8 +125,13 @@
       classFullTitle: 'Cours Complet',
       classFullMessage: 'Ce cours est actuellement complet. Nous vous avons ajouté(e) à la liste d\'attente — si une place se libère, nous vous enverrons un e-mail avec confirmation et détails de paiement.',
       classFullAdvice: 'En attendant, n\'hésitez pas à découvrir nos autres cours qui ont encore des places disponibles.',
-      consent: 'J\'accepte de recevoir des informations sur les cours et événements BE-TANGO.',
-      consentError: 'Veuillez cocher la case de consentement pour continuer.',
+      gdprTitle: 'RGPD (Règlement Général sur la Protection des Données)',
+      gdprBody: 'Vous nous autorisez à utiliser votre adresse e-mail pour vous envoyer des newsletters ou vous informer de nos cours, ateliers et événements. Nous n\'aimons pas le spam non plus, nous nous limitons donc à ce qui pourrait réellement vous intéresser. Vous pouvez vous désinscrire à tout moment.',
+      gdprMore: 'Plus d\'infos.',
+      marketingOptIn: 'Oui, je souhaite être tenu(e) informé(e) par e-mail.',
+      terms: 'En m\'inscrivant, j\'accepte les {link} de BE-TANGO.',
+      termsLink: 'conditions générales',
+      termsError: 'Veuillez accepter les conditions générales pour continuer.',
     },
     NL: {
       modalTitle: 'Inschrijven voor de les',
@@ -175,8 +185,13 @@
       classFullTitle: 'Les is Volgeboekt',
       classFullMessage: 'Deze les is momenteel volgeboekt. We hebben je op de wachtlijst gezet — zodra er een plek vrijkomt sturen we je een mail met bevestiging en betalingsgegevens.',
       classFullAdvice: 'Bekijk in tussentijd zeker onze andere lessen die nog plaatsen beschikbaar hebben.',
-      consent: 'Ik ga akkoord met het ontvangen van informatie over BE-TANGO cursussen en evenementen.',
-      consentError: 'Vink het toestemmingsvakje aan om door te gaan.',
+      gdprTitle: 'AVG of GDPR (Algemene Verordening Gegevensbescherming)',
+      gdprBody: 'U laat ons toe uw mailadres te gebruiken voor het verzenden van nieuwsbrieven of om u in te lichten over onze lessen, workshops of evenementen. Wij houden ook niet van spam en wij beperken ons tot wat u zou kunnen interesseren. U kunt zich uiteraard op elk moment uitschrijven.',
+      gdprMore: 'Meer info.',
+      marketingOptIn: 'Ja, ik wens op de hoogte gehouden te worden via e-mail.',
+      terms: 'Door te verzenden, ga ik akkoord met de {link} van BE-TANGO.',
+      termsLink: 'algemene voorwaarden',
+      termsError: 'Gelieve de algemene voorwaarden te aanvaarden om verder te gaan.',
     },
   };
 
@@ -199,6 +214,18 @@
 
   function getT() {
     return T[getLang()];
+  }
+
+  // Terms and privacy pages exist in all three languages under different slugs.
+  // Keep these in sync with the footer links in the page templates.
+  const LEGAL_URLS = {
+    EN: { terms: '/en/terms-and-conditions/',              privacy: '/en/privacy-policy/' },
+    FR: { terms: '/fr/termes-et-conditions-generales/',    privacy: '/fr/politique-de-confidentialite/' },
+    NL: { terms: '/nl/algemene-voorwaarden/',              privacy: '/nl/privacy-policy/' },
+  };
+
+  function getLegalUrls() {
+    return LEGAL_URLS[getLang()] || LEGAL_URLS.EN;
   }
 
   function showError(msg, focusId) {
@@ -241,11 +268,19 @@
   function buildModalHtml(t) {
     var lang = getLang();
     var progressLabel = lang === 'FR' ? 'Inscription' : lang === 'NL' ? 'Inschrijving' : 'Registration';
+    // The terms are now an explicit checkbox above, so this note only carries
+    // the confirmation promise — repeating "you agree to our terms" here would
+    // contradict the fact that agreement is a deliberate tick, not a side effect.
     var footerNote = lang === 'FR'
-      ? 'En vous inscrivant, vous acceptez nos conditions. Nous confirmerons votre place par email sous 24&nbsp;h.'
+      ? 'Nous confirmerons votre place par email sous 24&nbsp;h.'
       : lang === 'NL'
-      ? 'Door in te schrijven gaat u akkoord met onze voorwaarden. We bevestigen uw plaats per email.'
-      : 'By registering you agree to our Terms &amp; Conditions. We\'ll confirm your spot by email within 24&nbsp;hours.';
+      ? 'We bevestigen uw plaats per email binnen 24&nbsp;uur.'
+      : 'We\'ll confirm your spot by email within 24&nbsp;hours.';
+    var legal = getLegalUrls();
+    var termsHtml = t.terms.replace(
+      '{link}',
+      '<a href="' + legal.terms + '" target="_blank" rel="noopener">' + t.termsLink + '</a>'
+    );
     var doneNote = lang === 'FR'
       ? 'Un email de confirmation a été envoyé à votre boîte mail.'
       : lang === 'NL'
@@ -430,9 +465,22 @@
           <textarea class="em-textarea" id="em-remarks" name="remarks" placeholder="${t.remarksPlaceholder}"></textarea>
         </div>
 
-        <label class="em-consent">
-          <input type="checkbox" id="em-consent" name="consent" required>
-          <span>${t.consent} <span class="em-required" aria-hidden="true">*</span></span>
+        <div class="em-gdpr">
+          <h3 class="em-gdpr-title">${t.gdprTitle}</h3>
+          <p class="em-gdpr-body">
+            ${t.gdprBody}
+            <a href="${legal.privacy}" target="_blank" rel="noopener">${t.gdprMore}</a>
+          </p>
+
+          <label class="em-consent">
+            <input type="checkbox" id="em-marketing-consent" name="marketing_consent">
+            <span>${t.marketingOptIn}</span>
+          </label>
+        </div>
+
+        <label class="em-consent em-consent--terms">
+          <input type="checkbox" id="em-terms" name="terms_accepted" required>
+          <span>${termsHtml} <span class="em-required" aria-hidden="true">*</span></span>
         </label>
 
         <div class="em-submit-wrap">
@@ -976,10 +1024,13 @@
       return;
     }
 
-    // Consent required (custom message — friendlier than native bubble on checkbox)
-    const consentEl = document.getElementById('em-consent');
-    if (consentEl && !consentEl.checked) {
-      showError(t.consentError, 'em-consent');
+    // Terms acceptance is required (custom message — friendlier than the native
+    // bubble on a checkbox). Marketing consent is deliberately NOT checked here:
+    // it is optional, and making it a condition of booking would mean the consent
+    // was not freely given.
+    const termsEl = document.getElementById('em-terms');
+    if (termsEl && !termsEl.checked) {
+      showError(t.termsError, 'em-terms');
       return;
     }
 
@@ -1039,6 +1090,11 @@
       product_id:  parseInt(currentProductId),
       has_partner: hasPartner,
       remarks:     remarks,
+      // Two independent facts, deliberately sent separately: terms_accepted is a
+      // precondition of the booking, marketing_consent is the optional opt-in the
+      // CRM logs as GDPR consent. Never collapse these back into one flag.
+      terms_accepted:    true,
+      marketing_consent: !!(document.getElementById('em-marketing-consent') || {}).checked,
     };
 
     if (hasPartner) {

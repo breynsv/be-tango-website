@@ -475,6 +475,51 @@
 .em-sub-section .em-field:first-child { margin-top: 0; }
 .em-sub-section .em-row .em-field { margin-top: 0; }
 
+/* ─── GDPR block ────────────────────────────────────────────── */
+/* Groups the explanation with the OPTIONAL marketing opt-in, so it reads as
+   one unit and stays visually distinct from the required terms tick below. */
+.em-gdpr {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #F3F4F6;
+}
+
+.em-gdpr-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1C244B;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.em-gdpr-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  color: #6B7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.em-gdpr-body a,
+.em-consent a {
+  color: #C9A820;
+  text-decoration: none;
+}
+
+.em-gdpr-body a:hover,
+.em-consent a:hover { text-decoration: underline; }
+
+.em-gdpr .em-consent { margin-top: 14px; }
+
+/* The required terms tick sits below its own rule, mirroring the separation
+   between "optional marketing" and "required to book". */
+.em-consent--terms {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #F3F4F6;
+}
+
 /* ─── Consent ───────────────────────────────────────────────── */
 .em-consent {
   display: flex;

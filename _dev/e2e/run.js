@@ -39,6 +39,23 @@ async function main() {
   // Launch browser
   const browser = await chromium.launch({ headless: true });
 
+  // SAFETY RAIL for local runs. js/api-config.js would point the page at the
+  // local API on localhost, but no HTML page actually loads it, so crm-api.js
+  // falls back to its hardcoded PRODUCTION baseURL. Without this, serving the
+  // site locally and running the suite would fire real bookings at production.
+  // Every test creates its page via browser.newPage(), so wrapping it is enough.
+  if (process.env.E2E_API_BASE) {
+    const origNewPage = browser.newPage.bind(browser);
+    browser.newPage = async (...args) => {
+      const page = await origNewPage(...args);
+      await page.addInitScript((base) => {
+        window.API_CONFIG = { baseURL: base };
+      }, config.API_BASE);
+      return page;
+    };
+    console.log(`  (local mode: page API pinned to ${config.API_BASE})`);
+  }
+
   const allResults = [];
   let passed = 0;
   let failed = 0;

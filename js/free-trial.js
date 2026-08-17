@@ -34,7 +34,7 @@
       successDateLabel: 'Your class',
       errorDefault: 'Something went wrong. Please try again or contact us directly.',
       btnLoading: 'Submitting…',
-      consentError: 'Please tick the consent box to continue.',
+      termsError: 'Please accept the terms and conditions to continue.',
       // Notify mode — shown when no free trial dates are scheduled
       notifyLead: 'Our free trial lessons take place in January and September, just before the start of each 14-week course cycle. Leave your details below and we\'ll let you know as soon as the next dates are announced.',
       notifyBanner: 'There are currently no free trial lessons planned. Leave your details and we\'ll notify you as soon as new dates are announced.',
@@ -74,7 +74,7 @@
       successDateLabel: 'Votre cours',
       errorDefault: 'Une erreur est survenue. Veuillez réessayer ou nous contacter directement.',
       btnLoading: 'Envoi en cours…',
-      consentError: 'Veuillez cocher la case de consentement pour continuer.',
+      termsError: 'Veuillez accepter les conditions générales pour continuer.',
       // Mode notification — affiché quand aucune date d'essai gratuit n'est programmée
       notifyLead: 'Nos cours d\'essai gratuits ont lieu en janvier et en septembre, juste avant le début de chaque cycle de 14 semaines. Laissez-nous vos coordonnées ci-dessous et nous vous préviendrons dès que les prochaines dates seront annoncées.',
       notifyBanner: 'Il n\'y a actuellement aucun cours d\'essai gratuit prévu. Laissez-nous vos coordonnées et nous vous préviendrons dès que de nouvelles dates seront annoncées.',
@@ -114,7 +114,7 @@
       successDateLabel: 'Je les',
       errorDefault: 'Er is iets misgegaan. Probeer opnieuw of contacteer ons rechtstreeks.',
       btnLoading: 'Verzenden…',
-      consentError: 'Vink het toestemmingsvakje aan om door te gaan.',
+      termsError: 'Gelieve de algemene voorwaarden te aanvaarden om verder te gaan.',
       // Notificatiemodus — zichtbaar wanneer er geen gratis proeflessen gepland zijn
       notifyLead: 'Onze gratis proeflessen vinden plaats in januari en september, net voor de start van elke lescyclus van 14 weken. Laat hieronder je gegevens achter en we laten het je weten zodra de volgende data bekend zijn.',
       notifyBanner: 'Er zijn momenteel geen gratis proeflessen gepland. Laat je gegevens achter en we laten het je weten zodra er nieuwe data aangekondigd worden.',
@@ -688,11 +688,13 @@
       const prevErr = form.querySelector('.ft-form-error');
       if (prevErr) prevErr.hidden = true;
 
-      // Consent required
-      const consentEl = form.querySelector('input[name="consent"]');
-      if (consentEl && !consentEl.checked) {
-        showFormError(form, t.consentError);
-        consentEl.focus();
+      // Terms acceptance is required. Marketing consent is optional by design —
+      // it must not be a condition of booking a trial class, or the consent
+      // would not be freely given.
+      const termsEl = form.querySelector('input[name="terms_accepted"]');
+      if (termsEl && !termsEl.checked) {
+        showFormError(form, t.termsError);
+        termsEl.focus();
         return;
       }
 
@@ -782,6 +784,10 @@
         product_id: productId,
         has_partner: hasPartner,
         remarks: userNote || null,
+        // Kept separate on purpose: terms_accepted gates the booking,
+        // marketing_consent is the optional opt-in the CRM logs as GDPR consent.
+        terms_accepted: true,
+        marketing_consent: !!(form.querySelector('input[name="marketing_consent"]') || {}).checked,
         _honey: (form.querySelector('[name="_honey"]') || { value: '' }).value,
         _ts:    parseInt((form.querySelector('[name="_ts"]') || { value: '0' }).value, 10),
       };

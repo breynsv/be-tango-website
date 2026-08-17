@@ -46,12 +46,40 @@
     errEl.style.display = 'block';
   }
 
+  // Subscribing to a newsletter IS the consent — the submit button says so —
+  // so this form deliberately carries no extra opt-in checkbox. What it did
+  // lack was any statement of what we do with the address, so add the GDPR
+  // line and a privacy link. Injected here rather than in markup because this
+  // form appears on ~74 pages.
+  var PRIVACY = {
+    EN: { url: '/en/privacy-policy/', text: 'We only email you about BE-TANGO classes, workshops and events, and you can unsubscribe at any time.', more: 'Privacy policy.' },
+    FR: { url: '/fr/politique-de-confidentialite/', text: 'Nous vous écrivons uniquement au sujet des cours, ateliers et événements BE-TANGO, et vous pouvez vous désinscrire à tout moment.', more: 'Politique de confidentialité.' },
+    NL: { url: '/nl/privacy-policy/', text: 'We mailen u enkel over BE-TANGO lessen, workshops en evenementen, en u kunt zich op elk moment uitschrijven.', more: 'Privacybeleid.' }
+  };
+
+  function addPrivacyNote(nf) {
+    if (nf.querySelector('.newsletter-privacy')) return;
+    var p = PRIVACY[getLang()] || PRIVACY.EN;
+    var note = document.createElement('p');
+    note.className = 'newsletter-privacy';
+    note.appendChild(document.createTextNode(p.text + ' '));
+    var a = document.createElement('a');
+    a.href = p.url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = p.more;
+    note.appendChild(a);
+    nf.appendChild(note);
+  }
+
   function initForm(nf) {
     // Set form-load timestamp for spam protection
     var tsInput = nf.querySelector('[name="_ts"]');
     if (tsInput) {
       tsInput.value = Math.floor(Date.now() / 1000);
     }
+
+    addPrivacyNote(nf);
 
     nf.addEventListener('submit', function (e) {
       e.preventDefault();

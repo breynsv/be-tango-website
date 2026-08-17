@@ -1,8 +1,15 @@
 // _dev/e2e/config.js
 require('dotenv').config({ path: require('path').resolve(__dirname, '../../.env') });
 
-const SITE_URL    = 'https://www.be-tango.be';
-const API_BASE    = 'https://betango.membrero.com/api/v1';
+// Defaults target production on purpose — this suite exists to verify the live
+// site. Override both when you need to exercise UNPUBLISHED form changes, which
+// production cannot see until they deploy:
+//
+//   E2E_SITE_URL=http://localhost:8002 \
+//   E2E_API_BASE=http://betango.membrero.test:8001/api/v1 \
+//   npm run test:e2e
+const SITE_URL    = process.env.E2E_SITE_URL || 'https://www.be-tango.be';
+const API_BASE    = process.env.E2E_API_BASE || 'https://betango.membrero.com/api/v1';
 const CLEANUP_URL = API_BASE + '/e2e/cleanup';
 
 const CLEANUP_SECRET = process.env.E2E_CLEANUP_SECRET;

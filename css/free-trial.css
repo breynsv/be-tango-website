@@ -1133,6 +1133,49 @@ body { background: #FAF8F5; }
 
 #partner { display: none; }
 
+/* ── GDPR block ──────────────────────────────────────────────────── */
+/* Explanation + the OPTIONAL marketing opt-in, kept visually separate from
+   the required terms tick that follows it. */
+.ft-gdpr {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #F3F4F6;
+}
+
+.ft-gdpr-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1C244B;
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+
+.ft-gdpr-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  color: #6B7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.ft-gdpr-body a,
+.ft-consent a {
+  color: #C9A820;
+  text-decoration: none;
+}
+
+.ft-gdpr-body a:hover,
+.ft-consent a:hover { text-decoration: underline; }
+
+.ft-gdpr .ft-consent { margin-top: 12px; }
+
+.ft-consent--terms {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #F3F4F6;
+}
+
 /* ── Consent ─────────────────────────────────────────────────────── */
 .ft-consent {
   display: flex;

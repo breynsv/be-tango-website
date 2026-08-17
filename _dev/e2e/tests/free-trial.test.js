@@ -46,7 +46,9 @@ async function selectFirstAvailableDate(page) {
 }
 
 async function submitAndAwaitResponse(page) {
-  await page.check('[name="consent"]');
+  // Terms acceptance is required; the marketing opt-in beside it is optional and
+  // intentionally left unticked so this exercises the consent-free booking path.
+  await page.check('[name="terms_accepted"]');
 
   await formSubmitSlot('free-trial');
 

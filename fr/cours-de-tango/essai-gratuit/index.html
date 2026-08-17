@@ -43,9 +43,9 @@
   <link rel="preload" href="/css/cookie-consent.min.css?v=3.8" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
 <!-- Stylesheet -->
-<link href="../../../css/styles.min.css?v=4.2" rel="stylesheet"/>
-<noscript><link href="../../../css/styles.min.css?v=4.2" rel="stylesheet"/></noscript>
-<link href="../../../css/free-trial.css" rel="stylesheet"/>
+<link href="../../../css/styles.min.css?v=4.3" rel="stylesheet"/>
+<noscript><link href="../../../css/styles.min.css?v=4.3" rel="stylesheet"/></noscript>
+<link href="../../../css/free-trial.css?v=1.1" rel="stylesheet"/>
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
 {
@@ -447,9 +447,17 @@
 <label class="ft-label" for="message">Informations Complémentaires <span style="font-weight:400;text-transform:none;letter-spacing:0;color:#9CA3AF;">(optionnel)</span></label>
 <textarea class="ft-textarea" id="message" name="message" placeholder="Des questions ou des besoins particuliers ?" rows="3"></textarea>
 </div>
+<div class="ft-gdpr">
+<h3 class="ft-gdpr-title">RGPD (Règlement Général sur la Protection des Données)</h3>
+<p class="ft-gdpr-body">Vous nous autorisez à utiliser votre adresse e-mail pour vous envoyer des newsletters ou vous informer de nos cours, ateliers et événements. Nous n'aimons pas le spam non plus, nous nous limitons donc à ce qui pourrait réellement vous intéresser. Vous pouvez vous désinscrire à tout moment. <a href="/fr/politique-de-confidentialite/" rel="noopener" target="_blank">Plus d'infos.</a></p>
 <label class="ft-consent">
-<input name="consent" required="" type="checkbox"/>
-<span>J'accepte de recevoir des informations sur les cours et événements BE-TANGO. <span class="ft-req">*</span></span>
+<input name="marketing_consent" type="checkbox"/>
+<span>Oui, je souhaite être tenu(e) informé(e) par e-mail.</span>
+</label>
+</div>
+<label class="ft-consent ft-consent--terms">
+<input name="terms_accepted" required="" type="checkbox"/>
+<span>En m'inscrivant, j'accepte les <a href="/fr/termes-et-conditions-generales/" rel="noopener" target="_blank">conditions générales</a> de BE-TANGO. <span class="ft-req">*</span></span>
 </label>
 <div class="ft-submit-wrap">
 <button class="ft-submit" type="submit">
@@ -619,10 +627,10 @@
   </footer>
 <!-- CRM Integration -->
 <script defer="" src="../../../js/crm-api.js?v=1.0"></script>
-<script defer="" src="../../../js/free-trial.js?v=1.1"></script>
+<script defer="" src="../../../js/free-trial.js?v=1.2"></script>
 <script>(function(){var m=location.pathname.match(/^\/(fr|nl|en)\//);if(m)document.cookie="lang="+m[1]+";path=/;max-age=31536000;SameSite=Lax"})();</script>
 <script>window.API_CONFIG={baseURL:"localhost"===window.location.hostname||"127.0.0.1"===window.location.hostname?"http://betango.membrero.test:8001/api/v1":"https://betango.membrero.com/api/v1"};</script>
-<script src="../../../js/newsletter.min.js" defer></script>
+<script src="../../../js/newsletter.min.js?v=1.1" defer></script>
 <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
   </script>
