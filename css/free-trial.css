@@ -364,6 +364,27 @@
   font-size: 1rem;
 }
 
+/* ---------- "Welcome back" panel (existing student, not an error) ---------- */
+/* Reuses .ft-success — same gold/neutral treatment, never the red error
+   colours used for .ft-form-error / .ft-empty--error. */
+.ft-known-cta {
+  margin: 0.5rem 0 1rem;
+}
+
+.ft-known-escape {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.ft-known-escape a {
+  color: #E2C033;
+  text-decoration: underline;
+}
+
+.ft-known-escape a:hover {
+  color: #f0d668;
+}
+
 /* ---------- Inline form error ---------- */
 .ft-form-error {
   background: rgba(239, 68, 68, 0.1);
@@ -1277,6 +1298,9 @@ body { background: #FAF8F5; }
 .ft-form-card .ft-success-val { color: #111827; }
 .ft-form-card .ft-success-ref { color: #C9A820; }
 .ft-form-card .ft-success-meta { border-top-color: #E5E7EB; }
+.ft-form-card .ft-known-escape { color: #6B7280; }
+.ft-form-card .ft-known-escape a { color: #C9A820; }
+.ft-form-card .ft-known-escape a:hover { color: #111827; }
 
 /* ── Contact alternatives below form ─────────────────────────────── */
 .ft-contact-alt {
