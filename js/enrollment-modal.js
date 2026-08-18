@@ -65,10 +65,8 @@
       classFullTitle: 'Class is Fully Booked',
       classFullMessage: 'This class is currently full. We\'ve added you to the waitlist — if a spot opens up we\'ll email you with confirmation and payment details.',
       classFullAdvice: 'In the meantime, feel free to check out our other classes that still have spots available.',
-      gdprTitle: 'GDPR (General Data Protection Regulation)',
-      gdprBody: 'You allow us to use your email address to send newsletters or to inform you about our classes, workshops and events. We don\'t like spam either, so we limit ourselves to what might genuinely interest you. You can unsubscribe at any time.',
-      gdprMore: 'More info.',
-      marketingOptIn: 'Yes, I would like to be kept informed by email.',
+      marketingOptIn: 'Yes, I\'d like to be kept informed by email about classes, workshops and events. Unsubscribe anytime — {link}.',
+      privacyLink: 'privacy policy',
       terms: 'By submitting, I agree to the {link} of BE-TANGO.',
       termsLink: 'terms and conditions',
       termsError: 'Please accept the terms and conditions to continue.',
@@ -125,10 +123,8 @@
       classFullTitle: 'Cours Complet',
       classFullMessage: 'Ce cours est actuellement complet. Nous vous avons ajouté(e) à la liste d\'attente — si une place se libère, nous vous enverrons un e-mail avec confirmation et détails de paiement.',
       classFullAdvice: 'En attendant, n\'hésitez pas à découvrir nos autres cours qui ont encore des places disponibles.',
-      gdprTitle: 'RGPD (Règlement Général sur la Protection des Données)',
-      gdprBody: 'Vous nous autorisez à utiliser votre adresse e-mail pour vous envoyer des newsletters ou vous informer de nos cours, ateliers et événements. Nous n\'aimons pas le spam non plus, nous nous limitons donc à ce qui pourrait réellement vous intéresser. Vous pouvez vous désinscrire à tout moment.',
-      gdprMore: 'Plus d\'infos.',
-      marketingOptIn: 'Oui, je souhaite être tenu(e) informé(e) par e-mail.',
+      marketingOptIn: 'Oui, je souhaite recevoir des informations par e-mail sur les cours, ateliers et événements. Désinscription à tout moment — {link}.',
+      privacyLink: 'politique de confidentialité',
       terms: 'En m\'inscrivant, j\'accepte les {link} de BE-TANGO.',
       termsLink: 'conditions générales',
       termsError: 'Veuillez accepter les conditions générales pour continuer.',
@@ -185,10 +181,8 @@
       classFullTitle: 'Les is Volgeboekt',
       classFullMessage: 'Deze les is momenteel volgeboekt. We hebben je op de wachtlijst gezet — zodra er een plek vrijkomt sturen we je een mail met bevestiging en betalingsgegevens.',
       classFullAdvice: 'Bekijk in tussentijd zeker onze andere lessen die nog plaatsen beschikbaar hebben.',
-      gdprTitle: 'AVG of GDPR (Algemene Verordening Gegevensbescherming)',
-      gdprBody: 'U laat ons toe uw mailadres te gebruiken voor het verzenden van nieuwsbrieven of om u in te lichten over onze lessen, workshops of evenementen. Wij houden ook niet van spam en wij beperken ons tot wat u zou kunnen interesseren. U kunt zich uiteraard op elk moment uitschrijven.',
-      gdprMore: 'Meer info.',
-      marketingOptIn: 'Ja, ik wens op de hoogte gehouden te worden via e-mail.',
+      marketingOptIn: 'Ja, ik wens via e-mail op de hoogte gehouden te worden van lessen, workshops en evenementen. Uitschrijven kan altijd — {link}.',
+      privacyLink: 'privacybeleid',
       terms: 'Door te verzenden, ga ik akkoord met de {link} van BE-TANGO.',
       termsLink: 'algemene voorwaarden',
       termsError: 'Gelieve de algemene voorwaarden te aanvaarden om verder te gaan.',
@@ -277,6 +271,11 @@
       ? 'We bevestigen uw plaats per email binnen 24&nbsp;uur.'
       : 'We\'ll confirm your spot by email within 24&nbsp;hours.';
     var legal = getLegalUrls();
+    var marketingHtml = t.marketingOptIn.replace(
+      '{link}',
+      '<a href="' + legal.privacy + '" target="_blank" rel="noopener">' + t.privacyLink + '</a>'
+    );
+
     var termsHtml = t.terms.replace(
       '{link}',
       '<a href="' + legal.terms + '" target="_blank" rel="noopener">' + t.termsLink + '</a>'
@@ -466,15 +465,9 @@
         </div>
 
         <div class="em-gdpr">
-          <h3 class="em-gdpr-title">${t.gdprTitle}</h3>
-          <p class="em-gdpr-body">
-            ${t.gdprBody}
-            <a href="${legal.privacy}" target="_blank" rel="noopener">${t.gdprMore}</a>
-          </p>
-
           <label class="em-consent">
             <input type="checkbox" id="em-marketing-consent" name="marketing_consent">
-            <span>${t.marketingOptIn}</span>
+            <span>${marketingHtml}</span>
           </label>
         </div>
 
