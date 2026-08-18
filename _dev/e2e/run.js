@@ -12,14 +12,28 @@ const path         = require('path');
 const config = require('./config');
 const { cleanupTestData } = require('./helpers/cleanup');
 
-const testModules = [
-  require('./tests/schedule-pages.test'),
-  require('./tests/contact-form.test'),
-  require('./tests/newsletter.test'),
-  require('./tests/private-lessons.test'),
-  require('./tests/free-trial.test'),
-  require('./tests/enrollment.test'),
+const allModules = [
+  ['schedule-pages',  require('./tests/schedule-pages.test')],
+  ['contact-form',    require('./tests/contact-form.test')],
+  ['newsletter',      require('./tests/newsletter.test')],
+  ['private-lessons', require('./tests/private-lessons.test')],
+  ['free-trial',      require('./tests/free-trial.test')],
+  ['enrollment',      require('./tests/enrollment.test')],
+  ['form-validation', require('./tests/form-validation.test')],
 ];
+
+// E2E_ONLY=form-validation,newsletter runs just those modules. Most modules book
+// real classes against production, so being able to run one in isolation is the
+// difference between iterating on a form and generating cleanup work.
+const only = (process.env.E2E_ONLY || '').split(',').map((s) => s.trim()).filter(Boolean);
+const testModules = only.length
+  ? allModules.filter(([name]) => only.includes(name))
+  : allModules;
+
+if (only.length && testModules.length !== only.length) {
+  const found = testModules.map(([n]) => n);
+  throw new Error('E2E_ONLY names no such module: ' + only.filter((n) => !found.includes(n)).join(', '));
+}
 
 async function main() {
   console.log(`\n=== BE-TANGO E2E Test Suite ===`);
@@ -60,7 +74,7 @@ async function main() {
   let passed = 0;
   let failed = 0;
 
-  for (const mod of testModules) {
+  for (const [modName, mod] of testModules) {
     try {
       const results = await mod.run(browser, config);
       for (const r of results) {
@@ -75,7 +89,7 @@ async function main() {
       }
     } catch (err) {
       failed++;
-      const name = mod.constructor?.name || 'unknown-module';
+      const name = modName || 'unknown-module';
       console.error(`  ✗ ${name} threw unexpectedly: ${err.message}`);
       allResults.push({ name, passed: false, error: err.message });
     }

@@ -35,6 +35,10 @@
       errorDefault: 'Something went wrong. Please try again or contact us directly.',
       btnLoading: 'Submitting…',
       termsError: 'Please accept the terms and conditions to continue.',
+      fvRequired: 'Please fill in this field.',
+      fvEmail: 'Please enter a valid email address.',
+      fvDate: 'Please choose a date.',
+      fvTerms: 'Please accept the terms and conditions to continue.',
       // Notify mode — shown when no free trial dates are scheduled
       notifyLead: 'Our free trial lessons take place in January and September, just before the start of each 14-week course cycle. Leave your details below and we\'ll let you know as soon as the next dates are announced.',
       notifyBanner: 'There are currently no free trial lessons planned. Leave your details and we\'ll notify you as soon as new dates are announced.',
@@ -75,6 +79,10 @@
       errorDefault: 'Une erreur est survenue. Veuillez réessayer ou nous contacter directement.',
       btnLoading: 'Envoi en cours…',
       termsError: 'Veuillez accepter les conditions générales pour continuer.',
+      fvRequired: 'Veuillez remplir ce champ.',
+      fvEmail: 'Veuillez saisir une adresse e-mail valide.',
+      fvDate: 'Veuillez choisir une date.',
+      fvTerms: 'Veuillez accepter les conditions générales pour continuer.',
       // Mode notification — affiché quand aucune date d'essai gratuit n'est programmée
       notifyLead: 'Nos cours d\'essai gratuits ont lieu en janvier et en septembre, juste avant le début de chaque cycle de 14 semaines. Laissez-nous vos coordonnées ci-dessous et nous vous préviendrons dès que les prochaines dates seront annoncées.',
       notifyBanner: 'Il n\'y a actuellement aucun cours d\'essai gratuit prévu. Laissez-nous vos coordonnées et nous vous préviendrons dès que de nouvelles dates seront annoncées.',
@@ -115,6 +123,10 @@
       errorDefault: 'Er is iets misgegaan. Probeer opnieuw of contacteer ons rechtstreeks.',
       btnLoading: 'Verzenden…',
       termsError: 'Gelieve de algemene voorwaarden te aanvaarden om verder te gaan.',
+      fvRequired: 'Vul dit veld in.',
+      fvEmail: 'Vul een geldig e-mailadres in.',
+      fvDate: 'Kies een datum.',
+      fvTerms: 'Gelieve de algemene voorwaarden te aanvaarden om verder te gaan.',
       // Notificatiemodus — zichtbaar wanneer er geen gratis proeflessen gepland zijn
       notifyLead: 'Onze gratis proeflessen vinden plaats in januari en september, net voor de start van elke lescyclus van 14 weken. Laat hieronder je gegevens achter en we laten het je weten zodra de volgende data bekend zijn.',
       notifyBanner: 'Er zijn momenteel geen gratis proeflessen gepland. Laat je gegevens achter en we laten het je weten zodra er nieuwe data aangekondigd worden.',
@@ -623,62 +635,21 @@
 
     // Fetch
     let trials = [];
-    try {
-      const res = await api.getAvailableFreeTrials();
-      // API may return array directly or wrapped in .data
-      trials = Array.isArray(res) ? res : (Array.isArray(res?.data) ? res.data : []);
 
-      if (scheduleEl) {
-        renderSchedule(scheduleEl, trials, lang);
-        wireScheduleClicks(scheduleEl, selectEl);
-      }
-      if (selectEl) {
-        populateSelect(selectEl, trials, lang);
-
-        // Add "can't make any date" checkbox below the date field
-        if (trials.length) {
-          const dateField = selectEl.closest('.ft-form-field');
-          if (dateField) {
-            const notifyWrap = document.createElement('label');
-            notifyWrap.className = 'ft-notify-checkbox';
-            notifyWrap.innerHTML = `<input type="checkbox" name="notify-me"> <span>${t.notifyCheckbox}</span>`;
-            dateField.after(notifyWrap);
-
-            const cb = notifyWrap.querySelector('input');
-            cb.addEventListener('change', () => {
-              if (cb.checked) {
-                enterNotifyModeWithDates(lang);
-              } else {
-                exitNotifyMode(lang);
-              }
-            });
-          }
-        }
-      }
-
-      // Switch the page into "keep me informed" mode when there are no
-      // upcoming free trial dates. The form stays submittable but collects
-      // contacts for the next January / September cycle.
-      if (!trials.length) enterNotifyMode(lang);
-    } catch (err) {
-      console.error('[FreeTrial] Failed to fetch free trials:', err);
-      if (scheduleEl) renderScheduleError(scheduleEl, lang);
-      if (selectEl) {
-        selectEl.innerHTML = `<option value="">${t.selectNoSlots}</option>`;
-        selectEl.disabled = true;
-      }
-    }
-
+    // Attached BEFORE the await on purpose. This listener used to be registered
+    // after the free-trials request resolved, which left the form with no handler
+    // at all while that request was in flight: an early click fell through to a
+    // native GET submit, reloading the page and throwing away what was typed.
+    // The handler reads `trials` at submit time, so declaring it above is enough.
     // Set form-load timestamp for honeypot protection
     if (form) {
       var tsInput = form.querySelector('[name="_ts"]');
       if (tsInput) tsInput.value = Math.floor(Date.now() / 1000);
     }
 
-    // Form submission
-    if (!form) return;
-
-    form.addEventListener('submit', async (e) => {
+    // Form submission. Guarded rather than an early `return`: this now runs before
+    // the fetch below, and a bare return would skip rendering the schedule entirely.
+    if (form) form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const submitBtn = form.querySelector('[type="submit"]');
@@ -688,14 +659,24 @@
       const prevErr = form.querySelector('.ft-form-error');
       if (prevErr) prevErr.hidden = true;
 
-      // Terms acceptance is required. Marketing consent is optional by design —
-      // it must not be a condition of booking a trial class, or the consent
-      // would not be freely given.
-      const termsEl = form.querySelector('input[name="terms_accepted"]');
-      if (termsEl && !termsEl.checked) {
-        showFormError(form, t.termsError);
-        termsEl.focus();
-        return;
+      // Every required field reports itself, inline and in the page's language.
+      // This form carries `novalidate`, so nothing validates it unless we do:
+      // before this existed, an empty form either did nothing at all or posted
+      // and came back as a raw "HTTP 422:".
+      // Marketing consent is deliberately absent from this pass — it is optional
+      // by design, and gating the booking on it would mean it was not freely given.
+      if (window.BETangoValidate) {
+        BETangoValidate.clear(form);
+        const problems = BETangoValidate.check(form, {
+          required: t.fvRequired,
+          email:    t.fvEmail,
+          select:   t.fvDate,
+          checkbox: t.fvTerms,
+        });
+        if (problems.length) {
+          BETangoValidate.show(form, problems);
+          return;
+        }
       }
 
       // Common fields
@@ -756,7 +737,7 @@
             submitBtn.disabled = false;
             submitBtn.textContent = originalText;
           }
-          showFormError(form, err.message || t.errorDefault);
+          showFormError(form, friendlyError(err, t));
         }
         return;
       }
@@ -765,7 +746,15 @@
       const productId = parseInt(selectEl?.value);
       const selectedTrial = trials.find((tr) => tr.id === productId) || null;
 
-      if (!productId) return;
+      if (!productId) {
+        // Was a bare `return` — the button simply did nothing, with no clue why.
+        if (selectEl && window.BETangoValidate) {
+          BETangoValidate.show(form, [{ el: selectEl, message: t.fvDate }]);
+        } else {
+          showFormError(form, t.fvDate);
+        }
+        return;
+      }
 
       // Loading state
       if (submitBtn) {
@@ -806,9 +795,65 @@
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;
         }
-        showFormError(form, err.message || t.errorDefault);
+        showFormError(form, friendlyError(err, t));
       }
     });
+
+    try {
+      const res = await api.getAvailableFreeTrials();
+      // API may return array directly or wrapped in .data
+      trials = Array.isArray(res) ? res : (Array.isArray(res?.data) ? res.data : []);
+
+      if (scheduleEl) {
+        renderSchedule(scheduleEl, trials, lang);
+        wireScheduleClicks(scheduleEl, selectEl);
+      }
+      if (selectEl) {
+        populateSelect(selectEl, trials, lang);
+
+        // Add "can't make any date" checkbox below the date field
+        if (trials.length) {
+          const dateField = selectEl.closest('.ft-form-field');
+          if (dateField) {
+            const notifyWrap = document.createElement('label');
+            notifyWrap.className = 'ft-notify-checkbox';
+            notifyWrap.innerHTML = `<input type="checkbox" name="notify-me"> <span>${t.notifyCheckbox}</span>`;
+            dateField.after(notifyWrap);
+
+            const cb = notifyWrap.querySelector('input');
+            cb.addEventListener('change', () => {
+              if (cb.checked) {
+                enterNotifyModeWithDates(lang);
+              } else {
+                exitNotifyMode(lang);
+              }
+            });
+          }
+        }
+      }
+
+      // Switch the page into "keep me informed" mode when there are no
+      // upcoming free trial dates. The form stays submittable but collects
+      // contacts for the next January / September cycle.
+      if (!trials.length) enterNotifyMode(lang);
+    } catch (err) {
+      console.error('[FreeTrial] Failed to fetch free trials:', err);
+      if (scheduleEl) renderScheduleError(scheduleEl, lang);
+      if (selectEl) {
+        selectEl.innerHTML = `<option value="">${t.selectNoSlots}</option>`;
+        selectEl.disabled = true;
+      }
+    }
+
+  }
+
+  // A failed request must never show the visitor a raw status line. crm-api.js
+  // builds messages like "HTTP 422:" when the response carries no body, which
+  // is exactly what an empty form used to produce.
+  function friendlyError(err, t) {
+    const msg = (err && err.message ? String(err.message) : '').trim();
+    if (!msg || /^HTTP\s*\d+\s*:?\s*$/i.test(msg)) return t.errorDefault;
+    return msg;
   }
 
   // Boot

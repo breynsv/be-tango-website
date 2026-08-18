@@ -70,6 +70,10 @@
       terms: 'By submitting, I agree to the {link} of BE-TANGO.',
       termsLink: 'terms and conditions',
       termsError: 'Please accept the terms and conditions to continue.',
+      fvRequired: 'Please fill in this field.',
+      fvEmail: 'Please enter a valid email address.',
+      fvSelect: 'Please make a choice.',
+      fvPhone: 'Invalid phone number. Example: +32 475 00 00 00',
     },
     FR: {
       modalTitle: 'S\'inscrire au cours',
@@ -128,6 +132,10 @@
       terms: 'En m\'inscrivant, j\'accepte les {link} de BE-TANGO.',
       termsLink: 'conditions générales',
       termsError: 'Veuillez accepter les conditions générales pour continuer.',
+      fvRequired: 'Veuillez remplir ce champ.',
+      fvEmail: 'Veuillez saisir une adresse e-mail valide.',
+      fvSelect: 'Veuillez faire un choix.',
+      fvPhone: 'Numéro de téléphone invalide. Exemple : +32 475 00 00 00',
     },
     NL: {
       modalTitle: 'Inschrijven voor de les',
@@ -186,6 +194,10 @@
       terms: 'Door te verzenden, ga ik akkoord met de {link} van BE-TANGO.',
       termsLink: 'algemene voorwaarden',
       termsError: 'Gelieve de algemene voorwaarden te aanvaarden om verder te gaan.',
+      fvRequired: 'Vul dit veld in.',
+      fvEmail: 'Vul een geldig e-mailadres in.',
+      fvSelect: 'Maak een keuze.',
+      fvPhone: 'Ongeldig telefoonnummer. Voorbeeld : +32 475 00 00 00',
     },
   };
 
@@ -220,6 +232,12 @@
 
   function getLegalUrls() {
     return LEGAL_URLS[getLang()] || LEGAL_URLS.EN;
+  }
+
+  // Digits, spaces, + - ( ) . / — between 7 and 15 digits.
+  function isValidPhone(raw) {
+    var digits = raw.replace(/\D/g, '');
+    return digits.length >= 7 && digits.length <= 15 && /^[+\d][\d\s\-()\/.]+$/.test(raw);
   }
 
   function showError(msg, focusId) {
@@ -1010,20 +1028,33 @@
     // Hide previous error
     errEl.hidden = true;
 
-    // Validate required fields
+    // Validate required fields inline, in the page's language.
+    // This used to be checkValidity() + reportValidity(), which shows a native
+    // browser bubble: one field at a time, and worded in the BROWSER's language,
+    // so a Dutch visitor on an English browser got "Please fill out this field".
+    // Marketing consent is deliberately absent from this pass: it is optional,
+    // and gating the booking on it would mean the consent was not freely given.
     const form = document.getElementById('em-form');
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
+    const problems = window.BETangoValidate
+      ? BETangoValidate.check(form, {
+          required: t.fvRequired,
+          email:    t.fvEmail,
+          select:   t.fvSelect,
+          checkbox: t.termsError,
+        })
+      : [];
+
+    // Phone shape is a rule check(), which only knows "empty or not", cannot make.
+    // Skip it when the field is already flagged as empty — one message per field.
+    const phoneEl = document.getElementById('em-phone');
+    const typedPhone = phoneEl ? phoneEl.value.trim() : '';
+    if (typedPhone && !isValidPhone(typedPhone) && !problems.some((p) => p.el === phoneEl)) {
+      problems.push({ el: phoneEl, message: t.fvPhone });
     }
 
-    // Terms acceptance is required (custom message — friendlier than the native
-    // bubble on a checkbox). Marketing consent is deliberately NOT checked here:
-    // it is optional, and making it a condition of booking would mean the consent
-    // was not freely given.
-    const termsEl = document.getElementById('em-terms');
-    if (termsEl && !termsEl.checked) {
-      showError(t.termsError, 'em-terms');
+    if (problems.length) {
+      if (window.BETangoValidate) BETangoValidate.show(form, problems);
+      else showError(problems[0].message, problems[0].el.id);
       return;
     }
 
@@ -1047,18 +1078,6 @@
     const phoneRaw  = document.getElementById('em-phone').value.trim();
     const phone     = phoneRaw || null;
 
-    // Validate phone format — required; allow digits, spaces, +, -, (, ), ., / — min 7 digits
-    const phoneDigits = phoneRaw.replace(/\D/g, '');
-    if (!phoneRaw || phoneDigits.length < 7 || phoneDigits.length > 15 || !/^[+\d][\d\s\-()\/.]+$/.test(phoneRaw)) {
-      const lang = getLang();
-      showError(
-        lang === 'FR' ? 'Numéro de téléphone invalide. Exemple\u00a0: +32\u00a0475\u00a000\u00a000\u00a000'
-        : lang === 'NL' ? 'Ongeldig telefoonnummer. Voorbeeld\u00a0: +32\u00a0475\u00a000\u00a000\u00a000'
-        : 'Invalid phone number. Example: +32 475 00 00 00',
-        'em-phone'
-      );
-      return;
-    }
     const gender    = document.getElementById('em-gender').value || null;
     const language  = document.getElementById('em-language').value || null;
     const remarks   = document.getElementById('em-remarks').value.trim() || null;

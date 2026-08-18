@@ -956,3 +956,44 @@
 @media (max-width: 340px) {
   .em-partner-cards { grid-template-columns: 1fr; }
 }
+
+/* ─── Inline field validation ───────────────────────────────────── */
+/* Rendered by js/form-validation.js under the offending control. Placed at the
+   end of the file on purpose: .fv-invalid must win over .em-input's own border,
+   and both are single-class selectors, so source order is what decides. */
+.fv-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 6px 0 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #DC2626;
+}
+
+.fv-error::before {
+  content: '⚠';
+  flex: none;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.em-input.fv-invalid,
+.em-select.fv-invalid,
+.em-textarea.fv-invalid {
+  border-color: #DC2626;
+  background-color: rgba(220, 38, 38, 0.03);
+}
+
+.em-input.fv-invalid:focus,
+.em-select.fv-invalid:focus,
+.em-textarea.fv-invalid:focus {
+  border-color: #DC2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+/* The consent ticks have no wrapper, so their message lands as a sibling of the
+   <label> and needs the checkbox's own left inset to line up with the text. */
+.em-consent + .fv-error,
+.em-gdpr + .fv-error { margin-left: 30px; }
