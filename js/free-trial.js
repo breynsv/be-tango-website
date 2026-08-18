@@ -627,12 +627,14 @@
     const url = portalUrl || (window.API_CONFIG && window.API_CONFIG.portalURL) || '/portal';
     const contactHref = CONTACT_PATH[lang] || CONTACT_PATH.EN;
 
+    // Deliberately NOT the .ft-success-check circle-checkmark: that icon reads
+    // as "your trial is booked", which is false here. A plain forward-arrow
+    // glyph signals "continue on" without implying anything was confirmed.
     wrap.innerHTML = `
       <div class="ft-success ft-known">
-        <div class="ft-success-check">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <circle cx="12" cy="12" r="10"/>
-            <polyline points="9 12 11 14 15 10"/>
+        <div class="ft-known-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <h3 class="ft-success-title">${t.knownTitle}</h3>

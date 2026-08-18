@@ -254,15 +254,13 @@ class CRMApi {
     }
 
     /**
-     * Submit enrollment
-     */
-    async submitEnrollment(enrollmentData) {
-        return await this.post('/enrollments', enrollmentData);
-    }
-
-    /**
      * Fetch the SEPA EPC payment QR code for a confirmed enrollment.
      * Called lazily after the confirmation page is already shown.
+     *
+     * NOTE: unused since the paid-enrollment modal was retired (js/enrollment-modal.js
+     * no longer submits enrollments or shows a QR code). Left in place — unlike
+     * submitEnrollment() it wasn't named for removal this round, and /enrollments/payment-qr's
+     * status hasn't been confirmed retired the way POST /enrollments was.
      */
     async fetchPaymentQr(enrollmentId, paymentReference) {
         return await this.post('/enrollments/payment-qr', {

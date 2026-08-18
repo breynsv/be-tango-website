@@ -176,12 +176,11 @@
   // INIT — inject modal once
   // ========================
 
+  // No CRM API dependency here on purpose: the router renders two static
+  // links and makes no API calls, so it must open even when crm-api.js
+  // failed to load or the CRM is down — that is exactly when routing
+  // people to the portal matters most.
   function init() {
-    if (!window.BETangoCRM?.api) {
-      console.warn('[EnrollmentModal] CRM API not ready');
-      return;
-    }
-
     if (modalInjected) return;
 
     const t = getT();
@@ -226,11 +225,14 @@
   // to be a portal-relative path here.
   function wireRouterLinks(productId) {
     var portalBase = (window.API_CONFIG && window.API_CONFIG.portalURL) || '/portal';
-    var next = '/portal/browse/' + productId;
+    // Guard against a bad/missing product id producing "/portal/browse/undefined" —
+    // fall back to the browse root rather than emit a broken next path.
+    var next = productId ? ('/portal/browse/' + productId) : '/portal/browse';
+    var nextParam = encodeURIComponent(next);
     var studentLink = document.getElementById('em-router-student');
     var newLink = document.getElementById('em-router-new');
-    if (studentLink) studentLink.href = portalBase + '/login?next=' + next;
-    if (newLink) newLink.href = portalBase + '/signup?next=' + next;
+    if (studentLink) studentLink.href = portalBase + '/login?next=' + nextParam;
+    if (newLink) newLink.href = portalBase + '/signup?next=' + nextParam;
   }
 
   function openModal(productId, className, price, location, time) {

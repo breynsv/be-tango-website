@@ -17,7 +17,6 @@
 const { SITE_URL } = require('../config');
 
 const TRIAL_URL = SITE_URL + '/nl/tangolessen/gratis-proefles/';
-const PAID_URL  = SITE_URL + '/nl/tangolessen/beginners/';
 
 // Every message rendered by the shared helper carries this class.
 const ERR = '.fv-error';
@@ -111,36 +110,13 @@ async function run(browser) {
     }
   }
 
-  // --- Sub-test 3: paid-lessons modal, submit with every field empty ---
-  {
-    const page = await browser.newPage();
-    try {
-      await page.goto(PAID_URL, { waitUntil: 'networkidle', timeout: 20000 });
-      // The sign-up buttons are rendered by schedule-loader from the API.
-      await page.waitForSelector('.btn-sign-up', { timeout: 15000 });
-      await page.click('.btn-sign-up');
-      await page.waitForSelector('#em-form', { state: 'visible', timeout: 10000 });
-
-      await page.click('#em-submit');
-      await page.waitForSelector(`#em-form ${ERR}`, { state: 'visible', timeout: 5000 });
-
-      const r = await visibleErrorsFor(page, '#em-form');
-      for (const f of ['em-first-name', 'em-last-name', 'em-email', 'em-phone', 'em-terms']) {
-        assert(r.fields.includes(f), `no inline error for "${f}" (got: ${r.fields.join(', ') || 'none'})`);
-      }
-      assert(
-        r.texts.every((t) => t && !/please fill out|fill in this field/i.test(t)),
-        `native English text leaked into a NL page: ${JSON.stringify(r.texts)}`
-      );
-
-      results.push({ name: 'validation:modal-empty-submit', passed: true, error: null });
-    } catch (err) {
-      await page.screenshot({ path: '_dev/e2e/screenshots/validation-modal-empty.png', fullPage: true });
-      results.push({ name: 'validation:modal-empty-submit', passed: false, error: err.message });
-    } finally {
-      await page.close();
-    }
-  }
+  // Sub-test 3 ("paid-lessons modal, submit with every field empty") is gone: the
+  // enrollment modal no longer has a form, a submit button, or any fields to leave
+  // empty — it renders two portal links (see enrollment.test.js:enrollment:router
+  // for the assertion that replaces this coverage). It used to check that
+  // #em-first-name/#em-last-name/#em-email/#em-phone/#em-terms each got an inline
+  // error on empty submit, in the page's own language rather than the browser's —
+  // there is no equivalent behaviour left to assert.
 
   return results;
 }
