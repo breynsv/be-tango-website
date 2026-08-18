@@ -94,7 +94,19 @@ class CRMApi {
             clearTimeout(timeoutId);
 
             if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                // The body of a failed response carries the reason — e.g. a 409
+                // with code 'existing_student' telling us to route this person to
+                // the portal. Throwing the status alone threw that away, so every
+                // handled refusal looked like a generic server error.
+                let body = null;
+                try { body = await response.json(); } catch (_) { /* not JSON */ }
+
+                const err = new Error(
+                    (body && body.message) || `HTTP ${response.status}: ${response.statusText}`
+                );
+                err.status = response.status;
+                err.data = body;
+                throw err;
             }
 
             const data = await response.json();
