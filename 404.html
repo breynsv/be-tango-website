@@ -3,8 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cette page n'existe pas ou a été déplacée · This page doesn't exist or has moved · Deze pagina bestaat niet of is verplaatst. Retrouvez les cours de tango de BE-TANGO à Bruxelles et Woluwe.">
   <meta name="robots" content="noindex, follow">
   <title>Page introuvable · Page not found · Pagina niet gevonden | BE-TANGO</title>
+  <link rel="canonical" href="https://www.be-tango.be/404.html">
+
+  <!-- Hreflang. One trilingual page serves every 404, so the alternates point at
+       the language home each visitor is sent to from here — same targets as the
+       language buttons below. Advisory only: the page is noindex. -->
+  <link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/">
+  <link rel="alternate" hreflang="en" href="https://www.be-tango.be/en/">
+  <link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/">
+  <link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/fr/">
+
   <link rel="icon" type="image/png" sizes="32x32" href="/images/cropped-favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/images/cropped-favicon-192x192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/cropped-favicon-180x180.png">
@@ -86,6 +97,11 @@
       border-bottom: 1px solid transparent;
     }
     .links a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+    /* Student portal row — an account link, so it sits under the site links
+       with no rule of its own and slightly quieter than them. */
+    .links.portal { border-top: none; padding-top: 12px; }
+    .links.portal a { color: rgba(255,255,255,0.6); font-size: 0.82rem; }
+    .links.portal a:hover { color: var(--gold); }
     @media (max-width: 600px) {
       .code { font-size: 3.5rem; }
       h1 { font-size: 1.1rem; }
@@ -117,6 +133,12 @@
       <a href="/nl/blog/">Blog NL</a>
       <a href="/en/blog/">Blog EN</a>
       <a href="/fr/contactez-nous/">Contact</a>
+    </div>
+
+    <div class="links portal">
+      <a href="https://betango.membrero.com/portal/login?lang=fr" target="_blank" rel="noopener">Portail élève</a>
+      <a href="https://betango.membrero.com/portal/login?lang=nl" target="_blank" rel="noopener">Studentenportaal</a>
+      <a href="https://betango.membrero.com/portal/login?lang=en" target="_blank" rel="noopener">Student portal</a>
     </div>
   </div>
 </body>
