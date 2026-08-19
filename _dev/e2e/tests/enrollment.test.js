@@ -71,7 +71,7 @@ async function run(browser) {
 
     await page.waitForSelector('#em-overlay:not([aria-hidden="true"])', { timeout: 8000 });
 
-    const { portalBase, studentHref, newHref, pageLang, studentTarget, studentRel, newTarget, newRel } = await page.evaluate(() => ({
+    const { portalBase, studentHref, newIsButton, formHiddenBeforeClick, pageLang, studentTarget, studentRel } = await page.evaluate(() => ({
       portalBase:  (window.API_CONFIG && window.API_CONFIG.portalURL) || '',
       studentHref: document.getElementById('em-router-student')?.href || '',
       newIsButton: document.getElementById('em-router-new')?.tagName === 'BUTTON',
