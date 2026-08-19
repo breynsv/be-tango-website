@@ -364,56 +364,6 @@
   font-size: 1rem;
 }
 
-/* ---------- "Welcome back" panel (existing student, not an error) ---------- */
-/* Reuses .ft-success — same gold/neutral treatment, never the red error
-   colours used for .ft-form-error / .ft-empty--error. A dedicated icon
-   badge (.ft-known-icon, gold) replaces .ft-success-check on purpose:
-   the green checkmark reads as "your trial is booked", which is false
-   here — nothing was booked, this person is being welcomed back. */
-.ft-known-icon {
-  width: 3.5rem;
-  height: 3.5rem;
-  margin: 0 auto 1.25rem;
-  border-radius: 50%;
-  background: rgba(226,192,51,0.12);
-  border: 2px solid #E2C033;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.ft-known-icon svg {
-  width: 1.6rem !important;
-  height: 1.6rem !important;
-  display: block;
-  stroke: #E2C033;
-  fill: none;
-}
-
-.ft-form-card .ft-known-icon {
-  background: rgba(226,192,51,0.12);
-  border-color: #E2C033;
-  margin: 0 0 16px 0;
-}
-
-.ft-known-cta {
-  margin: 0.5rem 0 1rem;
-}
-
-.ft-known-escape {
-  font-size: 0.85rem;
-  color: rgba(255,255,255,0.72);
-}
-
-.ft-known-escape a {
-  color: #E2C033;
-  text-decoration: underline;
-}
-
-.ft-known-escape a:hover {
-  color: #f0d668;
-}
-
 /* ---------- Inline form error ---------- */
 .ft-form-error {
   background: rgba(239, 68, 68, 0.1);
@@ -1327,9 +1277,6 @@ body { background: #FAF8F5; }
 .ft-form-card .ft-success-val { color: #111827; }
 .ft-form-card .ft-success-ref { color: #C9A820; }
 .ft-form-card .ft-success-meta { border-top-color: #E5E7EB; }
-.ft-form-card .ft-known-escape { color: #6B7280; }
-.ft-form-card .ft-known-escape a { color: #C9A820; }
-.ft-form-card .ft-known-escape a:hover { color: #111827; }
 
 /* ── Contact alternatives below form ─────────────────────────────── */
 .ft-contact-alt {

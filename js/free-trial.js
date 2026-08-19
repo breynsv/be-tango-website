@@ -32,11 +32,6 @@
       successEmailNote: 'A confirmation has been sent to',
       successRefLabel: 'Reference',
       successDateLabel: 'Your class',
-      knownTitle: 'Welcome back!',
-      knownMessage: "It looks like you've danced with us before. Sign in to your portal to book your next class.",
-      knownButton: 'Go to my portal',
-      knownEscape: 'Not you, or never been here before?',
-      knownEscapeLink: 'Get in touch',
       errorDefault: 'Something went wrong. Please try again or contact us directly.',
       btnLoading: 'Submitting…',
       termsError: 'Please accept the terms and conditions to continue.',
@@ -81,11 +76,6 @@
       successEmailNote: 'Une confirmation a été envoyée à',
       successRefLabel: 'Référence',
       successDateLabel: 'Votre cours',
-      knownTitle: 'Bon retour parmi nous !',
-      knownMessage: 'Il semble que vous ayez déjà dansé avec nous. Connectez-vous à votre portail pour réserver votre prochain cours.',
-      knownButton: 'Accéder à mon portail',
-      knownEscape: 'Ce n\'est pas vous, ou vous n\'êtes jamais venu(e) ?',
-      knownEscapeLink: 'Contactez-nous',
       errorDefault: 'Une erreur est survenue. Veuillez réessayer ou nous contacter directement.',
       btnLoading: 'Envoi en cours…',
       termsError: 'Veuillez accepter les conditions générales pour continuer.',
@@ -130,11 +120,6 @@
       successEmailNote: 'Een bevestiging is verzonden naar',
       successRefLabel: 'Referentie',
       successDateLabel: 'Je les',
-      knownTitle: 'Welkom terug!',
-      knownMessage: 'Het lijkt erop dat je al eerder bij ons hebt gedanst. Log in op je portaal om je volgende les te boeken.',
-      knownButton: 'Naar mijn portaal',
-      knownEscape: 'Ben jij dit niet, of nog nooit bij ons geweest?',
-      knownEscapeLink: 'Neem contact op',
       errorDefault: 'Er is iets misgegaan. Probeer opnieuw of contacteer ons rechtstreeks.',
       btnLoading: 'Verzenden…',
       termsError: 'Gelieve de algemene voorwaarden te aanvaarden om verder te gaan.',
@@ -611,51 +596,6 @@
       </div>`;
   }
 
-  // Contact page path per language, absolute so it resolves the same
-  // regardless of how deep the current page is nested.
-  const CONTACT_PATH = {
-    EN: '/en/contact/',
-    FR: '/fr/contactez-nous/',
-    NL: '/nl/contacteer-ons/',
-  };
-
-  /**
-   * Someone who has already danced with us tried to book a free trial. This is
-   * NOT an error state and must never look like one: styled as a failure, people
-   * retry with a mistyped address (creating exactly the duplicate contact the
-   * CRM-side guard exists to prevent) or simply leave. Welcome them, point at
-   * the portal, and leave a way out for the edge cases.
-   */
-  function showKnownContact(form, portalUrl, lang) {
-    const t = T[lang];
-    const wrap = form.closest('.form-container') || form.parentElement;
-    const base = portalUrl || (window.API_CONFIG && window.API_CONFIG.portalURL) || '/portal';
-    // Same reason as the enrollment modal: nobody is signed in on the other side,
-    // so the portal has no Contact.language to read and would fall back to the
-    // school's own locale. `lang` here is this page's language (EN/FR/NL); the
-    // portal re-validates it against the locales it has a translation file for.
-    const langCode = String(lang || '').slice(0, 2).toLowerCase();
-    const url = /^[a-z]{2}$/.test(langCode) ? base + '?lang=' + langCode : base;
-    const contactHref = CONTACT_PATH[lang] || CONTACT_PATH.EN;
-
-    // Deliberately NOT the .ft-success-check circle-checkmark: that icon reads
-    // as "your trial is booked", which is false here. A plain forward-arrow
-    // glyph signals "continue on" without implying anything was confirmed.
-    wrap.innerHTML = `
-      <div class="ft-success ft-known">
-        <div class="ft-known-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h3 class="ft-success-title">${t.knownTitle}</h3>
-        <p class="ft-success-msg">${t.knownMessage}</p>
-        <p class="ft-known-cta"><a class="btn btn-primary" href="${url}">${t.knownButton}</a></p>
-        <p class="ft-known-escape">${t.knownEscape}
-          <a href="${contactHref}">${t.knownEscapeLink}</a></p>
-      </div>`;
-  }
-
   // ========================
   // ERROR DISPLAY
   // ========================
@@ -855,10 +795,6 @@
         });
         showSuccess(form, res, selectedTrial, lang);
       } catch (err) {
-        if (err && err.status === 409 && err.data && err.data.code === 'existing_student') {
-          showKnownContact(form, err.data.portal_url, lang);
-          return;
-        }
         console.error('[FreeTrial] Registration error:', err);
         if (submitBtn) {
           submitBtn.disabled = false;
