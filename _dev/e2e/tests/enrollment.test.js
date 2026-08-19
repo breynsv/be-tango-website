@@ -74,12 +74,11 @@ async function run(browser) {
     const { portalBase, studentHref, newHref, pageLang, studentTarget, studentRel, newTarget, newRel } = await page.evaluate(() => ({
       portalBase:  (window.API_CONFIG && window.API_CONFIG.portalURL) || '',
       studentHref: document.getElementById('em-router-student')?.href || '',
-      newHref:     document.getElementById('em-router-new')?.href || '',
+      newIsButton: document.getElementById('em-router-new')?.tagName === 'BUTTON',
+      formHiddenBeforeClick: document.getElementById('em-form-view')?.hidden === true,
       pageLang:    (document.documentElement.getAttribute('lang') || '').slice(0, 2).toLowerCase(),
       studentTarget: document.getElementById('em-router-student')?.target || '',
       studentRel:    document.getElementById('em-router-student')?.rel || '',
-      newTarget:     document.getElementById('em-router-new')?.target || '',
-      newRel:        document.getElementById('em-router-new')?.rel || '',
     }));
 
     if (!portalBase) {
@@ -91,7 +90,6 @@ async function run(browser) {
     // render in — this site states it with `&lang=`, taken from its own <html lang>.
     const expectedLang    = /^[a-z]{2}$/.test(pageLang) ? '&lang=' + pageLang : '';
     const expectedStudent = portalBase + '/login?next=' + expectedNext + expectedLang;
-    const expectedNew     = portalBase + '/signup?next=' + expectedNext + expectedLang;
 
     if (!expectedLang) {
       throw new Error(`page has no usable <html lang> ("${pageLang}") — the portal would fall back to the school's locale`);
@@ -100,15 +98,35 @@ async function run(browser) {
     if (studentHref !== expectedStudent) {
       throw new Error(`"I'm already a student" link is wrong.\n  expected: ${expectedStudent}\n  got:      ${studentHref}`);
     }
-    if (newHref !== expectedNew) {
-      throw new Error(`"I'm new here" link is wrong.\n  expected: ${expectedNew}\n  got:      ${newHref}`);
+    // "I'm new here" no longer leaves for the portal — it reveals the one-step
+    // booking form in place. Making a newcomer sign up, verify an email and set
+    // a password before they may pay was friction at the moment they decided to
+    // buy, so the form is back for people we do not know yet.
+    if (!newIsButton) {
+      throw new Error('"I\'m new here" should be a button that opens the form, not a link off to the portal');
+    }
+    if (!formHiddenBeforeClick) {
+      throw new Error('the booking form is visible before "I\'m new here" is clicked — the router is not the first step');
+    }
+
+    await page.click('#em-router-new');
+    await page.waitForSelector('#em-form-view:not([hidden])', { timeout: 5000 });
+
+    for (const id of ['em-first-name', 'em-last-name', 'em-email']) {
+      if (!(await page.locator('#' + id).count())) {
+        throw new Error(`the one-step form is missing #${id}`);
+      }
+    }
+    // The partner question is the reason this form exists rather than a bare
+    // name/email box: a brand-new couple must be able to book together.
+    if (!(await page.locator('input[name="has_partner"], #em-partner-yes, [id*="partner"]').count())) {
+      throw new Error('the one-step form has no partner question');
     }
 
     // Both choices open in a new tab so the visitor keeps the class page they
     // were reading. rel=noopener is required with target=_blank: without it the
     // portal tab can reach back through window.opener.
-    for (const [label, target, rel] of [["I'm already a student", studentTarget, studentRel],
-                                        ["I'm new here", newTarget, newRel]]) {
+    for (const [label, target, rel] of [["I'm already a student", studentTarget, studentRel]]) {
       if (target !== '_blank') {
         throw new Error(`"${label}" should open in a new tab (target=_blank), got "${target}"`);
       }

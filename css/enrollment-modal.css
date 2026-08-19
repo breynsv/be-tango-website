@@ -1064,3 +1064,26 @@
    <label> and needs the checkbox's own left inset to line up with the text. */
 .em-consent + .fv-error,
 .em-gdpr + .fv-error { margin-left: 30px; }
+
+/* ALREADY-KNOWN VIEW — shown when the CRM answers 409 existing_student.
+   Deliberately styled as a signpost, not an error: the visitor did nothing
+   wrong, their account simply already exists. Red would tell them they failed
+   and is how people retry with a mistyped address. */
+.em-known-title {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.em-known-msg {
+  margin: 0 0 16px;
+  color: #6b6459;
+  line-height: 1.5;
+}
+.em-known-cta {
+  margin: 0;
+}
+.em-known-cta .em-done-btn {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+}

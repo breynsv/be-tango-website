@@ -254,13 +254,24 @@ class CRMApi {
     }
 
     /**
+     * Submit a paid enrollment from the public booking form.
+     *
+     * Restored 2026-08-19. It was removed when the modal became a portal
+     * router, and the router alone turned out to cost too much at the moment
+     * someone decides to book: a newcomer had to sign up, verify an email and
+     * set a password before they could pay for a class. The form is back for
+     * people we do not know yet; the router still handles "I'm already a
+     * student". The CRM refuses this call with 409 `existing_student` when the
+     * address belongs to somebody who has danced with us, which is what keeps
+     * an anonymous post from writing to a real student's record.
+     */
+    async submitEnrollment(enrollmentData) {
+        return await this.post('/enrollments', enrollmentData);
+    }
+
+    /**
      * Fetch the SEPA EPC payment QR code for a confirmed enrollment.
      * Called lazily after the confirmation page is already shown.
-     *
-     * NOTE: unused since the paid-enrollment modal was retired (js/enrollment-modal.js
-     * no longer submits enrollments or shows a QR code). Left in place — unlike
-     * submitEnrollment() it wasn't named for removal this round, and /enrollments/payment-qr's
-     * status hasn't been confirmed retired the way POST /enrollments was.
      */
     async fetchPaymentQr(enrollmentId, paymentReference) {
         return await this.post('/enrollments/payment-qr', {
