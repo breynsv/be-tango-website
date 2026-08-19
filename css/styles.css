@@ -6507,10 +6507,14 @@ a:focus {
 
 /* 1. MINIMUM TAP TARGET SIZES (44x44px) FOR MOBILE */
 @media (max-width: 767px) {
-  /* All buttons minimum 44px height */
-  .btn,
-  button,
-  a.btn {
+  /* All buttons minimum 44px height.
+     `:not([hidden])` is load-bearing: without it this rule's `display: inline-flex`
+     beats the UA's `[hidden] { display: none }` on specificity and un-hides every
+     hidden button on the site below 768px — the cookie banner's "Save preferences"
+     button leaked onto every page that way. */
+  .btn:not([hidden]),
+  button:not([hidden]),
+  a.btn:not([hidden]) {
     min-height: 44px;
     min-width: 44px;
     padding: 12px 20px;
