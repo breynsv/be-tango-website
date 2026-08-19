@@ -966,7 +966,6 @@
 
   #em-form,
   #em-router-view { padding: 18px 20px 24px; }
-  #em-known-view  { padding: 18px 20px 24px; }
 
   .em-router-choice { min-height: 92px; padding: 18px 16px; }
 
@@ -1066,43 +1065,39 @@
 .em-consent + .fv-error,
 .em-gdpr + .fv-error { margin-left: 30px; }
 
-/* ALREADY-KNOWN VIEW — shown when the CRM answers 409 existing_student.
-   Deliberately styled as a signpost, not an error: the visitor did nothing
-   wrong, their account simply already exists. Red would tell them they failed
-   and is how people retry with a mistyped address.
-
-   The panel carries its own padding, exactly like #em-router-view. It is a
-   direct child of the modal box, which is NOT padded — the box lets each panel
-   set its own — so without this the copy sat outside the inset the chips and
-   the divider above it use, and the full-width button ran edge to edge into
-   the modal's rounded corners. */
-#em-known-view {
-  padding: 22px 28px 28px;
+/* PORTAL-ACCOUNT NOTE — appended UNDER the booking confirmation when the CRM
+   says this person already has an account. It is an aside, not the outcome:
+   the booking and its payment details are what they came for. An earlier
+   version replaced the confirmation entirely, which is how somebody filled in
+   the whole form and got nothing back. */
+.em-known-note {
+  margin-top: 20px;
+  padding: 16px 18px;
+  background: #FBF9F4;
+  border: 1px solid #EFE7DD;
+  border-radius: 10px;
 }
 
-.em-known-title {
+.em-known-note-title {
   font-family: 'Poppins', sans-serif;
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 700;
   color: #1C244B;
-  margin: 0 0 8px;
+  margin: 0 0 6px;
 }
 
-.em-known-msg {
+.em-known-note-msg {
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   color: #6B7280;
-  line-height: 1.55;
-  margin: 0 0 24px;
+  line-height: 1.5;
+  margin: 0 0 10px;
 }
 
-.em-known-cta {
-  margin: 0;
-}
-
-/* .em-done-btn is a <button> everywhere else and a link here, so it needs the
-   anchor bits the button never did. */
-.em-known-cta .em-done-btn {
-  text-decoration: none;
-  text-align: center;
+.em-known-note-link {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1C244B;
+  text-decoration: underline;
 }

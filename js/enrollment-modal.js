@@ -14,17 +14,18 @@
   // ========================
   const T = {
     EN: {
-      // Router + already-known copy (2026-08-19). The form below is for people
-      // we do not know yet; anyone already on file is sent to the portal by the
-      // CRM's 409 `existing_student`, never silently written over.
+      // Router + portal-account copy (2026-08-19). The form below books anyone,
+      // known or not. `known*` is the note appended UNDER the confirmation when
+      // the CRM reports an existing portal account — an aside, never a refusal,
+      // so the wording must not ask for a booking that has already happened.
       routerLead: 'Booking a class happens here or in your student portal.',
       routerStudentBtn: 'I\'m already a student',
       routerStudentSub: 'Sign in to book this class',
       routerNewBtn: 'I\'m new here',
       routerNewSub: 'Book in one step, no account needed',
-      knownTitle: 'You already have an account',
-      knownMessage: 'This email address is already on file with us. Sign in to your portal to book this class — your details and past classes are already there.',
-      knownButton: 'Sign in to the portal',
+      knownTitle: 'You also have a student portal',
+      knownMessage: 'This email address is already on file with us, so you have a portal account. Sign in any time to see this booking, your details and your past classes.',
+      knownButton: 'Go to your portal',
       modalTitle: 'Sign Up for Class',
       firstName: 'First Name',
       lastName: 'Last Name',
@@ -87,17 +88,18 @@
       fvPhone: 'Invalid phone number. Example: +32 475 00 00 00',
     },
     FR: {
-      // Router + already-known copy (2026-08-19). The form below is for people
-      // we do not know yet; anyone already on file is sent to the portal by the
-      // CRM's 409 `existing_student`, never silently written over.
+      // Router + portal-account copy (2026-08-19). The form below books anyone,
+      // known or not. `known*` is the note appended UNDER the confirmation when
+      // the CRM reports an existing portal account — an aside, never a refusal,
+      // so the wording must not ask for a booking that has already happened.
       routerLead: 'La réservation d\'un cours se fait ici ou depuis votre portail élève.',
       routerStudentBtn: 'Je suis déjà élève',
       routerStudentSub: 'Connectez-vous pour réserver ce cours',
       routerNewBtn: 'Je suis nouveau/nouvelle ici',
       routerNewSub: 'Réservez en une étape, sans compte',
-      knownTitle: 'Vous avez déjà un compte',
-      knownMessage: 'Cette adresse e-mail est déjà enregistrée chez nous. Connectez-vous à votre portail pour réserver ce cours — vos informations et vos cours précédents s\'y trouvent déjà.',
-      knownButton: 'Se connecter au portail',
+      knownTitle: 'Vous avez aussi un portail élève',
+      knownMessage: 'Cette adresse e-mail est déjà enregistrée chez nous, vous avez donc un compte sur le portail. Connectez-vous quand vous le souhaitez pour retrouver cette réservation, vos informations et vos cours précédents.',
+      knownButton: 'Accéder à votre portail',
       modalTitle: 'S\'inscrire au cours',
       firstName: 'Prénom',
       lastName: 'Nom',
@@ -160,17 +162,18 @@
       fvPhone: 'Numéro de téléphone invalide. Exemple : +32 475 00 00 00',
     },
     NL: {
-      // Router + already-known copy (2026-08-19). The form below is for people
-      // we do not know yet; anyone already on file is sent to the portal by the
-      // CRM's 409 `existing_student`, never silently written over.
+      // Router + portal-account copy (2026-08-19). The form below books anyone,
+      // known or not. `known*` is the note appended UNDER the confirmation when
+      // the CRM reports an existing portal account — an aside, never a refusal,
+      // so the wording must not ask for a booking that has already happened.
       routerLead: 'Een les boeken doe je hier of via je studentenportaal.',
       routerStudentBtn: 'Ik ben al leerling',
       routerStudentSub: 'Log in om deze les te boeken',
       routerNewBtn: 'Ik ben hier nieuw',
       routerNewSub: 'Boek in één stap, geen account nodig',
-      knownTitle: 'Je hebt al een account',
-      knownMessage: 'Dit e-mailadres is al bij ons bekend. Log in op je portaal om deze les te boeken — je gegevens en eerdere lessen staan er al.',
-      knownButton: 'Inloggen op het portaal',
+      knownTitle: 'Je hebt ook een studentenportaal',
+      knownMessage: 'Dit e-mailadres is al bij ons bekend, dus je hebt een portaalaccount. Log in wanneer je wilt om deze boeking, je gegevens en je eerdere lessen te bekijken.',
+      knownButton: 'Naar je portaal',
       modalTitle: 'Inschrijven voor de les',
       firstName: 'Voornaam',
       lastName: 'Achternaam',
@@ -388,9 +391,10 @@
          one step. The form is NOT hidden behind an account on purpose: making
          a newcomer sign up, verify an email and set a password before they may
          pay for a class is friction at the exact moment they decided to buy.
-         Anyone already on file is caught server-side by a 409 existing_student answer
-         and shown the panel below, so the open form still cannot write over a
-         real student's record. -->
+         Anyone already on file books normally too: the CRM fills blank fields and
+         never overwrites, so an open form cannot rewrite a real student's record.
+         It reports the existing portal account on the success payload, which is
+         announced under the confirmation rather than instead of it. -->
     <div id="em-router-view">
       <p class="em-router-lead">${t.routerLead}</p>
       <div class="em-router-choices">
@@ -403,15 +407,6 @@
           <span class="em-router-choice-sub">${t.routerNewSub}</span>
         </button>
       </div>
-    </div>
-
-    <!-- ALREADY-KNOWN VIEW — shown when the CRM answers 409 existing_student. -->
-    <div id="em-known-view" hidden>
-      <h3 class="em-known-title">${t.knownTitle}</h3>
-      <p class="em-known-msg">${t.knownMessage}</p>
-      <p class="em-known-cta">
-        <a class="em-done-btn" id="em-known-link" href="#" target="_blank" rel="noopener">${t.knownButton}</a>
-      </p>
     </div>
 
     <!-- FORM VIEW -->
@@ -853,7 +848,7 @@
   // rather than at each call site so a new panel cannot be added and leave an
   // old one showing underneath it.
   function showPanel(id) {
-    ['em-router-view', 'em-form-view', 'em-known-view', 'em-success-view'].forEach(function (panel) {
+    ['em-router-view', 'em-form-view', 'em-success-view'].forEach(function (panel) {
       var el = document.getElementById(panel);
       if (el) el.hidden = (panel !== id);
     });
@@ -889,14 +884,7 @@
     }, 50);
   }
 
-  // The CRM refused this booking because the address belongs to somebody who
-  // has danced with us. It sends the portal URL it wants used, already pointed
-  // at this class, so the link is never rebuilt here.
-  function showKnownView(portalUrl) {
-    var link = document.getElementById('em-known-link');
-    if (link && portalUrl) link.href = portalUrl;
-    showPanel('em-known-view');
-  }
+
 
   function enrollmentType(data) {
     if (data.already_registered) return 'already_registered';
@@ -915,6 +903,35 @@
       currency: 'EUR',
       transaction_id: data.payment_reference || undefined
     });
+  }
+
+  // Booked, AND they already have a portal account. Announced under the normal
+  // confirmation rather than instead of it: the booking and its payment details
+  // are the thing they came for, and the account is useful extra. Replacing the
+  // confirmation with "go and sign in" is what made somebody fill the form in
+  // and get nothing back.
+  function announcePortalAccount(portalUrl) {
+    if (!portalUrl) return;
+    var host = document.getElementById('em-success-view');
+    if (!host || document.getElementById('em-known-note')) return;
+    var t = getT();
+    var wrap = document.createElement('div');
+    wrap.id = 'em-known-note';
+    wrap.className = 'em-known-note';
+    var title = document.createElement('p');
+    title.className = 'em-known-note-title';
+    title.textContent = t.knownTitle;
+    var msg = document.createElement('p');
+    msg.className = 'em-known-note-msg';
+    msg.textContent = t.knownMessage;
+    var link = document.createElement('a');
+    link.className = 'em-known-note-link';
+    link.href = portalUrl;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = t.knownButton;
+    wrap.appendChild(title); wrap.appendChild(msg); wrap.appendChild(link);
+    host.appendChild(wrap);
   }
 
   function showSuccessView(data) {
@@ -1260,17 +1277,16 @@
       const res = await window.BETangoCRM.api.submitEnrollment(payload);
       const data = res.data || res;
       showSuccessView(data);
-    } catch (err) {
-      // 409 existing_student is not an error the visitor can fix by retrying —
-      // the address is already ours. Show the way in instead of a red message,
-      // and never echo back anything about the account beyond its existence.
-      var body = (err && err.data) || {};
-      if ((err && err.status === 409) || body.code === 'existing_student') {
-        if (body.code === 'existing_student') {
-          showKnownView(body.portal_url);
-          return;
-        }
+      // Only when the CRM says so. Absent for everyone who has no account yet,
+      // which is most people using this form.
+      if (data && data.existing_student) {
+        announcePortalAccount(data.portal_url);
       }
+    } catch (err) {
+      // The CRM used to answer 409 existing_student here and roll the booking
+      // back, which lost the form the visitor had just filled in. It books them
+      // now and says so on the SUCCESS payload instead (see showSuccessView),
+      // so there is no longer a refusal branch to handle — only real errors.
       console.error('[EnrollmentModal] Submit error:', err);
       showError(err.message || t.errorDefault);
     } finally {

@@ -94,10 +94,10 @@ class CRMApi {
             clearTimeout(timeoutId);
 
             if (!response.ok) {
-                // The body of a failed response carries the reason — e.g. a 409
-                // with code 'existing_student' telling us to route this person to
-                // the portal. Throwing the status alone threw that away, so every
-                // handled refusal looked like a generic server error.
+                // The body of a failed response carries the reason — a validation
+                // map, or a code the caller knows how to act on. Throwing the
+                // status alone threw that away, so every handled refusal looked
+                // like a generic server error.
                 let body = null;
                 try { body = await response.json(); } catch (_) { /* not JSON */ }
 
@@ -261,9 +261,11 @@ class CRMApi {
      * someone decides to book: a newcomer had to sign up, verify an email and
      * set a password before they could pay for a class. The form is back for
      * people we do not know yet; the router still handles "I'm already a
-     * student". The CRM refuses this call with 409 `existing_student` when the
-     * address belongs to somebody who has danced with us, which is what keeps
-     * an anonymous post from writing to a real student's record.
+     * student". The CRM books a known address too rather than refusing it — it
+     * fills blank contact fields and never overwrites, which is what keeps an
+     * anonymous post from writing over a real student's record — and reports
+     * any existing portal account on the success payload as `existing_student`
+     * plus `portal_url`, for the site to mention under the confirmation.
      */
     async submitEnrollment(enrollmentData) {
         return await this.post('/enrollments', enrollmentData);
