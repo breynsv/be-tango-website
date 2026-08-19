@@ -759,7 +759,7 @@
         +'<div class="lsched-actions"></div>';
       var btn=document.createElement('button');btn.className='lsched-btn-signup btn-sign-up';
       btn.dataset.productId=cls.id;btn.dataset.className=name+(dayEN?' · '+dayEN:'');
-      btn.dataset.price=cls.price||'';btn.dataset.location=(cls.location&&(cls.location.city||cls.location.name))||'';
+      btn.dataset.price=cls.price||'';btn.dataset.location=(cls.location&&((typeof cls.location.city==='object'?cls.location.city[LANG]||cls.location.city.en:cls.location.city)||cls.location.name))||'';
       btn.innerHTML=S.signUp+' <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>';
       div.querySelector('.lsched-actions').appendChild(btn);
       var hasDates=(cls.lesson_dates&&cls.lesson_dates.length)||(cls.practica_dates&&cls.practica_dates.length);
