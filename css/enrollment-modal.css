@@ -966,6 +966,7 @@
 
   #em-form,
   #em-router-view { padding: 18px 20px 24px; }
+  #em-known-view  { padding: 18px 20px 24px; }
 
   .em-router-choice { min-height: 92px; padding: 18px 16px; }
 
@@ -1068,22 +1069,40 @@
 /* ALREADY-KNOWN VIEW — shown when the CRM answers 409 existing_student.
    Deliberately styled as a signpost, not an error: the visitor did nothing
    wrong, their account simply already exists. Red would tell them they failed
-   and is how people retry with a mistyped address. */
+   and is how people retry with a mistyped address.
+
+   The panel carries its own padding, exactly like #em-router-view. It is a
+   direct child of the modal box, which is NOT padded — the box lets each panel
+   set its own — so without this the copy sat outside the inset the chips and
+   the divider above it use, and the full-width button ran edge to edge into
+   the modal's rounded corners. */
+#em-known-view {
+  padding: 22px 28px 28px;
+}
+
 .em-known-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1C244B;
   margin: 0 0 8px;
-  font-size: 1.05rem;
-  font-weight: 600;
 }
+
 .em-known-msg {
-  margin: 0 0 16px;
-  color: #6b6459;
-  line-height: 1.5;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #6B7280;
+  line-height: 1.55;
+  margin: 0 0 24px;
 }
+
 .em-known-cta {
   margin: 0;
 }
+
+/* .em-done-btn is a <button> everywhere else and a link here, so it needs the
+   anchor bits the button never did. */
 .em-known-cta .em-done-btn {
-  display: inline-block;
   text-decoration: none;
   text-align: center;
 }
