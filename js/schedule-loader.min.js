@@ -93,7 +93,7 @@
             downloadPdf: 'Afdrukken',
             addToCalendar: 'Toevoegen aan kalender (.ics)',
             closeCalendar: 'Sluiten',
-            calMonthNames: ['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December'],
+            calMonthNames: ['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'],
             calWeekDays: ['Ma','Di','Wo','Do','Vr','Za','Zo'],
         },
         fr: {
@@ -136,7 +136,7 @@
             downloadPdf: 'Imprimer',
             addToCalendar: 'Ajouter au calendrier (.ics)',
             closeCalendar: 'Fermer',
-            calMonthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+            calMonthNames: ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'],
             calWeekDays: ['Lu','Ma','Me','Je','Ve','Sa','Di'],
         },
     };
@@ -661,7 +661,7 @@
             return `
                 <div style="background:#fff;border:1px solid #E5E7EB;border-radius:6px;border-top:3px solid #E2C033;box-shadow:0 1px 4px rgba(0,0,0,0.08);overflow:hidden;">
                     <div style="padding:6px 10px 5px;display:flex;align-items:baseline;gap:6px;">
-                        <span style="font-size:12px;font-weight:700;color:#111827;font-family:Poppins,sans-serif;">${name}</span>
+                        <span style="font-size:12px;font-weight:700;color:#111827;font-family:Poppins,sans-serif;text-transform:capitalize;">${name}</span>
                         <span style="font-size:10px;font-weight:500;color:#9CA3AF;font-family:Poppins,sans-serif;">${y}</span>
                         ${countBadge}
                     </div>

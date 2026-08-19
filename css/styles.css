@@ -7393,7 +7393,6 @@ section.hero-small:has(.hero-bg-image) h1 {
   font-size: 0.88rem;
   font-weight: 500;
   color: #fff;
-  text-transform: capitalize;
 }
 
 .ft-trial-time {
@@ -7801,6 +7800,11 @@ section.hero-small:has(.hero-bg-image) h1 {
   display: flex;
   align-items: baseline;
   gap: 6px;
+  /* FR/NL month names are lowercase by grammar (see calMonthNames in
+     js/schedule-loader.js). This is a standalone heading of a single word, so
+     capitalising it here keeps the heading looking deliberate without
+     capitalising months inside running dates. */
+  text-transform: capitalize;
 }
 .cal-month-title::after {
   content: attr(data-year);

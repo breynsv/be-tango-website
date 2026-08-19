@@ -184,9 +184,14 @@
     const [y, m, d] = dateStr.split('-').map(Number);
     const date = new Date(y, m - 1, d);
     const localeMap = { EN: 'en-GB', FR: 'fr-FR', NL: 'nl-NL' };
-    return date.toLocaleDateString(localeMap[lang] || 'en-GB', {
+    const out = date.toLocaleDateString(localeMap[lang] || 'en-GB', {
       weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
     });
+    // FR and NL lowercase both weekday and month names. Only the first word
+    // starts the string, so capitalise exactly that — `text-transform:
+    // capitalize` on .ft-trial-date used to capitalise the month too
+    // ("Vendredi 4 Septembre 2026"), which is wrong in both languages.
+    return out.charAt(0).toUpperCase() + out.slice(1);
   }
 
   function formatShortDate(dateStr, lang) {
