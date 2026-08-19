@@ -71,10 +71,15 @@ async function run(browser) {
 
     await page.waitForSelector('#em-overlay:not([aria-hidden="true"])', { timeout: 8000 });
 
-    const { portalBase, studentHref, newHref } = await page.evaluate(() => ({
+    const { portalBase, studentHref, newHref, pageLang, studentTarget, studentRel, newTarget, newRel } = await page.evaluate(() => ({
       portalBase:  (window.API_CONFIG && window.API_CONFIG.portalURL) || '',
       studentHref: document.getElementById('em-router-student')?.href || '',
       newHref:     document.getElementById('em-router-new')?.href || '',
+      pageLang:    (document.documentElement.getAttribute('lang') || '').slice(0, 2).toLowerCase(),
+      studentTarget: document.getElementById('em-router-student')?.target || '',
+      studentRel:    document.getElementById('em-router-student')?.rel || '',
+      newTarget:     document.getElementById('em-router-new')?.target || '',
+      newRel:        document.getElementById('em-router-new')?.rel || '',
     }));
 
     if (!portalBase) {
@@ -82,14 +87,34 @@ async function run(browser) {
     }
 
     const expectedNext    = encodeURIComponent('/portal/browse/' + klass.id);
-    const expectedStudent = portalBase + '/login?next=' + expectedNext;
-    const expectedNew     = portalBase + '/signup?next=' + expectedNext;
+    // The portal has nobody signed in yet, so it cannot know which language to
+    // render in — this site states it with `&lang=`, taken from its own <html lang>.
+    const expectedLang    = /^[a-z]{2}$/.test(pageLang) ? '&lang=' + pageLang : '';
+    const expectedStudent = portalBase + '/login?next=' + expectedNext + expectedLang;
+    const expectedNew     = portalBase + '/signup?next=' + expectedNext + expectedLang;
+
+    if (!expectedLang) {
+      throw new Error(`page has no usable <html lang> ("${pageLang}") — the portal would fall back to the school's locale`);
+    }
 
     if (studentHref !== expectedStudent) {
       throw new Error(`"I'm already a student" link is wrong.\n  expected: ${expectedStudent}\n  got:      ${studentHref}`);
     }
     if (newHref !== expectedNew) {
       throw new Error(`"I'm new here" link is wrong.\n  expected: ${expectedNew}\n  got:      ${newHref}`);
+    }
+
+    // Both choices open in a new tab so the visitor keeps the class page they
+    // were reading. rel=noopener is required with target=_blank: without it the
+    // portal tab can reach back through window.opener.
+    for (const [label, target, rel] of [["I'm already a student", studentTarget, studentRel],
+                                        ["I'm new here", newTarget, newRel]]) {
+      if (target !== '_blank') {
+        throw new Error(`"${label}" should open in a new tab (target=_blank), got "${target}"`);
+      }
+      if (!rel.split(/\s+/).includes('noopener')) {
+        throw new Error(`"${label}" opens a new tab without rel=noopener (got "${rel}")`);
+      }
     }
 
     results.push({ name: 'enrollment:router', passed: true, error: null });

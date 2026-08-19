@@ -101,15 +101,23 @@
 
     <!-- ROUTER VIEW — booking now happens in the student portal; this modal
          only routes people there (see wireRouterLinks / openModal). -->
+    <!-- Both choices open in a NEW TAB (target=_blank + rel=noopener), so the
+         visitor keeps the class page they were reading behind them.
+         An in-page modal was considered and is not possible: the portal sends
+         X-Frame-Options: DENY and frame-ancestors 'none', this site's own CSP
+         frame-src does not list betango.membrero.com, and the portal's session
+         cookies are SameSite=Lax so a cross-site iframe would not carry a login
+         anyway. Allowing it would mean dropping clickjacking protection on the
+         page where students type passwords and pay. -->
     <div id="em-router-view">
       <p class="em-router-lead">${t.routerLead}</p>
 
       <div class="em-router-choices">
-        <a class="em-router-choice" id="em-router-student" href="#">
+        <a class="em-router-choice" id="em-router-student" href="#" target="_blank" rel="noopener">
           <span class="em-router-choice-label">${t.routerStudentBtn}</span>
           <span class="em-router-choice-sub">${t.routerStudentSub}</span>
         </a>
-        <a class="em-router-choice" id="em-router-new" href="#">
+        <a class="em-router-choice" id="em-router-new" href="#" target="_blank" rel="noopener">
           <span class="em-router-choice-label">${t.routerNewBtn}</span>
           <span class="em-router-choice-sub">${t.routerNewSub}</span>
         </a>
@@ -229,10 +237,17 @@
     // fall back to the browse root rather than emit a broken next path.
     var next = productId ? ('/portal/browse/' + productId) : '/portal/browse';
     var nextParam = encodeURIComponent(next);
+    // The portal has nobody signed in yet, so it has no Contact.language to read
+    // and would otherwise render in the SCHOOL's locale — a visitor reading the
+    // Dutch site landed on a French login page. This site knows the answer, so it
+    // states it. Only the <html lang> is trusted; the portal re-validates it
+    // against the locales it actually has a translation file for.
+    var lang = (document.documentElement.getAttribute('lang') || '').slice(0, 2).toLowerCase();
+    var langParam = /^[a-z]{2}$/.test(lang) ? '&lang=' + lang : '';
     var studentLink = document.getElementById('em-router-student');
     var newLink = document.getElementById('em-router-new');
-    if (studentLink) studentLink.href = portalBase + '/login?next=' + nextParam;
-    if (newLink) newLink.href = portalBase + '/signup?next=' + nextParam;
+    if (studentLink) studentLink.href = portalBase + '/login?next=' + nextParam + langParam;
+    if (newLink) newLink.href = portalBase + '/signup?next=' + nextParam + langParam;
   }
 
   function openModal(productId, className, price, location, time) {

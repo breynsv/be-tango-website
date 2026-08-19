@@ -624,7 +624,13 @@
   function showKnownContact(form, portalUrl, lang) {
     const t = T[lang];
     const wrap = form.closest('.form-container') || form.parentElement;
-    const url = portalUrl || (window.API_CONFIG && window.API_CONFIG.portalURL) || '/portal';
+    const base = portalUrl || (window.API_CONFIG && window.API_CONFIG.portalURL) || '/portal';
+    // Same reason as the enrollment modal: nobody is signed in on the other side,
+    // so the portal has no Contact.language to read and would fall back to the
+    // school's own locale. `lang` here is this page's language (EN/FR/NL); the
+    // portal re-validates it against the locales it has a translation file for.
+    const langCode = String(lang || '').slice(0, 2).toLowerCase();
+    const url = /^[a-z]{2}$/.test(langCode) ? base + '?lang=' + langCode : base;
     const contactHref = CONTACT_PATH[lang] || CONTACT_PATH.EN;
 
     // Deliberately NOT the .ft-success-check circle-checkmark: that icon reads
