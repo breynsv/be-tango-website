@@ -58,8 +58,15 @@
     } catch (e) { /* no stored consent → stay denied */ }
   })();
 
+  // Local development must never reach the production GA4 / Google Ads / Meta
+  // property. Every tag on this site fires through GTM, so not loading the
+  // container is the whole suppression — the dataLayer.push() calls elsewhere
+  // stay exactly as they are and simply queue into an array nobody reads.
+  const IS_LOCALHOST = ['localhost', '127.0.0.1', '[::1]', '::1'].indexOf(window.location.hostname) !== -1;
+
   // 3. Load GTM (consent state above is already queued in dataLayer).
-  (function (w, d, s, l, i) {
+  //    Skipped on localhost — see IS_LOCALHOST above.
+  if (!IS_LOCALHOST) (function (w, d, s, l, i) {
     w[l] = w[l] || [];
     w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
     const f = d.getElementsByTagName(s)[0];
