@@ -385,6 +385,48 @@ p {
   background-color: rgba(226, 192, 51, 0.15);
 }
 
+/* Student portal — a utility/account link, not a nav destination and not a
+   second CTA. It must not compete with .btn-nav (the gold "Free Trial"
+   button), so: no fill, smaller and lighter than the surrounding items, a
+   person glyph to mark it as "your account", and on desktop a hairline rule
+   separating it from the navigation proper. Selector carries `.nav-list a` so
+   it outranks the generic `display: block` / padding on nav links. */
+.nav-list a.nav-portal-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+}
+
+.nav-list a.nav-portal-link::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234a4a4a'%3E%3Cpath d='M12 12.6a4.8 4.8 0 1 0 0-9.6 4.8 4.8 0 0 0 0 9.6Zm0 1.9c-4.6 0-8.3 2.4-8.3 5.3V21h16.6v-1.2c0-2.9-3.7-5.3-8.3-5.3Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.nav-list a.nav-portal-link:hover,
+.nav-list a.nav-portal-link:focus-visible {
+  color: var(--color-dark-navy);
+}
+
+.nav-list a.nav-portal-link:hover::before,
+.nav-list a.nav-portal-link:focus-visible::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231C244B'%3E%3Cpath d='M12 12.6a4.8 4.8 0 1 0 0-9.6 4.8 4.8 0 0 0 0 9.6Zm0 1.9c-4.6 0-8.3 2.4-8.3 5.3V21h16.6v-1.2c0-2.9-3.7-5.3-8.3-5.3Z'/%3E%3C/svg%3E");
+}
+
+@media (min-width: 768px) {
+  .nav-list a.nav-portal-link {
+    padding-left: var(--spacing-md);
+    margin-left: calc(var(--spacing-md) * -0.5);
+    border-left: 1px solid var(--color-border);
+    line-height: 1.2;
+  }
+}
+
 /* Mobile Dropdown */
 .dropdown-menu {
   display: none;
