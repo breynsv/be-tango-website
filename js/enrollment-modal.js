@@ -70,6 +70,16 @@
       paymentReturn: 'Payment received — thank you! A confirmation email is on its way.',
       close: 'Close',
       required: 'required',
+      // The progress strip's final label. It used to say "Confirmed" for every
+      // outcome, so a big CONFIRMED sat above "we cannot confirm your
+      // participation". Keyed by enrollmentType(data) instead.
+      progressPaid: 'Confirmed',
+      progressAlreadyRegistered: 'Already registered',
+      progressWaitlist: 'On the waitlist',
+      progressPartnerNeeded: 'Pending',
+      // Fallback city for the modal eyebrow when the button carries no
+      // data-location (the real city is passed through from the schedule).
+      eyebrowCity: 'Brussels',
       waitlistTitle: 'Registration Received',
       waitlistMessage: 'As you indicated you are searching for a dance partner, we cannot confirm your participation immediately. If we find a partner that matches your criteria — both age and height — we will send you an email with a confirmation.',
       waitlistAdvice: 'As it\'s not always easy to find a dance partner, we strongly advise you to search for a partner in your own network of friends, family and coworkers. If you do manage to find someone, please let us know as soon as possible.',
@@ -144,6 +154,11 @@
       paymentReturn: 'Paiement reçu — merci ! Un e-mail de confirmation est en route.',
       close: 'Fermer',
       required: 'obligatoire',
+      progressPaid: 'Confirmé',
+      progressAlreadyRegistered: 'Déjà inscrit(e)',
+      progressWaitlist: 'Sur liste d\'attente',
+      progressPartnerNeeded: 'En attente',
+      eyebrowCity: 'Bruxelles',
       waitlistTitle: 'Demande Reçue',
       waitlistMessage: 'Comme vous avez indiqué que vous cherchez un(e) partenaire de danse, nous ne pouvons pas confirmer votre participation immédiatement. Si nous trouvons un(e) partenaire qui correspond à vos critères — à la fois en âge et en taille — nous vous enverrons un email de confirmation.',
       waitlistAdvice: 'Trouver un(e) partenaire de danse n\'est pas toujours facile. Nous vous conseillons vivement d\'en chercher un(e) dans votre propre réseau d\'amis, de famille ou de collègues. Si vous trouvez quelqu\'un, merci de nous le faire savoir au plus vite.',
@@ -218,6 +233,11 @@
       paymentReturn: 'Betaling ontvangen — bedankt! Een bevestigingsmail is onderweg.',
       close: 'Sluiten',
       required: 'verplicht',
+      progressPaid: 'Bevestigd',
+      progressAlreadyRegistered: 'Al ingeschreven',
+      progressWaitlist: 'Op de wachtlijst',
+      progressPartnerNeeded: 'In afwachting',
+      eyebrowCity: 'Brussel',
       waitlistTitle: 'Aanvraag Ontvangen',
       waitlistMessage: 'Omdat je hebt aangegeven dat je op zoek bent naar een danspartner, kunnen we je deelname niet onmiddellijk bevestigen. Zodra we een partner vinden die bij jouw criteria past — zowel qua leeftijd als lengte — sturen we je een bevestigingsmail.',
       waitlistAdvice: 'Een danspartner vinden is niet altijd eenvoudig. We raden je sterk aan om ook in je eigen netwerk van vrienden, familie en collega\'s te zoeken. Vind je iemand? Laat het ons dan zo snel mogelijk weten.',
@@ -242,6 +262,8 @@
   // ========================
   let currentProductId = null;
   let modalInjected = false;
+  // The element that opened the modal; focus returns to it on close.
+  let lastTrigger = null;
 
   // ========================
   // HELPERS
@@ -353,7 +375,7 @@
       : 'Point your banking app camera at this code.<br/>Opens a pre-filled SEPA payment. Supported by most Belgian banks.';
 
     return `
-<div class="em-overlay" id="em-overlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="em-title">
+<div class="em-overlay" id="em-overlay" role="dialog" aria-modal="true" aria-hidden="true" inert aria-labelledby="em-title">
   <div class="em-dialog">
 
     <div class="em-accent-bar"></div>
@@ -372,7 +394,7 @@
     </div>
 
     <div class="em-header">
-      <p class="em-eyebrow">BE-TANGO Brussels</p>
+      <p class="em-eyebrow" id="em-eyebrow">BE-TANGO ${t.eyebrowCity}</p>
       <h2 class="em-title" id="em-title">${t.modalTitle}</h2>
     </div>
 
@@ -799,6 +821,16 @@
   function openModal(productId, className, price, location, time) {
     currentProductId = productId;
 
+    // Remember who opened the modal so focus can go back there on close —
+    // see closeModal(), which must not hide a subtree that still holds focus.
+    lastTrigger = document.activeElement;
+
+    // Eyebrow: the location the class actually runs at, not a hardcoded
+    // "Brussels" shown above Woluwe-Saint-Pierre classes. data-location is
+    // already localised by the schedule loader; the fallback is translated.
+    var eyebrow = document.getElementById('em-eyebrow');
+    if (eyebrow) eyebrow.textContent = 'BE-TANGO ' + (location || getT().eyebrowCity);
+
     // Render class info chips
     renderChips(className, price, location, time);
 
@@ -820,6 +852,7 @@
 
     // Show overlay
     const overlay = document.getElementById('em-overlay');
+    overlay.inert = false;
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
 
@@ -831,11 +864,28 @@
     }, 50);
   }
 
+  // Chrome blocks aria-hidden on an element whose descendant still has focus
+  // ("Blocked aria-hidden on an element because its descendant retained focus")
+  // and logs it as an accessibility violation. Every close path lands here, so
+  // focus is moved out first — back to the button that opened the modal, which
+  // is also the correct behaviour for keyboard and screen-reader users. `inert`
+  // then keeps the hidden subtree out of the tab order for good measure; the
+  // aria-hidden attribute stays because .em-overlay[aria-hidden="false"] is
+  // what makes the overlay visible in CSS.
   function closeModal() {
     const overlay = document.getElementById('em-overlay');
     if (overlay) {
+      if (overlay.contains(document.activeElement)) {
+        if (lastTrigger && document.contains(lastTrigger) && typeof lastTrigger.focus === 'function') {
+          lastTrigger.focus();
+        } else if (document.activeElement && typeof document.activeElement.blur === 'function') {
+          document.activeElement.blur();
+        }
+      }
+      overlay.inert = true;
       overlay.setAttribute('aria-hidden', 'true');
     }
+    lastTrigger = null;
     document.body.style.overflow = '';
     currentProductId = null;
   }
@@ -1055,15 +1105,28 @@
       shouldLoadQr = hasBank;
     }
 
-    // Update progress dots to complete state
-    document.querySelectorAll('.em-progress-dot').forEach(function (dot) {
-      dot.classList.remove('em-progress-dot--inactive');
+    // Progress strip. The label used to read "Confirmed" for every outcome, so a
+    // gold CONFIRMED rendered directly above "we cannot confirm your participation"
+    // (partner search) and above "You're Already Registered". Both the label and
+    // the dots now follow enrollmentType(data) — the same classification the
+    // dataLayer push and the branches above already use, no new backend field.
+    var outcome = enrollmentType(data);
+    var LABEL_KEY = {
+      paid:               'progressPaid',
+      already_registered: 'progressAlreadyRegistered',
+      waitlist:           'progressWaitlist',
+      partner_needed:     'progressPartnerNeeded'
+    };
+    // Only a booked place completes the journey. Waitlist and partner-search are
+    // genuinely unfinished, so the last dot stays grey rather than claiming done.
+    var isComplete = (outcome === 'paid' || outcome === 'already_registered');
+    document.querySelectorAll('.em-progress-dot').forEach(function (dot, i) {
+      dot.classList.toggle('em-progress-dot--inactive', !isComplete && i === 2);
     });
     var progressLabel = document.querySelector('.em-progress-label');
     if (progressLabel) {
-      var lang = getLang();
-      progressLabel.textContent = lang === 'FR' ? 'Confirm\u00e9' : lang === 'NL' ? 'Bevestigd' : 'Confirmed';
-      progressLabel.style.color = '#C9A820';
+      progressLabel.textContent = t[LABEL_KEY[outcome]] || t.progressPaid;
+      progressLabel.style.color = isComplete ? '#C9A820' : '#6B7280';
     }
 
     // Swap views
