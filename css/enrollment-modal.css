@@ -706,6 +706,32 @@
   animation: em-check-draw 0.4s ease 0.55s forwards;
 }
 
+/* Pending state — waitlist and partner-search. A gold completed tick above
+   "we still need to pair you up" is the contradiction #659 filed, so those
+   outcomes get a neutral clock face instead. The state is set in JS from
+   enrollmentType(data); nothing here decides it. */
+.em-pending-path {
+  display: none;
+  fill: none;
+  stroke: #6B7280;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: em-pending-draw 0.4s ease 0.55s forwards;
+}
+
+.em-check-ring--pending .em-check-path { display: none; }
+.em-check-ring--pending .em-pending-path { display: block; }
+.em-check-ring--pending .em-check-ring-bg { fill: #F3F4F6; }
+.em-check-ring--pending .em-check-ring-border { stroke: #9CA3AF; }
+
+@keyframes em-pending-draw {
+  from { stroke-dashoffset: 30; opacity: 0; }
+  to   { stroke-dashoffset: 0; opacity: 1; }
+}
+
 .em-success-title {
   font-family: 'Poppins', sans-serif;
   font-size: 22px;

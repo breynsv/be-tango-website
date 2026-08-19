@@ -80,13 +80,25 @@
       // Fallback city for the modal eyebrow when the button carries no
       // data-location (the real city is passed through from the schedule).
       eyebrowCity: 'Brussels',
-      waitlistTitle: 'Registration Received',
-      waitlistMessage: 'As you indicated you are searching for a dance partner, we cannot confirm your participation immediately. If we find a partner that matches your criteria — both age and height — we will send you an email with a confirmation.',
-      waitlistAdvice: 'As it\'s not always easy to find a dance partner, we strongly advise you to search for a partner in your own network of friends, family and coworkers. If you do manage to find someone, please let us know as soon as possible.',
+      // A solo registrant IS registered — the CRM writes the row, holds the
+      // seat and files them under Singles. Only the pairing is genuinely open,
+      // so that is the only thing this copy leaves open. Same fact, same
+      // wording as js/free-trial.js.
+      waitlistTitle: 'You\'re Registered!',
+      waitlistMessage: 'Your registration for this class is in and your place is reserved. One thing is still open: tango is danced in couples, and you signed up without a partner. We\'ll look for someone whose age and height match yours, and we\'ll send you the payment details as soon as we\'ve paired you up.',
+      waitlistAdvice: 'Finding a match isn\'t always quick, so it\'s well worth asking around too — a friend, a colleague, someone in the family. If you find someone, just tell us and we\'ll put you together.',
       waitlistClose: 'Close',
       classFullTitle: 'Class is Fully Booked',
       classFullMessage: 'This class is currently full. We\'ve added you to the waitlist — if a spot opens up we\'ll email you with confirmation and payment details.',
       classFullAdvice: 'In the meantime, feel free to check out our other classes that still have spots available.',
+      // The footer note under the Close button. It used to be a single hardcoded
+      // "a confirmation email has been sent" for every outcome, so it contradicted
+      // the partner-search copy right above it. Keyed by enrollmentType(data) —
+      // the same classification the progress label and the branches already use.
+      doneNotePaid: 'A confirmation email has been sent to your inbox.',
+      doneNoteAlreadyRegistered: 'A confirmation email has been sent to your inbox.',
+      doneNoteWaitlist: 'We\'ve emailed you to confirm you\'re on the waitlist.',
+      doneNotePartnerNeeded: 'We\'ve emailed you the details — we\'ll write again as soon as we\'ve found you a partner.',
       marketingOptIn: 'Yes, I\'d like to be kept informed by email about classes, workshops and events. Unsubscribe anytime — {link}.',
       privacyLink: 'privacy policy',
       terms: 'By submitting, I agree to the {link} of BE-TANGO.',
@@ -159,13 +171,17 @@
       progressWaitlist: 'Sur liste d\'attente',
       progressPartnerNeeded: 'En attente',
       eyebrowCity: 'Bruxelles',
-      waitlistTitle: 'Demande Reçue',
-      waitlistMessage: 'Comme vous avez indiqué que vous cherchez un(e) partenaire de danse, nous ne pouvons pas confirmer votre participation immédiatement. Si nous trouvons un(e) partenaire qui correspond à vos critères — à la fois en âge et en taille — nous vous enverrons un email de confirmation.',
-      waitlistAdvice: 'Trouver un(e) partenaire de danse n\'est pas toujours facile. Nous vous conseillons vivement d\'en chercher un(e) dans votre propre réseau d\'amis, de famille ou de collègues. Si vous trouvez quelqu\'un, merci de nous le faire savoir au plus vite.',
+      waitlistTitle: 'Vous êtes inscrit(e) !',
+      waitlistMessage: 'Votre inscription à ce cours est enregistrée et votre place est réservée. Il reste un point à régler : le tango se danse à deux, et vous vous êtes inscrit(e) sans partenaire. Nous chercherons quelqu\'un dont l\'âge et la taille correspondent aux vôtres, et nous vous enverrons les détails de paiement dès que le duo sera formé.',
+      waitlistAdvice: 'Trouver un binôme n\'est pas toujours rapide : n\'hésitez donc pas à demander autour de vous — un(e) ami(e), un(e) collègue, quelqu\'un de votre famille. Si vous trouvez quelqu\'un, dites-le-nous et nous vous inscrirons ensemble.',
       waitlistClose: 'Fermer',
       classFullTitle: 'Cours Complet',
       classFullMessage: 'Ce cours est actuellement complet. Nous vous avons ajouté(e) à la liste d\'attente — si une place se libère, nous vous enverrons un e-mail avec confirmation et détails de paiement.',
       classFullAdvice: 'En attendant, n\'hésitez pas à découvrir nos autres cours qui ont encore des places disponibles.',
+      doneNotePaid: 'Un email de confirmation a été envoyé à votre boîte mail.',
+      doneNoteAlreadyRegistered: 'Un email de confirmation a été envoyé à votre boîte mail.',
+      doneNoteWaitlist: 'Nous vous avons envoyé un email confirmant votre inscription sur la liste d\'attente.',
+      doneNotePartnerNeeded: 'Nous vous avons envoyé les détails par email — nous vous réécrirons dès que nous vous aurons trouvé un(e) partenaire.',
       marketingOptIn: 'Oui, je souhaite recevoir des informations par e-mail sur les cours, ateliers et événements. Désinscription à tout moment — {link}.',
       privacyLink: 'politique de confidentialité',
       terms: 'En m\'inscrivant, j\'accepte les {link} de BE-TANGO.',
@@ -238,13 +254,17 @@
       progressWaitlist: 'Op de wachtlijst',
       progressPartnerNeeded: 'In afwachting',
       eyebrowCity: 'Brussel',
-      waitlistTitle: 'Aanvraag Ontvangen',
-      waitlistMessage: 'Omdat je hebt aangegeven dat je op zoek bent naar een danspartner, kunnen we je deelname niet onmiddellijk bevestigen. Zodra we een partner vinden die bij jouw criteria past — zowel qua leeftijd als lengte — sturen we je een bevestigingsmail.',
-      waitlistAdvice: 'Een danspartner vinden is niet altijd eenvoudig. We raden je sterk aan om ook in je eigen netwerk van vrienden, familie en collega\'s te zoeken. Vind je iemand? Laat het ons dan zo snel mogelijk weten.',
+      waitlistTitle: 'Je bent ingeschreven!',
+      waitlistMessage: 'Je inschrijving voor deze les is geregistreerd en je plek is gereserveerd. Eén ding staat nog open: tango dans je met z\'n tweeën, en je schreef je in zonder partner. We zoeken iemand die qua leeftijd en lengte bij je past, en sturen je de betalingsgegevens zodra jullie gekoppeld zijn.',
+      waitlistAdvice: 'Een match vinden lukt niet altijd meteen, dus vraag gerust ook eens rond — een vriend, een collega, iemand uit de familie. Vind je iemand? Laat het ons weten, dan zetten we jullie samen.',
       waitlistClose: 'Sluiten',
       classFullTitle: 'Les is Volgeboekt',
       classFullMessage: 'Deze les is momenteel volgeboekt. We hebben je op de wachtlijst gezet — zodra er een plek vrijkomt sturen we je een mail met bevestiging en betalingsgegevens.',
       classFullAdvice: 'Bekijk in tussentijd zeker onze andere lessen die nog plaatsen beschikbaar hebben.',
+      doneNotePaid: 'Een bevestigingsmail is verzonden naar je inbox.',
+      doneNoteAlreadyRegistered: 'Een bevestigingsmail is verzonden naar je inbox.',
+      doneNoteWaitlist: 'We hebben je een mail gestuurd die je plek op de wachtlijst bevestigt.',
+      doneNotePartnerNeeded: 'We hebben je de details gemaild — we schrijven je opnieuw zodra we een partner voor je gevonden hebben.',
       marketingOptIn: 'Ja, ik wens via e-mail op de hoogte gehouden te worden van lessen, workshops en evenementen. Uitschrijven kan altijd — {link}.',
       privacyLink: 'privacybeleid',
       terms: 'Door te verzenden, ga ik akkoord met de {link} van BE-TANGO.',
@@ -356,11 +376,6 @@
       '{link}',
       '<a href="' + legal.terms + '" target="_blank" rel="noopener">' + t.termsLink + '</a>'
     );
-    var doneNote = lang === 'FR'
-      ? 'Un email de confirmation a été envoyé à votre boîte mail.'
-      : lang === 'NL'
-      ? 'Een bevestigingsmail is verzonden naar uw inbox.'
-      : 'A confirmation email has been sent to your inbox.';
     var dueBannerSubtext = lang === 'FR'
       ? 'Virement vers l\'IBAN ci-dessus avec la communication structurée.'
       : lang === 'NL'
@@ -593,10 +608,11 @@
     <div id="em-success-view" hidden>
 
       <div class="em-success-hero">
-        <svg class="em-check-ring" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <svg class="em-check-ring" id="em-success-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <circle cx="36" cy="36" r="35" class="em-check-ring-bg"/>
           <circle cx="36" cy="36" r="35" class="em-check-ring-border"/>
           <path d="M21 37.5L30.5 47L51 26" class="em-check-path"/>
+          <path d="M36 20V36.5L46.5 43" class="em-pending-path"/>
         </svg>
         <h2 class="em-success-title" id="em-success-title">${t.successTitle}</h2>
         <p class="em-success-msg" id="em-success-msg">${t.successMessage}</p>
@@ -670,7 +686,7 @@
           </svg>
           ${t.close}
         </button>
-        <p class="em-done-note">${doneNote}</p>
+        <p class="em-done-note" id="em-done-note">${t.doneNotePaid}</p>
       </div>
 
     </div>
@@ -988,6 +1004,15 @@
     var t = getT();
     pushEnrollmentConversion(data);
 
+    // One classification for the whole view. The icon, the footer note and the
+    // progress strip all read from these two lines — #643/#659 were caused by
+    // separate places each deciding for themselves what state the booking was
+    // in, so do NOT reintroduce a second source of truth here.
+    var outcome = enrollmentType(data);
+    // Only a booked-and-settled place completes the journey. Waitlist and
+    // partner-search are genuinely unfinished.
+    var isComplete = (outcome === 'paid' || outcome === 'already_registered');
+
     // Payment methods drive the pay-now button, the bank block (IBAN / ref / due /
     // bank name) and the SEPA QR. The CRM now returns payment_methods on the
     // response; fall back to reproducing today's exact behaviour when it's absent
@@ -1105,21 +1130,36 @@
       shouldLoadQr = hasBank;
     }
 
+    // The gold tick and the footer note were the two signals the earlier batch
+    // left behind: a completed checkmark and "a confirmation email has been
+    // sent" sat directly above "we cannot confirm your participation". Both now
+    // follow the same `outcome` as the progress label below.
+    var successIcon = document.getElementById('em-success-icon');
+    if (successIcon) {
+      successIcon.classList.toggle('em-check-ring--pending', !isComplete);
+    }
+    var DONE_NOTE_KEY = {
+      paid:               'doneNotePaid',
+      already_registered: 'doneNoteAlreadyRegistered',
+      waitlist:           'doneNoteWaitlist',
+      partner_needed:     'doneNotePartnerNeeded'
+    };
+    var doneNoteEl = document.getElementById('em-done-note');
+    if (doneNoteEl) {
+      doneNoteEl.textContent = t[DONE_NOTE_KEY[outcome]] || t.doneNotePaid;
+    }
+
     // Progress strip. The label used to read "Confirmed" for every outcome, so a
     // gold CONFIRMED rendered directly above "we cannot confirm your participation"
-    // (partner search) and above "You're Already Registered". Both the label and
-    // the dots now follow enrollmentType(data) — the same classification the
-    // dataLayer push and the branches above already use, no new backend field.
-    var outcome = enrollmentType(data);
+    // (partner search) and above "You're Already Registered". The label and the
+    // dots follow the same `outcome` classification.
     var LABEL_KEY = {
       paid:               'progressPaid',
       already_registered: 'progressAlreadyRegistered',
       waitlist:           'progressWaitlist',
       partner_needed:     'progressPartnerNeeded'
     };
-    // Only a booked place completes the journey. Waitlist and partner-search are
-    // genuinely unfinished, so the last dot stays grey rather than claiming done.
-    var isComplete = (outcome === 'paid' || outcome === 'already_registered');
+    // The last dot stays grey rather than claiming done.
     document.querySelectorAll('.em-progress-dot').forEach(function (dot, i) {
       dot.classList.toggle('em-progress-dot--inactive', !isComplete && i === 2);
     });

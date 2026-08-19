@@ -22,14 +22,19 @@
       selectNoSlots: 'No available dates',
       successTitle: 'You\'re Registered!',
       successMessage: 'Your free trial has been booked. We\'ll see you on the dance floor!',
-      successTitleWaitlist: 'Registration Received',
+      // Solo registrants ARE registered — the CRM writes status=CONFIRMED and
+      // files them under Singles. What is genuinely unsettled is the pairing,
+      // so that is the only thing this copy leaves open.
+      successTitleWaitlist: 'You\'re Registered!',
       successMessageWaitlist: [
-        'As you indicated you are searching for a dance partner, we cannot confirm your participation immediately.',
-        'If we find a partner that matches your criteria — both age and height — we will send you an email with a confirmation.',
-        'As it\'s not always easy to find a dance partner, we strongly advise you to search for a partner in your own network of friends, family and coworkers.',
-        'If you do manage to find someone, please let us know as soon as possible.',
+        'Your place in this free trial is booked — we\'ve saved it for you.',
+        'One thing is still open: tango is danced in couples, and you told us you\'re coming without a partner. We\'ll look for someone whose age and height match yours, and we\'ll let you know as soon as we\'ve paired you up.',
+        'Finding a match isn\'t always quick, so it\'s well worth asking around too — a friend, a colleague, someone in the family. If you find someone, just tell us and we\'ll put you together.',
       ],
       successEmailNote: 'A confirmation has been sent to',
+      // Solo registrants receive the partner-search email (free-trial-waitlist),
+      // not the class confirmation — so this names what actually arrived.
+      successEmailNoteWaitlist: 'We\'ve emailed the details to',
       successRefLabel: 'Reference',
       successDateLabel: 'Your class',
       errorDefault: 'Something went wrong. Please try again or contact us directly.',
@@ -49,7 +54,12 @@
       notifyEmailRequired: 'Please enter your name and email so we can reach you.',
       notifySuccessTitle: 'You\'re on the list!',
       notifySuccessMessage: 'We\'ll email you as soon as the next free trial dates are announced.',
-      notifySuccessSoloNote: 'As you indicated you don\'t have a dance partner yet, please note that we can only confirm your reservation once we find a suitable partner that matches your profile — both age and height. We strongly recommend also looking for a partner among your own friends, family or colleagues.',
+      // Notify mode books nothing at all — there is no reservation yet to
+      // confirm or withhold, only a heads-up about how the pairing works.
+      notifySuccessSoloNote: 'Tango is danced in couples, and you told us you don\'t have a partner yet. That\'s no problem — when the next dates are announced we\'ll look for a match for you, based on age and height. It helps a lot if you ask around among friends, family or colleagues in the meantime.',
+      // No email is sent by the notify-me endpoint, so this promises the next
+      // announcement rather than a confirmation that never arrives.
+      notifyEmailNote: 'We\'ll email the next dates to',
       notifyMessagePrefix: '[Free trial — notify me] Would like to be notified when the next free trial dates are scheduled.',
       notifyCheckbox: 'I can\'t make any of these dates — keep me informed about future lessons',
       notifyMessagePrefixWithDates: '[Free trial — none of these dates work] Cannot make any of the scheduled dates, would like to be notified of future free trial dates.',
@@ -66,14 +76,14 @@
       selectNoSlots: 'Aucune date disponible',
       successTitle: 'Inscription Confirmée !',
       successMessage: 'Votre essai gratuit est réservé. À bientôt sur la piste de danse !',
-      successTitleWaitlist: 'Demande Reçue',
+      successTitleWaitlist: 'Vous êtes inscrit(e) !',
       successMessageWaitlist: [
-        'Comme vous avez indiqué que vous cherchez un(e) partenaire de danse, nous ne pouvons pas confirmer votre participation immédiatement.',
-        'Si nous trouvons un(e) partenaire qui correspond à vos critères — à la fois en âge et en taille — nous vous enverrons un email de confirmation.',
-        'Trouver un(e) partenaire de danse n\'est pas toujours facile. Nous vous conseillons vivement d\'en chercher un(e) dans votre propre réseau d\'amis, de famille ou de collègues.',
-        'Si vous trouvez quelqu\'un, merci de nous le faire savoir au plus vite.',
+        'Votre place au cours d\'essai est réservée — nous la gardons pour vous.',
+        'Il reste un point à régler : le tango se danse à deux, et vous nous avez indiqué venir sans partenaire. Nous chercherons quelqu\'un dont l\'âge et la taille correspondent aux vôtres, et nous vous préviendrons dès que le duo sera formé.',
+        'Trouver un binôme n\'est pas toujours rapide : n\'hésitez donc pas à demander autour de vous — un(e) ami(e), un(e) collègue, quelqu\'un de votre famille. Si vous trouvez quelqu\'un, dites-le-nous et nous vous inscrirons ensemble.',
       ],
       successEmailNote: 'Une confirmation a été envoyée à',
+      successEmailNoteWaitlist: 'Les détails ont été envoyés à',
       successRefLabel: 'Référence',
       successDateLabel: 'Votre cours',
       errorDefault: 'Une erreur est survenue. Veuillez réessayer ou nous contacter directement.',
@@ -93,7 +103,8 @@
       notifyEmailRequired: 'Veuillez renseigner votre nom et votre email pour que nous puissions vous contacter.',
       notifySuccessTitle: 'Vous êtes sur la liste !',
       notifySuccessMessage: 'Nous vous enverrons un email dès que les prochaines dates d\'essai gratuit seront annoncées.',
-      notifySuccessSoloNote: 'Comme vous avez indiqué ne pas encore avoir de partenaire de danse, sachez que nous ne pourrons confirmer votre réservation que lorsque nous aurons trouvé un(e) partenaire adapté(e) à votre profil — tant en âge qu\'en taille. Nous vous conseillons vivement de chercher également un(e) partenaire parmi vos amis, votre famille ou vos collègues.',
+      notifySuccessSoloNote: 'Le tango se danse à deux, et vous nous avez indiqué ne pas encore avoir de partenaire. Ce n\'est pas un souci : dès l\'annonce des prochaines dates, nous chercherons un binôme pour vous, selon l\'âge et la taille. En attendant, cela aide beaucoup si vous demandez aussi autour de vous — amis, famille ou collègues.',
+      notifyEmailNote: 'Nous enverrons les prochaines dates à',
       notifyMessagePrefix: '[Essai gratuit — me prévenir] Souhaite être prévenu(e) lorsque les prochaines dates d\'essai gratuit seront programmées.',
       notifyCheckbox: 'Aucune de ces dates ne me convient — tenez-moi informé(e) des prochains cours',
       notifyMessagePrefixWithDates: '[Essai gratuit — aucune date ne convient] Ne peut se rendre à aucune des dates prévues, souhaite être prévenu(e) des prochaines dates.',
@@ -110,14 +121,14 @@
       selectNoSlots: 'Geen beschikbare data',
       successTitle: 'Inschrijving Bevestigd!',
       successMessage: 'Je gratis proefles is geboekt. Tot snel op de dansvloer!',
-      successTitleWaitlist: 'Aanvraag Ontvangen',
+      successTitleWaitlist: 'Je bent ingeschreven!',
       successMessageWaitlist: [
-        'Omdat je hebt aangegeven dat je op zoek bent naar een danspartner, kunnen we je deelname niet onmiddellijk bevestigen.',
-        'Zodra we een partner vinden die bij jouw criteria past — zowel qua leeftijd als lengte — sturen we je een bevestigingsmail.',
-        'Een danspartner vinden is niet altijd eenvoudig. We raden je sterk aan om ook in je eigen netwerk van vrienden, familie en collega\'s te zoeken.',
-        'Vind je iemand? Laat het ons dan zo snel mogelijk weten.',
+        'Je plek in deze gratis proefles is gereserveerd — we houden ze voor je vrij.',
+        'Eén ding staat nog open: tango dans je met z\'n tweeën, en je gaf aan zonder partner te komen. We zoeken iemand die qua leeftijd en lengte bij je past, en laten het je weten zodra jullie gekoppeld zijn.',
+        'Een match vinden lukt niet altijd meteen, dus vraag gerust ook eens rond — een vriend, een collega, iemand uit de familie. Vind je iemand? Laat het ons weten, dan zetten we jullie samen.',
       ],
       successEmailNote: 'Een bevestiging is verzonden naar',
+      successEmailNoteWaitlist: 'De details zijn verzonden naar',
       successRefLabel: 'Referentie',
       successDateLabel: 'Je les',
       errorDefault: 'Er is iets misgegaan. Probeer opnieuw of contacteer ons rechtstreeks.',
@@ -137,7 +148,8 @@
       notifyEmailRequired: 'Vul je naam en e-mailadres in zodat we je kunnen bereiken.',
       notifySuccessTitle: 'Je staat op de lijst!',
       notifySuccessMessage: 'We sturen je een mail zodra de volgende gratis proeflesdata aangekondigd worden.',
-      notifySuccessSoloNote: 'Omdat je hebt aangegeven nog geen danspartner te hebben, willen we je laten weten dat we je reservering pas kunnen bevestigen zodra we een geschikte partner vinden die bij je profiel past — zowel qua leeftijd als lengte. We raden je sterk aan om ook in je eigen netwerk van vrienden, familie en collega\'s te zoeken naar een danspartner.',
+      notifySuccessSoloNote: 'Tango dans je met z\'n tweeën, en je gaf aan nog geen danspartner te hebben. Geen probleem: zodra de volgende data bekend zijn, zoeken we een match voor je op basis van leeftijd en lengte. Het helpt enorm als je ondertussen ook eens rondvraagt bij vrienden, familie of collega\'s.',
+      notifyEmailNote: 'We sturen de volgende data naar',
       notifyMessagePrefix: '[Gratis proefles — breng me op de hoogte] Wenst op de hoogte gebracht te worden wanneer de volgende gratis proeflesdata gepland zijn.',
       notifyCheckbox: 'Geen van deze data past mij — hou me op de hoogte van toekomstige lessen',
       notifyMessagePrefixWithDates: '[Gratis proefles — geen datum past] Kan niet op de geplande data, wenst op de hoogte gebracht te worden van toekomstige proeflessen.',
@@ -534,7 +546,7 @@
         <h3 class="ft-success-title">${t.notifySuccessTitle}</h3>
         <p class="ft-success-msg">${t.notifySuccessMessage}</p>
         ${!hasPartner ? `<p class="ft-success-msg ft-success-solo-note">${t.notifySuccessSoloNote}</p>` : ''}
-        ${email ? `<p class="ft-success-email">${t.successEmailNote} <strong>${email}</strong></p>` : ''}
+        ${email ? `<p class="ft-success-email">${t.notifyEmailNote} <strong>${email}</strong></p>` : ''}
       </div>`;
   }
 
@@ -547,12 +559,15 @@
     const wrap = form.closest('.form-container') || form.parentElement;
     const email = form.querySelector('#email')?.value || '';
     const enrollmentId = responseData?.data?.enrollment_id;
-    // Waitlist copy applies in two backend cases:
+    // Partner-search copy applies in two backend cases:
     //   1. status === 'Waitlisted'  → class is fully booked
     //   2. partner_needed === true  → registered without a partner; status is
     //                                  CONFIRMED in the CRM (Singles tab) but
-    //                                  the registrant sees the partner-search
-    //                                  message + gets the partner-search email
+    //                                  the registrant still needs pairing, and
+    //                                  gets the partner-search email
+    // Both are booked; only the pairing is open. This flag is the single source
+    // of truth for the title, the message AND the email note below — do not add
+    // a second way of deciding which state the registration is in.
     const data = responseData?.data || {};
     const isWaitlisted = data.status === 'Waitlisted'
       || data.partner_needed === true
@@ -565,6 +580,7 @@
 
     const title = isWaitlisted ? t.successTitleWaitlist : t.successTitle;
     const rawMessage = isWaitlisted ? t.successMessageWaitlist : t.successMessage;
+    const emailNote = isWaitlisted ? t.successEmailNoteWaitlist : t.successEmailNote;
     const paragraphs = Array.isArray(rawMessage) ? rawMessage : [rawMessage];
     const messageHtml = paragraphs
       .map((p) => `<p class="ft-success-msg">${p}</p>`)
@@ -580,7 +596,7 @@
         </div>
         <h3 class="ft-success-title">${title}</h3>
         ${messageHtml}
-        ${email ? `<p class="ft-success-email">${t.successEmailNote} <strong>${email}</strong></p>` : ''}
+        ${email ? `<p class="ft-success-email">${emailNote} <strong>${email}</strong></p>` : ''}
         <div class="ft-success-meta">
           ${dateStr ? `
           <div class="ft-success-row">
