@@ -10,6 +10,8 @@ Disallow: /README.md
 Disallow: /package.json
 Disallow: /package-lock.json
 Disallow: /_dev/
+# Meta ad creatives - assets for paid campaigns, not site content
+Disallow: /creatives/
 Disallow: /.github/
 Disallow: /index-maintenance
 Disallow: /index-maintenance.html
