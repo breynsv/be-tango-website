@@ -7809,11 +7809,13 @@ section.hero-small:has(.hero-bg-image) h1 {
   display: flex;
   align-items: baseline;
   gap: 6px;
-  /* FR/NL month names are lowercase by grammar (see calMonthNames in
-     js/schedule-loader.js). This is a standalone heading of a single word, so
-     capitalising it here keeps the heading looking deliberate without
-     capitalising months inside running dates. */
-  text-transform: capitalize;
+  /* No text-transform. FR/NL month names are lowercase by grammar (see
+     calMonthNames in js/schedule-loader.js) and the array already holds the
+     correct casing for every language, EN included. Capitalising here made
+     this the only surface in the site that disagreed: the location pages'
+     .lsched-cal-month-title renders "septembre 2026" and the free-trial date
+     "Lundi 7 septembre 2026", while the same month above the same kind of
+     grid read "Septembre". Trust the array. */
 }
 .cal-month-title::after {
   content: attr(data-year);
