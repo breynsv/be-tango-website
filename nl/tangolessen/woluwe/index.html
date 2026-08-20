@@ -817,7 +817,7 @@
     }
     function genICS(cls){
       var dayEN=getDayEN(cls),name=getLevelName(cls,String(cls.level_code||''));
-      var title=name+(dayEN?' · '+dayEN:''),loc=(cls.location&&(typeof cls.location.full_address==='object'?cls.location.full_address[LANG]||cls.location.full_address.en||'':cls.location.full_address||''))||'';
+      var title=name+(dayEN?' · '+DAY_LABELS[dayEN]:''),loc=(cls.location&&(typeof cls.location.full_address==='object'?cls.location.full_address[LANG]||cls.location.full_address.en||'':cls.location.full_address||''))||'';
       var st=(cls.start_time||'19:00').replace(':',''),et=(cls.end_time||'20:00').replace(':','');
       var uid=function(){return Date.now()+'-'+Math.random().toString(36).slice(2)+'@be-tango.be';};
       var ev='';
