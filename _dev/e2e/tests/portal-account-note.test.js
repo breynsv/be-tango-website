@@ -43,7 +43,8 @@ function enrollmentBody(known) {
   return JSON.stringify({ success: true, data });
 }
 
-async function stubApi(page, known) {
+async function stubApi(page, known, languages) {
+  const langs = languages === undefined ? [{ code: 'EN' }, { code: 'FR' }, { code: 'NL' }] : languages;
   await page.route('**/api/v1/**', (route) => {
     const url = route.request().url();
     const json = (body) => route.fulfill({ status: 200, contentType: 'application/json', body });
@@ -52,11 +53,9 @@ async function stubApi(page, known) {
       return route.fulfill({ status: 201, contentType: 'application/json', body: enrollmentBody(known) });
     }
     if (url.includes('payment-qr')) return json(JSON.stringify({ success: false }));
-    // #em-language is a REQUIRED select the modal fills from this endpoint. An
-    // empty list leaves it with no options at all and the form unsubmittable,
-    // which is a harness trap worth knowing about, not a site behaviour to test.
+    // #em-language is a REQUIRED select the modal fills from this endpoint.
     if (url.includes('/languages')) {
-      return json(JSON.stringify({ success: true, data: [{ code: 'EN' }, { code: 'FR' }, { code: 'NL' }] }));
+      return json(JSON.stringify({ success: true, data: langs }));
     }
     return json(JSON.stringify({ success: true, data: [] }));
   });
@@ -212,6 +211,25 @@ async function run(browser) {
     results.push({ name: 'portal-account-note:absent-when-unknown', passed: false, error: err.message });
   }
   await page.close();
+
+  // GET /languages answering {success:true,data:[]} used to leave #em-language —
+  // a REQUIRED select — with zero options, so the form could never be submitted
+  // by anyone and nothing threw to explain why. The fallback only ran when the
+  // call ITSELF failed, which an empty-but-successful reply is not.
+  const emptyLangPage = await browser.newPage();
+  try {
+    await stubApi(emptyLangPage, true, []);
+    await bookAsNewcomer(emptyLangPage, PAGES[0].url);
+    const opts = await emptyLangPage.evaluate(() => {
+      const sel = document.getElementById('em-language');
+      return sel ? Array.from(sel.options).map((o) => o.value).filter(Boolean) : [];
+    });
+    if (!opts.length) throw new Error('#em-language still has no options to choose from');
+    results.push({ name: 'portal-account-note:survives-empty-language-list', passed: true, error: null });
+  } catch (err) {
+    results.push({ name: 'portal-account-note:survives-empty-language-list', passed: false, error: err.message });
+  }
+  await emptyLangPage.close();
 
   return results;
 }

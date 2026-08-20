@@ -1248,11 +1248,19 @@
     try {
       const res = await window.BETangoCRM.api.getLanguages();
       const languages = res.data || res;
-      languages.forEach(function (lang) {
-        appendOption(lang.code);
-      });
+      // A successful answer carrying no languages is as useless as no answer at
+      // all, and far more dangerous, because nothing throws to say so:
+      // #em-language is REQUIRED, so a select with zero options can never be
+      // satisfied and the booking form becomes permanently unsubmittable. The
+      // visitor sees "Please make a choice" against a dropdown that offers
+      // none. Treat "no languages" exactly like "no reply" and fall back.
+      const codes = (Array.isArray(languages) ? languages : [])
+        .map(function (lang) { return lang && lang.code; })
+        .filter(Boolean);
+      if (!codes.length) throw new Error('the languages endpoint returned none');
+      codes.forEach(appendOption);
     } catch (err) {
-      console.warn('[EnrollmentModal] Could not load languages:', err);
+      console.warn('[EnrollmentModal] Could not load languages, using defaults:', err);
       ['EN', 'FR', 'NL'].forEach(appendOption);
     }
   }
