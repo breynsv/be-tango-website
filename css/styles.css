@@ -390,11 +390,20 @@ p {
    button), so: no fill, smaller and lighter than the surrounding items, a
    person glyph to mark it as "your account", and on desktop a hairline rule
    separating it from the navigation proper. Selector carries `.nav-list a` so
-   it outranks the generic `display: block` / padding on nav links. */
+   it outranks the generic `display: block` / padding on nav links.
+
+   `min-height: 44px` is the tap-target floor the rest of the site holds to.
+   On desktop the generic `.nav-list a { padding: var(--spacing-xs) 0 }` plus
+   this rule's 0.85rem/1.2 text added up to 32px, and the only widths that
+   cleared 44px did so by accident, because a longer label happened to wrap to
+   two lines. It buys hit area, not weight: no fill, no border, no extra
+   colour, so the link stays a quiet utility next to the gold CTA. The row is
+   `align-items: center` and .btn-nav is already 44px, so nothing moves. */
 .nav-list a.nav-portal-link {
   display: flex;
   align-items: center;
   gap: 8px;
+  min-height: 44px;
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--color-text-light);
