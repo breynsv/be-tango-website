@@ -22,6 +22,12 @@
       selectNoSlots: 'No available dates',
       successTitle: 'You\'re Registered!',
       successMessage: 'Your free trial has been booked. We\'ll see you on the dance floor!',
+      // Shown when the CRM answers partner_added: the person had already
+      // booked this trial on their own and has come back to say they now
+      // have a partner. Their EXISTING booking was updated — no second
+      // place was taken — and saying so is the difference between "did
+      // that work?" and a settled registration.
+      successMessagePartnerAdded: 'We\'ve updated your booking — you\'re coming with your partner. We\'ll see you on the dance floor!',
       // Solo registrants ARE registered — the CRM writes status=CONFIRMED and
       // files them under Singles. What is genuinely unsettled is the pairing,
       // so that is the only thing this copy leaves open.
@@ -76,6 +82,7 @@
       selectNoSlots: 'Aucune date disponible',
       successTitle: 'Inscription Confirmée !',
       successMessage: 'Votre essai gratuit est réservé. À bientôt sur la piste de danse !',
+      successMessagePartnerAdded: 'Nous avons mis à jour votre inscription : vous venez avec votre partenaire. À bientôt sur la piste de danse !',
       successTitleWaitlist: 'Vous êtes inscrit(e) !',
       successMessageWaitlist: [
         'Votre place au cours d\'essai est réservée — nous la gardons pour vous.',
@@ -121,6 +128,7 @@
       selectNoSlots: 'Geen beschikbare data',
       successTitle: 'Inschrijving Bevestigd!',
       successMessage: 'Je gratis proefles is geboekt. Tot snel op de dansvloer!',
+      successMessagePartnerAdded: 'We hebben je inschrijving bijgewerkt — je komt samen met je partner. Tot snel op de dansvloer!',
       successTitleWaitlist: 'Je bent ingeschreven!',
       successMessageWaitlist: [
         'Je plek in deze gratis proefles is gereserveerd — we houden ze voor je vrij.',
@@ -579,7 +587,16 @@
     const locationStr = selectedTrial?.location?.name || '';
 
     const title = isWaitlisted ? t.successTitleWaitlist : t.successTitle;
-    const rawMessage = isWaitlisted ? t.successMessageWaitlist : t.successMessage;
+    // partner_added: an existing solo booking was just upgraded to a couple.
+    // Never reachable together with isWaitlisted — the CRM sends
+    // partner_needed:false and status CONFIRMED on this branch — but the
+    // waitlist copy is checked first regardless, so a full class still
+    // wins over the upgrade note.
+    const rawMessage = isWaitlisted
+      ? t.successMessageWaitlist
+      : (data.partner_added === true && t.successMessagePartnerAdded
+          ? t.successMessagePartnerAdded
+          : t.successMessage);
     const emailNote = isWaitlisted ? t.successEmailNoteWaitlist : t.successEmailNote;
     const paragraphs = Array.isArray(rawMessage) ? rawMessage : [rawMessage];
     const messageHtml = paragraphs
