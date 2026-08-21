@@ -1358,6 +1358,10 @@
       // CRM logs as GDPR consent. Never collapse these back into one flag.
       terms_accepted:    true,
       marketing_consent: !!(document.getElementById('em-marketing-consent') || {}).checked,
+      // Where this visit came from, captured on the landing page by
+      // attribution.js. Optional on the backend and guarded here, so a page
+      // that never loaded the module still submits fine.
+      attribution:       (window.BETangoAttribution && window.BETangoAttribution.get()) || null,
     };
 
     if (hasPartner) {

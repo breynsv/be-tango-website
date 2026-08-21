@@ -815,6 +815,10 @@
         // marketing_consent is the optional opt-in the CRM logs as GDPR consent.
         terms_accepted: true,
         marketing_consent: !!(form.querySelector('input[name="marketing_consent"]') || {}).checked,
+        // Where this visit came from, captured on the landing page by
+        // attribution.js. Optional on the backend and guarded here, so a page
+        // that never loaded the module still submits fine.
+        attribution: (window.BETangoAttribution && window.BETangoAttribution.get()) || null,
         _honey: (form.querySelector('[name="_honey"]') || { value: '' }).value,
         _ts:    parseInt((form.querySelector('[name="_ts"]') || { value: '0' }).value, 10),
       };
