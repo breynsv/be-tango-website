@@ -46,6 +46,32 @@
   var SEARCH_HOSTS = ['google', 'bing', 'duckduckgo', 'yahoo', 'ecosia', 'qwant'];
   var SOCIAL_HOSTS = ['facebook', 'instagram', 't.co', 'linkedin', 'youtube'];
 
+  // Mail clients, matched exactly rather than by domain label. Three of these
+  // sit under a search engine's own domain (mail.google.com, mail.yahoo.com,
+  // and the Gmail app's package name, which literally contains ".google."), so
+  // a label match would file a click from somebody's inbox as an organic
+  // search. Two live registrations were recorded that way.
+  //
+  // com.google.android.gm and com.microsoft.office.outlook are the Android
+  // package names the Gmail and Outlook apps send in place of a hostname.
+  //
+  // This list only ever sees UNTAGGED email — free-trial confirmations,
+  // payment reminders. Campaign links carry utm_source/utm_medium themselves
+  // and never reach any referrer branch.
+  //
+  // Apple Mail is deliberately absent: it opens links with no referrer at all,
+  // so those visits land in the "direct" branch below. No identifier could be
+  // verified, so none is invented here.
+  var EMAIL_HOSTS = [
+    'com.google.android.gm',
+    'mail.google.com',
+    'outlook.live.com',
+    'outlook.office.com',
+    'outlook.office365.com',
+    'com.microsoft.office.outlook',
+    'mail.yahoo.com'
+  ];
+
   // ==========================================================================
   // Helpers
   // ==========================================================================
@@ -71,11 +97,41 @@
     return false;
   }
 
-  // Our own hosts. Internal navigation must never create or overwrite
-  // attribution — otherwise every click from the homepage to the form would
-  // rewrite a Facebook ad visit into a "be-tango.be referral". Subdomains are
-  // included too: the CRM and the hosted checkout both live under be-tango.be
-  // and send visitors back to the site.
+  // Reverse-DNS application identifiers — com.google.android.gm,
+  // com.microsoft.office.outlook, com.facebook.katana — are what mobile apps
+  // put in the referrer instead of a hostname. Their middle labels are real
+  // domain labels, which is why hostMatches() is right to see ".google." in
+  // the Gmail app's id and why tightening hostMatches() is the wrong fix: it
+  // would take www.google.co.uk down with it.
+  //
+  // Catches: any host of three or more labels whose first label is com, org
+  // or net. No legitimate referring hostname begins with a bare "com." label,
+  // and every real search host we match on (google.com, www.google.co.uk,
+  // duckduckgo.com) begins with something else, so the organic branch is
+  // unaffected.
+  //
+  // Does not catch: identifiers rooted elsewhere (de.*, ch.*, io.*) or in-app
+  // identifiers that are not reverse-DNS at all. Those still fall through to
+  // the normal rules. The enumerated EMAIL_HOSTS list is what actually
+  // protects the known mail apps; this is the net underneath it, and its only
+  // job is to keep an unrecognised app id out of "organic".
+  //
+  // Accepted cost: com.google.android.googlequicksearchbox, which genuinely is
+  // a Google search, is filed as a referral rather than organic. Understating
+  // one app beats inflating organic with every mail and messaging app.
+  function isAppIdentifier(host) {
+    var labels = host.split('.');
+    if (labels.length < 3) return false;
+    return labels[0] === 'com' || labels[0] === 'org' || labels[0] === 'net';
+  }
+
+  // Our own hosts. Internal navigation must never *overwrite* attribution —
+  // otherwise every click from the homepage to the form would rewrite a
+  // Facebook ad visit into a "be-tango.be referral". Subdomains are included
+  // too: the CRM and the hosted checkout both live under be-tango.be and send
+  // visitors back to the site.
+  //
+  // It may, however, seed a first touch. See the branch in capture().
   function isOwnHost(host) {
     return host === 'localhost' ||
            host === '127.0.0.1' ||
@@ -98,6 +154,13 @@
   // marketing nicety must never be the reason a registration form dies.
   // ==========================================================================
 
+  // Last-resort holding pen for when sessionStorage cannot be written to.
+  // It does not survive a navigation, so a visitor who browses on before
+  // signing up is still lost — but the common path from an ad, landing on
+  // the free-trial page and submitting the form right there, is not. Better
+  // than the null attribution every one of these visitors used to send.
+  var memoryStore = null;
+
   function readStored() {
     try {
       var raw = sessionStorage.getItem(STORAGE_KEY);
@@ -113,8 +176,9 @@
     try {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
     } catch (e) {
-      // Storage full, disabled, or private mode. Nothing to do — the forms
-      // fall back to sending no attribution, which the backend accepts.
+      // Storage full, disabled, or private mode. Fall back to memory for the
+      // life of this page so the forms still have something to send.
+      memoryStore = data;
     }
   }
 
@@ -124,8 +188,9 @@
 
   function capture() {
     // First touch wins. Everything else in this function is skipped for the
-    // rest of the session once anything has been recorded.
-    if (readStored()) return;
+    // rest of the session once anything has been recorded, wherever it was
+    // recorded.
+    if (readStored() || memoryStore) return;
 
     var params = new URLSearchParams(window.location.search);
     var data = {};
@@ -158,10 +223,32 @@
         data.utm_source = 'direct';
         data.utm_medium = 'none';
       } else if (isOwnHost(host)) {
-        // Internal navigation. Store nothing at all, so a later visit that
-        // does carry a real source can still be the first touch.
-        return;
-      } else if (matchesAny(host, SEARCH_HOSTS)) {
+        // A referrer from one of our own hosts on a *first* touch — the CRM,
+        // the hosted checkout, or a page whose session storage was cleared
+        // mid-visit. It says nothing about where the visitor originally came
+        // from, and "direct" is the honest bucket for unknown origin.
+        //
+        // Storing nothing here is what produced registrations with entirely
+        // null attribution: get() would keep returning null for the rest of
+        // the session, since capture() only ever runs on a fresh page load.
+        // The "never overwrite" half of the own-host rule still holds — the
+        // first-touch guard at the top of this function already returned if
+        // anything was recorded, so there is nothing to protect here.
+        //
+        // The host itself is dropped below rather than recorded: writing
+        // crm.be-tango.be into referrer_host would surface in reports as a
+        // referral that never happened.
+        data.utm_source = 'direct';
+        data.utm_medium = 'none';
+        host = null;
+      } else if (EMAIL_HOSTS.indexOf(host) !== -1) {
+        // Untagged email: a free-trial confirmation or payment reminder
+        // opened from an inbox. This has to sit above the search test —
+        // mail.google.com and com.google.android.gm both match the "google"
+        // token and were being reported as organic search.
+        data.utm_source = host;
+        data.utm_medium = 'email';
+      } else if (matchesAny(host, SEARCH_HOSTS) && !isAppIdentifier(host)) {
         data.utm_source = host;
         data.utm_medium = 'organic';
       } else if (matchesAny(host, SOCIAL_HOSTS)) {
@@ -204,8 +291,12 @@
   }
 
   // Returns null when nothing was captured. Never guesses.
+  //
+  // Precedence is deliberate: a stored record is the real first touch and
+  // always wins, so an in-memory value picked up on a later page can never
+  // overwrite it.
   function get() {
-    return normalise(readStored());
+    return normalise(readStored() || memoryStore);
   }
 
   try {
