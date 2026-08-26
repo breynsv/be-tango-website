@@ -538,6 +538,21 @@
     delete form.dataset.mode;
   }
 
+  // #826 — after a submit the tall form is replaced by a short confirmation
+  // card, so the page shrinks underneath the reader. On mobile they submit from
+  // a scroll position well below where the card then lands, and the page looks
+  // unchanged: the confirmation is off-screen ABOVE them and they have to scroll
+  // up to find out the booking worked. Nothing else moves the viewport here, so
+  // put the card just under the sticky .site-header ourselves.
+  function scrollSuccessIntoView(wrap) {
+    const card = wrap && wrap.querySelector('.ft-success');
+    if (!card) return;
+    const header = document.querySelector('.site-header');
+    const offset = (header ? header.getBoundingClientRect().height : 0) + 16;
+    const top = window.scrollY + card.getBoundingClientRect().top - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  }
+
   function showNotifySuccess(form, lang, hasPartner) {
     const t = T[lang];
     const wrap = form.closest('.form-container') || form.parentElement;
@@ -556,6 +571,7 @@
         ${!hasPartner ? `<p class="ft-success-msg ft-success-solo-note">${t.notifySuccessSoloNote}</p>` : ''}
         ${email ? `<p class="ft-success-email">${t.notifyEmailNote} <strong>${email}</strong></p>` : ''}
       </div>`;
+    scrollSuccessIntoView(wrap);
   }
 
   // ========================
@@ -627,6 +643,7 @@
           </div>` : ''}
         </div>
       </div>`;
+    scrollSuccessIntoView(wrap);
   }
 
   // ========================
