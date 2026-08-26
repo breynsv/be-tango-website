@@ -35,7 +35,6 @@
       genderSelect: '-- Select --',
       genderMale: 'Male',
       genderFemale: 'Female',
-      genderNonBinary: 'Non-binary',
       genderOther: 'Other',
       partnerQuestion: 'Are you coming alone or with a partner?',
       alone: 'I\'m coming alone',
@@ -134,7 +133,6 @@
       genderSelect: '-- Sélectionner --',
       genderMale: 'Homme',
       genderFemale: 'Femme',
-      genderNonBinary: 'Non-binaire',
       genderOther: 'Autre',
       partnerQuestion: 'Venez-vous seul(e) ou avec un(e) partenaire ?',
       alone: 'Je viens seul(e)',
@@ -220,7 +218,6 @@
       genderSelect: '-- Selecteer --',
       genderMale: 'Man',
       genderFemale: 'Vrouw',
-      genderNonBinary: 'Non-binair',
       genderOther: 'Andere',
       partnerQuestion: 'Kom je alleen of met een partner?',
       alone: 'Ik kom alleen',
@@ -491,7 +488,6 @@
                 <option value="">${t.genderSelect}</option>
                 <option value="Male">${t.genderMale}</option>
                 <option value="Female">${t.genderFemale}</option>
-                <option value="Non-Binary">${t.genderNonBinary}</option>
                 <option value="Other">${t.genderOther}</option>
               </select>
             </div>
