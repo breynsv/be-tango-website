@@ -21,6 +21,7 @@ const allModules = [
   ['enrollment',      require('./tests/enrollment.test')],
   ['portal-account-note', require('./tests/portal-account-note.test')],
   ['form-validation', require('./tests/form-validation.test')],
+  ['mobile-success-scroll', require('./tests/mobile-success-scroll.test')],
 ];
 
 // E2E_ONLY=form-validation,newsletter runs just those modules. Most modules book
@@ -52,7 +53,13 @@ async function main() {
   }
 
   // Launch browser
-  const browser = await chromium.launch({ headless: true });
+  // E2E_HEADED=1 opens a real window. Worth having rather than flipping the flag
+  // by hand: the layout assertions in mobile-success-scroll are about what a
+  // person can SEE, and a number in a log is a poor substitute for watching it.
+  const browser = await chromium.launch({
+    headless: !process.env.E2E_HEADED,
+    slowMo: process.env.E2E_HEADED ? 40 : 0,
+  });
 
   // SAFETY RAIL for local runs. js/api-config.js would point the page at the
   // local API on localhost, but no HTML page actually loads it, so crm-api.js

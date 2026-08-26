@@ -62,6 +62,20 @@
     el.textContent = '';
   }
 
+  // #826 — the form this replaces is far taller than the confirmation that
+  // takes its place, so the page shrinks underneath the reader. On mobile they
+  // submit from a scroll position well below where the message then lands, and
+  // the page looks unchanged: the confirmation sits off-screen ABOVE them.
+  // Nothing else moves the viewport here, so bring it up under the sticky
+  // .site-header ourselves.
+  function scrollSuccessIntoView(el) {
+    if (!el) return;
+    var header = document.querySelector('.site-header');
+    var offset = (header ? header.getBoundingClientRect().height : 0) + 16;
+    var top = window.scrollY + el.getBoundingClientRect().top - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  }
+
   function showSuccess(form, successEl, T) {
     form.style.display = 'none';
     successEl.innerHTML =
@@ -69,6 +83,7 @@
       '<h3>' + T.successTitle + '</h3>' +
       '<p>' + T.successBody + '</p>';
     successEl.style.display = 'block';
+    scrollSuccessIntoView(successEl);
   }
 
   function init() {
