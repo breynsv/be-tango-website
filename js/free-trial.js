@@ -50,6 +50,9 @@
       fvEmail: 'Please enter a valid email address.',
       fvDate: 'Please choose a date.',
       fvTerms: 'Please accept the terms and conditions to continue.',
+      fvSelect: 'Please make a choice.',
+      fvHeight: 'Enter a height in centimetres, for example 170.',
+      fvBirthYear: 'Enter your year of birth, for example 1985.',
       // Notify mode — shown when no free trial dates are scheduled
       notifyLead: 'Our free trial lessons take place in January and September, just before the start of each 14-week course cycle. Leave your details below and we\'ll let you know as soon as the next dates are announced.',
       notifyBanner: 'There are currently no free trial lessons planned. Leave your details and we\'ll notify you as soon as new dates are announced.',
@@ -100,6 +103,9 @@
       fvEmail: 'Veuillez saisir une adresse e-mail valide.',
       fvDate: 'Veuillez choisir une date.',
       fvTerms: 'Veuillez accepter les conditions générales pour continuer.',
+      fvSelect: 'Veuillez faire un choix.',
+      fvHeight: 'Indiquez une taille en centimètres, par exemple 170.',
+      fvBirthYear: 'Indiquez votre année de naissance, par exemple 1985.',
       // Mode notification — affiché quand aucune date d'essai gratuit n'est programmée
       notifyLead: 'Nos cours d\'essai gratuits ont lieu en janvier et en septembre, juste avant le début de chaque cycle de 14 semaines. Laissez-nous vos coordonnées ci-dessous et nous vous préviendrons dès que les prochaines dates seront annoncées.',
       notifyBanner: 'Il n\'y a actuellement aucun cours d\'essai gratuit prévu. Laissez-nous vos coordonnées et nous vous préviendrons dès que de nouvelles dates seront annoncées.',
@@ -146,6 +152,9 @@
       fvEmail: 'Vul een geldig e-mailadres in.',
       fvDate: 'Kies een datum.',
       fvTerms: 'Gelieve de algemene voorwaarden te aanvaarden om verder te gaan.',
+      fvSelect: 'Maak een keuze.',
+      fvHeight: 'Vul een lengte in centimeters in, bijvoorbeeld 170.',
+      fvBirthYear: 'Vul je geboortejaar in, bijvoorbeeld 1985.',
       // Notificatiemodus — zichtbaar wanneer er geen gratis proeflessen gepland zijn
       notifyLead: 'Onze gratis proeflessen vinden plaats in januari en september, net voor de start van elke lescyclus van 14 weken. Laat hieronder je gegevens achter en we laten het je weten zodra de volgende data bekend zijn.',
       notifyBanner: 'Er zijn momenteel geen gratis proeflessen gepland. Laat je gegevens achter en we laten het je weten zodra er nieuwe data aangekondigd worden.',
@@ -400,6 +409,72 @@
   }
 
   // ========================
+  // PARTNER-MATCHING FIELDS (gender, birth year, height)
+  // ========================
+
+  /**
+   * The CRM requires gender on every free-trial registration, and birth year
+   * plus height from anyone booking WITHOUT a partner — the same conditional
+   * the paid enrolment modal has always used, because those two exist so the
+   * school can pair a solo registrant. Demanding them from a couple would
+   * reject bookings over data nobody would use.
+   *
+   * Contract: docs/agent-free-form-fields-2026-08-26.md in betangocrm-laravel.
+   */
+  function isComingAlone(form) {
+    // The visible control is a pair of radio cards; #partner is the hidden
+    // <select> they mirror, and it is what the submit handler already reads.
+    // Index 0 is "coming alone", which is also the default — matching the
+    // CRM, where a request with no has_partner key is read as solo.
+    const sel = form.querySelector('#partner');
+    return (sel?.selectedIndex || 0) === 0;
+  }
+
+  /**
+   * Show or hide the two solo-only fields, and keep `required` in step.
+   *
+   * Both matter. BETangoValidate skips hidden controls, so hiding alone would
+   * be enough for the message pass — but leaving `required` set on a hidden
+   * input is the kind of thing that starts blocking submits the moment
+   * somebody changes how the section is hidden.
+   */
+  function syncAloneFields(form) {
+    if (!form) return;
+    const alone = isComingAlone(form);
+    const wrap = form.querySelector('#ft-alone-fields');
+    if (wrap) wrap.hidden = !alone;
+
+    ['#ft-birth-year', '#ft-height'].forEach(function (sel) {
+      const el = form.querySelector(sel);
+      if (!el) return;
+      el.required = alone;
+      // A message left over from before the switch would point at a field
+      // that is no longer being asked for.
+      if (!alone && window.BETangoValidate) BETangoValidate.clearField(el);
+    });
+  }
+
+  /**
+   * Notify-me asks for none of this. POST /free-trial/notify-me is unchanged
+   * and takes no gender, age or height, so the whole block is hidden rather
+   * than left required on a form that will never send it.
+   */
+  function setMatchSectionVisible(form, visible) {
+    if (!form) return;
+    const sec = form.querySelector('#ft-match-section');
+    if (sec) sec.hidden = !visible;
+
+    const gender = form.querySelector('#ft-gender');
+    if (gender) gender.required = visible;
+
+    if (visible) syncAloneFields(form);
+    else ['#ft-birth-year', '#ft-height'].forEach(function (sel) {
+      const el = form.querySelector(sel);
+      if (el) el.required = false;
+    });
+  }
+
+  // ========================
   // NOTIFY MODE (no upcoming trials)
   // ========================
 
@@ -454,6 +529,7 @@
 
     // 5) Flag mode so the submit handler takes the notify branch
     form.dataset.mode = 'notify';
+    setMatchSectionVisible(form, false);
   }
 
   /**
@@ -493,6 +569,7 @@
     if (note) note.textContent = t.notifyFormNote;
 
     form.dataset.mode = 'notify';
+    setMatchSectionVisible(form, false);
   }
 
   /**
@@ -536,6 +613,7 @@
     if (note) note.textContent = o.note;
 
     delete form.dataset.mode;
+    setMatchSectionVisible(form, true);
   }
 
   // #826 — after a submit the tall form is replaced by a short confirmation
@@ -702,6 +780,34 @@
       if (tsInput) tsInput.value = Math.floor(Date.now() / 1000);
     }
 
+    // Keep the solo-only fields in step with the partner cards.
+    //
+    // A DELEGATED CLICK LISTENER, not a `change` listener on the radios: the
+    // page's own inline script selects a card by assigning `radio.checked =
+    // true`, and a programmatic assignment fires no change event. Clicks do
+    // bubble, so this runs right after that script and sees the new state.
+    if (form) {
+      form.addEventListener('click', function (e) {
+        if (e.target.closest && e.target.closest('.ft-partner-card')) syncAloneFields(form);
+      });
+      // Belt and braces for anything that sets the mirror select directly.
+      const partnerSelect = form.querySelector('#partner');
+      if (partnerSelect) partnerSelect.addEventListener('change', function () { syncAloneFields(form); });
+
+      // The birth-year ceiling is set here rather than written into the three
+      // static pages: a year hardcoded into HTML is a ceiling nobody
+      // remembers to move. The CRM's rule is `max:date('Y')`, and this tracks
+      // it. (The old paid-form ceiling was a frozen `max="2010"` — a silent
+      // "no under-16s" that would have refused a teenager outright.)
+      const yearInput = form.querySelector('#ft-birth-year');
+      if (yearInput) yearInput.max = String(new Date().getFullYear());
+
+      // Starting state. Neither card is selected on load and #partner sits on
+      // "coming alone", so the solo fields start visible — which is also what
+      // the form would submit if nothing were touched.
+      syncAloneFields(form);
+    }
+
     // Form submission. Guarded rather than an early `return`: this now runs before
     // the fetch below, and a bare return would skip rendering the schedule entirely.
     if (form) form.addEventListener('submit', async (e) => {
@@ -728,6 +834,36 @@
           select:   t.fvDate,
           checkbox: t.fvTerms,
         });
+
+        // The gender select is not the date select, so it must not inherit
+        // "Please choose a date." as its message.
+        const genderEl = form.querySelector('#ft-gender');
+        problems.forEach(function (pr) {
+          if (pr.el === genderEl) pr.message = t.fvSelect;
+        });
+
+        // Height and birth year need a shape check the generic pass cannot
+        // make — it only knows empty or not. Skip a field already flagged as
+        // empty, so nobody gets two messages about one box.
+        const heightEl = form.querySelector('#ft-height');
+        const typedHeight = heightEl ? heightEl.value.trim() : '';
+        if (heightEl && typedHeight && !heightEl.closest('[hidden]')
+            && BETangoValidate.parseHeightCm(typedHeight) === null
+            && !problems.some(function (pr) { return pr.el === heightEl; })) {
+          problems.push({ el: heightEl, message: t.fvHeight });
+        }
+
+        const yearEl = form.querySelector('#ft-birth-year');
+        const typedYear = yearEl ? yearEl.value.trim() : '';
+        if (yearEl && typedYear && !yearEl.closest('[hidden]')
+            && !problems.some(function (pr) { return pr.el === yearEl; })) {
+          const y = parseInt(typedYear, 10);
+          // Same window as the CRM: 1920 to this year.
+          if (!(y >= 1920 && y <= new Date().getFullYear())) {
+            problems.push({ el: yearEl, message: t.fvBirthYear });
+          }
+        }
+
         if (problems.length) {
           BETangoValidate.show(form, problems);
           return;
@@ -744,6 +880,18 @@
       // Detect partner: second option = with partner
       const partnerSel = form.querySelector('#partner');
       const hasPartner = (partnerSel?.selectedIndex || 0) > 0;
+
+      // Partner-matching fields. Gender is asked of everybody; birth year and
+      // height only of someone booking alone, so they are read as null when a
+      // partner is coming and the inputs are hidden. Wire names are fixed by
+      // the CRM: contact.gender, contact.birth_year, contact.height.
+      const gender = form.querySelector('#ft-gender')?.value || null;
+      const birthYearRaw = !hasPartner ? (form.querySelector('#ft-birth-year')?.value || '') : '';
+      const birthYear = birthYearRaw ? parseInt(birthYearRaw, 10) : null;
+      // Sent exactly as typed. App\Support\Height on the CRM side reads
+      // "1,70", "1m70" and "170cm" alike, so normalising here would only add a
+      // second place for the two to disagree.
+      const height = !hasPartner ? (form.querySelector('#ft-height')?.value?.trim() || null) : null;
 
       // ----- NOTIFY MODE: no upcoming trials, user wants to be kept informed -----
       if (form.dataset.mode === 'notify') {
@@ -824,6 +972,9 @@
           email: email,
           phone: phone,
           language: lang,
+          gender: gender,
+          birth_year: birthYear,
+          height: height,
         },
         product_id: productId,
         has_partner: hasPartner,

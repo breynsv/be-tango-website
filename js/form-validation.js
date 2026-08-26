@@ -172,5 +172,69 @@
     try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); }
   }
 
-  window.BETangoValidate = { check: check, show: show, clear: clear, clearField: clearField };
+  /**
+   * Read a typed height into whole centimetres, or null if it cannot be read.
+   *
+   * This mirrors App\Support\Height in the CRM, deliberately and case for case:
+   * "170", "170cm", "170 cm", "172 CM", "1,70", "1.70 m", "1m70", "1 m 78",
+   * 170 and 1.83 all resolve; "17", "1700", "1985", "tall", "0", "99" and
+   * "251" do not.
+   *
+   * WHY IT IS DUPLICATED HERE rather than left to the server. The field is
+   * required now, so a notation we refuse is a booking somebody loses. The
+   * server is generous about format for exactly that reason — but its 422
+   * message is translated into the TENANT's CRM locale, not the visitor's, so
+   * a Dutch visitor typing something odd would be corrected in English.
+   * Catching the format here lets us say it in the language of the page. The
+   * server rule remains the authority; this is only a kinder first pass.
+   *
+   * Returns null both for "empty" and for "unreadable" — callers test for
+   * emptiness themselves, because the two need different messages.
+   */
+  function parseHeightCm(raw) {
+    if (raw === null || raw === undefined) return null;
+    var s = String(raw).trim().toLowerCase();
+    if (!s) return null;
+
+    var cm = null;
+
+    // "1m70", "1 m 78", "2m". A lone trailing digit is tens of centimetres —
+    // "1m8" is 180, not 108 — which is how people actually write it.
+    var m = s.match(/^(\d)\s*m\s*(\d{1,2})?$/);
+    if (m) {
+      var part = m[2] === undefined ? 0
+        : (m[2].length === 1 ? parseInt(m[2], 10) * 10 : parseInt(m[2], 10));
+      cm = parseInt(m[1], 10) * 100 + part;
+    }
+
+    if (cm === null) {
+      // Metres only when the unit says so; "cm" must never be read as "m".
+      var isMetres = /(^|[\s\d])(m|meters?|metres?)\s*$/.test(s) && !/centimet|cm/.test(s);
+      var body = s
+        .replace(/\s*(cm|centimeters?|centimetres?|m|meters?|metres?)\s*$/, '')
+        .replace(',', '.')
+        .trim();
+
+      if (!/^\d+(\.\d+)?$/.test(body)) return null;
+
+      var n = parseFloat(body);
+      // Anything under 3 is metres whatever the unit said — nobody is 2cm
+      // tall, so a bare "1.70" is unambiguous.
+      cm = (isMetres || n < 3) ? Math.round(n * 100) : Math.round(n);
+    }
+
+    // A sanity range to catch a slipped keystroke, not a judgement about
+    // anyone. Same bounds as the CRM, so a value accepted here is never
+    // refused there.
+    if (!isFinite(cm) || cm < 100 || cm > 250) return null;
+    return cm;
+  }
+
+  window.BETangoValidate = {
+    check: check,
+    show: show,
+    clear: clear,
+    clearField: clearField,
+    parseHeightCm: parseHeightCm,
+  };
 })();

@@ -920,7 +920,13 @@ body { background: #FAF8F5; }
   gap: 0;
 }
 
-.ft-form-row {
+/* `:not([hidden])` is load-bearing, the same way it is on `.btn` in styles.css:
+   without it this rule's `display: grid` beats the UA stylesheet's
+   `[hidden] { display: none }` on specificity, and a row hidden from JS stays
+   on screen. #ft-alone-fields is hidden that way whenever somebody is coming
+   with a partner, so dropping this puts height and birth year back in front of
+   a couple who are not being asked for them. */
+.ft-form-row:not([hidden]) {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 12px;

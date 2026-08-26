@@ -35,6 +35,7 @@
       genderSelect: '-- Select --',
       genderMale: 'Male',
       genderFemale: 'Female',
+      genderNonBinary: 'Non-binary',
       genderOther: 'Other',
       partnerQuestion: 'Are you coming alone or with a partner?',
       alone: 'I\'m coming alone',
@@ -108,6 +109,8 @@
       fvEmail: 'Please enter a valid email address.',
       fvSelect: 'Please make a choice.',
       fvPhone: 'Invalid phone number. Example: +32 475 00 00 00',
+      fvHeight: 'Enter a height in centimetres, for example 170.',
+      fvBirthYear: 'Enter your year of birth, for example 1985.',
     },
     FR: {
       // Router + portal-account copy (2026-08-19). The form below books anyone,
@@ -131,6 +134,7 @@
       genderSelect: '-- Sélectionner --',
       genderMale: 'Homme',
       genderFemale: 'Femme',
+      genderNonBinary: 'Non-binaire',
       genderOther: 'Autre',
       partnerQuestion: 'Venez-vous seul(e) ou avec un(e) partenaire ?',
       alone: 'Je viens seul(e)',
@@ -191,6 +195,8 @@
       fvEmail: 'Veuillez saisir une adresse e-mail valide.',
       fvSelect: 'Veuillez faire un choix.',
       fvPhone: 'Numéro de téléphone invalide. Exemple : +32 475 00 00 00',
+      fvHeight: 'Indiquez une taille en centimètres, par exemple 170.',
+      fvBirthYear: 'Indiquez votre année de naissance, par exemple 1985.',
     },
     NL: {
       // Router + portal-account copy (2026-08-19). The form below books anyone,
@@ -214,6 +220,7 @@
       genderSelect: '-- Selecteer --',
       genderMale: 'Man',
       genderFemale: 'Vrouw',
+      genderNonBinary: 'Non-binair',
       genderOther: 'Andere',
       partnerQuestion: 'Kom je alleen of met een partner?',
       alone: 'Ik kom alleen',
@@ -274,6 +281,8 @@
       fvEmail: 'Vul een geldig e-mailadres in.',
       fvSelect: 'Maak een keuze.',
       fvPhone: 'Ongeldig telefoonnummer. Voorbeeld : +32 475 00 00 00',
+      fvHeight: 'Vul een lengte in centimeters in, bijvoorbeeld 170.',
+      fvBirthYear: 'Vul je geboortejaar in, bijvoorbeeld 1985.',
     },
   };
 
@@ -476,12 +485,13 @@
 
         <div class="em-row">
           <div class="em-field">
-            <label class="em-label" for="em-gender">${t.gender} <span class="em-required" aria-hidden="true">*</span></label>
+            <label class="em-label" for="em-gender">${t.gender} <span class="em-required" aria-hidden="true">*</span><span class="fh" data-fh="gender"></span></label>
             <div class="em-select-wrap">
               <select class="em-select" id="em-gender" name="gender" required>
                 <option value="">${t.genderSelect}</option>
                 <option value="Male">${t.genderMale}</option>
                 <option value="Female">${t.genderFemale}</option>
+                <option value="Non-Binary">${t.genderNonBinary}</option>
                 <option value="Other">${t.genderOther}</option>
               </select>
             </div>
@@ -532,12 +542,12 @@
             <p class="em-sub-section-title">${t.aloneSection}</p>
             <div class="em-row">
               <div class="em-field">
-                <label class="em-label" for="em-height">${t.height} <span class="em-required" aria-hidden="true">*</span></label>
-                <input class="em-input" type="text" id="em-height" name="height" placeholder="170 cm">
+                <label class="em-label" for="em-height">${t.height} <span class="em-required" aria-hidden="true">*</span><span class="fh" data-fh="height"></span></label>
+                <input class="em-input" type="text" id="em-height" name="height" placeholder="170 cm" required>
               </div>
               <div class="em-field">
-                <label class="em-label" for="em-birth-year">${t.birthYear} <span class="em-required" aria-hidden="true">*</span></label>
-                <input class="em-input" type="number" id="em-birth-year" name="birth_year" min="1920" max="2010" placeholder="1985">
+                <label class="em-label" for="em-birth-year">${t.birthYear} <span class="em-required" aria-hidden="true">*</span><span class="fh" data-fh="age"></span></label>
+                <input class="em-input" type="number" id="em-birth-year" name="birth_year" min="1920" max="${new Date().getFullYear()}" placeholder="1985" required>
               </div>
             </div>
           </div>
@@ -761,6 +771,11 @@
 
     const t = getT();
     document.body.insertAdjacentHTML('beforeend', buildModalHtml(t));
+
+    // Turn the <span class="fh"> placeholders into real "?" buttons.
+    if (window.BETangoFieldHelp) {
+      window.BETangoFieldHelp.hydrate(document.getElementById('em-overlay'));
+    }
 
     // Inject spinner keyframe once
     if (!document.getElementById('em-spin-style')) {
@@ -1301,6 +1316,30 @@
     const typedPhone = phoneEl ? phoneEl.value.trim() : '';
     if (typedPhone && !isValidPhone(typedPhone) && !problems.some((p) => p.el === phoneEl)) {
       problems.push({ el: phoneEl, message: t.fvPhone });
+    }
+
+    // Height and birth year, same treatment: only worth checking once the
+    // field is both visible and filled, and never a second message on a field
+    // the required pass has already flagged.
+    const heightEl = document.getElementById('em-height');
+    const typedHeight = heightEl ? heightEl.value.trim() : '';
+    if (typedHeight && !heightEl.closest('[hidden]')
+        && window.BETangoValidate
+        && window.BETangoValidate.parseHeightCm(typedHeight) === null
+        && !problems.some((p) => p.el === heightEl)) {
+      problems.push({ el: heightEl, message: t.fvHeight });
+    }
+
+    const yearEl = document.getElementById('em-birth-year');
+    const typedYear = yearEl ? yearEl.value.trim() : '';
+    if (typedYear && !yearEl.closest('[hidden]') && !problems.some((p) => p.el === yearEl)) {
+      const y = parseInt(typedYear, 10);
+      // Same window as the CRM: 1920 to this year. The old ceiling was a
+      // hardcoded 2010, a silent "no under-16s" nobody had to notice while
+      // the field was optional.
+      if (!(y >= 1920 && y <= new Date().getFullYear())) {
+        problems.push({ el: yearEl, message: t.fvBirthYear });
+      }
     }
 
     if (problems.length) {
