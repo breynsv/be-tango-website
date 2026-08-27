@@ -45,7 +45,7 @@
 <!-- Stylesheet -->
 <link href="../../../css/styles.min.css?v=4.4" rel="stylesheet"/>
 <noscript><link href="../../../css/styles.min.css?v=4.4" rel="stylesheet"/></noscript>
-<link href="../../../css/free-trial.css?v=1.8" rel="stylesheet"/>
+<link href="../../../css/free-trial.css?v=1.9" rel="stylesheet"/>
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
 {
@@ -448,15 +448,28 @@
      Required by the CRM as of 2026-08-26 — see docs/agent-free-form-fields-2026-08-26.md
      in betangocrm-laravel. The "?" beside each label is built by the field-help module. -->
 <div class="ft-match-section" id="ft-match-section">
-  <div class="ft-form-field">
-    <label class="ft-label" for="ft-gender">Geslacht <span class="ft-req" aria-hidden="true">*</span><span class="fh" data-fh="gender"></span></label>
-    <div class="ft-select-wrap">
-      <select class="ft-select" id="ft-gender" name="gender" required>
-        <option value="">-- Selecteer --</option>
-        <option value="Male">Man</option>
-        <option value="Female">Vrouw</option>
-        <option value="Other">Andere</option>
-      </select>
+  <div class="ft-form-row">
+    <div class="ft-form-field">
+      <label class="ft-label" for="ft-gender">Geslacht <span class="ft-req" aria-hidden="true">*</span><span class="fh" data-fh="gender"></span></label>
+      <div class="ft-select-wrap">
+        <select class="ft-select" id="ft-gender" name="gender" required>
+          <option value="">-- Selecteer --</option>
+          <option value="Male">Man</option>
+          <option value="Female">Vrouw</option>
+          <option value="Other">Andere</option>
+        </select>
+      </div>
+    </div>
+    <div class="ft-form-field">
+      <label class="ft-label" for="ft-language">Voorkeurstaal <span class="ft-req" aria-hidden="true">*</span></label>
+      <div class="ft-select-wrap">
+        <select class="ft-select" id="ft-language" name="language" required>
+          <option value="">-- Selecteer --</option>
+          <option value="EN">Engels</option>
+          <option value="FR">Frans</option>
+          <option value="NL" selected>Nederlands</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -656,9 +669,9 @@
   </footer>
 <!-- CRM Integration -->
 <script defer="" src="../../../js/crm-api.js?v=1.3"></script>
-<script defer="" src="../../../js/field-help.js?v=1.0"></script>
+<script defer="" src="../../../js/field-help.js?v=1.1"></script>
 <script defer="" src="../../../js/form-validation.js?v=2.1"></script>
-<script defer="" src="../../../js/free-trial.js?v=2.2"></script>
+<script defer="" src="../../../js/free-trial.js?v=2.3"></script>
 <script>(function(){var m=location.pathname.match(/^\/(fr|nl|en)\//);if(m)document.cookie="lang="+m[1]+";path=/;max-age=31536000;SameSite=Lax"})();</script>
 <script>window.API_CONFIG={baseURL:"localhost"===window.location.hostname||"127.0.0.1"===window.location.hostname?"http://betango.membrero.test:8001/api/v1":"https://betango.membrero.com/api/v1",portalURL:"localhost"===window.location.hostname||"127.0.0.1"===window.location.hostname?"http://betango.membrero.test:8001/portal":"https://betango.membrero.com/portal"};</script>
 <script src="../../../js/newsletter.min.js?v=1.1" defer></script>

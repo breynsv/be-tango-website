@@ -932,8 +932,16 @@ body { background: #FAF8F5; }
   column-gap: 12px;
   row-gap: 6px;
   margin-top: 14px;
-  align-items: start;
+  /* `stretch`, not `start`: the two labels in a row are not the same height —
+     GENRE carries a "?" button and LANGUE PRÉFÉRÉE does not, and at 390px one
+     can wrap while the other does not. Aligned at the top, that pushed the two
+     selects out of line by 4–16px. Stretching the fields and pushing their
+     contents to the bottom lines the CONTROLS up, which is the edge the eye
+     actually reads. */
+  align-items: stretch;
 }
+
+.ft-form-row .ft-form-field { justify-content: flex-end; }
 
 .ft-form-row:first-child { margin-top: 0; }
 
@@ -1505,12 +1513,23 @@ body { background: #FAF8F5; }
     margin-bottom: 6px;
   }
 
-  /* Form rows — always single column on mobile */
-  .ft-form-row {
+  /* Form rows — always single column on mobile.
+     `:not([hidden])` is repeated here on purpose. The base rule above needs it
+     so a JS-hidden row actually disappears, but that made it (0,2,0) while this
+     override was (0,1,0) — so from the moment `:not([hidden])` was added, this
+     rule lost, and EVERY row stayed two columns on a phone: two 149px fields at
+     390px. That is also what pushed the last field's "?" hard against the
+     card's edge, which is where the tooltip was being clipped. */
+  .ft-form-row:not([hidden]) {
     grid-template-columns: 1fr;
     gap: 16px;
     margin-top: 14px;
+    /* Single column, so there is no second field to line up with; go back to
+       the natural top alignment rather than bottom-aligning a lone field. */
+    align-items: start;
   }
+
+  .ft-form-row .ft-form-field { justify-content: flex-start; }
 
   /* Fields inside a row — label immediately above its input */
   .ft-form-row .ft-form-field {

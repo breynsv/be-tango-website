@@ -485,8 +485,13 @@
     const sec = form.querySelector('#ft-match-section');
     if (sec) sec.hidden = !visible;
 
-    const gender = form.querySelector('#ft-gender');
-    if (gender) gender.required = visible;
+    // Gender and language sit in one row and are hidden together. A `required`
+    // left on a control nobody can see is the shape of bug that blocks a submit
+    // with a message the visitor cannot read or reach.
+    ['#ft-gender', '#ft-language'].forEach(function (sel) {
+      const el = form.querySelector(sel);
+      if (el) el.required = visible;
+    });
 
     if (visible) syncAloneFields(form);
     else ['#ft-birth-year', '#ft-height'].forEach(function (sel) {
@@ -763,6 +768,66 @@
   }
 
   // ========================
+  // LANGUAGE SELECT
+  // ========================
+
+  /**
+   * The names of the three supported languages, in the language of the page.
+   * Copied deliberately from js/enrollment-modal.js rather than shared: the two
+   * forms must read identically, and this is the whole of what they share.
+   */
+  const LANG_NAMES = {
+    EN: { EN: 'English', FR: 'French',   NL: 'Dutch'       },
+    FR: { EN: 'Anglais', FR: 'Français', NL: 'Néerlandais' },
+    NL: { EN: 'Engels',  FR: 'Frans',    NL: 'Nederlands'  },
+  };
+
+  /**
+   * Bring the language list up to date with whatever the CRM actually has
+   * active, the way the paid modal does.
+   *
+   * The three options are already in the page HTML with the page language
+   * preselected, so this form works before this runs and works if it fails —
+   * which is the point. The modal learned the hard way that a REQUIRED select
+   * with zero options can never be satisfied, and the visitor is left with
+   * "make a choice" against a dropdown offering none. So an empty or malformed
+   * answer is treated exactly like no answer: leave the HTML alone.
+   */
+  async function refreshLanguageOptions(api, form, pageLang) {
+    const select = form?.querySelector('#ft-language');
+    if (!select || !api?.getLanguages) return;
+
+    let codes = [];
+    try {
+      const res = await api.getLanguages();
+      const languages = res?.data || res;
+      codes = (Array.isArray(languages) ? languages : [])
+        .map(function (l) { return typeof l === 'string' ? l : (l && l.code); })
+        .filter(Boolean)
+        .map(function (c) { return String(c).toUpperCase(); });
+    } catch (err) {
+      console.warn('[FreeTrial] Could not load languages, keeping the page defaults:', err);
+      return;
+    }
+    if (!codes.length) return;
+
+    // Keep whatever the visitor has already picked; otherwise the page language.
+    const keep = select.value || pageLang;
+    const placeholder = select.querySelector('option[value=""]');
+    select.innerHTML = '';
+    if (placeholder) select.appendChild(placeholder);
+    codes.forEach(function (code) {
+      const opt = document.createElement('option');
+      opt.value = code;
+      opt.textContent = (LANG_NAMES[pageLang] && LANG_NAMES[pageLang][code]) || code;
+      // The attribute, not just the property, so form.reset() keeps it.
+      if (code === keep) opt.setAttribute('selected', 'selected');
+      select.appendChild(opt);
+    });
+    select.value = codes.indexOf(keep) > -1 ? keep : (codes[0] || '');
+  }
+
+  // ========================
   // INIT
   // ========================
 
@@ -823,6 +888,11 @@
       const yearInput = form.querySelector('#ft-birth-year');
       if (yearInput) yearInput.max = String(new Date().getFullYear());
 
+      // Match the CRM's active language list where we can; the page's own three
+      // options stand if the call fails. Deliberately not awaited — the form is
+      // usable with the defaults and must not wait on a network round trip.
+      refreshLanguageOptions(api, form, lang);
+
       // Starting state: neither card is selected, so this hides the solo-only
       // fields and drops their `required`. They appear when — and only when —
       // somebody picks "coming alone".
@@ -856,11 +926,12 @@
           checkbox: t.fvTerms,
         });
 
-        // The gender select is not the date select, so it must not inherit
-        // "Please choose a date." as its message.
+        // Neither the gender select nor the language select is the date
+        // select, so neither must inherit "Please choose a date."
         const genderEl = form.querySelector('#ft-gender');
+        const languageEl = form.querySelector('#ft-language');
         problems.forEach(function (pr) {
-          if (pr.el === genderEl) pr.message = t.fvSelect;
+          if (pr.el === genderEl || pr.el === languageEl) pr.message = t.fvSelect;
         });
 
         // Height and birth year need a shape check the generic pass cannot
@@ -920,6 +991,7 @@
       // partner is coming and the inputs are hidden. Wire names are fixed by
       // the CRM: contact.gender, contact.birth_year, contact.height.
       const gender = form.querySelector('#ft-gender')?.value || null;
+      const language = form.querySelector('#ft-language')?.value || lang;
       const birthYearRaw = !hasPartner ? (form.querySelector('#ft-birth-year')?.value || '') : '';
       const birthYear = birthYearRaw ? parseInt(birthYearRaw, 10) : null;
       // Sent exactly as typed. App\Support\Height on the CRM side reads
@@ -1005,7 +1077,12 @@
           last_name: lastName,
           email: email,
           phone: phone,
-          language: lang,
+          // The visitor's own answer, not the language of the page they happened
+          // to land on. It defaults to the page language, so nothing changes for
+          // anybody who does not touch it — but a Dutch speaker reading the
+          // French page can now say so, instead of being filed as French and
+          // then receiving French email for the rest of their time here.
+          language: language,
           gender: gender,
           birth_year: birthYear,
           height: height,

@@ -84,18 +84,41 @@
     // The visible dot is 18px but the tappable area is 44px, the accessible
     // minimum. Without this the "?" is a coin-flip to hit with a thumb.
     '.fh .fh-btn::before{content:"";position:absolute;top:50%;left:50%;width:44px;height:44px;transform:translate(-50%,-50%)}',
-    '.fh .fh-panel{position:absolute;top:calc(100% + 8px);left:0;z-index:60;',
-    'width:max-content;max-width:min(17rem,calc(100vw - 2rem));',
+    // THE PANEL IS `position:fixed` AND LIVES ON <body> WHILE IT IS OPEN.
+    //
+    // It used to be `position:absolute` inside its own `.fh`, which put it at
+    // the mercy of every ancestor: `.ft-form-card` has `overflow:hidden`, so the
+    // bubble was CLIPPED at the card's edge — inside the viewport, but cut off
+    // mid-word ("sans partenai…") on the fields nearest the right-hand side.
+    // Measuring it against the viewport said it was fine, because it was; the
+    // constraint that actually mattered was an ancestor 20px further in.
+    //
+    // Fixed positioning alone does not fix that either: `.em-dialog` carries a
+    // transform and `.em-overlay` a backdrop-filter, and each of those makes a
+    // containing block that `fixed` resolves against instead of the viewport.
+    // So the panel is moved to <body> on open and put back on close, where
+    // nothing can clip it and viewport coordinates mean what they say.
+    //
+    // Selectors are `.fh-panel`, not `.fh .fh-panel`: on <body> there is no
+    // `.fh` ancestor to match. (The `.fh .fh-btn` rules above stay as they are —
+    // that doubling is defending against a real specificity clash, this is not.)
+    '.fh-panel{position:fixed;left:0;top:0;z-index:2147483000;',
+    'width:max-content;max-width:min(17rem,calc(100vw - 24px));',
     'background:#111827;color:#F9FAFB;border-radius:8px;padding:10px 12px;',
     'font-family:inherit;font-size:13px;font-weight:400;line-height:1.45;',
     'text-transform:none;letter-spacing:0;text-align:left;',
-    'box-shadow:0 8px 24px rgba(0,0,0,.28);white-space:normal}',
-    '.fh .fh-panel[hidden]{display:none}',
-    // The little arrow. Purely decorative; it is not repositioned when the
-    // panel is nudged, so it is kept subtle enough that a few px of drift
-    // reads as a shadow rather than as a mistake.
-    '.fh .fh-panel::before{content:"";position:absolute;bottom:100%;left:6px;border:6px solid transparent;border-bottom-color:#111827}',
-    '@media (prefers-reduced-motion:no-preference){.fh .fh-panel{animation:fh-in .12s ease-out}}',
+    'box-shadow:0 8px 24px rgba(0,0,0,.28);white-space:normal;overflow-wrap:break-word}',
+    '.fh-panel[hidden]{display:none}',
+    // The arrow tracks the "?" it belongs to, not the bubble: --fh-arrow-x is
+    // written by reposition() as an offset from the bubble's own left edge, so
+    // a bubble shifted to stay on screen still points at the right control.
+    '.fh-panel::before{content:"";position:absolute;bottom:100%;',
+    'left:var(--fh-arrow-x,12px);transform:translateX(-50%);',
+    'border:6px solid transparent;border-bottom-color:#111827}',
+    // Flipped above the trigger when there is no room below.
+    '.fh-panel[data-fh-flip="up"]::before{bottom:auto;top:100%;',
+    'border-bottom-color:transparent;border-top-color:#111827}',
+    '@media (prefers-reduced-motion:no-preference){.fh-panel{animation:fh-in .12s ease-out}}',
     '@keyframes fh-in{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}',
   ].join('');
 
@@ -161,31 +184,75 @@
       el.appendChild(btn);
       el.appendChild(panel);
       el.setAttribute('data-fh-ready', '');
+      // While the panel is open it is moved to <body>, so `el.querySelector`
+      // will not find it. The id is how it is found again.
+      el.setAttribute('data-fh-panel', id);
     });
   }
 
   /**
-   * Keep the panel inside the viewport.
+   * Put the panel where it fits, measured against the VIEWPORT.
    *
-   * It is left-anchored by default, which is right almost everywhere, but a
-   * "?" near the right edge of a narrow screen would push it off. Measure once
-   * after showing and shift it back. Done in JS rather than CSS because the
-   * amount depends on where the button happens to sit, and on whether it is
-   * inside the modal's own scrolling dialog.
+   * Everything here is deliberately relative rather than a fixed offset from
+   * the trigger: a fixed offset is correct for one field at one width in one
+   * language, and the French copy is the longest, so it was the first to prove
+   * that. The order matters — cap the width before measuring, because a
+   * measurement taken of a box wider than the screen describes a box that can
+   * never exist.
    */
   function reposition(panel) {
+    if (!panel || !openEl) return;
+    var btn = btnOf(openEl);
+    if (!btn) return;
+
+    var margin = 12;   // never closer than this to either edge
+    var gap = 8;       // distance from the "?" to the bubble
+    // clientWidth, not innerWidth: innerWidth includes a classic scrollbar, and
+    // positioning against it puts the bubble under the scrollbar.
+    var vw = document.documentElement.clientWidth;
+    var vh = document.documentElement.clientHeight;
+
+    panel.style.maxWidth = Math.max(160, Math.min(272, vw - margin * 2)) + 'px';
     panel.style.left = '0px';
-    var r = panel.getBoundingClientRect();
-    var margin = 8;
-    var shift = 0;
+    panel.style.top = '0px';
+    panel.removeAttribute('data-fh-flip');
 
-    if (r.right > window.innerWidth - margin) shift = (window.innerWidth - margin) - r.right;
-    if (r.left + shift < margin) shift = margin - r.left;
+    var b = btn.getBoundingClientRect();
+    var p = panel.getBoundingClientRect();
+    var w = p.width, h = p.height;
 
-    if (shift) panel.style.left = shift + 'px';
+    // Horizontal: aligned with the "?" where there is room, then clamped. On a
+    // narrow screen that clamp is what does the work — the bubble slides along
+    // the bottom of the field rather than hanging off the side.
+    var left = b.left;
+    if (left + w > vw - margin) left = vw - margin - w;
+    if (left < margin) left = margin;
+
+    // Vertical: below the "?", flipped above it when below would run off.
+    var top = b.bottom + gap;
+    var flip = false;
+    if (top + h > vh - margin && b.top - gap - h >= margin) {
+      top = b.top - gap - h;
+      flip = true;
+    }
+    if (top < margin) top = margin;
+
+    panel.style.left = Math.round(left) + 'px';
+    panel.style.top = Math.round(top) + 'px';
+    if (flip) panel.setAttribute('data-fh-flip', 'up');
+
+    // Keep the arrow under the "?" wherever the bubble ended up, stopping short
+    // of the rounded corners at either end.
+    var arrowX = b.left + b.width / 2 - left;
+    var limit = Math.max(12, w - 12);
+    panel.style.setProperty('--fh-arrow-x', Math.round(Math.min(Math.max(arrowX, 12), limit)) + 'px');
   }
 
-  function panelOf(el) { return el.querySelector('.fh-panel'); }
+  function panelOf(el) {
+    if (!el) return null;
+    return el.querySelector('.fh-panel') ||
+           document.getElementById(el.getAttribute('data-fh-panel') || '');
+  }
   function btnOf(el)   { return el.querySelector('.fh-btn'); }
 
   function open(el, isPinned) {
@@ -193,6 +260,11 @@
     var panel = panelOf(el);
     var btn = btnOf(el);
     if (!panel || !btn) return;
+
+    // Out of the form and onto <body>, past every ancestor that clips or that
+    // would capture `position:fixed`. aria-describedby is an id reference, so
+    // the screen-reader association survives the move.
+    if (panel.parentNode !== document.body) document.body.appendChild(panel);
 
     panel.hidden = false;
     btn.setAttribute('aria-expanded', 'true');
@@ -205,7 +277,16 @@
     if (!openEl) return;
     var panel = panelOf(openEl);
     var btn = btnOf(openEl);
-    if (panel) { panel.hidden = true; panel.style.left = ''; }
+    if (panel) {
+      panel.hidden = true;
+      panel.removeAttribute('style');
+      panel.removeAttribute('data-fh-flip');
+      // Home again — unless its owner has been thrown away in the meantime
+      // (the enrollment modal rebuilds its markup), in which case the panel
+      // goes with it rather than being left orphaned on <body>.
+      if (openEl && openEl.isConnected) openEl.appendChild(panel);
+      else if (panel.parentNode) panel.parentNode.removeChild(panel);
+    }
     if (btn) btn.setAttribute('aria-expanded', 'false');
     openEl = null;
     pinned = false;
@@ -238,7 +319,9 @@
 
       // A tap anywhere else dismisses it. Clicking inside the panel itself
       // does not, so the text can be selected and read.
-      if (openEl && !e.target.closest('.fh')) close();
+      // `.fh-panel` is in the list because an open panel is no longer inside
+      // its `.fh` — selecting the text in it must not dismiss it.
+      if (openEl && !e.target.closest('.fh, .fh-panel')) close();
     }, true);
 
     document.addEventListener('mouseover', function (e) {
