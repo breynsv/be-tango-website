@@ -1018,6 +1018,15 @@ body { background: #FAF8F5; }
 .ft-select option { color: #111827; background: #FFFFFF; }
 .ft-textarea { resize: vertical; min-height: 76px; }
 
+/* ── Partner matching block (gender, and the solo-only pair) ─────── */
+/* The gender field is this section's `:first-child`, so `.ft-form-field:first-child
+   { margin-top: 0 }` was collapsing the gap and leaving the GENRE label sitting
+   right under the partner cards. 18px is the form's own separator step — the
+   same value `.ft-partner-section` uses above — rather than a new number. */
+.ft-match-section:not([hidden]) {
+  margin-top: 18px;
+}
+
 /* ── Partner toggle cards ────────────────────────────────────────── */
 .ft-partner-section {
   margin-top: 18px;

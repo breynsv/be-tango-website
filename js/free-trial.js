@@ -52,6 +52,7 @@
       fvTerms: 'Please accept the terms and conditions to continue.',
       fvSelect: 'Please make a choice.',
       fvHeight: 'Enter a height in centimetres, for example 170.',
+      fvPartnerChoice: 'Please tell us whether you\'re coming alone or with a partner.',
       fvBirthYear: 'Enter your year of birth, for example 1985.',
       // Notify mode — shown when no free trial dates are scheduled
       notifyLead: 'Our free trial lessons take place in January and September, just before the start of each 14-week course cycle. Leave your details below and we\'ll let you know as soon as the next dates are announced.',
@@ -105,6 +106,7 @@
       fvTerms: 'Veuillez accepter les conditions générales pour continuer.',
       fvSelect: 'Veuillez faire un choix.',
       fvHeight: 'Indiquez une taille en centimètres, par exemple 170.',
+      fvPartnerChoice: 'Indiquez si vous venez seul(e) ou avec un partenaire.',
       fvBirthYear: 'Indiquez votre année de naissance, par exemple 1985.',
       // Mode notification — affiché quand aucune date d'essai gratuit n'est programmée
       notifyLead: 'Nos cours d\'essai gratuits ont lieu en janvier et en septembre, juste avant le début de chaque cycle de 14 semaines. Laissez-nous vos coordonnées ci-dessous et nous vous préviendrons dès que les prochaines dates seront annoncées.',
@@ -154,6 +156,7 @@
       fvTerms: 'Gelieve de algemene voorwaarden te aanvaarden om verder te gaan.',
       fvSelect: 'Maak een keuze.',
       fvHeight: 'Vul een lengte in centimeters in, bijvoorbeeld 170.',
+      fvPartnerChoice: 'Geef aan of je alleen komt of met een partner.',
       fvBirthYear: 'Vul je geboortejaar in, bijvoorbeeld 1985.',
       // Notificatiemodus — zichtbaar wanneer er geen gratis proeflessen gepland zijn
       notifyLead: 'Onze gratis proeflessen vinden plaats in januari en september, net voor de start van elke lescyclus van 14 weken. Laat hieronder je gegevens achter en we laten het je weten zodra de volgende data bekend zijn.',
@@ -421,13 +424,28 @@
    *
    * Contract: docs/agent-free-form-fields-2026-08-26.md in betangocrm-laravel.
    */
-  function isComingAlone(form) {
-    // The visible control is a pair of radio cards; #partner is the hidden
-    // <select> they mirror, and it is what the submit handler already reads.
-    // Index 0 is "coming alone", which is also the default — matching the
-    // CRM, where a request with no has_partner key is read as solo.
-    const sel = form.querySelector('#partner');
-    return (sel?.selectedIndex || 0) === 0;
+  /**
+   * The partner question has THREE states, not two: alone, with a partner, and
+   * NOT YET ANSWERED — which is what every visitor sees first.
+   *
+   * This used to read the hidden `#partner` mirror select, whose selectedIndex
+   * is 0 before anybody touches it. That made "not answered" indistinguishable
+   * from "coming alone", so birth year and height were shown and marked
+   * required on first load, in front of somebody who had not yet said they were
+   * coming alone. Reported from the live FR page, 2026-08-27.
+   *
+   * The radios are the honest source: neither is checked until a card is
+   * clicked, so "nothing chosen" has its own value here. Their ids are the same
+   * on all three language pages; their `value` attributes are translated, so
+   * matching on the value would break on two pages out of three.
+   *
+   * @returns {'alone'|'partner'|null}
+   */
+  function partnerChoice(form) {
+    if (!form) return null;
+    if (form.querySelector('#ft-radio-solo')?.checked) return 'alone';
+    if (form.querySelector('#ft-radio-partner')?.checked) return 'partner';
+    return null;
   }
 
   /**
@@ -440,7 +458,9 @@
    */
   function syncAloneFields(form) {
     if (!form) return;
-    const alone = isComingAlone(form);
+    // Shown ONLY for an explicit "coming alone". Both of the other two states —
+    // with a partner, and nothing chosen yet — leave these hidden and optional.
+    const alone = partnerChoice(form) === 'alone';
     const wrap = form.querySelector('#ft-alone-fields');
     if (wrap) wrap.hidden = !alone;
 
@@ -449,7 +469,8 @@
       if (!el) return;
       el.required = alone;
       // A message left over from before the switch would point at a field
-      // that is no longer being asked for.
+      // that is no longer being asked for — and once the field is hidden the
+      // visitor cannot see, reach or clear that message.
       if (!alone && window.BETangoValidate) BETangoValidate.clearField(el);
     });
   }
@@ -802,9 +823,9 @@
       const yearInput = form.querySelector('#ft-birth-year');
       if (yearInput) yearInput.max = String(new Date().getFullYear());
 
-      // Starting state. Neither card is selected on load and #partner sits on
-      // "coming alone", so the solo fields start visible — which is also what
-      // the form would submit if nothing were touched.
+      // Starting state: neither card is selected, so this hides the solo-only
+      // fields and drops their `required`. They appear when — and only when —
+      // somebody picks "coming alone".
       syncAloneFields(form);
     }
 
@@ -877,9 +898,22 @@
       const phone     = form.querySelector('#phone')?.value?.trim() || null;
       const userNote  = form.querySelector('#message')?.value?.trim() || '';
 
-      // Detect partner: second option = with partner
-      const partnerSel = form.querySelector('#partner');
-      const hasPartner = (partnerSel?.selectedIndex || 0) > 0;
+      // Detect partner from the radios, not from the mirror select: the select
+      // reports "coming alone" before anybody has answered, and posting
+      // has_partner:false with no birth year or height is exactly the request
+      // the CRM refuses with a 422 the visitor can do nothing about.
+      const choice = partnerChoice(form);
+      const hasPartner = choice === 'partner';
+
+      // A booking must answer the question. Notify-me must NOT have to: that
+      // endpoint takes none of these fields, and gating "tell me when a slot
+      // opens" on a partner choice would close the path outright.
+      if (choice === null && form.dataset.mode !== 'notify') {
+        showFormError(form, t.fvPartnerChoice);
+        const cards = form.querySelector('.ft-partner-cards');
+        if (cards) cards.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
 
       // Partner-matching fields. Gender is asked of everybody; birth year and
       // height only of someone booking alone, so they are read as null when a

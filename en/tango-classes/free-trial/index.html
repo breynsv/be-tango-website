@@ -50,7 +50,7 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/css/styles.min.css?v=4.4">
   <noscript><link rel="stylesheet" href="/css/styles.min.css?v=4.4"></noscript>
-  <link rel="stylesheet" href="/css/free-trial.css?v=1.7">
+  <link rel="stylesheet" href="/css/free-trial.css?v=1.8">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -514,16 +514,16 @@
                 </div>
               </div>
             
-              <div class="ft-form-row" id="ft-alone-fields">
+              <div class="ft-form-row" id="ft-alone-fields" hidden>
                 <div class="ft-form-field">
                   <label class="ft-label" for="ft-birth-year">Birth Year <span class="ft-req" aria-hidden="true">*</span><span class="fh" data-fh="age"></span></label>
                   <input class="ft-input" type="number" id="ft-birth-year" name="birth_year"
-                    min="1920" placeholder="1985" autocomplete="bday-year" inputmode="numeric" required>
+                    min="1920" placeholder="1985" autocomplete="bday-year" inputmode="numeric">
                 </div>
                 <div class="ft-form-field">
                   <label class="ft-label" for="ft-height">Height (e.g. 170 cm) <span class="ft-req" aria-hidden="true">*</span><span class="fh" data-fh="height"></span></label>
                   <input class="ft-input" type="text" id="ft-height" name="height"
-                    placeholder="170 cm" inputmode="numeric" required>
+                    placeholder="170 cm" inputmode="numeric">
                 </div>
               </div>
             </div>
@@ -736,7 +736,7 @@
   <script src="/js/crm-api.js?v=1.3" defer></script>
   <script src="/js/field-help.js?v=1.0" defer></script>
   <script src="/js/form-validation.js?v=2.1" defer></script>
-<script src="/js/free-trial.js?v=2.1" defer></script>
+<script src="/js/free-trial.js?v=2.2" defer></script>
   <script src="/js/newsletter.min.js?v=1.1" defer></script>
   <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
