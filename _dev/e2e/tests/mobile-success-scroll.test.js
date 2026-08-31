@@ -129,8 +129,17 @@ async function run(browser) {
       await page.fill('#free-trial-form [name="last-name"]', 'Mobile');
       await page.fill('#free-trial-form [name="email"]', 'e2e-826@test.be-tango.be');
       await page.fill('#free-trial-form [name="phone"]', '+32499000000');
+      // Gender, birth year and height are all required since 2026-08-26. Without
+      // them the browser refuses the submit, so the success panel this sub-test is
+      // actually about never renders and the failure reads as a scroll bug.
+      await page.selectOption('#free-trial-form [name="gender"]', 'Female');
       await page.selectOption('[name="class-date"]', '4242');
       await page.click('label[for="ft-radio-solo"]');
+      // Birth year and height become required only once "Coming alone" is chosen,
+      // so they are filled after that click and never before it.
+      await page.waitForSelector('#ft-alone-fields', { state: 'visible', timeout: 5000 });
+      await page.fill('#ft-birth-year', '1985');
+      await page.fill('#ft-height', '170 cm');
       await page.check('[name="terms_accepted"]');
 
       await clickSubmit(page, '#free-trial-form button[type="submit"]');

@@ -17,11 +17,36 @@ async function choosePartnerOption(page, radioId) {
   );
 }
 
+// Gender has been required on every free-trial registration since 2026-08-26, for
+// partner matching — see docs/agent-free-form-fields-2026-08-26.md in
+// betangocrm-laravel. Its select opens on "-- Select --", which is not a valid
+// value, so a test that skips it never submits at all: the browser blocks the form,
+// no POST is made, and the wait for /free-trial/register times out 15s later. That
+// reads as a dead endpoint and is really an unfilled box. (Preferred Language is
+// required too, but ships with English pre-selected, so it does not block. It is
+// deliberately left at that default — that is the path a real visitor takes.)
 async function fillBaseFields(page, email) {
   await page.fill('#free-trial-form [name="first-name"]', 'E2E');
   await page.fill('#free-trial-form [name="last-name"]', 'Test');
   await page.fill('#free-trial-form [name="email"]', email);
   await page.fill('#free-trial-form [name="phone"]', '+32499000000');
+  await page.selectOption('#free-trial-form [name="gender"]', 'Female');
+}
+
+/**
+ * Birth year and height are asked only of someone coming WITHOUT a partner, so
+ * js/free-trial.js adds `required` to them at the moment "Coming alone" is chosen
+ * and takes it off again otherwise. They must therefore be filled AFTER the partner
+ * choice — filling them alongside the base fields would write into a hidden row and
+ * the choice would then clear it.
+ *
+ * "170 cm" is fed through the same BETangoValidate.parseHeightCm the form uses, so
+ * this asserts the accepted format too, not just that the box is non-empty.
+ */
+async function fillAloneFields(page) {
+  await page.waitForSelector('#ft-alone-fields', { state: 'visible', timeout: 5000 });
+  await page.fill('#ft-birth-year', '1985');
+  await page.fill('#ft-height', '170 cm');
 }
 
 async function selectFirstAvailableDate(page) {
@@ -88,6 +113,7 @@ async function run(browser) {
       await fillBaseFields(page, email);
       await selectFirstAvailableDate(page);
       await choosePartnerOption(page, 'ft-radio-solo');
+      await fillAloneFields(page);
       await submitAndAwaitResponse(page);
 
       await verifyEmailDelivered(email, 'tango');
