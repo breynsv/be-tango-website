@@ -18,6 +18,7 @@ const allModules = [
   ['newsletter',      require('./tests/newsletter.test')],
   ['private-lessons', require('./tests/private-lessons.test')],
   ['free-trial',      require('./tests/free-trial.test')],
+  ['free-trial-notify', require('./tests/free-trial-notify.test')],
   ['enrollment',      require('./tests/enrollment.test')],
   ['portal-account-note', require('./tests/portal-account-note.test')],
   ['form-validation', require('./tests/form-validation.test')],

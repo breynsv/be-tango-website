@@ -70,9 +70,7 @@
       // No email is sent by the notify-me endpoint, so this promises the next
       // announcement rather than a confirmation that never arrives.
       notifyEmailNote: 'We\'ll email the next dates to',
-      notifyMessagePrefix: '[Free trial — notify me] Would like to be notified when the next free trial dates are scheduled.',
       notifyCheckbox: 'I can\'t make any of these dates — keep me informed about future lessons',
-      notifyMessagePrefixWithDates: '[Free trial — none of these dates work] Cannot make any of the scheduled dates, would like to be notified of future free trial dates.',
     },
     FR: {
       loading: 'Chargement des dates disponibles…',
@@ -120,9 +118,7 @@
       notifySuccessMessage: 'Nous vous enverrons un email dès que les prochaines dates d\'essai gratuit seront annoncées.',
       notifySuccessSoloNote: 'Le tango se danse à deux, et vous nous avez indiqué ne pas encore avoir de partenaire. Ce n\'est pas un souci : dès l\'annonce des prochaines dates, nous chercherons un binôme pour vous, selon l\'âge et la taille. En attendant, cela aide beaucoup si vous demandez aussi autour de vous — amis, famille ou collègues.',
       notifyEmailNote: 'Nous enverrons les prochaines dates à',
-      notifyMessagePrefix: '[Essai gratuit — me prévenir] Souhaite être prévenu(e) lorsque les prochaines dates d\'essai gratuit seront programmées.',
       notifyCheckbox: 'Aucune de ces dates ne me convient — tenez-moi informé(e) des prochains cours',
-      notifyMessagePrefixWithDates: '[Essai gratuit — aucune date ne convient] Ne peut se rendre à aucune des dates prévues, souhaite être prévenu(e) des prochaines dates.',
     },
     NL: {
       loading: 'Beschikbare data laden…',
@@ -170,9 +166,7 @@
       notifySuccessMessage: 'We sturen je een mail zodra de volgende gratis proeflesdata aangekondigd worden.',
       notifySuccessSoloNote: 'Tango dans je met z\'n tweeën, en je gaf aan nog geen danspartner te hebben. Geen probleem: zodra de volgende data bekend zijn, zoeken we een match voor je op basis van leeftijd en lengte. Het helpt enorm als je ondertussen ook eens rondvraagt bij vrienden, familie of collega\'s.',
       notifyEmailNote: 'We sturen de volgende data naar',
-      notifyMessagePrefix: '[Gratis proefles — breng me op de hoogte] Wenst op de hoogte gebracht te worden wanneer de volgende gratis proeflesdata gepland zijn.',
       notifyCheckbox: 'Geen van deze data past mij — hou me op de hoogte van toekomstige lessen',
-      notifyMessagePrefixWithDates: '[Gratis proefles — geen datum past] Kan niet op de geplande data, wenst op de hoogte gebracht te worden van toekomstige proeflessen.',
     },
   };
 
@@ -1011,32 +1005,47 @@
           submitBtn.textContent = t.btnLoading;
         }
 
-        // Use the "with dates" variant when trials exist but none work for the user
-        // Use the "with dates" variant when trials exist but none work for the user
-        const notifyCb = form.querySelector('input[name="notify-me"]');
-        const prefix = (notifyCb?.checked && trials.length)
-          ? t.notifyMessagePrefixWithDates
-          : t.notifyMessagePrefix;
-        const msgParts = [prefix];
-        msgParts.push(hasPartner ? '(with partner)' : '(coming alone)');
-        if (userNote) msgParts.push('\n---\n' + userNote);
-
-        const contactPayload = {
-          first_name: firstName,
-          last_name:  lastName,
-          email:      email,
-          phone:      phone,
-          // Use the existing `free_trial` topic enum; the "notify me" intent
-          // is encoded in the message body (notifyMessagePrefix).
-          topic:      'free_trial',
-          message:    msgParts.join(' '),
-          lang:       lang,
+        // POST /free-trial/notify-me, NOT the contact form.
+        //
+        // This branch used to pick one of six fixed sentences
+        // (notifyMessagePrefix / …WithDates, in EN/FR/NL), paste it into the
+        // free-text `message` and post /contact with topic 'free_trial'. The
+        // CRM then held the whole intent as prose on a row that said
+        // `general_contact`: nothing there could count these people, filter
+        // them, or tell them apart from somebody typing a real question about
+        // free trials. The CRM has had the right endpoint the entire time and
+        // it had never been called once.
+        //
+        // So the fact now travels as the route itself — the CRM files it as
+        // `future_free_trial` — and `message` carries only what the visitor
+        // typed, or nothing. The six sentence constants are deleted with this
+        // change: they were data pretending to be copy, and leaving them would
+        // leave a second, silent definition of the fact in this repository.
+        //
+        // Deliberately NOT sent: the partner answer. Notify-me hides the whole
+        // matching section (setMatchSectionVisible(form, false)) and the guard
+        // above lets `choice` stay null here on purpose, so `hasPartner` is
+        // false-because-unanswered far more often than it is false-because-
+        // alone. The old payload wrote "(coming alone)" into the message for
+        // both, which was an invention on most of these submissions.
+        const notifyPayload = {
+          contact: {
+            first_name: firstName,
+            last_name:  lastName,
+            email:      email,
+            phone:      phone,
+            language:   language,
+          },
+          // The optional free-text box. The endpoint accepts it as nullable
+          // and substitutes its own "wants to be kept informed" sentence when
+          // there is nothing, so an empty box must send nothing rather than ''.
+          message: userNote || null,
           _honey: (form.querySelector('[name="_honey"]') || { value: '' }).value,
           _ts:    parseInt((form.querySelector('[name="_ts"]') || { value: '0' }).value, 10),
         };
 
         try {
-          await api.submitContactForm(contactPayload);
+          await api.notifyFreeTrial(notifyPayload);
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({ event: 'free_trial_notify' });
           showNotifySuccess(form, lang, hasPartner);

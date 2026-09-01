@@ -290,6 +290,23 @@ class CRMApi {
     }
 
     /**
+     * "None of these dates work — keep me informed about the next ones."
+     *
+     * Its own endpoint, not the contact form. Until 2026-08-31 the free-trial
+     * page posted this through submitContactForm() with a fixed sentence pasted
+     * into `message`, so the CRM received it as a general contact enquiry and
+     * the one fact worth recording — that somebody wants a free trial and no
+     * scheduled date suits them — survived only as prose a human had to read.
+     * This route files it as `future_free_trial`, which the CRM's inbox can
+     * badge without guessing at wording that lives in this repository.
+     *
+     * @param {Object} data - { contact: { first_name, last_name, email, phone, language }, message }
+     */
+    async notifyFreeTrial(data) {
+        return await this.post('/free-trial/notify-me', data);
+    }
+
+    /**
      * Submit the general contact form.
      * @param {Object} data - { first_name, last_name, email, phone, topic, message, lang }
      */
