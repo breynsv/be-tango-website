@@ -59,3 +59,13 @@ Allow: /
 
 User-agent: Google-Extended
 Allow: /
+
+# Meta's asset fetcher. /creatives/ is Disallow'd above so ad artwork stays out
+# of search results — but Meta downloads those same files when a creative is
+# built from an image_url, it honours robots.txt when it does, and it refuses
+# with "Image Wasn't Downloaded ... blocked by a robots.txt". A named user-agent
+# group REPLACES the wildcard group rather than adding to it, so this block has
+# to stand alone. This is not an indexing crawler, so allowing everything is the
+# intent here, not an oversight.
+User-agent: facebookexternalhit
+Allow: /
