@@ -48,6 +48,16 @@ _dev/*
 !_dev/e2e
 _dev/e2e/screenshots/
 _dev/e2e/last-report.json
+
+# The QA gate itself is tracked; its 312MB of screenshots and its generated
+# reports are not. CLAUDE.md makes qa-audit.js the check to run before calling
+# website work done, and until now it lived on one laptop and nowhere else —
+# which is why a fix to it (#1172, and the SITE_ROOT bug before it) could not be
+# shared or reviewed. Re-including a path needs its directory un-ignored first,
+# hence the three lines rather than one.
+!_dev/qa/
+_dev/qa/*
+!_dev/qa/qa-audit.js
 pages/
 blog-backup/
 qa-report.html
