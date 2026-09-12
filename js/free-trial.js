@@ -466,7 +466,7 @@
    *
    * Visibility follows the partner answer alone. `required` follows the partner
    * answer AND the mode: in notify mode nothing here is required — the fields
-   * are collected, not demanded. See syncMatchRequired().
+   * are collected, not demanded. See syncModeRequirements().
    */
   function syncAloneFields(form) {
     if (!form) return;
@@ -491,8 +491,9 @@
   }
 
   /**
-   * Keep the matching fields' `required` in step with the mode. Visibility is
-   * deliberately NOT this function's business.
+   * Keep every `required` rule on this form in step with the mode, and the
+   * asterisks that describe them. Visibility is deliberately NOT this
+   * function's business.
    *
    * #1240: until 2026-09-12 one function did both, and notify mode used it to
    * hide #ft-match-section outright. The partner question sits OUTSIDE that
@@ -507,9 +508,12 @@
    * Booking: gender and language are required, and birth year and height join
    * them the moment somebody says they are coming alone.
    * Notify: all four are optional. A bare name + email signup must still go
-   * through — that was Sven's condition for keeping the fields at all.
+   * through — that was Sven's condition for keeping the fields at all. The date
+   * select is dropped from `required` by the notify entry points themselves,
+   * since they are the ones that disable it; its asterisk comes down here with
+   * everything else's.
    */
-  function syncMatchRequired(form) {
+  function syncModeRequirements(form) {
     if (!form) return;
     const optional = isNotifyMode(form);
 
@@ -524,19 +528,39 @@
     });
 
     syncAloneFields(form);
-    setMatchRequiredMarkers(form, !optional);
+    setRequiredMarkers(form, !optional);
   }
 
   /**
    * The gold asterisks are copy, not decoration: each one says "you must fill
    * this in". Leaving them up in notify mode would be the same lie in
-   * miniature, so they come down with the rule they describe.
+   * miniature, so they come down with the rules they describe — and they come
+   * down through ONE mechanism, so a field cannot be quietly left out of it.
+   *
+   * Two scopes, both of which stop being mandatory in notify mode:
+   *  - #ft-match-section: gender, language, birth year, height.
+   *  - the date field. Its select is disabled in notify mode, so an asterisk
+   *    there marks the one control on the form the visitor cannot touch as the
+   *    only one still claiming to be mandatory. It read worst of all once the
+   *    matching asterisks below it started disappearing correctly (#1240).
+   *    The no-dates-at-all path hides that field outright, where this is
+   *    harmless rather than unnecessary — it is the same state either way.
    */
-  function setMatchRequiredMarkers(form, show) {
-    if (!form) return;
+  function requiredMarkerScopes(form) {
+    const scopes = [];
     const sec = form.querySelector('#ft-match-section');
-    if (!sec) return;
-    sec.querySelectorAll('.ft-req').forEach(function (el) { el.hidden = !show; });
+    if (sec) scopes.push(sec);
+    const dateField = form.querySelector('#class-date');
+    const dateWrap = dateField && dateField.closest('.ft-form-field');
+    if (dateWrap) scopes.push(dateWrap);
+    return scopes;
+  }
+
+  function setRequiredMarkers(form, show) {
+    if (!form) return;
+    requiredMarkerScopes(form).forEach(function (scope) {
+      scope.querySelectorAll('.ft-req').forEach(function (el) { el.hidden = !show; });
+    });
   }
 
   // ========================
@@ -598,7 +622,7 @@
     // The matching fields stay on screen and stay collectable — they are only
     // optional now (#1240). Set the flag first: the `required` rules read it.
     form.dataset.mode = 'notify';
-    syncMatchRequired(form);
+    syncModeRequirements(form);
   }
 
   /**
@@ -644,7 +668,7 @@
     // The matching fields stay on screen and stay collectable — they are only
     // optional now (#1240). Set the flag first: the `required` rules read it.
     form.dataset.mode = 'notify';
-    syncMatchRequired(form);
+    syncModeRequirements(form);
   }
 
   /**
@@ -688,7 +712,7 @@
     if (note) note.textContent = o.note;
 
     delete form.dataset.mode;
-    syncMatchRequired(form);
+    syncModeRequirements(form);
   }
 
   // #826 — after a submit the tall form is replaced by a short confirmation
