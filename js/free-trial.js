@@ -66,6 +66,9 @@
       notifySuccessMessage: 'We\'ll email you as soon as the next free trial dates are announced.',
       // Notify mode books nothing at all — there is no reservation yet to
       // confirm or withhold, only a heads-up about how the pairing works.
+      // Printed ONLY after an explicit "I'm coming alone" (#1013): before that
+      // it also greeted everyone who never answered the partner question, and
+      // told them what they had supposedly said.
       notifySuccessSoloNote: 'Tango is danced in couples, and you told us you don\'t have a partner yet. That\'s no problem — when the next dates are announced we\'ll look for a match for you, based on age and height. It helps a lot if you ask around among friends, family or colleagues in the meantime.',
       // No email is sent by the notify-me endpoint, so this promises the next
       // announcement rather than a confirmation that never arrives.
@@ -443,54 +446,120 @@
   }
 
   /**
+   * Is the form collecting a "tell me when the next dates open" signup rather
+   * than booking one specific lesson?
+   *
+   * Both notify entry points set the same flag, and three things read it: the
+   * submit branch, the partner-question guard, and the `required` rules below.
+   */
+  function isNotifyMode(form) {
+    return !!form && form.dataset.mode === 'notify';
+  }
+
+  /**
    * Show or hide the two solo-only fields, and keep `required` in step.
    *
    * Both matter. BETangoValidate skips hidden controls, so hiding alone would
    * be enough for the message pass — but leaving `required` set on a hidden
    * input is the kind of thing that starts blocking submits the moment
    * somebody changes how the section is hidden.
+   *
+   * Visibility follows the partner answer alone. `required` follows the partner
+   * answer AND the mode: in notify mode nothing here is required — the fields
+   * are collected, not demanded. See syncModeRequirements().
    */
   function syncAloneFields(form) {
     if (!form) return;
     // Shown ONLY for an explicit "coming alone". Both of the other two states —
-    // with a partner, and nothing chosen yet — leave these hidden and optional.
+    // with a partner, and nothing chosen yet — leave these hidden.
     const alone = partnerChoice(form) === 'alone';
     const wrap = form.querySelector('#ft-alone-fields');
     if (wrap) wrap.hidden = !alone;
 
+    const required = alone && !isNotifyMode(form);
     ['#ft-birth-year', '#ft-height'].forEach(function (sel) {
       const el = form.querySelector(sel);
       if (!el) return;
-      el.required = alone;
-      // A message left over from before the switch would point at a field
-      // that is no longer being asked for — and once the field is hidden the
-      // visitor cannot see, reach or clear that message.
-      if (!alone && window.BETangoValidate) BETangoValidate.clearField(el);
+      el.required = required;
+      // A message left over from before the switch would point at a field that
+      // is no longer being asked for — either hidden again by a change of
+      // partner answer, or merely optional now because the visitor ticked
+      // "none of these dates". Once a field is hidden the visitor cannot see,
+      // reach or clear that message either.
+      if (!required && window.BETangoValidate) BETangoValidate.clearField(el);
     });
   }
 
   /**
-   * Notify-me asks for none of this. POST /free-trial/notify-me is unchanged
-   * and takes no gender, age or height, so the whole block is hidden rather
-   * than left required on a form that will never send it.
+   * Keep every `required` rule on this form in step with the mode, and the
+   * asterisks that describe them. Visibility is deliberately NOT this
+   * function's business.
+   *
+   * #1240: until 2026-09-12 one function did both, and notify mode used it to
+   * hide #ft-match-section outright. The partner question sits OUTSIDE that
+   * section, so it stayed on screen with a hole where gender and language had
+   * been — and the answer it did collect was then dropped from the payload,
+   * while the success card still promised a match "based on age and height"
+   * nobody had been asked for. The fields now stay exactly where they are in
+   * both modes and only the rules change, which is why the two concerns are
+   * two functions: a single `visible` flag could not express "shown, and
+   * optional".
+   *
+   * Booking: gender and language are required, and birth year and height join
+   * them the moment somebody says they are coming alone.
+   * Notify: all four are optional. A bare name + email signup must still go
+   * through — that was Sven's condition for keeping the fields at all. The date
+   * select is dropped from `required` by the notify entry points themselves,
+   * since they are the ones that disable it; its asterisk comes down here with
+   * everything else's.
    */
-  function setMatchSectionVisible(form, visible) {
+  function syncModeRequirements(form) {
     if (!form) return;
-    const sec = form.querySelector('#ft-match-section');
-    if (sec) sec.hidden = !visible;
+    const optional = isNotifyMode(form);
 
-    // Gender and language sit in one row and are hidden together. A `required`
-    // left on a control nobody can see is the shape of bug that blocks a submit
-    // with a message the visitor cannot read or reach.
     ['#ft-gender', '#ft-language'].forEach(function (sel) {
       const el = form.querySelector(sel);
-      if (el) el.required = visible;
+      if (!el) return;
+      el.required = !optional;
+      // Ticking "none of these dates" after a refused booking submit has to
+      // take the old "please make a choice" with it: the field it points at is
+      // not being asked for any more, and nothing else would ever clear it.
+      if (optional && window.BETangoValidate) BETangoValidate.clearField(el);
     });
 
-    if (visible) syncAloneFields(form);
-    else ['#ft-birth-year', '#ft-height'].forEach(function (sel) {
-      const el = form.querySelector(sel);
-      if (el) el.required = false;
+    syncAloneFields(form);
+    setRequiredMarkers(form, !optional);
+  }
+
+  /**
+   * The gold asterisks are copy, not decoration: each one says "you must fill
+   * this in". Leaving them up in notify mode would be the same lie in
+   * miniature, so they come down with the rules they describe — and they come
+   * down through ONE mechanism, so a field cannot be quietly left out of it.
+   *
+   * Two scopes, both of which stop being mandatory in notify mode:
+   *  - #ft-match-section: gender, language, birth year, height.
+   *  - the date field. Its select is disabled in notify mode, so an asterisk
+   *    there marks the one control on the form the visitor cannot touch as the
+   *    only one still claiming to be mandatory. It read worst of all once the
+   *    matching asterisks below it started disappearing correctly (#1240).
+   *    The no-dates-at-all path hides that field outright, where this is
+   *    harmless rather than unnecessary — it is the same state either way.
+   */
+  function requiredMarkerScopes(form) {
+    const scopes = [];
+    const sec = form.querySelector('#ft-match-section');
+    if (sec) scopes.push(sec);
+    const dateField = form.querySelector('#class-date');
+    const dateWrap = dateField && dateField.closest('.ft-form-field');
+    if (dateWrap) scopes.push(dateWrap);
+    return scopes;
+  }
+
+  function setRequiredMarkers(form, show) {
+    if (!form) return;
+    requiredMarkerScopes(form).forEach(function (scope) {
+      scope.querySelectorAll('.ft-req').forEach(function (el) { el.hidden = !show; });
     });
   }
 
@@ -532,6 +601,8 @@
     if (selectEl) {
       selectEl.required = false;
       selectEl.disabled = true;
+      // Any "please choose a date" from an earlier attempt goes with it.
+      if (window.BETangoValidate) BETangoValidate.clearField(selectEl);
       const field = selectEl.closest('.ft-form-field');
       if (field) field.style.display = 'none';
     }
@@ -548,8 +619,10 @@
     if (note) note.textContent = t.notifyFormNote;
 
     // 5) Flag mode so the submit handler takes the notify branch
+    // The matching fields stay on screen and stay collectable — they are only
+    // optional now (#1240). Set the flag first: the `required` rules read it.
     form.dataset.mode = 'notify';
-    setMatchSectionVisible(form, false);
+    syncModeRequirements(form);
   }
 
   /**
@@ -568,6 +641,10 @@
       selectEl.required = false;
       selectEl.disabled = true;
       selectEl.value = '';
+      // The select stays on screen here, so a "please choose a date" left over
+      // from a refused booking submit would sit under a greyed-out control the
+      // visitor is no longer being asked to use.
+      if (window.BETangoValidate) BETangoValidate.clearField(selectEl);
     }
 
     // Rewrite the form card header
@@ -588,8 +665,10 @@
     const note = formCard?.querySelector('.ft-form-note');
     if (note) note.textContent = t.notifyFormNote;
 
+    // The matching fields stay on screen and stay collectable — they are only
+    // optional now (#1240). Set the flag first: the `required` rules read it.
     form.dataset.mode = 'notify';
-    setMatchSectionVisible(form, false);
+    syncModeRequirements(form);
   }
 
   /**
@@ -633,7 +712,7 @@
     if (note) note.textContent = o.note;
 
     delete form.dataset.mode;
-    setMatchSectionVisible(form, true);
+    syncModeRequirements(form);
   }
 
   // #826 — after a submit the tall form is replaced by a short confirmation
@@ -651,7 +730,15 @@
     window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
   }
 
-  function showNotifySuccess(form, lang, hasPartner) {
+  /**
+   * @param {'alone'|'partner'|null} choice — the partner answer, three-state.
+   *
+   * #1013: the solo note used to print whenever a boolean `hasPartner` was
+   * false, which included every visitor who never answered the question at all.
+   * It told them "you told us you don't have a partner yet" when they had told
+   * us nothing. It is now printed only for an explicit "coming alone".
+   */
+  function showNotifySuccess(form, lang, choice) {
     const t = T[lang];
     const wrap = form.closest('.form-container') || form.parentElement;
     const email = form.querySelector('#email')?.value || '';
@@ -666,7 +753,7 @@
         </div>
         <h3 class="ft-success-title">${t.notifySuccessTitle}</h3>
         <p class="ft-success-msg">${t.notifySuccessMessage}</p>
-        ${!hasPartner ? `<p class="ft-success-msg ft-success-solo-note">${t.notifySuccessSoloNote}</p>` : ''}
+        ${choice === 'alone' ? `<p class="ft-success-msg ft-success-solo-note">${t.notifySuccessSoloNote}</p>` : ''}
         ${email ? `<p class="ft-success-email">${t.notifyEmailNote} <strong>${email}</strong></p>` : ''}
       </div>`;
     scrollSuccessIntoView(wrap);
@@ -970,9 +1057,10 @@
       const choice = partnerChoice(form);
       const hasPartner = choice === 'partner';
 
-      // A booking must answer the question. Notify-me must NOT have to: that
-      // endpoint takes none of these fields, and gating "tell me when a slot
-      // opens" on a partner choice would close the path outright.
+      // A booking must answer the question. Notify-me must NOT have to: gating
+      // "tell me when a slot opens" on a partner choice would close the path
+      // outright. The endpoint does now take the answer when there is one
+      // (#1240) — what it must never do is demand one.
       if (choice === null && form.dataset.mode !== 'notify') {
         showFormError(form, t.fvPartnerChoice);
         const cards = form.querySelector('.ft-partner-cards');
@@ -980,10 +1068,11 @@
         return;
       }
 
-      // Partner-matching fields. Gender is asked of everybody; birth year and
-      // height only of someone booking alone, so they are read as null when a
-      // partner is coming and the inputs are hidden. Wire names are fixed by
-      // the CRM: contact.gender, contact.birth_year, contact.height.
+      // Partner-matching fields, read the same way for both modes since #1240.
+      // Gender is asked of everybody; birth year and height only of someone
+      // coming alone, so they are read as null when a partner is coming and the
+      // inputs are hidden. Wire names are fixed by the CRM: contact.gender,
+      // contact.birth_year, contact.height.
       const gender = form.querySelector('#ft-gender')?.value || null;
       const language = form.querySelector('#ft-language')?.value || lang;
       const birthYearRaw = !hasPartner ? (form.querySelector('#ft-birth-year')?.value || '') : '';
@@ -1022,12 +1111,15 @@
         // change: they were data pretending to be copy, and leaving them would
         // leave a second, silent definition of the fact in this repository.
         //
-        // Deliberately NOT sent: the partner answer. Notify-me hides the whole
-        // matching section (setMatchSectionVisible(form, false)) and the guard
-        // above lets `choice` stay null here on purpose, so `hasPartner` is
-        // false-because-unanswered far more often than it is false-because-
-        // alone. The old payload wrote "(coming alone)" into the message for
-        // both, which was an invention on most of these submissions.
+        // The partner answer travels as three states, not two, and that is the
+        // whole point of #1240. The guard above lets `choice` stay null here on
+        // purpose, so `hasPartner` is false-because-unanswered far more often
+        // than it is false-because-alone. The old payload wrote "(coming
+        // alone)" into the message for both, which was an invention on most of
+        // these submissions — and sending has_partner:false would be the same
+        // invention in a tidier wrapper. So the key is attached below only when
+        // there is an answer to attach, and a missing key reads on the CRM side
+        // as "did not say".
         const notifyPayload = {
           contact: {
             first_name: firstName,
@@ -1035,6 +1127,16 @@
             email:      email,
             phone:      phone,
             language:   language,
+            // Optional here, unlike a booking. The school needs to know who is
+            // coming alone and what to match them on when the January dates
+            // open, but an empty box must never block a "keep me informed"
+            // signup: empty reads as null and the CRM stores nothing. Height
+            // goes exactly as typed — App\Support\Height reads "1,70", "1m70"
+            // and "170cm" alike, so normalising here would only add a second
+            // place for the two to disagree.
+            gender:     gender,
+            birth_year: birthYear,
+            height:     height,
           },
           // The optional free-text box. The endpoint accepts it as nullable
           // and substitutes its own "wants to be kept informed" sentence when
@@ -1044,11 +1146,14 @@
           _ts:    parseInt((form.querySelector('[name="_ts"]') || { value: '0' }).value, 10),
         };
 
+        // Attached, never defaulted: an absent key is "did not answer".
+        if (choice !== null) notifyPayload.has_partner = hasPartner;
+
         try {
           await api.notifyFreeTrial(notifyPayload);
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({ event: 'free_trial_notify' });
-          showNotifySuccess(form, lang, hasPartner);
+          showNotifySuccess(form, lang, choice);
         } catch (err) {
           console.error('[FreeTrial] Notify signup error:', err);
           if (submitBtn) {
