@@ -54,25 +54,32 @@
       fvHeight: 'Enter a height in centimetres, for example 170.',
       fvPartnerChoice: 'Please tell us whether you\'re coming alone or with a partner.',
       fvBirthYear: 'Enter your year of birth, for example 1985.',
+      // Notify mode only. The opt-in below is optional when booking a date —
+      // the booking itself is the thing we confirm — but a "keep me informed"
+      // signup is nothing BUT a promise to email, so it cannot be taken
+      // without permission to send that email (#1246).
+      fvMarketingConsent: 'Please tick this box so we may email you — without your permission we can\'t send you the new dates.',
       // Notify mode — shown when no free trial dates are scheduled
       notifyLead: 'Our free trial lessons take place in January and September, just before the start of each 14-week course cycle. Leave your details below and we\'ll let you know as soon as the next dates are announced.',
       notifyBanner: 'There are currently no free trial lessons planned. Leave your details and we\'ll notify you as soon as new dates are announced.',
       notifyFormTitle: 'Keep me informed',
       notifyFormSubtitle: 'We\'ll email you as soon as the next free trial dates are scheduled.',
       notifySubmit: 'Notify me of next dates',
-      notifyFormNote: 'No commitment — you\'ll only hear from us when new free trials are announced.',
+      notifyFormNote: 'We\'ll email you a confirmation straight away, and the new dates as soon as they\'re announced. Unsubscribe at any time.',
       notifyEmailRequired: 'Please enter your name and email so we can reach you.',
       notifySuccessTitle: 'You\'re on the list!',
-      notifySuccessMessage: 'We\'ll email you as soon as the next free trial dates are announced.',
+      notifySuccessMessage: 'We\'ve sent you a confirmation, and we\'ll write again as soon as the next free trial dates are announced.',
       // Notify mode books nothing at all — there is no reservation yet to
       // confirm or withhold, only a heads-up about how the pairing works.
       // Printed ONLY after an explicit "I'm coming alone" (#1013): before that
       // it also greeted everyone who never answered the partner question, and
       // told them what they had supposedly said.
       notifySuccessSoloNote: 'Tango is danced in couples, and you told us you don\'t have a partner yet. That\'s no problem — when the next dates are announced we\'ll look for a match for you, based on age and height. It helps a lot if you ask around among friends, family or colleagues in the meantime.',
-      // No email is sent by the notify-me endpoint, so this promises the next
-      // announcement rather than a confirmation that never arrives.
-      notifyEmailNote: 'We\'ll email the next dates to',
+      // The notify-me endpoint DOES send a confirmation now (#1246), so this
+      // names the mail that has just gone out. It deliberately does not date
+      // the second one: the trial dates follow when they are announced, which
+      // is January or September and may be months away.
+      notifyEmailNote: 'We\'ve sent a confirmation to',
       notifyCheckbox: 'I can\'t make any of these dates — keep me informed about future lessons',
     },
     FR: {
@@ -109,18 +116,19 @@
       fvHeight: 'Indiquez une taille en centimètres, par exemple 170.',
       fvPartnerChoice: 'Indiquez si vous venez seul(e) ou avec un partenaire.',
       fvBirthYear: 'Indiquez votre année de naissance, par exemple 1985.',
+      fvMarketingConsent: 'Cochez cette case pour que nous puissions vous écrire — sans votre autorisation, nous ne pourrons pas vous envoyer les nouvelles dates.',
       // Mode notification — affiché quand aucune date d'essai gratuit n'est programmée
       notifyLead: 'Nos cours d\'essai gratuits ont lieu en janvier et en septembre, juste avant le début de chaque cycle de 14 semaines. Laissez-nous vos coordonnées ci-dessous et nous vous préviendrons dès que les prochaines dates seront annoncées.',
       notifyBanner: 'Il n\'y a actuellement aucun cours d\'essai gratuit prévu. Laissez-nous vos coordonnées et nous vous préviendrons dès que de nouvelles dates seront annoncées.',
       notifyFormTitle: 'Tenez-moi informé(e)',
       notifyFormSubtitle: 'Nous vous enverrons un email dès que les prochaines dates d\'essai gratuit seront programmées.',
       notifySubmit: 'Prévenez-moi des prochaines dates',
-      notifyFormNote: 'Sans engagement — vous n\'aurez de nouvelles que lorsque de nouveaux essais gratuits seront annoncés.',
+      notifyFormNote: 'Nous vous envoyons une confirmation tout de suite, et les nouvelles dates dès leur annonce. Désinscription à tout moment.',
       notifyEmailRequired: 'Veuillez renseigner votre nom et votre email pour que nous puissions vous contacter.',
       notifySuccessTitle: 'Vous êtes sur la liste !',
-      notifySuccessMessage: 'Nous vous enverrons un email dès que les prochaines dates d\'essai gratuit seront annoncées.',
+      notifySuccessMessage: 'Nous venons de vous envoyer une confirmation, et nous vous réécrirons dès que les prochaines dates d\'essai gratuit seront annoncées.',
       notifySuccessSoloNote: 'Le tango se danse à deux, et vous nous avez indiqué ne pas encore avoir de partenaire. Ce n\'est pas un souci : dès l\'annonce des prochaines dates, nous chercherons un binôme pour vous, selon l\'âge et la taille. En attendant, cela aide beaucoup si vous demandez aussi autour de vous — amis, famille ou collègues.',
-      notifyEmailNote: 'Nous enverrons les prochaines dates à',
+      notifyEmailNote: 'Nous avons envoyé une confirmation à',
       notifyCheckbox: 'Aucune de ces dates ne me convient — tenez-moi informé(e) des prochains cours',
     },
     NL: {
@@ -157,18 +165,19 @@
       fvHeight: 'Vul een lengte in centimeters in, bijvoorbeeld 170.',
       fvPartnerChoice: 'Geef aan of je alleen komt of met een partner.',
       fvBirthYear: 'Vul je geboortejaar in, bijvoorbeeld 1985.',
+      fvMarketingConsent: 'Vink dit vakje aan zodat we je mogen mailen — zonder je toestemming kunnen we je de nieuwe data niet bezorgen.',
       // Notificatiemodus — zichtbaar wanneer er geen gratis proeflessen gepland zijn
       notifyLead: 'Onze gratis proeflessen vinden plaats in januari en september, net voor de start van elke lescyclus van 14 weken. Laat hieronder je gegevens achter en we laten het je weten zodra de volgende data bekend zijn.',
       notifyBanner: 'Er zijn momenteel geen gratis proeflessen gepland. Laat je gegevens achter en we laten het je weten zodra er nieuwe data aangekondigd worden.',
       notifyFormTitle: 'Hou me op de hoogte',
       notifyFormSubtitle: 'We sturen je een mail zodra de volgende gratis proeflesdata gepland zijn.',
       notifySubmit: 'Breng me op de hoogte',
-      notifyFormNote: 'Geen verplichtingen — je hoort alleen van ons wanneer er nieuwe proeflessen aangekondigd worden.',
+      notifyFormNote: 'We sturen je meteen een bevestiging, en de nieuwe data zodra ze aangekondigd worden. Uitschrijven kan altijd.',
       notifyEmailRequired: 'Vul je naam en e-mailadres in zodat we je kunnen bereiken.',
       notifySuccessTitle: 'Je staat op de lijst!',
-      notifySuccessMessage: 'We sturen je een mail zodra de volgende gratis proeflesdata aangekondigd worden.',
+      notifySuccessMessage: 'We hebben je een bevestiging gestuurd, en we mailen je opnieuw zodra de volgende gratis proeflesdata aangekondigd worden.',
       notifySuccessSoloNote: 'Tango dans je met z\'n tweeën, en je gaf aan nog geen danspartner te hebben. Geen probleem: zodra de volgende data bekend zijn, zoeken we een match voor je op basis van leeftijd en lengte. Het helpt enorm als je ondertussen ook eens rondvraagt bij vrienden, familie of collega\'s.',
-      notifyEmailNote: 'We sturen de volgende data naar',
+      notifyEmailNote: 'We hebben een bevestiging gestuurd naar',
       notifyCheckbox: 'Geen van deze data past mij — hou me op de hoogte van toekomstige lessen',
     },
   };
@@ -529,6 +538,50 @@
 
     syncAloneFields(form);
     setRequiredMarkers(form, !optional);
+    syncMarketingConsent(form);
+  }
+
+  /**
+   * The one rule on this form that runs the OTHER way round (#1246).
+   *
+   * Marketing consent is optional on a booking, and must stay that way: the
+   * booking is confirmed by email whether or not the visitor wants a
+   * newsletter, so demanding the opt-in in order to take a reservation would
+   * mean it was not freely given. A notify-me signup is the opposite — it is
+   * nothing but a promise to email, months from now, about dates that do not
+   * exist yet. Without permission to send that email there is no way to keep
+   * the promise, which is Sven's reason in one line: "otherwise we'll never be
+   * able to notify them with a mailing."
+   *
+   * So this cannot ride on setRequiredMarkers(), which shows every marker in
+   * its scopes when the form is NOT in notify mode. Its marker is deliberately
+   * outside those scopes and toggled here, next to the rule it describes, so
+   * the asterisk and the required attribute cannot drift apart.
+   *
+   * Called from syncModeRequirements(), which is the single thing all three
+   * mode transitions — enterNotifyMode, enterNotifyModeWithDates and
+   * exitNotifyMode — end with. There is no fourth place to keep in step.
+   */
+  function syncMarketingConsent(form) {
+    if (!form) return;
+    const el = marketingConsentEl(form);
+    if (!el) return;
+
+    const required = isNotifyMode(form);
+    el.required = required;
+
+    const marker = form.querySelector('#ft-consent-req');
+    if (marker) marker.hidden = !required;
+
+    // Unticking "none of these dates" after a refused notify submit has to take
+    // the message with it: the box is optional again, and nothing else would
+    // ever clear a message sitting under a box the visitor is now allowed to
+    // leave alone.
+    if (!required && window.BETangoValidate) BETangoValidate.clearField(el);
+  }
+
+  function marketingConsentEl(form) {
+    return form ? form.querySelector('input[name="marketing_consent"]') : null;
   }
 
   /**
@@ -996,8 +1049,11 @@
       // This form carries `novalidate`, so nothing validates it unless we do:
       // before this existed, an empty form either did nothing at all or posted
       // and came back as a raw "HTTP 422:".
-      // Marketing consent is deliberately absent from this pass — it is optional
-      // by design, and gating the booking on it would mean it was not freely given.
+      // Marketing consent is absent from this pass while the form is BOOKING a
+      // date — it is optional there by design, and gating the booking on it
+      // would mean it was not freely given. In notify mode it is marked
+      // required (see syncMarketingConsent) and the generic pass picks it up
+      // like any other box; only its wording is replaced below.
       if (window.BETangoValidate) {
         BETangoValidate.clear(form);
         const problems = BETangoValidate.check(form, {
@@ -1011,8 +1067,13 @@
         // select, so neither must inherit "Please choose a date."
         const genderEl = form.querySelector('#ft-gender');
         const languageEl = form.querySelector('#ft-language');
+        // Nor is the marketing opt-in the terms box: "please accept the terms
+        // and conditions" points at the wrong control and gives no reason, and
+        // the reason is the whole point of asking for it here (#1246).
+        const consentEl = marketingConsentEl(form);
         problems.forEach(function (pr) {
           if (pr.el === genderEl || pr.el === languageEl) pr.message = t.fvSelect;
+          else if (pr.el === consentEl) pr.message = t.fvMarketingConsent;
         });
 
         // Height and birth year need a shape check the generic pass cannot
@@ -1089,6 +1150,24 @@
           return;
         }
 
+        // Belt and braces, the same shape as the missing-date failure in the
+        // booking branch below. The generic pass above has already caught this
+        // through the required attribute — but only when form-validation.js
+        // loaded, and the endpoint answers 422 to a notify signup without
+        // consent, so a submit that reaches here with the box unticked is one
+        // the visitor can never complete. Say why here, in the language of the
+        // page, rather than surfacing the CRM's own wording.
+        const consent = marketingConsentEl(form);
+        const consentGiven = !!(consent && consent.checked);
+        if (!consentGiven) {
+          if (consent && window.BETangoValidate) {
+            BETangoValidate.show(form, [{ el: consent, message: t.fvMarketingConsent }]);
+          } else {
+            showFormError(form, t.fvMarketingConsent);
+          }
+          return;
+        }
+
         if (submitBtn) {
           submitBtn.disabled = true;
           submitBtn.textContent = t.btnLoading;
@@ -1142,6 +1221,12 @@
           // and substitutes its own "wants to be kept informed" sentence when
           // there is nothing, so an empty box must send nothing rather than ''.
           message: userNote || null,
+          // Top level, exactly where the booking payload puts it, and mandatory
+          // here rather than optional — the endpoint refuses a notify signup
+          // without it (#1246). The guard above means this is only ever true;
+          // it is read off the box rather than hardcoded so the payload and
+          // the tick cannot disagree about what the visitor actually did.
+          marketing_consent: consentGiven,
           _honey: (form.querySelector('[name="_honey"]') || { value: '' }).value,
           _ts:    parseInt((form.querySelector('[name="_ts"]') || { value: '0' }).value, 10),
         };
@@ -1207,7 +1292,7 @@
         // Kept separate on purpose: terms_accepted gates the booking,
         // marketing_consent is the optional opt-in the CRM logs as GDPR consent.
         terms_accepted: true,
-        marketing_consent: !!(form.querySelector('input[name="marketing_consent"]') || {}).checked,
+        marketing_consent: !!(marketingConsentEl(form) || {}).checked,
         // Where this visit came from, captured on the landing page by
         // attribution.js. Optional on the backend and guarded here, so a page
         // that never loaded the module still submits fine.
