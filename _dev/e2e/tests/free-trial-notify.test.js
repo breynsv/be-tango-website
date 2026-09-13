@@ -1,6 +1,7 @@
 // _dev/e2e/tests/free-trial-notify.test.js
 //
-// "None of these dates work — keep me informed" must reach the CRM as DATA.
+// "None of these dates work — keep me informed" must reach the CRM as DATA,
+// and it must carry permission to send the mailing it promises (#1246).
 //
 // Until 2026-08-31 this branch of the free-trial form pasted one of six fixed
 // sentences into the free-text `message` and posted the general contact form,
@@ -73,6 +74,23 @@ async function run(browser) {
     // visible in notify mode, so the browser blocks the submit without it.
     await page.check('[name="terms_accepted"]');
 
+    // #1246 — the marketing opt-in is MANDATORY in notify mode and optional
+    // when booking a date. Submit once with it unticked first: this branch
+    // promises an email months from now, so a signup taken without permission
+    // to send that email is a promise that cannot be kept, and the endpoint
+    // answers 422 to one. Proving the form refuses it here is the point — an
+    // assertion that only ever ran on the happy path would go green against a
+    // build that never enforced anything.
+    await page.click('#free-trial-form [type="submit"]');
+    await page.waitForSelector('.fv-error[data-error-for="marketing_consent"]', { timeout: 5000 });
+    if (posts.length !== 0) {
+      throw new Error(
+        `the notify branch posted without marketing consent (${posts.length} request(s)) — the endpoint answers 422 to that, and the visitor can never complete it`
+      );
+    }
+
+    await page.check('[name="marketing_consent"]');
+
     await page.click('#free-trial-form [type="submit"]');
     await page.waitForFunction(
       () => {
@@ -103,6 +121,14 @@ async function run(browser) {
     }
     if (b.message !== 'Evenings only please.') {
       throw new Error(`message carried ${JSON.stringify(b.message)} — the visitor's own note must travel verbatim`);
+    }
+    // Top level, a real boolean, exactly where the booking payload puts it.
+    // Nested inside `contact`, or sent as the string "true", is a request the
+    // endpoint refuses.
+    if (b.marketing_consent !== true) {
+      throw new Error(
+        `marketing_consent came through as ${JSON.stringify(b.marketing_consent)} at the top level — the endpoint requires a boolean true there, and without it no mailing can ever reach these people`
+      );
     }
     if ('topic' in b) {
       throw new Error('the payload still carries a contact-form `topic` — this is no longer the contact form');
