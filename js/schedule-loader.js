@@ -18,11 +18,6 @@
             emptyText: 'Check back soon for updated schedules.',
             bookFreeTrial: 'BOOK FREE TRIAL',
             signUp: 'SIGN UP',
-            // Shown instead of signUp when the CRM reports is_full. The class stays
-            // on the schedule and stays clickable — what it books is a waiting-list
-            // place, and the button has to say so before it is pressed.
-            classFull: 'FULL',
-            joinWaitlist: 'JOIN WAITING LIST',
             sessions: 'sessions',
             viewSchedule: 'View Schedule',
             weeklySchedule: 'Weekly schedule',
@@ -66,8 +61,6 @@
             emptyText: 'Kom binnenkort terug voor bijgewerkte roosters.',
             bookFreeTrial: 'BOEK GRATIS PROEFLES',
             signUp: 'INSCHRIJVEN',
-            classFull: 'VOLZET',
-            joinWaitlist: 'OP DE WACHTLIJST',
             sessions: 'lessen',
             viewSchedule: 'Bekijk Rooster',
             weeklySchedule: 'Wekelijks rooster',
@@ -111,8 +104,6 @@
             emptyText: 'Revenez bientôt pour les horaires mis à jour.',
             bookFreeTrial: 'RÉSERVER UN ESSAI GRATUIT',
             signUp: 'S\'INSCRIRE',
-            classFull: 'COMPLET',
-            joinWaitlist: 'LISTE D\'ATTENTE',
             sessions: 'séances',
             viewSchedule: 'Voir l\'horaire',
             weeklySchedule: 'Horaire hebdomadaire',
@@ -285,21 +276,6 @@
             ? `<span class="schedule-start-date">${t.startsOn}: ${formatDate(classData.start_date, lang)}</span>`
             : '';
 
-        // A full class is LISTED, not hidden. The CRM stopped filtering these out of
-        // /classes on 2026-09-20 (Product::scopeBookable), because hiding them meant a
-        // class ticked "Fully booked" silently vanished from this page. It now stays,
-        // wearing a badge, and its button books a waiting-list place rather than a seat —
-        // which is what the CRM writes (status 'Waitlisted') and what the enrolment modal
-        // has always had a screen for but never received the flag to show.
-        //
-        // `is_full` comes from ProductResource and covers BOTH ways a class fills up: the
-        // "Fully booked" checkbox and the headcount reaching max_students. Reuses
-        // level-badge-red rather than adding a class, so no stylesheet has to be rebuilt.
-        const isFull = classData.is_full === true;
-        const fullHtml = isFull
-            ? `<span class="schedule-badge level-badge-red">${t.classFull}</span>`
-            : '';
-
         const item = document.createElement('div');
         item.className = 'schedule-item';
         item.innerHTML = `
@@ -315,7 +291,6 @@
                 ${startDateHtml}
             </div>
             <span class="schedule-badge ${level.badgeClass}">${level.name}</span>
-            ${fullHtml}
         `;
 
         const btn = document.createElement('button');
@@ -325,8 +300,7 @@
         btn.dataset.price = classData.price || '';
         btn.dataset.location = (classData.location && locStr(classData.location.city, lang)) || classData.location && classData.location.name || '';
         btn.dataset.time = classData.start_time ? (classData.end_time ? classData.start_time + '\u2013' + classData.end_time : classData.start_time) : '';
-        btn.dataset.isFull = isFull ? '1' : '';
-        btn.textContent = (isFull ? t.joinWaitlist : t.signUp) + ' →';
+        btn.textContent = t.signUp + ' →';
         item.appendChild(btn);
 
         const hasCalendarDates = (classData.lesson_dates && classData.lesson_dates.length > 0) ||
