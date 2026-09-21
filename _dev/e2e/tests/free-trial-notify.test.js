@@ -19,17 +19,41 @@
 // Every /api/v1/ POST is intercepted and answered locally, so this module
 // creates nothing anywhere and is safe to run against production.
 const { SITE_URL } = require('../config');
+const { freeTrialState, STATES } = require('../helpers/free-trial-state');
 
 const PAGE_URL = SITE_URL + '/en/tango-classes/free-trial/';
 
-async function waitForDates(page) {
+/**
+ * Put the form into notify mode and say how we got there.
+ *
+ * There are two doors into this branch and the payload must be identical through
+ * both, so whichever one the calendar leaves open is the one we take:
+ *
+ *   dates on offer   — the visitor ticks "I can't make any of these dates".
+ *   no dates at all  — January/September are months away, so js/free-trial.js has
+ *                      already switched the whole form over and there is no
+ *                      checkbox to tick. This is the live state for most of the
+ *                      year, and before 2026-09-21 it was the one state this test
+ *                      could not run in: it waited 30s for a date <option> that was
+ *                      never coming and reported the page as broken.
+ */
+async function enterNotifyMode(page) {
+  const state = await freeTrialState(page);
+
+  if (state === STATES.DATES) {
+    await page.check('input[name="notify-me"]');
+  }
+
+  // Either way, the form must actually be in notify mode before we fill it —
+  // otherwise the submit below would post a booking and this test would be
+  // asserting the wrong endpoint entirely.
   await page.waitForFunction(
-    () => {
-      const sel = document.querySelector('[name="class-date"]');
-      return sel && sel.options.length > 1;
-    },
-    { timeout: 15000 }
+    () => document.getElementById('free-trial-form')?.dataset.mode === 'notify',
+    null,
+    { timeout: 5000 }
   );
+
+  return state;
 }
 
 async function run(browser) {
@@ -58,12 +82,7 @@ async function run(browser) {
     });
 
     await page.goto(PAGE_URL, { waitUntil: 'networkidle', timeout: 20000 });
-    await waitForDates(page);
-
-    // Tick "I can't make any of these dates". The checkbox only exists when
-    // dates are on offer, which is the case this ticket is about: dates exist
-    // and none of them suit.
-    await page.check('input[name="notify-me"]');
+    const state = await enterNotifyMode(page);
 
     await page.fill('#free-trial-form [name="first-name"]', 'E2E');
     await page.fill('#free-trial-form [name="last-name"]', 'Notify');
@@ -137,7 +156,13 @@ async function run(browser) {
       throw new Error('the message still carries a pasted marker sentence; the fact belongs in the route, not the prose');
     }
 
-    results.push({ name: 'free-trial-notify:posts-to-the-notify-endpoint', passed: true, error: null });
+    // Named so the log says which of the two doors was exercised — a green line
+    // that does not say this would hide the fact that one door is never tested.
+    results.push({
+      name: `free-trial-notify:posts-to-the-notify-endpoint (via ${state === STATES.DATES ? 'checkbox' : 'empty-calendar'})`,
+      passed: true,
+      error: null,
+    });
   } catch (err) {
     await page.screenshot({ path: '_dev/e2e/screenshots/free-trial-notify.png', fullPage: true }).catch(() => {});
     results.push({ name: 'free-trial-notify:posts-to-the-notify-endpoint', passed: false, error: err.message });
