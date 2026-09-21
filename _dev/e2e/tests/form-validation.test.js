@@ -15,6 +15,7 @@
 //   - enrollment modal: reportValidity() showed a native browser bubble, one field
 //     at a time, in the BROWSER's language rather than the page's.
 const { SITE_URL } = require('../config');
+const { freeTrialState, STATES } = require('../helpers/free-trial-state');
 
 const TRIAL_URL = SITE_URL + '/nl/tangolessen/gratis-proefles/';
 
@@ -51,6 +52,20 @@ async function run(browser) {
       await page.goto(TRIAL_URL, { waitUntil: 'networkidle', timeout: 20000 });
       await page.waitForSelector('#free-trial-form', { timeout: 10000 });
 
+      // WHICH controls are required depends on what the page is offering, so the
+      // expected set has to follow it. With dates on offer the visitor is booking
+      // one, and #class-date must be answered. With none on offer the form is the
+      // "keep me informed" signup: js/free-trial.js hides and un-requires
+      // #class-date — demanding an error on it there would be demanding an error
+      // on a field the visitor cannot even see — and instead makes the marketing
+      // opt-in mandatory, because that branch promises an email months from now
+      // and cannot keep the promise without permission to send it (#1246).
+      const state = await freeTrialState(page);
+      const booking = state === STATES.DATES;
+      const expected = booking
+        ? ['first-name', 'last-name', 'email', 'class-date', 'terms_accepted']
+        : ['first-name', 'last-name', 'email', 'marketing_consent', 'terms_accepted'];
+
       await page.click('#free-trial-form button[type="submit"]');
       await page.waitForSelector(`#free-trial-form ${ERR}`, { state: 'visible', timeout: 5000 });
 
@@ -58,8 +73,15 @@ async function run(browser) {
       assert(!r.formMissing, 'free-trial form not found');
 
       // Every required control must name its own problem, not just the first one.
-      for (const f of ['first-name', 'last-name', 'email', 'class-date', 'terms_accepted']) {
+      for (const f of expected) {
         assert(r.fields.includes(f), `no inline error for "${f}" (got: ${r.fields.join(', ') || 'none'})`);
+      }
+      // ...and a field the visitor was never shown must not be blamed for being empty.
+      if (!booking) {
+        assert(
+          !r.fields.includes('class-date'),
+          'no dates are on offer, so #class-date is hidden — but the form still blamed it, leaving a dead end the visitor cannot clear'
+        );
       }
       // Messages must be in the page's language, not the browser's.
       assert(

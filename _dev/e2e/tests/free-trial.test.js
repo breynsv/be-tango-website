@@ -2,6 +2,7 @@
 const { SITE_URL, testEmail } = require('../config');
 const { verifyEmailDelivered } = require('../helpers/email-verify');
 const { formSubmitSlot } = require('../helpers/rate-limit');
+const { freeTrialState, STATES, NO_DATES_REASON } = require('../helpers/free-trial-state');
 
 const PAGE_URL = SITE_URL + '/en/tango-classes/free-trial/';
 
@@ -50,16 +51,9 @@ async function fillAloneFields(page) {
 }
 
 async function selectFirstAvailableDate(page) {
-  // Wait for API to populate the date select (up to 10s)
-  await page.waitForFunction(
-    () => {
-      const sel = document.querySelector('[name="class-date"]');
-      return sel && sel.options.length > 1; // more than just the default placeholder
-    },
-    { timeout: 10000 }
-  );
-
-  // Select the first non-empty option
+  // Select the first non-empty option. The caller has already established via
+  // freeTrialState() that dates are on offer, so a missing option here is a real
+  // fault rather than an empty calendar.
   const firstValue = await page.evaluate(() => {
     const sel = document.querySelector('[name="class-date"]');
     const opt = Array.from(sel.options).find((o) => o.value !== '');
@@ -100,6 +94,20 @@ async function submitAndAwaitResponse(page) {
   return response;
 }
 
+// Both sub-tests need the same bookable date, so when the first finds none the
+// second cannot run either; skipping it here keeps the reason on both lines rather
+// than letting the second one time out saying something less true.
+function skipCouple(results) {
+  results.push({
+    name: 'free-trial:couple-confirmed',
+    passed: false,
+    skipped: true,
+    reason: NO_DATES_REASON,
+    error: null,
+  });
+  return results;
+}
+
 async function run(browser) {
   const results = [];
 
@@ -110,6 +118,16 @@ async function run(browser) {
 
     try {
       await page.goto(PAGE_URL, { waitUntil: 'networkidle', timeout: 20000 });
+
+      // Booking needs a real, bookable date. Outside the January/September trial
+      // windows there is none, and none can be invented on production — so this
+      // sub-test reports a skip rather than a failure. See helpers/free-trial-state.js.
+      if ((await freeTrialState(page)) !== STATES.DATES) {
+        results.push({ name: 'free-trial:solo-waitlist', passed: false, skipped: true, reason: NO_DATES_REASON, error: null });
+        // `finally` below closes the page.
+        return skipCouple(results);
+      }
+
       await fillBaseFields(page, email);
       await selectFirstAvailableDate(page);
       await choosePartnerOption(page, 'ft-radio-solo');
@@ -134,6 +152,16 @@ async function run(browser) {
 
     try {
       await page.goto(PAGE_URL, { waitUntil: 'networkidle', timeout: 20000 });
+
+      // Also gated here, not just in sub-test 1: this is what waits for the API to
+      // finish filling #class-date. `networkidle` alone does not — it says the
+      // network went quiet, not that the script has written the <option>s — so
+      // without this the select could be read a beat too early.
+      if ((await freeTrialState(page)) !== STATES.DATES) {
+        results.push({ name: 'free-trial:couple-confirmed', passed: false, skipped: true, reason: NO_DATES_REASON, error: null });
+        return results;
+      }
+
       await fillBaseFields(page, email);
       await selectFirstAvailableDate(page);
       await choosePartnerOption(page, 'ft-radio-partner');

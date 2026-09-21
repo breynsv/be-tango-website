@@ -82,13 +82,23 @@ async function main() {
   const allResults = [];
   let passed = 0;
   let failed = 0;
+  // A sub-test may report `skipped: true` with a `reason` when the live site is in
+  // a state it cannot exercise — in practice: the free-trial page outside the
+  // January/September trial windows, when there is genuinely nothing to book. That
+  // is a fact about the calendar, not a defect, and failing on it would leave the
+  // suite red for most of the year. Skips are printed and carried into the report
+  // so they stay visible, but they do not colour the run.
+  let skipped = 0;
 
   for (const [modName, mod] of testModules) {
     try {
       const results = await mod.run(browser, config);
       for (const r of results) {
         allResults.push(r);
-        if (r.passed) {
+        if (r.skipped) {
+          skipped++;
+          console.log(`  ○ ${r.name} — skipped: ${r.reason || 'no reason given'}`);
+        } else if (r.passed) {
           passed++;
           console.log(`  ✓ ${r.name}`);
         } else {
@@ -121,7 +131,8 @@ async function main() {
     timestamp: new Date().toISOString(),
     passed,
     failed,
-    total:     passed + failed,
+    skipped,
+    total:     passed + failed + skipped,
     results:   allResults,
   };
 
@@ -130,7 +141,10 @@ async function main() {
   console.log(`\n→ Report written to ${reportPath}`);
 
   // Summary
-  console.log(`\n=== Results: ${passed}/${passed + failed} passed ===\n`);
+  console.log(
+    `\n=== Results: ${passed}/${passed + failed} passed` +
+    (skipped ? ` (${skipped} skipped) ` : ' ') + `===\n`
+  );
 
   process.exit(failed > 0 ? 1 : 0);
 }
