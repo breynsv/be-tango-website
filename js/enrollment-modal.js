@@ -100,6 +100,11 @@
       doneNoteWaitlist: 'We\'ve emailed you to confirm you\'re on the waitlist.',
       doneNotePartnerNeeded: 'We\'ve emailed you the details — we\'ll write again as soon as we\'ve found you a partner.',
       marketingOptIn: 'Yes, I\'d like to be kept informed by email about classes, workshops and events. Unsubscribe anytime — {link}.',
+      // #1316 — shown INSTEAD of the line above once "with a partner" is
+      // chosen. One person is ticking for two, so the box has to say so:
+      // the consent recorded for the partner is only worth anything if the
+      // person giving it was told that is what they were doing.
+      marketingOptInCouple: 'Yes, keep us both informed by email about classes, workshops and events — I\'m answering for my partner too, with their agreement. Unsubscribe anytime — {link}.',
       privacyLink: 'privacy policy',
       terms: 'By submitting, I agree to the {link} of BE-TANGO.',
       termsLink: 'terms and conditions',
@@ -185,6 +190,7 @@
       doneNoteWaitlist: 'Nous vous avons envoyé un email confirmant votre inscription sur la liste d\'attente.',
       doneNotePartnerNeeded: 'Nous vous avons envoyé les détails par email — nous vous réécrirons dès que nous vous aurons trouvé un(e) partenaire.',
       marketingOptIn: 'Oui, je souhaite recevoir des informations par e-mail sur les cours, ateliers et événements. Désinscription à tout moment — {link}.',
+      marketingOptInCouple: 'Oui, tenez-nous informés tous les deux par e-mail des cours, ateliers et événements — je réponds aussi pour mon/ma partenaire, avec son accord. Désinscription à tout moment — {link}.',
       privacyLink: 'politique de confidentialité',
       terms: 'En m\'inscrivant, j\'accepte les {link} de BE-TANGO.',
       termsLink: 'conditions générales',
@@ -270,6 +276,7 @@
       doneNoteWaitlist: 'We hebben je een mail gestuurd die je plek op de wachtlijst bevestigt.',
       doneNotePartnerNeeded: 'We hebben je de details gemaild — we schrijven je opnieuw zodra we een partner voor je gevonden hebben.',
       marketingOptIn: 'Ja, ik wens via e-mail op de hoogte gehouden te worden van lessen, workshops en evenementen. Uitschrijven kan altijd — {link}.',
+      marketingOptInCouple: 'Ja, houd ons allebei via e-mail op de hoogte van lessen, workshops en evenementen — ik antwoord ook voor mijn partner, met zijn/haar akkoord. Uitschrijven kan altijd — {link}.',
       privacyLink: 'privacybeleid',
       terms: 'Door te verzenden, ga ik akkoord met de {link} van BE-TANGO.',
       termsLink: 'algemene voorwaarden',
@@ -361,6 +368,12 @@
   // MODAL HTML
   // ========================
 
+  // #1316 — the two marketing-consent lines, filled in by buildModalHtml() and
+  // swapped by handlePartnerToggle(). Module scope because the two functions
+  // never share a call frame.
+  var MARKETING_SOLO_HTML = '';
+  var MARKETING_COUPLE_HTML = '';
+
   function buildModalHtml(t) {
     var lang = getLang();
     var progressLabel = lang === 'FR' ? 'Inscription' : lang === 'NL' ? 'Inschrijving' : 'Registration';
@@ -373,10 +386,16 @@
       ? 'We bevestigen uw plaats per email binnen 24&nbsp;uur.'
       : 'We\'ll confirm your spot by email within 24&nbsp;hours.';
     var legal = getLegalUrls();
-    var marketingHtml = t.marketingOptIn.replace(
-      '{link}',
-      '<a href="' + legal.privacy + '" target="_blank" rel="noopener">' + t.privacyLink + '</a>'
-    );
+    var privacyLink = '<a href="' + legal.privacy + '" target="_blank" rel="noopener">' + t.privacyLink + '</a>';
+    var marketingHtml = t.marketingOptIn.replace('{link}', privacyLink);
+
+    // #1316 — both versions are built here, where the translations and the
+    // legal URLs are already in hand, and stashed at module scope so
+    // handlePartnerToggle() can swap between them without rebuilding either.
+    // A fallback to the solo line keeps an un-translated page working rather
+    // than blanking the label.
+    MARKETING_SOLO_HTML = marketingHtml;
+    MARKETING_COUPLE_HTML = (t.marketingOptInCouple || t.marketingOptIn).replace('{link}', privacyLink);
 
     var termsHtml = t.terms.replace(
       '{link}',
@@ -588,7 +607,7 @@
         <div class="em-gdpr">
           <label class="em-consent">
             <input type="checkbox" id="em-marketing-consent" name="marketing_consent">
-            <span>${marketingHtml}</span>
+            <span id="em-marketing-consent-text">${marketingHtml}</span>
           </label>
         </div>
 
@@ -1223,6 +1242,28 @@
       const el = document.getElementById(id);
       if (el) el.required = withPartner;
     });
+
+    // #1316 — the marketing checkbox now says who it covers.
+    //
+    // Booking with a partner is the ONE case where the person ticking is
+    // answering for somebody who will never see this form: the booker types
+    // their partner's name and email, and the partner is created in the CRM
+    // from that. The old line read "Yes, I'd like to be kept informed" in all
+    // three languages — first person singular — so it said nothing at all
+    // about the second person, and the CRM was right to refuse to record
+    // consent for them on the strength of it.
+    //
+    // Swapping the wording is what makes the partner's consent real: it is
+    // given knowingly, by somebody told they are giving it for two. The tick
+    // itself is unchanged — same checkbox, same name, same posted field.
+    //
+    // Re-read on every toggle rather than set once, because somebody can pick
+    // "with a partner", tick the box, and then go back to "on my own". The
+    // label has to follow the answer that is live when they submit.
+    var consentText = document.getElementById('em-marketing-consent-text');
+    if (consentText) {
+      consentText.innerHTML = withPartner ? MARKETING_COUPLE_HTML : MARKETING_SOLO_HTML;
+    }
   }
 
   // ========================
