@@ -43,8 +43,8 @@
   <link rel="preload" href="/css/cookie-consent.min.css?v=3.8" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
 <!-- Stylesheet -->
-<link href="../../../css/styles.min.css?v=4.4" rel="stylesheet"/>
-<noscript><link href="../../../css/styles.min.css?v=4.4" rel="stylesheet"/></noscript>
+<link href="../../../css/styles.min.css?v=4.5" rel="stylesheet"/>
+<noscript><link href="../../../css/styles.min.css?v=4.5" rel="stylesheet"/></noscript>
 <!-- D4 Blog Design Styles -->
 <style>
     :root {
@@ -770,7 +770,7 @@
       .hero-inner { grid-template-columns: 1fr; }
       .hero-image-panel { display: none; }
       .hero-title { font-size: 2.8rem; }
-      .article-grid { grid-template-columns: 1fr; }
+      .article-grid { grid-template-columns: minmax(0, 1fr); } /* 1fr would grow to the table's longest word and zoom the page out on phones */
       .d4-sidebar { position: static; }
       .d4-newsletter-inner { grid-template-columns: 1fr; gap: 40px; }
     }
@@ -786,7 +786,7 @@
       .d4-nl-row .newsletter-email-input { border-radius: 8px; border-right: 1px solid rgba(255,255,255,0.15); }
       .d4-nl-row .newsletter-submit { border-radius: 8px; }
       .compare-table { font-size: 0.82rem; }
-      .compare-table th, .compare-table td { padding: 9px 10px; }
+      .compare-table th, .compare-table td { padding: 9px 10px; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: anywhere; }
     }
     @media (max-width: 480px) {
       .hero-title { font-size: 1.9rem; }

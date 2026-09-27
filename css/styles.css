@@ -5593,6 +5593,19 @@ section {
     line-height: 28px;
   }
 
+  /* 2b. The rule above also caught the round social icons: display and
+     padding knocked their SVG into the top-left of the circle. Keep the
+     44px target, restore the centring. */
+  .site-footer a.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    line-height: 1;
+  }
+
   /* 3. Logo link touch target (min 44px) */
   .logo a, a.logo {
     display: inline-flex;
