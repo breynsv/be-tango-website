@@ -667,7 +667,7 @@
       background: var(--bg);
     }
     .d4-section-header {
-      display: flex;
+      display: flex; flex-wrap: wrap; gap: 12px 24px;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 36px;
@@ -767,7 +767,7 @@
        RESPONSIVE
     ===================================================== */
     @media (max-width: 1024px) {
-      .hero-inner { grid-template-columns: 1fr; }
+      .hero-inner { grid-template-columns: minmax(0, 1fr); }
       .hero-image-panel { display: none; }
       .hero-title { font-size: 2.8rem; }
       .article-grid { grid-template-columns: minmax(0, 1fr); } /* 1fr would grow to the table's longest word and zoom the page out on phones */
