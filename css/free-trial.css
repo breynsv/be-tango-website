@@ -428,6 +428,16 @@ body { background: #FAF8F5; }
   opacity: 1;
 }
 
+/* Phones: same portrait crop and centring as the homepage hero. The wide
+   desktop photo in a tall, text-heavy hero zooms in on the empty wall and
+   pushes the dancers off the left edge (worst in FR/NL, whose copy is longer). */
+@media (max-width: 767px) {
+  .ft-hero__bg {
+    background-image: url('../images/Tango-mobile-640w.webp?v=2');
+    background-position: center center;
+  }
+}
+
 .ft-hero__gradient {
   position: absolute;
   inset: 0;
