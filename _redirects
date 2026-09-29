@@ -60,3 +60,22 @@
 # Note: Query-string redirects (/?p=1, /?page_id=2, /?p=1053)
 # are not supported by Cloudflare Pages _redirects file.
 # These will naturally stop being crawled over time.
+
+# SEO 2026-09: blog posts merged into class pages
+# The beginners and couples posts repeated what the class pages sell; their
+# unique content (lesson-by-lesson outline, beginner mistakes, extra FAQs) now
+# lives on the class page, so each post 301s there. Both slash forms are listed
+# because the post directories no longer exist to trigger the trailing-slash
+# normalisation.
+/en/blog/argentine-tango-classes-brussels-beginners/  /en/tango-classes/beginners/  301
+/en/blog/argentine-tango-classes-brussels-beginners   /en/tango-classes/beginners/  301
+/fr/blog/cours-tango-argentin-bruxelles-debutants/  /fr/cours-de-tango/debutants/  301
+/fr/blog/cours-tango-argentin-bruxelles-debutants   /fr/cours-de-tango/debutants/  301
+/nl/blog/tango-lessen-brussel-beginners/  /nl/tangolessen/beginners/  301
+/nl/blog/tango-lessen-brussel-beginners   /nl/tangolessen/beginners/  301
+/en/blog/tango-for-couples-brussels/  /en/tango-classes/couples/  301
+/en/blog/tango-for-couples-brussels   /en/tango-classes/couples/  301
+/fr/blog/tango-en-couple-bruxelles/  /fr/cours-de-tango/en-couple/  301
+/fr/blog/tango-en-couple-bruxelles   /fr/cours-de-tango/en-couple/  301
+/nl/blog/tango-voor-koppels-brussel/  /nl/tangolessen/voor-koppels/  301
+/nl/blog/tango-voor-koppels-brussel   /nl/tangolessen/voor-koppels/  301
