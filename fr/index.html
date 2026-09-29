@@ -9,6 +9,13 @@
   <meta name="robots" content="index, follow">
   <title>Cours de Tango Argentin à Bruxelles | École de Danse BE-TANGO</title>
   <meta property="og:title" content="Cours de Tango Argentin à Bruxelles | École de Danse BE-TANGO">
+  <meta property="og:description" content="BE-TANGO - Votre école de danse de tango argentin à Bruxelles et Woluwe. Encadrement professionnel dans une ambiance décontractée. Rejoignez notre communauté de tango vibrante dès aujourd'hui !">
+  <meta property="og:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
+  <meta property="og:url" content="https://www.be-tango.be/fr/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_BE">
+  <meta property="og:locale:alternate" content="nl_BE">
+  <meta property="og:locale:alternate" content="en_GB">
   <link rel="canonical" href="https://www.be-tango.be/fr/">
 
   <!-- Hreflang -->
@@ -39,8 +46,8 @@
 
   <!-- Stylesheets -->
   <link rel="preload" href="../css/fontawesome.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../css/fontawesome.min.css?v=3.9"></noscript>
-  <link rel="preload" href="/css/cookie-consent.min.css?v=3.8" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
+  <link rel="preload" href="/css/cookie-consent.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.9"></noscript>
 
   <!-- Critical CSS (inlined for fast first render; extracted via penthouse/critical for 412x915 + 1350x940) -->
   <style>
@@ -58,33 +65,57 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": [
-    "LocalBusiness",
-    "EducationalOrganization"
-  ],
-  "@id": "https://www.be-tango.be/fr/#organization",
-  "name": "BE-TANGO",
-  "description": "Votre école de danse de tango argentin à Bruxelles et Woluwe",
-  "url": "https://www.be-tango.be/fr/",
-  "telephone": "+32498392939",
-  "priceRange": "$$",
-  "image": "https://www.be-tango.be/images/logo-be-tango.png",
-  "openingHours": [
-    "Mo 18:30-22:00",
-    "Tu 18:30-22:00",
-    "We 18:30-22:00",
-    "Th 18:30-22:00"
-  ],
-  "sameAs": [
-    "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
-    "https://www.instagram.com/be_tango_brussels/",
-    "https://www.youtube.com/@betango",
-    "https://maps.google.com/?cid=7397240013699561184"
-  ],
-  "location": [
+  "@graph": [
     {
-      "@type": "Place",
+      "@type": ["Organization", "EducationalOrganization"],
+      "@id": "https://www.be-tango.be/#organization",
+      "name": "BE-TANGO",
+      "alternateName": "BE TANGO",
+      "url": "https://www.be-tango.be/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://www.be-tango.be/#logo",
+        "url": "https://www.be-tango.be/images/logo-be-tango.png"
+      },
+      "image": {
+        "@id": "https://www.be-tango.be/#logo"
+      },
+      "description": "Votre école de danse de tango argentin à Bruxelles et Woluwe",
+      "foundingDate": "2007",
+      "email": "admin@be-tango.com",
+      "telephone": "+32498392939",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+32498392939",
+        "email": "admin@be-tango.com",
+        "availableLanguage": ["fr", "nl", "en"]
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Bruxelles"
+      },
+      "sameAs": ["https://www.facebook.com/p/Be-tango-ART-100057312323946/", "https://www.instagram.com/be_tango_brussels/", "https://www.youtube.com/@betango"],
+      "department": [
+        {
+          "@id": "https://www.be-tango.be/#brussels"
+        },
+        {
+          "@id": "https://www.be-tango.be/#woluwe"
+        }
+      ]
+    },
+    {
+      "@type": ["LocalBusiness", "EducationalOrganization"],
+      "@id": "https://www.be-tango.be/#brussels",
       "name": "BE-TANGO Bruxelles",
+      "url": "https://www.be-tango.be/fr/cours-de-tango/bruxelles/",
+      "parentOrganization": {
+        "@id": "https://www.be-tango.be/#organization"
+      },
+      "telephone": "+32498392939",
+      "email": "admin@be-tango.com",
+      "priceRange": "€€",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Rue du Marais 68",
@@ -92,15 +123,43 @@
         "postalCode": "1000",
         "addressCountry": "BE"
       },
+      "location": {
+        "@type": "Place",
+        "name": "École Gatti de Gamond",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rue du Marais 68",
+          "addressLocality": "Bruxelles",
+          "postalCode": "1000",
+          "addressCountry": "BE"
+        }
+      },
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": 50.85242,
         "longitude": 4.35975
-      }
+      },
+      "hasMap": "https://maps.google.com/?cid=7397240013699561184",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["https://schema.org/Monday", "https://schema.org/Wednesday"],
+          "opens": "18:30",
+          "closes": "22:00"
+        }
+      ]
     },
     {
-      "@type": "Place",
+      "@type": ["LocalBusiness", "EducationalOrganization"],
+      "@id": "https://www.be-tango.be/#woluwe",
       "name": "BE-TANGO Woluwe",
+      "url": "https://www.be-tango.be/fr/cours-de-tango/woluwe/",
+      "parentOrganization": {
+        "@id": "https://www.be-tango.be/#organization"
+      },
+      "telephone": "+32498392939",
+      "email": "admin@be-tango.com",
+      "priceRange": "€€",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Avenue Orban 54",
@@ -108,21 +167,56 @@
         "postalCode": "1150",
         "addressCountry": "BE"
       },
+      "location": {
+        "@type": "Place",
+        "name": "GC Kontakt",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Avenue Orban 54",
+          "addressLocality": "Woluwe-Saint-Pierre",
+          "postalCode": "1150",
+          "addressCountry": "BE"
+        }
+      },
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": 50.83343,
         "longitude": 4.45401
+      },
+      "hasMap": "https://maps.google.com/?cid=17403292616488097271",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["https://schema.org/Tuesday", "https://schema.org/Thursday"],
+          "opens": "18:30",
+          "closes": "22:00"
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.be-tango.be/#website",
+      "url": "https://www.be-tango.be/",
+      "name": "BE-TANGO",
+      "inLanguage": ["fr", "nl", "en"],
+      "publisher": {
+        "@id": "https://www.be-tango.be/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.be-tango.be/fr/#webpage",
+      "url": "https://www.be-tango.be/fr/",
+      "name": "Cours de Tango Argentin à Bruxelles | École de Danse BE-TANGO",
+      "inLanguage": "fr",
+      "isPartOf": {
+        "@id": "https://www.be-tango.be/#website"
+      },
+      "about": {
+        "@id": "https://www.be-tango.be/#organization"
       }
     }
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Rue du Marais 68",
-    "addressLocality": "Brussels",
-    "postalCode": "1000",
-    "addressCountry": "BE"
-  },
-  "hasMap": "https://maps.google.com/?cid=7397240013699561184"
+  ]
 }
 </script>
 </head>
@@ -490,7 +584,7 @@
                 </div>
                 <div class="review-stars">★★★★★ <span class="verified">✓</span></div>
                 <div class="review-text">
-                  Vous voulez apprendre le tango Argentin serieusement et dans une ambiance conviviale, rejoignez les cours de Sonya e...
+                  Vous voulez apprendre le tango Argentin serieusement et dans une ambiance conviviale, rejoignez les cours de BE-TANGO...
                   <a href="https://www.google.com/search?q=be-tango+bruxelles" class="read-more" target="_blank" rel="noopener noreferrer">Lire l'avis complet sur Google</a>
                 </div>
               </div>
@@ -506,7 +600,7 @@
                 </div>
                 <div class="review-stars">★★★★★ <span class="verified">✓</span></div>
                 <div class="review-text">
-                  Expérience merveilleuse ! BE-TANGO sont d'excellents professeurs et le cours est super intéressant, le tango aussi...
+                  Expérience merveilleuse ! Les professeurs sont excellents et le cours est super intéressant, le tango aussi...
                   <a href="https://www.google.com/search?q=be-tango+bruxelles" class="read-more" target="_blank" rel="noopener noreferrer">Lire l'avis complet sur Google</a>
                 </div>
               </div>
@@ -522,7 +616,7 @@
                 </div>
                 <div class="review-stars">★★★★★ <span class="verified">✓</span></div>
                 <div class="review-text">
-                  De proefles met BE-TANGO en BE-TANGO was geweldig! Ze deden de uitleg in het Engels en Frans zodat iedereen hen verstond....
+                  De proefles was geweldig! De uitleg was in het Engels en Frans zodat iedereen het verstond....
                   <a href="https://www.google.com/search?q=be-tango+bruxelles" class="read-more" target="_blank" rel="noopener noreferrer">Lire l'avis complet sur Google</a>
                 </div>
               </div>
@@ -730,13 +824,6 @@
           }
         }, 100);
       });
-
-      // Set initial state — deferred to avoid forced reflow during initial paint
-      requestAnimationFrame(() => {
-        if (window.innerWidth < 768) {
-          mainNav.classList.remove('mobile-nav-open');
-        }
-      });
     }
 
     // Language dropdown toggle
@@ -889,6 +976,6 @@
     })();
   </script>
   <script src="/js/attribution.min.js?v=1.1" defer></script>
-  <script src="/js/cookie-consent.min.js?v=4.1" defer></script>
+  <script src="/js/cookie-consent.min.js?v=4.2" defer></script>
 </body>
 </html>

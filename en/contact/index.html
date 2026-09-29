@@ -21,7 +21,9 @@
   <meta property="og:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
   <meta property="og:url" content="https://www.be-tango.be/en/contact/">
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_US">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_BE">
+  <meta property="og:locale:alternate" content="nl_BE">
   <meta property="og:site_name" content="BE-TANGO">
 
   <!-- Twitter Card Meta Tags -->
@@ -47,8 +49,8 @@
   <link rel="stylesheet" href="/css/styles.min.css?v=4.5">
   <noscript><link rel="stylesheet" href="/css/styles.min.css?v=4.5"></noscript>
   <link rel="stylesheet" href="/css/private-lessons.css?v=1.1">
-  <link rel="preload" href="/css/cookie-consent.min.css?v=3.8" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
+  <link rel="preload" href="/css/cookie-consent.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.9"></noscript>
 
   <!-- Enhancement Scripts -->
   <script src="/js/enhancements.min.js?v=3.7" defer></script>
@@ -63,16 +65,19 @@
   "url": "https://www.be-tango.be/en/contact/",
   "mainEntity": [
     {
-      "@type": [
-        "LocalBusiness",
-        "EducationalOrganization"
-      ],
-      "description": "Your dance school for Argentine tango in Brussels and Woluwe",
-      "url": "https://www.be-tango.be/en",
-      "logo": "https://www.be-tango.be/images/logo-be-tango.png",
+      "@type": ["LocalBusiness", "EducationalOrganization"],
+      "@id": "https://www.be-tango.be/#brussels",
+      "name": "BE-TANGO Brussels",
+      "url": "https://www.be-tango.be/en/tango-classes/brussels/",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://www.be-tango.be/#organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be/"
+      },
       "telephone": "+32498392939",
       "email": "admin@be-tango.com",
-      "name": "BE-TANGO Brussels",
+      "priceRange": "€€",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Rue du Marais 68",
@@ -80,27 +85,46 @@
         "postalCode": "1000",
         "addressCountry": "BE"
       },
+      "location": {
+        "@type": "Place",
+        "name": "École Gatti de Gamond",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rue du Marais 68",
+          "addressLocality": "Brussels",
+          "postalCode": "1000",
+          "addressCountry": "BE"
+        }
+      },
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": 50.85242,
         "longitude": 4.35975
       },
-      "sameAs": [
-        "https://maps.google.com/?cid=7397240013699561184"
-      ],
-      "hasMap": "https://maps.google.com/?cid=7397240013699561184"
+      "hasMap": "https://maps.google.com/?cid=7397240013699561184",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["https://schema.org/Monday", "https://schema.org/Wednesday"],
+          "opens": "18:30",
+          "closes": "22:00"
+        }
+      ]
     },
     {
-      "@type": [
-        "LocalBusiness",
-        "EducationalOrganization"
-      ],
-      "description": "Your dance school for Argentine tango in Brussels and Woluwe",
-      "url": "https://www.be-tango.be/en",
-      "logo": "https://www.be-tango.be/images/logo-be-tango.png",
+      "@type": ["LocalBusiness", "EducationalOrganization"],
+      "@id": "https://www.be-tango.be/#woluwe",
+      "name": "BE-TANGO Woluwe",
+      "url": "https://www.be-tango.be/en/tango-classes/woluwe/",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://www.be-tango.be/#organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be/"
+      },
       "telephone": "+32498392939",
       "email": "admin@be-tango.com",
-      "name": "BE-TANGO Woluwe",
+      "priceRange": "€€",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Avenue Orban 54",
@@ -108,17 +132,40 @@
         "postalCode": "1150",
         "addressCountry": "BE"
       },
+      "location": {
+        "@type": "Place",
+        "name": "GC Kontakt",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Avenue Orban 54",
+          "addressLocality": "Woluwe-Saint-Pierre",
+          "postalCode": "1150",
+          "addressCountry": "BE"
+        }
+      },
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": 50.83343,
         "longitude": 4.45401
       },
-      "sameAs": [
-        "https://maps.google.com/?cid=17403292616488097271"
-      ],
-      "hasMap": "https://maps.google.com/?cid=17403292616488097271"
+      "hasMap": "https://maps.google.com/?cid=17403292616488097271",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["https://schema.org/Tuesday", "https://schema.org/Thursday"],
+          "opens": "18:30",
+          "closes": "22:00"
+        }
+      ]
     }
-  ]
+  ],
+  "isPartOf": {
+    "@id": "https://www.be-tango.be/#website"
+  },
+  "about": {
+    "@id": "https://www.be-tango.be/#organization"
+  },
+  "inLanguage": "en"
 }
 </script>
 
@@ -607,7 +654,7 @@
   <!-- Floating Mobile Call Button -->
 
   <script src="/js/attribution.min.js?v=1.1" defer></script>
-  <script src="/js/cookie-consent.min.js?v=4.1" defer></script>
+  <script src="/js/cookie-consent.min.js?v=4.2" defer></script>
   <script>(function(){var m=location.pathname.match(/^\/(fr|nl|en)\//);if(m)document.cookie="lang="+m[1]+";path=/;max-age=31536000;SameSite=Lax"})();</script>
 <script>window.API_CONFIG={baseURL:"localhost"===window.location.hostname||"127.0.0.1"===window.location.hostname?"http://betango.membrero.test:8001/api/v1":"https://betango.membrero.com/api/v1"};</script>
   <script src="/js/crm-api.min.js?v=2.4" defer></script>

@@ -60,7 +60,7 @@
       // without permission to send that email (#1246).
       fvMarketingConsent: 'Please tick this box so we may email you — without your permission we can\'t send you the new dates.',
       // Notify mode — shown when no free trial dates are scheduled
-      notifyLead: 'Our free trial lessons take place in January and September, just before the start of each 14-week course cycle. Leave your details below and we\'ll let you know as soon as the next dates are announced.',
+      notifyLead: 'Our free trial lessons take place in January and September, just before the start of each course cycle (12 lessons + 1 practica). Leave your details below and we\'ll let you know as soon as the next dates are announced.',
       notifyBanner: 'There are currently no free trial lessons planned. Leave your details and we\'ll notify you as soon as new dates are announced.',
       notifyFormTitle: 'Keep me informed',
       notifyFormSubtitle: 'We\'ll email you as soon as the next free trial dates are scheduled.',
@@ -118,7 +118,7 @@
       fvBirthYear: 'Indiquez votre année de naissance, par exemple 1985.',
       fvMarketingConsent: 'Cochez cette case pour que nous puissions vous écrire — sans votre autorisation, nous ne pourrons pas vous envoyer les nouvelles dates.',
       // Mode notification — affiché quand aucune date d'essai gratuit n'est programmée
-      notifyLead: 'Nos cours d\'essai gratuits ont lieu en janvier et en septembre, juste avant le début de chaque cycle de 14 semaines. Laissez-nous vos coordonnées ci-dessous et nous vous préviendrons dès que les prochaines dates seront annoncées.',
+      notifyLead: 'Nos cours d\'essai gratuits ont lieu en janvier et en septembre, juste avant le début de chaque cycle (12 cours + 1 pratique). Laissez-nous vos coordonnées ci-dessous et nous vous préviendrons dès que les prochaines dates seront annoncées.',
       notifyBanner: 'Il n\'y a actuellement aucun cours d\'essai gratuit prévu. Laissez-nous vos coordonnées et nous vous préviendrons dès que de nouvelles dates seront annoncées.',
       notifyFormTitle: 'Tenez-moi informé(e)',
       notifyFormSubtitle: 'Nous vous enverrons un email dès que les prochaines dates d\'essai gratuit seront programmées.',
@@ -167,7 +167,7 @@
       fvBirthYear: 'Vul je geboortejaar in, bijvoorbeeld 1985.',
       fvMarketingConsent: 'Vink dit vakje aan zodat we je mogen mailen — zonder je toestemming kunnen we je de nieuwe data niet bezorgen.',
       // Notificatiemodus — zichtbaar wanneer er geen gratis proeflessen gepland zijn
-      notifyLead: 'Onze gratis proeflessen vinden plaats in januari en september, net voor de start van elke lescyclus van 14 weken. Laat hieronder je gegevens achter en we laten het je weten zodra de volgende data bekend zijn.',
+      notifyLead: 'Onze gratis proeflessen vinden plaats in januari en september, net voor de start van elke lescyclus (12 lessen + 1 practica). Laat hieronder je gegevens achter en we laten het je weten zodra de volgende data bekend zijn.',
       notifyBanner: 'Er zijn momenteel geen gratis proeflessen gepland. Laat je gegevens achter en we laten het je weten zodra er nieuwe data aangekondigd worden.',
       notifyFormTitle: 'Hou me op de hoogte',
       notifyFormSubtitle: 'We sturen je een mail zodra de volgende gratis proeflesdata gepland zijn.',

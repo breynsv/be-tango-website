@@ -23,7 +23,9 @@
   <meta property="og:url" content="https://www.be-tango.be/en/tango-classes/brussels/">
   <meta property="og:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
   <meta property="og:site_name" content="BE-TANGO">
-  <meta property="og:locale" content="en_US">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_BE">
+  <meta property="og:locale:alternate" content="nl_BE">
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
@@ -43,8 +45,8 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="/css/fontawesome.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fontawesome.min.css?v=3.9"></noscript>
-  <link rel="preload" href="/css/cookie-consent.min.css?v=3.8" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
+  <link rel="preload" href="/css/cookie-consent.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.9"></noscript>
 
   <!-- Font Awesome -->
 
@@ -60,46 +62,60 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": [
-    "LocalBusiness",
-    "EducationalOrganization"
-  ],
+  "@type": ["LocalBusiness", "EducationalOrganization"],
+  "@id": "https://www.be-tango.be/#brussels",
   "name": "BE-TANGO Brussels",
-  "description": "Argentine tango classes in Brussels city centre. Weekly group lessons from absolute beginners to advanced levels in a vibrant sports hall with wooden floors.",
   "url": "https://www.be-tango.be/en/tango-classes/brussels/",
-  "image": "https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp",
+  "parentOrganization": {
+    "@type": "Organization",
+    "@id": "https://www.be-tango.be/#organization",
+    "name": "BE-TANGO",
+    "url": "https://www.be-tango.be/"
+  },
   "telephone": "+32498392939",
   "email": "admin@be-tango.com",
+  "priceRange": "€€",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Rue du Marais 68",
     "addressLocality": "Brussels",
     "postalCode": "1000",
-    "addressRegion": "Brussels",
     "addressCountry": "BE"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "École Gatti de Gamond",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rue du Marais 68",
+      "addressLocality": "Brussels",
+      "postalCode": "1000",
+      "addressCountry": "BE"
+    }
   },
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 50.85242,
     "longitude": 4.35975
   },
-  "openingHours": [
-    "Mo 18:30-22:00",
-    "We 18:30-22:00"
-  ],
-  "priceRange": "€€",
   "hasMap": "https://maps.google.com/?cid=7397240013699561184",
-  "parentOrganization": {
-    "@type": "Organization",
-    "name": "BE-TANGO",
-    "url": "https://www.be-tango.be/en"
-  },
-  "sameAs": [
-    "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
-    "https://www.instagram.com/be_tango_brussels/",
-    "https://www.youtube.com/@betango",
-    "https://maps.google.com/?cid=7397240013699561184"
-  ]
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["https://schema.org/Monday", "https://schema.org/Wednesday"],
+      "opens": "18:30",
+      "closes": "22:00"
+    }
+  ],
+  "description": "Argentine tango classes in Brussels city centre. Weekly group lessons from absolute beginners to advanced levels in a vibrant sports hall with wooden floors.",
+  "image": "https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.be-tango.be/en/tango-classes/brussels/",
+    "isPartOf": {
+      "@id": "https://www.be-tango.be/#website"
+    }
+  }
 }
 </script>
   <!-- Live Schedule Component Styles -->
@@ -857,6 +873,6 @@
   <script src="/js/form-validation.js?v=2.1" defer></script>
   <script src="/js/enrollment-modal.js?v=4.7" defer></script>
   <script src="/js/attribution.min.js?v=1.1" defer></script>
-  <script src="/js/cookie-consent.min.js?v=4.1" defer></script>
+  <script src="/js/cookie-consent.min.js?v=4.2" defer></script>
 </body>
 </html>

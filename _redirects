@@ -25,6 +25,45 @@
 # partials/navigation.html, but no page ever included load-header.js).
 # ---------------------------------------------------------------------------
 
+# SEO 2026-09: AI-invented slugs
+# Real slugs with a word swapped (ballroom→ballrule, argentine→argentina, van→of…)
+# that Google Search Console reported as 404s with a handful of impressions.
+# Source: audits/2026-09-28 geo.md §5 + technical.md §3, as corrected by
+# REFUTATION.md. Both slash forms are listed. No catch-all on purpose: a
+# blanket /blog/* redirect would hide real breakage as soft 404s.
+/en/blog/argentine-tango-ballrule-differences  /en/blog/argentine-tango-ballroom-tango-differences/  301
+/en/blog/argentine-tango-ballrule-differences/  /en/blog/argentine-tango-ballroom-tango-differences/  301
+/en/blog/different-styles-of-argentine-translation  /en/blog/different-styles-of-argentine-tango/  301
+/en/blog/different-styles-of-argentine-translation/  /en/blog/different-styles-of-argentine-tango/  301
+/en/blog/different-types-chacarera  /en/blog/different-styles-of-argentine-tango/  301
+/en/blog/different-types-chacarera/  /en/blog/different-styles-of-argentine-tango/  301
+/en/blog/different-types-of-tango  /en/blog/different-styles-of-argentine-tango/  301
+/en/blog/different-types-of-tango/  /en/blog/different-styles-of-argentine-tango/  301
+/en/blog/types-of-argentine-tango  /en/blog/different-styles-of-argentine-tango/  301
+/en/blog/types-of-argentine-tango/  /en/blog/different-styles-of-argentine-tango/  301
+/en/blog/detailed-description-of-the-different-styles-of-argentine-tango  /en/blog/different-styles-of-argentine-tango/  301
+/en/blog/detailed-description-of-the-different-styles-of-argentine-tango/  /en/blog/different-styles-of-argentine-tango/  301
+/en/blog/the-different-styles-of-argentine-tango  /en/blog/different-styles-of-argentine-tango/  301
+/en/blog/the-different-styles-of-argentine-tango/  /en/blog/different-styles-of-argentine-tango/  301
+/en/blog/history-of-argentina-tango  /en/blog/history-of-argentine-tango/  301
+/en/blog/history-of-argentina-tango/  /en/blog/history-of-argentine-tango/  301
+/fr/blog/histoire-du-tango-argentine  /fr/blog/histoire-du-tango-argentin/  301
+/fr/blog/histoire-du-tango-argentine/  /fr/blog/histoire-du-tango-argentin/  301
+/fr/blog/histoire-du-tango-argentin-de-buenos-aires-au-monde  /fr/blog/histoire-du-tango-argentin/  301
+/fr/blog/histoire-du-tango-argentin-de-buenos-aires-au-monde/  /fr/blog/histoire-du-tango-argentin/  301
+/fr/blog/argentine-tango-ballroom-tango-differences  /fr/blog/tango-argentin-vs-tango-de-salon/  301
+/fr/blog/argentine-tango-ballroom-tango-differences/  /fr/blog/tango-argentin-vs-tango-de-salon/  301
+/fr/blog/difference-alternatif-tango  /fr/blog/tango-argentin-vs-tango-de-salon/  301
+/fr/blog/difference-alternatif-tango/  /fr/blog/tango-argentin-vs-tango-de-salon/  301
+/fr/blog/dictionnaire-du-tango  /fr/blog/dictionnaire-de-tango/  301
+/fr/blog/dictionnaire-du-tango/  /fr/blog/dictionnaire-de-tango/  301
+/fr/blog/evenements-de-tango-bruxelles-et-autour-be-tango  /fr/blog/evenements-de-tango-a-bruxelles/  301
+/fr/blog/evenements-de-tango-bruxelles-et-autour-be-tango/  /fr/blog/evenements-de-tango-a-bruxelles/  301
+/fr/cours-tango/en-ligne  /fr/cours-de-tango/en-ligne/  301
+/fr/cours-tango/en-ligne/  /fr/cours-de-tango/en-ligne/  301
+/nl/blog/de-geschiedenis-of-de-argentijnse-tango  /nl/blog/de-geschiedenis-van-de-argentijnse-tango/  301
+/nl/blog/de-geschiedenis-of-de-argentijnse-tango/  /nl/blog/de-geschiedenis-van-de-argentijnse-tango/  301
+
 # Old WordPress URLs → new site (301 permanent redirects)
 # Detected via Google Search Console 404 report 2026-04-28
 
@@ -60,3 +99,22 @@
 # Note: Query-string redirects (/?p=1, /?page_id=2, /?p=1053)
 # are not supported by Cloudflare Pages _redirects file.
 # These will naturally stop being crawled over time.
+
+# SEO 2026-09: blog posts merged into class pages
+# The beginners and couples posts repeated what the class pages sell; their
+# unique content (lesson-by-lesson outline, beginner mistakes, extra FAQs) now
+# lives on the class page, so each post 301s there. Both slash forms are listed
+# because the post directories no longer exist to trigger the trailing-slash
+# normalisation.
+/en/blog/argentine-tango-classes-brussels-beginners/  /en/tango-classes/beginners/  301
+/en/blog/argentine-tango-classes-brussels-beginners   /en/tango-classes/beginners/  301
+/fr/blog/cours-tango-argentin-bruxelles-debutants/  /fr/cours-de-tango/debutants/  301
+/fr/blog/cours-tango-argentin-bruxelles-debutants   /fr/cours-de-tango/debutants/  301
+/nl/blog/tango-lessen-brussel-beginners/  /nl/tangolessen/beginners/  301
+/nl/blog/tango-lessen-brussel-beginners   /nl/tangolessen/beginners/  301
+/en/blog/tango-for-couples-brussels/  /en/tango-classes/couples/  301
+/en/blog/tango-for-couples-brussels   /en/tango-classes/couples/  301
+/fr/blog/tango-en-couple-bruxelles/  /fr/cours-de-tango/en-couple/  301
+/fr/blog/tango-en-couple-bruxelles   /fr/cours-de-tango/en-couple/  301
+/nl/blog/tango-voor-koppels-brussel/  /nl/tangolessen/voor-koppels/  301
+/nl/blog/tango-voor-koppels-brussel   /nl/tangolessen/voor-koppels/  301

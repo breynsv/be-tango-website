@@ -23,7 +23,9 @@
   <meta property="og:url" content="https://www.be-tango.be/nl/contacteer-ons/">
   <meta property="og:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
   <meta property="og:site_name" content="BE-TANGO">
-  <meta property="og:locale" content="nl_NL">
+  <meta property="og:locale" content="nl_BE">
+  <meta property="og:locale:alternate" content="fr_BE">
+  <meta property="og:locale:alternate" content="en_GB">
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
@@ -41,8 +43,8 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="../../css/fontawesome.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../css/fontawesome.min.css?v=3.9"></noscript>
-  <link rel="preload" href="/css/cookie-consent.min.css?v=3.8" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
+  <link rel="preload" href="/css/cookie-consent.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.9"></noscript>
 
   <!-- Font Awesome -->
 
@@ -61,16 +63,19 @@
   "url": "https://www.be-tango.be/nl/contacteer-ons/",
   "mainEntity": [
     {
-      "@type": [
-        "LocalBusiness",
-        "EducationalOrganization"
-      ],
-      "description": "Jouw dansschool voor Argentijnse tango in Brussel en Woluwe",
-      "url": "https://www.be-tango.be",
-      "logo": "https://www.be-tango.be/images/logo-be-tango.png",
+      "@type": ["LocalBusiness", "EducationalOrganization"],
+      "@id": "https://www.be-tango.be/#brussels",
+      "name": "BE-TANGO Brussel",
+      "url": "https://www.be-tango.be/nl/tangolessen/brussel/",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://www.be-tango.be/#organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be/"
+      },
       "telephone": "+32498392939",
       "email": "admin@be-tango.com",
-      "name": "BE-TANGO Brussel",
+      "priceRange": "€€",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Rue du Marais 68",
@@ -78,27 +83,46 @@
         "postalCode": "1000",
         "addressCountry": "BE"
       },
+      "location": {
+        "@type": "Place",
+        "name": "École Gatti de Gamond",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rue du Marais 68",
+          "addressLocality": "Brussel",
+          "postalCode": "1000",
+          "addressCountry": "BE"
+        }
+      },
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": 50.85242,
         "longitude": 4.35975
       },
-      "sameAs": [
-        "https://maps.google.com/?cid=7397240013699561184"
-      ],
-      "hasMap": "https://maps.google.com/?cid=7397240013699561184"
+      "hasMap": "https://maps.google.com/?cid=7397240013699561184",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["https://schema.org/Monday", "https://schema.org/Wednesday"],
+          "opens": "18:30",
+          "closes": "22:00"
+        }
+      ]
     },
     {
-      "@type": [
-        "LocalBusiness",
-        "EducationalOrganization"
-      ],
-      "description": "Jouw dansschool voor Argentijnse tango in Brussel en Woluwe",
-      "url": "https://www.be-tango.be",
-      "logo": "https://www.be-tango.be/images/logo-be-tango.png",
+      "@type": ["LocalBusiness", "EducationalOrganization"],
+      "@id": "https://www.be-tango.be/#woluwe",
+      "name": "BE-TANGO Woluwe",
+      "url": "https://www.be-tango.be/nl/tangolessen/woluwe/",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://www.be-tango.be/#organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be/"
+      },
       "telephone": "+32498392939",
       "email": "admin@be-tango.com",
-      "name": "BE-TANGO Woluwe",
+      "priceRange": "€€",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Avenue Orban 54",
@@ -106,17 +130,40 @@
         "postalCode": "1150",
         "addressCountry": "BE"
       },
+      "location": {
+        "@type": "Place",
+        "name": "GC Kontakt",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Avenue Orban 54",
+          "addressLocality": "Sint-Pieters-Woluwe",
+          "postalCode": "1150",
+          "addressCountry": "BE"
+        }
+      },
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": 50.83343,
         "longitude": 4.45401
       },
-      "sameAs": [
-        "https://maps.google.com/?cid=17403292616488097271"
-      ],
-      "hasMap": "https://maps.google.com/?cid=17403292616488097271"
+      "hasMap": "https://maps.google.com/?cid=17403292616488097271",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["https://schema.org/Tuesday", "https://schema.org/Thursday"],
+          "opens": "18:30",
+          "closes": "22:00"
+        }
+      ]
     }
-  ]
+  ],
+  "isPartOf": {
+    "@id": "https://www.be-tango.be/#website"
+  },
+  "about": {
+    "@id": "https://www.be-tango.be/#organization"
+  },
+  "inLanguage": "nl"
 }
 </script>
 
@@ -612,6 +659,6 @@
   <script src="../../js/crm-api.min.js?v=2.4" defer></script>
   <script src="../../js/contact-form.min.js?v=1.1" defer></script>
   <script src="/js/attribution.min.js?v=1.1" defer></script>
-  <script src="/js/cookie-consent.min.js?v=4.1" defer></script>
+  <script src="/js/cookie-consent.min.js?v=4.2" defer></script>
 </body>
 </html>

@@ -46,6 +46,9 @@ temp/
 docs/
 _dev/*
 !_dev/e2e
+# SEO maintenance scripts (sitemap lastmod/images, FAQ JSON-LD sync) are tracked
+# so they can be re-run after merges; see package.json.
+!_dev/scripts
 _dev/e2e/screenshots/
 _dev/e2e/last-report.json
 

@@ -28,37 +28,153 @@ Allow: /images/
 
 # Sitemap location
 Sitemap: https://www.be-tango.be/sitemap.xml
+Sitemap: https://www.be-tango.be/sitemap-images.xml
 
-# AI Search Crawlers — explicitly allowed for search and citation indexing
+# AI Search Crawlers — explicitly allowed for search and citation indexing.
+# A named group REPLACES the * group (RFC 9309 §2.2.1): these crawlers read
+# only their own block and would otherwise skip every Disallow above. So each
+# block repeats the * Disallow lines. Keep them in step with the * group when
+# it changes. (/creatives/ stays a public URL for Meta's fetcher below — this
+# is an indexing control, not access control.)
 User-agent: GPTBot
 Allow: /
+Disallow: /README.md
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /_dev/
+Disallow: /creatives/
+Disallow: /.github/
+Disallow: /index-maintenance
+Disallow: /index-maintenance.html
+Disallow: /*.backup$
+Disallow: /*.bak$
+Disallow: /*.mobilebak$
 
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /README.md
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /_dev/
+Disallow: /creatives/
+Disallow: /.github/
+Disallow: /index-maintenance
+Disallow: /index-maintenance.html
+Disallow: /*.backup$
+Disallow: /*.bak$
+Disallow: /*.mobilebak$
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /README.md
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /_dev/
+Disallow: /creatives/
+Disallow: /.github/
+Disallow: /index-maintenance
+Disallow: /index-maintenance.html
+Disallow: /*.backup$
+Disallow: /*.bak$
+Disallow: /*.mobilebak$
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /README.md
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /_dev/
+Disallow: /creatives/
+Disallow: /.github/
+Disallow: /index-maintenance
+Disallow: /index-maintenance.html
+Disallow: /*.backup$
+Disallow: /*.bak$
+Disallow: /*.mobilebak$
 
 User-agent: CCBot
 Allow: /
+Disallow: /README.md
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /_dev/
+Disallow: /creatives/
+Disallow: /.github/
+Disallow: /index-maintenance
+Disallow: /index-maintenance.html
+Disallow: /*.backup$
+Disallow: /*.bak$
+Disallow: /*.mobilebak$
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /README.md
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /_dev/
+Disallow: /creatives/
+Disallow: /.github/
+Disallow: /index-maintenance
+Disallow: /index-maintenance.html
+Disallow: /*.backup$
+Disallow: /*.bak$
+Disallow: /*.mobilebak$
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /README.md
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /_dev/
+Disallow: /creatives/
+Disallow: /.github/
+Disallow: /index-maintenance
+Disallow: /index-maintenance.html
+Disallow: /*.backup$
+Disallow: /*.bak$
+Disallow: /*.mobilebak$
 
 User-agent: Bytespider
 Allow: /
+Disallow: /README.md
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /_dev/
+Disallow: /creatives/
+Disallow: /.github/
+Disallow: /index-maintenance
+Disallow: /index-maintenance.html
+Disallow: /*.backup$
+Disallow: /*.bak$
+Disallow: /*.mobilebak$
 
 User-agent: cohere-ai
 Allow: /
+Disallow: /README.md
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /_dev/
+Disallow: /creatives/
+Disallow: /.github/
+Disallow: /index-maintenance
+Disallow: /index-maintenance.html
+Disallow: /*.backup$
+Disallow: /*.bak$
+Disallow: /*.mobilebak$
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /README.md
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /_dev/
+Disallow: /creatives/
+Disallow: /.github/
+Disallow: /index-maintenance
+Disallow: /index-maintenance.html
+Disallow: /*.backup$
+Disallow: /*.bak$
+Disallow: /*.mobilebak$
 
 # Meta's asset fetcher. /creatives/ is Disallow'd above so ad artwork stays out
 # of search results — but Meta downloads those same files when a creative is
