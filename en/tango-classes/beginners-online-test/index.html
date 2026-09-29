@@ -22,7 +22,9 @@
   <meta property="og:image" content="https://www.be-tango.be/images/beginner-tango-classes.webp">
   <meta property="og:url" content="https://www.be-tango.be/en/tango-classes/beginners/">
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_US">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_BE">
+  <meta property="og:locale:alternate" content="nl_BE">
   <meta property="og:site_name" content="BE-TANGO">
 
   <!-- Twitter Card Meta Tags -->
@@ -63,27 +65,21 @@
   "@type": "Course",
   "name": "Beginner Tango Classes (Start-to-Tango)",
   "url": "https://www.be-tango.be/en/tango-classes/beginners/",
-  "description": "14-lesson series for absolute beginners. Learn basic steps, posture, partner connection, and musical awareness in Argentine tango. No dance partner or previous experience required.",
+  "description": "12-lesson series for absolute beginners. Learn basic steps, posture, partner connection, and musical awareness in Argentine tango. No dance partner or previous experience required.",
   "provider": {
     "@type": "Organization",
+    "@id": "https://www.be-tango.be/#organization",
     "name": "BE-TANGO",
-    "url": "https://www.be-tango.be/en",
-    "telephone": "+32498392939",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Brussels",
-      "addressCountry": "BE"
-    }
+    "url": "https://www.be-tango.be/"
   },
   "courseCode": "BEGINNER-START-TO-TANGO",
   "educationalLevel": "Beginner",
-  "numberOfCredits": 14,
-  "timeRequired": "P14W",
+  "timeRequired": "P12W",
   "offers": {
     "@type": "Offer",
     "price": "195",
     "priceCurrency": "EUR",
-    "description": "Complete beginner course - 14 weekly lessons"
+    "description": "Complete beginner course - 12 weekly lessons"
   },
   "hasCourseInstance": [
     {
@@ -91,7 +87,7 @@
       "courseMode": "Onsite",
       "location": {
         "@type": "Place",
-        "name": "BE-TANGO Brussels - Ecole de Gatti de Gamond",
+        "name": "École Gatti de Gamond",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Rue du Marais 68",
@@ -102,11 +98,12 @@
       },
       "courseSchedule": {
         "@type": "Schedule",
-        "byDay": "Monday",
+        "byDay": "https://schema.org/Monday",
         "startTime": "20:00",
         "endTime": "21:00",
-        "repeatFrequency": "Weekly",
-        "duration": "PT1H"
+        "repeatFrequency": "P1W",
+        "duration": "PT1H",
+        "scheduleTimezone": "Europe/Brussels"
       }
     },
     {
@@ -114,7 +111,7 @@
       "courseMode": "Onsite",
       "location": {
         "@type": "Place",
-        "name": "BE-TANGO Woluwe - Le LAB",
+        "name": "GC Kontakt",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Avenue Orban 54",
@@ -125,14 +122,16 @@
       },
       "courseSchedule": {
         "@type": "Schedule",
-        "byDay": "Thursday",
+        "byDay": "https://schema.org/Thursday",
         "startTime": "19:30",
         "endTime": "20:30",
-        "repeatFrequency": "Weekly",
-        "duration": "PT1H"
+        "repeatFrequency": "P1W",
+        "duration": "PT1H",
+        "scheduleTimezone": "Europe/Brussels"
       }
     }
-  ]
+  ],
+  "inLanguage": "en"
 }
 </script>
 

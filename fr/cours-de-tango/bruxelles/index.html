@@ -23,7 +23,9 @@
   <meta property="og:url" content="https://www.be-tango.be/fr/cours-de-tango/bruxelles/">
   <meta property="og:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
   <meta property="og:site_name" content="BE-TANGO">
-  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale" content="fr_BE">
+  <meta property="og:locale:alternate" content="nl_BE">
+  <meta property="og:locale:alternate" content="en_GB">
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
@@ -57,15 +59,19 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": [
-    "LocalBusiness",
-    "EducationalOrganization"
-  ],
+  "@type": ["LocalBusiness", "EducationalOrganization"],
+  "@id": "https://www.be-tango.be/#brussels",
   "name": "BE-TANGO Bruxelles",
-  "description": "École de tango argentin à Bruxelles. Cours pour tous niveaux, du débutant à l'avancé. Accès facile en transports en commun et parking disponible.",
   "url": "https://www.be-tango.be/fr/cours-de-tango/bruxelles/",
+  "parentOrganization": {
+    "@type": "Organization",
+    "@id": "https://www.be-tango.be/#organization",
+    "name": "BE-TANGO",
+    "url": "https://www.be-tango.be/"
+  },
   "telephone": "+32498392939",
   "email": "admin@be-tango.com",
+  "priceRange": "€€",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Rue du Marais 68",
@@ -73,23 +79,39 @@
     "postalCode": "1000",
     "addressCountry": "BE"
   },
+  "location": {
+    "@type": "Place",
+    "name": "École Gatti de Gamond",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rue du Marais 68",
+      "addressLocality": "Bruxelles",
+      "postalCode": "1000",
+      "addressCountry": "BE"
+    }
+  },
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 50.85242,
     "longitude": 4.35975
   },
-  "priceRange": "€€",
-  "openingHours": [
-    "Mo 18:30-22:00",
-    "We 18:30-22:00"
+  "hasMap": "https://maps.google.com/?cid=7397240013699561184",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["https://schema.org/Monday", "https://schema.org/Wednesday"],
+      "opens": "18:30",
+      "closes": "22:00"
+    }
   ],
-  "sameAs": [
-    "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
-    "https://www.instagram.com/be_tango_brussels/",
-    "https://www.youtube.com/@betango",
-    "https://maps.google.com/?cid=7397240013699561184"
-  ],
-  "hasMap": "https://maps.google.com/?cid=7397240013699561184"
+  "description": "École de tango argentin à Bruxelles. Cours pour tous niveaux, du débutant à l'avancé. Accès facile en transports en commun et parking disponible.",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.be-tango.be/fr/cours-de-tango/bruxelles/",
+    "isPartOf": {
+      "@id": "https://www.be-tango.be/#website"
+    }
+  }
 }
 </script>
 

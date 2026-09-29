@@ -1,5 +1,4 @@
 # BE-TANGO — Detailed Content Guide for AI Systems
-> License: RSL-1.0
 
 ## About BE-TANGO
 BE-TANGO is an Argentine tango dance school in Brussels, Belgium, founded in 2007. The school operates from two locations: Rue du Marais 68 in Brussels city centre (1000) and Avenue Orban 54 in Woluwe-Saint-Pierre (1150). Classes are taught in English, French, and Dutch. BE-TANGO holds a 5/5 rating based on 151 Google reviews, making it Brussels' most reviewed Argentine tango school. The school teaches authentic Argentine tango across three styles: milonguero (close embrace), salon (elegant, with space), and nuevo (contemporary).

@@ -23,7 +23,9 @@
   <meta property="og:url" content="https://www.be-tango.be/en/tango-classes/woluwe/">
   <meta property="og:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
   <meta property="og:site_name" content="BE-TANGO">
-  <meta property="og:locale" content="en_US">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_BE">
+  <meta property="og:locale:alternate" content="nl_BE">
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
@@ -60,46 +62,60 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": [
-    "LocalBusiness",
-    "EducationalOrganization"
-  ],
+  "@type": ["LocalBusiness", "EducationalOrganization"],
+  "@id": "https://www.be-tango.be/#woluwe",
   "name": "BE-TANGO Woluwe",
-  "description": "Argentine tango classes in Woluwe-Saint-Pierre. Weekly group lessons from absolute beginners to advanced levels in a cosy dance studio.",
   "url": "https://www.be-tango.be/en/tango-classes/woluwe/",
-  "image": "https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp",
+  "parentOrganization": {
+    "@type": "Organization",
+    "@id": "https://www.be-tango.be/#organization",
+    "name": "BE-TANGO",
+    "url": "https://www.be-tango.be/"
+  },
   "telephone": "+32498392939",
   "email": "admin@be-tango.com",
+  "priceRange": "€€",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Avenue Orban 54",
     "addressLocality": "Woluwe-Saint-Pierre",
     "postalCode": "1150",
-    "addressRegion": "Brussels",
     "addressCountry": "BE"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "GC Kontakt",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Avenue Orban 54",
+      "addressLocality": "Woluwe-Saint-Pierre",
+      "postalCode": "1150",
+      "addressCountry": "BE"
+    }
   },
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 50.83343,
     "longitude": 4.45401
   },
-  "openingHours": [
-    "Tu 18:30-22:00",
-    "Th 18:30-22:00"
-  ],
-  "priceRange": "€195",
   "hasMap": "https://maps.google.com/?cid=17403292616488097271",
-  "parentOrganization": {
-    "@type": "Organization",
-    "name": "BE-TANGO",
-    "url": "https://www.be-tango.be/en"
-  },
-  "sameAs": [
-    "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
-    "https://www.instagram.com/be_tango_brussels/",
-    "https://www.youtube.com/@betango",
-    "https://maps.google.com/?cid=17403292616488097271"
-  ]
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["https://schema.org/Tuesday", "https://schema.org/Thursday"],
+      "opens": "18:30",
+      "closes": "22:00"
+    }
+  ],
+  "description": "Argentine tango classes in Woluwe-Saint-Pierre. Weekly group lessons from absolute beginners to advanced levels in a cosy dance studio.",
+  "image": "https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.be-tango.be/en/tango-classes/woluwe/",
+    "isPartOf": {
+      "@id": "https://www.be-tango.be/#website"
+    }
+  }
 }
 </script>
   <!-- Live Schedule Component Styles -->

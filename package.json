@@ -1,6 +1,11 @@
 {
   "scripts": {
-    "test:e2e": "node _dev/e2e/run.js"
+    "test:e2e": "node _dev/e2e/run.js",
+    "faq:sync": "node _dev/scripts/sync-faq-jsonld.js",
+    "faq:check": "node _dev/scripts/sync-faq-jsonld.js --check",
+    "sitemap:lastmod": "node _dev/scripts/sitemap-lastmod.js",
+    "sitemap:images": "node _dev/scripts/sitemap-images.js",
+    "sitemap": "node _dev/scripts/sitemap-lastmod.js && node _dev/scripts/sitemap-images.js"
   },
   "devDependencies": {
     "clean-css-cli": "^5.6.3",

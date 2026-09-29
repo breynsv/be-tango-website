@@ -23,7 +23,9 @@
 <meta content="https://www.be-tango.be/fr/blog/dictionnaire-de-tango/" property="og:url"/>
 <meta content="https://www.be-tango.be/images/blog/tango-dictionary.jpg" property="og:image"/>
 <meta content="BE-TANGO" property="og:site_name"/>
-<meta content="fr_FR" property="og:locale"/>
+<meta content="fr_BE" property="og:locale"/>
+<meta content="nl_BE" property="og:locale:alternate"/>
+<meta content="en_GB" property="og:locale:alternate"/>
 <!-- Twitter Card Meta Tags -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Dictionnaire de Tango | BE-TANGO" name="twitter:title"/>
@@ -366,6 +368,10 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.be-tango.be/fr/blog/dictionnaire-de-tango/"
+  },
   "headline": "Dictionnaire de Tango, un guide de la terminologie du tango argentin",
   "description": "Un guide complet contenant tous les noms des pas de danse et la terminologie du tango argentin. Ocho, sacada, salida cruzada et bien d'autres.",
   "image": "https://www.be-tango.be/images/blog/tango-dictionary.jpg",
@@ -373,16 +379,23 @@
   "dateModified": "2026-04-14",
   "author": {
     "@type": "Organization",
+    "@id": "https://www.be-tango.be/#organization",
     "name": "BE-TANGO",
-    "url": "https://www.be-tango.be"
+    "url": "https://www.be-tango.be/"
   },
   "publisher": {
     "@type": "Organization",
+    "@id": "https://www.be-tango.be/#organization",
     "name": "BE-TANGO",
+    "url": "https://www.be-tango.be/",
     "logo": {
       "@type": "ImageObject",
       "url": "https://www.be-tango.be/images/logo-be-tango.png"
     }
+  },
+  "inLanguage": "fr",
+  "isPartOf": {
+    "@id": "https://www.be-tango.be/#website"
   }
 }
 </script>
@@ -391,10 +404,15 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "Quels sont les termes de tango les plus importants à connaître ?", "acceptedAnswer": { "@type": "Answer", "text": "Le vocabulaire essentiel du tango comprend : abrazo (l'étreinte), ocho (figure en huit), gancho (crochet), sacada (déplacement), boleo (envoi de jambe), caminata (marche), parada (arrêt) et milonga (à la fois la danse et l'événement social). Connaître ces termes vous aide à suivre les instructions en cours et à discuter de tango avec d'autres danseurs." } },
-    { "@type": "Question", "name": "Que signifie 'abrazo' dans le tango ?", "acceptedAnswer": { "@type": "Answer", "text": "Abrazo signifie 'étreinte' en espagnol. Dans le tango, l'abrazo est la prise entre les deux partenaires — la connexion fondamentale à travers laquelle toute communication se passe. Le tango argentin utilise une étreinte proche et chaleureuse, contrairement au cadre plus rigide du tango de salon." } },
-    { "@type": "Question", "name": "Quelle est la différence entre leader et follower dans le tango ?", "acceptedAnswer": { "@type": "Answer", "text": "Dans le tango, le leader initie les mouvements et navigue sur la piste ; le follower interprète et répond à ces mouvements. Ces rôles ne sont pas déterminés par le genre — n'importe qui peut apprendre l'un ou l'autre rôle. Chez BE-TANGO, nous encourageons les élèves à essayer les deux rôles pour développer une compréhension plus profonde du tango." } }
-  ,{"@type":"Question","name":"Que signifie le mot \"tanda\" ?","acceptedAnswer":{"@type":"Answer","text":"Une \"tanda\" est un ensemble de 3 à 5 morceaux joués consécutivement lors d'une milonga, généralement par le même orchestre et dans le même style (par exemple, tango, valse ou milonga). Consultez notre article sur <a href=\"/fr/blog/difference-entre-tango-valse-et-milonga/\">les différences entre le tango, la valse et la milonga</a>."}},{"@type":"Question","name":"Qu'est-ce qu'une cortina ?","acceptedAnswer":{"@type":"Answer","text":"Une \"cortina\" est un court morceau de musique joué entre les tandas. Il signale la fin d'une tanda et permet aux danseurs de changer de partenaire ou de quitter la piste de danse."}},{"@type":"Question","name":"Que signifie littéralement \"cabeceo\" ?","acceptedAnswer":{"@type":"Answer","text":"\"Cabeceo\" signifie littéralement \"hochement de tête\" en espagnol. Il fait référence au contact visuel subtil et au hochement de tête utilisés pour inviter quelqu'un à danser lors d'une milonga."}},{"@type":"Question","name":"Qu'est-ce que \"la ronda\" ?","acceptedAnswer":{"@type":"Answer","text":"\"La ronda\" fait référence à la ligne de danse formée par les couples se déplaçant dans le sens inverse des aiguilles d'une montre autour de la piste de danse lors d'une milonga. Le maintien du flux de la ronda est crucial pour une danse fluide et sûre."}},{"@type":"Question","name":"Quelle est la différence entre un milonguero et un tanguero ?","acceptedAnswer":{"@type":"Answer","text":"Bien que les deux termes désignent des danseurs de tango, un \"milonguero\" (ou \"milonguera\") est généralement considéré comme une personne profondément immergée dans la culture de la milonga, participant fréquemment à des bals sociaux et privilégiant l'aspect social du tango. Un \"tanguero\" (ou \"tanguera\") est un terme plus général pour toute personne qui danse le tango, quelle que soit sa fréquence de participation aux milongas. Vous pouvez en savoir plus sur ce qui rend une milonga spéciale <a href=\"/fr/blog/quest-ce-que-la-milonga/\">ici</a>."}}]
+    { "@type": "Question", "name": "Quels sont les termes de tango les plus importants à connaître ?", "acceptedAnswer": { "@type": "Answer", "text": "Le vocabulaire essentiel comprend : abrazo (étreinte), ocho (figure en huit), gancho (crochet), sacada (déplacement), boleo (envoi de jambe), caminada (marche), parada (arrêt) et milonga (à la fois le style musical et l'événement social). Ces termes apparaissent dans chaque cours et chaque milonga dans le monde — les connaître vous permet de suivre les instructions et de discuter de tango avec n'importe quel danseur." } },
+    { "@type": "Question", "name": "Que signifie « abrazo » dans le tango ?", "acceptedAnswer": { "@type": "Answer", "text": "« Abrazo » signifie « étreinte » en espagnol. Dans le tango, l'abrazo est la tenue entre les deux partenaires — la connexion fondamentale à travers laquelle toute communication passe. Le tango argentin utilise une étreinte chaleureuse et proche, très différente du cadre rigide du tango de salle de bal." } },
+    { "@type": "Question", "name": "Quelle est la différence entre un leader et un follower dans le tango ?", "acceptedAnswer": { "@type": "Answer", "text": "Le leader initie les mouvements et navigue sur la piste de danse ; le follower interprète et répond à ces mouvements. Ces rôles ne sont pas liés au genre — n'importe qui peut apprendre l'un ou l'autre. Chez BE-TANGO, nous encourageons les élèves à essayer les deux rôles pour développer une compréhension plus profonde de la danse." } },
+    { "@type": "Question", "name": "Que signifie « tanda » ?", "acceptedAnswer": { "@type": "Answer", "text": "Une tanda est un ensemble de 3 à 5 chansons jouées consécutivement lors d'une milonga, généralement par le même orchestre et dans le même style (tango, valse ou milonga). Consultez notre article sur les différences entre le tango, la valse et la milonga." } },
+    { "@type": "Question", "name": "Qu'est-ce qu'une cortina ?", "acceptedAnswer": { "@type": "Answer", "text": "Une cortina est un court morceau de musique non-tango joué entre les tandas. Elle signale la fin d'une tanda et donne aux danseurs un moment naturel pour changer de partenaire ou quitter la piste." } },
+    { "@type": "Question", "name": "Que signifie littéralement « cabeceo » ?", "acceptedAnswer": { "@type": "Answer", "text": "« Cabeceo » signifie littéralement « hochement de tête » en espagnol. Il désigne le contact visuel subtil et le hochement de tête utilisés pour inviter quelqu'un à danser lors d'une milonga — un système discret et élégant qui évite le rejet public." } },
+    { "@type": "Question", "name": "Qu'est-ce que « la ronda » ?", "acceptedAnswer": { "@type": "Answer", "text": "La ronda est la ligne de danse : l'anneau de couples se déplaçant dans le sens antihoraire autour de la piste de danse lors d'une milonga. Maintenir le flux de la ronda est l'une des responsabilités fondamentales de chaque danseur sur la piste." } },
+    { "@type": "Question", "name": "Quelle est la différence entre un milonguero et un tanguero ?", "acceptedAnswer": { "@type": "Answer", "text": "Un milonguero (ou milonguera) est quelqu'un profondément immergé dans la culture de la milonga — il danse fréquemment et vit selon les codigos. Un tanguero (ou tanguera) est quelqu'un passionnément dévoué au tango en tant que culture : son histoire, sa musique et ses paroles. On peut être l'un sans être l'autre. En savoir plus sur ce qui rend une milonga spéciale." } }
+  ]
 }
 </script>
 <script type="application/ld+json">
@@ -404,7 +422,7 @@
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://www.be-tango.be/fr/"},
     {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.be-tango.be/fr/blog/"},
-    {"@type": "ListItem", "position": 3, "name": "Dictionnaire de Tango, un guide de la terminologie du tango | BE-TANGO", "item": "https://www.be-tango.be/fr/blog/dictionnaire-de-tango/"}
+    {"@type": "ListItem", "position": 3, "name": "Dictionnaire de Tango, un guide de la terminologie du tango", "item": "https://www.be-tango.be/fr/blog/dictionnaire-de-tango/"}
   ]
 }
 </script>

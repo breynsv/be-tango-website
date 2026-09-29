@@ -22,7 +22,9 @@
   <meta property="og:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
   <meta property="og:url" content="https://www.be-tango.be/en/tango-classes/">
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="en_US">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="fr_BE">
+  <meta property="og:locale:alternate" content="nl_BE">
   <meta property="og:site_name" content="BE-TANGO">
 
   <!-- Twitter Card Meta Tags -->
@@ -65,296 +67,385 @@
   "@type": "ItemList",
   "itemListElement": [
     {
-      "@type": "Course",
-      "name": "Beginner Tango Classes (Start-to-Tango)",
-      "description": "14-lesson series for absolute beginners. Learn basic steps, posture, partner connection, and musical awareness. No dance partner required.",
-      "provider": {
-        "@type": "Organization",
-        "name": "BE-TANGO",
-        "url": "https://www.be-tango.be/en"
-      },
-      "courseCode": "BEGINNER",
-      "numberOfCredits": 14,
-      "hasCourseInstance": [
-        {
-          "@type": "CourseInstance",
-          "courseMode": "Onsite",
-          "location": {
-            "@type": "Place",
-            "name": "BE-TANGO Brussels",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Rue du Marais 68",
-              "addressLocality": "Brussels",
-              "postalCode": "1000",
-              "addressCountry": "BE"
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Course",
+        "name": "Beginner Tango Classes (Start-to-Tango)",
+        "description": "12-lesson series for absolute beginners. Learn basic steps, posture, partner connection, and musical awareness. No dance partner required.",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://www.be-tango.be/#organization",
+          "name": "BE-TANGO",
+          "url": "https://www.be-tango.be/"
+        },
+        "courseCode": "BEGINNER",
+        "hasCourseInstance": [
+          {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+              "@type": "Place",
+              "name": "École Gatti de Gamond",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Rue du Marais 68",
+                "addressLocality": "Brussels",
+                "postalCode": "1000",
+                "addressCountry": "BE"
+              }
+            },
+            "courseSchedule": {
+              "@type": "Schedule",
+              "byDay": "https://schema.org/Monday",
+              "startTime": "20:00",
+              "endTime": "21:00",
+              "repeatFrequency": "P1W",
+              "duration": "PT1H",
+              "scheduleTimezone": "Europe/Brussels"
             }
           },
-          "courseSchedule": {
-            "@type": "Schedule",
-            "byDay": "Monday",
-            "startTime": "20:00",
-            "endTime": "21:00",
-            "repeatFrequency": "Weekly"
+          {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+              "@type": "Place",
+              "name": "GC Kontakt",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Avenue Orban 54",
+                "addressLocality": "Woluwe-Saint-Pierre",
+                "postalCode": "1150",
+                "addressCountry": "BE"
+              }
+            },
+            "courseSchedule": {
+              "@type": "Schedule",
+              "byDay": "https://schema.org/Thursday",
+              "startTime": "19:30",
+              "endTime": "20:30",
+              "repeatFrequency": "P1W",
+              "duration": "PT1H",
+              "scheduleTimezone": "Europe/Brussels"
+            }
           }
+        ],
+        "inLanguage": "en"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Course",
+        "name": "First Year Tango Classes",
+        "description": "For dancers who completed the beginners course. Focus on cross-system walks, smooth movement, and Ochos.",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://www.be-tango.be/#organization",
+          "name": "BE-TANGO",
+          "url": "https://www.be-tango.be/"
         },
-        {
-          "@type": "CourseInstance",
-          "courseMode": "Onsite",
-          "location": {
-            "@type": "Place",
-            "name": "BE-TANGO Woluwe",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Avenue Orban 54",
-              "addressLocality": "Woluwe-Saint-Pierre",
-              "postalCode": "1150",
-              "addressCountry": "BE"
+        "courseCode": "FIRST_YEAR",
+        "offers": {
+          "@type": "Offer",
+          "price": "195",
+          "priceCurrency": "EUR",
+          "description": "Semester course - 14 lessons"
+        },
+        "hasCourseInstance": [
+          {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+              "@type": "Place",
+              "name": "École Gatti de Gamond",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Rue du Marais 68",
+                "addressLocality": "Brussels",
+                "postalCode": "1000",
+                "addressCountry": "BE"
+              }
+            },
+            "courseSchedule": {
+              "@type": "Schedule",
+              "byDay": "https://schema.org/Wednesday",
+              "startTime": "19:30",
+              "endTime": "20:30",
+              "repeatFrequency": "P1W",
+              "duration": "PT1H",
+              "scheduleTimezone": "Europe/Brussels"
             }
           },
-          "courseSchedule": {
-            "@type": "Schedule",
-            "byDay": "Thursday",
-            "startTime": "19:30",
-            "endTime": "20:30",
-            "repeatFrequency": "Weekly"
+          {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+              "@type": "Place",
+              "name": "GC Kontakt",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Avenue Orban 54",
+                "addressLocality": "Woluwe-Saint-Pierre",
+                "postalCode": "1150",
+                "addressCountry": "BE"
+              }
+            },
+            "courseSchedule": {
+              "@type": "Schedule",
+              "byDay": "https://schema.org/Thursday",
+              "startTime": "18:30",
+              "endTime": "19:30",
+              "repeatFrequency": "P1W",
+              "duration": "PT1H",
+              "scheduleTimezone": "Europe/Brussels"
+            }
           }
-        }
-      ]
+        ],
+        "inLanguage": "en"
+      }
     },
     {
-      "@type": "Course",
-      "name": "First Year Tango Classes",
-      "description": "For dancers who completed the beginners course. Focus on cross-system walks, smooth movement, and Ochos.",
-      "provider": {
-        "@type": "Organization",
-        "name": "BE-TANGO",
-        "url": "https://www.be-tango.be/en"
-      },
-      "courseCode": "FIRST_YEAR",
-      "numberOfCredits": 15,
-      "offers": {
-        "@type": "Offer",
-        "price": "195",
-        "priceCurrency": "EUR",
-        "description": "Semester course - 15 lessons"
-      },
-      "hasCourseInstance": [
-        {
-          "@type": "CourseInstance",
-          "courseMode": "Onsite",
-          "location": {
-            "@type": "Place",
-            "name": "BE-TANGO Brussels"
-          },
-          "courseSchedule": {
-            "@type": "Schedule",
-            "byDay": "Wednesday",
-            "startTime": "18:30",
-            "endTime": "19:30",
-            "repeatFrequency": "Weekly"
-          }
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Course",
+        "name": "Second Year Tango Classes",
+        "description": "For dancers with 1.5-2.5 years experience. Introducing Giros, Sacadas, and Barridas with emphasis on dissociation.",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://www.be-tango.be/#organization",
+          "name": "BE-TANGO",
+          "url": "https://www.be-tango.be/"
         },
-        {
-          "@type": "CourseInstance",
-          "courseMode": "Onsite",
-          "location": {
-            "@type": "Place",
-            "name": "BE-TANGO Woluwe"
-          },
-          "courseSchedule": {
-            "@type": "Schedule",
-            "byDay": "Thursday",
-            "startTime": "18:30",
-            "endTime": "19:30",
-            "repeatFrequency": "Weekly"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "Course",
-      "name": "Second Year Tango Classes",
-      "description": "For dancers with 1.5-2.5 years experience. Introducing Giros, Sacadas, and Barridas with emphasis on dissociation.",
-      "provider": {
-        "@type": "Organization",
-        "name": "BE-TANGO",
-        "url": "https://www.be-tango.be/en"
-      },
-      "courseCode": "SECOND_YEAR",
-      "numberOfCredits": 15,
-      "offers": {
-        "@type": "Offer",
-        "price": "195",
-        "priceCurrency": "EUR",
-        "description": "Semester course - 15 lessons"
-      },
-      "hasCourseInstance": [
-        {
-          "@type": "CourseInstance",
-          "courseMode": "Onsite",
-          "location": {
-            "@type": "Place",
-            "name": "BE-TANGO Brussels"
-          },
-          "courseSchedule": {
-            "@type": "Schedule",
-            "byDay": "Monday",
-            "startTime": "19:00",
-            "endTime": "20:00",
-            "repeatFrequency": "Weekly"
-          }
+        "courseCode": "SECOND_YEAR",
+        "offers": {
+          "@type": "Offer",
+          "price": "195",
+          "priceCurrency": "EUR",
+          "description": "Semester course - 14 lessons"
         },
-        {
-          "@type": "CourseInstance",
-          "courseMode": "Onsite",
-          "location": {
-            "@type": "Place",
-            "name": "BE-TANGO Woluwe"
+        "hasCourseInstance": [
+          {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+              "@type": "Place",
+              "name": "École Gatti de Gamond",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Rue du Marais 68",
+                "addressLocality": "Brussels",
+                "postalCode": "1000",
+                "addressCountry": "BE"
+              }
+            },
+            "courseSchedule": {
+              "@type": "Schedule",
+              "byDay": "https://schema.org/Monday",
+              "startTime": "19:00",
+              "endTime": "20:00",
+              "repeatFrequency": "P1W",
+              "duration": "PT1H",
+              "scheduleTimezone": "Europe/Brussels"
+            }
           },
-          "courseSchedule": {
-            "@type": "Schedule",
-            "byDay": "Tuesday",
-            "startTime": "19:00",
-            "endTime": "20:00",
-            "repeatFrequency": "Weekly"
+          {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+              "@type": "Place",
+              "name": "GC Kontakt",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Avenue Orban 54",
+                "addressLocality": "Woluwe-Saint-Pierre",
+                "postalCode": "1150",
+                "addressCountry": "BE"
+              }
+            },
+            "courseSchedule": {
+              "@type": "Schedule",
+              "byDay": "https://schema.org/Tuesday",
+              "startTime": "19:00",
+              "endTime": "20:00",
+              "repeatFrequency": "P1W",
+              "duration": "PT1H",
+              "scheduleTimezone": "Europe/Brussels"
+            }
           }
-        }
-      ]
+        ],
+        "inLanguage": "en"
+      }
     },
     {
-      "@type": "Course",
-      "name": "Second Year PLUS Tango Classes",
-      "description": "Bridge level offering faster pace and more complex sequences with styling variations.",
-      "provider": {
-        "@type": "Organization",
-        "name": "BE-TANGO",
-        "url": "https://www.be-tango.be/en"
-      },
-      "courseCode": "SECOND_YEAR_PLUS",
-      "numberOfCredits": 15,
-      "offers": {
-        "@type": "Offer",
-        "price": "195",
-        "priceCurrency": "EUR",
-        "description": "Semester course - 15 lessons"
-      },
-      "hasCourseInstance": [
-        {
-          "@type": "CourseInstance",
-          "courseMode": "Onsite",
-          "location": {
-            "@type": "Place",
-            "name": "BE-TANGO Brussels"
-          },
-          "courseSchedule": {
-            "@type": "Schedule",
-            "byDay": "Wednesday",
-            "startTime": "19:30",
-            "endTime": "20:30",
-            "repeatFrequency": "Weekly"
-          }
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Course",
+        "name": "Second Year PLUS Tango Classes",
+        "description": "Bridge level offering faster pace and more complex sequences with styling variations.",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://www.be-tango.be/#organization",
+          "name": "BE-TANGO",
+          "url": "https://www.be-tango.be/"
         },
-        {
-          "@type": "CourseInstance",
-          "courseMode": "Onsite",
-          "location": {
-            "@type": "Place",
-            "name": "BE-TANGO Woluwe"
-          },
-          "courseSchedule": {
-            "@type": "Schedule",
-            "byDay": "Tuesday",
-            "startTime": "20:00",
-            "endTime": "21:00",
-            "repeatFrequency": "Weekly"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "Course",
-      "name": "Intermediate & Advanced Tango Classes",
-      "description": "For dancers with 4+ years experience. Covering Boleos, Ganchos, Enrosques, plus Vals/Milonga musicality and improvisation work.",
-      "provider": {
-        "@type": "Organization",
-        "name": "BE-TANGO",
-        "url": "https://www.be-tango.be/en"
-      },
-      "courseCode": "INTERMEDIATE_ADVANCED",
-      "numberOfCredits": 15,
-      "offers": {
-        "@type": "Offer",
-        "price": "195",
-        "priceCurrency": "EUR",
-        "description": "Semester course - 15 lessons"
-      },
-      "hasCourseInstance": [
-        {
-          "@type": "CourseInstance",
-          "courseMode": "Onsite",
-          "location": {
-            "@type": "Place",
-            "name": "BE-TANGO Brussels"
-          },
-          "courseSchedule": {
-            "@type": "Schedule",
-            "byDay": "Wednesday",
-            "startTime": "20:30",
-            "endTime": "21:30",
-            "repeatFrequency": "Weekly"
-          }
+        "courseCode": "SECOND_YEAR_PLUS",
+        "offers": {
+          "@type": "Offer",
+          "price": "195",
+          "priceCurrency": "EUR",
+          "description": "Semester course - 14 lessons"
         },
-        {
-          "@type": "CourseInstance",
-          "courseMode": "Onsite",
-          "location": {
-            "@type": "Place",
-            "name": "BE-TANGO Woluwe"
-          },
-          "courseSchedule": {
-            "@type": "Schedule",
-            "byDay": "Thursday",
-            "startTime": "20:30",
-            "endTime": "21:30",
-            "repeatFrequency": "Weekly"
+        "hasCourseInstance": [
+          {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+              "@type": "Place",
+              "name": "GC Kontakt",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Avenue Orban 54",
+                "addressLocality": "Woluwe-Saint-Pierre",
+                "postalCode": "1150",
+                "addressCountry": "BE"
+              }
+            },
+            "courseSchedule": {
+              "@type": "Schedule",
+              "byDay": "https://schema.org/Tuesday",
+              "startTime": "20:00",
+              "endTime": "21:00",
+              "repeatFrequency": "P1W",
+              "duration": "PT1H",
+              "scheduleTimezone": "Europe/Brussels"
+            }
           }
-        }
-      ]
+        ],
+        "inLanguage": "en"
+      }
     },
     {
-      "@type": "Course",
-      "name": "Online Tango Academy",
-      "description": "Structured online tango instruction through video lessons accessible on multiple devices. Covers all levels from absolute beginners to advanced dancers.",
-      "provider": {
-        "@type": "Organization",
-        "name": "BE-TANGO",
-        "url": "https://www.be-tango.be/en"
-      },
-      "courseCode": "ONLINE",
-      "hasCourseInstance": [
-        {
-          "@type": "CourseInstance",
-          "courseMode": "Online"
-        }
-      ]
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Course",
+        "name": "Intermediate & Advanced Tango Classes",
+        "description": "For dancers with 4+ years experience. Covering Boleos, Ganchos, Enrosques, plus Vals/Milonga musicality and improvisation work.",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://www.be-tango.be/#organization",
+          "name": "BE-TANGO",
+          "url": "https://www.be-tango.be/"
+        },
+        "courseCode": "INTERMEDIATE_ADVANCED",
+        "offers": {
+          "@type": "Offer",
+          "price": "195",
+          "priceCurrency": "EUR",
+          "description": "Semester course - 14 lessons"
+        },
+        "hasCourseInstance": [
+          {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+              "@type": "Place",
+              "name": "École Gatti de Gamond",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Rue du Marais 68",
+                "addressLocality": "Brussels",
+                "postalCode": "1000",
+                "addressCountry": "BE"
+              }
+            },
+            "courseSchedule": {
+              "@type": "Schedule",
+              "byDay": "https://schema.org/Wednesday",
+              "startTime": "20:30",
+              "endTime": "21:30",
+              "repeatFrequency": "P1W",
+              "duration": "PT1H",
+              "scheduleTimezone": "Europe/Brussels"
+            }
+          },
+          {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite",
+            "location": {
+              "@type": "Place",
+              "name": "GC Kontakt",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Avenue Orban 54",
+                "addressLocality": "Woluwe-Saint-Pierre",
+                "postalCode": "1150",
+                "addressCountry": "BE"
+              }
+            },
+            "courseSchedule": {
+              "@type": "Schedule",
+              "byDay": "https://schema.org/Thursday",
+              "startTime": "20:30",
+              "endTime": "21:30",
+              "repeatFrequency": "P1W",
+              "duration": "PT1H",
+              "scheduleTimezone": "Europe/Brussels"
+            }
+          }
+        ],
+        "inLanguage": "en"
+      }
     },
     {
-      "@type": "Course",
-      "name": "Private Tango Lessons",
-      "description": "Fully customized one-on-one instruction. Technique refinement, catch-up sessions, and wedding choreography. 1-1.5 hours duration.",
-      "provider": {
-        "@type": "Organization",
-        "name": "BE-TANGO",
-        "url": "https://www.be-tango.be/en"
-      },
-      "courseCode": "PRIVATE",
-      "hasCourseInstance": [
-        {
-          "@type": "CourseInstance",
-          "courseMode": "Onsite"
-        }
-      ]
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "Course",
+        "name": "Online Tango Academy",
+        "description": "Structured online tango instruction through video lessons accessible on multiple devices. Covers all levels from absolute beginners to advanced dancers.",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://www.be-tango.be/#organization",
+          "name": "BE-TANGO",
+          "url": "https://www.be-tango.be/"
+        },
+        "courseCode": "ONLINE",
+        "hasCourseInstance": [
+          {
+            "@type": "CourseInstance",
+            "courseMode": "Online"
+          }
+        ],
+        "inLanguage": "en"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "Course",
+        "name": "Private Tango Lessons",
+        "description": "Fully customized one-on-one instruction. Technique refinement, catch-up sessions, and wedding choreography. 1-1.5 hours duration.",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://www.be-tango.be/#organization",
+          "name": "BE-TANGO",
+          "url": "https://www.be-tango.be/"
+        },
+        "courseCode": "PRIVATE",
+        "hasCourseInstance": [
+          {
+            "@type": "CourseInstance",
+            "courseMode": "Onsite"
+          }
+        ],
+        "inLanguage": "en"
+      }
     }
   ]
 }

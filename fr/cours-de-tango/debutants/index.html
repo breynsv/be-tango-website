@@ -22,7 +22,9 @@
 <meta content="https://www.be-tango.be/fr/cours-de-tango/debutants/" property="og:url"/>
 <meta content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp" property="og:image"/>
 <meta content="BE-TANGO" property="og:site_name"/>
-<meta content="fr_FR" property="og:locale"/>
+<meta content="fr_BE" property="og:locale"/>
+<meta content="nl_BE" property="og:locale:alternate"/>
+<meta content="en_GB" property="og:locale:alternate"/>
 <!-- Twitter Card Meta Tags -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Cours de tango pour débutants - BE-TANGO" name="twitter:title"/>
@@ -54,34 +56,23 @@
   "name": "Cours de Tango Argentin pour Débutants",
   "description": "Cours de tango argentin pour débutants complets à Bruxelles et Woluwe. Apprenez les bases, la posture, la connexion et la musicalité dans une ambiance conviviale.",
   "provider": {
-    "@type": [
-      "LocalBusiness",
-      "EducationalOrganization"
-    ],
+    "@type": "Organization",
+    "@id": "https://www.be-tango.be/#organization",
     "name": "BE-TANGO",
-    "url": "https://www.be-tango.be/fr/",
-    "telephone": "+32498392939"
+    "url": "https://www.be-tango.be/"
   },
   "url": "https://www.be-tango.be/fr/cours-de-tango/debutants/",
   "coursePrerequisites": "Aucun prérequis. Aucune expérience de danse nécessaire.",
   "educationalLevel": "Débutant",
-  "inLanguage": [
-    "fr",
-    "en",
-    "nl"
-  ],
-  "availableLanguage": [
-    "French",
-    "English",
-    "Dutch"
-  ],
+  "inLanguage": ["fr", "en", "nl"],
+  "availableLanguage": ["French", "English", "Dutch"],
   "hasCourseInstance": [
     {
       "@type": "CourseInstance",
       "courseMode": "Onsite",
       "location": {
         "@type": "Place",
-        "name": "BE-TANGO Bruxelles",
+        "name": "École Gatti de Gamond",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Rue du Marais 68",
@@ -89,6 +80,15 @@
           "postalCode": "1000",
           "addressCountry": "BE"
         }
+      },
+      "courseSchedule": {
+        "@type": "Schedule",
+        "byDay": "https://schema.org/Monday",
+        "startTime": "20:00",
+        "endTime": "21:00",
+        "repeatFrequency": "P1W",
+        "duration": "PT1H",
+        "scheduleTimezone": "Europe/Brussels"
       }
     },
     {
@@ -96,7 +96,7 @@
       "courseMode": "Onsite",
       "location": {
         "@type": "Place",
-        "name": "BE-TANGO Woluwe",
+        "name": "GC Kontakt",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Avenue Orban 54",
@@ -104,10 +104,26 @@
           "postalCode": "1150",
           "addressCountry": "BE"
         }
+      },
+      "courseSchedule": {
+        "@type": "Schedule",
+        "byDay": "https://schema.org/Thursday",
+        "startTime": "19:30",
+        "endTime": "20:30",
+        "repeatFrequency": "P1W",
+        "duration": "PT1H",
+        "scheduleTimezone": "Europe/Brussels"
       }
     }
   ],
-  "timeRequired": "P14W"
+  "timeRequired": "P12W",
+  "offers": {
+    "@type": "Offer",
+    "price": "195",
+    "priceCurrency": "EUR",
+    "url": "https://www.be-tango.be/fr/cours-de-tango/debutants/",
+    "availability": "https://schema.org/InStock"
+  }
 }
 </script>
 

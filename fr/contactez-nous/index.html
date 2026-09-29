@@ -22,7 +22,9 @@
   <meta property="og:url" content="https://www.be-tango.be/fr/contactez-nous/">
   <meta property="og:image" content="https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp">
   <meta property="og:site_name" content="BE-TANGO">
-  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale" content="fr_BE">
+  <meta property="og:locale:alternate" content="nl_BE">
+  <meta property="og:locale:alternate" content="en_GB">
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
@@ -60,16 +62,19 @@
   "url": "https://www.be-tango.be/fr/contactez-nous/",
   "mainEntity": [
     {
-      "@type": [
-        "LocalBusiness",
-        "EducationalOrganization"
-      ],
-      "description": "Votre école de danse de tango argentin à Bruxelles et Woluwe",
-      "url": "https://www.be-tango.be/fr/",
-      "logo": "https://www.be-tango.be/images/logo-be-tango.png",
+      "@type": ["LocalBusiness", "EducationalOrganization"],
+      "@id": "https://www.be-tango.be/#brussels",
+      "name": "BE-TANGO Bruxelles",
+      "url": "https://www.be-tango.be/fr/cours-de-tango/bruxelles/",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://www.be-tango.be/#organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be/"
+      },
       "telephone": "+32498392939",
       "email": "admin@be-tango.com",
-      "name": "BE-TANGO Bruxelles",
+      "priceRange": "€€",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Rue du Marais 68",
@@ -77,27 +82,46 @@
         "postalCode": "1000",
         "addressCountry": "BE"
       },
+      "location": {
+        "@type": "Place",
+        "name": "École Gatti de Gamond",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rue du Marais 68",
+          "addressLocality": "Bruxelles",
+          "postalCode": "1000",
+          "addressCountry": "BE"
+        }
+      },
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": 50.85242,
         "longitude": 4.35975
       },
-      "sameAs": [
-        "https://maps.google.com/?cid=7397240013699561184"
-      ],
-      "hasMap": "https://maps.google.com/?cid=7397240013699561184"
+      "hasMap": "https://maps.google.com/?cid=7397240013699561184",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["https://schema.org/Monday", "https://schema.org/Wednesday"],
+          "opens": "18:30",
+          "closes": "22:00"
+        }
+      ]
     },
     {
-      "@type": [
-        "LocalBusiness",
-        "EducationalOrganization"
-      ],
-      "description": "Votre école de danse de tango argentin à Bruxelles et Woluwe",
-      "url": "https://www.be-tango.be/fr/",
-      "logo": "https://www.be-tango.be/images/logo-be-tango.png",
+      "@type": ["LocalBusiness", "EducationalOrganization"],
+      "@id": "https://www.be-tango.be/#woluwe",
+      "name": "BE-TANGO Woluwe",
+      "url": "https://www.be-tango.be/fr/cours-de-tango/woluwe/",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://www.be-tango.be/#organization",
+        "name": "BE-TANGO",
+        "url": "https://www.be-tango.be/"
+      },
       "telephone": "+32498392939",
       "email": "admin@be-tango.com",
-      "name": "BE-TANGO Woluwe",
+      "priceRange": "€€",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Avenue Orban 54",
@@ -105,17 +129,40 @@
         "postalCode": "1150",
         "addressCountry": "BE"
       },
+      "location": {
+        "@type": "Place",
+        "name": "GC Kontakt",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Avenue Orban 54",
+          "addressLocality": "Woluwe-Saint-Pierre",
+          "postalCode": "1150",
+          "addressCountry": "BE"
+        }
+      },
       "geo": {
         "@type": "GeoCoordinates",
         "latitude": 50.83343,
         "longitude": 4.45401
       },
-      "sameAs": [
-        "https://maps.google.com/?cid=17403292616488097271"
-      ],
-      "hasMap": "https://maps.google.com/?cid=17403292616488097271"
+      "hasMap": "https://maps.google.com/?cid=17403292616488097271",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["https://schema.org/Tuesday", "https://schema.org/Thursday"],
+          "opens": "18:30",
+          "closes": "22:00"
+        }
+      ]
     }
-  ]
+  ],
+  "isPartOf": {
+    "@id": "https://www.be-tango.be/#website"
+  },
+  "about": {
+    "@id": "https://www.be-tango.be/#organization"
+  },
+  "inLanguage": "fr"
 }
 </script>
 
