@@ -57,14 +57,19 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": [
-    "LocalBusiness",
-    "EducationalOrganization"
-  ],
-  "name": "BE-TANGO Woluwe-Saint-Pierre",
-  "description": "École de tango argentin à Woluwe-Saint-Pierre. Cours pour tous niveaux, du débutant à l'avancé. Accès facile en Métro Stockel & Tram 39.",
+  "@type": ["LocalBusiness", "EducationalOrganization"],
+  "@id": "https://www.be-tango.be/#woluwe",
+  "name": "BE-TANGO Woluwe",
   "url": "https://www.be-tango.be/fr/cours-de-tango/woluwe/",
+  "parentOrganization": {
+    "@type": "Organization",
+    "@id": "https://www.be-tango.be/#organization",
+    "name": "BE-TANGO",
+    "url": "https://www.be-tango.be/"
+  },
   "telephone": "+32498392939",
+  "email": "admin@be-tango.com",
+  "priceRange": "€€",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Avenue Orban 54",
@@ -72,23 +77,39 @@
     "postalCode": "1150",
     "addressCountry": "BE"
   },
+  "location": {
+    "@type": "Place",
+    "name": "GC Kontakt",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Avenue Orban 54",
+      "addressLocality": "Woluwe-Saint-Pierre",
+      "postalCode": "1150",
+      "addressCountry": "BE"
+    }
+  },
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 50.83343,
     "longitude": 4.45401
   },
-  "priceRange": "€€",
-  "openingHours": [
-    "Tu 18:30-22:00",
-    "Th 18:30-22:00"
+  "hasMap": "https://maps.google.com/?cid=17403292616488097271",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["https://schema.org/Tuesday", "https://schema.org/Thursday"],
+      "opens": "18:30",
+      "closes": "22:00"
+    }
   ],
-  "sameAs": [
-    "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
-    "https://www.instagram.com/be_tango_brussels/",
-    "https://www.youtube.com/@betango",
-    "https://maps.google.com/?cid=17403292616488097271"
-  ],
-  "hasMap": "https://maps.google.com/?cid=17403292616488097271"
+  "description": "École de tango argentin à Woluwe-Saint-Pierre. Cours pour tous niveaux, du débutant à l'avancé. Accès facile en Métro Stockel & Tram 39.",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.be-tango.be/fr/cours-de-tango/woluwe/",
+    "isPartOf": {
+      "@id": "https://www.be-tango.be/#website"
+    }
+  }
 }
 </script>
 

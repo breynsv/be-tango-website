@@ -57,46 +57,60 @@
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": [
-    "LocalBusiness",
-    "EducationalOrganization"
-  ],
+  "@type": ["LocalBusiness", "EducationalOrganization"],
+  "@id": "https://www.be-tango.be/#woluwe",
   "name": "BE-TANGO Woluwe",
-  "description": "Argentijnse tangolessen in Sint-Pieters-Woluwe. Wekelijkse groepslessen van absolute beginners tot gevorderden in een gezellige dansstudio.",
   "url": "https://www.be-tango.be/nl/tangolessen/woluwe/",
-  "image": "https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp",
+  "parentOrganization": {
+    "@type": "Organization",
+    "@id": "https://www.be-tango.be/#organization",
+    "name": "BE-TANGO",
+    "url": "https://www.be-tango.be/"
+  },
   "telephone": "+32498392939",
   "email": "admin@be-tango.com",
+  "priceRange": "€€",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Avenue Orban 54",
     "addressLocality": "Sint-Pieters-Woluwe",
     "postalCode": "1150",
-    "addressRegion": "Brussel",
     "addressCountry": "BE"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "GC Kontakt",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Avenue Orban 54",
+      "addressLocality": "Sint-Pieters-Woluwe",
+      "postalCode": "1150",
+      "addressCountry": "BE"
+    }
   },
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 50.83343,
     "longitude": 4.45401
   },
-  "openingHours": [
-    "Tu 18:30-22:00",
-    "Th 18:30-22:00"
-  ],
-  "priceRange": "€195",
   "hasMap": "https://maps.google.com/?cid=17403292616488097271",
-  "parentOrganization": {
-    "@type": "Organization",
-    "name": "BE-TANGO",
-    "url": "https://www.be-tango.be"
-  },
-  "sameAs": [
-    "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
-    "https://www.instagram.com/be_tango_brussels/",
-    "https://www.youtube.com/@betango",
-    "https://maps.google.com/?cid=17403292616488097271"
-  ]
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["https://schema.org/Tuesday", "https://schema.org/Thursday"],
+      "opens": "18:30",
+      "closes": "22:00"
+    }
+  ],
+  "description": "Argentijnse tangolessen in Sint-Pieters-Woluwe. Wekelijkse groepslessen van absolute beginners tot gevorderden in een gezellige dansstudio.",
+  "image": "https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.be-tango.be/nl/tangolessen/woluwe/",
+    "isPartOf": {
+      "@id": "https://www.be-tango.be/#website"
+    }
+  }
 }
 </script>
 

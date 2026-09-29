@@ -52,46 +52,60 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": [
-    "LocalBusiness",
-    "EducationalOrganization"
-  ],
+  "@type": ["LocalBusiness", "EducationalOrganization"],
+  "@id": "https://www.be-tango.be/#brussels",
   "name": "BE-TANGO Brussel",
-  "description": "Argentijnse tangolessen in Brussel centrum bij Ecole Gatti de Gamond. Wekelijkse groepslessen van absolute beginners tot gevorderden in een professionele sporthal met houten dansvloer.",
   "url": "https://www.be-tango.be/nl/tangolessen/brussel/",
-  "image": "https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp",
+  "parentOrganization": {
+    "@type": "Organization",
+    "@id": "https://www.be-tango.be/#organization",
+    "name": "BE-TANGO",
+    "url": "https://www.be-tango.be/"
+  },
   "telephone": "+32498392939",
   "email": "admin@be-tango.com",
+  "priceRange": "€€",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Rue du Marais 68",
     "addressLocality": "Brussel",
     "postalCode": "1000",
-    "addressRegion": "Brussel",
     "addressCountry": "BE"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "École Gatti de Gamond",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rue du Marais 68",
+      "addressLocality": "Brussel",
+      "postalCode": "1000",
+      "addressCountry": "BE"
+    }
   },
   "geo": {
     "@type": "GeoCoordinates",
     "latitude": 50.85242,
     "longitude": 4.35975
   },
-  "openingHours": [
-    "Mo 18:30-22:00",
-    "We 18:30-22:00"
-  ],
-  "priceRange": "€€",
   "hasMap": "https://maps.google.com/?cid=7397240013699561184",
-  "parentOrganization": {
-    "@type": "Organization",
-    "name": "BE-TANGO",
-    "url": "https://www.be-tango.be"
-  },
-  "sameAs": [
-    "https://www.facebook.com/p/Be-tango-ART-100057312323946/",
-    "https://www.instagram.com/be_tango_brussels/",
-    "https://www.youtube.com/@betango",
-    "https://maps.google.com/?cid=7397240013699561184"
-  ]
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["https://schema.org/Monday", "https://schema.org/Wednesday"],
+      "opens": "18:30",
+      "closes": "22:00"
+    }
+  ],
+  "description": "Argentijnse tangolessen in Brussel centrum bij Ecole Gatti de Gamond. Wekelijkse groepslessen van absolute beginners tot gevorderden in een professionele sporthal met houten dansvloer.",
+  "image": "https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.be-tango.be/nl/tangolessen/brussel/",
+    "isPartOf": {
+      "@id": "https://www.be-tango.be/#website"
+    }
+  }
 }
 </script>
 <!-- Live Schedule Component Styles -->

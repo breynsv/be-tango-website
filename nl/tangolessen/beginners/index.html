@@ -52,15 +52,15 @@
   "@context": "https://schema.org",
   "@type": "Course",
   "name": "Tangolessen voor Beginners (Start-to-Tango)",
-  "description": "14-weekse cursus voor absolute beginners. Leer basispassen, houding, partnerconnectie en muzikaliteit. Geen danspartner vereist.",
+  "description": "12-weekse cursus voor absolute beginners. Leer basispassen, houding, partnerconnectie en muzikaliteit. Geen danspartner vereist.",
   "url": "https://www.be-tango.be/nl/tangolessen/beginners/",
   "provider": {
     "@type": "Organization",
+    "@id": "https://www.be-tango.be/#organization",
     "name": "BE-TANGO",
-    "url": "https://www.be-tango.be/nl/"
+    "url": "https://www.be-tango.be/"
   },
   "courseCode": "BEGINNER",
-  "numberOfCredits": 14,
   "inLanguage": "nl",
   "hasCourseInstance": [
     {
@@ -68,7 +68,7 @@
       "courseMode": "Onsite",
       "location": {
         "@type": "Place",
-        "name": "BE-TANGO Brussel",
+        "name": "École Gatti de Gamond",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Rue du Marais 68",
@@ -79,10 +79,12 @@
       },
       "courseSchedule": {
         "@type": "Schedule",
-        "byDay": "Monday",
+        "byDay": "https://schema.org/Monday",
         "startTime": "20:00",
         "endTime": "21:00",
-        "repeatFrequency": "Weekly"
+        "repeatFrequency": "P1W",
+        "duration": "PT1H",
+        "scheduleTimezone": "Europe/Brussels"
       }
     },
     {
@@ -90,7 +92,7 @@
       "courseMode": "Onsite",
       "location": {
         "@type": "Place",
-        "name": "BE-TANGO Woluwe",
+        "name": "GC Kontakt",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Avenue Orban 54",
@@ -101,10 +103,12 @@
       },
       "courseSchedule": {
         "@type": "Schedule",
-        "byDay": "Thursday",
+        "byDay": "https://schema.org/Thursday",
         "startTime": "19:30",
         "endTime": "20:30",
-        "repeatFrequency": "Weekly"
+        "repeatFrequency": "P1W",
+        "duration": "PT1H",
+        "scheduleTimezone": "Europe/Brussels"
       }
     }
   ],
@@ -112,7 +116,7 @@
     "@type": "Offer",
     "price": "195",
     "priceCurrency": "EUR",
-    "description": "Volledige beginnerscursus - 14 wekelijkse lessen"
+    "description": "Volledige beginnerscursus - 12 wekelijkse lessen"
   }
 }
 </script>
