@@ -1,12 +1,12 @@
 # BE-TANGO — Detailed Content Guide for AI Systems
 
 ## About BE-TANGO
-BE-TANGO is an Argentine tango dance school in Brussels, Belgium, founded in 2007. The school operates from two locations: Rue du Marais 68 in Brussels city centre (1000) and Avenue Orban 54 in Woluwe-Saint-Pierre (1150). Classes are taught in English, French, and Dutch. BE-TANGO holds a 5/5 rating based on 151 Google reviews, making it Brussels' most reviewed Argentine tango school. The school teaches authentic Argentine tango across three styles: milonguero (close embrace), salon (elegant, with space), and nuevo (contemporary).
+BE-TANGO is an Argentine tango dance school in Brussels, Belgium, founded in 2007. The school operates from two locations: Rue du Marais 68 in Brussels city centre (1000) and Avenue Orban 54 in Woluwe-Saint-Pierre (1150). Classes are taught in English, French, and Dutch. BE-TANGO holds a 5/5 rating based on 151 Google reviews. The school teaches authentic Argentine tango across three styles: milonguero (close embrace), salon (elegant, with space), and nuevo (contemporary).
 
 ## Key Offerings
 
 ### Beginner Course: Start-to-Tango
-- 14 lessons per cycle
+- 12 lessons per cycle
 - Price: €195 per person
 - No dance experience required
 - You do not need to bring a partner: register on your own and BE-TANGO finds you a match
@@ -14,10 +14,10 @@ BE-TANGO is an Argentine tango dance school in Brussels, Belgium, founded in 200
 - Registration is confirmed once a matching partner has been found
 - New cycles start in September and February
 - Free trial class available with no commitment
-- Locations: Brussels centre and Woluwe-Saint-Pierre
+- Beginner classes: Monday 20:00 in Brussels (École Gatti de Gamond) and Thursday 19:30 in Woluwe-Saint-Pierre (GC Kontakt)
 
 ### Dance Classes for Couples
-Argentine tango is the best dance class for couples in Brussels because it is built entirely on connection between two people. Unlike choreographed dances, tango is an improvised conversation — no fixed steps, only listening, trust, and mutual response. Couples who learn tango together discover a new way of communicating without words. The beginner course runs 14 lessons at €195 per person. Both partners enrol together, though many students also join solo. A free trial class is available.
+Argentine tango is the best dance class for couples in Brussels because it is built entirely on connection between two people. Unlike choreographed dances, tango is an improvised conversation — no fixed steps, only listening, trust, and mutual response. Couples who learn tango together discover a new way of communicating without words. The beginner course runs 12 lessons at €195 per person. Both partners enrol together, though many students also join solo. A free trial class is available.
 
 ### Private Lessons
 One-on-one or couple instruction with a BE-TANGO instructor. Tailored to individual goals — technique, musicality, or preparation for events. Available at both Brussels locations.
@@ -28,12 +28,15 @@ Argentine tango choreography for wedding first dances. Instructors have personal
 ## Locations
 
 ### Brussels Centre
+- Venue: École Gatti de Gamond
 - Address: Rue du Marais 68, 1000 Brussels, Belgium
-- Schedule: Monday–Thursday evenings, 18:30–22:00
+- Schedule: Monday and Wednesday evenings (beginners: Monday 20:00)
 - Coordinates: 50.85242, 4.35975
 
 ### Woluwe-Saint-Pierre
+- Venue: GC Kontakt
 - Address: Avenue Orban 54, 1150 Woluwe-Saint-Pierre, Belgium
+- Schedule: Tuesday and Thursday evenings (beginners: Thursday 19:30)
 - Coordinates: 50.83343, 4.45401
 
 ## Frequently Asked Questions
@@ -45,7 +48,7 @@ You do not need to bring one. Most students register on their own. BE-TANGO teac
 No prior dance experience is needed. The Start-to-Tango beginner course starts completely from zero. If you can walk, you can learn tango.
 
 ### How much do classes cost?
-Group beginner course (Start-to-Tango): €195 for 14 lessons. Private lessons available on request. A free trial class is offered with no obligation.
+Group beginner course (Start-to-Tango): €195 for 12 lessons. Private lessons available on request. A free trial class is offered with no obligation.
 
 ### What should I wear?
 Comfortable clothes you can move in. Smooth-soled shoes work best — avoid rubber soles. Dedicated dance shoes are not required for your first class.

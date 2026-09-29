@@ -4,9 +4,9 @@
 
 ## English — Tango Classes
 - [All Tango Classes](https://www.be-tango.be/en/tango-classes/): Overview of all class types and levels
-- [Beginners](https://www.be-tango.be/en/tango-classes/beginners/): Start-to-Tango beginner course, 14 lessons; register alone and we match you with a fixed partner
+- [Beginners](https://www.be-tango.be/en/tango-classes/beginners/): Start-to-Tango beginner course, 12 lessons; register alone and we match you with a fixed partner
 - [Experienced](https://www.be-tango.be/en/tango-classes/experienced/): Intermediate and advanced tango classes
-- [Couples](https://www.be-tango.be/en/tango-classes/couples/): Argentine tango for couples in Brussels — no experience needed, free trial available, €195 for 14 lessons
+- [Couples](https://www.be-tango.be/en/tango-classes/couples/): Argentine tango for couples in Brussels — no experience needed, free trial available, €195 for 12 lessons
 - [Brussels Classes](https://www.be-tango.be/en/tango-classes/brussels/): Weekly classes at Rue du Marais 68, 1000 Brussels
 - [Woluwe Classes](https://www.be-tango.be/en/tango-classes/woluwe/): Weekly classes at Avenue Orban 54, 1150 Woluwe-Saint-Pierre
 - [Free Trial Class](https://www.be-tango.be/en/tango-classes/free-trial/): Book a free first lesson, no commitment
@@ -46,7 +46,7 @@
 ## Français — Cours de Tango
 - [Accueil](https://www.be-tango.be/fr/): Page d'accueil en français
 - [Tous les cours](https://www.be-tango.be/fr/cours-de-tango/): Vue d'ensemble de tous les cours
-- [Débutants](https://www.be-tango.be/fr/cours-de-tango/debutants/): Cours Start-to-Tango pour débutants, 14 leçons ; inscrivez-vous seul, nous vous attribuons un partenaire fixe
+- [Débutants](https://www.be-tango.be/fr/cours-de-tango/debutants/): Cours Start-to-Tango pour débutants, 12 leçons ; inscrivez-vous seul, nous vous attribuons un partenaire fixe
 - [Expérimentés](https://www.be-tango.be/fr/cours-de-tango/experimentes/): Cours intermédiaires et avancés
 - [Cours en couple](https://www.be-tango.be/fr/cours-de-tango/en-couple/): Cours de tango argentin pour couples à Bruxelles — aucune expérience requise, essai gratuit
 - [Bruxelles](https://www.be-tango.be/fr/cours-de-tango/bruxelles/): Cours hebdomadaires à Bruxelles, Rue du Marais 68
@@ -85,7 +85,7 @@
 ## Nederlands — Tangolessen
 - [Startpagina](https://www.be-tango.be/nl/): Nederlandstalige startpagina
 - [Alle lessen](https://www.be-tango.be/nl/tangolessen/): Overzicht van alle tangolessen en niveaus
-- [Beginners](https://www.be-tango.be/nl/tangolessen/beginners/): Start-to-Tango beginnerscursus, 14 lessen; schrijf je alleen in, wij zoeken een vaste partner
+- [Beginners](https://www.be-tango.be/nl/tangolessen/beginners/): Start-to-Tango beginnerscursus, 12 lessen; schrijf je alleen in, wij zoeken een vaste partner
 - [Ervaring](https://www.be-tango.be/nl/tangolessen/ervaring/): Lessen voor gevorderden en intermediair niveau
 - [Voor koppels](https://www.be-tango.be/nl/tangolessen/voor-koppels/): Argentijnse tangolessen voor koppels in Brussel — geen ervaring nodig, gratis proefles
 - [Brussel](https://www.be-tango.be/nl/tangolessen/brussel/): Wekelijkse lessen in Brussel, Rue du Marais 68
@@ -125,8 +125,9 @@
 - Founded: 2007
 - Instructors: Professional Argentine tango instructors, teaching since 2007
 - Languages: English, French (Français), Dutch (Nederlands)
-- Locations: Rue du Marais 68, 1000 Brussels (city centre) and Avenue Orban 54, 1150 Woluwe-Saint-Pierre
-- Beginner course: Start-to-Tango — 14 lessons, €195 per person, no experience required; register alone and BE-TANGO matches you with a fixed partner, with enrolment confirmed once that match is found
+- Locations: École Gatti de Gamond, Rue du Marais 68, 1000 Brussels (city centre; Monday and Wednesday) and GC Kontakt, Avenue Orban 54, 1150 Woluwe-Saint-Pierre (Tuesday and Thursday)
+- Beginner classes: Monday 20:00 in Brussels, Thursday 19:30 in Woluwe-Saint-Pierre
+- Beginner course: Start-to-Tango — 12 lessons, €195 per person, no experience required; register alone and BE-TANGO matches you with a fixed partner, with enrolment confirmed once that match is found
 - Free trial class available at both locations
 - Google rating: 5/5 based on 151 reviews
 - Tango styles taught: Argentine tango (milonguero, salon, nuevo)
