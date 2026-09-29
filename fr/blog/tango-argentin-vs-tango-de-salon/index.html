@@ -309,7 +309,7 @@
 
     /* RELATED ARTICLES */
     .d4-related-section { padding: 72px 0; background: var(--bg); }
-    .d4-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; }
+    .d4-section-header { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; margin-bottom: 36px; }
     .d4-section-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
     .d4-section-title { font-size: 1.75rem; font-weight: 800; color: var(--navy); letter-spacing: -0.02em; margin: 0; }
     .d4-see-all { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: var(--navy); border: 1px solid var(--border); padding: 8px 18px; border-radius: 6px; transition: background 0.2s, border-color 0.2s; white-space: nowrap; text-decoration: none; }
@@ -327,7 +327,7 @@
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
-      .hero-inner { grid-template-columns: 1fr; }
+      .hero-inner { grid-template-columns: minmax(0, 1fr); }
       .hero-image-panel { display: none; }
       .hero-title { font-size: 2.8rem; }
       .article-grid { grid-template-columns: minmax(0, 1fr); } /* 1fr would grow to the table's longest word and zoom the page out on phones */
