@@ -36,18 +36,21 @@
 <link href="../../../images/cropped-favicon-180x180.png" rel="apple-touch-icon" sizes="180x180"/>
 <link rel="manifest" href="/site.webmanifest"/>
 <!-- Google Fonts -->
+  <!-- LCP hero image preload (media-scoped to match the <picture> sources exactly) -->
+  <link rel="preload" as="image" type="image/webp" href="/images/Tango-mobile-640w.webp?v=2" media="(max-width: 767px)" fetchpriority="high">
+  <link rel="preload" as="image" type="image/webp" href="/images/Tango-2048x1365-1.webp" media="(min-width: 768px)" fetchpriority="high">
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link crossorigin="" href="https://cdnjs.cloudflare.com" rel="preconnect"/>
 <link as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&amp;display=optional" onload="this.onload=null;this.rel='stylesheet'" rel="preload"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&amp;display=optional" rel="stylesheet"/></noscript>
 <link rel="preload" href="../../../css/fontawesome.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../../../css/fontawesome.min.css?v=3.9"></noscript>
-  <link rel="preload" href="/css/cookie-consent.min.css?v=3.8" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
+  <link rel="preload" href="/css/cookie-consent.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.9"></noscript>
 <!-- Stylesheet -->
 <link href="../../../css/styles.min.css?v=4.5" rel="stylesheet"/>
 <noscript><link href="../../../css/styles.min.css?v=4.5" rel="stylesheet"/></noscript>
-<link href="../../../css/free-trial.css?v=2.0" rel="stylesheet"/>
+<link href="../../../css/free-trial.min.css?v=2.1" rel="stylesheet"/>
 <!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
 {
@@ -186,7 +189,7 @@
 <!-- MAIN CONTENT -->
 <main id="main-content"><!-- HERO -->
 <section aria-label="Hero" class="ft-hero">
-<div class="ft-hero__bg" role="presentation"></div>
+<div class="ft-hero__bg" role="presentation"><picture><source srcset="/images/Tango-mobile-640w.webp?v=2" media="(max-width: 767px)"><img src="/images/Tango-2048x1365-1.webp" alt="Danseurs de tango argentin à Bruxelles" fetchpriority="high" width="2048" height="1365"></picture></div>
 <div class="ft-hero__gradient" role="presentation"></div>
 <div class="ft-hero__inner">
 <p class="ft-hero__eyebrow">Bienvenue chez BE-TANGO</p>
@@ -213,7 +216,7 @@
 <h2 class="ft-section-heading">Découvrez si le tango est fait pour vous</h2>
 <p class="ft-section-sub">Curieux du tango mais pas sûr que c'est pour vous ? Notre cours d'introduction gratuit est le moyen parfait de le découvrir — une heure pour goûter à l'atmosphère, la musique et la connexion.</p>
 <div class="ft-intro-image">
-<img alt="Cours d'essai gratuit de tango à Bruxelles" fetchpriority="high" src="../../../images/beginner-tango-classes.webp"/ width="400" height="400">
+<img alt="Cours d'essai gratuit de tango à Bruxelles" loading="lazy" decoding="async" src="../../../images/beginner-tango-classes.webp" width="400" height="400">
 </div>
 <ul class="ft-checklist">
 <li>
@@ -784,6 +787,6 @@
     });
   </script>
   <script src="/js/attribution.min.js?v=1.1" defer></script>
-  <script src="/js/cookie-consent.min.js?v=4.1" defer></script>
+  <script src="/js/cookie-consent.min.js?v=4.2" defer></script>
 </body>
 </html>

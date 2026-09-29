@@ -42,8 +42,8 @@
 
   <!-- Stylesheets -->
   <link rel="preload" href="../css/fontawesome.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="../css/fontawesome.min.css?v=3.9"></noscript>
-  <link rel="preload" href="/css/cookie-consent.min.css?v=3.8" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
+  <link rel="preload" href="/css/cookie-consent.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.9"></noscript>
 
   <!-- Critical CSS (inlined for fast first render; extracted via penthouse/critical for 412x915 + 1350x940) -->
   <style>
@@ -820,13 +820,6 @@
           }
         }, 100);
       });
-
-      // Set initial state — deferred to avoid forced reflow during initial paint
-      requestAnimationFrame(() => {
-        if (window.innerWidth < 768) {
-          mainNav.classList.remove('mobile-nav-open');
-        }
-      });
     }
 
     // Language dropdown toggle
@@ -979,6 +972,6 @@
     })();
   </script>
   <script src="/js/attribution.min.js?v=1.1" defer></script>
-  <script src="/js/cookie-consent.min.js?v=4.1" defer></script>
+  <script src="/js/cookie-consent.min.js?v=4.2" defer></script>
 </body>
 </html>

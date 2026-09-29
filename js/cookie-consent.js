@@ -66,16 +66,49 @@
 
   // 3. Load GTM (consent state above is already queued in dataLayer).
   //    Skipped on localhost — see IS_LOCALHOST above.
-  if (!IS_LOCALHOST) (function (w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-    const f = d.getElementsByTagName(s)[0];
-    const j = d.createElement(s);
-    const dl = l !== 'dataLayer' ? '&l=' + l : '';
-    j.async = true;
-    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-    f.parentNode.insertBefore(j, f);
-  })(window, document, 'script', 'dataLayer', GTM_ID);
+  //
+  //    The 'gtm.js' event is pushed NOW, so the queue order stays
+  //    consent default → consent update → gtm.js (All Pages) → anything the
+  //    page pushes later. Only the ~340 KiB download (gtm.js + gtag/js) waits:
+  //    it starts on the first scroll / pointer / key / touch, or ~3s after this
+  //    script runs, whichever comes first. dataLayer is a plain array until
+  //    then, so conversion events pushed before the container arrives
+  //    (enrollment_success, newsletter_signup, free_trial_signup, …) are
+  //    queued and GTM replays them in order when it boots.
+  //
+  //    Trade-off: a visitor who leaves within ~3s without touching the page is
+  //    not counted. Nobody converts without interacting, so conversions are
+  //    unaffected.
+  if (!IS_LOCALHOST) {
+    window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+    const GTM_TRIGGERS = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+    const GTM_IDLE_MS = 3000;
+    const listenerOpts = { capture: true, passive: true };
+    let gtmRequested = false;
+    let gtmTimer = null;
+
+    const loadGTM = function () {
+      if (gtmRequested) return;
+      gtmRequested = true;
+      clearTimeout(gtmTimer);
+      GTM_TRIGGERS.forEach(function (type) {
+        window.removeEventListener(type, loadGTM, listenerOpts);
+      });
+      const j = document.createElement('script');
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
+      (document.head || document.documentElement).appendChild(j);
+    };
+
+    GTM_TRIGGERS.forEach(function (type) {
+      window.addEventListener(type, loadGTM, listenerOpts);
+    });
+    gtmTimer = setTimeout(function () {
+      if (window.requestIdleCallback) window.requestIdleCallback(loadGTM, { timeout: 1000 });
+      else loadGTM();
+    }, GTM_IDLE_MS);
+  }
 
   /**
    * UI translations — keyed by language code from <html lang="...">

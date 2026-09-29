@@ -40,19 +40,22 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google Fonts -->
+  <!-- LCP hero image preload (media-scoped to match the <picture> sources exactly) -->
+  <link rel="preload" as="image" type="image/webp" href="/images/Tango-mobile-640w.webp?v=2" media="(max-width: 767px)" fetchpriority="high">
+  <link rel="preload" as="image" type="image/webp" href="/images/Tango-2048x1365-1.webp" media="(min-width: 768px)" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=optional"></noscript>
   <link rel="preload" href="/css/fontawesome.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/fontawesome.min.css?v=3.9"></noscript>
-  <link rel="preload" href="/css/cookie-consent.min.css?v=3.8" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.8"></noscript>
+  <link rel="preload" href="/css/cookie-consent.min.css?v=3.9" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/css/cookie-consent.min.css?v=3.9"></noscript>
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="/css/styles.min.css?v=4.5">
   <noscript><link rel="stylesheet" href="/css/styles.min.css?v=4.5"></noscript>
-  <link rel="stylesheet" href="/css/free-trial.css?v=2.0">
+  <link rel="stylesheet" href="/css/free-trial.min.css?v=2.1">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -199,7 +202,7 @@
 
     <!-- HERO -->
     <section class="ft-hero" aria-label="Hero">
-      <div class="ft-hero__bg" role="presentation"></div>
+      <div class="ft-hero__bg" role="presentation"><picture><source srcset="/images/Tango-mobile-640w.webp?v=2" media="(max-width: 767px)"><img src="/images/Tango-2048x1365-1.webp" alt="Argentine tango dancers in Brussels" fetchpriority="high" width="2048" height="1365"></picture></div>
       <div class="ft-hero__gradient" role="presentation"></div>
       <div class="ft-hero__inner">
         <p class="ft-hero__eyebrow">Welcome to BE-TANGO</p>
@@ -229,7 +232,7 @@
           <p class="ft-section-sub">Curious about tango but not sure if it's for you? Our free introduction class is the perfect way to find out — one hour to taste the atmosphere, music and connection.</p>
 
           <div class="ft-intro-image">
-            <img src="/images/beginner-tango-classes.webp" alt="Free trial tango class in Brussels" fetchpriority="high" width="400" height="400">
+            <img src="/images/beginner-tango-classes.webp" alt="Free trial tango class in Brussels" loading="lazy" decoding="async" width="400" height="400">
           </div>
 
           <ul class="ft-checklist">
@@ -863,6 +866,6 @@
   </script>
 
   <script src="/js/attribution.min.js?v=1.1" defer></script>
-  <script src="/js/cookie-consent.min.js?v=4.1" defer></script>
+  <script src="/js/cookie-consent.min.js?v=4.2" defer></script>
 </body>
 </html>
