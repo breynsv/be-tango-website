@@ -218,6 +218,9 @@
   <url>
     <loc>https://www.be-tango.be/en/tango-classes/free-trial/</loc>
     <image:image>
+      <image:loc>https://www.be-tango.be/images/Tango-2048x1365-1.webp</image:loc>
+    </image:image>
+    <image:image>
       <image:loc>https://www.be-tango.be/images/beginner-tango-classes.webp</image:loc>
     </image:image>
     <image:image>
@@ -227,6 +230,9 @@
   <url>
     <loc>https://www.be-tango.be/fr/cours-de-tango/essai-gratuit/</loc>
     <image:image>
+      <image:loc>https://www.be-tango.be/images/Tango-2048x1365-1.webp</image:loc>
+    </image:image>
+    <image:image>
       <image:loc>https://www.be-tango.be/images/beginner-tango-classes.webp</image:loc>
     </image:image>
     <image:image>
@@ -235,6 +241,9 @@
   </url>
   <url>
     <loc>https://www.be-tango.be/nl/tangolessen/gratis-proefles/</loc>
+    <image:image>
+      <image:loc>https://www.be-tango.be/images/Tango-2048x1365-1.webp</image:loc>
+    </image:image>
     <image:image>
       <image:loc>https://www.be-tango.be/images/beginner-tango-classes.webp</image:loc>
     </image:image>
@@ -509,7 +518,7 @@
   <url>
     <loc>https://www.be-tango.be/fr/blog/conseils-pour-chaussures-de-tango/</loc>
     <image:image>
-      <image:loc>https://www.be-tango.be/images/blog/tango-schoenen-blogpost.jpg</image:loc>
+      <image:loc>https://www.be-tango.be/images/blog/tango-schoenen-blogpost.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.be-tango.be/images/blog/tango-shoes-show.webp</image:loc>
@@ -525,6 +534,9 @@
     </image:image>
     <image:image>
       <image:loc>https://www.be-tango.be/images/blog/tango-dance-shoes.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.be-tango.be/images/blog/tango-schoenen-blogpost.jpg</image:loc>
     </image:image>
   </url>
   <url>
@@ -573,24 +585,6 @@
     </image:image>
     <image:image>
       <image:loc>https://www.be-tango.be/images/blog/ballroom-posture.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.be-tango.be/en/blog/argentine-tango-classes-brussels-beginners/</loc>
-    <image:image>
-      <image:loc>https://www.be-tango.be/images/blog/why-learn-tango.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.be-tango.be/fr/blog/cours-tango-argentin-bruxelles-debutants/</loc>
-    <image:image>
-      <image:loc>https://www.be-tango.be/images/tango-classes-in-Brussels-2-e1740646913571.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.be-tango.be/nl/blog/tango-lessen-brussel-beginners/</loc>
-    <image:image>
-      <image:loc>https://www.be-tango.be/images/blog/why-learn-tango.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -656,6 +650,9 @@
   <url>
     <loc>https://www.be-tango.be/fr/blog/histoire-du-tango-argentin/</loc>
     <image:image>
+      <image:loc>https://www.be-tango.be/images/blog/prague-tango-marathon.webp</image:loc>
+    </image:image>
+    <image:image>
       <image:loc>https://www.be-tango.be/images/blog/prague-tango-marathon.jpg</image:loc>
     </image:image>
   </url>
@@ -692,6 +689,9 @@
   <url>
     <loc>https://www.be-tango.be/fr/blog/evenements-de-tango-internationaux/</loc>
     <image:image>
+      <image:loc>https://www.be-tango.be/images/blog/belgrade-768x512.webp</image:loc>
+    </image:image>
+    <image:image>
       <image:loc>https://www.be-tango.be/images/blog/belgrade-768x512.jpg</image:loc>
     </image:image>
   </url>
@@ -722,13 +722,7 @@
   <url>
     <loc>https://www.be-tango.be/fr/blog/evenements-de-tango-a-bruxelles/</loc>
     <image:image>
-      <image:loc>https://www.be-tango.be/images/blog/milonga-la-milonguita-768x512.jpg</image:loc>
-    </image:image>
-    <image:image>
       <image:loc>https://www.be-tango.be/images/blog/milonga-la-milonguita-768x512.webp</image:loc>
-    </image:image>
-    <image:image>
-      <image:loc>https://www.be-tango.be/images/blog/milonga-tango-bar.webp</image:loc>
     </image:image>
     <image:image>
       <image:loc>https://www.be-tango.be/images/blog/milonga-el-dorado-humbeek.webp</image:loc>
@@ -751,17 +745,8 @@
     <image:image>
       <image:loc>https://www.be-tango.be/images/blog/tango-marathon-palace-tango-cita-brussels.png</image:loc>
     </image:image>
-  </url>
-  <url>
-    <loc>https://www.be-tango.be/en/blog/tango-for-couples-brussels/</loc>
     <image:image>
-      <image:loc>https://www.be-tango.be/images/blog/tango-for-couples.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.be-tango.be/fr/blog/tango-en-couple-bruxelles/</loc>
-    <image:image>
-      <image:loc>https://www.be-tango.be/images/blog/tango-for-couples.webp</image:loc>
+      <image:loc>https://www.be-tango.be/images/blog/milonga-la-milonguita-768x512.jpg</image:loc>
     </image:image>
   </url>
   <url>
@@ -772,6 +757,9 @@
   </url>
   <url>
     <loc>https://www.be-tango.be/fr/blog/dictionnaire-de-tango/</loc>
+    <image:image>
+      <image:loc>https://www.be-tango.be/images/blog/tango-dictionary-724x543.webp</image:loc>
+    </image:image>
     <image:image>
       <image:loc>https://www.be-tango.be/images/blog/tango-dictionary.jpg</image:loc>
     </image:image>
@@ -906,12 +894,6 @@
     <loc>https://www.be-tango.be/nl/blog/tango-evenementen-in-brussel-en-omstreken/</loc>
     <image:image>
       <image:loc>https://www.be-tango.be/images/blog/brussels-tango-events.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://www.be-tango.be/nl/blog/tango-voor-koppels-brussel/</loc>
-    <image:image>
-      <image:loc>https://www.be-tango.be/images/blog/tango-for-couples.webp</image:loc>
     </image:image>
   </url>
   <url>
