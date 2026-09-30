@@ -8457,3 +8457,30 @@ section.hero-small:has(.hero-bg-image) h1 {
 :root{--color-gold-on-light:#8C6F10}
 h2 .highlight,h3 .highlight,h4 .highlight{color:var(--color-gold-on-light)}
 .schedule-day,.lsched-day-abbr,.lsched-time-val{color:var(--color-gold-on-light)}
+
+/* Tablet header (768–1099px). The full desktop nav needs ~1000px: 7 items,
+   the gold CTA, the portal link and the language switcher. Below that it
+   overflowed the page sideways (38 pages at 768px, all of NL) and on NL the
+   logo was squeezed to 0px. Here the logo keeps its size, the items sit
+   closer, the CTA stays on one line, and the portal link shows only its
+   person icon (the label stays in the DOM for screen readers). Scoped under
+   .site-header so it outranks the inline critical CSS some pages load after
+   this stylesheet. */
+@media (min-width: 768px) and (max-width: 1099px) {
+  .site-header .logo { flex-shrink: 0; }
+  .site-header .logo img { width: 125px; }
+  .site-header .header-content { gap: var(--spacing-sm); }
+  .site-header .nav-list { gap: 10px; }
+  .site-header .nav-list > li > a { font-size: 0.875rem; white-space: nowrap; }
+  .site-header .nav-list .btn-nav { padding: 0.5rem 1rem !important; white-space: nowrap; }
+  .site-header .nav-list a.nav-portal-link {
+    font-size: 0;
+    gap: 0;
+    min-width: 44px;
+    justify-content: center;
+    padding-left: 10px;
+    margin-left: -5px;
+  }
+  .site-header .nav-list a.nav-portal-link::before { width: 18px; height: 18px; flex-basis: 18px; }
+  .site-header .language-toggle { padding: var(--spacing-xs); }
+}
