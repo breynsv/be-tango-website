@@ -52,6 +52,8 @@
             closeCalendar: 'Close',
             calMonthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
             calWeekDays: ['Mo','Tu','We','Th','Fr','Sa','Su'],
+            weekendName: 'Beginners weekend',
+            dayJoin: ' & ',
         },
         nl: {
             loading: 'Rooster laden...',
@@ -95,6 +97,8 @@
             closeCalendar: 'Sluiten',
             calMonthNames: ['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'],
             calWeekDays: ['Ma','Di','Wo','Do','Vr','Za','Zo'],
+            weekendName: 'Beginnersweekend',
+            dayJoin: ' & ',
         },
         fr: {
             loading: 'Chargement du planning...',
@@ -138,6 +142,8 @@
             closeCalendar: 'Fermer',
             calMonthNames: ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'],
             calWeekDays: ['Lu','Ma','Me','Je','Ve','Sa','Di'],
+            weekendName: 'Week-end débutants',
+            dayJoin: ' & ',
         },
     };
 
@@ -846,6 +852,138 @@
         return section;
     }
 
+    // ===== ONE-OFF PRODUCTS (weekends, events) =====
+
+    /**
+     * Product types that are dated, not weekly. They have no day_of_week, so they
+     * do not belong in a weekly schedule grid: a beginners weekend rendered there
+     * reads as "SAT 14:00, 2 sessions" — a weekly course that does not exist.
+     * The location pages already keep only Weekly_Course for the same reason.
+     */
+    const ONE_OFF_TYPES = ['Workshop', 'Event'];
+
+    function isOneOff(classData) {
+        return ONE_OFF_TYPES.indexOf(classData && classData.type) !== -1;
+    }
+
+    function escapeHtml(str) {
+        return String(str == null ? '' : str)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function todayYmd() {
+        const d = new Date();
+        const pad = n => String(n).padStart(2, '0');
+        return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    }
+
+    /**
+     * "14–15 novembre 2026", "31 October – 1 November 2026", or a single date.
+     */
+    function formatDateRange(startStr, endStr, lang) {
+        if (!endStr || endStr === startStr) return formatDate(startStr, lang);
+        const [y1, m1, d1] = startStr.split('-').map(Number);
+        const [y2, m2, d2] = endStr.split('-').map(Number);
+        const months = (TRANSLATIONS[lang] || TRANSLATIONS.en).calMonthNames;
+        if (y1 === y2 && m1 === m2) return `${d1}–${d2} ${months[m1 - 1]} ${y1}`;
+        if (y1 === y2) return `${d1} ${months[m1 - 1]} – ${d2} ${months[m2 - 1]} ${y1}`;
+        return `${formatDate(startStr, lang)} – ${formatDate(endStr, lang)}`;
+    }
+
+    /**
+     * "Sat & Sun" from the workshop's own dates (lesson_dates, else start/end).
+     */
+    function weekendDaysLabel(classData, t) {
+        let dates = (classData.lesson_dates || []).slice().sort();
+        if (dates.length === 0) dates = [classData.start_date, classData.end_date].filter(Boolean);
+        const days = [];
+        dates.forEach(ds => {
+            const name = resolveDayOfWeek({ start_date: ds });
+            const abbr = name && (t.dayAbbr[name] || name.slice(0, 3));
+            if (abbr && days.indexOf(abbr) === -1) days.push(abbr);
+        });
+        if (days.length <= 2) return days.join(t.dayJoin || ' & ');
+        return `${days[0]} – ${days[days.length - 1]}`;
+    }
+
+    function upcomingWeekends(classes) {
+        const today = todayYmd();
+        return classes
+            .filter(c => c && c.type === 'Workshop' && c.start_date && (c.end_date || c.start_date) >= today)
+            .sort((a, b) => a.start_date.localeCompare(b.start_date));
+    }
+
+    /**
+     * Fill the beginners page's "Next dates" box ([data-weekend-dates]) from the CRM.
+     * With no upcoming weekend the hardcoded fallback text and lines stay as they are.
+     */
+    function renderWeekendDates(box, classes, t, lang) {
+        if (!box) return;
+        const weekends = upcomingWeekends(classes);
+        const previous = box.querySelector('.weekend-dates-list');
+        if (previous) previous.remove();
+        const staticLines = box.querySelectorAll('[data-weekend-fallback], [data-weekend-static]');
+
+        if (weekends.length === 0) {
+            staticLines.forEach(el => { el.hidden = false; });
+            return;
+        }
+
+        const list = document.createElement('ul');
+        list.className = 'weekend-dates-list';
+
+        weekends.forEach(w => {
+            const range = formatDateRange(w.start_date, w.end_date, lang);
+            const time = w.start_time ? (w.end_time ? `${w.start_time}–${w.end_time}` : w.start_time) : '';
+            const when = [weekendDaysLabel(w, t), time].filter(Boolean).join(' · ');
+
+            const loc = w.location || {};
+            const cityRaw = locStr(loc.city, lang);
+            const city = t.cities[cityRaw] || cityRaw;
+            const address = locStr(loc.address, lang);
+            const addressLine = [address, [loc.postal_code, city].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+            const where = [loc.building_name || loc.name, addressLine].filter(Boolean).join(' · ');
+
+            const price = w.price ? `€${Math.round(parseFloat(w.price))} p.p.` : '';
+
+            const li = document.createElement('li');
+            li.className = 'weekend-date';
+            li.innerHTML = `
+                <div class="weekend-date-main">
+                    <span class="weekend-date-range">${escapeHtml(range)}</span>
+                    ${when ? `<span class="weekend-date-meta"><i class="fas fa-clock" aria-hidden="true"></i>${escapeHtml(when)}</span>` : ''}
+                    ${where ? `<span class="weekend-date-meta"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>${escapeHtml(where)}</span>` : ''}
+                </div>
+                <div class="weekend-date-side">
+                    ${price ? `<span class="weekend-date-price">${escapeHtml(price)}</span>` : ''}
+                </div>
+            `;
+
+            // Same trigger the weekly cards use: enrollment-modal.js listens for
+            // .btn-sign-up clicks by delegation and reads these data attributes.
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'btn btn-sign-up btn-sign-up-inline';
+            btn.dataset.productId = w.id;
+            btn.dataset.className = `${t.weekendName} · ${range}`;
+            btn.dataset.price = w.price || '';
+            btn.dataset.location = city || loc.name || '';
+            btn.dataset.time = time;
+            btn.textContent = t.signUp + ' →';
+            li.querySelector('.weekend-date-side').appendChild(btn);
+
+            list.appendChild(li);
+        });
+
+        // The live entries carry their own price and time, so the static
+        // fallback lines would only repeat, or contradict, them.
+        staticLines.forEach(el => { el.hidden = true; });
+        const heading = box.querySelector('h3');
+        if (heading) heading.insertAdjacentElement('afterend', list);
+        else box.prepend(list);
+    }
+
     /**
      * Show loading state
      */
@@ -890,7 +1028,8 @@
      */
     async function loadSchedule() {
         const containers = document.querySelectorAll('[data-schedule-container]');
-        if (containers.length === 0) {
+        const weekendBox = document.querySelector('[data-weekend-dates]');
+        if (containers.length === 0 && !weekendBox) {
             console.log('[Schedule Loader] No schedule containers found on this page');
             return;
         }
@@ -899,6 +1038,17 @@
         const t = TRANSLATIONS[lang];
         const pageType = detectPageType();
         console.log(`[Schedule Loader] Language: ${lang}, Page type: ${pageType}`);
+
+        if (containers.length === 0) {
+            // A weekend box without a weekly grid: fill it, keep the fallback on failure.
+            try {
+                const response = await fetchClasses(pageType);
+                if (response && response.success) renderWeekendDates(weekendBox, response.data || [], t, lang);
+            } catch (error) {
+                console.warn('[Schedule Loader] Weekend dates unavailable:', error);
+            }
+            return;
+        }
 
         containers.forEach(async (container) => {
             const freeTrialUrl = container.dataset.freeTrialUrl || null;
@@ -914,7 +1064,12 @@
                         throw new Error(response?.message || 'Failed to load schedule');
                     }
 
-                    const classes = response.data || [];
+                    const allClasses = response.data || [];
+                    if (weekendBox) renderWeekendDates(weekendBox, allClasses, t, lang);
+
+                    // Weekly grid: weekly courses only. Weekends and events are dated,
+                    // not weekly, and live in their own section (see ONE_OFF_TYPES).
+                    const classes = allClasses.filter(c => !isOneOff(c));
 
                     if (classes.length === 0) {
                         container.innerHTML = `
