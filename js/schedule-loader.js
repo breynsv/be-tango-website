@@ -892,7 +892,8 @@
     }
 
     /**
-     * "Sat & Sun" from the workshop's own dates (lesson_dates, else start/end).
+     * "Saturday & Sunday" from the workshop's own dates (lesson_dates, else start/end),
+     * as full localised weekday names. The weekly grid keeps its abbreviations.
      */
     function weekendDaysLabel(classData, t) {
         let dates = (classData.lesson_dates || []).slice().sort();
@@ -900,8 +901,8 @@
         const days = [];
         dates.forEach(ds => {
             const name = resolveDayOfWeek({ start_date: ds });
-            const abbr = name && (t.dayAbbr[name] || name.slice(0, 3));
-            if (abbr && days.indexOf(abbr) === -1) days.push(abbr);
+            const full = name && (t.dayFull[name] || name);
+            if (full && days.indexOf(full) === -1) days.push(full);
         });
         if (days.length <= 2) return days.join(t.dayJoin || ' & ');
         return `${days[0]} – ${days[days.length - 1]}`;
@@ -936,7 +937,12 @@
         weekends.forEach(w => {
             const range = formatDateRange(w.start_date, w.end_date, lang);
             const time = w.start_time ? (w.end_time ? `${w.start_time}–${w.end_time}` : w.start_time) : '';
-            const when = [weekendDaysLabel(w, t), time].filter(Boolean).join(' · ');
+            // The time is kept on one line: on a phone, full day names push it to
+            // the edge and "14:00–16:15" would otherwise break at the dash.
+            const whenHtml = [
+                escapeHtml(weekendDaysLabel(w, t)),
+                time ? `<span style="white-space: nowrap;">${escapeHtml(time)}</span>` : '',
+            ].filter(Boolean).join(' · ');
 
             const loc = w.location || {};
             const cityRaw = locStr(loc.city, lang);
@@ -952,7 +958,7 @@
             li.innerHTML = `
                 <div class="weekend-date-main">
                     <span class="weekend-date-range">${escapeHtml(range)}</span>
-                    ${when ? `<span class="weekend-date-meta"><i class="fas fa-clock" aria-hidden="true"></i>${escapeHtml(when)}</span>` : ''}
+                    ${whenHtml ? `<span class="weekend-date-meta"><i class="fas fa-clock" aria-hidden="true"></i>${whenHtml}</span>` : ''}
                     ${where ? `<span class="weekend-date-meta"><i class="fas fa-map-marker-alt" aria-hidden="true"></i>${escapeHtml(where)}</span>` : ''}
                 </div>
                 <div class="weekend-date-side">
