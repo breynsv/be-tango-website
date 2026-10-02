@@ -799,11 +799,17 @@
   overflow: hidden;
 }
 
+/* #1338 — the values (IBAN, structured reference) must never break inside
+   the number: "+++000/0 / 015/1804 / 8+++" on a phone is a payment someone
+   copies wrong. So the value keeps one line, the label gives way first (it
+   may wrap onto two lines), and when even that does not fit the row wraps
+   and the value drops onto its own line, still whole and right-aligned. */
 .em-pay-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 4px 16px;
   padding: 12px 16px;
   border-bottom: 1px solid #F3F4F6;
 }
@@ -819,7 +825,7 @@
   color: #9CA3AF;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  flex-shrink: 0;
+  flex: 1 1 80px;
 }
 
 .em-pay-value {
@@ -828,7 +834,14 @@
   font-weight: 600;
   color: #111827;
   text-align: right;
-  word-break: break-all;
+  overflow-wrap: anywhere;
+  margin-left: auto;
+}
+
+/* The two values someone types into a banking app: one line, always. */
+#em-pay-iban,
+.em-pay-value--ref {
+  white-space: nowrap;
 }
 
 .em-pay-value--amount {
