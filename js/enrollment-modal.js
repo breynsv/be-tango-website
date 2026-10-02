@@ -348,8 +348,12 @@
     }
   }
 
+  // #1338 — the CRM sends the IBAN as the school typed it, which is usually
+  // already grouped ("BE97 0688 9645 6849"). Grouping that string again counted
+  // the spaces as characters and printed "BE97 068 8 96 45 6 849". Strip every
+  // space first, then group in fours: the same output whatever the input.
   function formatIban(iban) {
-    return iban.replace(/(.{4})/g, '$1 ').trim();
+    return String(iban || '').replace(/\s+/g, '').toUpperCase().replace(/(.{4})/g, '$1 ').trim();
   }
 
   function formatDueDate(dateStr) {
