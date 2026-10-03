@@ -307,6 +307,12 @@ p {
   backdrop-filter: blur(10px);
 }
 
+/* Anchor targets clear the sticky header (81-85px tall): a #hash link or an
+   in-page "view dates" button stops with the section below it, not behind it. */
+[id] {
+  scroll-margin-top: 96px;
+}
+
 .header-content {
   display: flex;
   justify-content: space-between;
