@@ -147,6 +147,61 @@
         },
     };
 
+    // ===== HASH ANCHOR KEEPER =====
+
+    /**
+     * A link like /nl/tangolessen/beginners/#weekend-intensief lands the browser on
+     * the section at load, and only afterwards does this loader inject the weekly
+     * grid and the "Next dates" list above or inside it. The section moves down by
+     * that much and the visitor is left looking at whatever sits above it (measured
+     * on WebKit/iPhone: ~370-430px too high). So once rendering settles, put the
+     * target back under the sticky header — unless the visitor has already started
+     * scrolling, tapping or typing, in which case they are never yanked back.
+     */
+    const anchorKeeper = (function() {
+        let targetId = '';
+        try { targetId = decodeURIComponent((window.location.hash || '').slice(1)); } catch (e) { targetId = ''; }
+        if (!targetId) return { settle: function() {} };
+
+        let userMoved = false;
+        const EVENTS = ['wheel', 'touchstart', 'touchmove', 'keydown', 'mousedown', 'pointerdown'];
+        const onUser = function() {
+            userMoved = true;
+            EVENTS.forEach(function(type) { window.removeEventListener(type, onUser, true); });
+        };
+        EVENTS.forEach(function(type) { window.addEventListener(type, onUser, { capture: true, passive: true }); });
+
+        // A link clicked during loading that changes the hash is the visitor's choice.
+        window.addEventListener('hashchange', onUser);
+
+        function settle() {
+            if (userMoved) return;
+            const target = document.getElementById(targetId);
+            if (!target) return;
+            const header = document.querySelector('.site-header');
+            let offset = 0;
+            if (header) {
+                const pos = window.getComputedStyle(header).position;
+                if (pos === 'sticky' || pos === 'fixed') offset = header.getBoundingClientRect().height;
+            }
+            const margin = parseFloat(window.getComputedStyle(target).scrollMarginTop) || 0;
+            const y = Math.max(0, Math.round(target.getBoundingClientRect().top + window.pageYOffset - Math.max(offset, margin)));
+            if (Math.abs(window.pageYOffset - y) < 2) return;
+            // Instant, not smooth: html has scroll-behavior:smooth, and an animated
+            // correction on iOS fights the visitor's first touch.
+            const root = document.documentElement;
+            const previous = root.style.scrollBehavior;
+            root.style.scrollBehavior = 'auto';
+            window.scrollTo(0, y);
+            root.style.scrollBehavior = previous;
+        }
+
+        // Late layout shifts from images also count; the loader calls settle() itself.
+        window.addEventListener('load', function() { settle(); });
+
+        return { settle: settle };
+    })();
+
     // Day of week order for sorting
     const DAY_ORDER = {
         'Monday': 1, 'Tuesday': 2, 'Wednesday': 3, 'Thursday': 4,
@@ -1053,6 +1108,7 @@
             } catch (error) {
                 console.warn('[Schedule Loader] Weekend dates unavailable:', error);
             }
+            anchorKeeper.settle();
             return;
         }
 
@@ -1103,6 +1159,10 @@
 
                 } catch (error) {
                     showError(container, error, t, attemptLoad);
+                } finally {
+                    // Grid and "Next dates" are both in the DOM now (or their error/fallback):
+                    // restore a #hash target the injected content pushed down.
+                    anchorKeeper.settle();
                 }
             };
 
