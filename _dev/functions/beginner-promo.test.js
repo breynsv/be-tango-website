@@ -93,7 +93,7 @@ test('cache miss: fetches both CRM endpoints, returns the trimmed payload, cache
 
   assert.strictEqual(res.status, 200);
   assert.deepStrictEqual(calls.sort(), [CRM + '/classes/beginner', CRM + '/free-trials/available']);
-  assert.strictEqual(res.headers.get('cache-control'), 'public, max-age=60, s-maxage=300');
+  assert.strictEqual(res.headers.get('cache-control'), 'public, max-age=60');
   const body = await res.json();
   assert.strictEqual(body.success, true);
   assert.strictEqual(body.free_trials, 0);
@@ -121,6 +121,76 @@ test('cache hit: returns the cached body and never calls the CRM', async (fn) =>
   assert.strictEqual(res.status, 200);
   assert.strictEqual(calls.length, 0, 'no CRM call on a cache hit');
   assert.strictEqual(await res.text(), cachedBody);
+});
+
+// Age a cached entry by rewriting its stored-at header (what the function reads).
+async function ageCacheEntry(cache, seconds) {
+  const k = ORIGIN + '/api/beginner-promo/__edge-cache-v1';
+  const old = cache.store.get(k);
+  const h = new Headers(old.headers);
+  h.set('x-promo-stored-at', String(Date.now() - seconds * 1000));
+  cache.store.set(k, new Response(await old.clone().text(), { status: old.status, headers: h }));
+}
+
+test('stale hit (older than 5 min): answers from cache at once, refreshes in the background', async (fn) => {
+  const cache = fakeCache();
+  global.caches = { default: cache };
+  stubFetch({ '/free-trials/available': [], '/classes/beginner': [WEEKEND] });
+  const first = ctx();
+  await fn.onRequestGet(first);
+  await Promise.all(first.pending);
+  await ageCacheEntry(cache, 400);
+
+  let release;
+  const gate = new Promise((r) => { release = r; });
+  const calls = [];
+  global.fetch = async (url) => { // CRM now has a trial — and answers slowly
+    calls.push(String(url));
+    await gate;
+    const data = String(url).endsWith('/free-trials/available') ? [{ id: 9 }] : [WEEKEND];
+    return new Response(JSON.stringify({ success: true, data }), { status: 200 });
+  };
+  const c = ctx();
+  const res = await fn.onRequestGet(c);
+  assert.strictEqual(res.status, 200);
+  assert.strictEqual((await res.json()).free_trials, 0, 'visitor gets the cached answer without waiting');
+  assert.strictEqual(c.pending.length, 1, 'refresh handed to waitUntil');
+  release();
+  await Promise.all(c.pending);
+  assert.strictEqual(calls.length, 2, 'refresh called both CRM endpoints');
+  const now = await cache.match(ORIGIN + '/api/beginner-promo/__edge-cache-v1');
+  assert.strictEqual((await now.json()).free_trials, 1, 'cache now holds the refreshed answer');
+});
+
+test('stale hit + CRM down: keeps serving the last good answer', async (fn) => {
+  const cache = fakeCache();
+  global.caches = { default: cache };
+  stubFetch({ '/free-trials/available': [], '/classes/beginner': [WEEKEND] });
+  const first = ctx();
+  await fn.onRequestGet(first);
+  await Promise.all(first.pending);
+  await ageCacheEntry(cache, 400);
+  const putsBefore = cache.puts;
+  stubFetch({ '/free-trials/available': 500, '/classes/beginner': 500 });
+  const c = ctx();
+  const res = await fn.onRequestGet(c);
+  await Promise.all(c.pending);
+  assert.strictEqual(res.status, 200);
+  assert.strictEqual(cache.puts, putsBefore, 'a failed refresh does not overwrite the cache');
+});
+
+test('entry older than 1 hour: treated as a miss (visitor waits for a fresh answer)', async (fn) => {
+  const cache = fakeCache();
+  global.caches = { default: cache };
+  stubFetch({ '/free-trials/available': [], '/classes/beginner': [WEEKEND] });
+  const first = ctx();
+  await fn.onRequestGet(first);
+  await Promise.all(first.pending);
+  await ageCacheEntry(cache, 3700);
+  const calls = stubFetch({ '/free-trials/available': [{ id: 9 }], '/classes/beginner': [WEEKEND] });
+  const res = await fn.onRequestGet(ctx());
+  assert.strictEqual(calls.length, 2);
+  assert.strictEqual((await res.json()).free_trials, 1);
 });
 
 test('trials published: free_trials counts them (the client then keeps the page as is)', async (fn) => {
