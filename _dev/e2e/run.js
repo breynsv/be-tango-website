@@ -23,6 +23,7 @@ const allModules = [
   ['portal-account-note', require('./tests/portal-account-note.test')],
   ['form-validation', require('./tests/form-validation.test')],
   ['mobile-success-scroll', require('./tests/mobile-success-scroll.test')],
+  ['beginner-promo', require('./tests/beginner-promo.test')],
 ];
 
 // E2E_ONLY=form-validation,newsletter runs just those modules. Most modules book
