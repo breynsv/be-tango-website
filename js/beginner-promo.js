@@ -18,6 +18,14 @@
  * weekend, and a one-line note under the hero buttons links to the free-trial
  * page. Free-trial page: a card between the hero and the booking section.
  *
+ * Where the answers come from: first the same-origin edge endpoint
+ * /api/beginner-promo (functions/api/beginner-promo.js — both CRM answers,
+ * cached at Cloudflare for 5 minutes, so it answers in tens of ms instead of
+ * ~0.8s). If that fails for any reason (404 on a plain static server, 5xx,
+ * bad JSON, network error), the two CRM endpoints are called directly, as
+ * before. One 4s budget (TIMEOUT_MS) covers both attempts; the request starts
+ * the moment this script runs.
+ *
  * When it has decided, <html data-beginner-promo="weekend|default"> records the
  * outcome (the e2e spec waits on it).
  */
@@ -100,24 +108,52 @@
     document.documentElement.setAttribute('data-beginner-promo', state);
   }
 
-  function getData(path) {
+  var EDGE_URL = '/api/beginner-promo';
+  var deadline = Date.now() + TIMEOUT_MS;
+
+  // GET a JSON body, giving up at the shared deadline.
+  function getJson(url) {
+    var left = deadline - Date.now();
+    if (left <= 0) return Promise.reject(new Error('timeout'));
     var ctrl = typeof AbortController === 'function' ? new AbortController() : null;
-    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, TIMEOUT_MS);
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, left);
     var timeout = new Promise(function (_, reject) {
-      setTimeout(function () { reject(new Error('timeout')); }, TIMEOUT_MS);
+      setTimeout(function () { reject(new Error('timeout')); }, left);
     });
-    var req = fetch(API_BASE + path, {
+    var req = fetch(url, {
       headers: { Accept: 'application/json' },
       signal: ctrl ? ctrl.signal : undefined
     }).then(function (res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
-    }).then(function (body) {
-      if (!body || body.success !== true || !Array.isArray(body.data)) throw new Error('bad payload');
-      return body.data;
     });
     return Promise.race([req, timeout]).then(function (d) { clearTimeout(timer); return d; },
       function (e) { clearTimeout(timer); throw e; });
+  }
+
+  function getData(path) {
+    return getJson(API_BASE + path).then(function (body) {
+      if (!body || body.success !== true || !Array.isArray(body.data)) throw new Error('bad payload');
+      return body.data;
+    });
+  }
+
+  // -> { trials: <number of free trials>, classes: <beginner classes> }
+  function fromEdge() {
+    return getJson(EDGE_URL).then(function (body) {
+      if (!body || body.success !== true || typeof body.free_trials !== 'number' ||
+          !Array.isArray(body.workshops)) throw new Error('bad payload');
+      return { trials: body.free_trials, classes: body.workshops };
+    });
+  }
+
+  function fromCrm() {
+    return Promise.all([getData('/free-trials/available'), getData('/classes/beginner')])
+      .then(function (r) { return { trials: r[0].length, classes: r[1] }; });
+  }
+
+  function load() {
+    return fromEdge().catch(fromCrm);
   }
 
   function todayYmd() {
@@ -265,18 +301,21 @@
     return true;
   }
 
+  // Start the request now — the script is deferred, so this is as early as it
+  // runs; the DOM work below waits for nothing else.
+  var data = (typeof fetch === 'function' && typeof Promise === 'function') ? load() : null;
+  if (data) data.catch(function () {}); // handled in run(); avoid an unhandled rejection meanwhile
+
   function run() {
     if (!document.querySelector('.hero-cta') && !document.querySelector('.ft-hero')) return;
-    if (typeof fetch !== 'function' || typeof Promise !== 'function') { done('default'); return; }
+    if (!data) { done('default'); return; }
 
-    Promise.all([getData('/free-trials/available'), getData('/classes/beginner')])
-      .then(function (r) {
-        var trials = r[0];
-        var weekend = trials.length === 0 ? nextWeekend(r[1]) : null;
-        if (!weekend) { done('default'); return; }
-        var changed = upgradeHomepage(weekend) || upgradeTrialPage(weekend);
-        done(changed ? 'weekend' : 'default');
-      })
+    data.then(function (r) {
+      var weekend = r.trials === 0 ? nextWeekend(r.classes) : null;
+      if (!weekend) { done('default'); return; }
+      var changed = upgradeHomepage(weekend) || upgradeTrialPage(weekend);
+      done(changed ? 'weekend' : 'default');
+    })
       .catch(function () { done('default'); });
   }
 
