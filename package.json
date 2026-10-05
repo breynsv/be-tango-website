@@ -1,6 +1,7 @@
 {
   "scripts": {
     "test:e2e": "node _dev/e2e/run.js",
+    "test:functions": "node _dev/functions/beginner-promo.test.js",
     "faq:sync": "node _dev/scripts/sync-faq-jsonld.js",
     "faq:check": "node _dev/scripts/sync-faq-jsonld.js --check",
     "sitemap:lastmod": "node _dev/scripts/sitemap-lastmod.js",
