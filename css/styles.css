@@ -1954,6 +1954,20 @@ section {
   .footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; text-align: left; }
 }
 
+/* Web designer credit — the last line of every page. Smaller than the
+   footer-bottom text; alphas chosen for >= 4.5:1 on the darkest and lightest
+   ends of the footer gradient (text 0.5 = 4.8:1, link 0.65 = 7.1:1 on #1C244B). */
+.footer-credit {
+  margin: 0;
+  padding: 0 0 var(--spacing-md);
+  text-align: center;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.5);
+}
+.footer-credit a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+.footer-credit a:hover,
+.footer-credit a:focus-visible { color: rgba(255,255,255,0.85); }
+
 /* Footer aliases used in FR/NL pages */
 .footer-content {
   display: grid;
