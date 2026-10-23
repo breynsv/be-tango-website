@@ -8750,3 +8750,17 @@ h2 .highlight,h3 .highlight,h4 .highlight{color:var(--color-gold-on-light)}
     margin-right: auto;
   }
 }
+
+/* Beginners "Next dates": the box sits inside a .card, and .card .btn (0-2-0)
+   turns every button into a block of card width minus padding — 44px in the
+   price column, so "SIGN UP →" spilled out of its button from 481px up. */
+.weekend-date .btn-sign-up-inline {
+  display: inline-flex;
+  width: auto;
+}
+
+@media (max-width: 480px) {
+  .weekend-date .btn-sign-up-inline {
+    width: 100%;
+  }
+}
