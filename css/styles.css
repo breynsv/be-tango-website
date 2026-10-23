@@ -8729,3 +8729,24 @@ h2 .highlight,h3 .highlight,h4 .highlight{color:var(--color-gold-on-light)}
     min-height: 48px;
   }
 }
+
+/* Reviews carousel on phones: the touch-target rule above (button:not([hidden]),
+   0-1-1) out-ranks the plain .carousel-nav hide, so the arrows came back and
+   squeezed every card to ~220px. Hide them with enough specificity, and let the
+   card take most of the strip so the next one peeks in as a swipe hint. */
+@media (max-width: 767px) {
+  .reviews-carousel-wrapper .carousel-nav {
+    display: none;
+  }
+
+  .reviews-carousel > .review-card {
+    width: 85%;
+    max-width: 340px;
+  }
+
+  .summary-google-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
