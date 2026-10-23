@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Every two months (1 Jan/Mar/May/Jul/Sep/Nov, 10:00; on wake if asleep):
+     runs google-reviews-refresh.sh as it is on origin/main, not as it is in
+     whatever branch the local checkout happens to be on.
+     Install:  cp this file to ~/Library/LaunchAgents/ and
+               launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/be.be-tango.google-reviews.plist
+     Remove:   launchctl bootout gui/$(id -u)/be.be-tango.google-reviews -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>be.be-tango.google-reviews</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-c</string>
+    <string>cd "$HOME/Sites/BE-TANGO WEBSITE/be-tango-rebuild" &amp;&amp; git fetch -q origin &amp;&amp; git show origin/main:_dev/scripts/google-reviews-refresh.sh | /bin/bash -s</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Month</key><integer>1</integer><key>Day</key><integer>1</integer><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Month</key><integer>3</integer><key>Day</key><integer>1</integer><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Month</key><integer>5</integer><key>Day</key><integer>1</integer><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Month</key><integer>7</integer><key>Day</key><integer>1</integer><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Month</key><integer>9</integer><key>Day</key><integer>1</integer><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+    <dict><key>Month</key><integer>11</integer><key>Day</key><integer>1</integer><key>Hour</key><integer>10</integer><key>Minute</key><integer>0</integer></dict>
+  </array>
+  <key>StandardOutPath</key><string>/Users/svenbreynaert/Library/Logs/be-tango-google-reviews.log</string>
+  <key>StandardErrorPath</key><string>/Users/svenbreynaert/Library/Logs/be-tango-google-reviews.log</string>
+</dict>
+</plist>
