@@ -57,9 +57,10 @@
   <!-- Blocking, like /en/ and /nl/. Loading this async left the page relying on the
        inline critical CSS being exhaustive: measured CLS was 0.005 desktop / 0.016
        mobile here against 0.000 on the other two homepages. -->
-  <link rel="preload" href="../css/styles.min.css?v=5.3" as="style">
-  <link rel="stylesheet" href="../css/styles.min.css?v=5.3">
-  <noscript><link rel="stylesheet" href="../css/styles.min.css?v=5.3"></noscript>
+  <link rel="preload" href="../css/styles.min.css?v=5.4" as="style">
+  <link rel="stylesheet" href="../css/styles.min.css?v=5.4">
+  <noscript><style>.journey-slots,.journey-note{display:none}</style></noscript>
+  <noscript><link rel="stylesheet" href="../css/styles.min.css?v=5.4"></noscript>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -389,60 +390,103 @@
         <div class="grid grid-3 journey-grid">
           <article class="card journey-card" data-href="cours-de-tango/debutants/">
             <div class="journey-image">
-              <img src="../images/Tango-in-Brussels-e1740649554215-300w.webp" alt="Cours de Tango pour Débutants Absolus" width="300" height="300" loading="lazy" srcset="../images/Tango-in-Brussels-e1740649554215-300w.webp 300w, ../images/Tango-in-Brussels-e1740649554215.webp 500w" sizes="(max-width: 767px) 90vw, 300px">
+              <img src="../images/Tango-in-Brussels-e1740649554215-300w.webp" alt="Cours de Tango pour Débutants Absolus" width="300" height="300" loading="lazy" srcset="../images/Tango-in-Brussels-e1740649554215-300w.webp 300w, ../images/Tango-in-Brussels-e1740649554215.webp 500w" sizes="(max-width: 767px) 90vw, (max-width: 1023px) 45vw, 360px">
               <span class="journey-badge">COMMENCEZ ICI</span>
             </div>
             <div class="journey-content">
               <h3>Débutants Absolus</h3>
               <p><strong>Débutez le tango</strong> avec nos cours de tango pour débutants. <strong>Aucune expérience de danse préalable n'est requise !</strong></p>
+              <div class="journey-slots is-loading" data-journey="beginners" aria-busy="true">
+                <div class="journey-slot" aria-hidden="true"><span class="journey-slot-when">Wed 00:00–00:00</span><span class="journey-slot-where">Brussels</span></div>
+                <div class="journey-slot" aria-hidden="true"><span class="journey-slot-when">Wed 00:00–00:00</span><span class="journey-slot-where">Brussels</span></div>
+              </div>
+              <p class="journey-note" data-journey-note="beginners" hidden></p>
               <a href="cours-de-tango/debutants/" class="journey-link">Voir les cours débutants <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
 
-          <article class="card journey-card" data-href="cours-de-tango/experimentes/">
+          <article class="card journey-card" data-href="cours-de-tango/experimentes/#class-schedules">
             <div class="journey-image">
-              <img src="../images/tango-classes-in-Brussels-2-e1740646913571-300w.webp" alt="Cours de Tango Perfectionnement & Avancé" width="300" height="300" loading="lazy" srcset="../images/tango-classes-in-Brussels-2-e1740646913571-300w.webp 300w, ../images/tango-classes-in-Brussels-2-e1740646913571.webp 500w" sizes="(max-width: 767px) 90vw, 300px">
+              <img src="../images/beginner-tango-classes-300w.webp" alt="Cours de Tango Première Année" width="300" height="300" loading="lazy" srcset="../images/beginner-tango-classes-300w.webp 300w, ../images/beginner-tango-classes.webp 400w" sizes="(max-width: 767px) 90vw, (max-width: 1023px) 45vw, 360px">
             </div>
             <div class="journey-content">
-              <h3>Perfectionnement & Avancé</h3>
-              <p><strong>Élevez vos compétences en tango au niveau supérieur</strong> avec nos cours de danse pour danseurs intermédiaires et avancés.</p>
-              <a href="cours-de-tango/experimentes/" class="journey-link">Voir horaire <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+              <h3>Première Année</h3>
+              <p>Vous maîtrisez la marche de base et l’abrazo. Développez maintenant le vocabulaire qui vous fera danser en milonga.</p>
+              <div class="journey-slots is-loading" data-journey="first" aria-busy="true">
+                <div class="journey-slot" aria-hidden="true"><span class="journey-slot-when">Wed 00:00–00:00</span><span class="journey-slot-where">Brussels</span></div>
+                <div class="journey-slot" aria-hidden="true"><span class="journey-slot-when">Wed 00:00–00:00</span><span class="journey-slot-where">Brussels</span></div>
+              </div>
+              <a href="cours-de-tango/experimentes/#class-schedules" class="journey-link">Voir les cours de première année <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
 
-          <article class="card journey-card" data-href="cours-de-tango/particuliers/">
+          <article class="card journey-card" data-href="cours-de-tango/experimentes/#class-schedules">
             <div class="journey-image">
-              <img src="../images/Private-dance-classes-300w.webp" alt="Cours de Tango Privés" width="300" height="300" loading="lazy" srcset="../images/Private-dance-classes-300w.webp 300w, ../images/Private-dance-classes.webp 500w" sizes="(max-width: 767px) 90vw, 300px">
+              <img src="../images/tango-classes-in-brussels-e1740489870304-300w.webp" alt="Cours de Tango Deuxième Année" width="300" height="235" loading="lazy" srcset="../images/tango-classes-in-brussels-e1740489870304-300w.webp 300w, ../images/tango-classes-in-brussels-e1740489870304-800w.webp 800w" sizes="(max-width: 767px) 90vw, (max-width: 1023px) 45vw, 360px">
             </div>
             <div class="journey-content">
-              <h3>Cours Particuliers</h3>
-              <p>Un cours, un thème, entièrement à votre rythme. <strong>Progressez plus vite</strong> avec un cours conçu pour vous.</p>
-              <a href="cours-de-tango/particuliers/" class="journey-link">Réserver une session <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+              <h3>Deuxième Année</h3>
+              <p>Technique, musicalité et connexion, avec des figures et des enchaînements plus complexes.</p>
+              <div class="journey-slots is-loading" data-journey="second" aria-busy="true">
+                <div class="journey-slot" aria-hidden="true"><span class="journey-slot-when">Wed 00:00–00:00</span><span class="journey-slot-where">Brussels</span></div>
+                <div class="journey-slot" aria-hidden="true"><span class="journey-slot-when">Wed 00:00–00:00</span><span class="journey-slot-where">Brussels</span></div>
+              </div>
+              <a href="cours-de-tango/experimentes/#class-schedules" class="journey-link">Voir les cours de deuxième année <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+
+          <article class="card journey-card" data-href="cours-de-tango/experimentes/#class-schedules">
+            <div class="journey-image">
+              <img src="../images/tango-classes-in-Brussels-2-e1740646913571-300w.webp" alt="Cours de Tango Intermédiaire &amp; Avancé" width="300" height="300" loading="lazy" srcset="../images/tango-classes-in-Brussels-2-e1740646913571-300w.webp 300w, ../images/tango-classes-in-Brussels-2-e1740646913571.webp 500w" sizes="(max-width: 767px) 90vw, (max-width: 1023px) 45vw, 360px">
+            </div>
+            <div class="journey-content">
+              <h3>Intermédiaire &amp; Avancé</h3>
+              <p><strong>Élevez vos compétences en tango au niveau supérieur</strong> avec nos cours de danse pour danseurs intermédiaires et avancés.</p>
+              <div class="journey-slots is-loading" data-journey="advanced" aria-busy="true">
+                <div class="journey-slot" aria-hidden="true"><span class="journey-slot-when">Wed 00:00–00:00</span><span class="journey-slot-where">Brussels</span></div>
+                <div class="journey-slot" aria-hidden="true"><span class="journey-slot-when">Wed 00:00–00:00</span><span class="journey-slot-where">Brussels</span></div>
+              </div>
+              <a href="cours-de-tango/experimentes/#class-schedules" class="journey-link">Voir horaire <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
 
           <article class="card journey-card" data-href="cours-de-tango/ateliers/">
             <div class="journey-image">
-              <img src="../images/Tango-workshops-e1740647379561-300w.webp" alt="Ateliers de Tango" width="300" height="300" loading="lazy" srcset="../images/Tango-workshops-e1740647379561-300w.webp 300w, ../images/Tango-workshops-e1740647379561.webp 500w" sizes="(max-width: 767px) 90vw, 300px">
+              <img src="../images/Tango-workshops-e1740647379561-300w.webp" alt="Ateliers de Tango" width="300" height="300" loading="lazy" srcset="../images/Tango-workshops-e1740647379561-300w.webp 300w, ../images/Tango-workshops-e1740647379561.webp 500w" sizes="(max-width: 767px) 90vw, (max-width: 1023px) 45vw, 360px">
             </div>
             <div class="journey-content">
               <h3>Ateliers</h3>
-              <p>Approfondissez un seul thème — <em>sacadas</em>, <em>boleos</em>, musicalité. Pour ceux qui veulent aller plus loin que le cours hebdomadaire.</p>
-              <a href="cours-de-tango/ateliers/" class="journey-link">Ateliers <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+              <p>Approfondissez un seul thème, ou apprenez les bases en accéléré le temps d’un week-end.</p>
+              <div class="journey-slots is-loading" data-journey="workshops" aria-busy="true">
+                <div class="journey-slot" aria-hidden="true"><span class="journey-slot-when">Wed 00:00–00:00</span><span class="journey-slot-where">Brussels</span></div>
+              </div>
+              <a href="cours-de-tango/ateliers/" class="journey-link">Tous les ateliers <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
 
-          <article class="card journey-card" data-href="cours-de-tango/en-ligne/">
+          <article class="card journey-card" data-href="cours-de-tango/particuliers/">
             <div class="journey-image">
-              <img src="../images/tango-classes-fun-300w.webp" alt="Académie de Tango en Ligne Gratuite" width="300" height="189" loading="lazy" srcset="../images/tango-classes-fun-300w.webp 300w, ../images/tango-classes-fun.webp 500w" sizes="(max-width: 767px) 90vw, 300px">
+              <img src="../images/Private-dance-classes-300w.webp" alt="Cours de Tango Privés" width="300" height="300" loading="lazy" srcset="../images/Private-dance-classes-300w.webp 300w, ../images/Private-dance-classes.webp 500w" sizes="(max-width: 767px) 90vw, (max-width: 1023px) 45vw, 360px">
             </div>
             <div class="journey-content">
-              <h3>Académie en ligne gratuite</h3>
-              <p>Découvrez les bases du tango argentin depuis le confort de votre maison avec nos cours de tango en ligne gratuits.</p>
-              <a href="cours-de-tango/en-ligne/" class="journey-link">Commencer les vidéos <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+              <h3>Cours Particuliers</h3>
+              <p>Un cours, un thème, entièrement à votre rythme. <strong>Progressez plus vite</strong> avec un cours conçu pour vous.</p>
+              <div class="journey-slots is-loading" data-journey="private" aria-busy="true">
+                <div class="journey-slot" aria-hidden="true"><span class="journey-slot-when">Wed 00:00–00:00</span><span class="journey-slot-where">Brussels</span></div>
+              </div>
+              <a href="cours-de-tango/particuliers/" class="journey-link">Réserver une session <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
         </div>
+
+        <aside class="journey-online">
+          <img src="../images/tango-classes-fun-300w.webp" alt="Vidéos de tango gratuites en ligne" width="84" height="64" loading="lazy">
+          <div class="journey-online-text">
+            <strong>Pas encore prêt à vous inscrire ?</strong>
+            <span>Apprenez vos premiers pas à la maison avec nos vidéos de tango gratuites en ligne.</span>
+          </div>
+          <a href="cours-de-tango/en-ligne/" class="journey-link">Commencer les vidéos gratuites <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </aside>
       </div>
     </section>
 
@@ -1081,6 +1125,7 @@
 <script>window.API_CONFIG={baseURL:"localhost"===window.location.hostname||"127.0.0.1"===window.location.hostname?"http://betango.membrero.test:8001/api/v1":"https://betango.membrero.com/api/v1"};</script>
   <script src="../js/newsletter.min.js?v=1.1" defer></script>
   <script src="../js/announcements.min.js?v=3.7" defer></script>
+  <script src="../js/journey-schedule.min.js?v=1.0" defer></script>
   <script src="/js/beginner-promo.min.js?v=1.1" defer></script>
   <script>
     (function(){var c=document.querySelector('[data-nl-card]');if(!c)return;if('IntersectionObserver' in window){new IntersectionObserver(function(e){e.forEach(function(n){if(n.isIntersecting)n.target.classList.add('visible');});},{threshold:0.15}).observe(c);}else{c.classList.add('visible');}})();
