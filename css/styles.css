@@ -1359,6 +1359,8 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Per-photo focal point, set on each img as --focus: keeps faces in frame */
+  object-position: var(--focus, 50% 50%);
   transition: transform 0.35s ease;
 }
 
@@ -1584,12 +1586,6 @@ section {
 
   .journey-online .journey-link {
     width: 100%;
-  }
-}
-
-@media (max-width: 540px) {
-  .journey-image {
-    height: 180px;
   }
 }
 
@@ -5966,11 +5962,6 @@ section {
     width: 100%;
     padding: var(--spacing-md) var(--spacing-lg);
   }
-
-  /* Journey cards mobile */
-  .journey-image {
-    height: 250px;
-  }
 }
 
 /* Tablet Optimization */
@@ -6878,9 +6869,11 @@ a:focus {
     background-attachment: scroll; /* Better mobile performance */
   }
 
-  /* Journey card images - smaller height on mobile */
+  /* Journey card images - one column: a 4:3 frame instead of a fixed
+     strip, so a full-width card does not crop the faces off */
   .journey-image {
-    height: 200px;
+    height: auto;
+    aspect-ratio: 4 / 3;
   }
 
   /* Info card images */
