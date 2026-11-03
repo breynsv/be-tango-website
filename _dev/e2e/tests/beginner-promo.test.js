@@ -40,12 +40,13 @@ function startServer() {
   return new Promise((resolve) => server.listen(0, '127.0.0.1', () => resolve(server)));
 }
 
-function ymd(offsetDays) {
-  const d = new Date();
-  d.setDate(d.getDate() + offsetDays);
-  const pad = (n) => String(n).padStart(2, '0');
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
-}
+// The browser's "today" for every page in this file. The fixtures below are real
+// calendar dates, and js/beginner-promo.js drops any weekend that has ended — so
+// against the real clock they expire one by one (the cross-month weekend did on
+// 2 Nov 2026 and failed the weekly production run). Pinning the start of the
+// clock keeps them upcoming forever. The clock still TICKS from here, because the
+// script's 4s API budget is measured with Date.now() and setTimeout.
+const TODAY = '2026-10-20T10:00:00';
 
 const LOCATION = {
   id: 6, name: 'Gatti de Gamond',
@@ -56,7 +57,7 @@ const WEEKEND = {
   id: 493, type: 'Workshop', start_date: '2026-11-14', end_date: '2026-11-15',
   start_time: '14:00', end_time: '16:15', price: '95.00', location: LOCATION,
 };
-const PAST_WEEKEND = { ...WEEKEND, id: 400, start_date: ymd(-30), end_date: ymd(-29) };
+const PAST_WEEKEND = { ...WEEKEND, id: 400, start_date: '2026-09-19', end_date: '2026-09-20' };
 const LATER_WEEKEND = { ...WEEKEND, id: 500, start_date: '2027-01-16', end_date: '2027-01-17', price: '110.00' };
 const WEEKLY = { id: 480, type: 'Weekly_Course', start_date: '2026-09-14', end_date: '2027-01-25', price: '180.00', location: LOCATION };
 const CROSS_MONTH = { ...WEEKEND, id: 501, start_date: '2026-10-31', end_date: '2026-11-01', price: '95.50' };
@@ -110,6 +111,7 @@ function edgeBody(trials, classes) {
 // page.promoCalls counts requests per endpoint.
 async function openPage(browser, origin, url, api, ctxOpts) {
   const context = await browser.newContext(ctxOpts || DESKTOP);
+  await context.clock.install({ time: new Date(TODAY) });
   const page = await context.newPage();
   // Most recently registered handler wins, so the catch-all goes on first.
   await page.route('**/*', (route) => {
