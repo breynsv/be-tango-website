@@ -718,6 +718,32 @@
     <lastmod>2026-09-29</lastmod>
   </url>
 
+  <!-- ===================== BLOG / BEHIND THE SCENES BE-TANGO MEMBRERO ===================== -->
+  <url>
+    <loc>https://www.be-tango.be/en/blog/behind-the-scenes-be-tango-membrero/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.be-tango.be/en/blog/behind-the-scenes-be-tango-membrero/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/blog/dans-les-coulisses-de-be-tango-membrero/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/blog/achter-de-schermen-be-tango-membrero/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/fr/blog/dans-les-coulisses-de-be-tango-membrero/"/>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://www.be-tango.be/fr/blog/dans-les-coulisses-de-be-tango-membrero/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.be-tango.be/en/blog/behind-the-scenes-be-tango-membrero/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/blog/dans-les-coulisses-de-be-tango-membrero/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/blog/achter-de-schermen-be-tango-membrero/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/fr/blog/dans-les-coulisses-de-be-tango-membrero/"/>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://www.be-tango.be/nl/blog/achter-de-schermen-be-tango-membrero/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.be-tango.be/en/blog/behind-the-scenes-be-tango-membrero/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/blog/dans-les-coulisses-de-be-tango-membrero/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/blog/achter-de-schermen-be-tango-membrero/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/fr/blog/dans-les-coulisses-de-be-tango-membrero/"/>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+
   <!-- ===================== BLOG / WHY ARGENTINE TANGO BEST DANCE ADULTS BRUSSELS ===================== -->
   <url>
     <loc>https://www.be-tango.be/en/blog/why-argentine-tango-best-dance-adults-brussels/</loc>
