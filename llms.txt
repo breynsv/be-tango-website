@@ -7,6 +7,7 @@
 - [Beginners](https://www.be-tango.be/en/tango-classes/beginners/): Start-to-Tango beginner course, 12 lessons + 1 practica; register alone and we match you with a fixed partner
 - [Experienced](https://www.be-tango.be/en/tango-classes/experienced/): Intermediate and advanced tango classes
 - [Couples](https://www.be-tango.be/en/tango-classes/couples/): Argentine tango for couples in Brussels — no experience needed, free trial available, €195 for the full cycle (12 lessons + 1 practica)
+- [Dance Classes for Adults in Brussels](https://www.be-tango.be/en/dance-classes-adults-brussels/): Adult dance classes in Brussels and Woluwe — Argentine tango, no experience or partner needed, 12 lessons + 1 practica for €195, free trial
 - [Brussels Classes](https://www.be-tango.be/en/tango-classes/brussels/): Weekly classes at Rue du Marais 68, 1000 Brussels
 - [Woluwe Classes](https://www.be-tango.be/en/tango-classes/woluwe/): Weekly classes at Avenue Orban 54, 1150 Woluwe-Saint-Pierre
 - [Free Trial Class](https://www.be-tango.be/en/tango-classes/free-trial/): Book a free first lesson, no commitment
@@ -50,6 +51,7 @@
 - [Débutants](https://www.be-tango.be/fr/cours-de-tango/debutants/): Cours Start-to-Tango pour débutants, 12 cours + 1 pratique ; inscrivez-vous seul, nous vous attribuons un partenaire fixe
 - [Expérimentés](https://www.be-tango.be/fr/cours-de-tango/experimentes/): Cours intermédiaires et avancés
 - [Cours en couple](https://www.be-tango.be/fr/cours-de-tango/en-couple/): Cours de tango argentin pour couples à Bruxelles — aucune expérience requise, essai gratuit
+- [Cours de danse pour adultes à Bruxelles](https://www.be-tango.be/fr/cours-de-danse-adultes-bruxelles/): Cours de danse pour adultes à Bruxelles et Woluwe — tango argentin, sans expérience ni partenaire, 12 cours + 1 pratique pour 195 €, essai gratuit
 - [Bruxelles](https://www.be-tango.be/fr/cours-de-tango/bruxelles/): Cours hebdomadaires à Bruxelles, Rue du Marais 68
 - [Woluwe](https://www.be-tango.be/fr/cours-de-tango/woluwe/): Cours hebdomadaires à Woluwe-Saint-Pierre
 - [Essai gratuit](https://www.be-tango.be/fr/cours-de-tango/essai-gratuit/): Réservez un premier cours gratuit sans engagement
@@ -89,6 +91,7 @@
 - [Beginners](https://www.be-tango.be/nl/tangolessen/beginners/): Start-to-Tango beginnerscursus, 12 lessen + 1 practica; schrijf je alleen in, wij zoeken een vaste partner
 - [Ervaring](https://www.be-tango.be/nl/tangolessen/ervaring/): Lessen voor gevorderden en intermediair niveau
 - [Voor koppels](https://www.be-tango.be/nl/tangolessen/voor-koppels/): Argentijnse tangolessen voor koppels in Brussel — geen ervaring nodig, gratis proefles
+- [Dansles voor volwassenen in Brussel](https://www.be-tango.be/nl/dansles-volwassenen-brussel/): Dansles voor volwassenen in Brussel en Woluwe — Argentijnse tango, geen ervaring of partner nodig, 12 lessen + 1 practica voor €195, gratis proefles
 - [Brussel](https://www.be-tango.be/nl/tangolessen/brussel/): Wekelijkse lessen in Brussel, Rue du Marais 68
 - [Woluwe](https://www.be-tango.be/nl/tangolessen/woluwe/): Wekelijkse lessen in Woluwe-Sint-Pieter
 - [Gratis proefles](https://www.be-tango.be/nl/tangolessen/gratis-proefles/): Boek een gratis eerste les zonder verplichting

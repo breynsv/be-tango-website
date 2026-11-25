@@ -132,6 +132,32 @@
     <lastmod>2026-09-29</lastmod>
   </url>
 
+  <!-- ===================== ADULT DANCE CLASSES ===================== -->
+  <url>
+    <loc>https://www.be-tango.be/en/dance-classes-adults-brussels/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.be-tango.be/en/dance-classes-adults-brussels/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/cours-de-danse-adultes-bruxelles/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/dansles-volwassenen-brussel/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/fr/cours-de-danse-adultes-bruxelles/"/>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.be-tango.be/fr/cours-de-danse-adultes-bruxelles/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.be-tango.be/en/dance-classes-adults-brussels/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/cours-de-danse-adultes-bruxelles/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/dansles-volwassenen-brussel/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/fr/cours-de-danse-adultes-bruxelles/"/>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.be-tango.be/nl/dansles-volwassenen-brussel/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.be-tango.be/en/dance-classes-adults-brussels/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.be-tango.be/fr/cours-de-danse-adultes-bruxelles/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://www.be-tango.be/nl/dansles-volwassenen-brussel/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.be-tango.be/fr/cours-de-danse-adultes-bruxelles/"/>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+
   <!-- ===================== TANGO CLASSES / EXPERIENCED ===================== -->
   <url>
     <loc>https://www.be-tango.be/en/tango-classes/experienced/</loc>
