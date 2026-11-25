@@ -118,3 +118,19 @@
 /fr/blog/tango-en-couple-bruxelles   /fr/cours-de-tango/en-couple/  301
 /nl/blog/tango-voor-koppels-brussel/  /nl/tangolessen/voor-koppels/  301
 /nl/blog/tango-voor-koppels-brussel   /nl/tangolessen/voor-koppels/  301
+
+# SEO 2026-11: URLs Search Console reports as 404 (crawled Sep–Nov 2026).
+# The /nl/blog/ ones are English slugs that never existed in the NL tree;
+# both slash forms are listed because no directory exists to normalise them.
+/tango-classes/online/  /en/tango-classes/online/  301
+/tango-classes/online   /en/tango-classes/online/  301
+/nl/blog/tango-for-couples-brussels/  /nl/tangolessen/voor-koppels/  301
+/nl/blog/tango-for-couples-brussels   /nl/tangolessen/voor-koppels/  301
+/nl/blog/tango-vals-milonga-differences/  /nl/blog/tango-vals-en-milonga-wat-zijn-de-verschillen/  301
+/nl/blog/tango-vals-milonga-differences   /nl/blog/tango-vals-en-milonga-wat-zijn-de-verschillen/  301
+/nl/blog/what-to-wear-tango-class/  /nl/blog/wat-aantrekken-tangoles/  301
+/nl/blog/what-to-wear-tango-class   /nl/blog/wat-aantrekken-tangoles/  301
+/nl/blog/tango-events-brussels/  /nl/blog/tango-evenementen-in-brussel-en-omstreken/  301
+/nl/blog/tango-events-brussels   /nl/blog/tango-evenementen-in-brussel-en-omstreken/  301
+/faq/  /en/faq/  301
+/faq   /en/faq/  301
