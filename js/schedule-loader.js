@@ -220,6 +220,14 @@
      * Detect page type from URL to determine which API endpoint to call
      */
     function detectPageType() {
+        // A page can name its schedule explicitly. Needed when the URL would
+        // mislead the keyword match below: /fr/cours-de-danse-adultes-bruxelles/
+        // wants the beginner schedule, but "bruxelles" would load Brussels only.
+        const forced = document.querySelector('[data-schedule-type]');
+        const forcedType = forced && forced.dataset.scheduleType;
+        if (['beginner', 'experienced', 'brussels', 'woluwe', 'all'].includes(forcedType)) {
+            return forcedType;
+        }
         const path = window.location.pathname.toLowerCase();
         if (path.includes('beginner') || path.includes('debutant') || path.includes('beginners')) {
             return 'beginner';
